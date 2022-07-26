@@ -1,0 +1,122 @@
+body
+{
+  margin:0 auto;
+  padding:0;
+  /*text-align:center;*/
+  background-color:#D8D8D8;
+}
+#wrapper
+{
+  width:995px;
+  padding:0px;
+  margin:100px auto;
+  font-family:helvetica;
+  position:relative;
+}
+#wrapper .baricon
+{
+  display:inline-block;
+  border-radius:50%;
+  padding:20px;
+  background-color:#ffffff;
+  color:rgb(0, 0, 0);
+  width: 60px;
+  height: 60px;
+  border: 1px solid #a7a2a2;
+}
+
+.wt-userformvtwo1 {
+  padding: 10px 30px!important;
+}
+
+#wrapper .progress_bar
+{
+  width:200px;
+  height:5px;
+  border-radius:20px;
+  background-color:#D8D8D8;
+  display:inline-block;
+}
+#wrapper form div
+{
+  margin-left:340px;
+  padding:10px;
+  box-sizing:border-box;
+  width:300px;
+  margin-top:50px;
+  background-color:#585858;
+}
+#wrapper form div p
+{
+  color:#F2F2F2;
+  margin:0px;
+  margin-top:10px;
+  font-weight:bold;
+}
+#wrapper form div .form_head
+{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:30px;
+}
+#wrapper form div input[type="text"]
+{
+  width:200px;
+  height:40px;
+  padding:5px;
+  border-radius:5px;
+  border:none;
+  margin-top:10px;
+}
+/*#wrapper form div input[type="button"],input[type="submit"]
+{
+  width:80px;
+  height:40px;
+  border-radius:5px;
+  border:2px solid white;
+  background:none;
+  color:white;
+  margin:5px;
+  margin-top:10px;
+}*/
+#user_details,#qualification,#team
+{
+  display:none;
+}
+p.form_head {
+  text-align: center;
+  font-weight: 700;
+  font-size: 21px;
+  margin: 20px;
+}
+
+.lara-attachment-files .multile-file-attachments {
+  padding: 20px 20px!important;
+}
+.vdpComponent.vdpWithInput>input {
+  width: 100%;
+}
+.vdpComponent.vdpWithInput {
+  width: 100%;
+}
+
+.form-group.form-group-half.wt-formwithlabel.job-cost-input {
+  margin-top: 7px;
+}
+
+span.wt-btn {
+  background: none!important;
+  border: 2px solid #afa9a9;
+  color: #afa9a9;
+}
+.switch-button-control .switch-button.enabled {
+  border: none;
+  box-shadow: inset 0 0 0 20px #e4e4e4 !important;
+}
+.switch-button-control .switch-button {
+  box-shadow: inset 0 0 0 20px #005178 !important;
+}
+
+.wt-tabscontenttitle:before {
+  background: none!important;
+}

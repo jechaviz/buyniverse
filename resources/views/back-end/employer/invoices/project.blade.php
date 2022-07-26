@@ -1,0 +1,74 @@
+@extends(file_exists(resource_path('views/extend/back-end/master.blade.php')) ? 'extend.back-end.master' : 'back-end.master')
+@section('content')
+    <section class="wt-haslayout wt-dbsectionspace">
+    @php
+                        $user = !empty(Auth::user()) ? Auth::user() : '';
+                        $role = !empty($user) ? $user->role : array();
+                        @endphp
+                        <div class="row" style="margin-left: 10px;padding-bottom: 15px;">
+                            <ol class="wt-breadcrumb">
+                                <li><a href="{{ route('home') }}">{{ trans('lang.home') }}</a></li>
+                                <li><a href="{{{ url($role.'/dashboard') }}}">{{ trans('lang.dashboard') }}</a></li>
+                                <li class="active">{{ trans('lang.invoices')}}</li>
+                            </ol>
+                        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 float-right" id="invoice_list">
+                <div class="wt-dashboardbox wt-dashboardinvocies">
+                    <div class="wt-dashboardboxtitle wt-titlewithsearch">
+                        <h2>{{ trans('lang.invoices') }}</h2>
+                    </div>
+                    <div class="wt-dashboardboxcontent wt-categoriescontentholder wt-categoriesholder" id="printable_area">
+                        @if (!empty($invoices) && $invoices->count() > 0)
+                            <table class="wt-tablecategories">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <span class="wt-checkbox">
+                                                <input id="wt-name" type="checkbox" name="head">
+                                                <label for="wt-name"></label>
+                                            </span>
+                                        </th>
+                                        <th>{{ trans('lang.invoice_id') }}</th>
+                                        <th>{{ trans('lang.issue_date') }}</th>
+                                        <th>{{ trans('lang.amount') }}</th>
+                                        <th>{{ trans('lang.action') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($invoices as $invoice)
+                                        <tr>
+                                            <td>
+                                                <span class="wt-checkbox">
+                                                    <input id="wt-{{{ $invoice->id }}}" type="checkbox" name="head">
+                                                    <label for="wt-{{{ $invoice->id }}}"></label>
+                                                </span>
+                                            </td>
+                                            <td>{{{ $invoice->id }}}</td>
+                                            <td>{{{ \Carbon\Carbon::parse($invoice->created_at)->format('M d, Y') }}}</td>
+                                            <td>{{ !empty($symbol) ? $symbol['symbol'] : '$'  }}{{{ $invoice->price }}}</td>
+                                            <td>
+                                                <div class="wt-actionbtn">
+                                                    <a class="print-window wt-addinfo wt-skillsaddinfo" href="{{ url('show/invoice/'.$invoice->id) }}">{{ trans('lang.view_invoice') }}</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
+                                @include('extend.errors.no-record')
+                            @else 
+                                @include('errors.no-record')
+                            @endif
+                        @endif
+                        @if ( method_exists($invoices,'links') )
+                            {{ $invoices->links('pagination.custom') }}
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection

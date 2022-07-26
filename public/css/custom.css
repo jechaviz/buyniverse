@@ -1,0 +1,55 @@
+/*
+Theme Name: Worketic
+Theme URI: http://amentotech.com/projects/worketic
+Author: Amentotech
+Author URI:  https://themeforest.net/user/amentotech/portfolio
+Version: 1.0.0
+You can add your custom styling here
+*/
+
+.css-table {
+    display: table;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    background-color: transparent;
+    border-collapse: separate;
+    }
+    
+    .css-table-header {
+    display: table-header-group;
+    border: 0;
+    color: #323232;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    padding: 15px 20px;
+    background: #fcfcfc;
+    vertical-align: middle;
+    border-top: 1px solid #eff2f5;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    }
+    
+    .css-table-body {
+    display: table-row-group;
+    }
+    
+    .css-table-row {
+    display: table-row;
+    }
+    
+    .css-table-header div,
+    .css-table-row div {
+    display: table-cell;
+    border: 0;
+    text-align: left;
+    padding: 10px 20px;
+    vertical-align: middle;
+    border-top: 1px solid #eff2f5;
+    }
+    
+    .css-table-header div {
+    
+    border: 1px solid rgb(255, 255, 255);
+    }
