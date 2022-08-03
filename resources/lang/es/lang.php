@@ -547,7 +547,7 @@ return [
   'location_updated' => 'Ubicación actualizada',
   'edit_location' => 'Editar ubicación',
   'update_location' => 'Actualizar ubicación',
-  'no_access' => 'No tienes permiso para acceder a esta página',
+  
   'access_denied' => 'Acceso denegado',
   'homepage' => 'Página principal',
   'register_first_name_error' => 'Se requiere el primer nombre',
@@ -1647,7 +1647,7 @@ return [
   'approved' => 'Aprobado',
   'select_level' => 'Selecciona el nivel',
   'perhour' => 'Por hora',
-    
+  'no_access' => 'Por favor inicie sesión para ver',
 
   'employee_list' => [
     'just_me' => 'Sólo soy yo',

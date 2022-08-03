@@ -561,7 +561,7 @@ return [
     'location_updated' => 'Location Updated',
     'edit_location' => 'Edit Location',
     'update_location' => 'Update Location',
-    'no_access' => 'You Have No Permission to Access This Page',
+    'no_access' => 'Please login to View',
     'access_denied' => 'Access Denied',
     'homepage' => 'HomePage',
     'register_first_name_error' => 'First name is required',
@@ -1691,7 +1691,7 @@ return [
     'approved' => 'Approved',
     'select_level' => 'Select Level',
     'perhour' => 'Per Hour',
-    
+    'tcurrency' => 'Currency',
     
 
 

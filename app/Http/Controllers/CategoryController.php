@@ -259,10 +259,24 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getcurrency()
+    {
+        
+        $json = array();
+        $currency = array_pluck(Helper::currencyList(), 'code', 'code'); 
+        if (!empty($currency)) {
+            $json['type'] = 'success';
+            $json['currency'] = $currency;
+            return $json;
+        } else {
+            $json['type'] = 'error';
+            return $json;
+        }
+    }
     public function getCategories()
     {
         $json = array();
-        $categories = $this->category::latest()->get()->take(8);
+        $categories = $this->category::latest()->get();
         if (!empty($categories)) {
             $json['type'] = 'success';
             $json['categories'] = $categories;

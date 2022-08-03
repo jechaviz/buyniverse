@@ -47,6 +47,29 @@ class JobController extends Controller
     {
         //
     }
+    public function updatecurrency($id)
+    {
+        $ids = explode('-', $id);
+        $job = Job::find($ids[0]);
+        $job->currency = $ids[1];
+        $job->save(); 
+    }
+
+    public function updatecategory($id)
+    {
+        $ids = explode('-', $id);
+        //dd($id);
+        if(DB::table('catables')->where('catable_id', $ids[0])->where('category_id', $ids[1])->where('catable_type', 'App\Job')->exists())
+        {}
+        else
+        {   
+            DB::table('catables')->insert([
+                'category_id' => $ids[1],
+                'catable_id' => $ids[0],
+                'catable_type' => 'App\Job'
+            ]);
+        }
+    }
 
     public function getcontest($id)
     {
@@ -176,7 +199,15 @@ class JobController extends Controller
         
         $job = Job::where('id', $ids[0])->get();
         $user = User::find($idu);
-        //dd($user);
+        if($job[0]->currency)
+        {
+            $currency = Helper::currencyList($job[0]->currency);
+            $job[0]->curr = $currency;
+        }
+        
+        $catable = $job[0]->categories;
+        $job[0]->categories = $catable;
+        //dd($catable);
         $email = $user->email;
         //dd($email);
         //dd(auth('api')->user());

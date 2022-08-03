@@ -7,7 +7,7 @@
         <div class="md-10" style="margin-left: 15px;">
 
             <h2 id="title" class="hidden" v-html="jobform.title"></h2>
-            <h4 id="project_id" class="hidden">{{ trans('lang.project_id') }} : # {{ job1.id }}</h4>
+            <h4 id="project_id" class="hidden">{{ trans('lang.project_id') }}: # {{ job1.id }}</h4>
             <form @submit.prevent="posttitle()">
             <div class="form-group" id="posttitle">
                 <input type="text" name="title" class="form-control" :placeholder="trans('lang.job_title')" v-model="jobform.title">
@@ -19,7 +19,7 @@
             
         </div>
     </div>
-    <div id="trx" class="wt-dashboardbox hidden">
+    <div id="trx" class="wt-dashboardbox">
                                 <div class="wt-dashboardboxtitle">
                                     <div class="col-md-6">
                                         <h2>{{ trans('lang.post_job') }}</h2>
@@ -76,31 +76,11 @@
                 </td>
 
           </tr>
-          <!--<tr>
-              <td class="job-details"><b>{{ trans('lang.status') }}</b></td>
-              <td class="job-details">
-                  {{ job1.status}}
-                  <br>
-                  <span v-if="approvers.length > 0">
-                      <span v-for="approver in approvers" :key="approver.id">
-                            <span >{{ trans('lang.name') }} : {{ approver.name }} {{ approver.lname }}</span><br>
-                            <span >{{ trans('lang.position') }} : {{ approver.role }}  </span><br>
-                            <span >{{ trans('lang.level') }} : {{ approver.permission }}  </span><br>
-                            
-                            <span >Status : <span v-if="approver.status == 0"> {{ trans('lang.waiting') }} </span>
-                                <span v-else>
-                                    <span v-if="job1.status == 'cancelled'">{{ trans('lang.rejected') }}</span>
-                                    <span v-else> {{ trans('lang.approved') }}</span>
-                                </span>  
-                            </span><br>
-                        </span>
-                    </span>
-                </td>
-          </tr>-->
+          
           <tr id="tr2" class="hidden">
               <td class="job-details"><b>{{ trans('lang.duration') }}</b></td>
               <td @click="editjobduration" class="job-details">
-                  <span id="jobduration"><span v-for="(item, key) in project_duration" :key="key"  :value="key" v-if="key==job1.duration">{{ item}}</span> <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                  <span id="jobduration" v-for="(item, key) in project_duration" :key="key"  :value="key" ><span v-if="key==job1.duration">{{ item}}</span> <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                   <div id="editjobduration" class="hidden" >
                         
                         <select class="form-control form-control-sm" id="editprojectlevel-select" name="editprojectlevel-select" v-on:change="updatejobduration">
@@ -119,105 +99,35 @@
                     </div>
                 </td>
           </tr>
-          <tr id="tr4" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.freelancer_typex') }}</b></td>
-              <td class="job-details">
-                  <span id="projectfreelancer"><span v-for="(item, key) in freelancer" :key="key" :value="key">
-                      <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ item.name }} <i @click="deletefreelancer(item.id)"  class="fa fa-times" aria-hidden="true"></i></span>
-                  </span><br>
-                  </span>
-                  <span @click="editfreelancer"  id="addprojectfreelancer"><i class="fa fa-plus"></i></span>
-                  <div id="editfreelancer"  class="hidden">
-                        
-                        <select class="form-control form-control-sm" id="editfreelancer-select" name="editfreelancer-select" v-on:change="updatefreelancer">
-                            <option selected>{{ trans('lang.select') }}</option>
-                            <option v-for="(item, key) in project_freelancer" :key="key" :value="key">{{ item }}</option>
-                        </select>                        
-                    </div>
-                </td>
-          </tr>
-          <tr id="tr5" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.english_levelx') }}</b></td>
-              <td class="job-details">
-                  <span id="english"><span v-for="(item, key) in english" :key="key" :value="item.english_level">
-                    <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ item.name }} <i @click="deleteenglish(item.id)"  class="fa fa-times" aria-hidden="true"></i></span><br>
-                    </span>
-                    </span>
-                    <span @click="editenglish"  id="addenglish"><i class="fa fa-plus"></i></span>
-                  <div id="editenglish"  class="hidden">
-                        
-                        <select class="form-control form-control-sm" id="editenglish-select" name="editenglish-select" v-on:change="updateenglish">
-                            <option selected>{{ trans('lang.select') }}</option>
-                            <option v-for="(item, key) in project_english" :key="key" :value="key">{{ item }}</option>
-                        </select>                        
-                    </div>
-                  </td>
-          </tr>
-          <!--<tr id="tr6" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.project_typex') }}</b></td>
-              <td class="job-details">
-                  <span>{{ job1.project_type}}</span>
-                </td>
-          </tr>-->
-          <tr id="tr7" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.langs') }}</b></td>
-              <td class="job-details">
-                  <span>
-                    <span v-for="lang in langs" :key="lang.id">
-                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ lang.title }} <i @click="deletelang(lang.id)"  class="fa fa-times" aria-hidden="true"></i></span><br>
-                    </span>
-                    <span @click="addlang"  id="addlang"><i class="fa fa-plus"></i></span>
-                    <select class="form-control form-control-sm hidden" id="addlang-select" name="addlang-select" v-on:change="updateaddlang">
-                            <option selected>{{ trans('lang.select') }}</option>
-                            <option v-for="(item, key) in languages" :key="key" :value="key">{{ item }}</option>
-                        </select>
-                  </span>
-                </td>
-          </tr>
-          <tr id="tr8" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.skills') }}</b></td>
-              <td class="job-details">
-                  <span>
-                    <span v-for="skill in xskills" :key="skill.id">
-                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ skill.title }} <i @click="deleteskill(skill.id)"  class="fa fa-times" aria-hidden="true"></i></span><br>
-                    </span>
-                    <span @click="addskill"  id="addskill"><i class="fa fa-plus"></i></span>
-                    <select class="form-control form-control-sm hidden"  id="addskill-select" name="addskill-select" v-on:change="updateaddskill">
-                            <option selected>{{ trans('lang.select') }} </option>
-                            <option v-for="(item, key) in skills" :key="key" :value="key">{{ item }}</option>
-                        </select>
-                  </span>
-                </td>
-          </tr>
-          <tr id="tr9" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.sub_skills') }}</b></td>
-              <td class="job-details">
-                  <span>
-                    <span v-for="skill in subskills" :key="skill.id">
-                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ skill.name }} <i @click="deletesubskill(skill.id)"  class="fa fa-times" aria-hidden="true"></i></span><br>
-                    </span>
-                    <span @click="addsubskill"  id="addsubskill"><i class="fa fa-plus"></i></span>
-                    <select class="form-control form-control-sm hidden"  id="addsubskill-select" name="addsubskill-select" v-on:change="updateaddsubskill">
-                            <option selected>{{ trans('lang.select') }}</option>
-                            <option v-for="(item, key) in sub_skills" :key="key" :value="key">{{ item }}</option>
-                        </select>
-                  </span>
-                </td>
-          </tr>
           
-          <!--<tr id="tr10" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.featured') }}</b></td>
-              <td class="job-details"><span v-if="job1.is_featured == 'false'">{{ trans('lang.no') }}</span> <span v-if="job1.is_featured == 'true'">{{ trans('lang.yes') }}</span></td>
-          </tr>-->
-          <!--<tr>
-              <td class="job-details"><b>{{ trans('lang.code') }}</b></td>
-              <td class="job-details">{{ job1.code}}</td>
-          </tr>
-          <tr>
-              
-              <td class="job-details"><b>{{ trans('lang.created_at') }}</b></td>
-              <td class="job-details">{{ job1.created_at | formatDate}} </td>
-          </tr>-->
+          <tr id="tr9" class="">
+                <td class="job-details"><b>{{ trans('lang.tcurrency') }}</b></td>
+                <td class="job-details">
+                    <span>
+                        <span v-if="job1.currency">
+                            <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ job1.curr.symbol }} - {{ job1.curr.name }} </span><br>
+                        </span>
+                        <span @click="addcurrency" id="addcurrency"><i class="fa fa-plus"></i></span>
+                        <select class="form-control form-control-sm hidden" id="addcurrency-select" name="addcurrency-select" v-on:change="updateaddcurrency">                                    
+                            <option v-for="(item, key) in xcurrency" :key="key" :value="item">{{ item }}</option>
+                        </select>
+                    </span>
+                </td>
+            </tr>
+            <tr id="tr10" class="hidden">
+                <td class="job-details"><b>{{ trans('lang.categories') }}</b></td>
+                <td class="job-details">
+                    <span>
+                        <span v-if="job1.categories">
+                            <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;" v-for="item in job1.categories" :key="item.id">{{ item.title }} <i @click="deletecategory(item.id)" class="fa fa-times" aria-hidden="true"></i></span><br>
+                        </span>
+                        <span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>
+                        <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">                                    
+                            <option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>
+                        </select>
+                    </span>
+                </td>
+            </tr>
           <tr id="tr11" class="hidden">
               
               <td class="job-details"><b>{{ trans('lang.team') }}</b></td>
@@ -280,27 +190,7 @@
                     </div>
               </td>
           </tr>
-          <tr id="tr13" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.invited_freelancer') }}</b></td>
-              <td class="job-details">
-                  <span v-for="invite in invited" :key="invite.id">
-                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ invite.name }}<br> {{invite.email}} </span><i  @click="deleteinvited(invite.email)" class="fa fa-times" aria-hidden="true"></i></span><br>
-                        
-                    </span>
-                    <span  @click="addinvite" id="addinvite"><i class="fa fa-plus"></i></span>
-                    <div id="addinvite-select" class="hidden" >
-                        <form @submit.prevent="Createinvite()">
-                        <div class="form-group" style="">
-                            <input type="text" id="invite_email" name="invite_email" v-model="form3.email" class="form-control" placeholder="Email">
-                        </div>
-                        <input type="hidden" name="job_id" v-model="form2.job_id">
-                        <div class="form-group wt-btnarea" >
-                            <button type="submit" id="addinvite" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.invite') }}</button>
-                        </div>
-                        </form>
-                    </div>
-              </td>
-          </tr>
+          
           <tr id="tr14" class="hidden">
               <td class="job-details"><b>{{ trans('lang.quiz') }}</b></td>
               <td class="job-details">
@@ -330,7 +220,7 @@
               <td class="job-details"><b>{{ trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ trans('lang.time') }}</span></b></td>
               <td class="job-details">
                   <span @click="editexpirydate" v-if="job1.delivery_type == 'date'">
-                      <span id="expirydate">{{ job1.expiry_date | formatDate}} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                      <span id="expirydate">{{ job1.expiry_date | formatDate1}} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                       <div id="editexpirydate" class="hidden">            
                         <input type="date" class="form-control form-control-sm pickadate" name="editexpirydate" autocomplete="off" placeholder="Expiry Date" v-on:change="updateexpirydate">
                     </div>
@@ -396,20 +286,21 @@ export default {
         permission : {},
         project_levels : {},
         project_duration : {},
-        project_english : {},
-        project_freelancer : {},
+        
+        
         quizadd : {},
-        languages : {},
-        langs : {},
-        skills : {},
-        xskills : {},
-        subskills : {},
-        sub_skills : {},
+        
+        
+        
         teams : {},
         approvers : {},
-        invited : {},
-        english : {},
-        freelancer : {},
+        
+        
+        
+        xcurrency : {},
+        currency : {},
+        xcategory : {},
+        category : {},
         form1 : new Form({
             id: '',
             name : '',
@@ -450,6 +341,20 @@ export default {
             $('#editdescription').removeClass('hidden');
             $('#project_id').removeClass('hidden');
             //$('#title').html(self.jobform.title);
+            $('#tr4').removeClass('hidden');
+                $('#tr4').removeClass('hidden');
+                $('#tr5').removeClass('hidden');
+                $('#tr6').removeClass('hidden');
+                
+                $('#tr8').removeClass('hidden');
+                $('#tr9').removeClass('hidden');
+                $('#tr10').removeClass('hidden');
+                $('#tr11').removeClass('hidden');
+                $('#tr12').removeClass('hidden');
+                $('#tr13').removeClass('hidden');
+                $('#tr14').removeClass('hidden');
+                $('#tr15').removeClass('hidden');
+                $('#tr16').removeClass('hidden');
             this.loading = true;
             var self = this;
             
@@ -532,44 +437,67 @@ export default {
                     }
                 });
         },
+        addcategory() {
+            $('#addcategory-select').removeClass('hidden');
+            
+        },
+        addcurrency() {
+            $('#addcurrency-select').removeClass('hidden');
+            
+        },
+        loadcurrency() {
+            let self = this;
+            axios.get(APP_URL + '/get-currency').then(function (response) {
+                self.xcurrency = response.data.currency;
+            });  
+        },
+        loadcategory() {
+            let self = this;
+            axios.get(APP_URL + '/get-categories').then(function (response) {
+                self.xcategory = response.data.categories;
+                //console.log(self.xskills);
+            });  
+        },
+        updateaddcurrency(e) {
+            let statp =  this.job1.id + '-' + e.target.value;
+            axios.get(APP_URL + '/api/job_overview/updatecurrency/' + statp).then(function (response) {
+                Fire.$emit('Aftercat');
+                $('#addcurrency-select').addClass('hidden');
+                $('#addcurrency').removeClass('hidden');
+            });
+        
+            Fire.$emit('AfterCreate');
+            $('#addcurrency-select').addClass('hidden');
+            
+            
+        },
+        updateaddcategory(e) {
+            
+            let statp =  this.job1.id + '-' + e.target.value;
+            axios.get(APP_URL + '/api/job_overview/updatecategory/' + statp).then(function (response) {
+                Fire.$emit('Aftercat');
+                $('#addskill-select').addClass('hidden');
+                $('#addskill').removeClass('hidden');
+            });
+        
+            Fire.$emit('AfterCreate');
+            $('#addcategory-select').addClass('hidden');
+            
+            
+            
+        },
+        deletecategory(id)
+        {
+            let statp =  this.job1.id + '-' + id;
+            axios.get(APP_URL + '/api/job_overview/deletecategory/' + statp).then(function (response) {
+                Fire.$emit('AfterCreate');
+            });
+        },
         showquiz(id) {
             //console.log(id);
             window.location.href="/questions/"+id;
         },
-        loadlang() {
-            let self = this;
-            axios.get(APP_URL + '/api/job_overview/getlang/'+ self.job_id).then(function (response) {
-                self.langs = response.data;
-                //console.log(self.project_levels);
-            });  
-        },
-        loadenglish() {
-            let self = this;
-            axios.get(APP_URL + '/api/job_overview/getenglish/'+ self.job_id).then(function (response) {
-                self.english = response.data;
-                //console.log(self.project_levels);
-            });  
-        },
-        loadinvited() {
-            let self = this;
-            axios.get(APP_URL + '/api/job_overview/getinvited/'+ self.job_id).then(function (response) {
-                self.invited = response.data;
-                //console.log(self.project_levels);
-            });  
-        },
-        deleteinvited(email) {
-            //console.log('delete is hitted');
-            axios.get(APP_URL + '/api/job_overview/deleteinvited/'+ self.job_id + '-' + email).then(function (response) {
-                Fire.$emit('Afterinvited');
-            });
-        },
-        loadfreelancer() {
-            let self = this;
-            axios.get(APP_URL + '/api/job_overview/getfreelancer/'+ self.job_id).then(function (response) {
-                self.freelancer = response.data;
-                //console.log(self.project_levels);
-            });  
-        },
+        
         
         loadteam() {
             let self = this;
@@ -585,34 +513,7 @@ export default {
                 
             });  
         },
-        loadlanguage() {
-            let self = this;
-            axios.get(APP_URL + '/api/job_overview/language/'+ self.job_id).then(function (response) {
-                self.languages = response.data;
-                //console.log(self.project_levels);
-            });  
-        },
-        loadskill() {
-            let self = this;
-            axios.get(APP_URL + '/api/job_overview/getskill/'+ self.job_id).then(function (response) {
-                self.xskills = response.data;
-                //console.log(self.xskills);
-            });  
-        },
-        loadskills() {
-            let self = this;
-            axios.get(APP_URL + '/api/job_overview/skill/'+ self.job_id).then(function (response) {
-                self.skills = response.data;
-                //console.log(self.project_levels);
-            });  
-        },
-        loadsubskills() {
-            let self = this;
-            axios.get(APP_URL + '/api/sub_skill/'+ self.job_id).then(function (response) {
-                self.subskills = response.data;
-                //console.log(self.project_levels);
-            });  
-        },
+        
         loadprojectlevel() {
             let self = this;
             
@@ -631,19 +532,7 @@ export default {
             });  
                  
         },
-        loadprojectenglish() {
-            let self = this;
-            
-            axios.get(APP_URL + '/api/job_project_english/').then(function (response) {
-                self.project_english = response.data;
-                //console.log(self.project_levels);
-            });  
-                 
-        },
-        addinvite() {
-            //$('#addskill').addClass('hidden');
-            $('#addinvite-select').removeClass('hidden');
-        },
+        
         addteam() {
             //$('#addskill').addClass('hidden');
             $('#addteam-select').removeClass('hidden');
@@ -716,34 +605,6 @@ export default {
                 Fire.$emit('Afterteam');
             });
         },
-        deletesubskill(id) {
-            
-            axios.get(APP_URL + '/api/delete_sub_skill/' + id).then(function (response) {
-                Fire.$emit('Aftersubskill');
-            });
-        },
-        addskill() {
-            $('#addskill').addClass('hidden');
-            $('#addskill-select').removeClass('hidden');
-        },
-        addsubskill() {
-            $('#addsubskill-select').empty();
-            //console.log(this.xskills);
-            var skills = this.xskills;
-            $.each(skills, function(key, value) {
-                axios.get(APP_URL + '/api/sub_skills/' + value.id).then(function (response) {
-                    //console.log(response.data);
-                    $.each(response.data, function(index, subCat){
-                            //console.log(subCat.sub_category, subCat);
-                            $('#addsubskill-select').append('<option value="'+ subCat.id +'">'+ subCat.sub_skill +'</option>');
-                            //$('#sub-skill-select').trigger("chosen:updated");
-                        });
-                });
-            });
-
-            $('#addsubskill').addClass('hidden');
-            $('#addsubskill-select').removeClass('hidden');
-        },
         approvejob(id)
         {
             //console.log(id);
@@ -766,56 +627,7 @@ export default {
                 }
             });
         },
-        updateaddsubskill(e) {
-            let statp =  this.job1.id + '-' + e.target.value;
-            axios.get(APP_URL + '/api/post_sub_skill/' + statp).then(function (response) {
-                Fire.$emit('Aftersubskill');
-                $('#addsubskill-select').addClass('hidden');
-                $('#addsubskill').removeClass('hidden');
-            });
-        },
-        updateaddskill(e) {
-            let statp =  this.job1.id + '-' + e.target.value;
-            axios.get(APP_URL + '/api/job_overview/updateskill/' + statp).then(function (response) {
-                Fire.$emit('Afterskill');
-                $('#addskill-select').addClass('hidden');
-                $('#addskill').removeClass('hidden');
-            });
-        },
-        deleteskill(lang) {
-            let statp =  this.job1.id + '-' + lang;
-            axios.get(APP_URL + '/api/job_overview/deleteskill/' + statp).then(function (response) {
-                Fire.$emit('Afterskill');
-            });
-        },
-        addlang() {
-            $('#addlang').removeClass('hidden');
-            $('#addlang-select').removeClass('hidden');
-        },
-        updateaddlang(e) {
-            let statp =  this.job1.id + '-' + e.target.value;
-            axios.get(APP_URL + '/api/job_overview/updatelang/' + statp).then(function (response) {
-                Fire.$emit('AfterLang');
-                $('#addlang-select').addClass('hidden');
-                $('#addlang').removeClass('hidden');
-            });
-            $('#tr8').removeClass('hidden');
-            $('#tr9').removeClass('hidden');
-            $('#tr11').removeClass('hidden');
-            $('#tr12').removeClass('hidden');
-            $('#tr13').removeClass('hidden');
-            $('#tr14').removeClass('hidden');
-            $('#tr15').removeClass('hidden');
-            $('#tr16').removeClass('hidden');
-            $('#addskill').addClass('hidden');
-            $('#addskill-select').removeClass('hidden');
-        },
-        deletelang(lang) {
-            let statp =  this.job1.id + '-' + lang;
-            axios.get(APP_URL + '/api/job_overview/deletelang/' + statp).then(function (response) {
-                Fire.$emit('AfterLang');
-            });
-        },
+        
         addquiz() {
             let self = this;
             let statp =  this.job1.id + '-' + this.userid;
@@ -841,18 +653,7 @@ export default {
                 Fire.$emit('AfterCreate');
             });
         },
-        deleteenglish(id) {
-            
-            axios.get(APP_URL + '/api/job_overview/deleteenglish/' + id).then(function (response) {
-                Fire.$emit('Afterenglish');
-            });
-        },
-        deletefreelancer(id) {
-            
-            axios.get(APP_URL + '/api/job_overview/deletefreelancer/' + id).then(function (response) {
-                Fire.$emit('Afterfreelancer');
-            });
-        },
+        
         editquiz() {
             
             $('#quiz').addClass('hidden');
@@ -901,15 +702,7 @@ export default {
             $('#editdescription').addClass('hidden');
             $('#description').removeClass('hidden');
         },
-        loadprojectfreelancer() {
-            let self = this;
-            
-            axios.get(APP_URL + '/api/job_project_freelancer/').then(function (response) {
-                self.project_freelancer = response.data;
-                //console.log(self.project_freelancer);
-            });  
-                 
-        },
+        
         editprojectlevel() {
             
             $('#projectlevel').addClass('hidden');
@@ -957,40 +750,22 @@ export default {
                 $('#editprice').addClass('hidden');
                 $('#price').removeClass('hidden');
                 $('#tr4').removeClass('hidden');
+                
+                
+                $('#tr8').removeClass('hidden');
+                $('#tr9').removeClass('hidden');
+                $('#tr10').removeClass('hidden');
+                $('#tr11').removeClass('hidden');
+                $('#tr12').removeClass('hidden');
+                $('#tr13').removeClass('hidden');
+                $('#tr14').removeClass('hidden');
+                $('#tr15').removeClass('hidden');
+                $('#tr16').removeClass('hidden');
                 $('#addprojectfreelancer').addClass('hidden');
                 $('#editfreelancer').removeClass('hidden');
             });
         },
-        editfreelancer() {
-            $('#addprojectfreelancer').addClass('hidden');
-            $('#editfreelancer').removeClass('hidden');
-        },
-        updatefreelancer(e) {
-            let statp =  this.job1.id + '-' + e.target.value;
-            axios.get(APP_URL + '/api/job_overview/project_freelancer/' + statp).then(function (response) {
-                Fire.$emit('Afterfreelancer');
-                $('#editfreelancer').addClass('hidden');
-                $('#addprojectfreelancer').removeClass('hidden');
-                $('#tr5').removeClass('hidden');
-                $('#addenglish').addClass('hidden');
-                $('#editenglish').removeClass('hidden');
-            });
-        },
-        editenglish() {
-            $('#addenglish').addClass('hidden');
-            $('#editenglish').removeClass('hidden');
-        },
-        updateenglish(e) {
-            let statp =  this.job1.id + '-' + e.target.value;
-            axios.get(APP_URL + '/api/job_overview/project_english/' + statp).then(function (response) {
-                Fire.$emit('Afterenglish');
-                $('#editenglish').addClass('hidden');
-                $('#addenglish').removeClass('hidden');
-                $('#tr7').removeClass('hidden');
-                $('#addlang').removeClass('hidden');
-                $('#addlang-select').removeClass('hidden');
-            });
-        },
+        
         editexpirydate() {
             
             $('#expirydate').addClass('hidden');
@@ -1068,15 +843,16 @@ export default {
 
   },
     mounted: function() {
-        //this.loadjob();
-        //this.loadlang();
         
-        this.loadskill();
+        
+        
         
         this.loadprojectlevel();
         this.loadprojectduration();
-        this.loadprojectenglish();
-        this.loadprojectfreelancer();
+        //this.loadprojectenglish();
+        //this.loadprojectfreelancer();
+        this.loadcategory();
+        this.loadcurrency();
         //this.loadteam();
         //this.loadapprover();
         //this.loadenglish();
@@ -1084,35 +860,16 @@ export default {
         //this.loadsubskills();
         //this.loadinvited();
         
-        Fire.$on('Afterinvited', () => {
-            this.loadinvited();
-        });
-        Fire.$on('Aftersubskill', () => {
-            this.loadsubskills();
-        });
+        
         Fire.$on('Afterteam', () => {
             this.loadteam();
         });
         Fire.$on('Afterapprover', () => {
             this.loadapprover();
         });
-        Fire.$on('Afterfreelancer', () => {
-            this.loadfreelancer();
-        });
-        Fire.$on('Afterenglish', () => {
-            this.loadenglish();
-        });
-        Fire.$on('AfterLang', () => {
-            this.loadlang();
-        });
-        Fire.$on('Afterskill', () => {
-            this.loadskill();
-            this.loadsubskills();
-        });
+        
         Fire.$on('AfterCreate', () => {
             this.loadjob();
-            this.loadlanguage();
-            this.loadskills();
         });
   }
 };

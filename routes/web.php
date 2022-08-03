@@ -460,7 +460,8 @@ Route::group(
     }
 );
 Route::get('page/get-page-data/{id}', 'PageController@getPage');
-Route::get('get-categories', 'CategoryController@getCategories');
+Route::get('get-categories', 'CategoryController@getCategories'); 
+Route::get('get-currency', 'CategoryController@getcurrency'); 
 Route::get('get-seven-categories', 'CategoryController@getSevenCategories');
 Route::get('get-articles', 'PublicController@getArticles');
 Route::get('get-home-slider/{id}', 'PageController@getSlider');
@@ -610,6 +611,12 @@ Route::group(
         Route::get('job_overview/getcontest/{id}', 'API\JobController@getcontest');
         //Route::post('job_overview/newbid/', 'API\JobController@store');
         Route::get('job_overview/newbid/{id}', 'API\JobController@newbid');
+
+
+        //category
+
+        Route::get('job_overview/updatecategory/{id}', 'API\JobController@updatecategory');
+        Route::get('job_overview/updatecurrency/{id}', 'API\JobController@updatecurrency');
 
         Route::get('sub_skills/{id}', 'API\JobController@getsubskill');
         Route::get('sub_skill/{id}', 'API\JobController@getsubkills');

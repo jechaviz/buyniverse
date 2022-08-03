@@ -116,7 +116,8 @@ class SiteManagementController extends Controller
         $social_unserialize_array = SiteManagement::getMetaValue('socials');
         $unserialize_menu_array = SiteManagement::getMetaValue('search_menu');
         $menu_title = DB::table('site_managements')->select('meta_value')->where('meta_key', 'menu_title')->get()->first();
-        $currency = array_pluck(Helper::currencyList(), 'code', 'code');
+        //$currency = array_pluck(Helper::currencyList(), 'code', 'code'); 
+        //dd($currency);
         $payment_methods = Helper::getPaymentMethodList();
         $stripe_settings = $this->settings::getMetaValue('stripe_settings');
         $stripe_key = !empty($stripe_settings) ? $stripe_settings[0]['stripe_key'] : '';
