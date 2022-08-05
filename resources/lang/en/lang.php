@@ -359,7 +359,7 @@ return [
     'project_settings' => 'Project Settings',
     'past_expiry_date' => 'Past expiry data is not allow',
     'project_expiry' => 'Project Expiry Date',
-    'job_expiry_req' => 'Project expiry is required',
+    'job_expiry_req' => 'Project Delivery date is required',
     'videos' => 'Videos',
     'video_url' => 'Video Url',
     'review_not_found' => 'Review not found',
@@ -1692,6 +1692,7 @@ return [
     'select_level' => 'Select Level',
     'perhour' => 'Per Hour',
     'tcurrency' => 'Currency',
+    
     
 
 

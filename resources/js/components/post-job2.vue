@@ -100,7 +100,7 @@
           <tr id="tr2" class="hidden">
               <td class="job-details"><b>{{ trans('lang.duration') }}</b></td>
               <td @click="editjobduration" class="job-details">
-                  <span id="jobduration"><span v-for="(item, key) in project_duration" :key="key"  :value="key" v-if="key==job1.duration">{{ item}}</span> <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                  <span id="jobduration" v-if="key==job1.duration"><span v-for="(item, key) in project_duration" :key="key"  :value="key">{{ item}}</span> <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                   <div id="editjobduration" class="hidden" >
                         
                         <select class="form-control form-control-sm" id="editprojectlevel-select" name="editprojectlevel-select" v-on:change="updatejobduration">

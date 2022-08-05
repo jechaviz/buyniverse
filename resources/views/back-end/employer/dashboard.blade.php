@@ -48,7 +48,7 @@
                         @endif
                         @if (!empty($enable_package) && $enable_package === 'true')
                             @if (!empty($package))
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                                <!--<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
                                     <div class="wt-insightsitem wt-dashboardbox user_current_package">
                                         <countdown
                                         date="{{$expiry_date}}"
@@ -59,7 +59,7 @@
                                         >
                                         </countdown>
                                     </div>
-                                </div>
+                                </div>-->
                             @endif
                         @endif
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">

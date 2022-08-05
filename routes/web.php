@@ -617,6 +617,8 @@ Route::group(
 
         Route::get('job_overview/updatecategory/{id}', 'API\JobController@updatecategory');
         Route::get('job_overview/updatecurrency/{id}', 'API\JobController@updatecurrency');
+        Route::get('job_overview/deletecategory/{id}', 'API\JobController@deletecategory');
+
 
         Route::get('sub_skills/{id}', 'API\JobController@getsubskill');
         Route::get('sub_skill/{id}', 'API\JobController@getsubkills');

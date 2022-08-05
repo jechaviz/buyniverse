@@ -71,6 +71,14 @@ class JobController extends Controller
         }
     }
 
+    public function deletecategory($id)
+    {
+        $ids = explode('-', $id);
+        
+        if(DB::table('catables')->where('catable_id', $ids[0])->where('category_id', $ids[1])->where('catable_type', 'App\Job')->exists())
+            DB::table('catables')->where('catable_id', $ids[0])->where('category_id', $ids[1])->where('catable_type', 'App\Job')->delete();
+    }
+
     public function getcontest($id)
     {
         $contest = Live_contest::find($id); 

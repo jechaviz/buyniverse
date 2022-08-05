@@ -19,7 +19,7 @@
             
         </div>
     </div>
-    <div id="trx" class="wt-dashboardbox">
+    <div id="trx" class="wt-dashboardbox hidden">
                                 <div class="wt-dashboardboxtitle">
                                     <div class="col-md-6">
                                         <h2>{{ trans('lang.post_job') }}</h2>
@@ -80,7 +80,7 @@
           <tr id="tr2" class="hidden">
               <td class="job-details"><b>{{ trans('lang.duration') }}</b></td>
               <td @click="editjobduration" class="job-details">
-                  <span id="jobduration" v-for="(item, key) in project_duration" :key="key"  :value="key" ><span v-if="key==job1.duration">{{ item}}</span> <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                  <span id="jobduration"><span v-if="key==job1.duration" v-for="(item, key) in project_duration" :key="key"  :value="key">{{ item}}</span> <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                   <div id="editjobduration" class="hidden" >
                         
                         <select class="form-control form-control-sm" id="editprojectlevel-select" name="editprojectlevel-select" v-on:change="updatejobduration">
@@ -91,16 +91,6 @@
                 </td>
           </tr>
           <tr id="tr3" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.budget') }}</b></td>
-              <td @click="editprice" class="job-details">
-                    <span id="price">  $ {{ job1.price | numFormat}} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
-                    <div id="editprice" class="hidden" >            
-                        <input type="number" class="form-control form-control-sm " name="editprice" autocomplete="off" :value="job1.price" v-on:change="updateprice">
-                    </div>
-                </td>
-          </tr>
-          
-          <tr id="tr9" class="">
                 <td class="job-details"><b>{{ trans('lang.tcurrency') }}</b></td>
                 <td class="job-details">
                     <span>
@@ -114,7 +104,18 @@
                     </span>
                 </td>
             </tr>
-            <tr id="tr10" class="hidden">
+          <tr id="tr4" class="hidden">
+              <td class="job-details"><b>{{ trans('lang.budget') }}</b></td>
+              <td @click="editprice" class="job-details">
+                    <span id="price"> <span v-if="job1.currency">{{ job1.curr.symbol }}</span>  {{ job1.price | numFormat}} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                    <div id="editprice" class="hidden" >            
+                        <input type="number" class="form-control form-control-sm " name="editprice" autocomplete="off" :value="job1.price" v-on:change="updateprice">
+                    </div>
+                </td>
+          </tr>
+          
+          
+            <tr id="tr5" class="hidden">
                 <td class="job-details"><b>{{ trans('lang.categories') }}</b></td>
                 <td class="job-details">
                     <span>
@@ -128,7 +129,7 @@
                     </span>
                 </td>
             </tr>
-          <tr id="tr11" class="hidden">
+          <tr id="tr6" class="hidden">
               
               <td class="job-details"><b>{{ trans('lang.team') }}</b></td>
               <td class="job-details">
@@ -157,7 +158,7 @@
                     </div>
               </td>
           </tr>
-          <tr id="tr12" class="hidden">
+          <tr id="tr7" class="hidden">
               
               <td class="job-details"><b>{{ trans('lang.approver') }}</b></td>
               <td class="job-details">
@@ -191,7 +192,7 @@
               </td>
           </tr>
           
-          <tr id="tr14" class="hidden">
+          <tr id="tr8" class="hidden">
               <td class="job-details"><b>{{ trans('lang.quiz') }}</b></td>
               <td class="job-details">
                   <span @click="editquiz" id="quiz">{{ job1.quiz}} <i  class="fa fa-pencil float-right" style="padding: 12px;"></i></span>
@@ -211,12 +212,12 @@
                     <span @click="addquiz" id="addquiz"><i class="fa fa-plus"></i></span>
                     <select class="form-control form-control-sm hidden" id="addquiz-select" name="addquiz-select" v-on:change="updateaddquiz">
                             <option selected>{{ trans('lang.select') }} </option>
-                            <option v-for="item in quizadd" :value="item.id">{{ item.title }}</option>
+                            <option v-for="item in quizadd" :value="item.id" :key="item.id">{{ item.title }}</option>
                         </select>
                   </span>
                 </td>
           </tr>
-          <tr id="tr15" class="hidden">
+          <tr id="tr9" class="hidden">
               <td class="job-details"><b>{{ trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ trans('lang.time') }}</span></b></td>
               <td class="job-details">
                   <span @click="editexpirydate" v-if="job1.delivery_type == 'date'">
@@ -250,7 +251,7 @@
                   
                 </td>
           </tr>
-          <tr id="tr16" class="hidden">
+          <tr id="tr10" class="hidden">
 
                 <td colspan="2"><button @click="submitJob" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.post_job') }}</button></td>
             </tr>
@@ -341,20 +342,7 @@ export default {
             $('#editdescription').removeClass('hidden');
             $('#project_id').removeClass('hidden');
             //$('#title').html(self.jobform.title);
-            $('#tr4').removeClass('hidden');
-                $('#tr4').removeClass('hidden');
-                $('#tr5').removeClass('hidden');
-                $('#tr6').removeClass('hidden');
-                
-                $('#tr8').removeClass('hidden');
-                $('#tr9').removeClass('hidden');
-                $('#tr10').removeClass('hidden');
-                $('#tr11').removeClass('hidden');
-                $('#tr12').removeClass('hidden');
-                $('#tr13').removeClass('hidden');
-                $('#tr14').removeClass('hidden');
-                $('#tr15').removeClass('hidden');
-                $('#tr16').removeClass('hidden');
+            
             this.loading = true;
             var self = this;
             
@@ -461,13 +449,14 @@ export default {
         updateaddcurrency(e) {
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatecurrency/' + statp).then(function (response) {
-                Fire.$emit('Aftercat');
+                
                 $('#addcurrency-select').addClass('hidden');
                 $('#addcurrency').removeClass('hidden');
             });
         
             Fire.$emit('AfterCreate');
             $('#addcurrency-select').addClass('hidden');
+            $('#tr4').removeClass('hidden');
             
             
         },
@@ -482,6 +471,11 @@ export default {
         
             Fire.$emit('AfterCreate');
             $('#addcategory-select').addClass('hidden');
+            $('#tr6').removeClass('hidden');
+            $('#tr7').removeClass('hidden');    
+            $('#tr8').removeClass('hidden');
+            $('#tr9').removeClass('hidden');
+            $('#tr10').removeClass('hidden');
             
             
             
@@ -749,18 +743,10 @@ export default {
                 Fire.$emit('AfterCreate');
                 $('#editprice').addClass('hidden');
                 $('#price').removeClass('hidden');
-                $('#tr4').removeClass('hidden');
+                $('#tr5').removeClass('hidden');
                 
                 
-                $('#tr8').removeClass('hidden');
-                $('#tr9').removeClass('hidden');
-                $('#tr10').removeClass('hidden');
-                $('#tr11').removeClass('hidden');
-                $('#tr12').removeClass('hidden');
-                $('#tr13').removeClass('hidden');
-                $('#tr14').removeClass('hidden');
-                $('#tr15').removeClass('hidden');
-                $('#tr16').removeClass('hidden');
+                
                 $('#addprojectfreelancer').addClass('hidden');
                 $('#editfreelancer').removeClass('hidden');
             });

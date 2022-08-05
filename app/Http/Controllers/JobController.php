@@ -512,7 +512,7 @@ class JobController extends Controller
             }
             if (!$job->expiry_date) {
                 $json['type'] = 'error';
-                $json['message'] = 'Expiry date is required';
+                $json['message'] = 'Delivery date is required';
                 return $json;
             }
             /*validate job data is completed or not.

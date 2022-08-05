@@ -33,7 +33,7 @@
                     <td data-th="Action">
                         <span class="bt-content"> 
                             <div class="">
-                            <a @click="getDownload(file)"><button class="btn">{{ trans('lang.view') }}</button></a>
+                            <a @click="getDownload(file)"><button class="btn">{{ trans('lang.download') }}</button></a>
                             <div class="dropdown">
                                 <button class="btn" style="border-left:1px solid #b4b1b1">
                                     <i class="fa fa-caret-down"></i>
