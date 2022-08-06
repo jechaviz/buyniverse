@@ -98,7 +98,8 @@
                             <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ job1.curr.symbol }} - {{ job1.curr.name }} </span><br>
                         </span>
                         <span @click="addcurrency" id="addcurrency"><i class="fa fa-plus"></i></span>
-                        <select class="form-control form-control-sm hidden" id="addcurrency-select" name="addcurrency-select" v-on:change="updateaddcurrency">                                    
+                        <select class="form-control form-control-sm hidden" id="addcurrency-select" name="addcurrency-select" v-on:change="updateaddcurrency">   
+                            <option selected>{{ trans('lang.select') }}</option>                                 
                             <option v-for="(item, key) in xcurrency" :key="key" :value="item">{{ item }}</option>
                         </select>
                     </span>
@@ -123,7 +124,8 @@
                             <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;" v-for="item in job1.categories" :key="item.id">{{ item.title }} <i @click="deletecategory(item.id)" class="fa fa-times" aria-hidden="true"></i></span><br>
                         </span>
                         <span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>
-                        <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">                                    
+                        <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">  
+                            <option selected>{{ trans('lang.select') }}</option>                                  
                             <option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>
                         </select>
                     </span>

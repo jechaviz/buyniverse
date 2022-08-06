@@ -2,7 +2,7 @@
     <div class="wt-dashboardbox">
                                 <div class="wt-dashboardboxtitle">
                                     <div class="col-md-6">
-                                        <h2>{{ trans('lang.job_detail') }}</h2>
+                                        <h2>{{ trans('lang.job_detail') }} test</h2>
                                     </div>
                                         <div class="col-md-6">
                                             <div class="row float-right">
@@ -91,15 +91,45 @@
                 </td>
           </tr>
           <tr>
+                <td class="job-details"><b>{{ trans('lang.tcurrency') }}</b></td>
+                <td class="job-details">
+                    <span>
+                        <span v-if="job1.currency">
+                            <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ job1.curr.symbol }} - {{ job1.curr.name }} </span><br>
+                        </span>
+                        <span @click="addcurrency" id="addcurrency"><i class="fa fa-plus"></i></span>
+                        <select class="form-control form-control-sm hidden" id="addcurrency-select" name="addcurrency-select" v-on:change="updateaddcurrency">
+                            <option selected>{{ trans('lang.select') }}</option>                                 
+                            <option v-for="(item, key) in xcurrency" :key="key" :value="item">{{ item }}</option>
+                        </select>
+                    </span>
+                </td>
+            </tr>
+          <tr>
               <td class="job-details"><b>{{ trans('lang.budget') }}</b></td>
               <td @click="editprice" class="job-details">
-                    <span id="price">  $ {{ job1.price | numFormat}} <i class="fa fa-pencil" v-show="isapprover == '1' || permission == 2" style="float:right;margin: 10px;"></i></span>
+                    <span id="price"><span v-if="job1.currency">{{ job1.curr.symbol }}</span><span v-else>$</span> {{ job1.price | numFormat}} <i class="fa fa-pencil" v-show="isapprover == '1' || permission == 2" style="float:right;margin: 10px;"></i></span>
                     <div id="editprice" class="hidden" v-show="isapprover == '1' || permission == 2">            
                         <input type="number" class="form-control form-control-sm " name="editprice" autocomplete="off" :value="job1.price" v-on:change="updateprice">
                     </div>
                 </td>
           </tr>
           <tr>
+                <td class="job-details"><b>{{ trans('lang.categories') }}</b></td>
+                <td class="job-details">
+                    <span>
+                        <span v-if="job1.categories">
+                            <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;" v-for="item in job1.categories" :key="item.id">{{ item.title }} <i @click="deletecategory(item.id)" class="fa fa-times" aria-hidden="true"></i></span><br>
+                        </span>
+                        <span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>
+                        <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">   
+                            <option selected>{{ trans('lang.select') }}</option>                                 
+                            <option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>
+                        </select>
+                    </span>
+                </td>
+            </tr>
+          <!--<tr>
               <td class="job-details"><b>{{ trans('lang.freelancer_typex') }}</b></td>
               <td class="job-details">
                   <span id="projectfreelancer"><span v-for="(item, key) in freelancer" :key="key" :value="key">
@@ -188,7 +218,7 @@
           <tr>
               <td class="job-details"><b>{{ trans('lang.featured') }}</b></td>
               <td class="job-details"><span v-if="job1.is_featured == 'false'">{{ trans('lang.no') }}</span> <span v-if="job1.is_featured == 'true'">{{ trans('lang.yes') }}</span></td>
-          </tr>
+          </tr>-->
           <!--<tr>
               <td class="job-details"><b>{{ trans('lang.code') }}</b></td>
               <td class="job-details">{{ job1.code}}</td>
@@ -260,7 +290,7 @@
                     </div>
               </td>
           </tr>
-          <tr>
+          <!--<tr>
               <td class="job-details"><b>{{ trans('lang.invited_freelancer') }}</b></td>
               <td class="job-details">
                   <span v-for="invite in invited" :key="invite.id">
@@ -280,7 +310,7 @@
                         </form>
                     </div>
               </td>
-          </tr>
+          </tr>-->
           <tr>
               <td class="job-details"><b>{{ trans('lang.quiz') }}</b></td>
               <td class="job-details">
@@ -406,6 +436,12 @@ export default {
             job_id : this.jobid
         }),
 
+        xcurrency : {},
+        currency : {},
+        xcategory : {},
+        category : {},
+
+
 
         
     }
@@ -427,6 +463,60 @@ export default {
                 //console.log(response.data.job[0]);
             });  
             //console.log(this.job1);       
+        },
+        addcategory() {
+            $('#addcategory-select').removeClass('hidden');
+            
+        },
+        addcurrency() {
+            $('#addcurrency-select').removeClass('hidden');
+            
+        },
+        loadcurrency() {
+            let self = this;
+            axios.get(APP_URL + '/get-currency').then(function (response) {
+                self.xcurrency = response.data.currency;
+            });  
+        },
+        loadcategory() {
+            let self = this;
+            axios.get(APP_URL + '/get-categories').then(function (response) {
+                self.xcategory = response.data.categories;
+                //console.log(self.xskills);
+            });  
+        },
+        updateaddcurrency(e) {
+            let statp =  this.job1.id + '-' + e.target.value;
+            axios.get(APP_URL + '/api/job_overview/updatecurrency/' + statp).then(function (response) {
+                
+                $('#addcurrency-select').addClass('hidden');
+                $('#addcurrency').removeClass('hidden');
+            });
+        
+            Fire.$emit('AfterCreate');
+            $('#addcurrency-select').addClass('hidden');
+            $('#tr4').removeClass('hidden');
+            
+            
+        },
+        updateaddcategory(e) {
+            
+            let statp =  this.job1.id + '-' + e.target.value;
+            axios.get(APP_URL + '/api/job_overview/updatecategory/' + statp).then(function (response) {
+                Fire.$emit('Aftercat');
+                $('#addskill-select').addClass('hidden');
+                $('#addskill').removeClass('hidden');
+            });
+        
+            Fire.$emit('AfterCreate');
+            $('#addcategory-select').addClass('hidden');
+        },
+        deletecategory(id)
+        {
+            let statp =  this.job1.id + '-' + id;
+            axios.get(APP_URL + '/api/job_overview/deletecategory/' + statp).then(function (response) {
+                Fire.$emit('AfterCreate');
+            });
         },
         showquiz(id) {
             //console.log(id);
@@ -958,6 +1048,8 @@ export default {
         this.loadfreelancer();
         this.loadsubskills();
         this.loadinvited();
+        this.loadcategory();
+        this.loadcurrency();
         
         Fire.$on('Afterinvited', () => {
             this.loadinvited();

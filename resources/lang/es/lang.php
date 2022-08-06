@@ -1648,6 +1648,7 @@ return [
   'select_level' => 'Selecciona el nivel',
   'perhour' => 'Por hora',
   'no_access' => 'Por favor inicie sesión para ver',
+  'tcurrency' => 'Divisa',
 
   'employee_list' => [
     'just_me' => 'Sólo soy yo',
