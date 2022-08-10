@@ -8,6 +8,7 @@ use App\Helper;
 use App\Page;
 use View;
 use App\Category;
+use App\Currency;
 use App\Skill;
 use App\Location;
 use App\Language;
@@ -139,6 +140,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function upload()
+    {
+        $symbol = \App\Helper::currencyList();
+        foreach($symbol as $value)
+        {
+            Currency::create([
+                'numeric_code' => $value['numeric_code'],
+                'code' => $value['code'],
+                'name' => $value['name'],
+                'symbol' => $value['symbol'],
+                'fraction_name' => $value['fraction_name'],                
+                'numeric_code' => $value['numeric_code']
+            ]);
+        }
+        dd($symbol);
+    }
+
     public function create()
     {
         //

@@ -1070,6 +1070,7 @@ class FreelancerController extends Controller
      */
     public function showFreelancerProposals()
     {
+        
         $proposals = Proposal::select('job_id', 'status', 'id')->where('freelancer_id', Auth::user()->id)->latest()->paginate(7);
         $currency  = SiteManagement::getMetaValue('commision');
         $symbol    = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();

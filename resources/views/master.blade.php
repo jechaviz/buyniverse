@@ -10,7 +10,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
-		<title>{{ config('app.name') }}</title>
+		<title>Buyniverse</title>
 	
 	<meta name="description" content="@yield('description')">
 	<meta name="keywords" content="@yield('keywords')">

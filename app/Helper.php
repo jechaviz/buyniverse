@@ -21,6 +21,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use function GuzzleHttp\json_encode;
 use App\Category;
+use App\Currency;
 use App\Location;
 use Auth;
 use App\Item;
@@ -56,6 +57,12 @@ class Helper extends Model
     {
         $gender = ['male' => 'Male', 'female' => 'Female'];
         return $gender;
+    }
+
+    public static function getCurrencySymbol($id)
+    {
+        $currency = Currency::where('code', $id)->first();
+        return $currency->symbol;
     }
 
     /**

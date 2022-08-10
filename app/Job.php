@@ -24,6 +24,7 @@ use App\Language;
 use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
 use App\Quiz;
+use App\Helper;
 use App\Job_quiz;
 use App\Sub_job_skill;
 use App\Sub_job_cat;
@@ -94,6 +95,11 @@ class Job extends Model
     public function employer()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function symbols()
+    {
+        return $this->belongsTo('App\Currency', 'currency');
     }
 
     /**

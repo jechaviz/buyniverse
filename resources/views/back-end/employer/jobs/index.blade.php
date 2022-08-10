@@ -142,7 +142,7 @@
 								</span></td>-->
 								<td data-th="Slug"><span class="bt-content">
 								@if (!empty($job->price))
-									<span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ number_format($job->price) }}}</span>
+									<span class="wt-dashboraddoller"><i>{{ $Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($job->price) }}}</span>
 								@endif
 								</span></td>
 								<!--<td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>-->
@@ -324,7 +324,7 @@
 								<td data-th="Slug"><span class="bt-content">
 								@if ($proposals->count() > 0)
 									@if (!empty($job->price))
-										<span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ number_format($avg) }}}</span>
+										<span class="wt-dashboraddoller"><i>{{ Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($avg) }}}</span>
 									@endif
 								@else
 									{{ trans('lang.no_bid_yet')}}
@@ -333,7 +333,7 @@
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
 								@if (!empty($job->price))
-									<span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ number_format($job->price) }}}</span>
+									<span class="wt-dashboraddoller"><i>{{ Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($job->price) }}}</span>
 								@endif
 								</span></td>
 								<!--<td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>-->
@@ -344,7 +344,7 @@
 										@endif
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('job/edit-job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.edit')}}</button></a>
+										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -427,7 +427,7 @@
 									@endif
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
-								{{ $accepted_proposal->amount  }}
+								{{Helper::getCurrencySymbol($job->currency)}} {{ $accepted_proposal->amount  }}
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
 								{{ trans('lang.released_milestones')}}
@@ -453,7 +453,7 @@
 										<!--<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('job/edit-job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.edit')}}</button></a>
+										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -525,7 +525,7 @@
 									@endif
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
-								{{ $accepted_proposal->amount  }}
+								{{Helper::getCurrencySymbol($job->currency)}} {{ $accepted_proposal->amount  }}
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
 								{{ trans('lang.released_milestones')}}
@@ -540,7 +540,7 @@
 									<div class="">
 										<!--<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('job/edit-job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.edit')}}</button></a>
+										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -602,7 +602,7 @@
 									<div class="">
 										<!--<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('job/edit-job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.edit')}}</button></a>
+										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -697,7 +697,7 @@
 								<td data-th="Slug"><span class="bt-content">
 								@if ($proposals->count() > 0)
 									@if (!empty($job->price))
-										<span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ number_format($avg) }}}</span>
+										<span class="wt-dashboraddoller"><i>{{Helper::getCurrencySymbol($job->currency)}}</i> {{{ number_format($avg) }}}</span>
 									@endif
 								@else
 									{{ trans('lang.no_bid_yet')}}
@@ -706,7 +706,7 @@
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
 								@if (!empty($job->price))
-									<span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ number_format($job->price) }}}</span>
+									<span class="wt-dashboraddoller"><i>{{Helper::getCurrencySymbol($job->currency)}}</i> {{{ number_format($job->price) }}}</span>
 								@endif
 								</span></td>
 								<!--<td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>-->
@@ -717,7 +717,7 @@
 										@endif
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('job/edit-job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.edit')}}</button></a>
+										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -801,7 +801,7 @@
 								<td data-th="Slug"><span class="bt-content">
 								@if ($proposals->count() > 0)
 									@if (!empty($job->price))
-										<span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ number_format($avg) }}}</span>
+										<span class="wt-dashboraddoller"><i>{{ Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($avg) }}}</span>
 									@endif
 								@else
 									{{ trans('lang.no_bid_yet')}}
@@ -810,7 +810,7 @@
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
 								@if (!empty($job->price))
-									<span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ number_format($job->price) }}}</span>
+									<span class="wt-dashboraddoller"><i>{{ Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($job->price) }}}</span>
 								@endif
 								</span></td>
 								<!--<td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>-->
@@ -821,7 +821,7 @@
 										@endif
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('job/edit-job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.edit')}}</button></a>
+										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>

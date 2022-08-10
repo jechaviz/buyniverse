@@ -134,7 +134,7 @@
 									@endif
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
-								{{ $job_id->price  }}
+								{{Helper::getCurrencySymbol($job->currency)}} {{ $job_id->price  }}
 								</span></td>
 								<td data-th="Action"><span class="bt-content">
 									<div class="">
@@ -209,7 +209,7 @@
 									@endif
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
-								{{ $job_id->price  }}
+								{{Helper::getCurrencySymbol($job->currency)}} {{ $job_id->price  }}
 								</span></td>
 								<td data-th="Action"><span class="bt-content">
 									<div class="">
@@ -284,7 +284,7 @@
 									@endif
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
-								{{ $job_id->price  }}
+								{{Helper::getCurrencySymbol($job->currency)}} {{ $job_id->price  }}
 								</span></td>
 								<td data-th="Action"><span class="bt-content">
 									<div class="">

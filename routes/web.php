@@ -54,7 +54,7 @@ Route::get(
     }
 )->name('home');
 
-
+Route::get('uploadcurrency', 'HomeController@upload');
 Route::get('articles/{category?}', 'ArticleController@articlesList')->name('articlesList');
 Route::get('article/{slug}', 'ArticleController@showArticle')->name('showArticle');
 Route::get('profile/{slug}/{role}', 'PublicController@showUserProfile')->name('showUserProfile');

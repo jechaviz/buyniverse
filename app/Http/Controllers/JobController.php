@@ -263,11 +263,11 @@ class JobController extends Controller
         $employer_id = Auth::user()->id;
 
         if (Auth::user()) {
-            $ongoing_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'hired')->paginate(10);
-            $completed_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'completed')->paginate(10);
-            $cancelled_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'cancelled')->paginate(10);
-            $approval_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'approval')->paginate(10);
-            $job_draft = Job::where('user_id', $employer_id)->latest()->where('status', 'draft')->paginate(10);
+            $ongoing_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'hired')->get();
+            $completed_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'completed')->get();
+            $cancelled_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'cancelled')->get();
+            $approval_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'approval')->get();
+            $job_draft = Job::where('user_id', $employer_id)->latest()->where('status', 'draft')->get();
             $email = Auth::user()->email;
             $approvers = Approver::where('email', $email)->select('job_id')->get();
             $approver_jobs = Job::whereIn('id', $approvers)->latest()->get();

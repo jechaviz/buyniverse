@@ -34,6 +34,7 @@
 							</tr>
 						</thead>
 						<tbody>
+                            
                             @foreach ($proposals as $proposal)
                                 @php
                                     $freelancer_proposal = \App\Proposal::find($proposal->id);
@@ -80,7 +81,7 @@
                                 
                             </tr>
                             @endforeach
-    
+
 							
 						@else
 							@if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 

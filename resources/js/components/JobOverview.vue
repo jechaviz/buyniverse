@@ -503,7 +503,7 @@ export default {
             
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatecategory/' + statp).then(function (response) {
-                Fire.$emit('Aftercat');
+                Fire.$emit('AfterCreate');
                 $('#addskill-select').addClass('hidden');
                 $('#addskill').removeClass('hidden');
             });
@@ -1034,29 +1034,24 @@ export default {
   },
     mounted: function() {
         this.loadjob();
-        this.loadlang();
-        this.loadlanguage();
-        this.loadskill();
-        this.loadskills();
+        //this.loadlang();
+        //this.loadlanguage();
+        //this.loadskill();
+        //this.loadskills();
         this.loadprojectlevel();
         this.loadprojectduration();
-        this.loadprojectenglish();
+        //this.loadprojectenglish();
         this.loadprojectfreelancer();
         this.loadteam();
         this.loadapprover();
-        this.loadenglish();
+        //this.loadenglish();
         this.loadfreelancer();
-        this.loadsubskills();
-        this.loadinvited();
+        //this.loadsubskills();
+        //this.loadinvited();
         this.loadcategory();
         this.loadcurrency();
         
-        Fire.$on('Afterinvited', () => {
-            this.loadinvited();
-        });
-        Fire.$on('Aftersubskill', () => {
-            this.loadsubskills();
-        });
+        
         Fire.$on('Afterteam', () => {
             this.loadteam();
         });
@@ -1066,15 +1061,7 @@ export default {
         Fire.$on('Afterfreelancer', () => {
             this.loadfreelancer();
         });
-        Fire.$on('Afterenglish', () => {
-            this.loadenglish();
-        });
-        Fire.$on('AfterLang', () => {
-            this.loadlang();
-        });
-        Fire.$on('Afterskill', () => {
-            this.loadskill();
-        });
+        
         Fire.$on('AfterCreate', () => {
             this.loadjob();
         });
