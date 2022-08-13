@@ -97,7 +97,7 @@ export default {
     }
   },
   props: {      
-      questionid: Number 
+      questionid: String 
   },
   methods: {
         

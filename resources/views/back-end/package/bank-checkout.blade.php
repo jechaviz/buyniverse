@@ -53,7 +53,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>{{ !empty($symbol['symbol']) ? $symbol['symbol'] : '$' }}{{{$cost}}} @if (!empty($job)) @if($job->project_type == 'hourly') PerHour @endif @endif</td>
+                                        <td>{{ Helper::getCurrencySymbol($job->currency) }}{{{$cost}}} @if (!empty($job)) @if($job->project_type == 'hourly') PerHour @endif @endif</td>
                                     </tr>
                                     @if (!empty($job))
                                     @if($job->project_type == 'hourly')
@@ -72,7 +72,7 @@
                                     @endif
                                     <tr>
                                         <td>{{ trans('lang.total') }}</td>
-                                        <td>{{ !empty($symbol['symbol']) ? $symbol['symbol'] : '$' }} <span id="total">{{{$cost}}}</span></td>
+                                        <td>{{ Helper::getCurrencySymbol($job->currency) }} <span id="total">{{{$cost}}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>{{ trans('lang.status') }}</td>

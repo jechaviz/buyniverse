@@ -377,7 +377,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="job-details"><b>Budget</b></td>
-                                                <td class="job-details"><i>{{ $job->currency }}</i> {{ $job->price}}</td>
+                                                <td class="job-details"><i>{{ Helper::getCurrencySymbol($job->currency) }}</i> {{ $job->price}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="job-details"><b>Freelancer Type</b></td>

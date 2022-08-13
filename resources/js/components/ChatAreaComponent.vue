@@ -31,7 +31,7 @@ import Event from '../event.js';
                 newmessage: '',
                 messages: [],
                 receiver: '',
-                socket : io(this.chat_host+':'+this.chat_port),
+                //socket : io(this.chat_host+':'+this.chat_port),
                 chat_start: false,
                 no_record_img: APP_ASSET_URL+'/images/message-img.png',
                 typing: false,
@@ -49,7 +49,7 @@ import Event from '../event.js';
                 return this.$toast.error(' ', error, this.notificationSystem.error);
             },
            isTyping() {
-                this.socket.emit('typing', this.user)
+                //this.socket.emit('typing', this.user)
             },
             sendMessage(e) {
                 var now = Math.trunc((new Date()).getTime() / 1000);
@@ -87,16 +87,16 @@ import Event from '../event.js';
                 var now = Math.trunc((new Date()).getTime() / 1000);
                 this.messages.push({ message: data.message, is_sender: 'no', image: data.image, user_id: this.receiver, id: now })
             });
-                this.socket.on('connected-users', function (data) {
-            });
+                //this.socket.on('connected-users', function (data) {
+            //});
         },
         updated () {
-            this.socket.on('typing', (data) => {
+            /*this.socket.on('typing', (data) => {
                 this.typing = data
             })
             this.socket.on('stoptyping', () => {
                 this.typing = false
-            })
+            })*/
 
             jQuery('.wt-chatarea').linkify({target: "_blank"});
         },

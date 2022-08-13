@@ -1349,9 +1349,10 @@ class UserController extends Controller
     {
         $server = Helper::worketicIsDemoSiteAjax();
         if (!empty($server)) {
-            $response['type'] = 'error';
+            /*$response['type'] = 'error';
             $response['message'] = $server->getData()->message;
-            return $response;
+            return $response;*/
+            return redirect()->route()->with('type', 'error')->with('message', $server->getData()->message);
         }
         $json = array();
         if (!empty($id)) {
@@ -1365,14 +1366,16 @@ class UserController extends Controller
                 }
                 $json['service_order'] = $new_order['service_order'];
             }
-            $json['type'] = 'success';
+            /*$json['type'] = 'success';
             $json['order_id'] = $new_order['id'];
             $json['process'] = trans('lang.saving_profile');
-            return $json;
+            return $json;*/
+            return redirect()->route('bankCheckout', ['id'=>$id, 'order'=>$new_order['id'], 'type'=>'project']);
         } else {
-            $json['type'] = 'error';
+            /*$json['type'] = 'error';
             $json['process'] = trans('lang.something_wrong');
-            return $json;
+            return $json;*/
+            return redirect()->back()->with('type', 'error')->with('message', trans('lang.something_wrong'));
         }
     }
 

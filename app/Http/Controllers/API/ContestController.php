@@ -59,6 +59,7 @@ class ContestController extends Controller
 
     public function getmessages($id)
     {
+        //dd($id);
         $user_id = Auth::user()->id;
         $chats = Chat::where('chatroom_id', $id)->get();
         foreach($chats as $value)

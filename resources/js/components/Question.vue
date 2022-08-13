@@ -119,7 +119,7 @@ export default {
   },
   props: {
       userid: String, 
-      quizid: Number 
+      quizid: String 
   },
   methods: {
         

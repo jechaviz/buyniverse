@@ -446,8 +446,8 @@ Route::group(
         Route::post('proposal/get-private-messages', 'UserController@getPrivateMessage');
         Route::get('proposal/download/message-attachments/{id}', 'UserController@downloadMessageAttachments');
         Route::get('user/package/checkout/{id}', 'UserController@checkout');
-        Route::get('user/order/bacs/{id}/{order}/{type}/{project_type?}', 'UserController@bankCheckout');
-        Route::post('user/generate-order/bacs/{id}/{type}', 'UserController@generateOrder');
+        Route::get('user/order/bacs/{id}/{order}/{type}/{project_type?}', 'UserController@bankCheckout')->name('bankCheckout');
+        Route::get('user/generate-order/bacs/{id}/{type}', 'UserController@generateOrder')->name('generate.order');
         Route::get('employer/{type}/invoice', 'UserController@getEmployerInvoices')->name('employerInvoice');
         Route::get('freelancer/{type}/invoice', 'UserController@getFreelancerInvoices')->name('freelancerInvoice');
         Route::get('show/invoice/{id}', 'UserController@showInvoice');

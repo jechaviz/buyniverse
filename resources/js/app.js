@@ -192,6 +192,7 @@ Vue.component('chatroom', require('./components/chatroom.vue').default);
 Vue.component('post-job', require('./components/post-job.vue').default);
 Vue.component('draft-job', require('./components/draft-job.vue').default);
 Vue.component('multiselect', Multiselect);
+Vue.component('hirenow', require('./components/hirenow.vue').default);
 
 if (document.getElementById("show-jobs")) {
 const app = new Vue({
@@ -226,6 +227,12 @@ if (document.getElementById("contest-home")) {
 if (document.getElementById("gmap")) {
     const app = new Vue({
         el: '#gmap',
+        //router
+    });
+}
+if (document.getElementById("hire-now")) {
+    const app = new Vue({
+        el: '#hire-now',
         //router
     });
 }

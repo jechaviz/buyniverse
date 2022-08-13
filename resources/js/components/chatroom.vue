@@ -104,7 +104,7 @@ export default {
   },
   props: {
       jobid: String,
-      userid: Number
+      userid: String
   },
   methods: {
         open() {
@@ -122,7 +122,9 @@ export default {
         loadchat() {
           let self = this;
           //console.log('chatroom : ' + self.chatroom_id);
-            axios.get(APP_URL + '/api/contest/getmessages/' + self.chatroom_id).then(function (response) {                
+          if(self.chatroom_id)
+          {
+              axios.get(APP_URL + '/api/contest/getmessages/' + self.chatroom_id).then(function (response) {                
               //console.log(response.data);
               self.messages = response.data;
               if(response.data)
@@ -130,6 +132,8 @@ export default {
                 
               }
             });
+          }
+            
         },
         checkcontest() {
             let self = this;

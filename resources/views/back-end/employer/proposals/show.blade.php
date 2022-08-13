@@ -182,7 +182,7 @@
                                                     </ul>
                                                 </div> 
                                                 <div class="wt-rightarea">
-                                                    {{ !empty($symbol) ? $symbol['symbol'] : '$' }}{{{ $accepted_proposal->amount }}}
+                                                    {{ Helper::getCurrencySymbol($job->currency) }} {{{ $accepted_proposal->amount }}}
                                                     <br>
                                                     {{ trans('lang.awarded') }}
                                                     
@@ -251,7 +251,7 @@
 
                                     </div>
                                     @endif
-                                    <div class="wt-userlistingholder wt-userlisting wt-haslayout" id="jobs" style="padding: 20px;background-color: #f7f7f7;">
+                                    <div class="wt-userlistingholder wt-userlisting wt-haslayout" style="padding: 20px;background-color: #f7f7f7;">
                                         
                                             
                                         @foreach ($proposals as $proposal)
@@ -307,7 +307,7 @@
                                                     </ul>
                                                 </div> 
                                                 <div class="wt-rightarea">
-                                                    {{ !empty($symbol) ? $symbol['symbol'] : '$' }}{{{ $proposal->amount }}}
+                                                    {{ Helper::getCurrencySymbol($job->currency) }} {{{ $proposal->amount }}}
                                                     
                                                 </div>
                                             </div> 
@@ -353,7 +353,7 @@
                                                     </div>
                                                 @endif
                                             @endif    
-                                            <div class="wt-rightarea" id="hirefreelancer">
+                                            <div class="wt-rightarea" id="hire-now">
                                                 @if (empty($accepted_proposal))
                                                     @if (!empty($order))
                                                         @if ($order->product_id == $proposal->id)     
@@ -371,7 +371,12 @@
                                                         @endif
                                                         <a href="{{{ route('startchat', $proposal->freelancer_id.'_'.$job->id.'_'.$user->id) }}}" class="wt-btn"><i class="fa fa-circle" aria-hidden="true"></i> {{ trans('lang.chat') }}</a>
                                                         @if($job->approver == 0)
-                                                        <a href="javascript:void(0);"  v-on:click.prevent="hireFreelancer('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>
+                                                        @if($mode == 'false')
+                                                        <a href="{{ route('generate.order', [$proposal->id, 'job']) }}" class="wt-btn">{{ trans('lang.hire_now') }}</a>
+                                                        @else
+                                                        @endif
+                                                        <!--<hirenow proposalid="{{$proposal->id}}" mode="{{$mode}}"></hirenow>-->
+                                                        <!--<a href="javascript:void(0);"  v-on:click.prevent="hireFreelancer('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>-->
                                                         @endif
 
                                                     @endif
@@ -446,13 +451,7 @@
                         @if($role != 'admin')
                         <div id="menu6" class="tab-pane fade" style="">
                         <div>                            
-                            <message-center1 id="message-start"
-                                
-                                :empty_field="'{{ trans('lang.empty_field') }}'" 
-                                :host="'{{!empty($chat_settings['host']) ? $chat_settings['host'] : ''}}'" 
-                                :port="'{{!empty($chat_settings['port']) ? $chat_settings['port'] : ''}}'"
-                                chat="{{$job->id}}">
-                            </message-center1>
+                            
                         </div>
                         
                         </div>
