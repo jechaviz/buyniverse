@@ -158,7 +158,21 @@
                         <div id="home" class="tab-pane fade in active">
                         <div class="wt-dashboardbox">
                                 <div class="wt-dashboardboxtitle">
-                                    <h2>{{ trans('lang.job_detail') }}</h2>
+                                    <div class="col-md-6">
+                                        <h2>{{ trans('lang.job_detail') }}</h2>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row float-right">
+                                            <b>{{ trans('lang.code') }}</b> : {{ $job->code}}
+                                        </div>
+                                        <br>
+                                        <div class="row float-right">
+                                            @php 
+                                                $created = date('d-m-Y', strtotime($job->created_at));
+                                            @endphp
+                                            <b>{{ trans('lang.created_at') }}</b> : {{ $created }}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row"  style="width: 100%;">
                                     <div class="col-md-7">
@@ -193,6 +207,20 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td class="job-details"><b>{{ trans('lang.budget')}}</b></td>
+                                                <td class="job-details">{{ Helper::getCurrencySymbol($job->currency) }} {{ $job->price}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="job-details"><b>{{ trans('lang.categories')}}</b></td>
+                                                <td class="job-details">
+                                                @foreach ($job->categories as $cat)
+                                                    <span>
+                                                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ $cat->title }} </span>
+                                                    </span>
+                                                @endforeach
+                                                </td>
+                                            </tr>
+                                            <!--<tr>
                                                 <td class="job-details"><b>{{ trans('lang.freelancer_typex')}}</b></td>
                                                 <td class="job-details">
                                                 @foreach ($freelancers as $freelancer)
@@ -241,20 +269,10 @@
                                                 <td class="job-details">@if($job->is_featured == 'false') {{ trans('lang.no')}} @else {{ trans('lang.yes')}} @endif</td>
                                             </tr>
                                             <tr>
-                                                <td class="job-details"><b>{{ trans('lang.code')}}</b></td>
-                                                <td class="job-details">{{ $job->code}}</td>
-                                            </tr>
-                                            <tr>
-                                                @php 
-                                                    $created = date('d-m-Y', strtotime($job->created_at));
-                                                @endphp
-                                                <td class="job-details"><b>{{ trans('lang.created_at')}}</b></td>
-                                                <td class="job-details">{{ $created}}</td>
-                                            </tr>
                                             <tr>
                                                 <td class="job-details"><b>{{ trans('lang.quiz')}}</b></td>
                                                 <td class="job-details">{{ $job->quiz}}</td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <td class="job-details"><b>{{ trans('lang.delivery')}} @if($job->delivery_type == 'date') {{ trans('lang.date')}} @elseif($job->delivery_type == 'time') {{ trans('lang.time')}} @endif</b></td>
                                                 <td class="job-details">@if($job->delivery_type == 'date')
@@ -306,7 +324,7 @@
                         <div id="menu8" class="tab-pane fade">
                             <job_note jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_note>
                         </div>
-                        <div id="menu9" class="tab-pane fade">
+                        <!--<div id="menu9" class="tab-pane fade">
                             <table class="wt-tablecategories">
                                 <thead>
                                     <tr>
@@ -321,7 +339,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

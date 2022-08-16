@@ -37,11 +37,23 @@
 											$title = '';
 											$amount = '';
 											$attachment = '';
+											$curr = null;
 											if ($order->type == 'job') {
 												$proposal = !empty($order->product_id) ? App\Proposal::find($order->product_id) : '';
 												$is_featured = !empty($proposal) && !empty($proposal->job) ?  $proposal->job->is_featured : '';
 												$title = !empty($proposal) && !empty($proposal->job) ? $proposal->job->title : '';
 												$amount = !empty($proposal) && !empty($proposal->job) ? $proposal->amount : '';
+												$job = !empty($proposal) && !empty($proposal->job) ? $proposal->job : '';
+												if($job)
+												{
+													
+													//$symbol = Helper::getCurrencySymbol($job->currency);
+													$curr = Helper::getCurrencySymbol($job->currency);
+												}
+												else
+													$curr = null;
+												
+												
 											} elseif ($order->type == 'service') {
 												$service_order = !empty($order->product_id) ? DB::table('service_user')->select('service_id')->where('id', $order->product_id)->first() : '';
 												$service = !empty($service_order->service_id) ? App\Service::find($service_order->service_id) : '';
@@ -76,7 +88,8 @@
 																		<span class="wt-featuredtagvtwo">Featured</span>
 																	@endif
 																	<h3>{{{$title}}} <span>{{trans('lang.order')}}#{{$order->id}}</span> </h3>
-																	<span><strong>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}{{{$amount}}}</strong></span>
+																	<span><strong>
+																		@if($curr) {{ $curr }}@else {{ !empty($symbol) ? $symbol['symbol'] : '$' }} @endif {{{$amount}}}</strong></span>
 																</div>
 															</div>
 														</div>

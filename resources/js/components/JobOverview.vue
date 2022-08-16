@@ -2,7 +2,7 @@
     <div class="wt-dashboardbox">
                                 <div class="wt-dashboardboxtitle">
                                     <div class="col-md-6">
-                                        <h2>{{ trans('lang.job_detail') }} test</h2>
+                                        <h2>{{ trans('lang.job_detail') }}</h2>
                                     </div>
                                         <div class="col-md-6">
                                             <div class="row float-right">

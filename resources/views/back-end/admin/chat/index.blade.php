@@ -97,7 +97,7 @@
                                         @endphp
                                         <tr class="del-{{$conv->user_id}}-{{$conv->receiver_id}}">
                                             <td>
-                                                <a href="{{{ url(route('showUserProfile', ['slug' => $user->slug])) }}}">{{{ $user_name }}}</a> , <a href="{{{ url(route('showUserProfile', ['slug' => $receiver->slug])) }}}">{{$receiver_name}}</a>
+                                                <a href="{{{ url(route('showUserProfile', ['slug' => $user->slug, 'role' => 'employer'])) }}}">{{{ $user_name }}}</a> , <a href="{{{ url(route('showUserProfile', ['slug' => $receiver->slug, 'role' => 'provider'])) }}}">{{$receiver_name}}</a>
                                             </td>
                                             <td>
                                                 <span class="bt-content">

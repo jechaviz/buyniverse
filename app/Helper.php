@@ -1620,7 +1620,7 @@ class Helper extends Model
             //return test
             return !empty($profile_image) ? '/uploads/users/' . $user_id . '/' . $profile_image : 'images/user.jpg';
         } else {
-            return '/public/images/user.jpg';
+            return '/images/user.jpg';
         }
     }
 
