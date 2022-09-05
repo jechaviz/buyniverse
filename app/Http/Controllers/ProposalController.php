@@ -243,6 +243,8 @@ class ProposalController extends Controller
                     }
                     $package_options = Package::select('options')->where('id', $package->product_id)->get()->first();
                     $option = unserialize($package_options->options);
+                    //static connects
+                    $option['no_of_connects'] = 1000;
                     $allowed_proposals = $option['no_of_connects'] / $required_connects;
                     if ($proposals >= $allowed_proposals) {
                         $json['type'] = 'error';

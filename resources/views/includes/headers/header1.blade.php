@@ -132,7 +132,7 @@
                                         <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.buy') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="{{{ route('employerPostJob') }}}">{{ trans('lang.new_project') }}</a></li>
-                                            <li><a href="{{url('search-results?type=service')}}">{{ trans('lang.services') }}</a></li>
+                                            <li><a href="{{url('search-results?type=service')}}">{{ trans('lang.findservices') }}</a></li>
                                         </ul>
                                     </li>
                                     @endif 
@@ -144,7 +144,7 @@
                                         <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.project_contest') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="{{{ route('allJobs') }}}">{{ trans('lang.project_contest') }}</a></li>
-                                            <li><a href="{{ route('quiz.index') }}">{{ trans('lang.quiz') }}</a></li>
+                                            <!--<li><a href="{{ route('quiz.index') }}">{{ trans('lang.quiz') }}</a></li>-->
                                         </ul>
                                     </li> 
                                     <li style="line-height: 13px!important;font-size: small;">
@@ -160,16 +160,16 @@
 
                                     @if ($role === 'employer')  
                                     <li style="line-height: 13px!important;font-size: small;">
-                                        <a class="header-menu-a" href="{{{ route('employerManageJobs') }}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.project_contest')}}<i class="ti-angle-down"></i></a>
+                                        <a class="header-menu-a" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.project_contest')}}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{{ route('employerPostJob') }}}">{{ trans('lang.new_project') }}</a></li>
+                                            <!--<li><a href="{{{ route('employerPostJob') }}}">{{ trans('lang.new_project') }}</a></li>-->
                                             <li><a href="{{ route('employerManageJobs') }}">{{ trans('lang.project_list') }}</a></li>
                                             <!--<li><a href="{{ route('quiz.index') }}">{{ trans('lang.quiz') }}</a></li>-->
                                         </ul>
                                     </li> 
-                                    <li style="line-height: 13px!important;font-size: small;">
+                                    <!--<li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" href="{{{ route('products') }}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.products')}}<i class="ti-angle-down"></i></a>
-                                    </li> 
+                                    </li> -->
                                     <li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" href="{{{ route('employerServices') }}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services')}}<i class="ti-angle-down"></i></a>
                                     </li> 
@@ -182,15 +182,15 @@
                                     <li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{{ route('showFreelancerProposals') }}}">{{ trans('lang.proposals') }}</a></li>
+                                            <li><a href="{{{ route('showFreelancerProposals') }}}">{{ trans('lang.jobs') }} {{ trans('lang.proposals') }}</a></li>
                                             <li><a href="{{ route('freelancerPostService') }}">{{ trans('lang.services') }}</a></li>
                                         </ul>
                                     </li>
                                     <li style="line-height: 13px!important;font-size: small;">
-                                        <a class="header-menu-a" href="{{{ route('freelancerJobs') }}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.project_contest') }}<i class="ti-angle-down"></i></a>
+                                        <a class="header-menu-a" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.project_contest') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{{ route('freelancerJobs') }}}">{{ trans('lang.project_contest') }}</a></li>
-                                            <li><a href="{{url('search-results?type=job')}}">{{ trans('lang.project_list') }}</a></li>
+                                            <li><a href="{{{ route('freelancerJobs') }}}">{{ trans('lang.manage_job') }}</a></li>
+                                            <li><a href="{{url('search-results?type=job')}}">{{ trans('lang.findjobs') }}</a></li>
                                         </ul>
                                     </li> 
 

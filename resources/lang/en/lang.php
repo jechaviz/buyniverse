@@ -1692,8 +1692,8 @@ return [
     'select_level' => 'Select Level',
     'perhour' => 'Per Hour',
     'tcurrency' => 'Currency',
-    
-    
+    'findservices' => 'Find Services',
+    'findjobs' => 'Find Projects',
 
 
 

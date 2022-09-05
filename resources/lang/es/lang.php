@@ -1649,6 +1649,8 @@ return [
   'perhour' => 'Por hora',
   'no_access' => 'Por favor inicie sesión para ver',
   'tcurrency' => 'Divisa',
+  'findservices' => 'Buscar servicios',
+  'findjobs' => 'Buscar proyectos',
 
   'employee_list' => [
     'just_me' => 'Sólo soy yo',

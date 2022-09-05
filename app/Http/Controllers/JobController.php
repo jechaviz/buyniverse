@@ -552,6 +552,7 @@ class JobController extends Controller
                 return $json;
             }
             $option = !empty($package) ? unserialize($package->options) : '';
+            //dd($option);
             $expiry = !empty($option) ? $package_item->updated_at->addDays($option['duration']) : '';
             $expiry = !empty($option) ? $package_item->created_at->addDays($option['duration']) : '';
             $expiry_date = !empty($expiry) ? Carbon::parse($expiry)->format('Y-m-d') : '';
@@ -572,7 +573,7 @@ class JobController extends Controller
                     $json['message'] = trans('lang.need_to_purchase_pkg');
                     return $json;
                 }*/
-                if ($request['is_featured'] == 'true') {
+                /*if ($request['is_featured'] == 'true') {
                     if ($posted_featured_jobs >= intval($option['featured_jobs'])) {
                         $json['type'] = 'error';
                         $json['message'] = trans('lang.sorry_can_only_feature')  .' '. $option['featured_jobs'] .' ' . trans('lang.jobs_acc_to_pkg');
@@ -583,7 +584,7 @@ class JobController extends Controller
                     $json['type'] = 'error';
                     $json['message'] = trans('lang.sorry_cannot_submit') .' '. $option['jobs'] .' ' . trans('lang.jobs_acc_to_pkg');
                     return $json;
-                } else {
+                } else {*/
                     $job_post = $this->job->storeJobs($request);
                     //dd($job_post);
 
@@ -822,7 +823,7 @@ class JobController extends Controller
                             }
                         }
                         return $json;
-                    }
+                    //}
                 }
             } else {
                 $job_post = $this->job->storeJobs($request);

@@ -7,7 +7,7 @@
         <div class="md-10" style="margin-left: 15px;">
 
             <h2 id="title" class="hidden" v-html="jobform.title"></h2>
-            <h4 id="project_id" class="hidden">{{ trans('lang.project_id') }}: # {{ job1.id }} test</h4>
+            <h4 id="project_id" class="hidden">{{ trans('lang.project_id') }}: # {{ job1.id }}</h4>
             <form @submit.prevent="posttitle()">
             <div class="form-group" id="posttitle">
                 <input type="text" name="title" class="form-control" :placeholder="trans('lang.job_title')" v-model="jobform.title">

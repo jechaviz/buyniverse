@@ -21,7 +21,7 @@
                     <div class="wt-bannerhead">
                         <div class="wt-title">
                             <h1>
-                                <span>{{slider.title}}test</span>
+                                <span>{{slider.title}}</span>
                                 {{slider.subtitle}}
                             </h1>
                         </div>

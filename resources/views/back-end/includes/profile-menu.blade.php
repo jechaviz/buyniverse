@@ -1,17 +1,16 @@
 <nav id="wt-profiledashboard" class="wt-usernav">
         <ul>
             @if ($role === 'admin')
-                <li class="menu-item-has-children">
+                <!--<li class="menu-item-has-children">
                     <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
                     <a href="javascript:void(0)">
-                        <!--<i class="ti-layers"></i>-->
                         <span>{{ trans('lang.manage_articles') }}</span>
                     </a>
                     <ul class="sub-menu">
                         <li><a href="{{{ route('articles') }}}">{{ trans('lang.articles') }}</a></li>
                         <li><a href="{{{ route('articleCategories') }}}">{{ trans('lang.categories') }}</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <li>
                     <a href="{{ route('viewConversations') }}">
                         <!--<i class="ti-envelope"></i>-->
@@ -25,39 +24,35 @@
                     </a>
                 </li>
                 @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'jobs')
-                    <li>
+                    <!--<li>
                         <a href="{{{ route('allJobs') }}}">
-                            <!--<i class="ti-briefcase"></i>-->
                             <span>{{ trans('lang.all_jobs') }}</span>
                         </a>
-                    </li>
+                    </li>-->
                 @endif
                 @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services')
-                    <li>
+                    <!--<li>
                         <a href="{{{ route('allServices') }}}">
-                            <!--<i class="ti-briefcase"></i>-->
                             <span>{{ trans('lang.services') }}</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="{{{ route('ServiceOrders') }}}">
-                            <!--<i class="ti-briefcase"></i>-->
                             <span>{{ trans('lang.purchased_services') }}</span>
                         </a>
                     </li>
                 @endif
-                <li>
+                <!--<li>
                     <a href="{{{ route('quiz.index') }}}">
-                        <!--<i class="fas fa-question-circle"></i>-->
+                        <i class="fas fa-question-circle"></i>
                         <span>{{ trans('lang.quiz')}}</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{{ route('reviewOptions') }}}">
-                        <!--<i class="ti-check-box"></i>-->
                         <span>{{ trans('lang.review_options') }}</span>
                     </a>
-                </li>
+                </li>-->
                 <li>
                     <a href="{{{ route('userListing') }}}">
                         <!--<i class="ti-user"></i>-->
@@ -70,17 +65,16 @@
                         <span>{{ trans('lang.email_templates') }}</span>
                     </a>
                 </li>
-                <li class="menu-item-has-children">
+                <!--<li class="menu-item-has-children">
                     <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
                     <a href="{{{ route('pages') }}}">
-                        <!--<i class="ti-layers"></i>-->
                         <span>{{ trans('lang.pages') }}</span>
                     </a>
                     <ul class="sub-menu">
                         <li><a href="{{{ route('pages') }}}">{{ trans('lang.all_pages') }}</a></li>
                         <li><a href="{{{ route('createPage') }}}">{{ trans('lang.add_pages') }}</a></li>
                     </ul>
-                </li>
+                </li>-->
                 <li>
                     <a href="{{{ route('createPackage') }}}">
                         <!--<i class="ti-package"></i>-->
@@ -147,12 +141,11 @@
                         @endif
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="{{{ route('message') }}}">
-                        <!--<i class="ti-envelope"></i>-->
                         <span>{{ trans('lang.msg_center') }}</span>
                     </a>
-                </li>
+                </li>-->
                 <li class="menu-item-has-children">
                     <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
                     <a href="javascript:void(0);">
@@ -166,43 +159,39 @@
                 </li>
                 @if ($user->role  === 'employer')
                     @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'jobs')
-                        <li>
+                        <!--<li>
                             <a href="{{{ route('employerPostJob') }}}">
-                                <!--<i class="ti-pencil-alt"></i>-->
                                 <span>{{{ trans('lang.post_job') }}}</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{{ route('quiz.index') }}}">
-                                <!--<i class="fas fa-question-circle"></i>-->
                                 <span>{{ trans('lang.quiz')}}</span>
                             </a>
-                        </li>
-                        <li>
+                        </li>-->
+                        <!--<li>
                             <a href="{{{ route('employerManageJobs') }}}">
-                                <!--<i class="ti-announcement"></i>-->
                                 <span>{{ trans('lang.manage_job') }}</span>
                             </a>
-                            <!--<ul class="sub-menu">
+                            <ul class="sub-menu">
                                 <li><a href="{{{ route('employerManageJobs') }}}">{{ trans('lang.manage_job') }}</a></li>
                                 <li><a href="{{{ url('employer/jobs/completed') }}}">{{ trans('lang.completed_projects') }}</a></li>
                                 <li><a href="{{{ url('employer/jobs/hired') }}}">{{ trans('lang.ongoing_projects') }}</a></li>
-                            </ul>-->
-                        </li>
+                            </ul>
+                        </li>-->
                     @endif
                     @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services')
-                        <li class="menu-item-has-children">
+                        <!--<li class="menu-item-has-children">
                             <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
                             <a href="{{{ url('employer/services') }}}">
-                                <!--<i class="ti-briefcase"></i>-->
                                 <span>{{ trans('lang.manage_services') }}</span>
                             </a>
-                            <!--<ul class="sub-menu">
+                            <ul class="sub-menu">
                                 <li><a href="{{{ url('employer/services/hired') }}}">{{ trans('lang.ongoing_services') }}</a></li>
                                 <li><a href="{{{ url('employer/services/completed') }}}">{{ trans('lang.completed_services') }}</a></li>
                                 <li><a href="{{{ url('employer/services/cancelled') }}}">{{ trans('lang.cancelled_services') }}</a></li>
-                            </ul>-->
-                        </li>
+                            </ul>
+                        </li>-->
                     @endif
                     <li>
                         <a href="{{{ route('employerPayoutsSettings') }}}">
@@ -242,22 +231,20 @@
                         </li>
                     @endif
                 @elseif ($user->role === 'freelancer')
-                    <li class="">
+                    <!--<li class="">
                         <a href="{{{ url('freelancer/jobs') }}}">
-                            <!--<i class="ti-briefcase"></i>-->
                             <span>{{ trans('lang.all_projects') }}</span>
                         </a>
-                        <!--<ul class="sub-menu">
+                        <ul class="sub-menu">
                             <li><a href="{{{ url('freelancer/jobs/completed') }}}">{{ trans('lang.completed_projects') }}</a></li>
                             <li><a href="{{{ url('freelancer/jobs/cancelled') }}}">{{ trans('lang.cancelled_projects') }}</a></li>
                             <li><a href="{{{ url('freelancer/jobs/hired') }}}">{{ trans('lang.ongoing_projects') }}</a></li>
-                        </ul>-->
-                    </li>
+                        </ul>
+                    </li>-->
                     @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services')
-                        <li class="menu-item-has-children">
+                        <!--<li class="menu-item-has-children">
                             <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
                             <a href="javascript:void(0)">
-                                <!--<i class="ti-briefcase"></i>-->
                                 <span>{{ trans('lang.manage_services') }}</span>
                             </a>
                             <ul class="sub-menu">
@@ -266,14 +253,13 @@
                                 <li><a href="{{{ route('ServiceListing', ['status'=>'completed']) }}}">{{ trans('lang.completed_services') }}</a></li>
                                 <li><a href="{{{ route('ServiceListing', ['status'=>'cancelled']) }}}">{{ trans('lang.cancelled_services') }}</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     @endif
-                    <li>
+                    <!--<li>
                         <a href="{{{ route('showFreelancerProposals') }}}">
-                            <!--<i class="ti-bookmark-alt"></i>-->
                             <span>{{ trans('lang.proposals') }}</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="{{{ route('FreelancerPayoutsSettings') }}}">
                             <!--<i class="ti-money"></i>-->
@@ -298,12 +284,11 @@
                         </li>
                     @endif
                 @endif
-                <li>
+                <!--<li>
                     <a href="{{{ url($role.'/saved-items') }}}">
-                        <!--<i class="ti-heart"></i>-->
                         <span>{{ trans('lang.saved_items') }}</span>
                     </a>
-                </li>
+                </li>-->
             @endif
             <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('profile-logout-form').submit();">

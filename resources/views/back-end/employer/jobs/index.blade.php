@@ -142,7 +142,7 @@
 								</span></td>-->
 								<td data-th="Slug"><span class="bt-content">
 								@if (!empty($job->price))
-									<span class="wt-dashboraddoller"><i>{{ $Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($job->price) }}}</span>
+									<span class="wt-dashboraddoller"><i>{{ Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($job->price) }}}</span>
 								@endif
 								</span></td>
 								<!--<td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>-->

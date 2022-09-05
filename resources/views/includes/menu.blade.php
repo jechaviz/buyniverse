@@ -148,6 +148,13 @@
                 </a>
             </li>
             @endif
+            @if ( Auth::user()->role !== 'admin' )
+            <li>
+                <a href="{{{ route('message') }}}">
+                    <i class="ti-email"></i>
+                </a>
+            </li>
+            @endif
         @endif
         <!--<li>
             <a href="#">
@@ -164,11 +171,7 @@
                 <i class="ti-bell"></i>
             </a>
         </li>-->
-        <li>
-            <a href="{{{ route('message') }}}">
-                <i class="ti-email"></i>
-            </a>
-        </li>
+        
         <!--<li>
             <a href="#">
                 <i class="ti-heart"></i>

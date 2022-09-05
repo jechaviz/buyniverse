@@ -5,7 +5,7 @@
             {{ message.user.first_name }}
             </figure>
         <div class="wt-description">
-            <p>{{ message.body }} tester</p> 
+            <p>{{ message.body }}</p> 
             <time datetime="2017-08-08">{{ message.created_at }}</time>
         </div>
     </div>
