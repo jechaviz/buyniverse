@@ -132,7 +132,7 @@
                         <span>{{ trans('lang.dashboard') }}</span>
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="{{{ route('changerole', $user->role) }}}" style="background: #005178;color: white;">
                         @if($user->role == 'freelancer')
                         <span><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.employer') }}</span>
@@ -140,7 +140,7 @@
                         <span><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.freelancer') }}</span>
                         @endif
                     </a>
-                </li>
+                </li>-->
                 <!--<li>
                     <a href="{{{ route('message') }}}">
                         <span>{{ trans('lang.msg_center') }}</span>

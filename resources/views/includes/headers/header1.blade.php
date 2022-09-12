@@ -127,7 +127,7 @@
                             <button type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" style="color: white;border-color: white;margin: 10px;"><i class="lnr lnr-menu"></i></button> 
                             <div id="navbarNav1" class="collapse navbar-collapse wt-navigation" style="float: right;background-color: rgb(0, 81, 120);">
                                 <ul class="navbar-nav"> 
-                                    @if ($role === 'employer')  
+                                    <!-- @if ($role === 'employer')  
                                     <li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.buy') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -135,7 +135,23 @@
                                             <li><a href="{{url('search-results?type=service')}}">{{ trans('lang.findservices') }}</a></li>
                                         </ul>
                                     </li>
+                                    @endif -->
+                                    @if ($user->role === 'employer')  
+                                    <li style="line-height: 13px!important;font-size: small;">
+                                        <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.iamemployer') }}<i class="ti-angle-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="{{{ route('changerole', $user->role) }}}"><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.freelancer') }}</a></li>
+                                        </ul>
+                                    </li>
                                     @endif 
+                                    @if($user->role === 'freelancer')
+                                    <li style="line-height: 13px!important;font-size: small;">
+                                        <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.iamprovider') }}<i class="ti-angle-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="{{{ route('changerole', $user->role) }}}"><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.employer') }}</a></li>
+                                        </ul>
+                                    </li>
+                                    @endif
                                     <!--<li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" onclick="opensidebar()" style="margin-top: 5px;margin-bottom: 5px;"><i class="ti-desktop"></i></a>
                                     </li>-->
@@ -179,13 +195,13 @@
                                     @endif
 
                                     @if($role === 'freelancer')
-                                    <li style="line-height: 13px!important;font-size: small;">
+                                    <!--<li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="{{{ route('showFreelancerProposals') }}}">{{ trans('lang.jobs') }} {{ trans('lang.proposals') }}</a></li>
                                             <li><a href="{{ route('freelancerPostService') }}">{{ trans('lang.services') }}</a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.project_contest') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">

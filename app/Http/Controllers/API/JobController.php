@@ -612,11 +612,11 @@ class JobController extends Controller
     {
         //dd($id);
         $approver = Approver::find($id);
-        $approver->status = 1;
+        $approver->status = 2;
         $approver->save();
         $job_id = $approver->job_id;
         $job = Job::find($job_id);
-        $job->status = 'cancelled';
+        $job->status = 'rejected';
         $job->save();
         return redirect()->back();
         

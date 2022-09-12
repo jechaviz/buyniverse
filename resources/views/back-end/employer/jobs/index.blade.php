@@ -53,13 +53,14 @@
 			<div class="row" style="margin-top:30px;">
 				<ul class="nav nav-tabs" style="width: 100%;">
 					<li><a data-toggle="tab" href="#draft">{{ trans('lang.draft')}} </a></li>
+					<li><a data-toggle="tab" href="#menu5">{{ trans('lang.pending_approval')}} <!--<span class="badge bg-danger">{{ $completed_jobs->count() }}</span>--></a> </li>
+					<li><a data-toggle="tab" href="#menu6">{{ trans('lang.rejected_approval')}} <!--<span class="badge bg-danger">{{ $completed_jobs->count() }}</span>--></a> </li>
 					<li class="active"><a data-toggle="tab" href="#menu1">{{ trans('lang.open')}} <!--<span class="badge bg-danger">{{ $job_details->count() }}</span>--></a></li>
 					<!--<li><a data-toggle="tab" href="#menu2">{{ trans('lang.paused')}} <span class="badge bg-danger"></span></a></li>-->
 					<li><a data-toggle="tab" href="#menu3">{{ trans('lang.work_in_progress')}} <!--<span class="badge bg-danger">{{ $ongoing_jobs->count() }}</span>--></a></li>
 					<li><a data-toggle="tab" href="#menu4">{{ trans('lang.past')}} <!--<span class="badge bg-danger">{{ $completed_jobs->count() }}</span>--></a> </li>
 					<li><a data-toggle="tab" href="#cancelled">{{ trans('lang.cancelled')}} <!--<span class="badge bg-danger">{{ $completed_jobs->count() }}</span>--></a> </li>
-					<li><a data-toggle="tab" href="#menu5">{{ trans('lang.approver')}} <!--<span class="badge bg-danger">{{ $completed_jobs->count() }}</span>--></a> </li>
-					<li><a data-toggle="tab" href="#menu6">{{ trans('lang.approval')}} <!--<span class="badge bg-danger">{{ $completed_jobs->count() }}</span>--></a> </li>
+					
 				</ul>
 
 				<div class="tab-content" style="width: 100%;margin: 10px;background-color: white;border: #e2dbd1 1px solid">
@@ -628,7 +629,7 @@
 						@endif
 					</div>
 					<div id="menu5" class="tab-pane fade">
-					@if (!empty($approver_jobs) && $approver_jobs->count() > 0)
+					@if (!empty($approval_jobs) && $approval_jobs->count() > 0)
 					<table class="wt-tablecategories">
 						<thead>
 							<tr>
@@ -647,7 +648,7 @@
 						</thead>
 						<tbody>
 						
-							@foreach ($approver_jobs as $job)
+							@foreach ($approval_jobs as $job)
 							@php
 								$image = '';
 								$duration  =  \App\Helper::getJobDurationList($job->duration);
@@ -717,14 +718,14 @@
 										@endif
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
+										<a href="{{{ route('approvalJob', $job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
 											</button>
 											<div class="dropdown-content">
 												
-													<a href="{{{ route('approvalJob', $job->slug) }}}" >{{ trans('lang.view')}}</a>
+													<!--<a href="{{{ route('approvalJob', $job->slug) }}}" >{{ trans('lang.view')}}</a>-->
 												
 												<a href="#">{{ trans('lang.delete')}}</a>											
 											</div>
@@ -746,7 +747,7 @@
 						@endif
 					</div>
 					<div id="menu6" class="tab-pane fade">
-					@if (!empty($approval_jobs) && $approval_jobs->count() > 0)
+					@if (!empty($rejected_jobs) && $rejected_jobs->count() > 0)
 					<table class="wt-tablecategories">
 						<thead>
 							<tr>
@@ -765,7 +766,7 @@
 						</thead>
 						<tbody>
 						
-							@foreach ($approval_jobs as $job)
+							@foreach ($rejected_jobs as $job)
 							@php
 								$image = '';
 								$duration  =  \App\Helper::getJobDurationList($job->duration);
@@ -791,7 +792,7 @@
 								<td>
 								{{{ $job->id }}}	
 								</td>								
-								<td data-th="Name"><span class="bt-content"><a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}">{{{ $job->title }}}</a></span></td>
+								<td data-th="Name"><span class="bt-content"><a href="{{{ route('approvalJob', $job->slug) }}}">{{{ $job->title }}}</a></span></td>
 								
 								<td data-th="Slug"><span class="bt-content">
 									@if (!empty($job->project_type))
@@ -821,7 +822,7 @@
 										@endif
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
+										<a href="{{{ route('approvalJob', $job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>

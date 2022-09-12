@@ -1694,7 +1694,11 @@ return [
     'tcurrency' => 'Currency',
     'findservices' => 'Find Services',
     'findjobs' => 'Find Projects',
-
+    'iamemployer' => 'I am Employer',
+    'iamprovider' => 'I am Provider',
+    'pending_approval' => 'Pending Approval',
+    'rejected_approval' => 'Rejected Approval',
+    'retrive_job' => 'Retrive Project',
 
 
     'employee_list' => [

@@ -64,11 +64,20 @@
                         <h4>{{ trans('lang.project_id') }} : # {{{ $job->id }}}</h4>
                     </div>
                 </div>
-                @if($approver->status == 0)
+                @if($approver && $approver->status == 0)
                 <div class="row">
                 <div class="float-right" style="width:100%;text-align: end;"><a href="{{{ route('approverrejectjob', $approver->id) }}}" class="wt-btn" style="margin-right:5px;">{{{ trans('lang.reject') }}}</a><a href="{{{ route('approverapprovejob', $approver->id) }}}" class="wt-btn">{{{ trans('lang.approve') }}}</a></div>
                 </div>
                 @endif
+
+                @if($job->status == 'rejected' && $job->user_id == Auth::user()->id)
+                <div class="row">
+                <div class="float-right" style="width:100%;text-align: end;">
+                    <a href="{{{ route('resetjob', $job->slug) }}}" class="wt-btn" style="margin-right:5px;">{{{ trans('lang.retrive_job') }}}</a>
+                </div>
+                </div>
+                @endif
+
                 
                 
 

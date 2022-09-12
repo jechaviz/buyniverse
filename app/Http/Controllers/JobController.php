@@ -267,10 +267,17 @@ class JobController extends Controller
             $completed_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'completed')->get();
             $cancelled_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'cancelled')->get();
             $approval_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'approval')->get();
+            $rejected_jobs = Job::where('user_id', $employer_id)->latest()->where('status', 'rejected')->get();
             $job_draft = Job::where('user_id', $employer_id)->latest()->where('status', 'draft')->get();
             $email = Auth::user()->email;
             $approvers = Approver::where('email', $email)->select('job_id')->get();
-            $approver_jobs = Job::whereIn('id', $approvers)->latest()->get();
+            $approver_jobs = Job::whereIn('id', $approvers)->where('status', 'approval')->latest()->get();
+            $approver_reject_jobs = Job::whereIn('id', $approvers)->where('status', 'rejected')->latest()->get();
+
+            $approval_jobs = $approval_jobs->merge($approver_jobs);
+            $rejected_jobs = $rejected_jobs->merge($approver_reject_jobs);
+
+            
             //dd($approval_jobs);
             $currency   = SiteManagement::getMetaValue('commision');
         }
@@ -280,7 +287,7 @@ class JobController extends Controller
         if (file_exists(resource_path('views/extend/back-end/employer/jobs/index.blade.php'))) {
             return view('extend.back-end.employer.jobs.index', compact('job_details', 'symbol'));
         } else {
-            return view('back-end.employer.jobs.index', compact('job_details', 'ongoing_jobs', 'completed_jobs', 'cancelled_jobs', 'approver_jobs', 'approval_jobs', 'symbol', 'job_draft')); 
+            return view('back-end.employer.jobs.index', compact('job_details', 'ongoing_jobs', 'completed_jobs', 'cancelled_jobs', 'approver_jobs', 'approval_jobs', 'rejected_jobs', 'symbol', 'job_draft')); 
         }
     }
 
@@ -299,6 +306,22 @@ class JobController extends Controller
         $approver = Approver::where('job_id', $job->id)->where('email', $user->email)->first();
         //dd($approver);
         return View('back-end.employer.jobs.approval', compact('job', 'approver'));
+    }
+    public function resetjob($job_slug)
+    {
+        //dd($job_slug);
+        $job = Job::where('slug', $job_slug)->first();
+        $job->status = 'approval';
+        $job->save();
+        $approvers = Approver::where('job_id', $job->id)->get();
+        foreach($approvers as $value)
+        {
+            $value->status = 0;
+            $value->save();
+        }
+
+        //dd($approver);
+        return redirect()->route('employerManageJobs');
     }
     public function cancelled($job_slug)
     {

@@ -1651,6 +1651,11 @@ return [
   'tcurrency' => 'Divisa',
   'findservices' => 'Buscar servicios',
   'findjobs' => 'Buscar proyectos',
+  'iamemployer' => 'Soy empleador',
+  'iamprovider' => 'Soy proveedor',
+  'pending_approval' => 'Aprobación pendiente',
+  'rejected_approval' => 'Aprobación rechazada',
+  'retrive_job' => 'Recuperar proyecto',
 
   'employee_list' => [
     'just_me' => 'Sólo soy yo',

@@ -67,9 +67,11 @@
                             <span >{{ trans('lang.position') }} : {{ approver.role }}  </span><br>
                             <span >{{ trans('lang.level') }} : {{ approver.permission }}  </span><br>
                             <!--<span v-if="approver.update == 1">Status : <span @click="approvejob(approver.id)" style="cursor: pointer;color: #005178;">Click here to approve</span></span>-->
-                            <span >Status : <span v-if="approver.status == 0"> {{ trans('lang.waiting') }} </span>
+                            <span >Status : 
+                                <span v-if="approver.status == 0"> {{ trans('lang.waiting') }} </span>
+                                <span v-if="approver.status == 2"> {{ trans('lang.rejected') }} </span>
                                 <span v-else>
-                                    <span v-if="job1.status == 'cancelled'">{{ trans('lang.rejected') }}</span>
+                                    <span v-if="job1.status == 'cancelled'">{{ trans('lang.job_cancelled') }}</span>
                                     <span v-else> {{ trans('lang.approved') }}</span>
                                 </span>  
                             </span><br>
