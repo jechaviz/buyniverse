@@ -310,7 +310,7 @@
                     </div>
               </td>
           </tr>-->
-          <tr id="tr14" class="hidden">
+          <!--<tr id="tr14" class="hidden">
               <td class="job-details"><b>{{ trans('lang.quiz') }}</b></td>
               <td class="job-details">
                   <span @click="editquiz" id="quiz">{{ job1.quiz}} <i  class="fa fa-pencil float-right" style="padding: 12px;"></i></span>
@@ -334,7 +334,7 @@
                         </select>
                   </span>
                 </td>
-          </tr>
+          </tr>-->
           <tr id="tr15" class="hidden">
               <td class="job-details"><b>{{ trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ trans('lang.time') }}</span></b></td>
               <td class="job-details">

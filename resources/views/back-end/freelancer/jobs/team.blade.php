@@ -118,7 +118,7 @@
                                                 @endforeach
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!--<tr>
                                                 <td class="job-details"><b>{{ trans('lang.freelancer_typex')}}</b></td>
                                                 <td class="job-details">
                                                 @foreach ($freelancers as $freelancer)
@@ -165,7 +165,7 @@
                                             <tr>
                                                 <td class="job-details"><b>{{ trans('lang.featured')}}</b></td>
                                                 <td class="job-details">@if($job->is_featured == 'false') {{ trans('lang.no')}} @else {{ trans('lang.yes')}} @endif</td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <td class="job-details"><b>{{ trans('lang.code')}}</b></td>
                                                 <td class="job-details">{{ $job->code}}</td>
@@ -177,10 +177,10 @@
                                                 <td class="job-details"><b>{{ trans('lang.created_at')}}</b></td>
                                                 <td class="job-details">{{ $created}}</td>
                                             </tr>
-                                            <tr>
+                                            <!--<tr>
                                                 <td class="job-details"><b>{{ trans('lang.quiz')}}</b></td>
                                                 <td class="job-details">{{ $job->quiz}}</td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <td class="job-details"><b>{{ trans('lang.delivery')}} @if($job->delivery_type == 'date') {{ trans('lang.date')}} @elseif($job->delivery_type == 'time') {{ trans('lang.time')}} @endif</b></td>
                                                 <td class="job-details">@if($job->delivery_type == 'date')

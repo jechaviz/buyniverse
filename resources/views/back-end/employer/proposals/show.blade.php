@@ -100,7 +100,7 @@
                         <li><a data-toggle="tab" href="#menu7">{{ trans('lang.tickets') }} <!--<span class="badge bg-danger">{{$job->tickets}}</span>--></a> </li>
                         <li><a data-toggle="tab" href="#menu8">{{ trans('lang.notes') }} <!--<span class="badge bg-danger">{{$job->notes}}</span>--></a> </li>
                         <li><a data-toggle="tab" href="#menu9">{{ trans('lang.financial') }} <!--<span class="badge bg-danger"></span>--></a> </li>
-                        <li><a data-toggle="tab" href="#menu10">{{ trans('lang.quiz') }} <!--<span class="badge bg-danger"></span>--></a> </li>
+                        <!--<li><a data-toggle="tab" href="#menu10">{{ trans('lang.quiz') }} <span class="badge bg-danger"></span></a> </li>-->
                         <li><a data-toggle="tab" href="#provider">{{ trans('lang.freelancer') }} <!--<span class="badge bg-danger"></span>--></a> </li>
                     </ul>
 
