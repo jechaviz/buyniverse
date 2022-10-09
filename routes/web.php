@@ -632,5 +632,7 @@ Route::group(
         Route::get('contest/check/{id}', 'API\ContestController@check');
         Route::get('contest/getmessages/{id}', 'API\ContestController@getmessages');
         Route::post('contest/sendmessage', 'API\ContestController@sendmessage');
+
+        Route::get('get_search', 'API\JobController@get_search');
     }
 ); 

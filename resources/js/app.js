@@ -113,6 +113,7 @@ Vue.filter('formatMilestone', function(value) {
     }
     
 });
+
 Vue.filter('numFormat', numFormat(numeral));
 
 Vue.filter('toCurrency', function (value) {
@@ -127,6 +128,7 @@ Vue.filter('toCurrency', function (value) {
     //return numeralIntl.NumberFormat(value);
     
 });
+
 
 
 Vue.use(VueGoogleMaps, {
@@ -185,6 +187,8 @@ Vue.component('joboverview', require('./components/joboverview.vue').default);
 Vue.component('jobshow', require('./components/jobshow.vue').default);
 Vue.component('gmap', require('./components/gmap.vue').default);
 Vue.component('sendinvite', require('./components/sendinvite.vue').default);
+Vue.component('sendinvitation', require('./components/Sendinvitation.vue').default);
+Vue.component('job_provider', require('./components/Job_provider.vue').default);
 Vue.component('tinymce', tinymce);
 Vue.component('botman-tinker', TinkerComponent);
 Vue.component('job_contest', require('./components/job_contest.vue').default);

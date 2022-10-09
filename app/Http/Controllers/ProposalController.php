@@ -719,6 +719,31 @@ class ProposalController extends Controller
         $mode = !empty($payment_settings) && !empty($payment_settings[0]['payment_mode']) ? $payment_settings[0]['payment_mode'] : 'true';
 
         //dd($accepted_proposal);
+
+        
+        $search_locations = null;
+        $search_employees = null;
+        $search_skills = null;
+        $search_hourly_rates = null;
+        $search_freelaner_types = null;
+        $search_english_levels = null;
+        $search_languages = null;
+
+        //Providers listing
+        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
+        $search =  User::getSearchResult(
+            'freelancer',
+            $keyword,
+            $search_locations,
+            $search_employees,
+            $search_skills,
+            $search_hourly_rates,
+            $search_freelaner_types,
+            $search_english_levels,
+            $search_languages
+        );
+        $users = count($search['users']) > 0 ? $search['users'] : '';
+
         if (file_exists(resource_path('views/extend/back-end/employer/proposals/show.blade.php'))) {
             return view(
                 'extend.back-end.employer.proposals.show',
@@ -747,7 +772,9 @@ class ProposalController extends Controller
                     'item',
                     'chat',
                     'providers',
-                    'cancel_popup_title'
+                    'cancel_popup_title',
+                    'keyword',
+                    'users'
                 )
             );
         } else {
@@ -779,7 +806,9 @@ class ProposalController extends Controller
                     'mode',
                     'chat',
                     'providers',
-                    'cancel_popup_title'
+                    'cancel_popup_title',
+                    'keyword',
+                    'users'
                 )
             );
         }

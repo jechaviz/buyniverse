@@ -491,7 +491,7 @@
                             <job_quiz jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_quiz>
                         </div>
                         <div id="provider" class="tab-pane fade" style="">
-                            <div class="wt-dashboardbox">
+                            <!--<div class="wt-dashboardbox">
                                 <div class="wt-dashboardboxtitle">
                                     <h2>{{ trans('lang.freelancer') }}</h2>
                                 </div>
@@ -503,7 +503,7 @@
                                                 <th>{{{ trans('lang.name') }}}</th>
                                                 <th>{{{ trans('lang.email') }}}</th>
                                                 <th>{{{ trans('lang.type') }}}</th>
-                                                <!--<th>{{{ trans('lang.action') }}}</th>-->
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -539,7 +539,9 @@
                                     @endif
 
                                 </div>
-                            </div>
+                            </div>-->
+                            <job_provider proposalid="" mode="" job="{{$job->id}}"></job_provider>
+                            
                         </div>
                     </div>
                 </div>

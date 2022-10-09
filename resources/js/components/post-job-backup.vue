@@ -298,7 +298,7 @@ Thanks in advance,
                         <!--<td class="job-details"><b>{{ trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ trans('lang.time') }}</span></b></td>
                         <td class="job-details">
                             <span @click="editexpirydate" v-if="job1.delivery_type == 'date'">
-                                <span id="expirydate">{{ job1.expiry_date | formatDate}} <i class="fa fa-pencil" v-show="isapprover == '1' || permission == 2" style="float:right;margin: 10px;"></i></span>
+                                <span id="expirydate">{{ job1.expiry_date | formatDate1}} <i class="fa fa-pencil" v-show="isapprover == '1' || permission == 2" style="float:right;margin: 10px;"></i></span>
                                 <div id="editexpirydate" class="hidden">            
                                     <input type="date" class="form-control form-control-sm pickadate" name="editexpirydate" autocomplete="off" placeholder="Expiry Date" v-on:change="updateexpirydate">
                                 </div>
