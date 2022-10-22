@@ -257,6 +257,19 @@ Route::group(
         
         Route::get('get-parent-menu-list', 'SiteManagementController@getParentMenuList');
         Route::get('get-saved-custom-menus-list', 'SiteManagementController@getSavedMenusList');
+
+        //uploads details
+        Route::get('admin/show_uploads', 'UploadsController@show_uploads')->name('show_uploads');
+        Route::get('admin/provider_template', 'UploadsController@provider_template')->name('provider_template');
+        Route::get('admin/employer_template', 'UploadsController@employer_template')->name('employer_template');
+        Route::get('admin/address_template', 'UploadsController@address_template')->name('address_template');
+        Route::get('admin/contact_template', 'UploadsController@contact_template')->name('contact_template');
+        
+        Route::post('admin/upload_provider', 'UploadsController@upload_provider')->name('upload_provider');
+        Route::post('admin/upload_employer', 'UploadsController@upload_employer')->name('upload_employer');
+        Route::post('admin/upload_address', 'UploadsController@upload_address')->name('upload_address');
+        Route::post('admin/upload_contact', 'UploadsController@upload_contact')->name('upload_contact');
+
     }
 );
 

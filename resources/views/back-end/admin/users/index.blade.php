@@ -8,6 +8,9 @@
                         <flash_messages :message_class="'success'" :time ='5' :message="'{{{ Session::get('message') }}}'" v-cloak></flash_messages>
                     </div>
                 @endif
+                <div class="wt-rightarea" style="margin-bottom: 24px;">
+                    <a href="{{ route('show_uploads') }}"><button class="wt-btn">Uploads</button></a>
+                </div>
                 <div class="wt-dashboardbox">
                     <div class="wt-dashboardboxtitle wt-titlewithsearch">
                         <h2>{{{ trans('lang.manage_users') }}}</h2>
