@@ -41,6 +41,9 @@ use App\SiteManagement;
 use App\Service;
 use App\Review;
 use App\Payout;
+use App\Employer;
+use App\Address;
+use App\Contact;
 
 /**
  * Class EmployerController
@@ -97,6 +100,16 @@ class EmployerController extends Controller
         $options = !empty($package_options) ? unserialize($package_options['options']) : array();
         $register_form = SiteManagement::getMetaValue('reg_form_settings');
         $show_emplyr_inn_sec = !empty($register_form) && !empty($register_form[0]['show_emplyr_inn_sec']) ? $register_form[0]['show_emplyr_inn_sec'] : 'true';
+
+        //address, employer, contacts
+        $address = null;
+        $contact = null;
+        $employer = Employer::where('user_id', Auth::user()->id)->get()->first();
+        if($employer)
+        {
+            $address = Address::where('employer_id', $employer->id)->first();
+            $contact = Contact::where('employer_id', $employer->id)->first();
+        }
         if (file_exists(resource_path('views/extend/back-end/employer/profile-settings/personal-detail/index.blade.php'))) {
             return view(
                 'extend.back-end.employer.profile-settings.personal-detail.index',
@@ -117,6 +130,9 @@ class EmployerController extends Controller
                     'department_id',
                     'options',
                     'packages',
+                    'employer',
+                    'address',
+                    'contact',
                     'show_emplyr_inn_sec'
                 )
             );
@@ -140,6 +156,362 @@ class EmployerController extends Controller
                     'department_id',
                     'options',
                     'packages',
+                    'employer',
+                    'address',
+                    'contact',
+                    'show_emplyr_inn_sec'
+                )
+            );
+        }
+    }
+
+    public function employerdetail()
+    {
+        $profile = $this->employer::where('user_id', Auth::user()->id)
+            ->get()->first();
+        $employees = Helper::getEmployeesList();
+        $departments = Department::all();
+        $locations = Location::pluck('title', 'id');
+        $gender = !empty($profile->gender) ? $profile->gender : '';
+        $tagline = !empty($profile->tagline) ? $profile->tagline : '';
+        $description = !empty($profile->description) ? $profile->description : '';
+        $banner = !empty($profile->banner) ? $profile->banner : '';
+        $avater = !empty($profile->avater) ? $profile->avater : '';
+        //dd($avater);
+        $address = !empty($profile->address) ? $profile->address : '';
+        $longitude = !empty($profile->longitude) ? $profile->longitude : '';
+        $latitude = !empty($profile->latitude) ? $profile->latitude : '';
+        $no_of_employees = !empty($profile->no_of_employees) ? $profile->no_of_employees : '';
+        $department_id = !empty($profile->department_id) ? $profile->department_id : '';
+        $payout_id = !empty($profile->payout_id) ? $profile->payout_id : '';
+        $packages = DB::table('items')->where('subscriber', Auth::user()->id)->count();
+        $package_options = Package::select('options')->where('role_id', Auth::user()->id)->first();
+        $options = !empty($package_options) ? unserialize($package_options['options']) : array();
+        $register_form = SiteManagement::getMetaValue('reg_form_settings');
+        $show_emplyr_inn_sec = !empty($register_form) && !empty($register_form[0]['show_emplyr_inn_sec']) ? $register_form[0]['show_emplyr_inn_sec'] : 'true';
+
+        //address, employer, contacts
+        $address = null;
+        $contact = null;
+        $employer = Employer::where('user_id', Auth::user()->id)->get()->first();
+        $modes = array('no taxer person' => 'no taxer person','taxer person' => 'taxer person','taxer company' => 'taxer company');
+        //dd($modes);
+        if($employer)
+        {
+            $address = Address::where('employer_id', $employer->id)->first();
+            $contact = Contact::where('employer_id', $employer->id)->first();
+        }
+        else
+        {
+            $employer = new \stdClass();
+            $employer->id = null;
+            $employer->name = null;
+            $employer->taxId = null;
+            $employer->	taxPayerType = null;
+            $employer->privateKey = null;
+            $employer->publicKey = null;
+            $employer->privateKeyPassword = null;
+            $employer->licence = null;
+            $employer->mode = null;
+            
+        }
+        if (file_exists(resource_path('views/extend/back-end/employer/profile-settings/personal-detail/employer.blade.php'))) {
+            return view(
+                'extend.back-end.employer.profile-settings.personal-detail.employer',
+                compact(
+                    'payout_id',
+                    'employees',
+                    'departments',
+                    'locations',
+                    'gender',
+                    'tagline',
+                    'description',
+                    'banner',
+                    'avater',
+                    'address',
+                    'longitude',
+                    'latitude',
+                    'no_of_employees',
+                    'department_id',
+                    'options',
+                    'packages',
+                    'employer',
+                    'address',
+                    'contact',
+                    'modes',
+                    'show_emplyr_inn_sec'
+                )
+            );
+        } else {
+            return view(
+                'back-end.employer.profile-settings.personal-detail.employer',
+                compact(
+                    'payout_id',
+                    'employees',
+                    'departments',
+                    'locations',
+                    'gender',
+                    'tagline',
+                    'description',
+                    'banner',
+                    'avater',
+                    'address',
+                    'longitude',
+                    'latitude',
+                    'no_of_employees',
+                    'department_id',
+                    'options',
+                    'packages',
+                    'employer',
+                    'address',
+                    'contact',
+                    'modes',
+                    'show_emplyr_inn_sec'
+                )
+            );
+        }
+    }
+
+    public function addressdetail()
+    {
+        $profile = $this->employer::where('user_id', Auth::user()->id)
+            ->get()->first();
+        $employees = Helper::getEmployeesList();
+        $departments = Department::all();
+        $locations = Location::pluck('title', 'id');
+        $gender = !empty($profile->gender) ? $profile->gender : '';
+        $tagline = !empty($profile->tagline) ? $profile->tagline : '';
+        $description = !empty($profile->description) ? $profile->description : '';
+        $banner = !empty($profile->banner) ? $profile->banner : '';
+        $avater = !empty($profile->avater) ? $profile->avater : '';
+        //dd($avater);
+        $address = !empty($profile->address) ? $profile->address : '';
+        $longitude = !empty($profile->longitude) ? $profile->longitude : '';
+        $latitude = !empty($profile->latitude) ? $profile->latitude : '';
+        $no_of_employees = !empty($profile->no_of_employees) ? $profile->no_of_employees : '';
+        $department_id = !empty($profile->department_id) ? $profile->department_id : '';
+        $payout_id = !empty($profile->payout_id) ? $profile->payout_id : '';
+        $packages = DB::table('items')->where('subscriber', Auth::user()->id)->count();
+        $package_options = Package::select('options')->where('role_id', Auth::user()->id)->first();
+        $options = !empty($package_options) ? unserialize($package_options['options']) : array();
+        $register_form = SiteManagement::getMetaValue('reg_form_settings');
+        $show_emplyr_inn_sec = !empty($register_form) && !empty($register_form[0]['show_emplyr_inn_sec']) ? $register_form[0]['show_emplyr_inn_sec'] : 'true';
+
+        //address, employer, contacts
+        $address = null;
+        $contact = null;
+        $employer = Employer::where('user_id', Auth::user()->id)->get()->first();
+        if($employer)
+        {
+            $address = Address::where('employer_id', $employer->id)->first();
+            $contact = Contact::where('employer_id', $employer->id)->first();
+            if(!$address)
+            {
+                $address = new \stdClass();
+                $address->name = null;
+                $address->type = null;
+                $address->street = null;
+                $address->externalNumber = null;
+                $address->internalNumber = null;
+                $address->neighborhood = null;
+                $address->locality = null;
+                $address->reference = null;
+                $address->city = null;
+                $address->state = null;
+                $address->country = null;
+                $address->zipCode = null;
+                $address->latitude = null;
+                $address->longitude = null;
+                $address->website = null;
+            }
+        }
+        else
+        {
+            if(!$address)
+            {
+                $address = new \stdClass();
+                $address->name = null;
+                $address->type = null;
+                $address->street = null;
+                $address->externalNumber = null;
+                $address->internalNumber = null;
+                $address->neighborhood = null;
+                $address->locality = null;
+                $address->reference = null;
+                $address->city = null;
+                $address->state = null;
+                $address->country = null;
+                $address->zipCode = null;
+                $address->latitude = null;
+                $address->longitude = null;
+                $address->website = null;
+            }
+            
+        }
+        if (file_exists(resource_path('views/extend/back-end/employer/profile-settings/personal-detail/address.blade.php'))) {
+            return view(
+                'extend.back-end.employer.profile-settings.personal-detail.address',
+                compact(
+                    'payout_id',
+                    'employees',
+                    'departments',
+                    'locations',
+                    'gender',
+                    'tagline',
+                    'description',
+                    'banner',
+                    'avater',
+                    'address',
+                    'longitude',
+                    'latitude',
+                    'no_of_employees',
+                    'department_id',
+                    'options',
+                    'packages',
+                    'employer',
+                    'address',
+                    'contact',
+                    'show_emplyr_inn_sec'
+                )
+            );
+        } else {
+            return view(
+                'back-end.employer.profile-settings.personal-detail.address',
+                compact(
+                    'payout_id',
+                    'employees',
+                    'departments',
+                    'locations',
+                    'gender',
+                    'tagline',
+                    'description',
+                    'banner',
+                    'avater',
+                    'address',
+                    'longitude',
+                    'latitude',
+                    'no_of_employees',
+                    'department_id',
+                    'options',
+                    'packages',
+                    'employer',
+                    'address',
+                    'contact',
+                    'show_emplyr_inn_sec'
+                )
+            );
+        }
+    }
+
+    public function contactdetail()
+    {
+        $profile = $this->employer::where('user_id', Auth::user()->id)
+            ->get()->first();
+        $employees = Helper::getEmployeesList();
+        $departments = Department::all();
+        $locations = Location::pluck('title', 'id');
+        $gender = !empty($profile->gender) ? $profile->gender : '';
+        $tagline = !empty($profile->tagline) ? $profile->tagline : '';
+        $description = !empty($profile->description) ? $profile->description : '';
+        $banner = !empty($profile->banner) ? $profile->banner : '';
+        $avater = !empty($profile->avater) ? $profile->avater : '';
+        //dd($avater);
+        $address = !empty($profile->address) ? $profile->address : '';
+        $longitude = !empty($profile->longitude) ? $profile->longitude : '';
+        $latitude = !empty($profile->latitude) ? $profile->latitude : '';
+        $no_of_employees = !empty($profile->no_of_employees) ? $profile->no_of_employees : '';
+        $department_id = !empty($profile->department_id) ? $profile->department_id : '';
+        $payout_id = !empty($profile->payout_id) ? $profile->payout_id : '';
+        $packages = DB::table('items')->where('subscriber', Auth::user()->id)->count();
+        $package_options = Package::select('options')->where('role_id', Auth::user()->id)->first();
+        $options = !empty($package_options) ? unserialize($package_options['options']) : array();
+        $register_form = SiteManagement::getMetaValue('reg_form_settings');
+        $show_emplyr_inn_sec = !empty($register_form) && !empty($register_form[0]['show_emplyr_inn_sec']) ? $register_form[0]['show_emplyr_inn_sec'] : 'true';
+
+        //address, employer, contacts
+        $address = null;
+        $contact = null;
+        $employer = Employer::where('user_id', Auth::user()->id)->get()->first();
+        if($employer)
+        {
+            $address = Address::where('employer_id', $employer->id)->first();
+            $contact = Contact::where('employer_id', $employer->id)->first();
+            if(!$contact)
+            {
+                $contact = new \stdClass();
+                $contact->name = null;
+                $contact->position = null;
+                $contact->department = null;
+                $contact->skype = null;
+                $contact->facebook = null;
+                $contact->twitter = null;
+                $contact->personalWebSite = null;
+            }
+        }
+        else
+        {
+            if(!$contact)
+            {
+                $contact = new \stdClass();
+                $contact->name = null;
+                $contact->position = null;
+                $contact->department = null;
+                $contact->skype = null;
+                $contact->facebook = null;
+                $contact->twitter = null;
+                $contact->personalWebSite = null;
+            }
+            
+        }
+        if (file_exists(resource_path('views/extend/back-end/employer/profile-settings/personal-detail/contact.blade.php'))) {
+            return view(
+                'extend.back-end.employer.profile-settings.personal-detail.contact',
+                compact(
+                    'payout_id',
+                    'employees',
+                    'departments',
+                    'locations',
+                    'gender',
+                    'tagline',
+                    'description',
+                    'banner',
+                    'avater',
+                    'address',
+                    'longitude',
+                    'latitude',
+                    'no_of_employees',
+                    'department_id',
+                    'options',
+                    'packages',
+                    'employer',
+                    'address',
+                    'contact',
+                    'show_emplyr_inn_sec'
+                )
+            );
+        } else {
+            return view(
+                'back-end.employer.profile-settings.personal-detail.contact',
+                compact(
+                    'payout_id',
+                    'employees',
+                    'departments',
+                    'locations',
+                    'gender',
+                    'tagline',
+                    'description',
+                    'banner',
+                    'avater',
+                    'address',
+                    'longitude',
+                    'latitude',
+                    'no_of_employees',
+                    'department_id',
+                    'options',
+                    'packages',
+                    'employer',
+                    'address',
+                    'contact',
                     'show_emplyr_inn_sec'
                 )
             );
@@ -203,6 +575,134 @@ class EmployerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function storeemployerSettings(Request $request)
+    {
+        //dd($request->all());
+        $employer = Employer::where('user_id', Auth::user()->id)->get()->first();
+        if($employer)
+        {
+            $employer->name = $request->name;
+            $employer->taxId = $request->taxId;
+            $employer->	taxPayerType = $request->taxPayerType;
+            $employer->privateKey = $request->privateKey;
+            $employer->publicKey = $request->publicKey;
+            $employer->privateKeyPassword = $request->privateKeyPassword;
+            $employer->licence = $request->licence;
+            $employer->mode = $request->mode;
+            $employer->save();
+        }
+        else
+        {
+            Employer::create([
+                'user_id' => Auth::user()->id,
+                'name' => $request->name,
+                'taxId' => $request->taxId,
+                'taxPayerType' => $request->taxPayerType,
+                'privateKey' => $request->privateKey,
+                'publicKey' => $request->publicKey,
+                'privateKeyPassword' => $request->privateKeyPassword,
+                'licence' => $request->licence,
+                'mode' => $request->mode,
+            ]);
+        }
+        return redirect()->route('employerPersonalDetail');
+
+    }
+
+    public function storeaddressSettings(Request $request)
+    {
+        //dd($request->all());
+        $employer = Employer::where('user_id', Auth::user()->id)->get()->first();
+        
+        if($employer)
+        {
+            $address = Address::where('employer_id', $employer->id)->first();
+            
+            if($address)
+            {   
+                $address->name = $request->name;
+                $address->type = $request->type;
+                $address->street = $request->street;
+                $address->externalNumber = $request->externalNumber;
+                $address->internalNumber = $request->internalNumber;
+                $address->neighborhood = $request->neighborhood;
+                $address->locality = $request->locality;
+                $address->reference = $request->reference;
+                $address->city = $request->city;
+                $address->state = $request->state;
+                $address->country = $request->country;
+                $address->zipCode = $request->zipCode;
+                $address->latitude = $request->latitude;
+                $address->longitude = $request->longitude;
+                $address->website = $request->website;
+                $address->save();
+            }
+            else
+            {
+                Address::create([
+                    'employer_id' => $employer->id,
+                    'name' => $request->name,
+                    'type' => $request->type,
+                    'street' => $request->street,
+                    'externalNumber' => $request->externalNumber,
+                    'internalNumber' => $request->internalNumber,
+                    'neighborhood' => $request->neighborhood,
+                    'locality' => $request->locality,
+                    'reference' => $request->reference,
+                    'city' => $request->city,
+                    'state' => $request->state,
+                    'country' => $request->country,
+                    'zipCode' => $request->zipCode,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
+                    'website' => $request->website,
+                ]);
+            }
+        }
+        
+        return redirect()->route('employerPersonalDetail');
+
+    }
+
+    public function storecontactSettings(Request $request)
+    {
+        $employer = Employer::where('user_id', Auth::user()->id)->get()->first();
+        
+        if($employer)
+        {
+            $contact = Contact::where('employer_id', $employer->id)->first();
+            
+            if($address)
+            {   
+                $contact->name = $request->name;
+                $contact->position = $request->position;
+                $contact->department = $request->department;
+                $contact->skype = $request->skype;
+                $contact->facebook = $request->facebook;
+                $contact->twitter = $request->twitter;
+                $contact->personalWebSite = $request->personalWebSite;
+                $contact->save();
+            }
+            else
+            {
+                Contact::create([
+                    'employer_id' => $employer->id,
+                    'name' => $request->name,
+                    'position' => $request->position,
+                    'department' => $request->department,
+                    'skype' => $request->skype,
+                    'facebook' => $request->facebook,
+                    'twitter' => $request->twitter,
+                    'personalWebSite' => $request->personalWebSite,
+                ]);
+            }
+        }
+        
+        return redirect()->route('employerPersonalDetail');
+
+    }
+
     public function storeProfileSettings(Request $request)
     {
         $server = Helper::worketicIsDemoSiteAjax();

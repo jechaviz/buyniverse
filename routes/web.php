@@ -367,8 +367,14 @@ Route::group(
         Route::get('employer/dashboard/job/{slug}/proposals', 'ProposalController@getJobProposals')->name('getProposals');
         Route::get('employer/dashboard', 'EmployerController@employerDashboard')->name('employerDashboard');
         Route::get('employer/profile', 'EmployerController@index')->name('employerPersonalDetail');
+        Route::get('employer/employerdetail', 'EmployerController@employerdetail')->name('employerDetail');
+        Route::get('employer/addressdetail', 'EmployerController@addressdetail')->name('addressDetail');
+        Route::get('employer/contactdetail', 'EmployerController@contactdetail')->name('contactDetail');
         Route::post('employer/upload-temp-image', 'EmployerController@uploadTempImage');
         Route::post('employer/store-profile-settings', 'EmployerController@storeProfileSettings');
+        Route::post('employer/store-employer-settings', 'EmployerController@storeemployerSettings');
+        Route::post('employer/store-address-settings', 'EmployerController@storeaddressSettings');
+        Route::post('employer/store-contact-settings', 'EmployerController@storecontactSettings');
         Route::post('job/post-job', 'JobController@store');
         Route::post('job/job-post', 'JobController@storejob');
         Route::post('job/upload-temp-image', 'JobController@uploadTempImage');
