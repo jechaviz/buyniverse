@@ -53,6 +53,9 @@ use App\Service;
 use App\DeliveryTime;
 use App\ResponseTime;
 use App\Article;
+use App\Employer;
+use App\Address;
+use App\Contact;
 
 /**
  * Class PublicController
@@ -404,6 +407,7 @@ class PublicController extends Controller
                 }
             } elseif ($role === 'employer') {
             //} elseif ($user->getRoleNames()->first() === 'employer') {
+
                 $jobs = Job::where('user_id', $profile->user_id)->latest()->paginate(7);
                 $followers = DB::table('followers')->where('following', $profile->user_id)->get();
                 $save_employer = !empty(auth()->user()->profile->saved_employers) ? unserialize(auth()->user()->profile->saved_employers) : array();
@@ -412,6 +416,18 @@ class PublicController extends Controller
                 $symbol   = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
                 $breadcrumbs_settings = SiteManagement::getMetaValue('show_breadcrumb');
                 $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
+
+                $employer = Employer::where('user_id', $profile->user_id)->get()->first();
+                if($employer)
+                {
+                    $address = Address::where('employer_id', $employer->id)->first();
+                    $contact = Contact::where('employer_id', $employer->id)->first();
+                }
+                else
+                {
+                    $address = null;
+                    $contact = null;
+                }
                 if (file_exists(resource_path('views/extend/front-end/users/employer-show.blade.php'))) {
                     return View(
                         'extend.front-end.users.employer-show',
@@ -433,6 +449,9 @@ class PublicController extends Controller
                             'symbol',
                             'tagline',
                             'desc',
+                            'employer',
+                            'address',
+                            'contact',
                             'show_breadcrumbs'
                         )
                     );
@@ -457,6 +476,9 @@ class PublicController extends Controller
                             'symbol',
                             'tagline',
                             'desc',
+                            'employer',
+                            'address',
+                            'contact',
                             'show_breadcrumbs'
                         )
                     );

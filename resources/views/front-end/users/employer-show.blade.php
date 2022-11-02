@@ -91,6 +91,39 @@
                             </div>
                             <div class="wt-widget">
                                 <div class="wt-widgettitle">
+                                    <h2>{{ trans('lang.employer_detail') }}</h2>
+                                </div>
+                                <div class="wt-widgetcontent wt-comfollowers wt-verticalscrollbar">
+                                    @if($employer)
+                                        <ul>
+                                            @if($employer->taxId)
+                                            <li>
+                                                <span>{{ trans('lang.taxId') }} : {{$employer->taxId}}</span>
+                                            </li>
+                                            @endif
+                                            @if($employer->taxPayerType)
+                                            <li>
+                                                <span>{{ trans('lang.taxPayerType') }} : {{$employer->taxPayerType}}</span>
+                                            </li>
+                                            @endif
+                                            @if($employer->licence)
+                                            <li>
+                                                <span>{{ trans('lang.licence') }} : {{$employer->licence}}</span>
+                                            </li>
+                                            @endif
+                                            @if($employer->mode)
+                                            <li>
+                                                <span>{{ trans('lang.mode') }} : {{$employer->mode}}</span>
+                                            </li>
+                                            @endif
+                                        </ul>
+                                    @else
+                                        <p class="la-no-follower">{{ trans('lang.no_records_found') }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="wt-widget">
+                                <div class="wt-widgettitle">
                                     <h2>{{ trans('lang.company_followers') }}</h2>
                                 </div>
                                 <div class="wt-widgetcontent wt-comfollowers wt-verticalscrollbar">
