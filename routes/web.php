@@ -647,11 +647,13 @@ Route::group(
         Route::get('sub_skill_status/{id}', 'API\JobController@getskillstatus');
         Route::get('sub_cat_status/{id}', 'API\JobController@getcatstatus');
         Route::get('sub_category/{id}', 'API\JobController@getsubcategory');
+        Route::get('sendinvitation/{id}', 'API\JobController@sendinvitation');
+        
 
         Route::get('contest/check/{id}', 'API\ContestController@check');
         Route::get('contest/getmessages/{id}', 'API\ContestController@getmessages');
         Route::post('contest/sendmessage', 'API\ContestController@sendmessage');
 
-        Route::get('get_search', 'API\JobController@get_search');
+        Route::get('get_search/{id}', 'API\JobController@get_search');
     }
 ); 

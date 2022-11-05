@@ -117,7 +117,7 @@
                                             
                                             
                                             <div class="wt-rightarea">
-                                                <sendinvitation :userid="freelancer.id" :jobid="tjob"></sendinvitation>
+                                                <sendinvitation :userid="freelancer.id" :invitation="freelancer.invitation" :jobid="tjob"></sendinvitation>
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@ export default {
     methods: {
         loadSearch() {
             let self = this;            
-            axios.get(APP_URL + '/api/get_search').then(function (response) {
+            axios.get(APP_URL + '/api/get_search/'+ self.tjob).then(function (response) {
                 self.skills = response.data.skills;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;

@@ -33,6 +33,7 @@ use App\Live_contest;
 use App\Live_contest_participant;
 use App\Proposal;
 use App\Contest_bid;
+use App\JobInvite;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,7 +44,21 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function get_search()
+    public function sendinvitation($id)
+    {
+        $ids = explode('-', $id);
+        if(JobInvite::where('job_id', $ids[0])->where('user_id', $ids[1])->exists())
+        {}
+        else
+        {
+            $invite = new JobInvite;
+            $invite->job_id = $ids[0];
+            $invite->user_id = $ids[1];
+            $invite->save();
+        }
+        return true;
+    }
+    public function get_search($id)
     {
         $data['skills'] = Skill::pluck('title', 'id');
         $search_locations = null;
@@ -107,6 +122,10 @@ class JobController extends Controller
                 if($user->profile)
                 $user->description = $user->profile->description;
 
+                if(JobInvite::where('job_id', $id)->where('user_id', $user->id)->exists())
+                    $user->invitation = true;
+                else
+                    $user->invitation = false;
             }
         }
         $data['keyword'] = '';

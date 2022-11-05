@@ -1,5 +1,5 @@
 <template>
-    <span> <a :href="'/sendinvitation/'+jobid+'-'+userid" :id="'invite_to_project-'+user_id" v-show="!flag" class="wt-btn" style="cursor: pointer;"><span>{{ trans('lang.invite') }}</span></a>
+    <span> <a @click="invite" :id="'invite_to_project-'+user_id" v-show="!flag" class="wt-btn" style="cursor: pointer;"><span>{{ trans('lang.invite') }}</span></a>
     <span :id="'invitation_sent-'+user_id" v-show="flag" style="margin-right: 20px;font-weight: bold;">{{ trans('lang.invitation_sent') }}</span></span>
 </template>
 
@@ -9,27 +9,27 @@ export default {
  data () {
     return {
         user_id : this.userid,
-        flag : false
+        flag : this.invitation
     }
   },
   props: {
       userid: String, 
-      jobid: String 
+      jobid: String,
+      invitation: String
   },
   methods: {
         
         
         
-        invite(id) {
+        invite() {
             let self = this;
             console.log('invite');
-            axios.get(APP_URL + '/contests/invite/' + this.contestid +'-' + id).then(function (response) {
+            axios.get(APP_URL + '/api/sendinvitation/' + this.jobid +'-' + this.userid).then(function (response) {
                 toast.fire({
                 icon: 'success',
-                title: 'Provider in successfully invited for the contest'
+                title: 'Provider is successfully invited for the job'
                 });
                 self.flag = true;
-
             });
         },
              
