@@ -1347,6 +1347,7 @@ class UserController extends Controller
      */
     public function generateOrder($id, $type)
     {
+        //dd($id, $type);
         $server = Helper::worketicIsDemoSiteAjax();
         if (!empty($server)) {
             /*$response['type'] = 'error';
@@ -1370,7 +1371,7 @@ class UserController extends Controller
             $json['order_id'] = $new_order['id'];
             $json['process'] = trans('lang.saving_profile');
             return $json;*/
-            return redirect()->route('bankCheckout', ['id'=>$id, 'order'=>$new_order['id'], 'type'=>'project']);
+            return redirect()->route('bankCheckout', ['id'=>$id, 'order'=>$new_order['id'], 'type'=>$type]);
         } else {
             /*$json['type'] = 'error';
             $json['process'] = trans('lang.something_wrong');
@@ -1388,12 +1389,12 @@ class UserController extends Controller
      */
     public function bankCheckout($id, $order, $type, $project_type = '')
     {
-        //dd('bank check out');
+        
         if (!empty($id) && Auth::user()) {
             $subtitle = '';
             $options = '';
             $seller = '';
-            if ($type == 'project') {
+            if ($type == 'job') {
                 if ($project_type == 'service') {
                     $service_order = DB::table('service_user')->select('service_id')->where('id', $id)->first();
                     $service = Service::find($service_order->service_id);
@@ -1402,6 +1403,7 @@ class UserController extends Controller
                     $product_id = $id;
                 } else {
                     $proposal = Proposal::where('id', $id)->get()->first();
+                    //dd($proposal);
                     if (!empty($proposal)) {
                         $job = $proposal->job;
                         $product_id = $proposal->id;
@@ -1443,8 +1445,10 @@ class UserController extends Controller
             }
             $payout_settings = SiteManagement::getMetaValue('commision');
             $symbol = !empty($payout_settings) && !empty($payout_settings[0]['currency']) ? Helper::currencyList($payout_settings[0]['currency']) : array();
+            
             $mode = !empty($payout_settings) && !empty($payout_settings[0]['payment_mode']) ? $payout_settings[0]['payment_mode'] : 'true';
             $bank_detail = SiteManagement::getMetaValue('bank_detail');
+            //dd($bank_detail);
             if (file_exists(resource_path('views/extend/back-end/package/bank-checkout.blade.php'))) {
                 return view::make(
                     'extend.back-end.package.bank-checkout',

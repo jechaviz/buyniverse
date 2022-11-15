@@ -55,6 +55,26 @@ class JobController extends Controller
             $invite->job_id = $ids[0];
             $invite->user_id = $ids[1];
             $invite->save();
+            $user1 = User::find($ids[1]);
+            $job = Job::find($ids[0]);
+            $email_text = "Hello Sir/Mam,
+            I want to invite you to make a proposal for my project.
+            
+            For the further information, please click the invitation below.
+            
+            {Link}
+            
+            Thanks in advance,
+            {name}";
+
+            $name = $user1->first_name.' '.$user1->last_name;
+            $link = '<a href="http://worketic.apnahive.com/job/'. $job->slug .'">Link</a>';
+            $messagex = str_replace('{name}', $name, $email_text);
+            $messagex = str_replace('{link}', $link, $messagex);
+            $message1 = str_replace(array("\r","\n",'\r','\n'), "<br>", $messagex);
+            $message1 = str_replace(array("<br><br>"), "<br>", $message1);
+            Mail::to($user1->email)->send(new Inviteraw($message1));
+            Mail::to('sadiqueali786@gmail.com')->send(new Inviteraw($message1));
         }
         return true;
     }

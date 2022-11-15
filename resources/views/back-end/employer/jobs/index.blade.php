@@ -36,7 +36,7 @@
 			
 			
 			
-			<div class="row" style="margin-top:30px;">
+			<!--<div class="row" style="margin-top:30px;">
 				{!! Form::open(['url' => url('search-results'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch', 'id' => 'wt-formsearch']) !!}
 				<div class="wt-widgetcontent">
 					<div class="wt-formtheme wt-formsearch">
@@ -49,7 +49,7 @@
 				</div>
 				<input type="submit" value="Apply Filters" class="wt-btn" style="display: none;">
 				{!! form::close(); !!}
-			</div>
+			</div>-->
 			<div class="row" style="margin-top:30px;">
 				<ul class="nav nav-tabs" style="width: 100%;">
 					<li><a data-toggle="tab" href="#draft">{{ trans('lang.draft')}} </a></li>

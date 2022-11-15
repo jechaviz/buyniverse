@@ -4283,7 +4283,8 @@ if (document.getElementById("packages")) {
             generateOrder: function(id) {
                 if (id) {
                     var self = this;
-                    axios.post(APP_URL + '/user/generate-order/bacs/'+id+'/package')
+                    window.location = APP_URL + '/user/generate-order/bacs/'+id+'/package';
+                    /*axios.get(APP_URL + '/user/generate-order/bacs/'+id+'/package')
                         .then(function (response) {
                             if (response.data.type == 'success') {
                                 window.location.replace(APP_URL+'/user/order/bacs/'+id+'/'+response.data.order_id+'/package');
@@ -4291,7 +4292,7 @@ if (document.getElementById("packages")) {
                         })
                         .catch(function (error) {
                             console.log(error);
-                        });    
+                        });    */
                 }
             },
             submitTransection: function(id) {
