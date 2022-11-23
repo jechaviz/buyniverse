@@ -202,6 +202,7 @@
                                                 $badge_color = '';
                                                 $badge_img    = '';
                                             }
+                                            $sym = $symbol['symbol'];
                                         @endphp
                                         <div class="wt-userlistinghold {{ $feature_class }}">
                                             @if(!empty($enable_package) && $enable_package === 'true')
@@ -221,20 +222,22 @@
                                             <div class="wt-userlistingcontent">
                                                 <div class="wt-contenthead">
                                                     <div class="wt-title">
-                                                        <a href="{{{ url('profile/'.$freelancer->slug) }}}">
+                                                        <a href="{{{ url('profile/'.$freelancer->slug.'/freelancer') }}}">
                                                             @if ($verified_user == 1)
                                                                 <i class="fa fa-check-circle"></i>
                                                             @endif
                                                             {{{ Helper::getUserName($freelancer->id) }}}
                                                         </a>
                                                         @if (!empty($freelancer->profile->tagline))
-                                                            <h2><a href="{{{ url('profile/'.$freelancer->slug) }}}">{{{ $freelancer->profile->tagline }}}</a></h2>
+                                                            <h2><a href="{{{ url('profile/'.$freelancer->slug.'/freelancer') }}}">{{{ $freelancer->profile->tagline }}}</a></h2>
                                                         @endif
                                                     </div>
                                                     <ul class="wt-userlisting-breadcrumb">
                                                         @if (!empty($freelancer->profile->hourly_rate))
                                                             <li><span><i class="far fa-money-bill-alt"></i>
-                                                                {{ (!empty($symbol['symbol'])) ? $symbol['symbol'] : '$' }}{{{ $freelancer->profile->hourly_rate }}} {{ trans('lang.per_hour') }}</span>
+                                                                {{ (!empty($sym)) ? $sym : "$" }} {{ $freelancer->profile->hourly_rate }} 
+                                                                {{ trans('lang.per_hour') }}</span>
+                                                                
                                                             </li>
                                                         @endif
                                                         @if (!empty($freelancer->location))
@@ -244,7 +247,7 @@
                                                             <li class="wt-btndisbaled">
                                                                 <a href="javascrip:void(0);" class="wt-clicksave wt-clicksave">
                                                                     <i class="fa fa-heart"></i>
-                                                                    {{ trans('lang.saved') }}
+                                                                    {{{ trans('lang.saved') }}}
                                                                 </a>
                                                             </li>
                                                         @else

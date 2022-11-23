@@ -165,20 +165,20 @@
                                                     <div class="wt-companysinfo">
                                                         <figure><img src="{{{ asset($user_image) }}}" alt="Company"></figure>
                                                         <div class="wt-title">
-                                                            <a href="{{{ url('profile/'.$employer->slug) }}}">
+                                                            <a href="{{{ url('profile/'.$employer->slug.'/employer') }}}">
                                                             @if ($verified_user === 1)
                                                                 <i class="fa fa-check-circle"></i> {{ trans('lang.verified_company') }}</a>
                                                             @endif
-                                                            <a href="{{{ url('profile/'.$employer->slug) }}}"><h2>{{{ Helper::getUserName($employer->id) }}}</h2></a>
+                                                            <a href="{{{ url('profile/'.$employer->slug.'/employer') }}}"><h2>{{{ Helper::getUserName($employer->id) }}}</h2></a>
                                                         </div>
                                                         <ul class="wt-postarticlemeta">
                                                             <li>
-                                                                <a href="{{ url('profile/'.$employer->slug) }}">
+                                                                <a href="{{ url('profile/'.$employer->slug.'/employer') }}">
                                                                     <span>{{ trans('lang.open_jobs') }}</span>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="{{{ url('profile/'.$employer->slug) }}}">
+                                                                <a href="{{{ url('profile/'.$employer->slug.'/employer') }}}">
                                                                     <span>{{ trans('lang.full_profile') }}</span>
                                                                 </a>
                                                             </li>
