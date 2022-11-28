@@ -307,7 +307,7 @@
                                             <span class="bt-content">{{ trans('lang.start_date') }}</span>
                                         </td> 
                                         <td>
-                                            <span class="bt-content">{{ form1.start_date | formatDate}}</span> 
+                                            <span class="bt-content">{{ form1.start_date | datetime}}</span> 
                                         </td>
                                     </tr>
                                     <tr>
@@ -315,7 +315,7 @@
                                             <span class="bt-content">{{ trans('lang.end_date') }}</span>
                                         </td> 
                                         <td>
-                                            <span class="bt-content">{{ form1.end_date | formatDate }}</span> 
+                                            <span class="bt-content">{{ form1.end_date | datetime }}</span> 
                                         </td>
                                     </tr>
                                     <tr>
@@ -977,15 +977,19 @@ export default {
         },
         CreateContest() {
             //console.log(this.form);
+            let self = this;
             this.form.post('/api/contest_proposal/')
-            .then(() => {
+            .then((response) => {
                 toast.fire({
                 icon: 'success',
                 title: 'Contest Created successfully'
                 });
                 this.hasContest = true;
-                //console.log(this.hasContest);
+                self.form1.id = response.data.id;
+                //console.log(response.data);
                 Fire.$emit('Aftercontestupdate');
+                Fire.$emit('Aftercontestcreate', response.data.id);
+                
                 
                 /*$('#addnew').modal('hide');
                 $('#newcontest').removeClass('show');
@@ -1006,6 +1010,7 @@ export default {
                 title: 'Contest Updated successfully'
                 });
                 Fire.$emit('Aftercontestupdate');
+                Fire.$emit('Aftercontestcreate', this.form1.id);
                 $('#editcontest').modal('hide');
                 $('.modal-backdrop').addClass('modal');
                 $('.modal-backdrop').remove();

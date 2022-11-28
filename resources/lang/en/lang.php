@@ -1724,7 +1724,7 @@ return [
     'facebook' => 'Facebook', 
     'twitter' => 'Twitter', 
     'personalWebSite' => 'Personal Website',
-
+    'time_limit_offer' => 'Time limit offer',
 
 
     'employee_list' => [

@@ -186,7 +186,7 @@ class Contest_proposalController extends Controller
         $contest->awarded_allowed = $request->awarded_allowed;
         
         $contest->save();
-
+        return $contest;
     
     }
 

@@ -73,6 +73,26 @@ export default {
                 
                     
             });
+        },
+
+        loadcontest1(contest) {
+            let self = this;
+            console.log('loadcontest1 - ' + contest);
+            axios.get(APP_URL + '/api/contest/' + contest).then(function (response) {                
+                self.contest = response.data;
+                //console.log(self.contest.status, self.contest.status == 'close');
+                if(self.contest.status == 'close')
+                    self.distance = 0;
+                else if(self.contest.result)
+                    self.distance = 'Contest Will start Shortly';
+                else
+                    self.distance = response.data.time_limit*6;
+                
+                //console.log('contest is loaded');
+                
+                
+                    
+            });
         }
            
 
@@ -138,10 +158,12 @@ export default {
       this.loadcontest();
       
       Fire.$on('Aftercontestchange', () => {
-                //console.log('after change');
                 this.loadcontest();
-      
             });
+        Fire.$on('Aftercontestcreate', (contest) => {
+            console.log('Aftercontestcreate - ' + contest);
+            this.loadcontest1(contest);
+        });
   }
 };
 </script>
