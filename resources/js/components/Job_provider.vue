@@ -30,15 +30,13 @@
                                         </div>
                                         <div class="wt-widgetcontent">
                                             <fieldset>
-                                                <div v-if="skills.length > 0">
-                                                    <div class="wt-checkboxholder wt-verticalscrollbar">
-                                                        
-                                                            
-                                                            <span v-for="(skill, index) in skills" :key="index" class="wt-checkbox">
-                                                                <input :id="'skill-' + index " type="checkbox" name="skills[]" :value="skill.slug" >
-                                                                <label :for="'skill-' + index">{{ skill.title }}</label>
-                                                            </span>
-                                                        
+                                                
+                                                <div>
+                                                    <div class="wt-checkboxholder wt-verticalscrollbar" style="overflow: auto;">
+                                                        <span v-for="(skill, index) in skills" :key="index" class="wt-checkbox">
+                                                            <input :id="'skill-' + index " type="checkbox" name="skills[]" :value="index" v-model="form.skill">
+                                                            <label :for="'skill-' + index">{{ skill }}</label>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -81,7 +79,7 @@
                                                             {{freelancer.username}}
                                                         </a>
                                                         
-                                                            <h2 v-if="freelancer.tagline"><a @click="gotourl('profile/' + freelancer.slug)">{{ freelancer.tagline }}}</a></h2>
+                                                            <h2 v-if="freelancer.tagline"><a @click="gotourl('profile/' + freelancer.slug)">{{ freelancer.tagline }}</a></h2>
                                                         
                                                     </div>
                                                     <ul class="wt-userlisting-breadcrumb">
@@ -157,10 +155,11 @@ export default {
                 id: '',
                 s : '',
                 description : '',
+                skill: [],
                 user_id : this.userid,
                 job_id : this.job           
             }),
-            skills: {},
+            skills: [],
             users: {},
             keyword: '',
             tjob: this.job,
@@ -178,6 +177,20 @@ export default {
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
             });
+        },
+        search_filter()
+        {
+            let self = this;
+            self.users = {};
+            this.form.post('/api/search_filter/'+ self.tjob)
+            .then((response) => {
+                self.skills = response.data.skills;
+                self.users = response.data.users.data;
+                self.keyword = response.data.keyword;
+            })
+            .catch(() => {
+
+            })
         },
         gotourl(url)
         {

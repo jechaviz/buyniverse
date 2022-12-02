@@ -524,6 +524,129 @@ class User extends Authenticatable
         return $json;
     }
 
+    public static function getSearchResult1(
+        $type,
+        $keyword,
+        $search_locations,
+        $search_employees,
+        $search_skills,
+        $search_hourly_rates,
+        $search_freelaner_types,
+        $search_english_levels,
+        $search_languages
+    ) {
+        $json = array();
+        $user_id = array();
+        $user_by_role =  User::role($type)->select('id')->get()->pluck('id')->toArray();
+        $users = !empty($user_by_role) ? User::whereIn('id', $user_by_role)->where('is_disabled', 'false') : array();
+        $filters = array();
+        if (!empty($users)) {
+            $filters['type'] = $type;
+            if (!empty($keyword)) {
+                $filters['s'] = $keyword;
+                $users->where('first_name', 'like', '%' . $keyword . '%');
+                $users->orWhere('last_name', 'like', '%' . $keyword . '%');
+                $users->orWhere('slug', 'like', '%' . $keyword . '%');
+                $users->whereIn('id', $user_by_role);
+                $users->where('is_disabled', 'false');
+            }
+            if (!empty($search_locations)) {
+                $locations = array();
+                $filters['locations'] = $search_locations;
+                if (is_array($search_locations)) {
+                    $locations = Location::select('id')->whereIn('slug', $search_locations)
+                        ->get()->pluck('id')->toArray();
+                } else {
+                    $locations = Location::select('id')->where('slug', $search_locations)
+                        ->get()->pluck('id')->toArray();
+                }
+                $users->whereIn('location_id', $locations);
+            }
+            if (!empty($search_employees)) {
+                $filters['employees'] = $search_employees;
+                $employees = Profile::whereIn('no_of_employees', $search_employees)->get();
+                foreach ($employees as $key => $employee) {
+                    if (!empty($employee->user_id)) {
+                        $user_id[] = $employee->user_id;
+                    }
+                }
+                $users->whereIn('id', $user_id)->get();
+            }
+            if (!empty($search_skills)) {
+                
+                $filters['skills'] = $search_skills;
+                $skills = Skill::whereIn('id', $search_skills)->get();
+                //dd($skills);
+                foreach ($skills as $key => $skill) {
+                    if (!empty($skill->freelancers[$key]->id)) {
+                        $user_id[] = $skill->freelancers[$key]->id;
+                    }
+                }
+                $users->whereIn('id', $user_id);
+            }
+            if (!empty($search_hourly_rates)) {
+                $filters['hourly_rate'] = $search_hourly_rates;
+                $min = '';
+                $max = '';
+                foreach ($search_hourly_rates as $search_hourly_rate) {
+                    $hourly_rates = explode("-", $search_hourly_rate);
+                    $min = $hourly_rates[0];
+                    if (!empty($hourly_rates[1])) {
+                        $max = $hourly_rates[1];
+                    }
+                    $user_id = Profile::select('user_id')->whereIn('user_id', $user_by_role)
+                        ->whereBetween('hourly_rate', [$min, $max])->get()->pluck('user_id')->toArray();
+                }
+                $users->whereIn('id', $user_id);
+            }
+            if (!empty($search_freelaner_types)) {
+                $filters['freelaner_type'] = $search_freelaner_types;
+                $freelancers = Profile::whereIn('freelancer_type', $search_freelaner_types)->get();
+                foreach ($freelancers as $key => $freelancer) {
+                    if (!empty($freelancer->user_id)) {
+                        $user_id[] = $freelancer->user_id;
+                    }
+                }
+                $users->whereIn('id', $user_id)->get();
+            }
+            if (!empty($search_english_levels)) {
+                $filters['english_level'] = $search_english_levels;
+                $freelancers = Profile::whereIn('english_level', $search_english_levels)->get();
+                foreach ($freelancers as $key => $freelancer) {
+                    if (!empty($freelancer->user_id)) {
+                        $user_id[] = $freelancer->user_id;
+                    }
+                }
+                $users->whereIn('id', $user_id)->get();
+            }
+            if (!empty($search_languages)) {
+                $filters['languages'] = $search_languages;
+                $languages = Language::whereIn('slug', $search_languages)->get();
+                foreach ($languages as $key => $language) {
+                    if (!empty($language->users[$key]->id)) {
+                        $user_id[] = $language->users[$key]->id;
+                    }
+                }
+                $users->whereIn('id', $user_id);
+            }
+            if ($type = 'freelancer') {
+                $users = $users->orderByRaw('-badge_id DESC')->orderBy('expiry_date', 'DESC');
+            } else {
+                $users = $users->orderBy('created_at', 'DESC');
+            }
+            $users = $users->paginate(8)->setPath('');
+        }
+        foreach ($filters as $key => $filter) {
+            $pagination = $users->appends(
+                array(
+                    $key => $filter
+                )
+            );
+        }
+        $json['users'] = $users;
+        return $json;
+    }
+
     /**
      * Save dispute.
      *

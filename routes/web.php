@@ -655,5 +655,6 @@ Route::group(
         Route::post('contest/sendmessage', 'API\ContestController@sendmessage');
 
         Route::get('get_search/{id}', 'API\JobController@get_search');
+        Route::post('search_filter/{id}', 'API\JobController@search_filter');
     }
 ); 

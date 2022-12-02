@@ -70,7 +70,8 @@ class JobController extends Controller
             $name = $user1->first_name.' '.$user1->last_name;
             $link = '<a href="http://worketic.apnahive.com/job/'. $job->slug .'">Link</a>';
             $messagex = str_replace('{name}', $name, $email_text);
-            $messagex = str_replace('{link}', $link, $messagex);
+            $messagex = str_replace('{Link}', $link, $messagex);
+            //dd($messagex, $link);
             $message1 = str_replace(array("\r","\n",'\r','\n'), "<br>", $messagex);
             $message1 = str_replace(array("<br><br>"), "<br>", $message1);
             Mail::to($user1->email)->send(new Inviteraw($message1));
@@ -104,6 +105,82 @@ class JobController extends Controller
         );
         $users = count($search['users']) > 0 ? $search['users'] : '';
 
+        if($users)
+        {
+            foreach($users as $user)
+            {
+                $user->user_image = !empty($user->profile->avater) ?
+                                '/uploads/users/'.$user->id.'/'.$user->profile->avater :
+                                'images/user.jpg';
+                $user->flag = !empty($user->location->flag) ? Helper::getLocationFlag($user->location->flag) :
+                        '/images/img-01.png';
+                $feedbacks = \App\Review::select('feedback')->where('receiver_id', $user->id)->count();
+                $avg_rating = \App\Review::where('receiver_id', $user->id)->sum('avg_rating');
+                $user->rating  = $avg_rating != 0 ? round($avg_rating/\App\Review::count()) : 0;
+                $reviews = \App\Review::where('receiver_id', $user->id)->get();
+                $user->stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
+                $user->average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
+                $user->verified_user = \App\User::select('user_verified')->where('id', $user->id)->pluck('user_verified')->first();
+                $user->save_freelancer = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
+                $user->badge = Helper::getUserBadge($user->id);
+                if (!empty($enable_package) && $enable_package === 'true') {
+                    $user->feature_class = (!empty($badge) && $user->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
+                    $user->badge_color = !empty($badge) ? $badge->color : '';
+                    $user->badge_img  = !empty($badge) ? $badge->image : '';
+                } else {
+                    $user->feature_class = 'wt-exp';
+                    $user->badge_color = '';
+                    $user->badge_img    = '';
+                }
+                $user->image =  Helper::getImageWithSize('uploads/users/'.$user->id, $user->profile->avater, 'listing');
+                $user->username = Helper::getUserName($user->id);
+                $user->tagline = $user->profile->tagline;
+                $user->hourly_rate = $user->profile->hourly_rate;
+                $currency = \App\SiteManagement::getMetaValue('commision');
+                $user->symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
+                if($user->location)
+                $user->location_title = $user->location->title;
+                if($user->profile)
+                $user->description = $user->profile->description;
+
+                if(JobInvite::where('job_id', $id)->where('user_id', $user->id)->exists())
+                    $user->invitation = true;
+                else
+                    $user->invitation = false;
+            }
+        }
+        $data['keyword'] = '';
+        $data['users'] = $users;
+        
+        return $data;
+    }
+    public function search_filter(Request $request, $id)
+    {
+        //dd($request->all());
+        $data['skills'] = Skill::pluck('title', 'id');
+        $search_locations = null;
+        $search_employees = null;
+        $search_skills = $request->skill;
+        $search_hourly_rates = null;
+        $search_freelaner_types = null;
+        $search_english_levels = null;
+        $search_languages = null;
+
+        //Providers listing
+        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
+        $search =  User::getSearchResult1(
+            'freelancer',
+            $keyword,
+            $search_locations,
+            $search_employees,
+            $search_skills,
+            $search_hourly_rates,
+            $search_freelaner_types,
+            $search_english_levels,
+            $search_languages
+        );
+        $users = count($search['users']) > 0 ? $search['users'] : '';
+        //dd($users);
         if($users)
         {
             foreach($users as $user)
