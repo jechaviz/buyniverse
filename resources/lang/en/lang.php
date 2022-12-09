@@ -1554,7 +1554,7 @@ return [
     'show_participant_offer' => 'Show participant offers to the Provider',
     'time_limit_freelancer' => 'Time limit for the Provider to send a better offer',
     'automatic_offer' => 'Automatic Offer',
-    'make_automatic_offer' => 'Make your own automatic bid to encourage Providers to lower their costs.<br>If your offer is matched, you will offer a lower offer at a random time. Do you want to include your own automatic offer?',
+    'make_automatic_offer' => 'Make your own automatic bid to encourage Providers to lower their costs. If your offer is matched, you will offer a lower offer at a random time. Do you want to include your own automatic offer?',
     'how_offer_given' => 'How do you want your offer to be given?',
     'automatic_offer_choice1' => 'Percentage less than the best offer given by Providers',
     'automatic_offer_choice2' => 'Fixed amount less than the best offer given by Providers',
