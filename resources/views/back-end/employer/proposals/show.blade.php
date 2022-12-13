@@ -171,8 +171,10 @@
                                                     <div class="wt-title">
                                                         
                                                         <h2>
-                                                            <a href="{{ url('profile/'.$user->slug) }}">
+                                                            <a href="{{ url('profile/'.$user->slug.'/freelancer') }}">
                                                                 <span><img src="{{{ asset($flag)}}}" alt="Flag"> {{$user_name}} <i class="fa fa-check-circle"></i>
+                                                                <br>
+                                                                <span style="font-size: 12px;">{{ $user->profile->tagline }}</span>
                                                             </a>
                                                         </h2>
                                                     </div> 
@@ -296,8 +298,10 @@
                                                     <div class="wt-title">
                                                         
                                                         <h2>
-                                                            <a href="{{ url('profile/'.$user->slug) }}">
+                                                            <a href="{{ url('profile/'.$user->slug.'/freelancer') }}">
                                                                 <span> {{$user_name}} <i class="fa fa-check-circle"></i>
+                                                                <br>
+                                                                <span style="font-size: 12px;">{{ $user->profile->tagline }}</span>
                                                             </a>
                                                         </h2>
                                                     </div> 
