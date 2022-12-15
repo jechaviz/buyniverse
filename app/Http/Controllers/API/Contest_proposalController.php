@@ -79,9 +79,10 @@ class Contest_proposalController extends Controller
             $best_after = 0;
             $min = null;
             $max = null;
-
+            //dd('contest bid');
             if(Contest_bid::where('contest_id', $contest->id)->exists())
             {
+                
                 $bid = Contest_bid::where('contest_id', $contest->id)->select('created_at')->first();
                 $min = $bid->created_at;
                 
@@ -134,7 +135,7 @@ class Contest_proposalController extends Controller
             $contest->max = $max;
             
         
-            //dd($best_after);
+            //dd($best);
             return $contest;
         }
         return;
