@@ -72,14 +72,14 @@
                                             <div class="wt-userlistingcontent">
                                                 <div class="wt-contenthead">
                                                     <div class="wt-title">
-                                                        <a @click="gotourl('profile/' + freelancer.slug)">
+                                                        <a @click="gotourl('profile/' + freelancer.slug + '/freelancer')" style="font-size: 18px;">
                                                             
                                                                 <i v-if="freelancer.verified_user" class="fa fa-check-circle"></i>
                                                             
                                                             {{freelancer.username}}
                                                         </a>
                                                         
-                                                            <h2 v-if="freelancer.tagline"><a @click="gotourl('profile/' + freelancer.slug)">{{ freelancer.tagline }}</a></h2>
+                                                            <p v-if="freelancer.tagline" style="font-size: 14px!important;"><a @click="gotourl('profile/' + freelancer.slug + '/freelancer')">{{ freelancer.tagline }}</a></p>
                                                         
                                                     </div>
                                                     <ul class="wt-userlisting-breadcrumb">

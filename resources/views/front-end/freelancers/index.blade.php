@@ -222,14 +222,14 @@
                                             <div class="wt-userlistingcontent">
                                                 <div class="wt-contenthead">
                                                     <div class="wt-title">
-                                                        <a href="{{{ url('profile/'.$freelancer->slug.'/freelancer') }}}">
+                                                        <a href="{{{ url('profile/'.$freelancer->slug.'/freelancer') }}}" style="font-size: 18px;">
                                                             @if ($verified_user == 1)
                                                                 <i class="fa fa-check-circle"></i>
                                                             @endif
                                                             {{{ Helper::getUserName($freelancer->id) }}}
                                                         </a>
                                                         @if (!empty($freelancer->profile->tagline))
-                                                            <h2><a href="{{{ url('profile/'.$freelancer->slug.'/freelancer') }}}">{{{ $freelancer->profile->tagline }}}</a></h2>
+                                                            <p style="font-size: 14px!important;"><a href="{{{ url('profile/'.$freelancer->slug.'/freelancer') }}}" style="text-decoration: none;color: black;">{{{ $freelancer->profile->tagline }}}</a></p>
                                                         @endif
                                                     </div>
                                                     <ul class="wt-userlisting-breadcrumb">

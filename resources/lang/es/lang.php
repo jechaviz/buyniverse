@@ -1507,7 +1507,7 @@ return [
   'show_participant_offer' => 'Mostrar ofertas de participantes al proveedor',
   'time_limit_freelancer' => 'Límite de tiempo para que el proveedor envíe una oferta mejor',
   'automatic_offer' => 'Oferta automática',
-  'make_automatic_offer' => 'Haga su propia oferta automática para alentar a los proveedores a reducir sus costos.<br>Si su oferta coincide, ofrecerá una oferta más baja en un momento aleatorio. ¿Quieres incluir tu propia oferta automática?',
+  'make_automatic_offer' => 'Haga su propia oferta automática para alentar a los proveedores a reducir sus costos. Si su oferta coincide, ofrecerá una oferta más baja en un momento aleatorio. ¿Quieres incluir tu propia oferta automática?',
   'how_offer_given' => '¿Cómo quiere recibir su oferta?',
   'automatic_offer_choice1' => 'Porcentaje inferior a la mejor oferta ofrecida por proveedores',
   'automatic_offer_choice2' => 'Importe fijo inferior a la mejor oferta ofrecida por proveedores',
