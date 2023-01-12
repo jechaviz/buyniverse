@@ -36,7 +36,7 @@ class AdminSeeder extends Seeder
                     'first_name' => 'chris',
                     'last_name' => 'evans',
                     'slug' => 'chris-evans',
-                    'email' => 'admin@amentotech.com',
+                    'email' => 'admin.worketic@yopmail.com',
                     'password' => bcrypt('google'),
                     'location_id' => 1,
                     'user_verified' => 1,

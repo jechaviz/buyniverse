@@ -184,7 +184,10 @@ class ContestController extends Controller
         foreach($participant as $value)
         {
             $user = User::find($value->user_id);
+            $profile =  $user->profile;
+
             $value->name = $user->first_name.' '.$user->last_name;
+            $value->tagline = $profile->tagline;
             $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $value->user_id)->first();
             $value->proposal = $proposal;
         }

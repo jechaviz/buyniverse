@@ -191,7 +191,7 @@
                         <tbody v-for="value in participants" :key="value.id">
                             <tr>
                                 <td>
-                                    <span class="bt-content">{{ value.name }}</span>
+                                    <span class="bt-content">{{ value.name }} <br> <span  style="font-size: 12px;">{{ value.tagline }}</span></span>
                                 </td> 
                                 <td>
                                     <span class="bt-content">$ {{ value.proposal.amount | numFormat }}</span> 

@@ -173,6 +173,8 @@
                                                         <h2>
                                                             <a href="{{ url('profile/'.$user->slug) }}">
                                                                 <span><img src="{{{ asset($flag)}}}" alt="Flag"> {{$user_name}} <i class="fa fa-check-circle"></i>
+                                                                <br>
+                                                                <span style="font-size: 12px;">{{$profile->tagline}}</span>
                                                             </a>
                                                         </h2>
                                                     </div> 
@@ -298,6 +300,8 @@
                                                         <h2>
                                                             <a href="{{ url('profile/'.$user->slug) }}">
                                                                 <span> {{$user_name}} <i class="fa fa-check-circle"></i>
+                                                                <br>
+                                                                <span style="font-size: 12px;">{{$profile->tagline}}</span>
                                                             </a>
                                                         </h2>
                                                     </div> 
