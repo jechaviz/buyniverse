@@ -62,6 +62,7 @@ class FilesController extends Controller
         $name = $file->getClientOriginalName();
         $size = $file->getSize();
         $size_unit = $this->formatSizeUnits($size);
+        $origin = explode('.', $name);
 
         //$file = $request->file('file');
         $job_file = new Job_file;
@@ -71,7 +72,7 @@ class FilesController extends Controller
         $job_file->status = 'new';
         $job_file->user_id = $request->user_id;
         $job_file->job_id = $request->job_id;
-        $job_file->file_id = time().'.'.$file->getClientOriginalExtension(); 
+        $job_file->file_id = $origin[0].'_'.$request->job_id.'_'.time().'.'.$file->getClientOriginalExtension(); 
         $job_file->save();
         
         $input['file'] = $job_file->file_id;
@@ -132,6 +133,7 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job_file = Job_file::find($id);
+        $job_file->delete();
     }
 }

@@ -39,7 +39,7 @@
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
-                                    <a href="#">{{ trans('lang.delete') }}</a>											
+                                    <a @click="deletefile(file.id)">{{ trans('lang.delete') }}</a>											
                                 </div>
                             </div>
                                 <!--<a class="wt-addinfo wt-skillsaddinfo" @click="getDownload(file)"><i class="fas fa-eye"></i></a>
@@ -185,6 +185,35 @@ export default {
         Close() {
             $('#newfile').removeClass('show');
             $('#newfile').modal('hide');
+        },
+        deletefile(id)
+        {
+            swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            //console.log(result.value);
+            if (result.value == true) 
+            {
+                //server request
+                console.log('delete is confirmed');
+                this.form.delete(APP_URL + '/api/job_file/'+id).then(() => {
+                    swal.fire(
+                    'Deleted!',
+                    'Your File has been deleted.',
+                    'success'
+                    )
+                    Fire.$emit('AfterCreate');
+                }).catch(() => {
+                    swal("Failed", "There is something wrong.", "warning");
+                })
+            }
+            })
         },
         CreateFile() {
             console.log(this.form);

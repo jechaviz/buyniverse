@@ -2535,14 +2535,14 @@ class Helper extends Model
                 'numeric_code'  => 408 ,
                 'code'          => 'KPW' ,
                 'name'          => 'North Korean won' ,
-                'symbol'        => '' ,
+                'symbol'        => 'KPW' ,
                 'fraction_name' => 'Chŏn' ,
                 'decimals'      => 2 ) ,
             'KRW' => array (
                 'numeric_code'  => 410 ,
                 'code'          => 'KRW' ,
                 'name'          => 'South Korean won' ,
-                'symbol'        => '' ,
+                'symbol'        => 'KRW' ,
                 'fraction_name' => 'Jeon' ,
                 'decimals'      => 2 ) ,
             'KWD' => array (
@@ -2570,7 +2570,7 @@ class Helper extends Model
                 'numeric_code'  => 418 ,
                 'code'          => 'LAK' ,
                 'name'          => 'Lao kip' ,
-                'symbol'        => '' ,
+                'symbol'        => 'LAK' ,
                 'fraction_name' => 'Att' ,
                 'decimals'      => 2 ) ,
             'LBP' => array (
@@ -2661,7 +2661,7 @@ class Helper extends Model
                 'numeric_code'  => 496 ,
                 'code'          => 'MNT' ,
                 'name'          => 'Mongolian tögrög' ,
-                'symbol'        => '' ,
+                'symbol'        => 'MNT' ,
                 'fraction_name' => 'Möngö' ,
                 'decimals'      => 2 ) ,
             'MOP' => array (
@@ -2682,7 +2682,7 @@ class Helper extends Model
                 'numeric_code'  => 480 ,
                 'code'          => 'MUR' ,
                 'name'          => 'Mauritian rupee' ,
-                'symbol'        => '' ,
+                'symbol'        => 'MUR' ,
                 'fraction_name' => 'Cent' ,
                 'decimals'      => 2 ) ,
             'MVR' => array (
@@ -2752,7 +2752,7 @@ class Helper extends Model
                 'numeric_code'  => 524 ,
                 'code'          => 'NPR' ,
                 'name'          => 'Nepalese rupee' ,
-                'symbol'        => '' ,
+                'symbol'        => 'NPR' ,
                 'fraction_name' => 'Paisa' ,
                 'decimals'      => 2 ) ,
             'NZD' => array (
@@ -2815,7 +2815,7 @@ class Helper extends Model
                 'numeric_code'  => 600 ,
                 'code'          => 'PYG' ,
                 'name'          => 'Paraguayan guaraní' ,
-                'symbol'        => '' ,
+                'symbol'        => 'PYG' ,
                 'fraction_name' => 'Céntimo' ,
                 'decimals'      => 2 ) ,
             'QAR' => array (
@@ -2871,7 +2871,7 @@ class Helper extends Model
                 'numeric_code'  => 690 ,
                 'code'          => 'SCR' ,
                 'name'          => 'Seychellois rupee' ,
-                'symbol'        => '' ,
+                'symbol'        => 'SCR' ,
                 'fraction_name' => 'Cent' ,
                 'decimals'      => 2 ) ,
             'SDG' => array (
@@ -2934,7 +2934,7 @@ class Helper extends Model
                 'numeric_code'  => 222 ,
                 'code'          => 'SVC' ,
                 'name'          => 'Salvadoran colón' ,
-                'symbol'        => '' ,
+                'symbol'        => 'SVC' ,
                 'fraction_name' => 'Centavo' ,
                 'decimals'      => 2 ) ,
             'SYP' => array (
@@ -3018,7 +3018,7 @@ class Helper extends Model
                 'numeric_code'  => 980 ,
                 'code'          => 'UAH' ,
                 'name'          => 'Ukrainian hryvnia' ,
-                'symbol'        => '' ,
+                'symbol'        => 'UAH' ,
                 'fraction_name' => 'Kopiyka' ,
                 'decimals'      => 2 ) ,
             'UGX' => array (
@@ -3102,7 +3102,7 @@ class Helper extends Model
                 'numeric_code'  => 886 ,
                 'code'          => 'YER' ,
                 'name'          => 'Yemeni rial' ,
-                'symbol'        => '' ,
+                'symbol'        => 'YER' ,
                 'fraction_name' => 'Fils' ,
                 'decimals'      => 2 ) ,
             'ZAR' => array (

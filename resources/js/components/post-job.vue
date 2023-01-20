@@ -5,7 +5,6 @@
             <i class="fa fa-trophy" aria-hidden="true"></i>
         </div>
         <div class="md-10" style="margin-left: 15px;">
-
             <h2 id="title" class="hidden" v-html="jobform.title"></h2>
             <h4 id="project_id" class="hidden">{{ trans('lang.project_id') }}: # {{ job1.id }}</h4>
             <form @submit.prevent="posttitle()">
@@ -454,9 +453,10 @@ export default {
                 
                 $('#addcurrency-select').addClass('hidden');
                 $('#addcurrency').removeClass('hidden');
+                Fire.$emit('AfterCreate');
             });
         
-            Fire.$emit('AfterCreate');
+               
             $('#addcurrency-select').addClass('hidden');
             $('#tr4').removeClass('hidden');
             

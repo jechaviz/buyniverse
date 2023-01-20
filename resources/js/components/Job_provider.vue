@@ -98,7 +98,7 @@
                                                                     <span class="save_text">{{ trans('lang.click_to_save') }}</span>
                                                                 </a>
                                                             </li>
-                                                        @endif
+                                                        
                                                     </ul>
                                                 </div>
                                                 <div class="wt-rightarea">
