@@ -1476,7 +1476,7 @@ return [
   'quiz' => 'Examen',
   'yes' => 'sí',
   'no' => 'No',
-  'delivery' => 'Entrega',
+  'delivery' => 'Límite de contratación',
   'date' => 'Fecha',
   'time' => 'Tiempo',
   'month' => 'Mes',

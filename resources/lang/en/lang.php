@@ -1523,7 +1523,7 @@ return [
     'quiz' => 'Quiz',
     'yes' => 'Yes',
     'no' => 'No',
-    'delivery' => 'Delivery',
+    'delivery' => 'Hiring Limit',
     'date' => 'Date',
     'time' => 'Time',
     'month' => 'Month',
