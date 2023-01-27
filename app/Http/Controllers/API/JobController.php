@@ -739,7 +739,7 @@ class JobController extends Controller
         {
             $job = Job::find($job_id);
             //invite freelancer
-            $freelancerinvite = Freelancerinvite::where('job_id', $job_id)->first();
+            /*$freelancerinvite = Freelancerinvite::where('job_id', $job_id)->first();
             if($freelancerinvite->freelancers)
             {
                 $emails = explode(', ', $freelancerinvite->freelancers);
@@ -759,7 +759,7 @@ class JobController extends Controller
                     Mail::to('sadiqueali786@gmail.com')->send(new Inviteraw($message1));
                     //dd('email sent');
                 }
-            }
+            }*/
 
             //invite team
 
