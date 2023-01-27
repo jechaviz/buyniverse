@@ -101,7 +101,7 @@
                         <li><a data-toggle="tab" href="#menu8">{{ trans('lang.notes') }} <!--<span class="badge bg-danger">{{$job->notes}}</span>--></a> </li>
                         <li><a data-toggle="tab" href="#menu9">{{ trans('lang.financial') }} <!--<span class="badge bg-danger"></span>--></a> </li>
                         <!--<li><a data-toggle="tab" href="#menu10">{{ trans('lang.quiz') }} <span class="badge bg-danger"></span></a> </li>-->
-                        <li><a data-toggle="tab" href="#provider">{{ trans('lang.freelancer') }} <!--<span class="badge bg-danger"></span>--></a> </li>
+                        <!--<li><a data-toggle="tab" href="#provider">{{ trans('lang.freelancer') }} <span class="badge bg-danger"></span></a> </li>-->
                     </ul>
 
                     <div class="tab-content" style="width: 100%;margin: 10px;background-color: white;border: #e4dede 1px solid;">
@@ -119,7 +119,8 @@
                             <div class="row" style="margin: 0px;">
                                 <ul class="nav nav-tabs" style="width: 100%;">
                                     <li class="active"><a data-toggle="tab" href="#proposals">{{ trans('lang.proposals') }}</a></li>
-                                    <li><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>                                                                        
+                                    <li><a data-toggle="tab" href="#providers">{{ trans('lang.freelancer') }} </a></li>
+                                    <li><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>                                    
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -405,8 +406,11 @@
                                 </div>
                                 </div>
                                 <div id="contest" class="tab-pane fade">    
-                                <contest-proposal jobid= "{{ $job->id }}"></contest-proposal>
-                                <chatroom jobid= "{{ $job->id }}" userid="{{ Auth::user()->id }}"></chatroom>
+                                    <contest-proposal jobid= "{{ $job->id }}"></contest-proposal>
+                                    <chatroom jobid= "{{ $job->id }}" userid="{{ Auth::user()->id }}"></chatroom>
+                                </div>
+                                <div id="providers" class="tab-pane fade">
+                                    <job_provider proposalid="" mode="" job="{{$job->id}}"></job_provider>
                                 </div>
                             </div>
 
@@ -494,59 +498,11 @@
                         <div id="menu10" class="tab-pane fade" style="">
                             <job_quiz jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_quiz>
                         </div>
-                        <div id="provider" class="tab-pane fade" style="">
-                            <!--<div class="wt-dashboardbox">
-                                <div class="wt-dashboardboxtitle">
-                                    <h2>{{ trans('lang.freelancer') }}</h2>
-                                </div>
-                                <div class="">
-                                    @if ($providers['approvers'] || $providers['team'] || $providers['invited'])
-                                    <table class="wt-tablecategories">
-                                        <thead>
-                                            <tr>
-                                                <th>{{{ trans('lang.name') }}}</th>
-                                                <th>{{{ trans('lang.email') }}}</th>
-                                                <th>{{{ trans('lang.type') }}}</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($providers['approvers'] as $value)
-                                            <tr>
-                                                <td>{{ $value['name'] }} {{ $value['lname'] }}</td>
-                                                <td>{{ $value['email'] }}</td>
-                                                <td>Approver</td>
-                                            </tr>
-                                            @endforeach
-                                            @foreach ($providers['team'] as $value)
-                                            <tr>
-                                                <td>{{ $value['name'] }} {{ $value['lname'] }}</td>
-                                                <td>{{ $value['email'] }}</td>
-                                                <td>Team</td>
-                                            </tr>
-                                            @endforeach
-                                            @foreach ($providers['invited'] as $value)
-                                            <tr>
-                                                <td>{{ $value['name'] }}</td>
-                                                <td>{{ $value['email'] }}</td>
-                                                <td>Invited</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    @else
-                                        @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
-                                            @include('extend.errors.no-record')
-                                        @else 
-                                            @include('errors.no-record')
-                                        @endif
-                                    @endif
-
-                                </div>
-                            </div>-->
-                            <job_provider proposalid="" mode="" job="{{$job->id}}"></job_provider>
+                        <!--<div id="provider" class="tab-pane fade" style="">
                             
-                        </div>
+                            
+                            
+                        </div>-->
                     </div>
                 </div>
 

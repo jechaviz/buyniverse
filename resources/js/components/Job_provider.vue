@@ -63,8 +63,7 @@
                                 </div>
                                 <div v-if="users.length > 0">
                                     <div v-for="(freelancer, key) in users" :key="key" >
-                                    
-                                        <div :class="'wt-userlistinghold ' + freelancer.feature_class">
+                                        <div :class="'wt-userlistinghold ' + freelancer.feature_class" v-if="freelancer.invitation == false">
                                             
                                             <figure class="wt-userlistingimg">
                                                 <img :src="appurl+freelancer.image" :alt="trans('lang.img')">
