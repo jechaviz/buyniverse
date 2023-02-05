@@ -1725,6 +1725,7 @@ return [
     'twitter' => 'Twitter', 
     'personalWebSite' => 'Personal Website',
     'time_limit_offer' => 'Time limit offer',
+    'please_wait' => 'Please Wait',
 
 
     'employee_list' => [

@@ -1684,6 +1684,8 @@ return [
   'personalWebSite' => 'Sitio web personal',
   'time_limit_offer' => 'límite de tiempo para ofertar',
 
+  'please_wait' => 'Espere por favor',
+
   'employee_list' => [
     'just_me' => 'Sólo yo',
     '2_9' => '2 - 9 empleados',

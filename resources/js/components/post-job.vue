@@ -153,7 +153,8 @@
                             <input type="hidden" name="user_id" v-model="form1.job_id">
                         </div> 
                         <div class="form-group wt-btnarea" >
-                            <button type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_team') }}</button>
+                            <button v-show="wteam" type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_team') }}</button>
+                            <button v-show="!wteam" type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;" disabled>{{ trans('lang.please_wait') }}</button>
                         </div>
                         </form>
                     </div>
@@ -186,7 +187,8 @@
                             <input type="hidden" name="job_id" v-model="form2.job_id">
                         </div> 
                         <div class="form-group wt-btnarea" >
-                            <button type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_approver') }}</button>
+                            <button v-show="wapprover" type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_approver') }}</button>
+                            <button v-show="!wapprover" type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;" disabled>{{ trans('lang.please_wait') }}</button>
                         </div>
                         </form>
                     </div>
@@ -254,7 +256,10 @@
           </tr>
           <tr id="tr10" class="hidden">
 
-                <td colspan="2"><button @click="submitJob" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.post_job') }}</button></td>
+                <td colspan="2">
+                    <button  v-show="wpost" @click="submitJob" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.post_job') }}</button>
+                    <button  v-show="!wpost" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.please_wait') }}</button>
+                </td>
             </tr>
           
       </table>
@@ -326,7 +331,10 @@ export default {
             email : '',
             job_id : ''
         }),
-        job_id : ''
+        job_id : '',
+        wapprover: true,
+        wteam: true,
+        wpost: true
 
 
         
@@ -374,6 +382,7 @@ export default {
             //console.log(this.job1);       
         },
         submitJob: function () {
+            this.wpost = false;
             this.loading = true;
             var self = this;
             
@@ -387,9 +396,11 @@ export default {
                         setTimeout(function () {
                             window.location.replace(APP_URL + '/employer/dashboard/manage-jobs');
                         }, 4000);
+                        this.wpost = true;
                     } else {
                         self.loading = false;
                         self.showError(response.data.message);
+                        this.wpost = true;
                     }
                 })
                 .catch(function (error) {
@@ -424,6 +435,7 @@ export default {
                     if (error.response.data.errors.expiry_date) {
                         self.showError(error.response.data.errors.expiry_date[0]);
                     }
+                    this.wpost = true;
                 });
         },
         addcategory() {
@@ -554,6 +566,7 @@ export default {
             })
         },
         Createteam() {
+            this.wteam = false;
             let self = this;
             this.form1.post('/api/job_overview/team/'+ self.job_id)
             .then(() => {
@@ -565,10 +578,12 @@ export default {
                 $('#addteam-select').addClass('hidden');
                 $('#team_name').val("");
                 $('#team_email').val("");
+                this.wteam = true;
+                this.form1.reset();
                 
             })
             .catch(() => {
-
+                this.wteam = true;
             })
         },
         deleteapprover(approver) {
@@ -578,6 +593,7 @@ export default {
             });
         },
         Createapprover() {
+            this.wapprover = false;
             let self = this;
             this.form2.post('/api/job_overview/approver/'+ self.job_id)
             .then(() => {
@@ -589,10 +605,12 @@ export default {
                 $('#addapprover-select').addClass('hidden');
                 $('#approver_name').val("");
                 $('#approver_email').val("");
+                this.wapprover = true;
+                this.form2.reset();
                 
             })
             .catch(() => {
-
+                this.wapprover = true;
             })
         },
         deleteteam(team) {

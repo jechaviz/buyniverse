@@ -253,7 +253,10 @@
                             <input type="hidden" name="user_id" v-model="form1.job_id">
                         </div> 
                         <div class="form-group wt-btnarea" >
-                            <button type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_team') }}</button>
+                            <button v-show="wteam" type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_team') }}</button>
+                            <button v-show="!wteam" type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;" disabled>{{ trans('lang.please_wait') }}</button>
+
+                            
                         </div>
                         </form>
                     </div>
@@ -286,7 +289,9 @@
                             <input type="hidden" name="job_id" v-model="form2.job_id">
                         </div> 
                         <div class="form-group wt-btnarea" >
-                            <button type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_approver') }}</button>
+                            <button v-show="wapprover" type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_approver') }}</button>
+                            <button v-show="!wapprover" type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;" disabled>{{ trans('lang.please_wait') }}</button>
+
                         </div>
                         </form>
                     </div>
@@ -442,6 +447,8 @@ export default {
         currency : {},
         xcategory : {},
         category : {},
+        wapprover: true,
+        wteam: true
 
 
 
@@ -657,6 +664,7 @@ export default {
             })
         },
         Createteam() {
+            this.wteam = false;
             this.form1.post('/api/job_overview/team/'+ this.job1.id)
             .then(() => {
                 toast.fire({
@@ -667,10 +675,12 @@ export default {
                 $('#addteam-select').addClass('hidden');
                 $('#team_name').val("");
                 $('#team_email').val("");
+                this.wteam = true;
+                this.form1.reset();
                 
             })
             .catch(() => {
-
+                this.wteam = true;
             })
         },
         deleteapprover(approver) {
@@ -680,20 +690,24 @@ export default {
             });
         },
         Createapprover() {
+            this.wapprover = false;
             this.form2.post('/api/job_overview/approver/'+ this.job1.id)
             .then(() => {
                 toast.fire({
                 icon: 'success',
                 title: 'Approver Created successfully'
                 });
-                Fire.$emit('Afterapprover');
+                
                 $('#addapprover-select').addClass('hidden');
                 $('#approver_name').val("");
                 $('#approver_email').val("");
-                
+                this.wapprover = true;
+                this.form2.reset();
+                Fire.$emit('Afterapprover');
             })
             .catch(() => {
-
+                this.wapprover = true;
+                this.form.reset();
             })
         },
         deleteteam(team) {
