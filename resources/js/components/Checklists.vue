@@ -30,8 +30,11 @@
                     <button class="btn btn-default  btn-xs  js-card-checklist-toggle" @click="close">
                         {{ trans('lang.close') }}
                     </button>
-                    <button type="submit" class="btn btn-danger btn-xs js-" id="checklist-submit-button">
+                    <button v-show="wcreate" type="submit" class="btn btn-danger btn-xs js-" id="checklist-submit-button">
                         {{ trans('lang.add') }}
+                    </button>
+                    <button v-show="!wcreate" class="btn btn-danger btn-xs js-" id="checklist-submit-button">
+                        {{ trans('lang.please_wait') }}
                     </button>
                     
                 </div>
@@ -52,7 +55,8 @@ export default {
             id: '',
             title : '',
             task_id : this.taskid,          
-        })
+        }),
+        wcreate: true
 
 
         
@@ -97,6 +101,7 @@ export default {
         },
         
         CreateItem() {
+            this.wcreate = false;
             this.form.task_id = this.taskid;
             //console.log(this.form);
             this.form.post('/api/checklist/')
@@ -109,9 +114,10 @@ export default {
                 $('#card-checklist-add-new').removeClass('hidden');
                 $('#element-checklist-text').addClass('hidden');
                 this.form.reset();
+                this.wcreate = true;
             })
             .catch(() => {
-
+                this.wcreate = true;
             })
             
         }

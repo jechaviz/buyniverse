@@ -100,7 +100,9 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ trans('lang.close') }}</button>
                     
-                    <button type="submit" class="btn btn-primary">{{ trans('lang.create') }}</button>
+                    <button  v-show="wcreate" type="submit" class="btn btn-primary">{{ trans('lang.create') }}</button>
+                    <button  v-show="!wcreate" class="btn btn-primary">{{ trans('lang.please_wait') }}</button>
+
                 </div>
                 
                 </div>
@@ -126,7 +128,8 @@ export default {
             job_id : this.jobid                     
         }),
         role : '',
-        filename : ''
+        filename : '',
+        wcreate: true
         
     }
   },
@@ -217,6 +220,7 @@ export default {
         },
         CreateFile() {
             console.log(this.form);
+            this.wcreate = false;
             /*this.form.post('/api/job_file/', {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -239,9 +243,10 @@ export default {
                 $('#newfile').modal('hide');
                 $('.modal-backdrop').addClass('modal');
                 $('.modal-backdrop').remove();
+                this.wcreate = true;
             })
             .catch(() => {
-
+                this.wcreate = true;
             })
         }
         

@@ -20,8 +20,11 @@
                         {{ trans('lang.close') }}
                     </button>
                     <!--submit button-->
-                    <button type="submit" class="btn btn-danger btn-sm x-submit-button" id="card-comment-post-button">
+                    <button v-show="wcreate" type="submit" class="btn btn-danger btn-sm x-submit-button" id="card-comment-post-button">
                         {{ trans('lang.post') }}
+                    </button>
+                    <button v-show="!wcreate" class="btn btn-danger btn-sm x-submit-button" id="card-comment-post-button">
+                        {{ trans('lang.please_wait') }}
                     </button>
                 </div>
             </div>
@@ -72,7 +75,8 @@ export default {
             comment : '',
             task_id : this.taskid,  
             user_id : this.userid        
-        })
+        }),
+        wcreate: true
 
 
         
@@ -113,6 +117,7 @@ export default {
         },
         
         Createcomment() {
+            this.wcreate = false;
             this.form.task_id = this.taskid;
             this.form.user_id = this.userid;
             //console.log(this.form);
@@ -126,9 +131,10 @@ export default {
                 $('#card-coment-placeholder-input-container').removeClass('hidden');
                 $('#card-comment-tinmyce-container').addClass('hidden');
                 this.form.reset();
+                this.wcreate = true;
             })
             .catch(() => {
-
+                this.wcreate = true;
             })
             
         }
