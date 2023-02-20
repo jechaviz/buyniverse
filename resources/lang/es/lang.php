@@ -1685,6 +1685,7 @@ return [
   'time_limit_offer' => 'límite de tiempo para ofertar',
 
   'please_wait' => 'Espere por favor',
+  'add_providers' => 'Haga clic aquí para agregar uno o más proveedores',
 
   'employee_list' => [
     'just_me' => 'Sólo yo',

@@ -97,9 +97,10 @@
                 <td class="job-details">
                     <span>
                         <span v-if="job1.currency">
-                            <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ job1.curr.symbol }} - {{ job1.curr.name }} </span><br>
+                            <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ job1.curr.symbol }} - {{ job1.curr.name }} </span>
                         </span>
-                        <span @click="addcurrency" id="addcurrency"><i class="fa fa-plus"></i></span>
+                        <span v-if="job1.currency" @click="addcurrency" id="addcurrency"><i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
+                         <span v-if="!job1.currency" @click="addcurrency" id="addcurrency"><i class="fa fa-plus"></i></span>
                         <select class="form-control form-control-sm hidden" id="addcurrency-select" name="addcurrency-select" v-on:change="updateaddcurrency">
                             <option selected>{{ trans('lang.select') }}</option>                                 
                             <option v-for="(item, key) in xcurrency" :key="key" :value="item">{{ item }}</option>
@@ -267,7 +268,7 @@
               <td class="job-details"><b>{{ trans('lang.approver') }}</b></td>
               <td class="job-details">
                   <span v-for="approver in approvers" :key="approver.id">
-                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ approver.name }} {{ approver.lname }} - {{ approver.role }} <br> {{approver.email}} </span><i v-show="isapprover == '1' || permission == 2" @click="deleteapprover(approver.id)" class="fa fa-times" aria-hidden="true"></i></span><br>
+                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ approver.name }} {{ approver.lname }} - {{ approver.role }} <br> {{approver.email}} <br> Level - {{ approver.permission }} </span><i v-show="isapprover == '1' || permission == 2" @click="deleteapprover(approver.id)" class="fa fa-times" aria-hidden="true"></i></span><br>
                     </span>
                     <span v-show="isapprover == '1' || permission == 2" @click="addapprover" id="addapprover"><i class="fa fa-plus"></i></span>
                     <div id="addapprover-select" class="hidden" v-show="isapprover == '1' || permission == 2">

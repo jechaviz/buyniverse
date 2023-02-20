@@ -119,7 +119,7 @@
                             <div class="row" style="margin: 0px;">
                                 <ul class="nav nav-tabs" style="width: 100%;">
                                     <li class="active"><a data-toggle="tab" href="#proposals">{{ trans('lang.proposals') }}</a></li>
-                                    <li><a data-toggle="tab" href="#providers">{{ trans('lang.freelancer') }} </a></li>
+                                    <li><a data-toggle="tab" href="#providers">{{ trans('lang.freelancers') }} </a></li>
                                     <li><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>                                    
                                 </ul>
                             </div>
@@ -397,9 +397,9 @@
                                     @if ($proposals->count() == 0) 
                                         
                                         @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
-                                            @include('extend.errors.no-record')
+                                            @include('extend.errors.no-providers')
                                         @else 
-                                            @include('errors.no-record')
+                                            @include('errors.no-providers')
                                         @endif
                                     @endif 
 

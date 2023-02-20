@@ -1992,7 +1992,7 @@ class Helper extends Model
                 'symbol'        => '$' ,
                 'fraction_name' => 'Cent[D]' ,
                 'decimals'      => 2 ) ,
-            'AED' => array (
+            /*'AED' => array (
                 'numeric_code'  => 784 ,
                 'code'          => 'AED' ,
                 'name'          => 'United Arab Emirates dirham' ,
@@ -2327,7 +2327,7 @@ class Helper extends Model
                 'name'          => 'Ethiopian birr' ,
                 'symbol'        => 'ETB' ,
                 'fraction_name' => 'Santim' ,
-                'decimals'      => 2 ) ,
+                'decimals'      => 2 ) ,*/
             'EUR' => array (
                 'numeric_code'  => 978 ,
                 'code'          => 'EUR' ,
@@ -2335,7 +2335,7 @@ class Helper extends Model
                 'symbol'        => '€' ,
                 'fraction_name' => 'Cent' ,
                 'decimals'      => 2 ) ,
-            'FJD' => array (
+            /*'FJD' => array (
                 'numeric_code'  => 242 ,
                 'code'          => 'FJD' ,
                 'name'          => 'Fijian dollar' ,
@@ -2698,7 +2698,7 @@ class Helper extends Model
                 'name'          => 'Malawian kwacha' ,
                 'symbol'        => 'MK' ,
                 'fraction_name' => 'Tambala' ,
-                'decimals'      => 2 ) ,
+                'decimals'      => 2 ) ,*/
             'MXN' => array (
                 'numeric_code'  => 484 ,
                 'code'          => 'MXN' ,
@@ -2706,7 +2706,7 @@ class Helper extends Model
                 'symbol'        => '$' ,
                 'fraction_name' => 'Centavo' ,
                 'decimals'      => 2 ) ,
-            'MYR' => array (
+            /*'MYR' => array (
                 'numeric_code'  => 458 ,
                 'code'          => 'MYR' ,
                 'name'          => 'Malaysian ringgit' ,
@@ -3125,7 +3125,7 @@ class Helper extends Model
                 'name'          => 'Zimbabwean dollar' ,
                 'symbol'        => '$' ,
                 'fraction_name' => 'Cent' ,
-                'decimals'      => 2 ) ,
+                'decimals'      => 2 ) ,*/
         );
 
         if (!empty($code) && array_key_exists($code, $currency_array)) {

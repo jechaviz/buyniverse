@@ -1726,6 +1726,7 @@ return [
     'personalWebSite' => 'Personal Website',
     'time_limit_offer' => 'Time limit offer',
     'please_wait' => 'Please Wait',
+    'add_providers' => 'Please Click here to add one or more providers',
 
 
     'employee_list' => [
