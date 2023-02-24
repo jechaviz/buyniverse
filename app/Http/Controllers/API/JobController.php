@@ -142,6 +142,7 @@ class JobController extends Controller
                 $user->location_title = $user->location->title;
                 if($user->profile)
                 $user->description = $user->profile->description;
+                $user->skills = $user->skills;
 
                 if(JobInvite::where('job_id', $id)->where('user_id', $user->id)->exists())
                     $user->invitation = true;

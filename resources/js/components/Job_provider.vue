@@ -112,7 +112,9 @@
                                                     <p v-html="freelancer.description"></p>
                                                 </div>
                                             
-                                            
+                                            <div class="wt-tag wt-widgettag">
+                                                    <a v-for="(skill, key1) in freelancer.skills" :key="key1">{{ skill.title }}</a>
+                                            </div>
                                             <div class="wt-rightarea">
                                                 <sendinvitation :userid="freelancer.id" :invitation="freelancer.invitation" :jobid="tjob"></sendinvitation>
                                             </div>

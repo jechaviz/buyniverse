@@ -2492,7 +2492,7 @@ body.wt-login .wt-userlogedin{display: block;}
 	border-radius: 20px;
 	border: 1px solid #ddd;
 }
-.wt-widgettag a:hover{color: #fff;}
+.wt-widgettag a:hover{color: #fff!important;}
 .wt-classicaricle-header,
 .wt-classicaricle-holder{
 	float: left;

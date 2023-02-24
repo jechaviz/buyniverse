@@ -118,9 +118,9 @@
                         <div id="menu3" class="tab-pane fade" style="background-color: #f7f7f7;">
                             <div class="row" style="margin: 0px;">
                                 <ul class="nav nav-tabs" style="width: 100%;">
-                                    <li class="active"><a data-toggle="tab" href="#proposals">{{ trans('lang.proposals') }}</a></li>
-                                    <li><a data-toggle="tab" href="#providers">{{ trans('lang.freelancers') }} </a></li>
-                                    <li><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>                                    
+                                    <li id="sproposals" class="active"><a data-toggle="tab" href="#proposals">{{ trans('lang.proposals') }}</a></li>
+                                    <li id="sproviders"><a data-toggle="tab" href="#providers">{{ trans('lang.freelancers') }} </a></li>
+                                    <li id="scontest"><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>                                    
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -582,5 +582,15 @@ if(window.location.hash != "") {
 }
 
 });
-    </script>    
+    </script>   
+    <script>
+    document.getElementById("add_providers").addEventListener("click", function(event){
+        console.log('add_providers');
+        $('#sproposals').removeClass('active');
+        $('#sproviders').addClass('active');
+        $('#proposals').removeClass('in active');
+        $('#providers').addClass('in active');
+    });
+
+</script> 
 @endpush
