@@ -965,3 +965,29 @@
 		</div>
 	</div> 
 @endsection
+@push('scripts')
+<script>
+	$(document).ready(function(){
+
+if(window.location.hash != "") {
+    //$('a[href="' + window.location.hash + '"]').click();
+    var hashes = location.hash.split('-'); 
+    
+    $('a[href="' + hashes[0] + '"]').click();
+    //var chat = hashes[1].replace('#', '');
+   // document.onreadystatechange = () => {
+  //if (document.readyState == "complete") {
+   // var d = document.getElementById("wt-chat-" + chat);
+    //d.className += ' wt-active'
+  //}
+//}
+    
+    //var message_center = document.getElementById("message-start").chat = chat;
+    //console.log(message_center);
+    //$("#wt-chat-" + chat).addClass('wt-active');
+    //$("#wt-chat-" + chat).removeClass('wt-ad');
+}
+
+});
+</script>
+@endpush

@@ -673,6 +673,7 @@ class JobController extends Controller
         //dd($id);
         $approver = Approver::find($id);
         $approver->status = 1;
+        $approver->notes = null;
         $approver->save();
         $job_id = $approver->job_id;
         if(Approver::where('job_id', $job_id)->where('status', 0)->exists())
@@ -796,11 +797,12 @@ class JobController extends Controller
             return redirect()->back();
         }
     }
-    public function rejectjob($id)
+    public function rejectjob(Request $request, $id)
     {
-        //dd($id);
+        //dd($request->all(), $id);
         $approver = Approver::find($id);
         $approver->status = 2;
+        $approver->notes = $request->note;
         $approver->save();
         $job_id = $approver->job_id;
         $job = Job::find($job_id);

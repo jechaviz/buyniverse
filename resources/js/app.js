@@ -3502,9 +3502,19 @@ if (document.getElementById("post_job")) {
                         if (response.data.type == 'success') {
                             self.loading = false;
                             self.showInfo(Vue.prototype.trans('lang.job_submitting'));
-                            setTimeout(function () {
-                                window.location.replace(APP_URL + '/employer/dashboard/manage-jobs');
-                            }, 4000);
+                            if (response.data.status == 'posted')
+                            {
+                                setTimeout(function () {
+                                    window.location.replace(APP_URL + '/employer/dashboard/manage-jobs');
+                                }, 4000);
+                            }
+                            else
+                            {
+                                setTimeout(function () {
+                                    window.location.replace(APP_URL + '/employer/dashboard/manage-jobs#menu5');
+                                }, 4000);
+                            }
+                            
                         } else {
                             self.loading = false;
                             self.showError(response.data.message);

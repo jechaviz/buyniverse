@@ -612,7 +612,7 @@ Route::group(
         Route::post('job_overview/approver/{id}', 'API\JobController@postApprover');
         Route::get('job_overview/deleteapprover/{id}', 'API\JobController@deleteApprover');
         Route::get('job_overview/approvejob/{id}', 'API\JobController@approvejob')->name('approverapprovejob');
-        Route::get('job_overview/rejectjob/{id}', 'API\JobController@rejectjob')->name('approverrejectjob');
+        Route::post('job_overview/rejectjob/{id}', 'API\JobController@rejectjob')->name('approverrejectjob');
         Route::get('job_overview/restorejob/{id}', 'API\JobController@restorejob')->name('restorejob');
 
 

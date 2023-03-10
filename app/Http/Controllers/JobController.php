@@ -305,7 +305,7 @@ class JobController extends Controller
         $user = User::find($id);
         $approver = Approver::where('job_id', $job->id)->where('email', $user->email)->first();
         //dd($approver);
-        return View('back-end.employer.jobs.approval', compact('job', 'approver'));
+        return View('back-end.employer.jobs.approval', compact('job', 'approver')); 
     }
     public function resetjob($job_slug)
     {
@@ -615,6 +615,7 @@ class JobController extends Controller
                         $job->status = 'posted';
                         $job->save();
                         $json['type'] = 'success';
+                        $json['status'] = 'posted';
                         $json['message'] = trans('lang.job_post_success');
                         $job = Job::where('user_id', Auth::user()->id)->latest()->first();
                         $user = User::find(Auth::user()->id);
@@ -623,6 +624,7 @@ class JobController extends Controller
                         if(Approver::where('job_id', $job->id)->exists())
                         {
                             $job->status = 'approval';
+                            $json['status'] = 'approval';
                             $job->save();
                             /*foreach($approvers as $key => $approver)
                             {
@@ -854,6 +856,7 @@ class JobController extends Controller
                     $job->status = 'posted';
                     $job->save();
                     $json['type'] = 'success';
+                    $json['status'] = 'posted';
                     $json['message'] = trans('lang.job_post_success');
                     // Send Email
                     $user = User::find(Auth::user()->id);

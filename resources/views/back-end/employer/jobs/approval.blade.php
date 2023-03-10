@@ -66,7 +66,13 @@
                 </div>
                 @if($approver && $approver->status == 0)
                 <div class="row">
-                <div class="float-right" style="width:100%;text-align: end;"><a href="{{{ route('approverrejectjob', $approver->id) }}}" class="wt-btn" style="margin-right:5px;">{{{ trans('lang.reject') }}}</a><a href="{{{ route('approverapprovejob', $approver->id) }}}" class="wt-btn">{{{ trans('lang.approve') }}}</a></div>
+                <div class="float-right" style="width:100%;text-align: end;">
+                    <!--<a href="{{{ route('approverrejectjob', $approver->id) }}}" class="wt-btn" style="margin-right:5px;">{{{ trans('lang.reject') }}}</a>-->
+                    <button type="button" class="wt-btn" data-toggle="modal" data-target="#rejectModal">
+                        {{{ trans('lang.reject') }}}
+                    </button>
+                    <a href="{{{ route('approverapprovejob', $approver->id) }}}" class="wt-btn">{{{ trans('lang.approve') }}}</a>
+                </div>
                 </div>
                 @endif
 
@@ -103,6 +109,32 @@
         
         
     </section>
+    @if($approver)
+    <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rejectModalLabel">Reject Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{{ route('approverrejectjob', $approver->id) }}}" class="wt-haslayout" method="post">
+            {{ csrf_field() }}
+            <div class="modal-body">
+                <div class="form-group" id="posttitle">
+                    <input type="text" name="note" class="form-control" placeholder="{{trans('lang.notes')}}" >
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Reject</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    @endif
     @endsection
 
     @push('scripts')
