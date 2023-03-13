@@ -277,7 +277,7 @@ Route::group(
     ['middleware' => ['role:employer|freelancer|admin']],
     function () {
         Route::get('job/edit-job/{job_slug}', 'JobController@edit')->name('editJob');
-        Route::get('job/approval/{job_slug}', 'JobController@approval')->name('approvalJob');
+        Route::get('job/approval/{job_slug}', 'JobController@approval')->name('approvalJob'); 
         Route::get('job/resetjob/{job_slug}', 'JobController@resetjob')->name('resetjob');
         Route::get('job/cancelled/{job_slug}', 'JobController@cancelled')->name('cancelledJob');
         Route::post('job/get-stored-job-skills', 'JobController@getJobSkills');
