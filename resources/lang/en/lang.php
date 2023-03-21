@@ -1728,6 +1728,10 @@ return [
     'please_wait' => 'Please Wait',
     'add_providers' => 'Please Click here to add one or more providers',
 
+    'public' => 'Public',
+    'private' => 'Private',
+    'invited' => 'Invited',
+
 
     'employee_list' => [
         'just_me' => 'Its Just Me',

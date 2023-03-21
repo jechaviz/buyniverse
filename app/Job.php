@@ -567,6 +567,7 @@ class Job extends Model
     ) {
         $json = array();
         $jobs = Job::select('*');
+        
         //$jobs = Job::where('status', 'posted');
         
         //$jobs->where('status', '=', 'posted');
@@ -651,6 +652,8 @@ class Job extends Model
             $jobs = $jobs->WhereNull('expiry_date')->orWhereDate('expiry_date', '>', date('Y-m-d'));
         }
         $jobs->where('status', '=', 'posted');
+        $jobs->where('type', 'public');
+        //dd($jobs->get());
         //dd($jobs->get());
         $jobs = $jobs->orderByRaw("is_featured DESC, updated_at DESC")->paginate(7)->setPath('');
         foreach ($filters as $key => $filter) {
@@ -660,6 +663,7 @@ class Job extends Model
                 )
             );
         }
+        
         
         $json['jobs'] = $jobs;
         return $json;

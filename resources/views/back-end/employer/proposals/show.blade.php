@@ -120,7 +120,8 @@
                                 <ul class="nav nav-tabs" style="width: 100%;">
                                     <li id="sproposals" class="active"><a data-toggle="tab" href="#proposals">{{ trans('lang.proposals') }}</a></li>
                                     <li id="sproviders"><a data-toggle="tab" href="#providers">{{ trans('lang.freelancers') }} </a></li>
-                                    <li id="scontest"><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>                                    
+                                    <li id="scontest"><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>
+                                    <li id="sinvited"><a data-toggle="tab" href="#invited">{{ trans('lang.invited') }} </a></li>
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -412,6 +413,9 @@
                                 <div id="providers" class="tab-pane fade">
                                     <job_provider proposalid="" mode="" job="{{$job->id}}"></job_provider>
                                 </div>
+                                <div id="invited" class="tab-pane fade">
+                                    <ijob_provider proposalid="" mode="" job="{{$job->id}}"></ijob_provider>
+                                </div>
                             </div>
 
                             
@@ -587,6 +591,7 @@ if(window.location.hash != "") {
     document.getElementById("add_providers").addEventListener("click", function(event){
         console.log('add_providers');
         $('#sproposals').removeClass('active');
+        $('#proposals').removeClass('show active in');
         $('#sproviders').addClass('active');
         $('#proposals').removeClass('in active');
         $('#providers').addClass('in active');

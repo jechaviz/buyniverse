@@ -221,6 +221,20 @@
                   </span>
                 </td>
           </tr>-->
+          <tr id="tr8" class="hidden">
+              <td class="job-details"><b>{{ trans('lang.type') }}</b></td>
+              <td @click="editjobtype" class="job-details">
+                  <span id="jobtype"><span>{{ job1.type}}</span> <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
+                  <div id="editjobtype" class="hidden">
+                        
+                        <select class="form-control form-control-sm" id="editprojecttype-select" name="editprojecttype-select" v-on:change="updatejobtype">
+                            <option selected>{{ trans('lang.select') }}</option>
+                            <option value="public">{{ trans('lang.public') }}</option>
+                            <option value="private">{{ trans('lang.private') }}</option>
+                        </select>                        
+                    </div>
+                </td>
+          </tr>
           <tr id="tr9" class="hidden">
               <td class="job-details"><b>{{ trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ trans('lang.time') }}</span></b></td>
               <td class="job-details">
@@ -740,6 +754,20 @@ export default {
             $('#jobduration').addClass('hidden');
             $('#editjobduration').removeClass('hidden');
             
+        },
+        editjobtype() {
+            
+            $('#jobtype').addClass('hidden');
+            $('#editjobtype').removeClass('hidden');
+            
+        },
+        updatejobtype(e) {
+            let statp =  this.job1.id + '-' + e.target.value;
+            axios.get(APP_URL + '/api/job_overview/postprojecttype/' + statp).then(function (response) {
+                Fire.$emit('AfterCreate');
+                $('#editjobtype').addClass('hidden');
+                $('#jobtype').removeClass('hidden');
+            });
         },
         updatejobduration(e) {
             let statp =  this.job1.id + '-' + e.target.value;

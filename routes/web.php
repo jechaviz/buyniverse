@@ -580,6 +580,7 @@ Route::group(
         Route::get('job_project_freelancer', 'API\JobController@getProjectfreelancerlevel');
         Route::get('job_overview/project_level/{id}', 'API\JobController@postProjectLevel');
         Route::get('job_overview/project_duration/{id}', 'API\JobController@postProjectDuration');
+        Route::get('job_overview/postprojecttype/{id}', 'API\JobController@postProjecttype');
         Route::get('job_overview/project_price/{id}', 'API\JobController@postProjectprice');
         Route::get('job_overview/project_freelancer/{id}', 'API\JobController@postProjectfreelavcer');
         Route::get('job_overview/project_english/{id}', 'API\JobController@postProjectenglish');
@@ -655,6 +656,7 @@ Route::group(
         Route::post('contest/sendmessage', 'API\ContestController@sendmessage');
 
         Route::get('get_search/{id}', 'API\JobController@get_search');
+        Route::get('get_search_invited/{id}', 'API\JobController@get_search_invited');
         Route::post('search_filter/{id}', 'API\JobController@search_filter'); 
     }
 ); 

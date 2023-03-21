@@ -189,6 +189,7 @@ Vue.component('gmap', require('./components/gmap.vue').default);
 Vue.component('sendinvite', require('./components/sendinvite.vue').default);
 Vue.component('sendinvitation', require('./components/Sendinvitation.vue').default);
 Vue.component('job_provider', require('./components/Job_provider.vue').default);
+Vue.component('ijob_provider', require('./components/IJob_provider.vue').default);
 Vue.component('tinymce', tinymce);
 Vue.component('botman-tinker', TinkerComponent);
 Vue.component('job_contest', require('./components/job_contest.vue').default);
