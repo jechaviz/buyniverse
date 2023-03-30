@@ -1687,6 +1687,10 @@ return [
   'please_wait' => 'Espere por favor',
   'add_providers' => 'Haga clic aquí para agregar uno o más proveedores',
 
+  'public' => 'Público',
+  'private' => 'Privado',
+  'invited' => 'Invitado',
+
   'employee_list' => [
     'just_me' => 'Sólo yo',
     '2_9' => '2 - 9 empleados',

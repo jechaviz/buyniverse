@@ -38,7 +38,7 @@ if (empty(Request::segment(1))) {
         if (!empty(env('DB_DATABASE'))) {
             Route::get('/',
                 function () {
-                    return Redirect::to('/install');
+                    //return Redirect::to('/install');
                 }
             );
         } else {

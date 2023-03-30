@@ -199,6 +199,7 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         Spatie\JsonApiPaginate\JsonApiPaginateServiceProvider::class,
+        mrgswift\EncryptEnv\Provider\EncryptEnvServiceProvider::class,
     ],
 
     /*

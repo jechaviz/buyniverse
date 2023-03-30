@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00c37a00eb099502fbbcf80fbf49a3ff",
+    "content-hash": "73f32c66ab760644871ebe57f5e76528",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3716,6 +3716,65 @@
                 "source": "https://github.com/mpociot/pipeline/tree/1.0.2"
             },
             "time": "2017-04-21T13:22:05+00:00"
+        },
+        {
+            "name": "mrgswift/laravel-encryptenv",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mrgswift/laravel-encryptenv.git",
+                "reference": "a9acda9fd2584212992f3be99d96a1d9a85729b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mrgswift/laravel-encryptenv/zipball/a9acda9fd2584212992f3be99d96a1d9a85729b6",
+                "reference": "a9acda9fd2584212992f3be99d96a1d9a85729b6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/encryption": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                },
+                "laravel": {
+                    "providers": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "mrgswift\\EncryptEnv\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew Guillot",
+                    "email": "mrgswift@gmail.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "Laravel Environment Variable Encryption",
+            "homepage": "https://github.com/mrgswift/laravel-encryptenv",
+            "keywords": [
+                "laravel-encryptenv",
+                "mrgswift"
+            ],
+            "support": {
+                "issues": "https://github.com/mrgswift/laravel-encryptenv/issues",
+                "source": "https://github.com/mrgswift/laravel-encryptenv/tree/1.0.8"
+            },
+            "time": "2022-07-06T22:23:34+00:00"
         },
         {
             "name": "myclabs/php-enum",

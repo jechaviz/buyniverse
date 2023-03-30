@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //Commands\Notifycontest::class,
+        'App\Console\Commands\EncryptEnvValues',
+        'App\Console\Commands\SecEnvConsoleCommand'
     ];
 
     /**
