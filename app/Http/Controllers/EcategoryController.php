@@ -41,14 +41,21 @@ class EcategoryController extends Controller
         //dd('employer categories');
         if (!empty($_GET['keyword'])) {
             $keyword = $_GET['keyword'];
-            $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            else
+                $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->where('status', 'appear_globally')->paginate(7)->setPath('');
             $pagination = $cats->appends(
                 array(
                     'keyword' => $request->get('keyword')
                 )
             );
         } else {
-            $cats = $this->category->paginate(10);
+            //$cats = $this->category->paginate(10);
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $cats = $this->category->paginate(10);
+            else
+                $cats = $this->category->where('status', 'appear_globally')->orWhere('user_id', Auth::user()->id)->paginate(10);
         }
         if (file_exists(resource_path('views/extend/back-end/admin/categories/index.blade.php'))) {
             return View::make('extend.back-end.admin.categories.index', compact('cats'));

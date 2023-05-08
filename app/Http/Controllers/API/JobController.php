@@ -34,6 +34,8 @@ use App\Live_contest_participant;
 use App\Proposal;
 use App\Contest_bid;
 use App\JobInvite;
+use App\Catable;
+use App\Category;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -79,6 +81,45 @@ class JobController extends Controller
         }
         return true;
     }
+
+    public function updateusercategory($id)
+    {
+        $user = Auth::user()->id;
+        if(DB::table('catables')->where('catable_id', $user)->where('category_id', $id)->where('catable_type', 'App\User')->exists())
+        {}
+        else
+        {   
+            DB::table('catables')->insert([
+                'category_id' => $id,
+                'catable_id' => $user,
+                'catable_type' => 'App\User'
+            ]);
+        }
+    }
+
+    public function getusercategory()
+    {
+        //dd('Test');
+        $user = Auth::user()->id;
+        
+        $categories = Catable::where('catable_id', $user)->where('catable_type', 'App\User')->get();
+        foreach($categories as $cat)
+        {
+            $name = Category::find($cat->category_id);
+            $cat->name = $name->title;
+        }
+        //$categories = DB::table('catables');
+        //dd($categories);
+        return $categories;
+    }
+
+    public function deleteusercategory($id)
+    {
+        if(DB::table('catables')->where('id', $id)->exists())
+            DB::table('catables')->where('id', $id)->delete();
+    }
+
+
     public function get_search($id)
     {
         $data['skills'] = Skill::pluck('title', 'id');

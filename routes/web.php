@@ -270,6 +270,9 @@ Route::group(
         Route::post('admin/upload_address', 'UploadsController@upload_address')->name('upload_address');
         Route::post('admin/upload_contact', 'UploadsController@upload_contact')->name('upload_contact');
 
+        Route::get('admin/approve-category/{id}', 'Sub_categoryController@approve');
+        Route::get('admin/reject-category/{id}', 'Sub_categoryController@reject');
+
     }
 );
 
@@ -639,6 +642,11 @@ Route::group(
         Route::get('job_overview/updatecategory/{id}', 'API\JobController@updatecategory');
         Route::get('job_overview/updatecurrency/{id}', 'API\JobController@updatecurrency');
         Route::get('job_overview/deletecategory/{id}', 'API\JobController@deletecategory');
+
+
+        Route::get('job_overview/updateusercategory/{id}', 'API\JobController@updateusercategory');
+        Route::get('getusercategory', 'API\JobController@getusercategory');
+        Route::get('job_overview/deleteusercategory/{id}', 'API\JobController@deleteusercategory');
 
 
         Route::get('sub_skills/{id}', 'API\JobController@getsubskill');

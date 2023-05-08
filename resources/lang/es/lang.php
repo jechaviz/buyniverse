@@ -845,6 +845,7 @@ return [
   'project_cost' => 'Costo del proyecto',
   'offered_by' => 'Ofrecido por',
   'job_cats' => 'Categorías de trabajo',
+  'cats' => 'Categorías',
   'service_cats' => 'Categorías de servicios',
   'select_job_cats' => 'Seleccione las categorías de trabajo',
   'select_service_cats' => 'Seleccionar categorías de servicios',

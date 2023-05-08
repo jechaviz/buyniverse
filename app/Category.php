@@ -123,10 +123,12 @@ class Category extends Model
             if (Auth::user()->getRoleNames()[0] == 'admin') 
             {
                 $this->admin = 1;
+                $this->status = 'appear_globally';
             }
             else
             {
                 $this->admin = 0;
+                $this->status = 'appear_user';
             }
             $old_path = Helper::assetPath() . '/uploads/categories/temp';
             if (!empty($request['uploaded_image'])) {

@@ -163,7 +163,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li><hr><a href="{{{ route('skills') }}}">{{ trans('lang.skills') }}</a></li>
-                                <li><hr><a href="{{{ route('categories') }}}">{{ trans('lang.job_cats') }}</a></li>
+                                <li><hr><a href="{{{ route('categories') }}}">{{ trans('lang.cats') }}</a></li>
                                 <li><hr><a href="{{{ route('departments') }}}">{{ trans('lang.dpts') }}</a></li>
                                 <li><hr><a href="{{{ route('languages') }}}">{{ trans('lang.langs') }}</a></li>
                                 <li><hr><a href="{{{ route('locations') }}}">{{ trans('lang.locations') }}</a></li>

@@ -112,6 +112,7 @@
                                             <th>{{{ trans('lang.cat_icon') }}}</th>
                                             <th>{{{ trans('lang.name') }}}</th>
                                             <th>{{{ trans('lang.slug') }}}</th>
+                                            <th>{{{ trans('lang.status') }}}</th>
                                             <th>{{{ trans('lang.action') }}}</th>
                                         </tr>
                                     </thead>
@@ -131,14 +132,34 @@
                                                 <td>{{{ $cat->title }}}</td>
                                                 <td>{{{ $cat->slug }}}</td>
                                                 <td>
+                                                    @if($cat->status == 'appear_globally')
+                                                    Globally
+                                                    @elseif($cat->status == 'appear_user')
+                                                    Locally
+                                                    @elseif($cat->status == 'rejected')
+                                                    Rejected
+                                                    @else
+                                                    Waiting
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <div class="wt-actionbtn">
                                                         @if ($role === 'admin')
+                                                        @if($cat->admin == 0)
+                                                        <a href="{{{ url('admin/approve-category') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                            <i class="lnr lnr-thumbs-up"></i>
+                                                        </a>
+                                                        <a href="{{{ url('admin/reject-category') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                            <i class="lnr lnr-thumbs-down"></i>
+                                                        </a>
+                                                        @endif
                                                         <a href="{{{ url('admin/categories/edit-cats') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                             <i class="lnr lnr-pencil"></i>
                                                         </a>
-                                                        <a href="{{{ url('admin/sub-category') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                        <!--<a href="{{{ url('admin/sub-category') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                             <i class="lnr lnr-eye"></i>
-                                                        </a>
+                                                        </a>-->
+                                                        
                                                         @else
                                                             @if($cat->user_id == Auth::user()->id)
                                                             <a href="{{{ url('employer/categories/edit-cats') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">

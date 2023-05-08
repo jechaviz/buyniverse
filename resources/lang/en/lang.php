@@ -1019,7 +1019,7 @@ return [
     'home_page_settings' => 'Home Page Settings',
     'settings' => 'Settings',
     'profile_settings' => 'Profile Settings',
-    'job_cats' => 'Project Categories',
+    'cats' => 'Categories',
     'clear_cache' => 'Clears configuration cache.',
     'clear_routes' => 'Clears routes cache.',
     'clear_views' => 'Clears view cache.',

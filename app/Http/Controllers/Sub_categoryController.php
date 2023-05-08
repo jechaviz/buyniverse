@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sub_catetory; 
+use App\Sub_catetory;
+use App\Category; 
 use Auth;
 
 class Sub_categoryController extends Controller
@@ -26,6 +27,24 @@ class Sub_categoryController extends Controller
     public function create()
     {
         //
+    }
+
+    public function approve($id)
+    {
+        $cat = Category::find($id);
+        $cat->status = 'appear_globally';
+        $cat->approved_by = Auth::user()->id;
+        $cat->save();
+        return redirect()->back();
+    }
+
+    public function reject($id)
+    {
+        $cat = Category::find($id);
+        $cat->status = 'rejected';
+        $cat->approved_by = Auth::user()->id;
+        $cat->save();
+        return redirect()->back();
     }
 
     /**

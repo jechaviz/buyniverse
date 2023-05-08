@@ -115,7 +115,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li><a href="{{{ route('skills') }}}">{{ trans('lang.skills') }}</a></li>
-                        <li><a href="{{{ route('categories') }}}">{{ trans('lang.job_cats') }}</a></li>
+                        <li><a href="{{{ route('categories') }}}">{{ trans('lang.cats') }}</a></li>
                         <li><a href="{{{ route('departments') }}}">{{ trans('lang.dpts') }}</a></li>
                         <li><a href="{{{ route('languages') }}}">{{ trans('lang.langs') }}</a></li>
                         <li><a href="{{{ route('locations') }}}">{{ trans('lang.locations') }}</a></li>
@@ -219,7 +219,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li><a href="{{{ route('eskills') }}}">{{ trans('lang.skills') }}</a></li>
-                            <li><a href="{{{ route('ecategories') }}}">{{ trans('lang.job_cats') }}</a></li>
+                            <li><a href="{{{ route('ecategories') }}}">{{ trans('lang.cats') }}</a></li>
                         </ul>
                     </li>
                     @if ($employer_payment_module === 'true' )

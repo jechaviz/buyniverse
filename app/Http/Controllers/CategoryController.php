@@ -57,14 +57,21 @@ class CategoryController extends Controller
     {
         if (!empty($_GET['keyword'])) {
             $keyword = $_GET['keyword'];
-            $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            else
+                $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->where('status', 'appear_globally')->paginate(7)->setPath('');
             $pagination = $cats->appends(
                 array(
                     'keyword' => $request->get('keyword')
                 )
             );
         } else {
-            $cats = $this->category->paginate(10);
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $cats = $this->category->paginate(10);
+            else
+                $cats = $this->category->where('status', 'appear_globally')->paginate(10);
+            //$cats = $this->category->paginate(10);
         }
         if (file_exists(resource_path('views/extend/back-end/admin/categories/index.blade.php'))) {
             return View::make('extend.back-end.admin.categories.index', compact('cats'));
@@ -204,6 +211,10 @@ class CategoryController extends Controller
         $breadcrumbs_settings = \App\SiteManagement::getMetaValue('show_breadcrumb');
         $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
         $categories = $this->category->paginate(10);
+        if (Auth::user()->getRoleNames()[0] == 'admin')
+            $cats = $this->category->paginate(10);
+        else
+            $cats = $this->category->where('status', 'appear_globally')->paginate(10);
         if (!empty($categories)) {
             if (file_exists(resource_path('views/extend/front-end/categories/index.blade.php'))) {
                 return View::make('extend.front-end.categories.index', compact('categories', 'show_breadcrumbs'));
@@ -276,7 +287,11 @@ class CategoryController extends Controller
     public function getCategories()
     {
         $json = array();
-        $categories = $this->category::latest()->get();
+        //$categories = $this->category::latest()->get();
+        if (Auth::user()->getRoleNames()[0] == 'admin')
+            $categories = $this->category::latest()->get();
+        else
+            $categories = $this->category::latest()->where('status', 'appear_globally')->get();
         if (!empty($categories)) {
             $json['type'] = 'success';
             $json['categories'] = $categories;
