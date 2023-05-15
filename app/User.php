@@ -533,7 +533,8 @@ class User extends Authenticatable
         $search_hourly_rates,
         $search_freelaner_types,
         $search_english_levels,
-        $search_languages
+        $search_languages,
+        $search_category
     ) {
         $json = array();
         $user_id = array();
@@ -571,6 +572,30 @@ class User extends Authenticatable
                     }
                 }
                 $users->whereIn('id', $user_id)->get();
+            }
+            //dd($search_category);
+            if (!empty($search_category)) {
+                
+                //$filters['categories'] = $search_category;
+                foreach($search_category as $key => $val)                
+                $cat1[] = $val->category_id;
+                //dd($cat1);
+                $categories = Category::whereIn('id', $cat1)->get();
+                //dd($categories);
+                foreach ($categories as $key => $cat) {
+                    if(!empty($cat->freelancers))
+                    {
+                        foreach($cat->freelancers as $cat1)
+                        $user_id[] = $cat1->id;
+                    }
+
+
+                    /*if (!empty($cat->freelancers[$key]->id)) {
+                        $user_id[] = $cat->freelancers[$key]->id;
+                    }*/
+                }
+                //dd($user_id);
+                $users->whereIn('id', $user_id);
             }
             if (!empty($search_skills)) {
                 

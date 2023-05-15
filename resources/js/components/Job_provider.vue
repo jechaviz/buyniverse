@@ -29,8 +29,7 @@
                                             <h2>{{ trans('lang.skills') }}</h2>
                                         </div>
                                         <div class="wt-widgetcontent">
-                                            <fieldset>
-                                                
+                                            <fieldset>                                                
                                                 <div>
                                                     <div class="wt-checkboxholder wt-verticalscrollbar" style="overflow: auto;">
                                                         <span v-for="(skill, index) in skills" :key="index" class="wt-checkbox">

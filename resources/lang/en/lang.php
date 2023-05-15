@@ -1731,6 +1731,9 @@ return [
     'public' => 'Public',
     'private' => 'Private',
     'invited' => 'Invited',
+    'scope' => 'Scope',
+    'cat_icon_desc' => 'The selected file will be used as icon for the category',
+    'visibility' => 'Visibility',
 
 
     'employee_list' => [

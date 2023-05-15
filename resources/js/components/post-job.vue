@@ -222,7 +222,7 @@
                 </td>
           </tr>-->
           <tr id="tr8" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.type') }}</b></td>
+              <td class="job-details"><b>{{ trans('lang.visibility') }}</b></td>
               <td @click="editjobtype" class="job-details">
                   <span id="jobtype"><span>{{ job1.type}}</span> <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
                   <div id="editjobtype" class="hidden">

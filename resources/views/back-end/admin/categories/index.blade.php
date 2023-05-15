@@ -54,6 +54,7 @@
                                             </upload-image>
                                             {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
                                         </div>
+                                        <span class="form-group-description">{{{ trans('lang.cat_icon_desc') }}}</span>
                                     </div>
                                     <div class="form-group wt-btnarea">
                                         {!! Form::submit(trans('lang.add_cat'), ['class' => 'wt-btn']) !!}
@@ -112,7 +113,7 @@
                                             <th>{{{ trans('lang.cat_icon') }}}</th>
                                             <th>{{{ trans('lang.name') }}}</th>
                                             <th>{{{ trans('lang.slug') }}}</th>
-                                            <th>{{{ trans('lang.status') }}}</th>
+                                            <th>{{{ trans('lang.scope') }}}</th>
                                             <th>{{{ trans('lang.action') }}}</th>
                                         </tr>
                                     </thead>
@@ -165,9 +166,9 @@
                                                             <a href="{{{ url('employer/categories/edit-cats') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                                 <i class="lnr lnr-pencil"></i>
                                                             </a>
-                                                            <a href="{{{ url('employer/sub-category') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                            <!--<a href="{{{ url('employer/sub-category') }}}/{{{ $cat->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                                 <i class="lnr lnr-eye"></i>
-                                                            </a>
+                                                            </a>-->
                                                             @endif
                                                         @endif
                                                         <delete :title="'{{trans("lang.ph_delete_confirm_title")}}'" :id="'{{$cat->id}}'" :message="'{{trans("lang.ph_cat_delete_message")}}'" :url="'{{url('admin/categories/delete-cats')}}'"></delete>

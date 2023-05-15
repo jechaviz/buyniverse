@@ -130,10 +130,12 @@ class JobController extends Controller
         $search_freelaner_types = null;
         $search_english_levels = null;
         $search_languages = null;
+        $search_category = DB::table('catables')->where('catable_id', $id)->where('catable_type', 'App\Job')->select('category_id')->get();
+        //dd($job);
 
         //Providers listing
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
-        $search =  User::getSearchResult(
+        $search =  User::getSearchResult1(
             'freelancer',
             $keyword,
             $search_locations,
@@ -142,7 +144,8 @@ class JobController extends Controller
             $search_hourly_rates,
             $search_freelaner_types,
             $search_english_levels,
-            $search_languages
+            $search_languages,
+            $search_category
         );
         $users = count($search['users']) > 0 ? $search['users'] : '';
 
@@ -284,7 +287,7 @@ class JobController extends Controller
         $search_freelaner_types = null;
         $search_english_levels = null;
         $search_languages = null;
-
+        $search_category = DB::table('catables')->where('catable_id', $id)->where('catable_type', 'App\Job')->select('category_id')->get();
         //Providers listing
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
         $search =  User::getSearchResult1(
@@ -296,7 +299,8 @@ class JobController extends Controller
             $search_hourly_rates,
             $search_freelaner_types,
             $search_english_levels,
-            $search_languages
+            $search_languages,
+            $search_category
         );
         $users = count($search['users']) > 0 ? $search['users'] : '';
         //dd($users);

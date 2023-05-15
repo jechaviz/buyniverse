@@ -348,13 +348,13 @@
                 </td>
           </tr>-->
           <tr>
-              <td class="job-details"><b>{{ trans('lang.type') }}</b></td>
+              <td class="job-details"><b>{{ trans('lang.visibility') }}</b></td>
               <td @click="editjobtype" class="job-details">
                   <span id="jobtype"><span>{{ job1.type}}</span> <i class="fa fa-pencil" v-show="isapprover == '1' || permission == 2" style="float:right;margin: 10px;"></i></span>
                   <div id="editjobtype" class="hidden" v-show="isapprover == '1' || permission == 2">
                         
                         <select class="form-control form-control-sm" id="editprojecttype-select" name="editprojecttype-select" v-on:change="updatejobtype">
-                            <option selected>{{ trans('lang.select') }}</option>
+                            <option >{{ trans('lang.select') }}</option>
                             <option value="public">{{ trans('lang.public') }}</option>
                             <option value="private">{{ trans('lang.private') }}</option>
                         </select>                        

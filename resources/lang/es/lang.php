@@ -1691,6 +1691,9 @@ return [
   'public' => 'Público',
   'private' => 'Privado',
   'invited' => 'Invitado',
+  'scope' => 'Alcance',
+  'cat_icon_desc' => 'El archivo seleccionado se utilizará como icono para la categoría.',
+  'visibility' => 'Visibilidad',
 
   'employee_list' => [
     'just_me' => 'Sólo yo',
