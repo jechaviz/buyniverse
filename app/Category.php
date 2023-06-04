@@ -33,7 +33,7 @@ class Category extends Model
      * @var array $fillable
      */
     protected $fillable = array(
-        'title', 'slug', 'abstract', 'user_id', 'admin'
+        'title', 'slug', 'abstract', 'user_id', 'admin', 'parent_id'
     );
 
     /**
@@ -118,6 +118,8 @@ class Category extends Model
             $this->slug = filter_var($request['category_title'], FILTER_SANITIZE_STRING);
             // $this->abstract = filter_var($request['category_abstract'], FILTER_SANITIZE_STRING);
             $this->abstract = $request['category_abstract'];
+            //dd($request['parent_id']);
+            $this->parent_id = $request['parent_id'];
             $user_id = Auth::user()->id;
             $this->user_id = $user_id;
             if (Auth::user()->getRoleNames()[0] == 'admin') 
@@ -172,6 +174,7 @@ class Category extends Model
             $cats->title = filter_var($request['category_title'], FILTER_SANITIZE_STRING);
             // $cats->abstract = filter_var($request['category_abstract'], FILTER_SANITIZE_STRING);
             $cats->abstract = $request['category_abstract'];
+            $cats->parent_id = $request['parent_id'];
             $old_path = Helper::assetPath() . '/uploads/categories/temp';
             if (!empty($request['uploaded_image'])) {
                 $filename = $request['uploaded_image'];

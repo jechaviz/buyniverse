@@ -14,7 +14,7 @@ class AddProjectTypeToTheJobsTable extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->string('type')->default('public');
+            $table->string('type')->default('private');
         });
     }
 

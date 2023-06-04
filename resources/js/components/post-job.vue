@@ -125,8 +125,11 @@
                         </span>
                         <span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>
                         <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">  
-                            <option selected>{{ trans('lang.select') }}</option>                                  
-                            <option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>
+                            <option selected>{{ trans('lang.select') }}</option>
+                            <component v-for="(item, key) in xcategory" :key="key" :value="item.id" :is="(item.stat == 'hide') ? 'optgroup' : 'option'" :label="item.title" style="color: black;">
+                                <option v-if="item.stat == 'hide' && item.cat.length > 0" v-for="(item1, key1) in item.cat" :key="key1" :value="item1.id">{{ item1.title }}</option>
+                            </component>
+                            <!--<option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>-->
                         </select>
                     </span>
                 </td>
@@ -229,8 +232,9 @@
                         
                         <select class="form-control form-control-sm" id="editprojecttype-select" name="editprojecttype-select" v-on:change="updatejobtype">
                             <option selected>{{ trans('lang.select') }}</option>
-                            <option value="public">{{ trans('lang.public') }}</option>
                             <option value="private">{{ trans('lang.private') }}</option>
+                            <option value="public">{{ trans('lang.public') }}</option>
+                            
                         </select>                        
                     </div>
                 </td>

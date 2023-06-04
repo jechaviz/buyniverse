@@ -43,6 +43,19 @@
                                         {!! Form::textarea( 'category_abstract', null, ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc')] ) !!}
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
+                                    <div class="form-group">
+                                        <span class="wt-select">
+                                            <select class="form-control" name="parent_id">
+                                                <option value="0">{{ trans('lang.choose_parent_cat') }}</option>
+                                                @if ($cats->count() > 0)
+                                                @foreach ($cats as $cat)
+                                                <option value="{{$cat->id}}">{{ $cat->title }}</option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </span>
+                                        <span class="form-group-description">{{{ trans('lang.parent_desc') }}}</span>
+                                    </div>
                                     <div class="wt-settingscontent">
                                         <div class = "wt-formtheme wt-userform">
                                             <upload-image

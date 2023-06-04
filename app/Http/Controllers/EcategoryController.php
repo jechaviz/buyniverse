@@ -108,12 +108,16 @@ class EcategoryController extends Controller
     {
         if (!empty($id)) {
             $cats = $this->category::find($id);
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $cats1 = $this->category->paginate(10);
+            else
+                $cats1 = $this->category->where('status', 'appear_globally')->paginate(10);
             if (!empty($cats)) {
                 if (file_exists(resource_path('views/extend/back-end/admin/categories/edit.blade.php'))) {
-                    return View::make('extend.back-end.admin.categories.edit', compact('cats'));
+                    return View::make('extend.back-end.admin.categories.edit', compact('cats', 'cats1'));
                 } else {
                     return View::make(
-                        'back-end.admin.categories.edit', compact('id', 'cats')
+                        'back-end.admin.categories.edit', compact('id', 'cats', 'cats1')
                     );
                 }
                 return Redirect::to('employer/categories');

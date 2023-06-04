@@ -100,6 +100,7 @@ class CategoryController extends Controller
         $this->validate(
             $request, [
                 'category_title'    => 'required',
+                
             ]
         );
         $this->category->saveCategories($request);
@@ -118,12 +119,16 @@ class CategoryController extends Controller
     {
         if (!empty($id)) {
             $cats = $this->category::find($id);
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $cats1 = $this->category->paginate(10);
+            else
+                $cats1 = $this->category->where('status', 'appear_globally')->paginate(10);
             if (!empty($cats)) {
                 if (file_exists(resource_path('views/extend/back-end/admin/categories/edit.blade.php'))) {
-                    return View::make('extend.back-end.admin.categories.edit', compact('cats'));
+                    return View::make('extend.back-end.admin.categories.edit', compact('cats', 'cats1'));
                 } else {
                     return View::make(
-                        'back-end.admin.categories.edit', compact('id', 'cats')
+                        'back-end.admin.categories.edit', compact('id', 'cats', 'cats1')
                     );
                 }
                 return Redirect::to('admin/categories');
@@ -289,9 +294,21 @@ class CategoryController extends Controller
         $json = array();
         //$categories = $this->category::latest()->get();
         if (Auth::user()->getRoleNames()[0] == 'admin')
-            $categories = $this->category::latest()->get();
+            $categories = $this->category::latest()->where('parent_id', 0)->get();
         else
-            $categories = $this->category::latest()->where('status', 'appear_globally')->get();
+            $categories = $this->category::latest()->where('parent_id', 0)->where('status', 'appear_globally')->get();
+        foreach($categories as $value)
+        {
+            $cat = $this->category::latest()->where('parent_id', $value->id)->where('status', 'appear_globally')->get();
+            if($cat->count() > 0)
+            {
+                //dd($cat);
+                $value->cat = $cat;
+                $value->stat = 'hide';
+            }
+            else
+                $value->stat = 'show';
+        }
         if (!empty($categories)) {
             $json['type'] = 'success';
             $json['categories'] = $categories;

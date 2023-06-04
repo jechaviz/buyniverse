@@ -129,8 +129,14 @@
                         </span>
                         <span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>
                         <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">   
-                            <option selected>{{ trans('lang.select') }}</option>                                 
-                            <option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>
+                            <option selected style="color: black;">{{ trans('lang.select') }}</option>  
+                            <component v-for="(item, key) in xcategory" :key="key" :value="item.id" :is="(item.stat == 'hide') ? 'optgroup' : 'option'" :label="item.title" style="color: black;">
+                                <option v-if="item.stat == 'hide' && item.cat.length > 0" v-for="(item1, key1) in item.cat" :key="key1" :value="item1.id">{{ item1.title }}</option>
+                            </component>
+                            
+                            <!--<optgroup v-for="(item, key) in xcategory" :key="key" :value="item.id" :disabled="(item.stat == 'hide') ? true : false" :label="item.title">
+                                <option v-if="item.stat == 'hide' && item.cat.length > 0" v-for="(item1, key1) in item.cat" :key="key1" :value="item1.id">{{ item1.title }}</option>
+                            </optgroup>-->
                         </select>
                     </span>
                 </td>

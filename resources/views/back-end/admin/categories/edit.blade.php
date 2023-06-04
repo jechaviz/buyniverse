@@ -43,6 +43,19 @@
                                         !!}
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
+                                    <div class="form-group">
+                                        <span class="wt-select">
+                                            <select class="form-control" name="parent_id">
+                                                <option value="0">{{ trans('lang.choose_parent_cat') }}</option>
+                                                @if ($cats1->count() > 0)
+                                                @foreach ($cats1 as $cat)
+                                                <option value="{{$cat->id}}" @if($cat->id == $cats->parent_id) selected @endif>{{ $cat->title }}</option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </span>
+                                        <span class="form-group-description">{{{ trans('lang.parent_desc') }}}</span>
+                                    </div>
                                     <div class="wt-settingscontent">
                                         @if (!empty($cats['image']))
                                             <div class="wt-formtheme wt-userform">
