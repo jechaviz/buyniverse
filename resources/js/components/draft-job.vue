@@ -117,8 +117,11 @@
                         </span>
                         <span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>
                         <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">  
-                            <option selected>{{ trans('lang.select') }}</option>                                  
-                            <option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>
+                            <option selected style="color: black;">{{ trans('lang.select') }}</option>                                 
+                            <component v-for="(item, key) in xcategory" :key="key" :value="item.id" :is="(item.stat == 'hide') ? 'optgroup' : 'option'" :label="item.title" style="color: black;">
+                                <option v-if="item.stat == 'hide' && item.cat.length > 0" v-for="(item1, key1) in item.cat" :key="key1" :value="item1.id">{{ item1.title }}</option>
+                            </component>
+                            <!--<option v-for="(item, key) in xcategory" :key="key" :value="item.id">{{ item.title }}</option>-->
                         </select>
                     </span>
                 </td>
@@ -211,6 +214,20 @@
                   </span>
                 </td>
           </tr>-->
+          <tr>
+              <td class="job-details"><b>{{ trans('lang.visibility') }}</b></td>
+              <td @click="editjobtype" class="job-details">
+                  <span id="jobtype"><span>{{ job1.type}}</span> <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
+                  <div id="editjobtype" class="hidden">
+                        
+                        <select class="form-control form-control-sm" id="editprojecttype-select" name="editprojecttype-select" v-on:change="updatejobtype">
+                            <option >{{ trans('lang.select') }}</option>
+                            <option value="public">{{ trans('lang.public') }}</option>
+                            <option value="private">{{ trans('lang.private') }}</option>
+                        </select>                        
+                    </div>
+                </td>
+          </tr>
           <tr id="tr9">
               <td class="job-details"><b>{{ trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ trans('lang.time') }}</span></b></td>
               <td class="job-details">
@@ -1001,6 +1018,21 @@ export default {
                 $('#jobhour').removeClass('hidden');
             });
         },
+        editjobtype() {
+            if(this.isapprover == '1' || this.permission == 2)
+            {
+            $('#jobtype').addClass('hidden');
+            $('#editjobtype').removeClass('hidden');
+            }
+        },
+        updatejobtype(e) {
+            let statp =  this.job1.id + '-' + e.target.value;
+            axios.get(APP_URL + '/api/job_overview/postprojecttype/' + statp).then(function (response) {
+                Fire.$emit('AfterCreate');
+                $('#editjobtype').addClass('hidden');
+                $('#jobtype').removeClass('hidden');
+            });
+        },
 
         
         
@@ -1023,6 +1055,8 @@ export default {
         this.loadfreelancer();
         //this.loadsubskills();
         //this.loadinvited();
+        this.loadcategory();
+        this.loadcurrency();
         
         
         Fire.$on('Afterteam', () => {
