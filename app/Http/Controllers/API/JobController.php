@@ -9,7 +9,7 @@ use App\Mail\TeamInvite;
 use App\Mail\UserInvite;
 use App\Mail\Approverinvite;
 use App\Mail\Approveruserinvite;
-use App\Mail\Inviteraw;
+use App\Mail\InviteRaw;
 use App\Mail\Contestend;
 use App\Job;
 use App\User;
@@ -53,6 +53,9 @@ class JobController extends Controller
         {}
         else
         {
+            $idu = Auth::user()->id;
+            $user = User::find($idu);
+            //dd(secEnv('MAIL_USERNAME'), secEnv('MAIL_PASSWORD'));
             $invite = new JobInvite;
             $invite->job_id = $ids[0];
             $invite->user_id = $ids[1];
@@ -69,15 +72,15 @@ class JobController extends Controller
             Thanks in advance,
             {name}";
 
-            $name = $user1->first_name.' '.$user1->last_name;
-            $link = '<a href="http://worketic.apnahive.com/job/'. $job->slug .'">Link</a>';
+            $name = $user->first_name.' '.$user->last_name;
+            $link = '<a href="https://buyniverse.com/job/'. $job->slug .'">Link</a>';
             $messagex = str_replace('{name}', $name, $email_text);
             $messagex = str_replace('{Link}', $link, $messagex);
             //dd($messagex, $link);
             $message1 = str_replace(array("\r","\n",'\r','\n'), "<br>", $messagex);
             $message1 = str_replace(array("<br><br>"), "<br>", $message1);
-            Mail::to($user1->email)->send(new Inviteraw($message1));
-            Mail::to('sadiqueali786@gmail.com')->send(new Inviteraw($message1));
+            Mail::to($user1->email)->send(new InviteRaw($message1));
+            Mail::to('sadiqueali786@gmail.com')->send(new InviteRaw($message1));
         }
         return true;
     }

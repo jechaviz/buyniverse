@@ -184,7 +184,9 @@
                                                             </a>-->
                                                             @endif
                                                         @endif
+                                                        @if ($role === 'admin')
                                                         <delete :title="'{{trans("lang.ph_delete_confirm_title")}}'" :id="'{{$cat->id}}'" :message="'{{trans("lang.ph_cat_delete_message")}}'" :url="'{{url('admin/categories/delete-cats')}}'"></delete>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

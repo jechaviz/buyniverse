@@ -94,7 +94,7 @@ class MessageController extends Controller
         else{
             $message = new Message;
             $message->user_id = Auth::user()->id;
-            $message->receiver_id = $id;
+            $message->receiver_id = $ids[0];
             $message->body = 'Hi';
             $message->status = 0;
             $message->save(); 
@@ -109,7 +109,7 @@ class MessageController extends Controller
                 'chat_id' => $message->id
             ]);
         }
-        
+        //dd($message);
         return Redirect::to('proposal/'.$job->slug.'/'.$job->status.'#menu6-#'.$ids[2]);
     }
     /*public function jobchat($id)
@@ -184,10 +184,25 @@ class MessageController extends Controller
             foreach($chatrooms as $value)
             {
                 $live = Live_contest::find($value->contest_id);
-                $job = Job::find($live->job_id);
                 $chatshow = 0;
-                if($job->id == $id)
-                $chatshow = 1;
+                if($live) {
+                    $job = Job::find($live->job_id);
+                    
+                    if($job->id == $id)
+                    $chatshow = 1;
+
+                    if($job->user_id == $user_id)
+                    {
+                        $key++;
+                        $json[$key]['id'] = 'c_'.$value->id;
+                        $json[$key]['image'] = Helper::getProfileImage(1);
+                        $json[$key]['name'] = 'chatroom '.$value->id;
+                        $json[$key]['tagline'] = '';
+                        $json[$key]['image_name'] = 'image.jpg';//!empty(User::find(1)) ? User::find(1)->profile->avater :'';
+                        $json[$key]['chatshow'] = $chatshow;
+                    }
+                }
+                
                 if(Live_contest_participant::where('user_id', $user_id)->where('live_id', $value->contest_id)->exists())
                 { 
 
@@ -200,16 +215,7 @@ class MessageController extends Controller
                     $json[$key]['chatshow'] = $chatshow;
                 }
                 
-                if($job->user_id == $user_id)
-                {
-                    $key++;
-                    $json[$key]['id'] = 'c_'.$value->id;
-                    $json[$key]['image'] = Helper::getProfileImage(1);
-                    $json[$key]['name'] = 'chatroom '.$value->id;
-                    $json[$key]['tagline'] = '';
-                    $json[$key]['image_name'] = 'image.jpg';//!empty(User::find(1)) ? User::find(1)->profile->avater :'';
-                    $json[$key]['chatshow'] = $chatshow;
-                }
+                
             }
             $message_status = $this->message::where('receiver_id', $user_id)->where('status', 0)->count();
             if ($message_status > 0) {
@@ -285,16 +291,19 @@ class MessageController extends Controller
                     $json[$key]['image_name'] = 'image.jpg';//!empty(User::find(1)) ? User::find(1)->profile->avater :'';
                 }
                 $live = Live_contest::find($value->contest_id);
-                $job = Job::find($live->job_id);
-                if($job->user_id == $user_id)
-                {
-                    $key++;
-                    $json[$key]['id'] = 'c_'.$value->id;
-                    $json[$key]['image'] = Helper::getProfileImage(1);
-                    $json[$key]['name'] = 'chatroom '.$value->id;
-                    $json[$key]['tagline'] = '';
-                    $json[$key]['image_name'] = 'image.jpg';//!empty(User::find(1)) ? User::find(1)->profile->avater :'';
+                if($live) {
+                    $job = Job::find($live->job_id);
+                    if($job->user_id == $user_id)
+                    {
+                        $key++;
+                        $json[$key]['id'] = 'c_'.$value->id;
+                        $json[$key]['image'] = Helper::getProfileImage(1);
+                        $json[$key]['name'] = 'chatroom '.$value->id;
+                        $json[$key]['tagline'] = '';
+                        $json[$key]['image_name'] = 'image.jpg';//!empty(User::find(1)) ? User::find(1)->profile->avater :'';
+                    }
                 }
+                
             }
             $message_status = $this->message::where('receiver_id', $user_id)->where('status', 0)->count();
             if ($message_status > 0) {

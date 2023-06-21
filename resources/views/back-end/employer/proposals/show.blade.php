@@ -463,7 +463,13 @@
                         @if($role != 'admin')
                         <div id="menu6" class="tab-pane fade" style="">
                         <div>                            
-                            
+                            <message-center1 id="message-start"
+                                
+                                :empty_field="'{{ trans('lang.empty_field') }}'" 
+                                :host="'{{!empty($chat_settings['host']) ? $chat_settings['host'] : ''}}'" 
+                                :port="'{{!empty($chat_settings['port']) ? $chat_settings['port'] : ''}}'"
+                                chat="{{$job->id}}">
+                            </message-center1>
                         </div>
                         
                         </div>
