@@ -92,14 +92,14 @@
                         <!--<li><a data-toggle="tab" href="#menu1">Details <span class="badge bg-danger"></span></a></li>-->
                         <li><a data-toggle="tab" href="#menu2">{{ trans('lang.files') }} <!--<span class="badge bg-danger">{{$job->files}}</span>--></a></li>
                         <li><a data-toggle="tab" href="#menu3">{{ trans('lang.proposals') }} <!--<span class="badge bg-danger">{{$job->proposals}}</span>--></a></li>
-                        <li><a data-toggle="tab" href="#menu4">{{ trans('lang.payments') }} <!--<span class="badge bg-danger"></span>--></a> </li>
+                        <!--<li><a data-toggle="tab" href="#menu4">{{ trans('lang.payments') }} </a> </li>-->
                         <li><a data-toggle="tab" href="#task-component">{{ trans('lang.tasks') }} <!--<span class="badge bg-danger">{{$job->tasks}}</span>--></a> </li>
                         @if($role != 'admin')
                         <li><a data-toggle="tab" href="#menu6">{{ trans('lang.chats') }} <!--<span class="badge bg-danger"></span>--></a> </li>
                         @endif
                         <li><a data-toggle="tab" href="#menu7">{{ trans('lang.tickets') }} <!--<span class="badge bg-danger">{{$job->tickets}}</span>--></a> </li>
                         <li><a data-toggle="tab" href="#menu8">{{ trans('lang.notes') }} <!--<span class="badge bg-danger">{{$job->notes}}</span>--></a> </li>
-                        <li><a data-toggle="tab" href="#menu9">{{ trans('lang.financial') }} <!--<span class="badge bg-danger"></span>--></a> </li>
+                        <!--<li><a data-toggle="tab" href="#menu9">{{ trans('lang.financial') }} <span class="badge bg-danger"></span></a> </li>-->
                         <!--<li><a data-toggle="tab" href="#menu10">{{ trans('lang.quiz') }} <span class="badge bg-danger"></span></a> </li>-->
                         <!--<li><a data-toggle="tab" href="#provider">{{ trans('lang.freelancer') }} <span class="badge bg-danger"></span></a> </li>-->
                     </ul>
@@ -420,7 +420,7 @@
 
                             
                         </div>
-                        <div id="menu4" class="tab-pane fade" style="">
+                        <!--<div id="menu4" class="tab-pane fade" style="">
                         @if (!empty($item) )
                             <table class="wt-tablecategories">
                                 <thead>
@@ -455,7 +455,7 @@
                                         @include('errors.no-record')
                                     @endif
                         @endif
-                        </div>
+                        </div>-->
                         <div id="task-component" class="tab-pane fade" style="">
                             <link href="{{ asset('css/tasks.css') }}" rel="stylesheet">
                             <tasks jobid = "{{ $job->id }}" isapprover="{{ $job->approver }}" userid = "{{ Auth::user()->id }}" jobtitle = "{{ $job->title }}"></tasks>

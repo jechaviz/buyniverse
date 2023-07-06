@@ -146,12 +146,12 @@
                         <!--<li><a data-toggle="tab" href="#menu1">Details <span class="badge bg-danger"></span></a></li>-->
                         <li><a data-toggle="tab" href="#menu2">{{ trans('lang.files')}} <span class="badge bg-danger">{{$job->files}}</span></a></li>
                         
-                        <li><a data-toggle="tab" href="#menu4">{{ trans('lang.payments')}} <span class="badge bg-danger"></span></a> </li>
+                        <!--<li><a data-toggle="tab" href="#menu4">{{ trans('lang.payments')}} <span class="badge bg-danger"></span></a> </li>-->
                         <li><a data-toggle="tab" href="#task-component">{{ trans('lang.tasks')}} <span class="badge bg-danger">{{$job->tasks}}</span></a> </li>
-                        <li><a href="{{{ route('message') }}}">{{ trans('lang.chats')}} <span class="badge bg-danger"></span></a> </li>
+                        <!--<li><a href="{{{ route('message') }}}">{{ trans('lang.chats')}} <span class="badge bg-danger"></span></a> </li>-->
                         <li><a data-toggle="tab" href="#menu7">{{ trans('lang.tickets')}} <span class="badge bg-danger">{{$job->tickets}}</span></a> </li>
                         <li><a data-toggle="tab" href="#menu8">{{ trans('lang.notes')}} <span class="badge bg-danger">{{$job->notes}}</span></a> </li>
-                        <li><a data-toggle="tab" href="#menu9">{{ trans('lang.financial')}} <span class="badge bg-danger"></span></a> </li>
+                        <!--<li><a data-toggle="tab" href="#menu9">{{ trans('lang.financial')}} <span class="badge bg-danger"></span></a> </li>-->
                     </ul>
 
                     <div class="tab-content" style="width: 100%;margin: 10px;background-color: white;border: #e4dede 5px solid;">
@@ -305,19 +305,19 @@
                             <job_file jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_file>
                         </div>
                         
-                        <div id="menu4" class="tab-pane fade">
-                        </div>
+                        <!--<div id="menu4" class="tab-pane fade">
+                        </div>-->
                         <div id="task-component" class="tab-pane fade">
                             <link href="{{ asset('css/tasks.css') }}" rel="stylesheet">
                             <tasks jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}" jobtitle = "{{ $job->title }}"></tasks>
                         </div>
-                        <div id="menu6" class="tab-pane fade">
+                        <!--<div id="menu6" class="tab-pane fade">
                             <message-center 
                                 :empty_field="'{{ trans('lang.empty_field') }}'" 
                                 :host="'{{!empty($chat_settings['host']) ? $chat_settings['host'] : ''}}'" 
                                 :port="'{{!empty($chat_settings['port']) ? $chat_settings['port'] : ''}}'">
                             </message-center>
-                        </div>
+                        </div>-->
                         <div id="menu7" class="tab-pane fade">
                             <job_ticket jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
                         </div>

@@ -46,6 +46,7 @@ export default {
         sendMessage(e) {
             e.preventDefault();
             var self = this;
+            
             self.messages.push({ message: self.newmessage, image: self.image, type: 0, by: 'Me' })
             jQuery('#wt-verticalscrollbarpop').mCustomScrollbar('scrollTo','bottom');
             axios.post(APP_URL + '/message/send-private-message',{
