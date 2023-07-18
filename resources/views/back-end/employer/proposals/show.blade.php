@@ -288,6 +288,12 @@
                                                     $badge_color = '';
                                                     $badge_img    = '';
                                                 }
+                                                $categories = \App\Catable::where('catable_id', $proposal->freelancer_id)->where('catable_type', 'App\User')->get();
+                                                foreach($categories as $cat)
+                                                {
+                                                    $name = \App\Category::find($cat->category_id);
+                                                    $cat->name = $name->title;
+                                                }
                                             @endphp
 
                                         @if($proposal->hired == 0)
@@ -320,10 +326,10 @@
                                             <div class="wt-description">
                                                 <p>{{{$proposal->content}}}</p>
                                             </div> 
-                                            @if (!empty($user->skills))
+                                            @if (!empty($categories))
                                                 <div class="wt-tag wt-widgettag">
-                                                    @foreach($user->skills as $skill)
-                                                        <a href="{{{url('search-results?type=job&skills%5B%5D='.$skill->slug)}}}">{{{ $skill->title }}}</a>
+                                                    @foreach($categories as $skill)
+                                                        <a>{{{ $skill->name }}}</a>
                                                     @endforeach
                                                 </div>
                                             @endif

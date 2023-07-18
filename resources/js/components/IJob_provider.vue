@@ -113,7 +113,7 @@
                                                 </div>
                                             
                                             <div class="wt-tag wt-widgettag">
-                                                    <a v-for="(skill, key1) in freelancer.skills" :key="key1">{{ skill.title }}</a>
+                                                    <a v-for="(skill, key1) in freelancer.categories" :key="key1">{{ skill.name }}</a>
                                             </div>
                                             
                                         </div>

@@ -191,6 +191,15 @@ class JobController extends Controller
                 $user->description = $user->profile->description;
                 $user->skills = $user->skills;
 
+                $categories = Catable::where('catable_id', $user->id)->where('catable_type', 'App\User')->get();
+                foreach($categories as $cat)
+                {
+                    $name = Category::find($cat->category_id);
+                    $cat->name = $name->title;
+                }
+
+                $user->categories = $categories;
+
                 if(JobInvite::where('job_id', $id)->where('user_id', $user->id)->exists())
                     $user->invitation = true;
                 else
@@ -268,6 +277,15 @@ class JobController extends Controller
                 $user->description = $user->profile->description;
                 $user->skills = $user->skills;
 
+                $categories = Catable::where('catable_id', $user->id)->where('catable_type', 'App\User')->get();
+                foreach($categories as $cat)
+                {
+                    $name = Category::find($cat->category_id);
+                    $cat->name = $name->title;
+                }
+
+                $user->categories = $categories;
+
                 if(JobInvite::where('job_id', $id)->where('user_id', $user->id)->exists())
                     $user->invitation = true;
                 else
@@ -344,6 +362,15 @@ class JobController extends Controller
                 $user->location_title = $user->location->title;
                 if($user->profile)
                 $user->description = $user->profile->description;
+
+                $categories = Catable::where('catable_id', $user->id)->where('catable_type', 'App\User')->get();
+                foreach($categories as $cat)
+                {
+                    $name = Category::find($cat->category_id);
+                    $cat->name = $name->title;
+                }
+
+                $user->categories = $categories;
 
                 if(JobInvite::where('job_id', $id)->where('user_id', $user->id)->exists())
                     $user->invitation = true;

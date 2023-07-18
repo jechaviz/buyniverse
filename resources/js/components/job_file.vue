@@ -26,7 +26,12 @@
                     <td>{{ file.id }}</td>
                     <td>{{ file.name }}</td>
                     <td>{{ file.size }}</td>
-                    <td>{{ file.use }}</td>
+                    <td v-if="file.use == 'normal'">
+                        {{ trans('lang.normal') }}
+                    </td>
+                    <td v-else>
+                        {{ trans('lang.contract') }}
+                    </td>
                     <td>{{ file.user_id }}</td>
                     <td>{{ file.status }}</td>
                     <td>{{ file.updated_at | formatDate }}</td>
