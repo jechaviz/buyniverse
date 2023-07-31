@@ -17,7 +17,7 @@
         <div class="wt-haslayout wt-main-section">
             <div class="container">
                 <div class="row justify-content-md-center">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 push-lg-2" id="jobs">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 push-lg-2">
                         <div class="preloader-section" v-if="loading" v-cloak>
                             <div class="preloader-holder">
                                 <div class="loader"></div>
@@ -25,14 +25,15 @@
                         </div>
                         <div class="wt-jobalertsholder la-jobalerts-holder">
                             <ul class="wt-jobalerts">
-                                @if ($submitted_proposals_count)
-                                    <!--<li class="alert alert-danger alert-dismissible fade show">
-                                        <span>{{{ trans('lang.proposal_already_submitted') }}}</span>
+                                
+                                @if (session('error'))
+                                    <li class="alert alert-danger alert-dismissible fade show">
+                                        <span>{{ session('error') }}</span>
                                         <a href="javascript:void(0)" class="wt-alertbtn danger close" data-dismiss="alert" aria-label="Close">Got It</a>
                                         <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close">
                                             <i class="fa fa-close"></i>
                                         </a>
-                                    </li>-->
+                                    </li>
                                 @endif
                                 @if ($job->status != 'posted')
                                     <li class="alert alert-danger alert-dismissible fade show">
@@ -117,18 +118,23 @@
                             <div class="wt-title">
                                 <h2>{{{ trans('lang.proposal_amount') }}}</h2>
                             </div>
-                            {!! Form::open(['url' => url('proposal/submit-proposal'), 'class' =>'wt-haslayout', 'id' => 'send-propsal',  '@submit.prevent'=>'submitJobProposal('.$job->id.', '.Auth::user()->id.')']) !!}
+                            {!! Form::open(['url' => url('proposal/update-proposal'), 'class' =>'wt-haslayout', 'id' => 'send-propsal',  '@submit.prevent'=>'submitJobProposal('.$job->id.', '.Auth::user()->id.')']) !!}
+                                <input type="hidden" name="id" value="{{$job->id}}">
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                 <div class="wt-proposalamount accordion">
                                     <div class="form-group">
                                         <span>( <i>{{ Helper::getCurrencySymbol($job->currency) }}</i> )</span>
-                                        {!! Form::input('number', 'amount', null, ['class' => 'form-control', 'min' => 1, 'placeholder' => trans('lang.ph_proposal_amount'), 'v-model'=>'proposal.amount', 'v-on:keyup' => "calculate_amount('$commision')" ])!!}
+                                        
+                                        {!! Form::input('number', 'amount', $submitted_proposals_count->amount, ['class' => 'form-control', 'min' => 1, 'placeholder' => trans('lang.ph_proposal_amount'), 'v-model'=>'proposal.amount', 'v-on:keyup' => "calculate_amount('$commision')" ])!!}
+                                        <!--<input min="1" placeholder="Enter Your Proposal Amount:" name="amount" type="number"  value="{{$submitted_proposals_count->amount}}" class="form-control">-->
+
                                         <a href="javascript:void(0);" class="collapsed" id="headingOne" data-toggle="collapse"
                                             data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             <i class="lnr lnr-chevron-up"></i>
                                         </a>
                                         <em>{{{ trans('lang.amount_note') }}}</em>
                                     </div>
-                                    <ul class="wt-totalamount collapse show" id="collapseOne" aria-labelledby="headingOne">
+                                    <ul class="wt-totalamount collapse hide" id="collapseOne" aria-labelledby="headingOne">
                                         <li v-cloak>
                                             <h3>( <i>{{ Helper::getCurrencySymbol($job->currency) }}</i> ) <em>- @{{this.proposal.deduction}}</em></h3>
                                             <span>{{{ trans('lang.service_fee') }}}
@@ -149,14 +155,14 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                {!! Form::select('completion_time', $job_completion_time, null, array('v-model'=>'proposal.completion_time', 'placeholder' => trans('lang.ph_job_completion_time') )) !!}
+                                                {!! Form::select('completion_time', $job_completion_time, $submitted_proposals_count->completion_time, array('v-model'=>'proposal.completion_time', 'placeholder' => trans('lang.ph_job_completion_time') )) !!}
                                             </span>
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::textarea('description', null, ['class' => 'form-control', 'id' => '', 'placeholder' =>  trans('lang.ph_cover_letter') , 'v-model'=>'proposal.description']) !!}
+                                            {!! Form::textarea('description', $submitted_proposals_count->content, ['class' => 'form-control', 'id' => '', 'placeholder' =>  trans('lang.ph_cover_letter') , 'v-model'=>'proposal.description']) !!}
                                         </div>
                                     </fieldset>
-                                    <div class="wt-attachments wt-attachmentsvtwo wt-attachmentsholder lara-proposal-attachment">
+                                    <!--<div class="wt-attachments wt-attachmentsvtwo wt-attachmentsholder lara-proposal-attachment">
                                         <div class="lara-attachment-files">
                                             <div class="wt-title">
                                                 <h3>{{{ trans('lang.upload_file') }}}</h3>
@@ -168,7 +174,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="wt-btnarea">
                                         {!! Form::submit(trans('lang.btn_send'), ['class' => 'wt-btn']) !!}
                                     </div>

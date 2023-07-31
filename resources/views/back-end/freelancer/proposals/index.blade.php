@@ -30,7 +30,7 @@
                                 <th>{{ trans('lang.bid')}}</th>
 								<th>{{ trans('lang.duration')}}</th>							
                                 <th>{{ trans('lang.status')}}</th>
-								<th style="width: 130px;">{{ trans('lang.action')}}</th>
+								<th style="width: 230px;">{{ trans('lang.action')}}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -66,6 +66,11 @@
                                 </td>
                                 <td>{{{ Helper::displayProposalStatus($proposal->status) }}}</td>
                                 <td>
+                                    @if ( $proposal->status == 'pending' )
+                                    <a href="{{{ url('job/'.$proposal->job->slug) }}}" class="wt-btn" style="background-color: #ffffff!important;color: #b4b1b1;font-size: 12px;border: 1px solid #b4b1b1;outline: none;border-radius: 0;padding: 5px 10px;font: inherit;">
+                                        {{ trans('lang.edit')}}
+                                    </a>
+                                    @endif
                                     @if ( $proposal->status != 'pending' )
                                         <a href="{{{ url('freelancer/job/'.$proposal->job->slug) }}}" class="wt-btn"  style="background-color: #ffffff!important;color: #b4b1b1;font-size: 12px;border: 1px solid #b4b1b1;outline: none;border-radius: 0;padding: 5px 10px;font: inherit;">
                                             {{$status_btn}}
@@ -77,6 +82,7 @@
                                         </a>
                                         @endif
                                     @endif
+                                    
                                 </td>
                                 
                             </tr>

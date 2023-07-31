@@ -46,6 +46,7 @@ use App\Tasks;
 use App\Approver;
 use App\Item;
 use App\Mail\Contestend;
+use Session;
 
 
 /**
@@ -77,6 +78,17 @@ class ProposalController extends Controller
     {
         if (!empty($job_slug)) {
             $job = Job::all()->where('slug', $job_slug)->first();
+
+            if (Auth::user() && !empty(Auth::user()->id)) {
+                $submitted_proposals_count = DB::table('proposals')
+                    ->where('job_id', $job->id)
+                    ->where('freelancer_id', Auth::user()->id)->first();
+            }
+            //dd($submitted_proposals_count);
+            if($submitted_proposals_count)
+            {
+                return redirect()->route('editProposal', $job_slug);   
+            }
             $job_quizzes = Job_quiz::where('job_id', $job->id)->get();
             foreach($job_quizzes as $value)
             {
@@ -111,11 +123,8 @@ class ProposalController extends Controller
                 $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
                 $breadcrumbs_settings = SiteManagement::getMetaValue('show_breadcrumb');
                 $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
-                if (Auth::user() && !empty(Auth::user()->id)) {
-                    $submitted_proposals_count = DB::table('proposals')
-                        ->where('job_id', $job->id)
-                        ->where('freelancer_id', Auth::user()->id)->count();
-                }
+                
+                
                 if (file_exists(resource_path('views/extend/front-end/jobs/proposal.blade.php'))) {
                     return View(
                         'extend.front-end.jobs.proposal',
@@ -137,6 +146,98 @@ class ProposalController extends Controller
                 } else {
                     return View(
                         'front-end.jobs.proposal',
+                        compact(
+                            'job',
+                            'proposal_status',
+                            'duration',
+                            'job_completion_time',
+                            'commision',
+                            'check_skill_req',
+                            'remaining_proposals',
+                            'submitted_proposals',
+                            'symbol',
+                            'submitted_proposals_count',
+                            'show_breadcrumbs',
+                            'job_quizzes'
+                        )
+                    );
+                }
+            } else {
+                abort(404);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+    public function editProposal($job_slug)
+    {
+        if (!empty($job_slug)) {
+            $job = Job::all()->where('slug', $job_slug)->first();
+
+            if (Auth::user() && !empty(Auth::user()->id)) {
+                $submitted_proposals_count = DB::table('proposals')
+                    ->where('job_id', $job->id)
+                    ->where('freelancer_id', Auth::user()->id)->first();
+            }
+            
+            $job_quizzes = Job_quiz::where('job_id', $job->id)->get();
+            foreach($job_quizzes as $value)
+            {
+                $quiz = Quiz::find($value->quiz_id);
+                $value->quiz = $quiz->title;
+            }
+            if (!empty($job)) {
+                $job_skills = $job->skills->pluck('id')->toArray();
+                $check_skill_req = $this->proposal->getJobSkillRequirement($job_skills);
+                $proposal_status = Job::find($job->id)->proposals()->where('status', 'hired')->first();
+                $role_id =  Helper::getRoleByUserID(Auth::user()->id);
+                $package = DB::table('items')->where('subscriber', Auth::user()->id)->select('product_id', 'updated_at')->first();
+                if(!$package)
+                {
+                    //dd('no package added');
+                    $json['type'] = 'error';
+                    $json['message'] = trans('lang.no_pkg_found');
+                    return $json;
+                    //return redirect()->back()->with('type', 'error')->with('message', trans('lang.no_pkg_found'));
+                }
+                $package_options = Package::select('options')->where('id', $package->product_id)->get()->first();
+                $options = !empty($package_options) ? unserialize($package_options['options']) : array();
+                $settings = SiteManagement::getMetaValue('settings');
+                $required_connects = !empty($settings) && !empty($settings[0]['connects_per_job']) ? $settings[0]['connects_per_job'] : 2;
+                $remaining_proposals = !empty($options) && !empty($options['no_of_connects']) ? $options['no_of_connects'] / $required_connects : 0;
+                $submitted_proposals = $this->proposal::where('freelancer_id', Auth::user()->id)->where('created_at', '>',  $package->updated_at)->count();
+                $duration =  Helper::getJobDurationList($job->duration);
+                $job_completion_time = Helper::getJobDurationList();
+                $commision_amount = SiteManagement::getMetaValue('commision');
+                $commision = !empty($commision_amount) && !empty($commision_amount[0]["commision"]) ? $commision_amount[0]["commision"] : 0;
+                $currency = SiteManagement::getMetaValue('commision');
+                $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
+                $breadcrumbs_settings = SiteManagement::getMetaValue('show_breadcrumb');
+                $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
+                
+                
+                if (file_exists(resource_path('views/extend/front-end/jobs/eproposal.blade.php'))) {
+                    return View(
+                        'extend.front-end.jobs.proposal',
+                        compact(
+                            'job',
+                            'proposal_status',
+                            'duration',
+                            'job_completion_time',
+                            'commision',
+                            'check_skill_req',
+                            'remaining_proposals',
+                            'submitted_proposals',
+                            'symbol',
+                            'submitted_proposals_count',
+                            'show_breadcrumbs',
+                            'job_quizzes'
+                        )
+                    );
+                } else {
+                    return View(
+                        'front-end.jobs.eproposal',
                         compact(
                             'job',
                             'proposal_status',
@@ -184,6 +285,46 @@ class ProposalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function estore(Request $request)
+    {
+        //dd($request->all());
+        $this->validate(
+            $request,
+            [
+                'amount' => 'required',
+                'completion_time'    => 'required',
+                'description'    => 'required',
+            ]
+        );
+        $job = Job::find($request['id']);
+        if ($job->status != 'posted') {
+            $json['type'] = 'error';
+            $json['message'] = trans('lang.job_not_avail');
+            Session::flash('error', trans('lang.job_not_avail'));
+            return redirect()->back();
+            //return redirect()->back()->with('type', 'error')->with('message', trans('lang.job_not_avail'));
+            //return redirect()->route('editProposal', $job->slug)->with('json', $json);
+            
+        }
+        if (intval($request['amount']) > $job->price) {
+            $json['type'] = 'error';
+            $json['message'] = trans('lang.proposal_exceed');
+            Session::flash('error', trans('lang.proposal_exceed'));
+            return redirect()->back();
+            //return redirect()->back()->with('type', 'error')->with('message', trans('lang.proposal_exceed'));
+            //return redirect()->route('editProposal', $job->slug)->with('json', $json);
+            
+        }
+        $submit_propsal = $this->proposal->updateProposal($request, $request['id']);
+        if ($submit_propsal = 'success') {
+            //$json['type'] = 'success';
+            //$json['message'] = trans('lang.proposal_submitted');
+            Session::flash('message', trans('lang.proposal_submitted'));
+            return redirect()->route('showFreelancerProposals');
+            //showFreelancerProposals
+        }
+
+    }
     public function store(Request $request)
     {
         //dd($request->all());

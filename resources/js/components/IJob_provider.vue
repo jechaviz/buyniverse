@@ -88,7 +88,7 @@
                                                             </li>
                                                         
                                                         
-                                                            <li v-if="freelancer.location"><span><img :src="freelancer.flag" alt="Flag"> {{ freelancer.location_title }}</span></li>
+                                                            <li v-if="freelancer.location"><span><img :src="appurl1+freelancer.flag" alt="Flag"> {{ freelancer.location_title }}</span></li>
                                                         
                                                         
                                                             <li v-cloak>
@@ -162,7 +162,8 @@ export default {
             users: {},
             keyword: '',
             tjob: this.job,
-            appurl: APP_ASSET_URL+"/"
+            appurl: APP_ASSET_URL+"/",
+            appurl1: APP_ASSET_URL+""
 
         
         }

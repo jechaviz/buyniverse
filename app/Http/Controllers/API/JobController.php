@@ -195,7 +195,10 @@ class JobController extends Controller
                 foreach($categories as $cat)
                 {
                     $name = Category::find($cat->category_id);
+                    if($name)
                     $cat->name = $name->title;
+                    else
+                    $cat->name = null;
                 }
 
                 $user->categories = $categories;
@@ -281,7 +284,10 @@ class JobController extends Controller
                 foreach($categories as $cat)
                 {
                     $name = Category::find($cat->category_id);
+                    if($name)
                     $cat->name = $name->title;
+                    else
+                    $cat->name = null;
                 }
 
                 $user->categories = $categories;
@@ -367,7 +373,10 @@ class JobController extends Controller
                 foreach($categories as $cat)
                 {
                     $name = Category::find($cat->category_id);
+                    if($name)
                     $cat->name = $name->title;
+                    else
+                    $cat->name = null;
                 }
 
                 $user->categories = $categories;

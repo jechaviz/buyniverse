@@ -445,6 +445,7 @@ Route::group(
     function () {
         Route::post('proposal/upload-temp-image', 'ProposalController@uploadTempImage');
         Route::get('job/proposal/{job_slug}', 'ProposalController@createProposal')->name('createProposal');
+        Route::get('job/edit-proposal/{job_slug}', 'ProposalController@editProposal')->name('editProposal');
         Route::get('profile/settings/manage-account', 'UserController@accountSettings')->name('manageAccount');
         Route::get('profile/settings/reset-password', 'UserController@resetPassword')->name('resetPassword');
         Route::post('profile/settings/request-password', 'UserController@requestPassword');
@@ -465,6 +466,7 @@ Route::group(
         Route::post('job/add-wishlist', 'JobController@addWishlist');
         Route::get('proposal/{slug}/{status}', 'ProposalController@show');
         Route::post('proposal/download-attachments', 'UserController@downloadAttachments');
+        Route::get('proposal/download-attachments/{id}', 'UserController@downloadAttachment');
         Route::post('proposal/send-message', 'UserController@sendPrivateMessage');
         Route::post('proposal/get-private-messages', 'UserController@getPrivateMessage');
         Route::get('proposal/download/message-attachments/{id}', 'UserController@downloadMessageAttachments');
@@ -519,6 +521,7 @@ Route::post('badge/get-color', 'BadgeController@getBadgeColor');
 Route::get('check-proposal-auth-user', 'PublicController@checkProposalAuth');
 Route::get('check-service-auth-user', 'PublicController@checkServiceAuth');
 Route::post('proposal/submit-proposal', 'ProposalController@store');
+Route::post('proposal/update-proposal', 'ProposalController@estore');
 Route::post('get-freelancer-experiences', 'PublicController@getFreelancerExperience');
 Route::post('get-freelancer-education', 'PublicController@getFreelancerEducation');
 

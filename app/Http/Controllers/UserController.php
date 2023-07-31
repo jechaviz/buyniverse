@@ -930,6 +930,26 @@ class UserController extends Controller
         }
     }
 
+    public function downloadAttachment($freelancer_id, $attachments)
+    {
+        if (!empty($request['attachments'])) {
+            $freelancer_id = $request['freelancer_id'];
+            $path = storage_path() . '/app/uploads/proposals/' . $freelancer_id;
+            if (!file_exists($path)) {
+                File::makeDirectory($path, 0755, true, true);
+            }
+            $zip = new \Madnest\Madzipper\Madzipper;
+            foreach ($request['attachments'] as $attachment) {
+                $zip->make($path . '/attachments.zip')->add($path . '/' . $attachment);
+                $zip->close();
+            }
+            return response()->download(storage_path('app/uploads/proposals/' . $freelancer_id . '/attachments.zip'));
+        } else {
+            Session::flash('error', trans('lang.files_not_found'));
+            return Redirect::back();
+        }
+    }
+
     /**
      * Submit Report
      *

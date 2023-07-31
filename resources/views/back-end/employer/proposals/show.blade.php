@@ -174,7 +174,7 @@
                                                         
                                                         <h2>
                                                             <a href="{{ url('profile/'.$user->slug.'/freelancer') }}">
-                                                                <span><img src="{{{ asset($flag)}}}" alt="Flag"> {{$user_name}} <i class="fa fa-check-circle"></i>
+                                                                <span><img src="/public/{{{ asset($flag)}}}" alt="Flag"> {{$user_name}} <i class="fa fa-check-circle"></i>
                                                                 <br>
                                                                 <span style="font-size: 12px;">{{ $user->profile->tagline }}</span>
                                                             </a>
@@ -273,6 +273,7 @@
                                                 $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                                                 $completion_time = !empty($proposal->completion_time) ? \App\Helper::getJobDurationList($proposal->completion_time) : '';
                                                 $attachments = !empty($proposal->attachments) ? unserialize($proposal->attachments) : '';
+                                                //dd($attachments);
                                                 $attachments_count = 0;
                                                 if (!empty($attachments)){
                                                     $attachments_count = count($attachments);
@@ -292,6 +293,7 @@
                                                 foreach($categories as $cat)
                                                 {
                                                     $name = \App\Category::find($cat->category_id);
+                                                    if($name)
                                                     $cat->name = $name->title;
                                                 }
                                             @endphp
@@ -333,6 +335,22 @@
                                                     @endforeach
                                                 </div>
                                             @endif
+                                            @if (!empty($attachments))
+                                            <br>
+                                                <div class="wt-description">
+                                                    <i class="fa fa-paperclip"></i>
+                                                    {!! Form::open(['url' => url('proposal/download-attachments'), 'class' =>'post-job-form wt-haslayout', 'id' => 'download-attachments-form-'.$user->id]) !!}
+                                                        @foreach ($attachments as $attachment)
+                                                            @if (Storage::disk('local')->exists('uploads/proposals/'.$user->id.'/'.$attachment))
+                                                                {!! Form::hidden('attachments['.$count.']', $attachment, []) !!}
+                                                                @php $count++; @endphp
+                                                            @endif
+                                                        @endforeach
+                                                        {!! Form::hidden('freelancer_id', $user->id, []) !!}
+                                                    {!! form::close(); !!}
+                                                    <a onclick="event.preventDefault(); document.getElementById('download-attachments-form-{{$user->id}}').submit();"><span>{{{ $count }}} {{trans('lang.file_attached')}}</span></a>
+                                                </div>
+                                            @endif
                                             @if($job->quiz == 'yes')
                                                 @if($proposal->quiz_ans == 'true')
                                                     <br>
@@ -366,6 +384,7 @@
                                                 @endif
                                             @endif    
                                             <div class="wt-rightarea" id="hire-now">
+                                                
                                                 @if (empty($accepted_proposal))
                                                     @if (!empty($order))
                                                         @if ($order->product_id == $proposal->id)     
@@ -393,6 +412,7 @@
 
                                                     @endif
                                                 @endif
+
                                             </div>   
                                         </div>
                                         
