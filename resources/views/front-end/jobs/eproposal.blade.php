@@ -162,6 +162,10 @@
                                             {!! Form::textarea('description', $submitted_proposals_count->content, ['class' => 'form-control', 'id' => '', 'placeholder' =>  trans('lang.ph_cover_letter') , 'v-model'=>'proposal.description']) !!}
                                         </div>
                                     </fieldset>
+                                    <div id="answer-home" class="wt-description">
+                                        
+                                        <proposal_file addfile="yes" proposalid="{{$submitted_proposals_count->id}}" jobid="{{$job->id}}" userid="{{Auth::user()->id}}"></proposal_file>
+                                    </div>
                                     <!--<div class="wt-attachments wt-attachmentsvtwo wt-attachmentsholder lara-proposal-attachment">
                                         <div class="lara-attachment-files">
                                             <div class="wt-title">
@@ -186,4 +190,6 @@
             </div>
         </div>
     </div>
+    
+    
 @endsection

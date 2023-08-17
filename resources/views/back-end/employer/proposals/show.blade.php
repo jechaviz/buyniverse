@@ -335,6 +335,11 @@
                                                     @endforeach
                                                 </div>
                                             @endif
+                                            <br>
+                                                <div class="wt-description">
+                                                <proposal_file addfile="no" proposalid="{{$proposal->id}}" jobid="{{$job->id}}" userid="{{$user->id}}"></proposal_file>
+                                                </div>
+                                            <!--
                                             @if (!empty($attachments))
                                             <br>
                                                 <div class="wt-description">
@@ -350,7 +355,8 @@
                                                     {!! form::close(); !!}
                                                     <a onclick="event.preventDefault(); document.getElementById('download-attachments-form-{{$user->id}}').submit();"><span>{{{ $count }}} {{trans('lang.file_attached')}}</span></a>
                                                 </div>
-                                            @endif
+                                            @endif-->
+
                                             @if($job->quiz == 'yes')
                                                 @if($proposal->quiz_ans == 'true')
                                                     <br>

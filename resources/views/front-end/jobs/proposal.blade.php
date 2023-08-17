@@ -168,6 +168,9 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            {!! Form::textarea('fdescription', null, ['class' => 'form-control', 'id' => '', 'placeholder' =>  trans('lang.description') , 'v-model'=>'proposal.fdescription']) !!}
+                                        </div>
                                     </div>
                                     <div class="wt-btnarea">
                                         {!! Form::submit(trans('lang.btn_send'), ['class' => 'wt-btn']) !!}

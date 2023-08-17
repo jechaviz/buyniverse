@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Job_file;
+use App\ProposalFile;
+use App\Proposal;
 use App\User;
 use Storage;
 
@@ -55,6 +57,33 @@ class FilesController extends Controller
 
         return $bytes;
     }
+    public function store1(Request $request)
+    {
+        
+        $file = $request->file('files');
+        $name = $file->getClientOriginalName();
+        $size = $file->getSize();
+        $size_unit = $this->formatSizeUnits($size);
+        $origin = explode('.', $name);
+
+        $proposal = Proposal::where('job_id', $request->job_id)->where('freelancer_id', $request->user_id)->first();
+
+        //$file = $request->file('file');
+        $job_file = new ProposalFile;
+        $job_file->name = $name;
+        $job_file->size = $size_unit;
+        $job_file->description = $request->description;
+        $job_file->proposal_id = $proposal->id;
+        $job_file->file = $origin[0].'_'.$request->job_id.'_'.time().'.'.$file->getClientOriginalExtension(); 
+        $job_file->save();
+        
+        $input['file'] = $job_file->file;
+
+        $destinationPath = public_path('/job_files/'); 
+
+        $file->move($destinationPath, $input['file']);
+    }
+
     public function store(Request $request)
     {
         
@@ -88,6 +117,31 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function pfiles($id)
+    {
+        $files = ProposalFile::where('proposal_id', $id)->get();
+        /*foreach($files as $key => $file)
+        {
+            $user = User::find($file->user_id);
+            
+            $file->user_id = $user->first_name.' '.$user->last_name;
+            
+        }*/
+        return response()->json($files);
+    }
+
+    public function download($id)
+    {
+        //dd('this is the test');
+        
+        $job_file = Job_file::find($id);
+        $fullpath="/job_files/{$job_file->file_id}";
+        //dd($fullpath);
+        return response()->download(public_path($fullpath), null, [], null);
+        //return response()->download(storage_path($fullpath));
+        //return Storage::disk('public')->download($fullpath);
+    }
+
     public function show($id)
     {
         $files = Job_file::where('job_id', $id)->get();
@@ -101,12 +155,12 @@ class FilesController extends Controller
         return response()->json($files);
     }
 
-    public function download($id)
+    public function pdownload($id)
     {
         //dd('this is the test');
         
-        $job_file = Job_file::find($id);
-        $fullpath="/job_files/{$job_file->file_id}";
+        $job_file = ProposalFile::find($id);
+        $fullpath="/job_files/{$job_file->file}";
         //dd($fullpath);
         return response()->download(public_path($fullpath), null, [], null);
         //return response()->download(storage_path($fullpath));

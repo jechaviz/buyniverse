@@ -576,6 +576,11 @@ Route::group(
         Route::resources(['reply_ticket' => 'API\ReplyticketController']);
         Route::resources(['job_file' => 'API\FilesController']);
         Route::get('job_file/download/{id}', 'API\FilesController@download');
+
+        Route::get('proposal_file/{id}', 'API\FilesController@pfiles');
+        Route::post('proposal_file', 'API\FilesController@store1');
+        Route::get('proposal_file/download/{id}', 'API\FilesController@pdownload');
+
         Route::get('job_ticket/download/{id}', 'API\TicketController@download');
         Route::get('job_ticket/teams/{id}', 'API\TicketController@team');
         Route::resources(['contest_proposal' => 'API\Contest_proposalController']);

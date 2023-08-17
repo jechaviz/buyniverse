@@ -102,6 +102,7 @@
 @endsection
 
 @push('scripts')
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="{{ asset('js/jquery.dd.min.js') }}"></script>	
 <script>
 	jQuery('.wt-btndemotoggle').on('click', function() {

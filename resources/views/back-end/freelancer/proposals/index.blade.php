@@ -27,7 +27,7 @@
 								<th>{{ trans('lang.project_name')}}</th>
 								<th>{{ trans('lang.posted_by')}}</th>
 								<th>{{ trans('lang.budget')}}</th>
-                                <th>{{ trans('lang.bid')}}</th>
+                                <th>{{ trans('lang.bid_amount')}}</th>
 								<th>{{ trans('lang.duration')}}</th>							
                                 <th>{{ trans('lang.status')}}</th>
 								<th style="width: 230px;">{{ trans('lang.action')}}</th>

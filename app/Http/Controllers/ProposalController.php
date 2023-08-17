@@ -180,7 +180,7 @@ class ProposalController extends Controller
                     ->where('job_id', $job->id)
                     ->where('freelancer_id', Auth::user()->id)->first();
             }
-            
+            //dd($submitted_proposals_count);
             $job_quizzes = Job_quiz::where('job_id', $job->id)->get();
             foreach($job_quizzes as $value)
             {
@@ -191,6 +191,7 @@ class ProposalController extends Controller
                 $job_skills = $job->skills->pluck('id')->toArray();
                 $check_skill_req = $this->proposal->getJobSkillRequirement($job_skills);
                 $proposal_status = Job::find($job->id)->proposals()->where('status', 'hired')->first();
+                
                 $role_id =  Helper::getRoleByUserID(Auth::user()->id);
                 $package = DB::table('items')->where('subscriber', Auth::user()->id)->select('product_id', 'updated_at')->first();
                 if(!$package)

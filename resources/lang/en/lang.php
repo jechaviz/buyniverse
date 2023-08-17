@@ -1267,6 +1267,7 @@ return [
     'in' => 'In:',
     'drop_files' => 'Drop files here to upload',
     'select_files' => 'Select Files',
+    'select_file' => 'Select File',
     'add_your_awards' => 'Add Your award',
     'add_awards' => '+ Add award',
     'server_error' => 'invalid fields data',

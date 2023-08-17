@@ -1225,6 +1225,7 @@ return [
   'in' => 'En:',
   'drop_files' => 'Arrastra los archivos aquí para subirlos',
   'select_files' => 'Selecciona archivos',
+  'select_file' => 'Seleccione Archivo',
   'add_your_awards' => 'Añade tu premio',
   'add_awards' => '+ Añadir premio',
   'server_error' => 'datos de campos inválidos',
