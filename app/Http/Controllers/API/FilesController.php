@@ -162,7 +162,7 @@ class FilesController extends Controller
         $job_file = ProposalFile::find($id);
         $fullpath="/job_files/{$job_file->file}";
         //dd($fullpath);
-        return response()->download(public_path($fullpath), null, [], null);
+        return response()->download(public_path($fullpath), $job_file->file, [], null);
         //return response()->download(storage_path($fullpath));
         //return Storage::disk('public')->download($fullpath);
     }
