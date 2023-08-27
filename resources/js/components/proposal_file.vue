@@ -23,7 +23,7 @@
                     <td data-th="Action">
                         <span class="bt-content"> 
                             <div class="">
-                            <a @click="getDownload(file)"><button class="btn">{{ trans('lang.download') }}</button></a>
+                            <a @click="getDownload(file)"><button type="button" class="btn">{{ trans('lang.download') }}</button></a>
                             <!--<div class="dropdown">
                                 <button class="btn" style="border-left:1px solid #b4b1b1">
                                     <i class="fa fa-caret-down"></i>
@@ -179,7 +179,7 @@ export default {
                     var fileLink = document.createElement('a');
 
                     fileLink.href = fileURL;
-                    fileLink.setAttribute('download', file.file_id);
+                    fileLink.setAttribute('download', file.file);
                     document.body.appendChild(fileLink);
 
                     fileLink.click();

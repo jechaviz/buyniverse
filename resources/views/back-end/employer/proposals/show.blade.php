@@ -337,7 +337,7 @@
                                             @endif
                                             <br>
                                                 <div class="wt-description">
-                                                <proposal_file addfile="no" proposalid="{{$proposal->id}}" jobid="{{$job->id}}" userid="{{$user->id}}"></proposal_file>
+                                                <proposal_file addfile="no" proposalid="{{$proposal->id}}" jobid="{{$job->id}}" userid="{{$user->id}}"></proposal_file> 
                                                 </div>
                                             <!--
                                             @if (!empty($attachments))
