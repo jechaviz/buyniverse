@@ -114,6 +114,7 @@
                         </div>
                         <div id="menu2" class="tab-pane fade" style="">
                             <job_file jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_file>
+                            
                         </div>
                         <div id="menu3" class="tab-pane fade" style="background-color: #f7f7f7;">
                             <div class="row" style="margin: 0px;">
@@ -125,7 +126,7 @@
                                 </ul>
                             </div>
                             <div class="tab-content">
-                                <div id="proposals" class="tab-pane fade in active">
+                                <div id="proposal" class="tab-pane fade in active">
                                     <div class="">
                                     
 
@@ -337,7 +338,7 @@
                                             @endif
                                             <br>
                                                 <div class="wt-description">
-                                                <proposal_file addfile="no" proposalid="{{$proposal->id}}" jobid="{{$job->id}}" userid="{{$user->id}}"></proposal_file> 
+                                                    <proposal_file addfile="no" proposalid="{{$proposal->id}}" jobid="{{$job->id}}" userid="{{$user->id}}"></proposal_file> 
                                                 </div>
                                             <!--
                                             @if (!empty($attachments))
@@ -495,13 +496,13 @@
                         @if($role != 'admin')
                         <div id="menu6" class="tab-pane fade" style="">
                         <div>                            
-                            <message-center1 id="message-start"
+                            <!--<message-center1 id="message-start"
                                 
                                 :empty_field="'{{ trans('lang.empty_field') }}'" 
                                 :host="'{{!empty($chat_settings['host']) ? $chat_settings['host'] : ''}}'" 
                                 :port="'{{!empty($chat_settings['port']) ? $chat_settings['port'] : ''}}'"
                                 chat="{{$job->id}}">
-                            </message-center1>
+                            </message-center1>-->
                         </div>
                         
                         </div>
@@ -626,14 +627,14 @@ if(window.location.hash != "") {
 });
     </script>   
     <script>
-    document.getElementById("add_providers").addEventListener("click", function(event){
+    /*document.getElementById("add_providers").addEventListener("click", function(event){
         console.log('add_providers');
         $('#sproposals').removeClass('active');
         $('#proposals').removeClass('show active in');
         $('#sproviders').addClass('active');
         $('#proposals').removeClass('in active');
         $('#providers').addClass('in active');
-    });
+    });*/
 
 </script> 
 @endpush

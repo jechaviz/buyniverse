@@ -396,6 +396,8 @@
                         <input type="number" class="form-control form-control-sm " name="editjobhour" autocomplete="off" :value="job1.hour" v-on:change="updatejobhour">
                     </div>
                   </span>
+                  
+
 
 
                   

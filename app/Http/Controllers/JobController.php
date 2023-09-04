@@ -904,7 +904,7 @@ class JobController extends Controller
     }
     public function store1(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         /*$link = '<a href="http://worketic.apnahive.com/job/one">Link</a>';
         $messagex = str_replace('{Link}', $link, $request->email_text);
         $message1 = str_replace(array("\r","\n",'\r','\n'), "<br>", $messagex);
@@ -1208,7 +1208,7 @@ class JobController extends Controller
                                 {
                                     //Mail::to($email)->send(new InviteFreelancer($user, $job->slug));
                                     $name = $user->first_name.' '.$user->last_name;
-                                    $link = '<a href="http://worketic.apnahive.com/job/'. $job->slug .'">Link</a>';
+                                    $link = '<a href="http://buyniverse.com/job/'. $job->slug .'">Link</a>';
                                     $messagex = str_replace('{name}', $name, $request->email_text);
                                     $messagex = str_replace('{Link}', $link, $messagex);
                                     $message1 = str_replace(array("\r","\n",'\r','\n'), "<br>", $messagex);

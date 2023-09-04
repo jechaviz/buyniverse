@@ -13,9 +13,9 @@ export default {
     }
   },
   props: {
-      userid: String, 
+      userid: Number, 
       jobid: String,
-      invitation: String
+      invitation: Boolean
   },
   methods: {
         

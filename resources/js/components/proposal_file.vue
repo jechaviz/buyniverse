@@ -1,7 +1,7 @@
 <template>
     
     <div>
-        <i class="fa fa-paperclip" @click="pshowrow(form.user_id)"></i>
+        <i class="fa fa-paperclip" @click="pfshowrow(form.user_id)"></i>
         <div :class="'prow-' + form.user_id" class="btn hidden" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;" v-if="add_file == 'yes'"><button type="button" @click="newfile" class="wt-btn"> {{ trans('lang.add_files') }}</button></div>
         
         <table :class="'prow-' + form.user_id" class="hidden wt-tablecategories" v-if="proposal_files.length > 0">
@@ -114,7 +114,7 @@ export default {
             user_id : this.userid,
             
         }),
-        role : '',
+        //role : '',
         filename : '',
         wcreate: true,
         add_file: this.addfile
@@ -130,7 +130,7 @@ export default {
       addfile: String
   },
   methods: {
-        pshowrow(id) {
+        pfshowrow(id) {
             var clas = 'prow-' + id;
             console.log(clas);
             if ($('.' + clas).hasClass("hidden")) {
@@ -159,14 +159,15 @@ export default {
             
             axios.get(APP_URL + '/api/proposal_file/' + this.proposalid).then(function (response) {
                 self.proposal_files = response.data;
+                console.log(response.data);
             });          
         },
-        loadRole() {
+        /*loadRole() {
             let self = this;            
             axios.get(APP_URL + '/api/user/role/' + this.userid).then(function (response) {
                 self.role = response.data;
             });
-        },
+        },*/
         getDownload(file) {
             //console.log(file);
             
@@ -250,7 +251,7 @@ export default {
 
   },
     mounted: function() {
-        this.loadRole();
+        //this.loadRole();
         this.loadFiles();
         Fire.$on('AfterCreate', () => {
             this.loadFiles();

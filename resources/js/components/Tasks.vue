@@ -55,9 +55,9 @@
 
             </div>
             <div class="col-6 x-assigned"> 
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
                         </div>
         </div>
     </div>
@@ -117,9 +117,9 @@
 
             </div>
             <div class="col-6 x-assigned">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
                         </div>
         </div>
     </div>
@@ -178,9 +178,9 @@
 
             </div>
             <div class="col-6 x-assigned">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
                         </div>
         </div>
     </div>
@@ -240,9 +240,9 @@
 
             </div>
             <div class="col-6 x-assigned">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
                         </div>
         </div>
     </div>
@@ -300,9 +300,9 @@
 
             </div>
             <div class="col-6 x-assigned">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
                         </div>
         </div>
     </div>
@@ -395,9 +395,9 @@
                 </div>
                 <span id="task-assigned-container" class="">
                     <!--user-->
-        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel"></span>
-        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus"></span>
-        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://worketic.apnahive.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique"></span>
+        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel"></span>
+        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus"></span>
+        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique"></span>
                 </span>
                 <!--user-->
                     </div>
@@ -656,21 +656,21 @@
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" name="assigned[4]" class="custom-control-input">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description"><img src="http://worketic.apnahive.com/public/images/user.jpg" class="img-circle avatar-xsmall"> Gabriel Luna</span>
+                        <span class="custom-control-description"><img src="http://buyniverse.com/public/images/user.jpg" class="img-circle avatar-xsmall"> Gabriel Luna</span>
                     </label>
                 </div>
                         <div class="form-check m-b-15">
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" name="assigned[3]" class="custom-control-input">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description"><img src="http://worketic.apnahive.com/public/images/user.jpg" class="img-circle avatar-xsmall"> Jesus Chavez</span>
+                        <span class="custom-control-description"><img src="http://buyniverse.com/public/images/user.jpg" class="img-circle avatar-xsmall"> Jesus Chavez</span>
                     </label>
                 </div>
                         <div class="form-check m-b-15">
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" name="assigned[5]" class="custom-control-input">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description"><img src="http://worketic.apnahive.com/public/images/user.jpg" class="img-circle avatar-xsmall"> Sadique Ali</span>
+                        <span class="custom-control-description"><img src="http://buyniverse.com/public/images/user.jpg" class="img-circle avatar-xsmall"> Sadique Ali</span>
                     </label>
                 </div>
                         <div class="form-group text-right">
