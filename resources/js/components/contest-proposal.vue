@@ -911,7 +911,7 @@ export default {
             var startdate = this.form.start_date; 
             var enddate = moment(startdate).add(1, 'hours').format('YYYY-MM-DDThh:mm');
             this.form.end_date = enddate;
-            console.log(this.form.end_date);
+            //console.log(this.form.end_date);
         },
         start(id) {
             if(id)
@@ -1022,8 +1022,9 @@ export default {
         },
         loadcontest() {
             let self = this;
-            axios.get(APP_URL + '/api/contest_proposal/hascontest/' + this.jobid).then(function (response) {                
-                
+            axios.get(APP_URL + '/api/contest_proposal/hascontest/' + this.jobid).then(function (response) { 
+                //console.log('contest loaded');               
+                //console.log(response.data);
                 if(response.data)
                 {   
                     self.hasContest = true;
@@ -1145,6 +1146,14 @@ export default {
                     }
 
                     
+                }
+                else
+                {
+                    var now =moment().format('YYYY-MM-DDThh:mm');
+                    //console.log(now);
+                    self.form.start_date = now; 
+                    var enddate = moment(now).add(1, 'hours').format('YYYY-MM-DDThh:mm');
+                    self.form.end_date = enddate;
                 }
                 
                 

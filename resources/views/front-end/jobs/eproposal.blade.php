@@ -72,7 +72,7 @@
                                     @if (!empty($job->price))
                                         <li>
                                             <span>
-                                                <i class="wt-viewjobdollar">{{ Helper::getCurrencySymbol($job->currency) }}</i> {{{ $job->price }}}
+                                                <i class="wt-viewjobdollar">{{ Helper::getCurrencySymbol($job->currency) }}</i> {{{ number_format($job->price) }}}
                                             </span>
                                         </li>
                                     @endif

@@ -580,6 +580,7 @@ Route::group(
         Route::get('proposal_file/{id}', 'API\FilesController@pfiles');
         Route::post('proposal_file', 'API\FilesController@store1');
         Route::get('proposal_file/download/{id}', 'API\FilesController@pdownload');
+        Route::delete('dproposal_file/{id}', 'API\FilesController@dfiles');
 
         Route::get('job_ticket/download/{id}', 'API\TicketController@download');
         Route::get('job_ticket/teams/{id}', 'API\TicketController@team');

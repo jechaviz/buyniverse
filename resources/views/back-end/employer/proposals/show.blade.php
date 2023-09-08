@@ -187,7 +187,7 @@
                                                     </ul>
                                                 </div> 
                                                 <div class="wt-rightarea">
-                                                    {{ Helper::getCurrencySymbol($job->currency) }} {{{ $accepted_proposal->amount }}}
+                                                    {{ Helper::getCurrencySymbol($job->currency) }} {{{ number_format($accepted_proposal->amount) }}}
                                                     <br>
                                                     {{ trans('lang.awarded') }}
                                                     
@@ -322,7 +322,7 @@
                                                     </ul>
                                                 </div> 
                                                 <div class="wt-rightarea">
-                                                    {{ Helper::getCurrencySymbol($job->currency) }} {{{ $proposal->amount }}}
+                                                    {{ Helper::getCurrencySymbol($job->currency) }} {{{ number_format($proposal->amount) }}}
                                                     
                                                 </div>
                                             </div> 

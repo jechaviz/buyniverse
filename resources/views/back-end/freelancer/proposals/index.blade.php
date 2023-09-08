@@ -55,7 +55,7 @@
                                         &nbsp;{{{ $user_name }}}</a>
                                     @endif
                                 </td>
-                                <td>{{ $proposal->job->price }}</td>
+                                <td><i class="wt-viewjobdollar">{{ Helper::getCurrencySymbol($proposal->job->currency) }}</i> {{ number_format($proposal->job->price) }}</td>
                                 <td>{{ $freelancer_proposal->amount }}</td>
                                 <td>
                                     @foreach($project_duration as $key => $value)

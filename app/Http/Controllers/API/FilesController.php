@@ -167,6 +167,12 @@ class FilesController extends Controller
         //return Storage::disk('public')->download($fullpath);
     }
 
+    public function dfiles($id)
+    {
+        $job_file = ProposalFile::find($id);
+        $job_file->delete();
+    }
+
     /**
      * Update the specified resource in storage.
      *

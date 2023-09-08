@@ -24,14 +24,15 @@
                         <span class="bt-content"> 
                             <div class="">
                             <a @click="getDownload(file)"><button type="button" class="btn">{{ trans('lang.download') }}</button></a>
-                            <!--<div class="dropdown">
+
+                            <div class="dropdown" v-if="add_file == 'yes'">
                                 <button class="btn" style="border-left:1px solid #b4b1b1">
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
                                     <a @click="deletefile(file.id)">{{ trans('lang.delete') }}</a>											
                                 </div>
-                            </div>-->
+                            </div>
                                 <!--<a class="wt-addinfo wt-skillsaddinfo" @click="getDownload(file)"><i class="fas fa-eye"></i></a>
                                 <a href="javascript:void(0);" class="wt-deleteinfo"><i class="fa fa-times"></i></a>-->
                             </div>
@@ -159,7 +160,7 @@ export default {
             
             axios.get(APP_URL + '/api/proposal_file/' + this.proposalid).then(function (response) {
                 self.proposal_files = response.data;
-                console.log(response.data);
+                //console.log(response.data);
             });          
         },
         /*loadRole() {
@@ -192,7 +193,7 @@ export default {
         },
         deletefile(id)
         {
-            /*swal.fire({
+            swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             type: 'warning',
@@ -206,7 +207,7 @@ export default {
             {
                 //server request
                 console.log('delete is confirmed');
-                this.form.delete(APP_URL + '/api/proposal_file/'+id).then(() => {
+                this.form.delete(APP_URL + '/api/dproposal_file/'+id).then(() => {
                     swal.fire(
                     'Deleted!',
                     'Your File has been deleted.',
@@ -217,7 +218,7 @@ export default {
                     swal("Failed", "There is something wrong.", "warning");
                 })
             }
-            })*/
+            })
         },
         CreateFile() {
             console.log(this.form);
