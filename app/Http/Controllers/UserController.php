@@ -1733,7 +1733,7 @@ class UserController extends Controller
                         $template_data = Helper::getFreelancerNewOrderEmailContent();
                         $email_params['title'] = $service->title;
                         $email_params['service_link'] = url('service/' . $service->slug);
-                        $email_params['amount'] = $service->price;
+                        $email_params['amount'] = number_format($service->price);
                         $email_params['freelancer_name'] = Helper::getUserName($service->seller[0]->id);
                         $email_params['employer_profile'] = url('profile/' . $user->slug);
                         $email_params['employer_name'] = Helper::getUserName($user->id);

@@ -417,7 +417,7 @@ class ProposalController extends Controller
                                         $email_params['freelancer_profile'] = url('profile/' . $user->slug);
                                         $email_params['title'] = $job->title;
                                         $email_params['link'] = url('job/' . $job->slug);
-                                        $email_params['amount'] = $request['amount'];
+                                        $email_params['amount'] = number_format($request['amount']);
                                         $email_params['duration'] = Helper::getJobDurationList($request['completion_time']);
                                         $email_params['message'] = $request['description'];
                                         Mail::to($job->employer->email)
@@ -474,7 +474,7 @@ class ProposalController extends Controller
                                     $email_params['freelancer_profile'] = url('profile/' . $user->slug);
                                     $email_params['title'] = $job->title;
                                     $email_params['link'] = url('job/' . $job->slug);
-                                    $email_params['amount'] = $request['amount'];
+                                    $email_params['amount'] = number_format($request['amount']);
                                     $email_params['duration'] = Helper::getJobDurationList($request['completion_time']);
                                     $email_params['message'] = $request['description'];
                                     Mail::to($job->employer->email)
