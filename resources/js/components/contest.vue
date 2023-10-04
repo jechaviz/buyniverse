@@ -2,7 +2,7 @@
     <div class="wt-dashboardboxcontent wt-jobdetailsholder">
         <table class="wt-tablecategories no-border">
             <thead>
-                <tr>{{ trans('lang.timer') }} : <span v-if="contest.status == 'close'">Contest is Over</span><span v-else-if="!contest.result">Contest will begin shortly</span><span v-else>{{ distance*10 }}</span></tr>
+                <tr>{{ trans('lang.timer') }} : <span v-if="contest.status == 'close'">Contest is Over</span><span v-else-if="!contest.result">Contest will begin shortly</span><span v-else>{{ distance*10 }} seconds</span></tr>
                 <tr>
                     <th>{{ trans('lang.name') }}</th> 
                     <th>{{ trans('lang.bid_amount') }}</th>

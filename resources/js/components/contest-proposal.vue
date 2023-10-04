@@ -61,10 +61,15 @@
                         <input type="radio" id="automatic_offer_choice2" name="automatic_offer_choice" v-model="form.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="amount">
                         <label for="automatic_offer_choice2">{{ trans('lang.automatic_offer_choice2') }}</label>
                     </div>
+                    <div class="wt-tabscontenttitle" style="padding-left: 0px;margin-bottom: 0px;">
+                        <h2>{{ trans('lang.amount_for_automatic_bid') }}</h2>
+                    </div>
                     <div class="form-group" style="display:flex;">
                         <input type="text" id="automatic_offer_value" name="automatic_offer_value" v-model="form.automatic_offer_value" class="form-control" placeholder="Enter Percentage/Amount for automatic bid">                                        
                     </div>
-                    
+                    <div class="wt-tabscontenttitle" style="padding-left: 0px;margin-bottom: 0px;">
+                        <h2>{{ trans('lang.no_of_provider_allowed') }}</h2>
+                    </div>
                     <div class="form-group" style="display:flex;margin-top: 20px;">
                         <input type="text" id="awarded_allowed" name="awarded_allowed" v-model="form.awarded_allowed" class="form-control" placeholder="Number of Provider Award allowed">                         
                     </div>

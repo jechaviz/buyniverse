@@ -1696,6 +1696,9 @@ return [
   'cat_icon_desc' => 'El archivo seleccionado se utilizará como icono para la categoría.',
   'visibility' => 'Visibilidad',
 
+  'no_of_provider_allowed' => 'Número de premios de proveedor permitidos',
+  'amount_for_automatic_bid' => 'Ingrese el porcentaje/monto para la oferta automática',
+
   'employee_list' => [
     'just_me' => 'Sólo yo',
     '2_9' => '2 - 9 empleados',

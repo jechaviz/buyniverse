@@ -1735,7 +1735,8 @@ return [
     'scope' => 'Scope',
     'cat_icon_desc' => 'The selected file will be used as icon for the category',
     'visibility' => 'Visibility',
-
+    'no_of_provider_allowed' => 'Number of Provider Award allowed',
+    'amount_for_automatic_bid' => 'Enter Percentage/Amount for automatic bid',
 
     'employee_list' => [
         'just_me' => 'Its Just Me',
