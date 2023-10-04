@@ -65,7 +65,8 @@
                         <i class="fa fa-trophy" aria-hidden="true"></i>
                     </div>
                     <div class="md-10" style="margin-left: 15px;">
-                        <h2> {{{ $job->title }}}</h2>
+                        <!--<h2> {{{ $job->title }}}</h2>-->
+                        <job_title jobid="{{$job->id}}"></job_title>
                         
                         <h4>{{ trans('lang.project_id') }} : # {{{ $job->id }}}</h4>
                     </div>

@@ -195,14 +195,15 @@ class ContestController extends Controller
         $start = Carbon::parse($contest->start_date);
         
         $result = $now->lt($start);
+        
         $contest->result = $result;
         $contest->participants = $participant;
-        
+        //dd($contest);
         return response()->json($contest);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

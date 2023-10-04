@@ -46,6 +46,23 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function jobtitle($id)
+    {
+        $job = Job::find($id);
+        $idu = Auth::user()->id;
+        $data['title'] = $job->title;
+        $data['canedit'] = ($job->user_id == $idu) ? true : false;        
+        return $data;
+    }
+    public function postjobtitle(Request $request)
+    {
+        //dd($request->all());
+        $job = Job::find($request->job_id);
+        $job->title = $request->title;
+        $job->save();
+        
+    }
+
     public function sendinvitation($id)
     {
         $ids = explode('-', $id);

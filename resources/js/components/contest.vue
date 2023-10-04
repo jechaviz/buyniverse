@@ -2,7 +2,7 @@
     <div class="wt-dashboardboxcontent wt-jobdetailsholder">
         <table class="wt-tablecategories no-border">
             <thead>
-                <tr>{{ trans('lang.timer') }} : <span v-if="contest.status == 'close'">Contest is Over</span><span v-else-if="contest.result">Contest will begin shortly</span><span v-else>{{ distance*10 }}</span></tr>
+                <tr>{{ trans('lang.timer') }} : <span v-if="contest.status == 'close'">Contest is Over</span><span v-else-if="!contest.result">Contest will begin shortly</span><span v-else>{{ distance*10 }}</span></tr>
                 <tr>
                     <th>{{ trans('lang.name') }}</th> 
                     <th>{{ trans('lang.bid_amount') }}</th>
@@ -65,7 +65,7 @@ export default {
                 //console.log(self.contest.status, self.contest.status == 'close');
                 if(self.contest.status == 'close')
                     self.distance = 0;
-                else if(self.contest.result)
+                else if(!self.contest.result)
                     self.distance = 'Contest Will start Shortly';
                 else
                     self.distance = response.data.time_limit*6;
@@ -85,7 +85,7 @@ export default {
                 //console.log(self.contest.status, self.contest.status == 'close');
                 if(self.contest.status == 'close')
                     self.distance = 0;
-                else if(self.contest.result)
+                else if(!self.contest.result)
                     self.distance = 'Contest Will start Shortly';
                 else
                     self.distance = response.data.time_limit*6;

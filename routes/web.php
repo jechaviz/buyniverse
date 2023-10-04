@@ -547,6 +547,8 @@ Route::group(
     ['prefix' => 'api', 'middleware' => ['role:employer|freelancer|admin']],
     function () {
         Route::resources(['job_overview' => 'API\JobController']);
+        Route::get('jobtitle/{id}', 'API\JobController@jobtitle');
+        Route::post('postjobtitle', 'API\JobController@postjobtitle');
         Route::resources(['tasks' => 'API\TaskController']);
         Route::resources(['aquiz' => 'API\QuizController']);
         Route::get('aquiz/selectall/{id}', 'API\QuizController@selectall');

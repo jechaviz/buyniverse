@@ -35,14 +35,14 @@
                                         <ul>
                                             <li><span><i class="far fa-money-bill-alt"></i>{{freelancer.symbol}}{{freelancer.hourly_rate}} / hr</span></li>
                                             <li><span><em><img :src="baseUrl+freelancer.flag" alt="img description"></em>{{freelancer.location}}</span></li>
-                                            <li v-if="freelancer.save_freelancers.includes(freelancer.id)" class="wt-btndisbaled">
+                                            <!--<li v-if="freelancer.save_freelancers.includes(freelancer.id)" class="wt-btndisbaled">
                                                 <a href="javascript:void(0);" class="wt-clicksave"><i class="fa fa-heart"></i>{{ trans('lang.saved') }}</a>
                                             </li>
                                             <li v-else>
                                                 <a href="javascrip:void(0);" class="wt-clicklike" :id="'freelancer-'+freelancer.id" @click.prevent="add_wishlist('freelancer-'+freelancer.id, freelancer.id, 'saved_freelancer')">
                                                     <i class="fa fa-heart"></i><span class="save_text">{{trans("lang.click_to_save")}}</span>
                                                 </a>
-                                            </li>
+                                            </li>-->
 
                                             <li>
                                                 <a href="javascript:void(0);" class="wt-freestars"><i class="fas fa-star"> </i>{{freelancer.average_rating_count}}{{ trans('lang.5') }} <em> ({{freelancer.total_reviews}} {{ trans('lang.feedbacks') }})</em></a>

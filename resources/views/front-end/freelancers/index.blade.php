@@ -244,19 +244,19 @@
                                                             <li><span><img src="{{{ asset($flag)}}}" alt="Flag"> {{{ !empty($freelancer->location->title) ? $freelancer->location->title : '' }}}</span></li>
                                                         @endif
                                                         @if (in_array($freelancer->id, $save_freelancer))
-                                                            <li class="wt-btndisbaled">
+                                                            <!--<li class="wt-btndisbaled">
                                                                 <a href="javascrip:void(0);" class="wt-clicksave wt-clicksave">
                                                                     <i class="fa fa-heart"></i>
                                                                     {{{ trans('lang.saved') }}}
                                                                 </a>
-                                                            </li>
+                                                            </li>-->
                                                         @else
-                                                            <li v-cloak>
+                                                            <!--<li v-cloak>
                                                                 <a href="javascrip:void(0);" class="wt-clicklike" id="freelancer-{{$freelancer->id}}" @click.prevent="add_wishlist('freelancer-{{$freelancer->id}}', {{$freelancer->id}}, 'saved_freelancer', '{{trans("lang.saved")}}')">
                                                                     <i class="fa fa-heart"></i>
                                                                     <span class="save_text">{{ trans('lang.click_to_save') }}</span>
                                                                 </a>
-                                                            </li>
+                                                            </li>-->
                                                         @endif
                                                     </ul>
                                                 </div>

@@ -82,21 +82,21 @@
                                             </li>
                                         @endif
                                         @if (in_array($profile->id, $save_freelancer))
-                                            <li class="wt-btndisbaled">
+                                            <!--<li class="wt-btndisbaled">
                                                 <a href="javascrip:void(0);" class="wt-clicksave wt-clicksave">
                                                     <i class="fa fa-heart"></i>
                                                     {{ trans('lang.saved') }}
                                                 </a>
                                                 
-                                            </li>
+                                            </li>-->
                                         @else
-                                            <li v-bind:class="disable_btn" v-cloak>
+                                            <!--<li v-bind:class="disable_btn" v-cloak>
                                                 <a href="javascrip:void(0);" v-bind:class="click_to_save" id="freelancer-{{$profile->id}}" @click.prevent="add_wishlist('freelancer'-{{$profile->id}}, {{$profile->id}}, 'saved_freelancer', '{{trans("lang.saved")}}')" v-cloak>
                                                     <i v-bind:class="saved_class"></i>
                                                     @{{ text }}
                                                 </a>
                                                 
-                                            </li>
+                                            </li>-->
                                         @endif
                                     </ul>
                                     @if (!empty($profile->description))

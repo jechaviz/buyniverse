@@ -90,12 +90,12 @@
                                                             <li v-if="freelancer.location"><span><img :src="appurl1+freelancer.flag" alt="Flag"> {{ freelancer.location_title }}</span></li>
                                                         
                                                         
-                                                            <li v-cloak>
+                                                            <!--<li v-cloak>
                                                                 <a href="javascrip:void(0);" class="wt-clicklike" :id="'freelancer-' + freelancer.id" @click.prevent="add_wishlist('freelancer-' + freelancer.id,  freelancer.id, 'saved_freelancer', trans('lang.saved'))">
                                                                     <i class="fa fa-heart"></i>
                                                                     <span class="save_text">{{ trans('lang.click_to_save') }}</span>
                                                                 </a>
-                                                            </li>
+                                                            </li>-->
                                                         
                                                     </ul>
                                                 </div>

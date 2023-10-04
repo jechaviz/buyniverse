@@ -184,6 +184,7 @@ Vue.component('job_file', require('./components/job_file.vue').default);
 Vue.component('proposal_file', require('./components/proposal_file.vue').default);
 Vue.component('job_note', require('./components/job_note.vue').default);
 Vue.component('job_ticket', require('./components/job_ticket.vue').default);
+Vue.component('job_title', require('./components/job_title.vue').default);
 Vue.component('joboverview', require('./components/joboverview.vue').default);
 Vue.component('jobshow', require('./components/jobshow.vue').default);
 Vue.component('gmap', require('./components/gmap.vue').default);
