@@ -121,7 +121,7 @@
                     <div class="md-10" style="margin-left: 15px;">
                         <h2> {{{ $job->title }}}</h2>
                         
-                        <h4>{{ trans('lang.project_id')}} : # {{{ $job->id }}}</h4>
+                        <h4>{{ trans('lang.project_id')}} : # {{{ $job->id }}} </h4>
                     </div>
                 </div>
                 

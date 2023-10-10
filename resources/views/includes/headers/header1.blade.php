@@ -208,6 +208,7 @@
                                             <li><a href="{{{ route('freelancerJobs') }}}">{{ trans('lang.manage_job') }}</a></li>
                                             <li><a href="{{url('search-results?type=job')}}">{{ trans('lang.findjobs') }}</a></li>
                                             <li><a href="{{route('showFreelancerProposals')}}">{{ trans('lang.all_proposals') }}</a></li>
+                                            <li><a href="{{route('fteam.index')}}">{{ trans('lang.team')}}</a></li>
                                         </ul>
                                     </li> 
 
