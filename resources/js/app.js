@@ -187,7 +187,7 @@ Vue.component('job_ticket', require('./components/job_ticket.vue').default);
 Vue.component('job_title', require('./components/job_title.vue').default);
 Vue.component('joboverview', require('./components/joboverview.vue').default);
 Vue.component('jobshow', require('./components/jobshow.vue').default);
-Vue.component('gmap', require('./components/gmap.vue').default);
+//Vue.component('gmap', require('./components/gmap.vue').default);
 Vue.component('sendinvite', require('./components/sendinvite.vue').default);
 Vue.component('sendinvitation', require('./components/Sendinvitation.vue').default);
 Vue.component('job_provider', require('./components/Job_provider.vue').default);
@@ -231,12 +231,12 @@ if (document.getElementById("contest-home")) {
         //router
     });
 }
-if (document.getElementById("gmap")) {
+/*if (document.getElementById("gmap")) {
     const app = new Vue({
         el: '#gmap',
         //router
     });
-}
+}*/
 if (document.getElementById("hire-now")) {
     const app = new Vue({
         el: '#hire-now',

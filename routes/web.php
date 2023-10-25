@@ -46,13 +46,16 @@ if (empty(Request::segment(1))) {
         }
     }
 }
+else
+{
+    Route::get(
+        '/home',
+        function () {
+            return Redirect::to('/');
+        }
+    )->name('home');
+}
 
-Route::get(
-    '/home',
-    function () {
-        return Redirect::to('/');
-    }
-)->name('home');
 
 Route::get('uploadcurrency', 'HomeController@upload');
 Route::get('articles/{category?}', 'ArticleController@articlesList')->name('articlesList');
@@ -206,7 +209,7 @@ Route::group(
         Route::post('admin/store/commision-settings', 'SiteManagementController@storeCommisionSettings');
         Route::post('admin/store/payment-settings', 'SiteManagementController@storePaymentSettings');
         Route::post('admin/store/stripe-payment-settings', 'SiteManagementController@storeStripeSettings');
-        Route::get('admin/email-templates', 'EmailTemplateController@index')->name('emailTemplates');
+        Route::get('admin/email-templates', 'EmailTemplateController@index')->name('emailTemplate');
         Route::get('admin/email-templates/filter-templates', 'EmailTemplateController@index')->name('emailTemplates');
         Route::get('admin/email-templates/{id}', 'EmailTemplateController@edit')->name('editEmailTemplates');
         Route::post('admin/email-templates/update-content', 'EmailTemplateController@updateTemplateContent');
@@ -318,8 +321,8 @@ Route::group(
         Route::resource('admin/sub-skills', 'Sub_skillController');
         
         Route::resource('admin/sub-category', 'Sub_categoryController');
-        Route::resource('employer/sub-category', 'Esub_categoryController');
-        Route::resource('employer/sub-skills', 'Esub_skillController');
+        Route::resource('employer/esub-category', 'Esub_categoryController');
+        Route::resource('employer/esub-skills', 'Esub_skillController');
 
         // Skill Routes
         Route::get('admin/skills', 'SkillController@index')->name('skills');
@@ -506,7 +509,7 @@ Route::get('search/get-search-filters', 'PublicController@getFilterlist');
 Route::get('search/get-price-limit', 'PublicController@getPriceLimit');
 Route::post('search/get-searchable-data', 'PublicController@getSearchableData');
 Route::post('search/get-searchable-data-v2', 'PublicController@getSearchableDataV2');
-Route::get('channels/{channel}/messages', 'MessageController@index')->name('message');
+Route::get('channels/{channel}/messages', 'MessageController@index')->name('cmessage');
 Route::post('channels/{channel}/messages', 'MessageController@store');
 Route::post('message/send-private-message', 'MessageController@store');
 Route::get('message-center', 'MessageController@index')->name('message');

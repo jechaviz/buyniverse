@@ -48,7 +48,7 @@
 @push('scripts')
     <script src="{{ asset('js/chosen.jquery.js') }}"></script>
     <script src="{{ asset('js/jquery.basictable.min.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script>
         jQuery('.chosen-select').chosen();
         jQuery('.wt-tablecategories').basictable({
