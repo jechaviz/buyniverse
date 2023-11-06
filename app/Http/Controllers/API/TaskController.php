@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Tasks;
+use App\Job;
+use App\Fteam;
 
 class TaskController extends Controller
 {
@@ -48,7 +50,8 @@ class TaskController extends Controller
             'status' => "0",
             'milestone' => "0",
             'created_by' => $request->user_id,
-            'job_id' => $request->job_id           
+            'job_id' => $request->job_id,
+            'assign' => $request->assign        
         ]);
     }
 
@@ -107,13 +110,29 @@ class TaskController extends Controller
         $task->save(); 
     }
     public function show($id)
-    {   
+    {  
+        $job = Job::find($id);
+        $hired = 0;
+        foreach($job->proposals as $proposal)
+        {
+            if($proposal->status == "hired")
+            $hired = $proposal->freelancer_id;
+        }
+        if($hired != 0)
+        {
+            $teams = Fteam::where('user_id', $hired)->get();
+        }
+        else
+            $teams = null;
+        //dd($job->proposals, $hired); 
+        
         //return Tasks::where('job_id', $id)->orderBy('created_at', 'desc')->get();
         $tasks[0] = Tasks::where('job_id', $id)->where('status', 0)->latest()->get();
         $tasks[1] = Tasks::where('job_id', $id)->where('status', 1)->latest()->get();
         $tasks[2] = Tasks::where('job_id', $id)->where('status', 2)->latest()->get();
         $tasks[3] = Tasks::where('job_id', $id)->where('status', 3)->latest()->get();
         $tasks[4] = Tasks::where('job_id', $id)->where('status', 4)->latest()->get();
+        $tasks[5] = $teams;
         return response()->json($tasks);
     }
 

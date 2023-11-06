@@ -55,9 +55,7 @@
 
             </div>
             <div class="col-6 x-assigned"> 
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" :title="getassign(task0.assign)" data-placement="top" :alt="getassign(task0.assign)" class="img-circle avatar-xsmall" :data-original-title="getassign(task0.assign)">
                         </div>
         </div>
     </div>
@@ -116,11 +114,9 @@
                 <span class="x-icon text-danger hidden-forced" id="card-task-timer-3"><i class="mdi mdi-timer"></i></span>
 
             </div>
-            <div class="col-6 x-assigned">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
-                        </div>
+            <div class="col-6 x-assigned">                            
+                <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" :title="getassign(task1.assign)" data-placement="top" :alt="getassign(task1.assign)" class="img-circle avatar-xsmall" :data-original-title="getassign(task1.assign)">
+            </div>
         </div>
     </div>
                 </div>
@@ -177,10 +173,8 @@
                 <span class="x-icon text-danger hidden-forced" id="card-task-timer-3"><i class="mdi mdi-timer"></i></span>
 
             </div>
-            <div class="col-6 x-assigned">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+            <div class="col-6 x-assigned">                            
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" :title="getassign(task2.assign)" data-placement="top" :alt="getassign(task2.assign)" class="img-circle avatar-xsmall" :data-original-title="getassign(task2.assign)">
                         </div>
         </div>
     </div>
@@ -240,9 +234,7 @@
 
             </div>
             <div class="col-6 x-assigned">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" :title="getassign(task3.assign)" data-placement="top" :alt="getassign(task3.assign)" class="img-circle avatar-xsmall" :data-original-title="getassign(task3.assign)">
                         </div>
         </div>
     </div>
@@ -299,10 +291,8 @@
                 <span class="x-icon text-danger hidden-forced" id="card-task-timer-3"><i class="mdi mdi-timer"></i></span>
 
             </div>
-            <div class="col-6 x-assigned">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel">
-                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique">
+            <div class="col-6 x-assigned">                            
+                            <img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" :title="getassign(task4.assign)" data-placement="top" :alt="getassign(task4.assign)" class="img-circle avatar-xsmall" :data-original-title="getassign(task4.assign)">
                         </div>
         </div>
     </div>
@@ -395,9 +385,9 @@
                 </div>
                 <span id="task-assigned-container" class="">
                     <!--user-->
-        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel"></span>
-        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus"></span>
-        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Sadique" class="img-circle avatar-xsmall" data-original-title="Sadique"></span>
+        <!--<span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Gabriel" class="img-circle avatar-xsmall" data-original-title="Gabriel"></span>
+        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" title="" data-placement="top" alt="Jesus" class="img-circle avatar-xsmall" data-original-title="Jesus"></span>-->
+        <span class="x-assigned-user  card-task-assigned" tabindex="0" data-popover-content="card-task-team" data-title="Assign Users"><img src="http://buyniverse.com/public/images/user.jpg" data-toggle="tooltip" :title="getassign(task.assign)" data-placement="top" :alt="getassign(task.assign)" class="img-circle avatar-xsmall" :data-original-title="getassign(task.assign)"></span>
                 </span>
                 <!--user-->
                     </div>
@@ -734,6 +724,13 @@
                             <option value="3">{{ trans('lang.low') }}</option>
                         </select>                        
                     </div>
+                    <div class="form-group">
+                        <label>{{ trans('lang.assign') }}</label>
+                        <select v-model="form.assign" class="form-control form-control-sm" id="assign" name="assign" :class="{ 'is-invalid': form.errors.has('priority') }">
+                            <option value="">{{ trans('lang.unassigned') }}</option>
+                            <option v-for="(team, key) in teams" :key="key" :value="team.id">{{ team.name }}</option>
+                        </select>                        
+                    </div>
                     <div class="form-group form-group-half" style="display: flex;margin-top: 20px;">
                         <label>{{ trans('lang.visible_to_client') }}</label>
                         <input v-model="form.client_visibility" type="checkbox" name="client_visibility"
@@ -782,13 +779,15 @@ export default {
             created_at : '',
             username : '',
             created_by : '',
-            job : this.jobtitle        
+            job : this.jobtitle,
+            assign: ''
         },
         tasks0 : {},
         tasks1 : {},
         tasks2 : {},
         tasks3 : {},
         tasks4 : {},
+        teams : {},
         form : new Form({
             id: '',
             title : '',
@@ -801,7 +800,8 @@ export default {
             billable : '',
             job_id : this.jobid,
             user_id : this.userid,
-            status: ''
+            status: '',
+            assign: ''
         }),
         role : '' 
         
@@ -817,12 +817,13 @@ export default {
       loadTasks() {
             let self = this;
             axios.get(APP_URL + '/api/tasks/' + this.jobid).then(function (response) {
-                //console.log(response.data);
+                //console.log(response.data); 
                 self.tasks0 = response.data[0];
                 self.tasks1 = response.data[1];
                 self.tasks2 = response.data[2];
                 self.tasks3 = response.data[3];
                 self.tasks4 = response.data[4];
+                self.teams = response.data[5];
             });
         },
         priorchange(e) {
@@ -928,12 +929,26 @@ export default {
             self.task.status = taskx.status;
             self.task.client_visibility = taskx.client_visibility;
             self.task.created_by = taskx.created_by;
+            self.task.assign = taskx.assign;
+            //this.getassign(taskx.assign);
             axios.get(APP_URL + '/api/v1/user/' + taskx.created_by).then(function (response) {
                 //console.log(taskx);
                 self.task.username = response.data;
             });
             $('#cardModal').modal('show');  
             
+        },
+        getassign(id) {
+            let self = this;
+            let found = 0;
+            $.each(self.teams, function(key, value) {
+                if(value.id == id)
+                    found = value.name;
+            });
+            if(found == 0)
+                return 'unassigned';
+            else
+                return found;
         },
         CreateTask() {
             this.form.post('/api/tasks/')

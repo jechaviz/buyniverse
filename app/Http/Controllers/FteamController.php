@@ -10,6 +10,8 @@ use App\Mail\FTeamInvite;
 use App\Mail\FuserInvite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Hash;
+use App\EmailHelper;
 
 class FteamController extends Controller
 {
@@ -32,7 +34,7 @@ class FteamController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**

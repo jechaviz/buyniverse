@@ -616,7 +616,7 @@ class JobController extends Controller
             $quizx = Quiz::find($quiz->quiz_id);
             $quiz->title = $quizx->title;
         }
-        //approver
+        //approver 
 
         //$job->quizzes = json($quizzes);
         //dd($job);
