@@ -1737,6 +1737,9 @@ return [
     'visibility' => 'Visibility',
     'no_of_provider_allowed' => 'Number of Provider Award allowed',
     'amount_for_automatic_bid' => 'Enter Percentage/Amount for automatic bid',
+    'assign' => 'Assign',
+    'unassigned' => 'unassigned',
+    'service_new' => 'Post New Service',
 
     'employee_list' => [
         'just_me' => 'Its Just Me',

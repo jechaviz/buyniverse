@@ -212,7 +212,7 @@
                                         </ul>
                                     </li> 
 
-                                    <!--<li style="line-height: 13px!important;font-size: small;">
+                                    <!--<li style="line-height: 13px!important;font-size: small;"> 
                                         <a class="header-menu-a" href="#" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.products_store')}}<i class="ti-angle-down"></i></a>
                                     </li> -->
                                     <li style="line-height: 13px!important;font-size: small;">

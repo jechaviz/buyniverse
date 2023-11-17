@@ -160,6 +160,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+       // dd('Test');
         $json = array();
         $server = Helper::worketicIsDemoSiteAjax();
         if (!empty($server)) {
@@ -209,11 +210,11 @@ class ServiceController extends Controller
                 $package_status = !empty($payment_settings[0]['enable_packages']) ? $payment_settings[0]['enable_packages'] : 'true';
             }
             if ($package_status === 'true') {
-                if (!empty($package->count()) && $current_date > $expiry_date) {
+                /*if (!empty($package->count()) && $current_date > $expiry_date) {
                     $json['type'] = 'error';
                     $json['message'] = trans('lang.need_to_purchase_pkg');
                     return $json;
-                }
+                }*/
 
                 if ($request['is_featured'] == 'true') {
                     if (!empty($option['no_of_featured_services']) && $posted_featured_services >= intval($option['no_of_featured_services'])) {
@@ -256,6 +257,8 @@ class ServiceController extends Controller
                                     )
                                 );
                         }
+                        Session::flash('message', trans('lang.service_post_success'));
+                        return redirect()->route('ServiceListing', 'posted');
                         return $json;
                     } elseif ($service_post['type'] == 'error') {
                         $json['type'] = 'error';
@@ -483,12 +486,14 @@ class ServiceController extends Controller
      */
     public function update(Request $request)
     {
+        
         $server = Helper::worketicIsDemoSiteAjax();
         if (!empty($server)) {
             $response['type'] = 'error';
             $response['message'] = $server->getData()->message;
             return $response;
         }
+        
         $json = array();
         if (!empty($request['latitude']) || !empty($request['longitude'])) {
             $this->validate(
@@ -510,12 +515,15 @@ class ServiceController extends Controller
                 'description'    => 'required',
             ]
         );
+        
         $id = $request['id'];
+        //dd('test', $id);
         if (!empty($id)) {
             $image_size = array(
                 'small',
                 'medium'
             );
+            
             $user = User::find(Auth::user()->id);
             $package_item = Item::where('subscriber', Auth::user()->id)->first();
             $package = !empty($package_item) ? Package::find($package_item->product_id) : '';
@@ -523,12 +531,14 @@ class ServiceController extends Controller
             $posted_featured_services = $user->services->where('id', '!=', $id )->where('is_featured', 'true')->count();
             $payment_settings = SiteManagement::getMetaValue('commision');
             $package_status = '';
+            
             if (empty($payment_settings)) {
                 $package_status = 'true';
             } else {
                 $package_status = !empty($payment_settings[0]['enable_packages']) ? $payment_settings[0]['enable_packages'] : 'true';
             }
-            if ($package_status === 'true') {
+            
+            /*if ($package_status === 'true') {
                 if ($request['is_featured'] == 'true') {
                     if (!empty($option['no_of_featured_services']) && $posted_featured_services >= intval($option['no_of_featured_services'])) {
                         $json['type'] = 'error';
@@ -536,13 +546,16 @@ class ServiceController extends Controller
                         return $json;
                     }
                 }
-            }
+            }*/
+            
             $service_update = $this->service->updateService($request, $id, $image_size);
             if ($service_update['type'] = 'success') {
                 $json['type'] = 'success';
                 $json['role'] = Auth::user()->role;
                 $json['progress'] = trans('lang.service_updating');
                 $json['message'] = trans('lang.service_update_success');
+                Session::flash('message', trans('lang.service_update_success'));
+                return redirect()->route('ServiceListing', 'posted');
                 return $json;
             } else {
                 $json['type'] = 'error';

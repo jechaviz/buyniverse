@@ -9,7 +9,9 @@
                 </div>
             </div>
             <div class="wt-haslayout wt-post-job-wrap">
-                {!! Form::open(['url' => '', 'class' =>'wt-haslayout', 'id' => 'update_service_form',  '@submit.prevent'=>'updateService("'.$service->id.'")']) !!}
+                {!! Form::open(['url' => 'service/update-service', 'class' =>'wt-haslayout']) !!}
+                
+                    <input type="hidden" value="{{$service->id}}" name="id">
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle">
                             <h2>{{ trans('lang.update_service') }}</h2>
@@ -91,7 +93,7 @@
                                     {!! Form::textarea('description', e($service->description), ['class' => 'wt-tinymceeditor', 'id' => 'wt-tinymceeditor', 'placeholder' => trans('lang.service_desc_note')]) !!}
                                 </div>
                             </div>
-                            <div class="wt-joblocation wt-tabsinfo">
+                            <!--<div class="wt-joblocation wt-tabsinfo">
                                 <div class="wt-tabscontenttitle">
                                     <h2>{{ trans('lang.your_loc') }}</h2>
                                 </div>
@@ -116,7 +118,7 @@
                                         </div>
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="wt-featuredholder wt-tabsinfo">
                                 <div class="wt-tabscontenttitle">
                                     <h2>{{ trans('lang.is_featured') }}</h2>

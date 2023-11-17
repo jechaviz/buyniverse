@@ -1698,6 +1698,10 @@ return [
 
   'no_of_provider_allowed' => 'Número de premios de proveedor permitidos',
   'amount_for_automatic_bid' => 'Ingrese el porcentaje/monto para la oferta automática',
+  'assign' => 'Asignar',
+  'unassigned' => 'no asignado',
+  'service_new' => 'Publicar nuevo servicio',
+
 
   'employee_list' => [
     'just_me' => 'Sólo yo',

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="wt-haslayout wt-post-job-wrap">
-                {!! Form::open(['url' => '', 'class' =>'wt-haslayout', 'id' => 'post_service_form',  '@submit.prevent'=>'submitService']) !!}
+                {!! Form::open(['url' => 'services/post-service', 'class' =>'wt-haslayout', 'id' => 'post_service_form']) !!}
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle">
                             <h2>{{ trans('lang.post_service') }}</h2>
@@ -88,10 +88,11 @@
                                     <h2>{{ trans('lang.service_desc') }}</h2>
                                 </div>
                                 <div class="wt-formtheme wt-userform wt-userformvtwo">
-                                    {!! Form::textarea('description', null, ['class' => 'wt-tinymceeditor', 'id' => 'wt-tinymceeditor', 'placeholder' => trans('lang.service_desc_note')]) !!}
+                                    {!! Form::textarea('description', null, ['placeholder' => trans('lang.service_desc'), 'style' => 'width: 100%;height: 148px;' ]) !!}
+                                    <!--{!! Form::textarea('description', null, ['class' => 'wt-tinymceeditor', 'id' => 'wt-tinymceeditor', 'placeholder' => trans('lang.service_desc')]) !!}-->
                                 </div>
                             </div>
-                            <div class="wt-joblocation wt-tabsinfo">
+                            <!--<div class="wt-joblocation wt-tabsinfo">
                                 <div class="wt-tabscontenttitle">
                                     <h2>{{ trans('lang.your_loc') }}</h2>
                                 </div>
@@ -116,7 +117,7 @@
                                         </div>
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="wt-featuredholder wt-tabsinfo">
                                 <div class="wt-tabscontenttitle">
                                     <h2>{{ trans('lang.is_featured') }}</h2>

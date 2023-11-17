@@ -497,11 +497,20 @@
                                                 </ul>
                                             </li> 
 
-                                            <!--<li style="line-height: 13px!important;font-size: small;">
+                                            <!--<li style="line-height: 13px!important;font-size: small;"> 
                                                 <a class="header-menu-a" href="#" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.products_store')}}<i class="ti-angle-down"></i></a>
                                             </li> -->
                                             <li style="line-height: 13px!important;font-size: small;">
-                                                <a class="header-menu-a" href="{{url('search-results?type=service')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services_store')}}<i class="ti-angle-down"></i></a>
+                                                <!--<a class="header-menu-a" href="{{url('search-results?type=service')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services_store')}}<i class="ti-angle-down"></i></a>-->
+
+                                                <a class="header-menu-a" href="{{url('search-results?type=service')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services') }}<i class="ti-angle-down"></i></a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="{{url('search-results?type=service')}}">{{ trans('lang.services_store') }}</a></li>
+                                                    <li><a href="{{route('freelancerServices')}}">{{ trans('lang.manage_services') }}</a></li>
+                                                    <li><a href="{{route('ServiceListing', 'posted')}}">{{ trans('lang.services_listing') }}</a></li>
+                                                    <li><a href="{{route('freelancerPostService')}}">{{ trans('lang.service_new')}}</a></li>
+                                                    
+                                                </ul>
                                             </li> 
                                             @endif
                                             
