@@ -18,7 +18,7 @@
                                             <div class="wt-formtheme wt-formsearch">
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <input type="text" name="s" class="form-control" :placeholder="trans('lang.ph_search_freelancer')" :value="form.s">
+                                                        <input type="text" name="s" class="form-control" :placeholder="trans('lang.ph_search_freelancer')" :value="form.s" @keyup="search_text">
                                                     </div>
                                                 </fieldset>
                                             </div>
@@ -33,8 +33,26 @@
                                                 <div>
                                                     <div class="wt-checkboxholder wt-verticalscrollbar" style="overflow: auto;">
                                                         <span v-for="(skill, index) in skills" :key="index" class="wt-checkbox">
-                                                            <input :id="'skill-' + index " type="checkbox" name="skills[]" :value="index" v-model="form.skill">
+                                                            <input :id="'skill-' + index " type="checkbox" name="skills[]" :value="index" v-model="form.skill" @change="search_skill">
                                                             <label :for="'skill-' + index">{{ skill }}</label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+                                    <div class="wt-widget wt-effectiveholder">
+                                        <div class="wt-widgettitle">
+                                            <h2>{{ trans('lang.categories') }}</h2>
+                                        </div>
+                                        <div class="wt-widgetcontent">
+                                            <fieldset>                                                
+                                                <div>
+                                                    <div class="wt-checkboxholder wt-verticalscrollbar" style="overflow: auto;">
+                                                        <span v-for="(category, index) in categories" :key="index" class="wt-checkbox">
+                                                            <input :id="'category-' + index " type="checkbox" name="categories[]" :value="index" v-model="form.category" @change="search_skill">
+                                                            <label :for="'category-' + index">{{ category }}</label>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -43,7 +61,7 @@
                                     </div>
                                     
                                     
-                                    <div class="wt-widget wt-effectiveholder">
+                                    <!--<div class="wt-widget wt-effectiveholder">
                                         <div class="wt-widgetcontent">
                                             <div class="wt-applyfilters">
                                                 <span>{{ trans('lang.apply_filter') }}<br> {{ trans('lang.changes_by_you') }}</span>
@@ -51,14 +69,14 @@
                                                 <button type="submit" class="btn wt-btn btn-success">{{ trans('lang.btn_apply_filters') }}</button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </form>
                             </aside>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
                             <div class="wt-userlistingholder wt-userlisting wt-haslayout">
                                 <div class="wt-userlistingtitle">
-                                    <span v-if="users.length > 0">{{ trans('lang.01') }} {{users.length}} of {{users.total}} results <span v-if="keyword">for <em>"{{keyword}}"</em></span></span>
+                                    <span v-if="users.length > 0">{{fusers.length}} of {{users.length}} results <span v-if="keyword">for <em>"{{keyword}}"</em></span></span>
                                 </div>
                                 <div v-if="users.length > 0">
                                     <div v-for="(freelancer, key) in users" :key="key" >
@@ -156,11 +174,14 @@ export default {
                 s : '',
                 description : '',
                 skill: [],
+                category: [],
                 user_id : this.userid,
                 job_id : this.job           
             }),
             skills: [],
+            categories: [],
             users: {},
+            fusers: {},
             keyword: '',
             tjob: this.job,
             appurl: APP_ASSET_URL+"/",
@@ -169,12 +190,28 @@ export default {
         
         }
     },
-    
+    computed: {
+        filteredusers() {
+            let self = this;
+            self.fusers = this.users.filter(x => x.invitation === false); // text or user, whichever field is for username
+        },
+    },
     methods: {
+        search_skill(e) {
+            //console.log(e.target.value);
+            this.search_filter();
+        },
+        search_text(e) {
+            //console.log(e.target.value);
+            let self = this;
+            self.form.s = e.target.value;
+            this.search_filter();
+        },
         loadSearch() {
             let self = this;            
             axios.get(APP_URL + '/api/get_search/'+ self.tjob).then(function (response) {
                 self.skills = response.data.skills;
+                self.categories = response.data.categories;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
             });
@@ -186,6 +223,7 @@ export default {
             this.form.post('/api/search_filter/'+ self.tjob)
             .then((response) => {
                 self.skills = response.data.skills;
+                self.categories = response.data.categories;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
             })

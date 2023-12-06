@@ -229,4 +229,7 @@
             </div>
         </div>
     </div>
+    <!-- wt-new-added 
+        <job_provider proposalid="" mode="" job=""></job_provider>
+    -->
     @endsection

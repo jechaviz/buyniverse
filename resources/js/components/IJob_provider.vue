@@ -59,7 +59,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 col-md-offset-2">
                             <div class="wt-userlistingholder wt-userlisting wt-haslayout">
                                 <div class="wt-userlistingtitle">
-                                    <span v-if="users.length > 0">{{ trans('lang.01') }} {{users.length}} of {{users.total}} results <span v-if="keyword">for <em>"{{keyword}}"</em></span></span>
+                                    <span v-if="users.length > 0"> {{fusers.length}} of {{users.length}} results <span v-if="keyword">for <em>"{{keyword}}"</em></span></span>
                                 </div>
                                 <div v-if="users.length > 0">
                                     <div v-for="(freelancer, key) in users" :key="key" >
@@ -160,6 +160,7 @@ export default {
             }),
             skills: [],
             users: {},
+            fusers: {},
             keyword: '',
             tjob: this.job,
             appurl: APP_ASSET_URL+"/",
@@ -168,7 +169,12 @@ export default {
         
         }
     },
-    
+    computed: {
+        filteredusers() {
+            let self = this;
+            self.fusers = this.users.filter(x => x.invitation === true); // text or user, whichever field is for username
+        },
+    },
     methods: {
         loadSearch() {
             let self = this;            

@@ -143,6 +143,7 @@ class JobController extends Controller
     public function get_search($id)
     {
         $data['skills'] = Skill::pluck('title', 'id');
+        $data['categories'] = Category::pluck('title', 'id');
         $search_locations = null;
         $search_employees = null;
         $search_skills = null;
@@ -235,6 +236,7 @@ class JobController extends Controller
     public function get_search_invited($id)
     {
         $data['skills'] = Skill::pluck('title', 'id');
+        $data['categories'] = Category::pluck('title', 'id');
         $search_locations = null;
         $search_employees = null;
         $search_skills = null;
@@ -324,6 +326,7 @@ class JobController extends Controller
     {
         //dd($request->all());
         $data['skills'] = Skill::pluck('title', 'id');
+        $data['categories'] = Category::pluck('title', 'id');
         $search_locations = null;
         $search_employees = null;
         $search_skills = $request->skill;
@@ -331,9 +334,9 @@ class JobController extends Controller
         $search_freelaner_types = null;
         $search_english_levels = null;
         $search_languages = null;
-        $search_category = DB::table('catables')->where('catable_id', $id)->where('catable_type', 'App\Job')->select('category_id')->get();
+        $search_category = $request->category;//DB::table('catables')->where('catable_id', $id)->where('catable_type', 'App\Job')->select('category_id')->get();
         //Providers listing
-        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
+        $keyword = !empty($request->s) ? $request->s : '';
         $search =  User::getSearchResult1(
             'freelancer',
             $keyword,
@@ -347,7 +350,7 @@ class JobController extends Controller
             $search_category
         );
         $users = count($search['users']) > 0 ? $search['users'] : '';
-        //dd($users);
+        //dd($users, $keyword, $request->s);
         if($users)
         {
             foreach($users as $user)
@@ -404,7 +407,7 @@ class JobController extends Controller
                     $user->invitation = false;
             }
         }
-        $data['keyword'] = '';
+        $data['keyword'] = $keyword;
         $data['users'] = $users;
         
         return $data;
