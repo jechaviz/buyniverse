@@ -1,7 +1,7 @@
 <aside id="wt-sidebar" class="wt-sidebar">
     {!! Form::open(['url' => url('search-results'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch']) !!}
         <input type="hidden" value="{{$type}}" name="type">
-        <div class="wt-widget wt-effectiveholder wt-startsearch">
+        <!--<div class="wt-widget wt-effectiveholder wt-startsearch">
             <div class="wt-widgettitle">
                 <h2>{{ trans('lang.seach_by_geo_loc') }}</h2>
             </div>
@@ -14,7 +14,7 @@
                     </fieldset>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="wt-widget wt-effectiveholder wt-startsearch">
             <div class="wt-widgettitle">
                 <h2>{{ trans('lang.start_search') }}</h2>
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div class="wt-widget wt-widgetrange">
+        <!--<div class="wt-widget wt-widgetrange">
             <div class="wt-widgettitle">
                 <h2>{{ trans('lang.price_range') }}</h2>
             </div>
@@ -56,7 +56,7 @@
                     <input type="hidden" name="maxprice" :value="end">
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="wt-widget wt-effectiveholder">
             <div class="wt-widgettitle">
                 <h2>{{ trans('lang.cats') }}</h2>
@@ -83,7 +83,7 @@
                 </fieldset>
             </div>
         </div>
-        <div class="wt-widget wt-effectiveholder">
+        <!--<div class="wt-widget wt-effectiveholder">
             <div class="wt-widgettitle">
                 <h2>{{ trans('lang.locations') }}</h2>
             </div>
@@ -117,8 +117,8 @@
                     @endif
                 </fieldset>
             </div>
-        </div>
-        <div class="wt-widget wt-effectiveholder">
+        </div>-->
+        <!--<div class="wt-widget wt-effectiveholder">
             <div class="wt-widgettitle">
                 <h2>{{ trans('lang.skills') }}</h2>
             </div>
@@ -183,7 +183,7 @@
                     @endif
                 </fieldset>
             </div>
-        </div>
+        </div>-->
         <div class="wt-widget wt-effectiveholder">
             <div class="wt-widgetcontent">
                 <div class="wt-applyfilters">
