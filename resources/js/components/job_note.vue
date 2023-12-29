@@ -142,7 +142,7 @@ export default {
             this.form.post('/api/job_note/')
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Note Created successfully'
                 });
                 Fire.$emit('AfterCreate');
@@ -160,7 +160,7 @@ export default {
             axios.get(APP_URL + '/api/job_note/star/' + id).then(function (response) {
                 Fire.$emit('AfterCreate');
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Note updated successfully'
                 });
             });

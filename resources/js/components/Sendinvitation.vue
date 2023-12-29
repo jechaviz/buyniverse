@@ -19,14 +19,22 @@ export default {
   },
   methods: {
         
-        
-        
+        saving(message)
+        {
+            toast1.fire({
+                type: 'info',
+                title: message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },        
         invite() {
+            this.saving('Inviting . . .');
             let self = this;
             console.log('invite');
             axios.get(APP_URL + '/api/sendinvitation/' + this.jobid +'-' + this.userid).then(function (response) {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Provider is successfully invited for the job'
                 });
                 self.flag = true;

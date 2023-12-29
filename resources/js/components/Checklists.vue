@@ -66,8 +66,18 @@ export default {
       taskid : String 
   },
   methods: {
+        saving(message)
+        {
+            toast1.fire({
+                type: 'info',
+                title: message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
         markTask(id)
         {
+            this.saving('Saving Details');
             axios.get(APP_URL + '/api/checklist/status/' + id).then(function (response) {
                 Fire.$emit('Aftermark');
             });
@@ -81,6 +91,7 @@ export default {
             $('#element-checklist-text').addClass('hidden');
         },
         deleteChecklist(id) {
+            this.saving('Deleting . . .');
             this.form.delete(APP_URL + '/api/checklist/'+id).then(() => {
                 swal.fire(
                 'Deleted!',
@@ -101,6 +112,7 @@ export default {
         },
         
         CreateItem() {
+            this.saving('Saving Details');
             this.wcreate = false;
             this.form.task_id = this.taskid;
             //console.log(this.form);

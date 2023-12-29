@@ -234,7 +234,7 @@ export default {
             axios.post(APP_URL + '/api/proposal_file', formData)
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'File Created successfully'
                 });
                 Fire.$emit('AfterCreate');

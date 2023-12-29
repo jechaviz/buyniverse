@@ -281,7 +281,7 @@ export default {
             axios.post(APP_URL + '/api/job_ticket/', formData) 
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Ticket Created successfully'
                 });
                 Fire.$emit('AfterCreate');
@@ -298,7 +298,7 @@ export default {
             this.form1.post('/api/reply_ticket/')
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Replied successfully'
                 });
                 Fire.$emit('AfterCreate');

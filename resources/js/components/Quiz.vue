@@ -184,7 +184,7 @@ export default {
             this.form.post('/api/aquiz/')
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Quiz Created successfully'
                 });
                 Fire.$emit('AfterCreate');
@@ -202,7 +202,7 @@ export default {
             this.form.put('/api/aquiz/'+ this.form.id)
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Quiz Updated successfully'
                 });
                 Fire.$emit('AfterCreate');
@@ -259,7 +259,7 @@ export default {
             else
             {
                 toast.fire({
-                icon: 'error',
+                type: 'error',
                 title: 'Quiz cannot be editted.'
                 });
             }
@@ -270,7 +270,7 @@ export default {
             swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
-            icon: 'warning',
+            type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

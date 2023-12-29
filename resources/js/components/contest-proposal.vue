@@ -905,6 +905,7 @@ export default {
       jobid: String
   },
   methods: {
+        
         newcontest() 
         {       
             this.form.reset();
@@ -926,7 +927,7 @@ export default {
                 {
                     //console.log('true');
                     toast.fire({
-                    icon: 'error',
+                    type: 'error',
                     title: 'No Participants added to the Contest'
                     });
                 }
@@ -936,7 +937,7 @@ export default {
             else
             {
                 toast.fire({
-                icon: 'error',
+                type: 'error',
                 title: 'No Participants added to the Contest'
                 });
                 location.reload();
@@ -986,7 +987,7 @@ export default {
             this.form.post('/api/contest_proposal/')
             .then((response) => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Contest Created successfully'
                 });
                 this.hasContest = true;
@@ -1011,7 +1012,7 @@ export default {
             this.form1.put('/api/contest_proposal/'+ this.form1.id)
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Contest Updated successfully'
                 });
                 Fire.$emit('Aftercontestupdate');

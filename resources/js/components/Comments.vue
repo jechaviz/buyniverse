@@ -87,7 +87,15 @@ export default {
       userid : String 
   },
   methods: {
-        
+        saving(message)
+        {
+            toast1.fire({
+                type: 'info',
+                title: message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
         newcomment() {
             $('#card-coment-placeholder-input-container').addClass('hidden');
             $('#card-comment-tinmyce-container').removeClass('hidden');
@@ -97,6 +105,7 @@ export default {
             $('#card-comment-tinmyce-container').addClass('hidden');
         },
         deleteComment(id) {
+            this.saving('Deleting . . .');
             this.form.delete(APP_URL + '/api/comments/'+id).then(() => {
                 swal.fire(
                 'Deleted!',
@@ -117,6 +126,7 @@ export default {
         },
         
         Createcomment() {
+            this.saving('Saving Details');
             this.wcreate = false;
             this.form.task_id = this.taskid;
             this.form.user_id = this.userid;

@@ -54,7 +54,7 @@ export default {
             this.form.post('/api/postjobtitle/')
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Job Title updated successfully'
                 });
                 self.showform = false;

@@ -363,7 +363,17 @@ export default {
       userid: String,
   },
   methods: {
+        saving(message)
+        {
+            toast1.fire({
+                type: 'info',
+                title: message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
         posttitle() {
+            this.saving('Saving Details');
             $('#title').removeClass('hidden');
             $('#posttitle').addClass('hidden');
             $('#description').addClass('hidden');
@@ -479,6 +489,7 @@ export default {
             });  
         },
         updateaddcurrency(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatecurrency/' + statp).then(function (response) {
                 
@@ -494,7 +505,7 @@ export default {
             
         },
         updateaddcategory(e) {
-            
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatecategory/' + statp).then(function (response) {
                 Fire.$emit('Aftercat');
@@ -515,6 +526,7 @@ export default {
         },
         deletecategory(id)
         {
+            this.saving('Deleting . . .');
             let statp =  this.job1.id + '-' + id;
             axios.get(APP_URL + '/api/job_overview/deletecategory/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -569,10 +581,11 @@ export default {
             $('#addapprover-select').removeClass('hidden');
         },
         Createinvite() {
+            this.saving('Saving Details');
             this.form3.post('/api/job_overview/createinvite/')
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Invited successfully'
                 });
                 Fire.$emit('Afterinvited');
@@ -585,12 +598,13 @@ export default {
             })
         },
         Createteam() {
+            this.saving('Saving Details');
             this.wteam = false;
             let self = this;
             this.form1.post('/api/job_overview/team/'+ self.job_id)
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Team Created successfully'
                 });
                 Fire.$emit('Afterteam');
@@ -606,18 +620,20 @@ export default {
             })
         },
         deleteapprover(approver) {
+            this.saving('Deleting . . .');
             //let statp =  this.job1.id + '-' + team;
             axios.get(APP_URL + '/api/job_overview/deleteapprover/' + approver).then(function (response) {
                 Fire.$emit('Afterapprover');
             });
         },
         Createapprover() {
+            this.saving('Saving Details');
             this.wapprover = false;
             let self = this;
             this.form2.post('/api/job_overview/approver/'+ self.job_id)
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Approver Created successfully'
                 });
                 Fire.$emit('Afterapprover');
@@ -633,6 +649,7 @@ export default {
             })
         },
         deleteteam(team) {
+            this.saving('deleting . . .');
             //let statp =  this.job1.id + '-' + team;
             axios.get(APP_URL + '/api/job_overview/deleteteam/' + team).then(function (response) {
                 Fire.$emit('Afterteam');
@@ -640,6 +657,7 @@ export default {
         },
         approvejob(id)
         {
+            this.saving('Approving . . .');
             //console.log(id);
             
             axios.get(APP_URL + '/api/job_overview/approvejob/' + id).then(function (response) {
@@ -648,13 +666,13 @@ export default {
                 if(response.data == 0)
                 {
                     toast.fire({
-                    icon: 'success',
+                    type: 'success',
                     title: 'Job is approved'
                     });
                 }
                 else{
                     toast.fire({
-                    icon: 'success',
+                    type: 'success',
                     title: 'Job is now posted and is open for Bidding.'
                     });
                 }
@@ -672,6 +690,7 @@ export default {
             $('#addquiz-select').removeClass('hidden');
         },
         updateaddquiz(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatequiz/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -681,6 +700,7 @@ export default {
             
         },
         deletequiz(quiz) {
+            this.saving('Deleting . . .');
             let statp =  this.job1.id + '-' + quiz;
             axios.get(APP_URL + '/api/job_overview/deletequiz/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -694,6 +714,7 @@ export default {
             
         },
         updatequiz(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/quiz/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -712,11 +733,11 @@ export default {
             
         },
         Updatedescription() {
-            
+            this.saving('Saving Details');
             this.form.post('/api/job_overview/description/'+ this.job1.id)
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Description Updated successfully'
                 });
                 Fire.$emit('AfterCreate');
@@ -743,6 +764,7 @@ export default {
             
         },
         updateprojectlevel(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_level/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -766,6 +788,7 @@ export default {
             
         },
         updatejobtype(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/postprojecttype/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -774,6 +797,7 @@ export default {
             });
         },
         updatejobduration(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_duration/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -791,6 +815,7 @@ export default {
             
         },
         updateprice(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_price/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -812,6 +837,7 @@ export default {
             
         },
         updateexpirydate(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '_' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_expirydate/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -826,6 +852,7 @@ export default {
             
         },
         updatejobmonth(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobmonth/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -840,6 +867,7 @@ export default {
             
         },
         updatejobday(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobday/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -854,6 +882,7 @@ export default {
             
         },
         updatejobweek(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobweek/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
@@ -868,6 +897,7 @@ export default {
             
         },
         updatejobhour(e) {
+            this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobhour/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');

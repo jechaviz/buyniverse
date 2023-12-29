@@ -17,15 +17,22 @@ export default {
       contestid: String 
   },
   methods: {
-        
-        
-        
+        saving(message)
+        {
+            toast1.fire({
+                type: 'info',
+                title: message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },        
         invite(id) {
+            this.saving('Inviting . . .');
             let self = this;
-            console.log('invite');
+            
             axios.get(APP_URL + '/contests/invite/' + this.contestid +'-' + id).then(function (response) {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Provider in successfully invited for the contest'
                 });
                 self.flag = true;

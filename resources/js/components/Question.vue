@@ -134,7 +134,7 @@ export default {
             this.form.post('/api/question/')
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Question Created successfully'
                 });
                 Fire.$emit('AfterCreateQuestion');
@@ -160,7 +160,7 @@ export default {
             this.form.put('/api/question/'+ this.form.id)
             .then(() => {
                 toast.fire({
-                icon: 'success',
+                type: 'success',
                 title: 'Question Updated successfully'
                 });
                 Fire.$emit('AfterCreateQuestion');
@@ -200,7 +200,7 @@ export default {
             swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
-            icon: 'warning',
+            type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
