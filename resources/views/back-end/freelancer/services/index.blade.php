@@ -83,7 +83,7 @@
 														<div class="dropdown-content">
 															<a href="{{{route('serviceDetail',$service['slug'])}}}" >{{ trans('lang.view')}}</a>
 															@if ($total_orders == 0)
-																<delete :title="'{{trans("lang.ph_delete_confirm_title")}}'" :id="'{{ $service['id'] }}'" :message="'{{trans("lang.ph_service_delete_message")}}'" :url="'{{url('freelancer/dashboard/delete-service')}}'"></delete>
+																<delete :title="'{{trans("lang.ph_delete_confirm_title")}}'" :id="'{{ $service['id'] }}'" :message="'{{trans("lang.ph_service_delete_message")}}'" :url="'{{url('provider/dashboard/delete-service')}}'"></delete>
 															@endif										
 														</div>
 													</div>
@@ -94,7 +94,7 @@
 															<i class="lnr lnr-pencil"></i>
 														</a>
 														@if ($total_orders == 0)
-															<delete :title="'{{trans("lang.ph_delete_confirm_title")}}'" :id="'{{ $service['id'] }}'" :message="'{{trans("lang.ph_service_delete_message")}}'" :url="'{{url('freelancer/dashboard/delete-service')}}'"></delete>
+															<delete :title="'{{trans("lang.ph_delete_confirm_title")}}'" :id="'{{ $service['id'] }}'" :message="'{{trans("lang.ph_service_delete_message")}}'" :url="'{{url('provider/dashboard/delete-service')}}'"></delete>
 														@endif-->
 													</div>
 												</span>

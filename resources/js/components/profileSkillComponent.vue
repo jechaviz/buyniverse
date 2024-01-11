@@ -102,14 +102,14 @@
             },
             getSkills(){
                 let self = this;
-                axios.get(APP_URL + '/get-freelancer-skills')
+                axios.get(APP_URL + '/get-provider-skills')
                 .then(function (response) {
                     self.stored_skills = response.data.skills;
                 });
             },
             getUserSkills(){
                 let self = this;
-                axios.get(APP_URL + '/freelancer/get-freelancer-skills')
+                axios.get(APP_URL + '/provider/get-provider-skills')
                 .then(function (response) {
                     self.freelancer_skills = response.data.freelancer_skills;
                 });

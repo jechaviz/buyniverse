@@ -102,7 +102,7 @@ export default {
             img_preview: this.getImagePreview(),
             img_previews_container:this.previewer_class,
             dropzoneOptions: {
-                url: APP_ASSET_URL+'/freelancer/upload-temp-image',
+                url: APP_ASSET_URL+'/provider/upload-temp-image',
                 maxFilesize: 1, // MB
                 maxFiles: 1,
                 previewTemplate: getImageUploadTemplate(),

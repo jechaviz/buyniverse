@@ -111,7 +111,7 @@ class UserController extends Controller
         {
             $user->role = 'freelancer';
             $user->save();
-            return Redirect::to('freelancer/dashboard');
+            return Redirect::to('provider/dashboard');
         }
             
 

@@ -254,7 +254,7 @@ export default {
     getEducations() {
       let self = this;
       axios
-        .get(APP_URL + "/freelancer/get-freelancer-educations")
+        .get(APP_URL + "/provider/get-provider-educations")
         .then(function(response) {
           self.stored_educations = response.data.educations;
         });

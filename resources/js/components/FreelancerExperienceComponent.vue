@@ -38,7 +38,7 @@
         methods: {
             getExperiences(){
                 let self = this;
-                axios.post(APP_URL + '/get-freelancer-experiences',{
+                axios.post(APP_URL + '/get-provider-experiences',{
                     id:self.freelancer_id
                 })
                 .then(function (response) {

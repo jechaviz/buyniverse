@@ -111,7 +111,7 @@ export default {
         getTopFreelancers: function() {
             var self = this;
             axios
-            .get(APP_URL + "/get-top-freelancers")
+            .get(APP_URL + "/get-top-providers")
             .then(function(response) {
                 if (response.data.type == "success") {
                     self.topFreelancers =response.data.freelancers

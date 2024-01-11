@@ -119,7 +119,7 @@
 								<td>
 								{{{ $job->id }}}	
 								</td>								
-								<td data-th="Name"><span class="bt-content"><a href="{{{ url('freelancer/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
+								<td data-th="Name"><span class="bt-content"><a href="{{{ url('provider/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
 								<td data-th="Name"><span class="bt-content" style="display: flex;">
 									<span>
 										@if (!empty($user_name))
@@ -141,7 +141,7 @@
 										<!--<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('freelancer/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
+										<a href="{{{ url('provider/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -194,7 +194,7 @@
 								<td>
 								{{{ $job->id }}}	
 								</td>								
-								<td data-th="Name"><span class="bt-content"><a href="{{{ url('freelancer/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
+								<td data-th="Name"><span class="bt-content"><a href="{{{ url('provider/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
 								<td data-th="Name"><span class="bt-content" style="display: flex;">
 									<span>
 										@if (!empty($user_name))
@@ -216,7 +216,7 @@
 										<!--<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('freelancer/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
+										<a href="{{{ url('provider/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -269,7 +269,7 @@
 								<td>
 								{{{ $job->id }}}	
 								</td>								
-								<td data-th="Name"><span class="bt-content"><a href="{{{ url('freelancer/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
+								<td data-th="Name"><span class="bt-content"><a href="{{{ url('provider/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
 								<td data-th="Name"><span class="bt-content" style="display: flex;">
 									<span>
 										@if (!empty($user_name))
@@ -291,13 +291,13 @@
 										<!--<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('freelancer/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
+										<a href="{{{ url('provider/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
 											</button>
 											<div class="dropdown-content">
-												<a href="{{{ url('freelancer/dispute/'.$job->slug) }}}" class="wt-btn">{{ trans('lang.raise_dispute') }}</a>
+												<a href="{{{ url('provider/dispute/'.$job->slug) }}}" class="wt-btn">{{ trans('lang.raise_dispute') }}</a>
 											</div>
 										</div>
 									</div>
@@ -344,7 +344,7 @@
 								<td>
 								{{{ $job->id }}}	
 								</td>								
-								<td data-th="Name"><span class="bt-content"><a href="{{{ url('freelancer/team/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
+								<td data-th="Name"><span class="bt-content"><a href="{{{ url('provider/team/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
 								<td data-th="Name"><span class="bt-content" style="display: flex;">
 									<span>
 										@if (!empty($user_name))
@@ -364,7 +364,7 @@
 										<!--<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('freelancer/team/'.$job->slug) }}}"><button class="btn">View</button></a>
+										<a href="{{{ url('provider/team/'.$job->slug) }}}"><button class="btn">View</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>
@@ -416,7 +416,7 @@
 								<td>
 								{{{ $job->id }}}	
 								</td>								
-								<td data-th="Name"><span class="bt-content"><a href="{{{ url('freelancer/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
+								<td data-th="Name"><span class="bt-content"><a href="{{{ url('provider/job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
 								<td data-th="Name"><span class="bt-content" style="display: flex;">
 									<span>
 										@if (!empty($user_name))
@@ -435,7 +435,7 @@
 										<!--<a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
 										<a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
 										<a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>-->
-										<a href="{{{ url('freelancer/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
+										<a href="{{{ url('provider/job/'.$job->slug) }}}"><button class="btn">{{ trans('lang.view')}}</button></a>
 										<div class="dropdown">
 											<button class="btn" style="border-left:1px solid #b4b1b1">
 												<i class="fa fa-caret-down"></i>

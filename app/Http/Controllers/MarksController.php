@@ -108,7 +108,7 @@ class MarksController extends Controller
         //dd($marks);
         $marks->save();
         
-        return Redirect::to('freelancer/dashboard');
+        return Redirect::to('provider/dashboard');
     }
 
     /**

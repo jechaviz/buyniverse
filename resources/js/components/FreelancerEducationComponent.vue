@@ -38,7 +38,7 @@
         methods: {
             getEducation(){
                 let self = this;
-                axios.post(APP_URL + '/get-freelancer-education',{
+                axios.post(APP_URL + '/get-provider-education',{
                     id:self.freelancer_id
                 })
                 .then(function (response) {

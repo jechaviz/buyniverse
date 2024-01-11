@@ -110,7 +110,7 @@
 								<td data-th="Action">
 									<span class="bt-content">
 										<div class="">
-											<a href="{{{url('freelancer/service/'.$service->pivot_id.'/hired')}}}" class="wt-btn" style="background-color: rgb(255, 255, 255) !important; color: rgb(180, 177, 177); font: inherit; border: 1px solid rgb(180, 177, 177); outline: none; border-radius: 0px; padding: 5px 10px;">{{ trans('lang.view') }}</a>
+											<a href="{{{url('provider/service/'.$service->pivot_id.'/hired')}}}" class="wt-btn" style="background-color: rgb(255, 255, 255) !important; color: rgb(180, 177, 177); font: inherit; border: 1px solid rgb(180, 177, 177); outline: none; border-radius: 0px; padding: 5px 10px;">{{ trans('lang.view') }}</a>
 										</div>
 									</span>
 								</td>
@@ -198,7 +198,7 @@
 								<td data-th="Action">
 									<span class="bt-content">
 										<div class="">
-											<a href="{{{url('freelancer/service/'.$service->pivot_id.'/completed')}}}" class="wt-btn" style="background-color: rgb(255, 255, 255) !important; color: rgb(180, 177, 177); font: inherit; border: 1px solid rgb(180, 177, 177); outline: none; border-radius: 0px; padding: 5px 10px;">{{ trans('lang.view') }}</a>
+											<a href="{{{url('provider/service/'.$service->pivot_id.'/completed')}}}" class="wt-btn" style="background-color: rgb(255, 255, 255) !important; color: rgb(180, 177, 177); font: inherit; border: 1px solid rgb(180, 177, 177); outline: none; border-radius: 0px; padding: 5px 10px;">{{ trans('lang.view') }}</a>
 										</div>
 									</span>
 								</td>
@@ -309,7 +309,7 @@
 								<td data-th="Action">
 									<span class="bt-content">
 										<div class="">
-											<a href="{{{url('freelancer/service/'.$service->pivot_id.'/cancelled')}}}" class="wt-btn" style="background-color: rgb(255, 255, 255) !important; color: rgb(180, 177, 177); font: inherit; border: 1px solid rgb(180, 177, 177); outline: none; border-radius: 0px; padding: 5px 10px;">{{ trans('lang.view') }}</a>
+											<a href="{{{url('provider/service/'.$service->pivot_id.'/cancelled')}}}" class="wt-btn" style="background-color: rgb(255, 255, 255) !important; color: rgb(180, 177, 177); font: inherit; border: 1px solid rgb(180, 177, 177); outline: none; border-radius: 0px; padding: 5px 10px;">{{ trans('lang.view') }}</a>
 										</div>
 									</span>
 								</td>

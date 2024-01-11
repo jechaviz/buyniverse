@@ -25,7 +25,7 @@
                         </div>
                         <div class="wt-dashboardboxcontent">
                             {!! Form::open([
-                                'url' => url('freelancer/teams'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory',
+                                'url' => url('provider/teams'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory',
                                 'id' => 'teams'
                                 ])
                             !!}
@@ -104,7 +104,7 @@
                                                 <td>{{{ $team->role }}}</td>
                                                 <td>
                                                     <div class="wt-actionbtn">
-                                                        <a href="{{{ url('freelancer/teams/') }}}/{{{ $team->id }}}/edit" class="wt-addinfo wt-skillsaddinfo">
+                                                        <a href="{{{ url('provider/teams/') }}}/{{{ $team->id }}}/edit" class="wt-addinfo wt-skillsaddinfo">
                                                             <i class="lnr lnr-pencil"></i>
                                                         </a>
                                                         

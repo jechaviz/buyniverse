@@ -40,7 +40,7 @@
                                     $freelancer_proposal = \App\Proposal::find($proposal->id);
                                     $duration = Helper::getJobDurationList($proposal->job->duration);
                                     $status_btn = $proposal->status == 'cancelled' ? trans('lang.view_reason') : trans('lang.view_detail');
-                                    $detail_link = $proposal->status == 'hired' ? url('freelancer/job/'.$proposal->job->slug) : 'javascript:void(0);';
+                                    $detail_link = $proposal->status == 'hired' ? url('provider/job/'.$proposal->job->slug) : 'javascript:void(0);';
                                     $user_name = Helper::getUserName($proposal->job->employer->id);
                                 @endphp
                             <tr>
@@ -72,12 +72,12 @@
                                     </a>
                                     @endif
                                     @if ( $proposal->status != 'pending' )
-                                        <a href="{{{ url('freelancer/job/'.$proposal->job->slug) }}}" class="wt-btn"  style="background-color: #ffffff!important;color: #b4b1b1;font-size: 12px;border: 1px solid #b4b1b1;outline: none;border-radius: 0;padding: 5px 10px;font: inherit;">
+                                        <a href="{{{ url('provider/job/'.$proposal->job->slug) }}}" class="wt-btn"  style="background-color: #ffffff!important;color: #b4b1b1;font-size: 12px;border: 1px solid #b4b1b1;outline: none;border-radius: 0;padding: 5px 10px;font: inherit;">
                                             {{$status_btn}}
                                         </a>
                                     @else
                                         @if($proposal->contest == 'true')
-                                        <a href="{{{ url('freelancer/contest/'.$proposal->contestid) }}}" class="wt-btn" style="background-color: #ffffff!important;color: #b4b1b1;font-size: 12px;border: 1px solid #b4b1b1;outline: none;border-radius: 0;padding: 5px 10px;font: inherit;">
+                                        <a href="{{{ url('provider/contest/'.$proposal->contestid) }}}" class="wt-btn" style="background-color: #ffffff!important;color: #b4b1b1;font-size: 12px;border: 1px solid #b4b1b1;outline: none;border-radius: 0;padding: 5px 10px;font: inherit;">
                                         {{ trans('lang.view_contest')}}
                                         </a>
                                         @endif

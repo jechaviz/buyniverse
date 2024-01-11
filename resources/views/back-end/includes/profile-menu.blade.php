@@ -232,13 +232,13 @@
                     @endif
                 @elseif ($user->role === 'freelancer')
                     <!--<li class="">
-                        <a href="{{{ url('freelancer/jobs') }}}">
+                        <a href="{{{ url('provider/jobs') }}}">
                             <span>{{ trans('lang.all_projects') }}</span>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="{{{ url('freelancer/jobs/completed') }}}">{{ trans('lang.completed_projects') }}</a></li>
-                            <li><a href="{{{ url('freelancer/jobs/cancelled') }}}">{{ trans('lang.cancelled_projects') }}</a></li>
-                            <li><a href="{{{ url('freelancer/jobs/hired') }}}">{{ trans('lang.ongoing_projects') }}</a></li>
+                            <li><a href="{{{ url('provider/jobs/completed') }}}">{{ trans('lang.completed_projects') }}</a></li>
+                            <li><a href="{{{ url('provider/jobs/cancelled') }}}">{{ trans('lang.cancelled_projects') }}</a></li>
+                            <li><a href="{{{ url('provider/jobs/hired') }}}">{{ trans('lang.ongoing_projects') }}</a></li>
                         </ul>
                     </li>-->
                     @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services')

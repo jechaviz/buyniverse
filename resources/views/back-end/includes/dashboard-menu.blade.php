@@ -286,14 +286,14 @@
                         @elseif ($user->role === 'freelancer')
                             <li class="">
                                 
-                                <a href="{{{ url('freelancer/jobs') }}}">
+                                <a href="{{{ url('provider/jobs') }}}">
                                     <i class="ti-briefcase"></i>
                                     <span>{{ trans('lang.all_projects') }}</span>
                                 </a>
                                 <!--<ul class="sub-menu">
-                                    <li><hr><a href="{{{ url('freelancer/jobs/completed') }}}">{{ trans('lang.completed_projects') }}</a></li>
-                                    <li><hr><a href="{{{ url('freelancer/jobs/cancelled') }}}">{{ trans('lang.cancelled_projects') }}</a></li>
-                                    <li><hr><a href="{{{ url('freelancer/jobs/hired') }}}">{{ trans('lang.ongoing_projects') }}</a></li>
+                                    <li><hr><a href="{{{ url('provider/jobs/completed') }}}">{{ trans('lang.completed_projects') }}</a></li>
+                                    <li><hr><a href="{{{ url('provider/jobs/cancelled') }}}">{{ trans('lang.cancelled_projects') }}</a></li>
+                                    <li><hr><a href="{{{ url('provider/jobs/hired') }}}">{{ trans('lang.ongoing_projects') }}</a></li>
                                 </ul>-->
                             </li>
                             @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services')

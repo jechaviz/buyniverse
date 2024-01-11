@@ -256,7 +256,7 @@ export default {
     getExperiences() {
       let self = this;
       axios
-        .get(APP_URL + "/freelancer/get-freelancer-experiences")
+        .get(APP_URL + "/provider/get-provider-experiences")
         .then(function(response) {
           self.stored_experiences = response.data.experiences;
         });
