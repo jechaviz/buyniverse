@@ -56,6 +56,7 @@ use App\Article;
 use App\Employer;
 use App\Address;
 use App\Contact;
+use App\Invoice;
 
 /**
  * Class PublicController
@@ -322,7 +323,7 @@ class PublicController extends Controller
                 $feedbacks = Review::select('feedback')->where('receiver_id', $user->id)->count(); 
                 $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $show_earnings = !empty($settings) && !empty($settings[0]['show_earnings']) ? $settings[0]['show_earnings'] : true;
-                
+                //dd($videos);
                 if (file_exists(resource_path('views/extend/front-end/users/freelancer-show.blade.php'))) {
                     return View(
                         'extend.front-end.users.freelancer-show',
@@ -410,6 +411,18 @@ class PublicController extends Controller
             //} elseif ($user->getRoleNames()->first() === 'employer') {
 
                 $jobs = Job::where('user_id', $profile->user_id)->latest()->paginate(7);
+                $categories = Job::where('user_id', $profile->user_id)->get();
+                $cats = array();
+                foreach($categories as $category)
+                {
+                    foreach($category->categories as $cate)
+                    {
+                        array_push($cats, $cate->title);
+                        
+                    }
+                }
+                $user->scategories = array_unique($cats);
+
                 $followers = DB::table('followers')->where('following', $profile->user_id)->get();
                 $save_employer = !empty(auth()->user()->profile->saved_employers) ? unserialize(auth()->user()->profile->saved_employers) : array();
                 $save_jobs = !empty(auth()->user()->profile->saved_jobs) ? unserialize(auth()->user()->profile->saved_jobs) : array();
@@ -417,6 +430,16 @@ class PublicController extends Controller
                 $symbol   = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
                 $breadcrumbs_settings = SiteManagement::getMetaValue('show_breadcrumb');
                 $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
+
+                $invoices = Invoice::where('payer_email', $user->email)->get();
+                $total = 0;
+                foreach($invoices as $invoice)
+                {
+                    $currrency = $invoice->currency_code;
+                    $total = $total + $invoice->price;
+                }
+                
+                //dd($scategories);
 
                 $employer = Employer::where('user_id', $profile->user_id)->get()->first();
                 if($employer)
@@ -453,7 +476,10 @@ class PublicController extends Controller
                             'employer',
                             'address',
                             'contact',
-                            'show_breadcrumbs'
+                            'show_breadcrumbs',
+                            'total',
+                            'currrency',
+                            //'scategories'
                         )
                     );
                 } else {
@@ -480,7 +506,10 @@ class PublicController extends Controller
                             'employer',
                             'address',
                             'contact',
-                            'show_breadcrumbs'
+                            'show_breadcrumbs',
+                            'total',
+                            'currrency',
+                            //'scategories'
                         )
                     );
                 }

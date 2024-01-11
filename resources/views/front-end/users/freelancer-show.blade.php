@@ -3,6 +3,11 @@
  'front-end.master', ['body_class' => 'wt-innerbgcolor'] )
 @push('stylesheets')
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
+    <style>
+.checked {
+  color: orange;
+}
+</style>
 @endpush
 @section('title'){{ $user_name }} | {{ $tagline }} @stop
 @section('description', "$desc")
@@ -49,7 +54,7 @@
                                             <h3>@if ($user->user_verified === 1)<i class="fa fa-check-circle"></i> @endif {{{ $user_name }}}</h3>
                                         @endif
                                         <span>
-                                            <div class="wt-proposalfeedback"><span class="wt-starcontent"> {{{ round($average_rating_count) }}}/<i>5</i>&nbsp;<em>({{{ $reviews->count() }}} {{ trans('lang.feedbacks') }})</em></span></div>
+                                            <div class="wt-proposalfeedback"><span class="wt-starcontent" style="display: inline-flex;"> <span class="fa fa-star @if(round($average_rating_count) > 1)checked @endif"></span><span class="fa fa-star @if(round($average_rating_count) >= 2)checked @endif"></span><span class="fa fa-star @if(round($average_rating_count) >= 3)checked @endif"></span><span class="fa fa-star @if(round($average_rating_count) >= 4)checked @endif"></span><span class="fa fa-star @if(round($average_rating_count) >= 5)checked @endif"></span> <!--{{{ round($average_rating_count) }}}/<i>5</i>--> &nbsp;<em>({{{ $reviews->count() }}} {{ trans('lang.feedbacks') }})</em></span></div>
                                             @if (!empty($joining_date))
                                                 {{{ trans('lang.member_since') }}}&nbsp;{{{ $joining_date }}}
                                             @endif
@@ -66,7 +71,7 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-9 float-left">
                             <div class="row">
-                                <div class="wt-proposalhead wt-userdetails">
+                                <div class="wt-proposalhead wt-userdetails" style="max-width: 100%!important;">
                                     @if (!empty($profile->tagline))
                                         <h2>{{{ $profile->tagline }}}</h2>
                                     @endif
@@ -101,12 +106,12 @@
                                     </ul>
                                     @if (!empty($profile->description))
                                         <div class="wt-description">
-                                            {{-- <p>{{{ $profile->description }}}</p> --}}
-                                            <p>{!! html_entity_decode(nl2br(e($profile->description))) !!}</p>
+                                            <p>{{{ $profile->description }}}</p> 
+                                            {{--<p>{!! html_entity_decode(nl2br(e($profile->description))) !!}</p>--}}
                                         </div>
                                     @endif
                                 </div>
-                                <div id="wt-statistics" class="wt-statistics wt-profilecounter">
+                                <div id="wt-statistics" class="wt-statistics wt-profilecounter" style="display:none;">
                                     <div class="wt-statisticcontent wt-countercolor1">
                                         <h3 data-from="0" data-to="{{{ Helper::getProposals($user->id, 'hired')->count() }}}" data-speed="800" data-refresh-interval="03">{{{ Helper::getProposals($user->id, 'hired')->count() }}}</h3>
                                         <h4>{{ trans('lang.ongoing_project') }}</h4>
@@ -321,7 +326,7 @@
                                 @endif
                             </div>
                             @if (!empty($videos))
-                                <div class="wt-videos">
+                                <!--<div class="wt-videos">
                                     <div class="wt-usertitle">
                                         <h2>{{{ trans('lang.videos') }}}</h2>
                                     </div>
@@ -354,7 +359,7 @@
                                             @endif
                                         @endforeach
                                     </div>
-                                </div>
+                                </div>-->
                             @endif
                             <div class="wt-experience">
                                 <div class="wt-usertitle">
@@ -435,7 +440,7 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="wt-proposalsr">
+                            <!--<div class="wt-proposalsr">
                                 <div class="tg-authorcodescan tg-authorcodescanvtwo">
                                     <figure class="tg-qrcodeimg">
                                         {!! QrCode::size(100)->generate(Request::url('profile/'.$user->slug)); !!}
@@ -495,7 +500,7 @@
                                         </fieldset>
                                     {!! form::close(); !!}
                                 </div>
-                            </div>
+                            </div>-->
                         </aside>
                     </div>
                 </div>

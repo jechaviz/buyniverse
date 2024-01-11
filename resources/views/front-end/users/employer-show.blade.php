@@ -59,7 +59,7 @@
                                     </a>
                                     </div>
                                 </div>
-                                <div class="tg-authorcodescan">
+                                <!--<div class="tg-authorcodescan">
                                     <figure class="tg-qrcodeimg">
                                         {!! QrCode::size(100)->generate(Request::url('profile/'.$user->slug.'/freelancer')); !!}
                                     </figure>
@@ -72,21 +72,21 @@
                                             </h3>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 @if (in_array($user->id, $save_employer))
-                                    <div class="wt-clicksavearea">
+                                    <!--<div class="wt-clicksavearea">
                                         <a href="javascript:void(0);" class="wt-clicksavebtn wt-btndisbaled" >
                                             <i class="fa fa-heart"></i>
                                             {{ trans('lang.following') }}
                                         </a>
-                                    </div>
+                                    </div>-->
                                 @else
-                                    <div class="wt-clicksavearea">
+                                    <!--<div class="wt-clicksavearea">
                                         <a href="javascript:void(0);" id="profile-{{$user->id}}" class="wt-clicksavebtn" @click.prevent="add_wishlist('profile-{{$user->id}}', {{ $user->id }}, 'saved_employers', 'Following')" v-cloak>
                                             <i></i>
                                             {{ trans('lang.click_follow') }}
                                         </a>
-                                    </div>
+                                    </div>-->
                                 @endif
                             </div>
                             <div class="wt-widget">
@@ -116,13 +116,43 @@
                                                 <span>{{ trans('lang.mode') }} : {{$employer->mode}}</span>
                                             </li>
                                             @endif
+                                            @if($currrency)
+                                            <li>
+                                                <span>{{ trans('lang.net_amnt') }} : {{ $currrency}} {{$total}}</span>
+                                            </li>
+                                            @endif
+                                            
+                                            @if($user->profile->no_of_employees)
+                                            <li>
+                                                <span>{{ trans('lang.no_of_employees') }} : {{ $user->profile->no_of_employees}}</span>
+                                            </li>
+                                            @endif
                                         </ul>
                                     @else
                                         <p class="la-no-follower">{{ trans('lang.no_records_found') }}</p>
                                     @endif
                                 </div>
                             </div>
+                            @if($user->scategories)
                             <div class="wt-widget">
+                                <div class="wt-widgettitle">
+                                    <h2>{{ trans('lang.ph_search_cats') }}</h2>
+                                </div>
+                                <div class="wt-widgetcontent wt-comfollowers wt-verticalscrollbar">
+                                        <ul>
+                                            @foreach($user->scategories as $cate)
+                                            <li>
+                                                <span>{{$cate}}</span>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                </div>
+                            </div>
+                            @else
+                                <p class="la-no-follower">{{ trans('lang.no_records_found') }}</p>
+                            @endif
+                            
+                            <!--<div class="wt-widget">
                                 <div class="wt-widgettitle">
                                     <h2>{{ trans('lang.company_followers') }}</h2>
                                 </div>
@@ -196,7 +226,7 @@
                                         </fieldset>
                                     {!! form::close(); !!}
                                 </div>
-                            </div>
+                            </div>-->
                         </aside>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-8 float-left">
