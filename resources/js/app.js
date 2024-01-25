@@ -2104,7 +2104,7 @@ if (document.getElementById("user_profile")) {
                     slug: slug
                 })
                     .then(function (response) {
-                        if (response.data.user_type == 'freelancer') {
+                        if (response.data.user_type == 'provider') {
                             if (response.data.current_freelancer == 'true') {
                                 self.disable_btn = 'wt-btndisbaled';
                                 self.text = Vue.prototype.trans('lang.saved');
@@ -3556,8 +3556,8 @@ if (document.getElementById("post_job")) {
                         if (error.response.data.errors.project_levels) {
                             self.showError(error.response.data.errors.project_levels[0]);
                         }
-                        if (error.response.data.errors.freelancer_type) {
-                            self.showError(error.response.data.errors.freelancer_type[0]);
+                        if (error.response.data.errors.provider_type) {
+                            self.showError(error.response.data.errors.provider_type[0]);
                         }
                         if (error.response.data.errors.project_cost) {
                             self.showError(error.response.data.errors.project_cost[0]);
@@ -5055,7 +5055,7 @@ if (document.getElementById("services")) {
                             document.addEventListener('iziToast-closing', function (data) {
                                 if (data.detail.id == 'info_notify') {
                                     self.showCompleted(response.data.message);
-                                    if (response.data.role == 'freelancer') {
+                                    if (response.data.role == 'provider') {
                                         window.location.replace(APP_URL + '/provider/services/posted');
                                     } else if (response.data.role == 'admin') {
                                         //window.location.replace(APP_URL+'/admin/jobs');

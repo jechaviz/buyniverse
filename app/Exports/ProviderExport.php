@@ -37,7 +37,7 @@ class ProviderExport implements FromCollection, WithHeadings, WithEvents, WithSt
     public function headings(): array
     {
         //location, department, must be dropdown
-        return ['first_name', 'last_name', 'email', 'location', 'nickname', 'department', 'freelancer_type', 'english_level', 'hourly_rate', 'gender', 'tagline', 'description'];
+        return ['first_name', 'last_name', 'email', 'location', 'nickname', 'department', 'provider_type', 'english_level', 'hourly_rate', 'gender', 'tagline', 'description'];
     }
     public function registerEvents(): array
     {
@@ -53,7 +53,7 @@ class ProviderExport implements FromCollection, WithHeadings, WithEvents, WithSt
 
                 
                 $drop_column = 'B';
-                $freelancer_type = Helper::getFreelancerLevelList();
+                $provider_type = Helper::getFreelancerLevelList();
                 $departments = Department::all();
                 $locations = Location::all();
                 $english_levels = Helper::getEnglishLevelList();
@@ -81,7 +81,7 @@ class ProviderExport implements FromCollection, WithHeadings, WithEvents, WithSt
                     }
                 }
                 $count = 0;
-                foreach($freelancer_type as $key => $value)
+                foreach($provider_type as $key => $value)
                 {
                     if($count == 0)
                     {

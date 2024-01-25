@@ -125,7 +125,7 @@
                     </ul>
                 </li>
             @endif
-            @if ($role === 'employer' || $role === 'freelancer' )
+            @if ($role === 'employer' || $role === 'provider' )
                 <li>
                     <a href="{{{ url($role.'/dashboard') }}}">
                         <!--<i class="ti-desktop"></i>-->
@@ -134,10 +134,10 @@
                 </li>
                 <!--<li>
                     <a href="{{{ route('changerole', $user->role) }}}" style="background: #005178;color: white;">
-                        @if($user->role == 'freelancer')
+                        @if($user->role == 'provider')
                         <span><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.employer') }}</span>
                         @else
-                        <span><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.freelancer') }}</span>
+                        <span><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.provider') }}</span>
                         @endif
                     </a>
                 </li>-->
@@ -230,7 +230,7 @@
                             </a>
                         </li>
                     @endif
-                @elseif ($user->role === 'freelancer')
+                @elseif ($user->role === 'provider')
                     <!--<li class="">
                         <a href="{{{ url('provider/jobs') }}}">
                             <span>{{ trans('lang.all_projects') }}</span>
@@ -273,7 +273,7 @@
                                 <span>{{ trans('lang.invoices') }}</span>
                             </a>
                             <ul class="sub-menu">
-                                    <li><a href="{{{ url('freelancer/package/invoice') }}}">{{ trans('lang.pkg_inv') }}</a></li>
+                                    <li><a href="{{{ url('provider/package/invoice') }}}">{{ trans('lang.pkg_inv') }}</a></li>
                             </ul>
                         </li>
                         <li>

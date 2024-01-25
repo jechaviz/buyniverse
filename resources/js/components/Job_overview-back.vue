@@ -18,8 +18,8 @@
               <td class="job-details">$ {{ job.price}}</td>
           </tr>
           <tr>
-              <td class="job-details"><b>Freelancer Type</b></td>
-              <td class="job-details">{{ job.freelancer_type}}</td>
+              <td class="job-details"><b>Provider Type</b></td>
+              <td class="job-details">{{ job.provider_type}}</td>
           </tr>
           <tr>
               <td class="job-details"><b>English Level</b></td>

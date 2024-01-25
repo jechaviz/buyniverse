@@ -169,9 +169,9 @@
                                                                     <span class="wt-radio">
                                                                     <input id="wt-company-{{$key}}" type="radio" name="role" value="{{{ $role['role_type'] }}}" checked="" v-model="user_role" v-on:change="selectedRole(user_role)">
                                                                     <label for="wt-company-{{$key}}">
-                                                                        {{ $role['name'] === 'freelancer' ? trans('lang.freelancer') : trans('lang.employer')}}
+                                                                        {{ $role['name'] === 'provider' ? trans('lang.freelancer') : trans('lang.employer')}}
                                                                         <span> 
-                                                                            ({{ $role['name'] === 'freelancer' ? trans('lang.signup_as_freelancer') : trans('lang.signup_as_country')}})
+                                                                            ({{ $role['name'] === 'provider' ? trans('lang.signup_as_freelancer') : trans('lang.signup_as_country')}})
                                                                         </span>
                                                                     </label>
                                                                     </span>
@@ -341,9 +341,9 @@
                                                                     <span class="wt-radio">
                                                                     <input id="wt-company-{{$key}}" type="radio" name="role" value="{{{ $role['role_type'] }}}" checked="" v-model="user_role" v-on:change="selectedRole(user_role)">
                                                                     <label for="wt-company-{{$key}}">
-                                                                        {{ $role['name'] === 'freelancer' ? trans('lang.freelancer') : trans('lang.employer')}}
+                                                                        {{ $role['name'] === 'provider' ? trans('lang.freelancer') : trans('lang.employer')}}
                                                                         <span> 
-                                                                            ({{ $role['name'] === 'freelancer' ? trans('lang.signup_as_freelancer') : trans('lang.signup_as_country')}})
+                                                                            ({{ $role['name'] === 'provider' ? trans('lang.signup_as_freelancer') : trans('lang.signup_as_country')}})
                                                                         </span>
                                                                     </label>
                                                                     </span>

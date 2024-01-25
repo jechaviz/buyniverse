@@ -35,7 +35,7 @@
                 } elseif (Request::segment(1) == 'search-results') {
                     $inner_page  = App\SiteManagement::getMetaValue('inner_page_data');
                     if (!empty($_GET['type'])) {
-                        if ($_GET['type'] == 'freelancer') {
+                        if ($_GET['type'] == 'provider') {
                             $header_styling = !empty($inner_page) && !empty($inner_page[0]['freelancer_header_styling']) ? $inner_page[0]['freelancer_header_styling'] : 'false';
                             if ($header_styling == 'true') {
                                 $selected_menu_color = !empty($inner_page) && !empty($inner_page[0]['f_menu_color']) ? $inner_page[0]['f_menu_color'] : '';

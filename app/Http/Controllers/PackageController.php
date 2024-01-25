@@ -353,7 +353,7 @@ class PackageController extends Controller
         $json = array();
         if ($role == 'employer') {
             $packages = $this->package->where('role_id', 2)->where('trial', 0)->take(3)->orderByDesc('id')->get();
-        } else if($role == 'freelancer')  {
+        } else if($role == 'provider')  {
             $packages = $this->package->where('role_id', 3)->where('trial', 0)->take(3)->orderByDesc('id')->get();
         }
         $most_popular = DB::select("SELECT product_id, COUNT(product_id) FROM items WHERE type ='package' GROUP BY product_id ORDER BY COUNT(product_id) DESC LIMIT 1");

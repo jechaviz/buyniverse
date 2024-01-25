@@ -35,7 +35,7 @@ class AdminProfileSeeder extends Seeder
                     'user_id' => '1',
                     'department_id' => null,
                     'no_of_employees' => null,
-                    'freelancer_type' => null,
+                    'provider_type' => null,
                     'english_level' => null,
                     'hourly_rate' => null,
                     'experience' => null,

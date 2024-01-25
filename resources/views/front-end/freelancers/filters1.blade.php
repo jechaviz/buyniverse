@@ -99,7 +99,7 @@
         
         <div class="wt-widget wt-effectiveholder">
             <div class="wt-widgettitle">
-                <h2>{{ trans('lang.freelancer_type') }}</h2>
+                <h2>{{ trans('lang.provider_type') }}</h2>
             </div>
             <div class="wt-widgetcontent">
                 <div class="wt-formtheme wt-formsearch">

@@ -66,7 +66,7 @@ class FteamController extends Controller
             $user->password = Hash::make('password');
             $user->email = $request->email;
             $user->save();
-            $user->assignRole('freelancer');
+            $user->assignRole('provider');
             $profile = new Profile();
             $profile->user()->associate($user->id);
             $profile->save();

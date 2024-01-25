@@ -492,7 +492,7 @@ class JobController extends Controller
             'title' => $request->title,
             'slug' => $slug,
             'project_level' => '',
-            'freelancer_type' => '',
+            'provider_type' => '',
             'english_level' => '',
             'code' => $code,
             'user_id' => $user_id
@@ -543,7 +543,7 @@ class JobController extends Controller
             description
             project_levels
             job_duration
-            freelancer_type
+            provider_type
             english_level
             project_cost
             expiry_date
@@ -754,7 +754,7 @@ class JobController extends Controller
                                         $user->password = Hash::make('password');
                                         $user->email = $team[4];
                                         $user->save();
-                                        $user->assignRole('freelancer');
+                                        $user->assignRole('provider');
                                         $profile = new Profile();
                                         $profile->user()->associate($user->id);
                                         $profile->save();
@@ -921,7 +921,7 @@ class JobController extends Controller
         
         
         //convert values
-        $request->freelancer_type = $request->freelancer;
+        $request->provider_type = $request->freelancer;
         $request->english_level = $request->english;
         $request->project_levels = $request->project_level;
         $request->job_duration = $request->project_duration;
@@ -953,7 +953,7 @@ class JobController extends Controller
                     'title' => 'required',
                     //'project_levels'    => 'required',
                     //'job_duration'    => 'required',
-                    //'freelancer_type'    => 'required',
+                    //'provider_type'    => 'required',
                     //'english_level'    => 'required',
                     //'project_cost'    => 'required',
                     'description'    => 'required',
@@ -1165,7 +1165,7 @@ class JobController extends Controller
                                         $user->password = Hash::make('password');
                                         $user->email = $team[4];
                                         $user->save();
-                                        $user->assignRole('freelancer');
+                                        $user->assignRole('provider');
                                         $profile = new Profile();
                                         $profile->user()->associate($user->id);
                                         $profile->save();

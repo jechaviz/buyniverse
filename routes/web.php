@@ -280,7 +280,7 @@ Route::group(
 );
 
 Route::group(
-    ['middleware' => ['role:employer|freelancer|admin']],
+    ['middleware' => ['role:employer|provider|admin']],
     function () {
         Route::get('job/edit-job/{job_slug}', 'JobController@edit')->name('editJob');
         Route::get('job/approval/{job_slug}', 'JobController@approval')->name('approvalJob'); 
@@ -345,12 +345,12 @@ Route::group(
     }
 );
 Route::group(
-    ['middleware' => ['role:freelancer|employer|admin']],
+    ['middleware' => ['role:provider|employer|admin']],
     function () {
         if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services') {
-            Route::get('provider/services/{status}', 'FreelancerController@showServices')->name('ServiceListing');
-            Route::get('provider/services', 'FreelancerController@freelancerServices')->name('freelancerServices');
-            Route::get('provider/service/{id}/{status}', 'FreelancerController@showServiceDetail')->name('ServiceDetail');
+            Route::get('provider/services/{status}', 'ProviderController@showServices')->name('ServiceListing');
+            Route::get('provider/services', 'ProviderController@freelancerServices')->name('freelancerServices');
+            Route::get('provider/service/{id}/{status}', 'ProviderController@showServiceDetail')->name('ServiceDetail');
         }
         Route::post('services/change-status', 'ServiceController@changeStatus');
         Route::get('provider/dashboard/edit-service/{id}', 'ServiceController@edit')->name('edit_service');
@@ -363,7 +363,7 @@ Route::group(
 );
 //Employer Routes
 Route::group(
-    ['middleware' => ['role:employer|freelancer']],
+    ['middleware' => ['role:employer|provider']],
     function () {
         Route::post('skills/get-job-skills', 'SkillController@getJobSkills');
         Route::get('employer/dashboard/post-job', 'JobController@postJob')->name('employerPostJob');
@@ -398,39 +398,39 @@ Route::group(
 );
 // Freelancer Routes
 Route::group(
-    ['middleware' => ['role:freelancer|employer']],
+    ['middleware' => ['role:provider|employer']],
     function () {
         Route::get('change-role/{role}', 'UserController@changerole')->name('changerole');
         Route::get('/get-provider-skills', 'SkillController@getFreelancerSkills');
         Route::get('/get-skills', 'SkillController@getSkills');
         Route::get('provider/dispute/{slug}', 'UserController@raiseDispute');
         Route::post('provider/store-dispute', 'UserController@storeDispute');
-        Route::get('provider/dashboard/experience-education', 'FreelancerController@experienceEducationSettings')->name('experienceEducation');
-        Route::get('provider/dashboard/project-awards', 'FreelancerController@projectAwardsSettings')->name('projectAwards');
-        Route::post('provider/store-profile-settings', 'FreelancerController@storeProfileSettings')->name('freelancerProfileSetting');
-        Route::post('provider/store-experience-settings', 'FreelancerController@storeExperienceEducationSettings');
-        Route::post('provider/store-project-award-settings', 'FreelancerController@storeProjectAwardSettings');
-        Route::get('provider/get-provider-skills', 'FreelancerController@getFreelancerSkills');
-        Route::get('provider/get-provider-experiences', 'FreelancerController@getFreelancerExperiences');
-        Route::get('provider/get-provider-projects', 'FreelancerController@getFreelancerProjects');
-        Route::get('provider/get-provider-educations', 'FreelancerController@getFreelancerEducations');
-        Route::get('provider/get-provider-awards', 'FreelancerController@getFreelancerAwards');
-        Route::get('provider/jobs/{status}', 'FreelancerController@showFreelancerJobs');
-        Route::get('provider/job-list', 'FreelancerController@freelancerJoblist')->name('freelancerJoblist');
-        Route::get('provider/job/{slug}', 'FreelancerController@showOnGoingJobDetail')->name('showOnGoingJobDetail');
-        Route::get('provider/proposals', 'FreelancerController@showFreelancerProposals')->name('showFreelancerProposals');
-        Route::get('provider/dashboard', 'FreelancerController@freelancerDashboard')->name('freelancerDashboard');
-        Route::get('provider/profile', 'FreelancerController@index')->name('personalDetail');
-        Route::post('provider/upload-temp-image', 'FreelancerController@uploadTempImage');
+        Route::get('provider/dashboard/experience-education', 'ProviderController@experienceEducationSettings')->name('experienceEducation');
+        Route::get('provider/dashboard/project-awards', 'ProviderController@projectAwardsSettings')->name('projectAwards');
+        Route::post('provider/store-profile-settings', 'ProviderController@storeProfileSettings')->name('freelancerProfileSetting');
+        Route::post('provider/store-experience-settings', 'ProviderController@storeExperienceEducationSettings');
+        Route::post('provider/store-project-award-settings', 'ProviderController@storeProjectAwardSettings');
+        Route::get('provider/get-provider-skills', 'ProviderController@getFreelancerSkills');
+        Route::get('provider/get-provider-experiences', 'ProviderController@getFreelancerExperiences');
+        Route::get('provider/get-provider-projects', 'ProviderController@getFreelancerProjects');
+        Route::get('provider/get-provider-educations', 'ProviderController@getFreelancerEducations');
+        Route::get('provider/get-provider-awards', 'ProviderController@getFreelancerAwards');
+        Route::get('provider/jobs/{status}', 'ProviderController@showFreelancerJobs');
+        Route::get('provider/job-list', 'ProviderController@freelancerJoblist')->name('freelancerJoblist');
+        Route::get('provider/job/{slug}', 'ProviderController@showOnGoingJobDetail')->name('showOnGoingJobDetail');
+        Route::get('provider/proposals', 'ProviderController@showFreelancerProposals')->name('showFreelancerProposals');
+        Route::get('provider/dashboard', 'ProviderController@freelancerDashboard')->name('freelancerDashboard');
+        Route::get('provider/profile', 'ProviderController@index')->name('personalDetail');
+        Route::post('provider/upload-temp-image', 'ProviderController@uploadTempImage');
         Route::get('provider/dashboard/post-service', 'ServiceController@create')->name('freelancerPostService');
-        Route::get('provider/payout-settings', 'FreelancerController@payoutSettings')->name('FreelancerPayoutsSettings');
-        Route::get('provider/payouts', 'FreelancerController@getPayouts')->name('getFreelancerPayouts');
-        Route::get('provider/jobs/', 'FreelancerController@freelancerJobs')->name('freelancerJobs');
-        Route::get('provider/team/{slug}', 'FreelancerController@showOnGoingJobTeamDetail')->name('showOnGoingJobTeamDetail');
+        Route::get('provider/payout-settings', 'ProviderController@payoutSettings')->name('FreelancerPayoutsSettings');
+        Route::get('provider/payouts', 'ProviderController@getPayouts')->name('getFreelancerPayouts');
+        Route::get('provider/jobs/', 'ProviderController@freelancerJobs')->name('freelancerJobs');
+        Route::get('provider/team/{slug}', 'ProviderController@showOnGoingJobTeamDetail')->name('showOnGoingJobTeamDetail');
 
         Route::get('provider/quiz/{id}', 'MarksController@show')->name('getQuiz');
         Route::put('provider/quiz/{id}', 'MarksController@update')->name('postquiz');
-        Route::get('provider/contest/{id}', 'FreelancerController@contest')->name('freelancercontest');
+        Route::get('provider/contest/{id}', 'ProviderController@contest')->name('freelancercontest');
         Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 
         Route::get('provider/teams', 'FteamController@index')->name('fteam.index');
@@ -444,7 +444,7 @@ Route::group(
 );
 // Employer|Freelancer Routes
 Route::group(
-    ['middleware' => ['role:employer|freelancer|admin']],
+    ['middleware' => ['role:employer|provider|admin']],
     function () {
         Route::post('proposal/upload-temp-image', 'ProposalController@uploadTempImage');
         Route::get('job/proposal/{job_slug}', 'ProposalController@createProposal')->name('createProposal');
@@ -494,8 +494,8 @@ Route::get('get-seven-categories', 'CategoryController@getSevenCategories');
 Route::get('get-articles', 'PublicController@getArticles');
 Route::get('get-home-slider/{id}', 'PageController@getSlider');
 // Route::get('section/get-iframe/{video}', 'PublicController@getVideo');
-Route::get('get-top-providers', 'FreelancerController@getTopFreelancers');
-Route::get('get-all-providers', 'FreelancerController@getAllFreelancers');
+Route::get('get-top-providers', 'ProviderController@getTopFreelancers');
+Route::get('get-all-providers', 'ProviderController@getAllFreelancers');
 Route::get('get-services', 'ServiceController@getServices');
 Route::post('job/get-wishlist', 'JobController@getWishlist');
 Route::get('dashboard/packages/{role}', 'PackageController@index');
@@ -547,7 +547,7 @@ Route::get('search/location-list', 'PublicController@getLocationList');
 
 //api routes
 Route::group(
-    ['prefix' => 'api', 'middleware' => ['role:employer|freelancer|admin']],
+    ['prefix' => 'api', 'middleware' => ['role:employer|provider|admin']],
     function () {
         Route::resources(['job_overview' => 'API\JobController']);
         Route::get('jobtitle/{id}', 'API\JobController@jobtitle');

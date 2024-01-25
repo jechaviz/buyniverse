@@ -72,7 +72,7 @@
                                         
                                         <div class="form-group form-group-half wt-formwithlabel">
                                             <span class="wt-select">
-                                                {!! Form::select('freelancer_type', $freelancer_level, null, array('placeholder' => trans('lang.select_freelancer_level'), 'class' => '', 'v-model'=>'freelancer_level')) !!}
+                                                {!! Form::select('provider_type', $freelancer_level, null, array('placeholder' => trans('lang.select_freelancer_level'), 'class' => '', 'v-model'=>'freelancer_level')) !!}
                                             </span>
                                         </div>
                                         <div class="form-group form-group-half wt-formwithlabel">
@@ -359,7 +359,7 @@
                                     <div class="wt-divtheme wt-userform wt-userformvtwo wt-userformvtwo1">
                                         <div class="form-group ">
                                             <span class="wt-select">
-                                            {!! Form::select('freelancer_type[]', $freelancer_level, null, array('class' => 'chosen-select', 'multiple', 'v-model'=>'freelancer_level')) !!}
+                                            {!! Form::select('provider_type[]', $freelancer_level, null, array('class' => 'chosen-select', 'multiple', 'v-model'=>'freelancer_level')) !!}
                                             </span>
                                         </div>
                                     </div>

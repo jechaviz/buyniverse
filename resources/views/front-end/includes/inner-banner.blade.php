@@ -11,7 +11,7 @@
         } elseif (Request::segment(1) == 'search-results') {
             $inner_page  = App\SiteManagement::getMetaValue('inner_page_data');
             if (!empty($_GET['type'])) {
-                if ($_GET['type'] == 'freelancer') {
+                if ($_GET['type'] == 'provider') {
                     $selected_header = !empty($inner_page) && !empty($inner_page[0]['f_header_style']) ? $inner_page[0]['f_header_style'] : '';
                 } elseif ($_GET['type'] == 'employer') {
                     $selected_header = !empty($inner_page) && !empty($inner_page[0]['emp_header_style']) ? $inner_page[0]['emp_header_style'] : '';

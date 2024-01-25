@@ -78,11 +78,11 @@
                                             <a class="header-menu-a" href="{{{ route('employerServices') }}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services')}}<i class="ti-angle-down"></i></a>
                                         </li> 
                                         <li style="line-height: 13px!important;font-size: small;">
-                                            <a class="header-menu-a" href="{{url('search-results?type=freelancer')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.freelancers')}}</i></a>
+                                            <a class="header-menu-a" href="{{url('search-results?type=provider')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.freelancers')}}</i></a>
                                         </li> 
                                         @endif
 
-                                        @if($role === 'freelancer')
+                                        @if($role === 'provider')
                                         <li style="line-height: 13px!important;font-size: small;">
                                             <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                             <ul class="sub-menu">
@@ -173,7 +173,7 @@
                             <div class="wt-userlistingholder wt-userlisting wt-haslayout">
                                 <div class="wt-userlistingtitle">
                                     @if (!empty($users))
-                                        <span>{{ trans('lang.01') }} {{$users->count()}} of {{\App\User::role('freelancer')->count()}} results @if (!empty($keyword)) for <em>"{{{$keyword}}}"</em> @endif</span>
+                                        <span>{{ trans('lang.01') }} {{$users->count()}} of {{\App\User::role('provider')->count()}} results @if (!empty($keyword)) for <em>"{{{$keyword}}}"</em> @endif</span>
                                     @endif
                                 </div>
                                 @if (!empty($users))

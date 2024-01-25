@@ -134,7 +134,7 @@ export default {
             if (this.roleType) {
                 role = 'employer'
             } else {
-                role = 'freelancer'
+                role = 'provider'
             }
             axios
             .get(APP_URL + '/get-top-packages/' + role)

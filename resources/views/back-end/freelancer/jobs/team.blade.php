@@ -119,7 +119,7 @@
                                                 </td>
                                             </tr>
                                             <!--<tr>
-                                                <td class="job-details"><b>{{ trans('lang.freelancer_typex')}}</b></td>
+                                                <td class="job-details"><b>{{ trans('lang.provider_typex')}}</b></td>
                                                 <td class="job-details">
                                                 @foreach ($freelancers as $freelancer)
                                                     <span>

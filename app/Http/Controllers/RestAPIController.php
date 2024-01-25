@@ -81,7 +81,7 @@ class RestAPIController extends Controller
             }
         );
         if (!empty($login_user) && !empty($type)) {
-            $user_by_role =  User::role('freelancer')->select('id')
+            $user_by_role =  User::role('provider')->select('id')
                 ->get()->pluck('id')->toArray();
             $users = User::whereIn('id', $user_by_role);
             $json[0]['count'] = $users->count();
@@ -174,7 +174,7 @@ class RestAPIController extends Controller
                 }
                 if (!empty($search_freelaner_types)) {
                     $filters['freelaner_type'] = $search_freelaner_types;
-                    $freelancers = Profile::whereIn('freelancer_type', $search_freelaner_types)->get();
+                    $freelancers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
                     foreach ($freelancers as $key => $freelancer) {
                         if (!empty($freelancer->user_id)) {
                             $user_id[] = $freelancer->user_id;
@@ -289,7 +289,7 @@ class RestAPIController extends Controller
                     $json[$key]['_profile_blocked'] = $user_object->profile->profile_blocked;
                     $json[$key]['_profile_searchable'] = $user_object->profile->profile_searchable;
                     $json[$key]['_featured_timestamp']['class'] = "wt-featured";
-                    $json[$key]['_freelancer_type'] = !empty($user_object->profile->freelancer_type) ? $user_object->profile->freelancer_type : '';
+                    $json[$key]['_provider_type'] = !empty($user_object->profile->provider_type) ? $user_object->profile->provider_type : '';
                     $json[$key]['_categories'] = !empty($user_object->category) ? $user_object->category : '';
                     $json[$key]['_perhour_rate'] = !empty($user_object->profile->hourly_rate) ? $symbol . '&nbsp;' . $user_object->profile->hourly_rate : '';
                     $skills = $user_object->skills->toArray();
@@ -972,7 +972,7 @@ class RestAPIController extends Controller
         $package_options = Package::select('options')->where('role_id', $role_id)->first();
         $options = !empty($package_options) ? unserialize($package_options->options) : array();
         if ($packages > 0) {
-            if ($user->role === 'freelancer') {
+            if ($user->role === 'provider') {
                 $skills = !empty($options) ? $options['no_of_skills'] : array();
                 if (!empty($request['skills'])) {
                     if (count($request['skills']) > $skills) {
@@ -1003,8 +1003,8 @@ class RestAPIController extends Controller
                 $profile = $user;
             }
             $profile->user()->associate($request['user_id']);
-            $profile->freelancer_type = !empty($request['freelancer_type']) ?
-                filter_var($request['freelancer_type'], FILTER_SANITIZE_STRING) : $profile->freelancer_type;
+            $profile->provider_type = !empty($request['provider_type']) ?
+                filter_var($request['provider_type'], FILTER_SANITIZE_STRING) : $profile->provider_type;
             $profile->hourly_rate = !empty($request['hourly_rate']) ?
                 intval($request['hourly_rate']) : $profile->hourly_rate;
             $profile->longitude = !empty($request['longitude']) ?
@@ -1690,7 +1690,7 @@ class RestAPIController extends Controller
             $json['error'] = 'Job description is required.';
             return Response::json($json, 203);
         }
-        $freelancer_type = !empty($request['freelancer_level']) ? $request['freelancer_level'] : null;
+        $provider_type = !empty($request['freelancer_level']) ? $request['freelancer_level'] : null;
         $is_featured = !empty($request['is_featured']) ? $request['is_featured'] : false;
         $show_attachments = !empty($request['show_attachments']) ? $request['show_attachments'] : false;
         $address = !empty($request['address']) ? $request['address'] : null;
@@ -1732,7 +1732,7 @@ class RestAPIController extends Controller
                 $job->description = $request['description'];
                 $job->english_level = filter_var($request['english_level'], FILTER_SANITIZE_STRING);
                 $job->duration = filter_var($request['project_duration'], FILTER_SANITIZE_STRING);
-                $job->freelancer_type = filter_var($freelancer_type, FILTER_SANITIZE_STRING);
+                $job->provider_type = filter_var($provider_type, FILTER_SANITIZE_STRING);
                 $job->is_featured = filter_var($is_featured, FILTER_SANITIZE_STRING);
                 $job->show_attachments = filter_var($show_attachments, FILTER_SANITIZE_STRING);
                 $job->address = filter_var($address, FILTER_SANITIZE_STRING);

@@ -25,7 +25,7 @@ class ImportProvider implements ToCollection, WithHeadingRow
             '*.email' => 'required',
             '*.location' => 'required',
             '*.department' => 'required',
-            '*.freelancer_type' => 'required',
+            '*.provider_type' => 'required',
             '*.english_level' => 'required',
             '*.tagline' => 'required',
             '*.description' => 'required',
@@ -36,7 +36,7 @@ class ImportProvider implements ToCollection, WithHeadingRow
             '*.email.required' => 'email Cant be empty',
             '*.location.required' => 'location Cant be empty',
             '*.department.required' => 'Department Cant be empty',
-            '*.freelancer_type.required' => 'freelancer type Cant be empty',
+            '*.provider_type.required' => 'freelancer type Cant be empty',
             '*.english_level.required' => 'english level Cant be empty',
             '*.tagline.required' => 'tagline Cant be empty',
             '*.description.required' => 'description Cant be empty',            
@@ -70,7 +70,7 @@ class ImportProvider implements ToCollection, WithHeadingRow
 
                 $profile = Profile::where('user_id', $user->id)->first();
                 $profile->department_id = $department[1];
-                $profile->freelancer_type = $row['freelancer_type'];
+                $profile->provider_type = $row['provider_type'];
                 $profile->english_level = $row['english_level'];
                 $profile->hourly_rate = $row['hourly_rate'];
                 $profile->gender = $row['gender'];
@@ -91,13 +91,13 @@ class ImportProvider implements ToCollection, WithHeadingRow
                     'user_verified' => 1,
                     'password' => Hash::make('password')
                 ]);
-                $user->assignRole('freelancer');
+                $user->assignRole('provider');
                 $profile = new Profile();
                 $profile->user()->associate($user->id);
                 
                 $profile->user_id = $user->id;
                 $profile->department_id = $department[1];
-                $profile->freelancer_type = $row['freelancer_type'];
+                $profile->provider_type = $row['provider_type'];
                 $profile->english_level = $row['english_level'];
                 $profile->hourly_rate = $row['hourly_rate'];
                 $profile->gender = $row['gender'];

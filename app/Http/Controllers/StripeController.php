@@ -264,7 +264,7 @@ class StripeController extends Controller
                                                     );
                                             }
                                         }
-                                    } elseif ($role === 'freelancer') {
+                                    } elseif ($role === 'provider') {
                                         if (!empty(Auth::user()->email)) {
                                             $email_params = array();
                                             $template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_package_subscribed')->get()->first();

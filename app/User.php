@@ -478,7 +478,7 @@ class User extends Authenticatable
             }
             if (!empty($search_freelaner_types)) {
                 $filters['freelaner_type'] = $search_freelaner_types;
-                $freelancers = Profile::whereIn('freelancer_type', $search_freelaner_types)->get();
+                $freelancers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
                 foreach ($freelancers as $key => $freelancer) {
                     if (!empty($freelancer->user_id)) {
                         $user_id[] = $freelancer->user_id;
@@ -506,7 +506,7 @@ class User extends Authenticatable
                 }
                 $users->whereIn('id', $user_id);
             }
-            if ($type = 'freelancer') {
+            if ($type = 'provider') {
                 $users = $users->orderByRaw('-badge_id DESC')->orderBy('expiry_date', 'DESC');
             } else {
                 $users = $users->orderBy('created_at', 'DESC');
@@ -626,7 +626,7 @@ class User extends Authenticatable
             }
             if (!empty($search_freelaner_types)) {
                 $filters['freelaner_type'] = $search_freelaner_types;
-                $freelancers = Profile::whereIn('freelancer_type', $search_freelaner_types)->get();
+                $freelancers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
                 foreach ($freelancers as $key => $freelancer) {
                     if (!empty($freelancer->user_id)) {
                         $user_id[] = $freelancer->user_id;
@@ -654,7 +654,7 @@ class User extends Authenticatable
                 }
                 $users->whereIn('id', $user_id);
             }
-            if ($type = 'freelancer') {
+            if ($type = 'provider') {
                 $users = $users->orderByRaw('-badge_id DESC')->orderBy('expiry_date', 'DESC');
             } else {
                 $users = $users->orderBy('created_at', 'DESC');

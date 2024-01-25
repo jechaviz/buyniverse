@@ -23,7 +23,7 @@ use App\Skill;
 use App\Team;
 use App\Approver;
 use App\English_level;
-use App\Freelancer_type;
+use App\Provider_type;
 use App\Sub_skill;
 use App\Sub_catetory; 
 use App\Sub_job_skill;
@@ -157,7 +157,7 @@ class JobController extends Controller
         //Providers listing
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
         $search =  User::getSearchResult1(
-            'freelancer',
+            'provider',
             $keyword,
             $search_locations,
             $search_employees,
@@ -248,7 +248,7 @@ class JobController extends Controller
         //Providers listing
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
         $search =  User::getSearchResult(
-            'freelancer',
+            'provider',
             $keyword,
             $search_locations,
             $search_employees,
@@ -338,7 +338,7 @@ class JobController extends Controller
         //Providers listing
         $keyword = !empty($request->s) ? $request->s : '';
         $search =  User::getSearchResult1(
-            'freelancer',
+            'provider',
             $keyword,
             $search_locations,
             $search_employees,
@@ -810,7 +810,7 @@ class JobController extends Controller
             $user->password = Hash::make('password');
             $user->email = $request->email;
             $user->save();
-            $user->assignRole('freelancer');
+            $user->assignRole('provider');
             $profile = new Profile();
             $profile->user()->associate($user->id);
             $profile->save();
@@ -963,7 +963,7 @@ class JobController extends Controller
                     $user->password = Hash::make('password');
                     $user->email = $team['email'];
                     $user->save();
-                    $user->assignRole('freelancer');
+                    $user->assignRole('provider');
                     $profile = new Profile();
                     $profile->user()->associate($user->id);
                     $profile->save();
@@ -1203,12 +1203,12 @@ class JobController extends Controller
     }
     public function getFreelancer($id)
     {
-        $freelancer = Freelancer_type::where('job_id', $id)->get();
+        $freelancer = Provider_type::where('job_id', $id)->get();
         $project_freelancer = Helper::getFreelancerLevelList();
         foreach ($freelancer as $key => $value) {
             foreach ($project_freelancer as $key1 => $value1) {
                 //dd($value, $key1, $project_english);
-                if($value->freelancer_type == $key1)
+                if($value->Provider_type == $key1)
                     $value->name = $value1;
             }   
         }
@@ -1221,7 +1221,7 @@ class JobController extends Controller
     }
     public function deletefreelancer($id)
     {
-        $freelancer = Freelancer_type::find($id);
+        $freelancer = Provider_type::find($id);
         $freelancer->delete();
     }
     public function getProjectLevel()
@@ -1295,17 +1295,17 @@ class JobController extends Controller
     {
         
         $ids = explode('-', $id);
-        if(Freelancer_type::where('job_id', $ids[0])->where('freelancer_type', $ids[1])->exists())
+        if(Provider_type::where('job_id', $ids[0])->where('Provider_type', $ids[1])->exists())
         {}
         else
         {
-            $freelancer = new Freelancer_type;
+            $freelancer = new Provider_type;
             $freelancer->job_id = $ids[0];
-            $freelancer->freelancer_type = $ids[1];
+            $freelancer->Provider_type = $ids[1];
             $freelancer->save();
         }
         /*$job = Job::find($ids[0]);
-        $job->freelancer_type = $ids[1];
+        $job->Provider_type = $ids[1];
         $job->save(); */
     }
     public function postProjectenglish($id)

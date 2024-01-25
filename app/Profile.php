@@ -38,7 +38,7 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'department_id', 'no_of_employees', 'freelancer_type',
+        'user_id', 'department_id', 'no_of_employees', 'provider_type',
         'english_level', 'hourly_rate', 'experience', 'education', 'awards',
         'projects', 'saved_freelancer', 'saved_jobs', 'saved_employers',
         'rating', 'address', 'longitude', 'latitude', 'avater', 'banner',
@@ -112,7 +112,7 @@ class Profile extends Model
         }
 
         $profile->user()->associate($user_id);
-        $profile->freelancer_type = 'Basic';
+        $profile->provider_type = 'Basic';
         $profile->hourly_rate = intval($request['hourly_rate']);
         $profile->gender = filter_var($request['gender'], FILTER_SANITIZE_STRING);
         $profile->tagline = filter_var($request['tagline'], FILTER_SANITIZE_STRING);

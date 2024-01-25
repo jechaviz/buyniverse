@@ -131,7 +131,7 @@ export default {
     },
     methods:{
         checkout (url) {
-            if ((this.role == 'employer' && this.roleType) || (this.role == 'freelancer' && !this.roleType)) {
+            if ((this.role == 'employer' && this.roleType) || (this.role == 'provider' && !this.roleType)) {
                 window.location.replace(url)
             } else {
                 this.showError(Vue.prototype.trans('lang.you_are_not_allowed_to_perform'))
@@ -147,7 +147,7 @@ export default {
             if (this.roleType) {
                 role = 'employer'
             } else {
-                role = 'freelancer'
+                role = 'provider'
             }
             axios
             .get(APP_URL + '/get-top-packages/' + role)

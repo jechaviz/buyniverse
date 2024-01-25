@@ -46,7 +46,7 @@ class Job extends Model
         'updated_at',
     ];
 
-    protected $fillable = ['title', 'slug', 'project_level', 'freelancer_type', 'english_level', 'code', 'user_id'];
+    protected $fillable = ['title', 'slug', 'project_level', 'provider_type', 'english_level', 'code', 'user_id'];
     /**
      * Get all of the categories for the job.
      *
@@ -195,7 +195,7 @@ class Job extends Model
             $this->description = $request['description'];
             $this->english_level = filter_var($request['english'], FILTER_SANITIZE_STRING);
             $this->duration = filter_var($request['project_duration'], FILTER_SANITIZE_STRING);
-            $this->freelancer_type = filter_var($request['freelancer_type'], FILTER_SANITIZE_STRING);
+            $this->provider_type = filter_var($request['provider_type'], FILTER_SANITIZE_STRING);
             $this->is_featured = filter_var($request['is_featured'], FILTER_SANITIZE_STRING);
             $this->show_attachments = filter_var($request['show_attachments'], FILTER_SANITIZE_STRING);
             $this->address = filter_var($request['address'], FILTER_SANITIZE_STRING);
@@ -288,13 +288,13 @@ class Job extends Model
                     ]);
                 }
             }
-            $freelancer_type = $request['freelancer'];
-            if (!empty($freelancer_type)) {
-                foreach ($freelancer_type as $key => $value) {
+            $provider_type = $request['freelancer'];
+            if (!empty($provider_type)) {
+                foreach ($provider_type as $key => $value) {
                     //$this->skills()->attach($skill['id']);
-                    DB::table('freelancer_types')->insert([
+                    DB::table('provider_types')->insert([
                         'job_id' => $job_id,
-                        'freelancer_type' => $value
+                        'provider_type' => $value
                     ]);
                 }
             }
@@ -368,7 +368,7 @@ class Job extends Model
             $job->description = $request['description'];
             $job->english_level = filter_var($request['english_level'], FILTER_SANITIZE_STRING);
             $job->duration = filter_var($request['job_duration'], FILTER_SANITIZE_STRING);
-            $job->freelancer_type = filter_var($request['freelancer_type'], FILTER_SANITIZE_STRING);
+            $job->provider_type = filter_var($request['provider_type'], FILTER_SANITIZE_STRING);
             $job->is_featured = filter_var($request['is_featured'], FILTER_SANITIZE_STRING);
             $job->show_attachments = filter_var($request['show_attachments'], FILTER_SANITIZE_STRING);
             $job->address = filter_var($request['address'], FILTER_SANITIZE_STRING);

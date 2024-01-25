@@ -38,7 +38,7 @@
                     @else
                         <div class="wt-btnarea"><a href="{{{ url(route('showUserProfile', ['slug' => Auth::user()->slug])) }}}" class="wt-btn">{{{ trans('lang.view_profile') }}}</a></div>
                     @endif
-                    @elseif ($user->role === 'freelancer')
+                    @elseif ($user->role === 'provider')
                         @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services')
                             <div class="wt-btnarea"><a href="{{{ url(route('freelancerPostService')) }}}" class="wt-btn">{{{ trans('lang.post_service') }}}</a></div>
                         @else
@@ -173,7 +173,7 @@
                             </ul>
                         </li>
                     @endif
-                    @if ($role === 'employer' || $role === 'freelancer' )
+                    @if ($role === 'employer' || $role === 'provider' )
                         <li>
                             <a href="{{{ url('/') }}}">
                                 <i class="ti-home"></i>
@@ -283,7 +283,7 @@
                                     </a>
                                 </li>-->
                             @endif
-                        @elseif ($user->role === 'freelancer')
+                        @elseif ($user->role === 'provider')
                             <li class="">
                                 
                                 <a href="{{{ url('provider/jobs') }}}">
@@ -338,7 +338,7 @@
                                         <span>{{ trans('lang.invoices') }}</span>
                                     </a>
                                     <ul class="sub-menu">
-                                        <li><hr><a href="{{{ url('freelancer/package/invoice') }}}">{{ trans('lang.pkg_inv') }}</a></li>
+                                        <li><hr><a href="{{{ url('provider/package/invoice') }}}">{{ trans('lang.pkg_inv') }}</a></li>
                                     </ul>
                                 </li>
                                 <li>

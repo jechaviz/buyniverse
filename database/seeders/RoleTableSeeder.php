@@ -32,8 +32,8 @@ class RoleTableSeeder extends Seeder {
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
                 [
-                    'name' => 'freelancer',
-                    'role_type' => 'freelancer',
+                    'name' => 'provider',
+                    'role_type' => 'provider',
                     'guard_name' => 'web',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),

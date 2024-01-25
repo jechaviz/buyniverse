@@ -66,8 +66,8 @@ class LoginController extends Controller
                     return Redirect::to('/');
                 }
                 $user_role = $user_role_type->role_type;
-                if ($user_role === 'freelancer') {
-                    $user1->role = 'freelancer';
+                if ($user_role === 'provider') {
+                    $user1->role = 'provider';
                     $user1->save();
                     return Redirect::to('provider/dashboard');
                 } elseif ($user_role === 'employer') {

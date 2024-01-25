@@ -1289,8 +1289,8 @@ class EmployerController extends Controller
         $ongoing_services_icon = !empty($icons['hidden_ongoing_services']) ? $icons['hidden_ongoing_services'] : 'onservice.png';
         $access_type = Helper::getAccessType();
 
-        //freelancer 
-        $type= 'freelancer';
+        //provider 
+        $type= 'provider';
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
         $search_locations = !empty($_GET['locations']) ? $_GET['locations'] : array();
         $search_employees = !empty($_GET['employees']) ? $_GET['employees'] : array();
@@ -1426,8 +1426,8 @@ class EmployerController extends Controller
         $ongoing_services_icon = !empty($icons['hidden_ongoing_services']) ? $icons['hidden_ongoing_services'] : 'onservice.png';
         $access_type = Helper::getAccessType();
         
-        //freelancer 
-        $type= 'freelancer';
+        //provider 
+        $type= 'provider';
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
         $search_locations = !empty($_GET['locations']) ? $_GET['locations'] : array();
         $search_employees = !empty($_GET['employees']) ? $_GET['employees'] : array();

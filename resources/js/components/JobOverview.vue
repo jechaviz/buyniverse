@@ -142,7 +142,7 @@
                 </td>
             </tr>
           <!--<tr>
-              <td class="job-details"><b>{{ trans('lang.freelancer_typex') }}</b></td>
+              <td class="job-details"><b>{{ trans('lang.provider_typex') }}</b></td>
               <td class="job-details">
                   <span id="projectfreelancer"><span v-for="(item, key) in freelancer" :key="key" :value="key">
                       <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ item.name }} <i @click="deletefreelancer(item.id)" v-show="isapprover == '1' || permission == 2" class="fa fa-times" aria-hidden="true"></i></span>

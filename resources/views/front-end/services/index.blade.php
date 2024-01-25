@@ -78,11 +78,11 @@
                                             <a class="header-menu-a" href="{{{ route('employerServices') }}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services')}}<i class="ti-angle-down"></i></a>
                                         </li> 
                                         <li style="line-height: 13px!important;font-size: small;">
-                                            <a class="header-menu-a" href="{{url('search-results?type=freelancer')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.freelancers')}}</i></a>
+                                            <a class="header-menu-a" href="{{url('search-results?type=provider')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.freelancers')}}</i></a>
                                         </li> 
                                         @endif
 
-                                        @if($role === 'freelancer')
+                                        @if($role === 'provider')
                                         <li style="line-height: 13px!important;font-size: small;">
                                             <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                             <ul class="sub-menu">

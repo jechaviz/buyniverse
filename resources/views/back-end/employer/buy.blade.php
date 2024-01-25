@@ -1292,7 +1292,7 @@
                                     <div class="wt-userlistingholder wt-userlisting wt-haslayout">
                                         <div class="wt-userlistingtitle">
                                             @if (!empty($users))
-                                                <span>{{ trans('lang.01') }} {{$users->count()}} of {{\App\User::role('freelancer')->count()}} results @if (!empty($keyword)) for <em>"{{{$keyword}}}"</em> @endif</span>
+                                                <span>{{ trans('lang.01') }} {{$users->count()}} of {{\App\User::role('provider')->count()}} results @if (!empty($keyword)) for <em>"{{{$keyword}}}"</em> @endif</span>
                                             @endif
                                         </div>
                                         @if (!empty($users))

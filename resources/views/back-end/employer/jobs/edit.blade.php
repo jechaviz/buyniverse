@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="form-group form-group-half wt-formwithlabel">
                                                 <span class="wt-select">
-                                                    {!! Form::select('freelancer_type', $freelancer_level_list, e($job->freelancer_type)) !!}
+                                                    {!! Form::select('provider_type', $freelancer_level_list, e($job->provider_type)) !!}
                                                 </span>
                                             </div>
                                             <div class="form-group form-group-half wt-formwithlabel">
@@ -322,7 +322,7 @@
                                         <div class="wt-divtheme wt-userform wt-userformvtwo wt-userformvtwo1">
                                             <div class="form-group ">
                                                 <span class="wt-select">
-                                                    {!! Form::select('freelancer_type', $freelancer_level_list, e($job->freelancer_type), array('placeholder' => trans('lang.select_freelancer_level'), 'class' => '')) !!}
+                                                    {!! Form::select('provider_type', $freelancer_level_list, e($job->provider_type), array('placeholder' => trans('lang.select_freelancer_level'), 'class' => '')) !!}
                                                 </span>
                                             </div>
                                         </div>

@@ -290,8 +290,8 @@ class PublicController extends Controller
             $current_date = Carbon::now()->format('M d, Y');
             $tagline = !empty($profile) ? $profile->tagline : '';
             $desc = !empty($profile) ? $profile->description : '';
-            //if ($user->getRoleNames()->first() === 'freelancer') {
-            if ($role === 'freelancer') {
+            //if ($user->getRoleNames()->first() === 'provider') {
+            if ($role === 'provider') {
 
                 $services = array();
                 if (Schema::hasTable('services') && Schema::hasTable('service_user')) {
@@ -685,7 +685,7 @@ class PublicController extends Controller
         $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
         //dd($symbol);
         if (!empty($_GET['type'])) {
-            if ($type == 'employer' || $type == 'freelancer') {
+            if ($type == 'employer' || $type == 'provider') {
                 $users_total_records = User::count();
                 $search =  User::getSearchResult(
                     $type,
@@ -753,7 +753,7 @@ class PublicController extends Controller
                             )
                         );
                     }
-                } elseif ($type === 'freelancer') {
+                } elseif ($type === 'provider') {
                     //dd('freelancers', $symbol);
                     $f_list_meta_title = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_title']) ? $inner_page[0]['f_list_meta_title'] : trans('lang.freelancer_listing');
                     $f_list_meta_desc = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_desc']) ? $inner_page[0]['f_list_meta_desc'] : trans('lang.freelancer_meta_desc');
@@ -1042,7 +1042,7 @@ class PublicController extends Controller
     public function checkProposalAuth()
     {
         $json = array();
-        if (Auth::user() && Auth::user()->role === 'freelancer') {
+        if (Auth::user() && Auth::user()->role === 'provider') {
             $json['auth'] = true;
             return $json;
         } else {

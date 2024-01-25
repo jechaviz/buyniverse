@@ -1134,7 +1134,7 @@ class Helper extends Model
                     '4' => trans('lang.emp_pkg_opt.banner'),
                     '5' => trans('lang.emp_pkg_opt.pvt_cht'),
                 );
-            } elseif ($role == 'freelancer') {
+            } elseif ($role == 'provider') {
                 $list = array(
                     '0' => trans('lang.freelancer_pkg_opt.price'),
                     '1' => trans('lang.freelancer_pkg_opt.no_of_credits'),
@@ -1171,7 +1171,7 @@ class Helper extends Model
                     'banner_option' => trans('lang.emp_pkg_opt.banner'),
                     'private_chat' => trans('lang.emp_pkg_opt.pvt_cht'),
                 );
-            } elseif ($role == 'freelancer') {
+            } elseif ($role == 'provider') {
                 $list = array(
                     'no_of_connects' => trans('lang.freelancer_pkg_opt.no_of_credits'),
                     'no_of_skills' => trans('lang.freelancer_pkg_opt.no_of_skills'),
@@ -1345,8 +1345,8 @@ class Helper extends Model
     public static function getSearchableList($type)
     {
         $json = array();
-        if ($type == 'freelancer') {
-            $freelancs = User::role('freelancer')->select(
+        if ($type == 'provider') {
+            $freelancs = User::role('provider')->select(
                 DB::raw("CONCAT(users.first_name,' ',users.last_name) AS name"),
                 "slug"
             )->where('is_disabled', 'false')->get()->toArray();
@@ -1389,14 +1389,14 @@ class Helper extends Model
     public static function getSearchableListV2($type, $location)
     {
         $json = array();
-        if ($type == 'freelancer') {
+        if ($type == 'provider') {
             if (!empty($location)) {
-                $freelancs = User::role('freelancer')->select(
+                $freelancs = User::role('provider')->select(
                     DB::raw("CONCAT(users.first_name,' ',users.last_name) AS name"),
                     "slug"
                 )->where('is_disabled', 'false')->where('location_id', $location)->get()->toArray();
             } else {
-                $freelancs = User::role('freelancer')->select(
+                $freelancs = User::role('provider')->select(
                     DB::raw("CONCAT(users.first_name,' ',users.last_name) AS name"),
                     "slug"
                 )->where('is_disabled', 'false')->get()->toArray();
@@ -1676,7 +1676,7 @@ class Helper extends Model
             } else {
                 return '/uploads/users/' . $user_id . '/' . $profile_banner;
             }
-        } elseif ($user->role_type == 'freelancer') {
+        } elseif ($user->role_type == 'provider') {
             if (!empty($size)) {
                 if (file_exists('images/' . $size . '-frbanner-1920x400.jpg')) {
                     return 'images/' . $size . '-frbanner-1920x400.jpg';
@@ -4508,7 +4508,7 @@ class Helper extends Model
     public static function getAuthRoleName()
     {
         if (Auth::user()) {
-            if (Auth::user()->role == 'freelancer') {
+            if (Auth::user()->role == 'provider') {
                 return trans('lang.freelancer');
             } elseif (Auth::user()->role == 'employer') {
                 return trans('lang.employer');

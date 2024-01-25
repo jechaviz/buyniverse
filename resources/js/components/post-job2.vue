@@ -120,7 +120,7 @@
                 </td>
           </tr>
           <!--<tr id="tr4" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.freelancer_typex') }}</b></td>
+              <td class="job-details"><b>{{ trans('lang.provider_typex') }}</b></td>
               <td class="job-details">
                   <span id="projectfreelancer"><span v-for="(item, key) in freelancer" :key="key" :value="key">
                       <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ item.name }} <i @click="deletefreelancer(item.id)"  class="fa fa-times" aria-hidden="true"></i></span>
@@ -523,8 +523,8 @@ export default {
                     if (error.response.data.errors.project_levels) {
                         self.showError(error.response.data.errors.project_levels[0]);
                     }
-                    if (error.response.data.errors.freelancer_type) {
-                        self.showError(error.response.data.errors.freelancer_type[0]);
+                    if (error.response.data.errors.provider_type) {
+                        self.showError(error.response.data.errors.provider_type[0]);
                     }
                     if (error.response.data.errors.project_cost) {
                         self.showError(error.response.data.errors.project_cost[0]);

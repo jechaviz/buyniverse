@@ -446,8 +446,8 @@ export default {
                     if (error.response.data.errors.project_levels) {
                         self.showError(error.response.data.errors.project_levels[0]);
                     }
-                    if (error.response.data.errors.freelancer_type) {
-                        self.showError(error.response.data.errors.freelancer_type[0]);
+                    if (error.response.data.errors.provider_type) {
+                        self.showError(error.response.data.errors.provider_type[0]);
                     }
                     if (error.response.data.errors.project_cost) {
                         self.showError(error.response.data.errors.project_cost[0]);

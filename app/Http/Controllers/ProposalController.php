@@ -874,7 +874,7 @@ class ProposalController extends Controller
         //Providers listing
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
         $search =  User::getSearchResult(
-            'freelancer',
+            'provider',
             $keyword,
             $search_locations,
             $search_employees,

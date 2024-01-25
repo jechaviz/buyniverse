@@ -95,7 +95,7 @@
                 employers:[],
                 jobs:[],
                 query:'',
-                types:'freelancer',
+                types:'provider',
                 selected_type:'',
                 no_record:this.no_record_message,
                 is_show: false,
@@ -106,7 +106,7 @@
         },
         methods: {
             displayFiltersName(type) {
-                if(type == 'freelancer') {
+                if(type == 'provider') {
                     this.selected_type = this.freelancer_placeholder;
                 } else if(type == 'employer') {
                     this.selected_type = this.employer_placeholder;
@@ -135,7 +135,7 @@
                     type:type
                 })
                 .then(function (response) {
-                    if (type == 'freelancer') {
+                    if (type == 'provider') {
                         self.searchable_data = response.data.searchables;
                     } else if (type == 'employer') {
                         self.searchable_data = response.data.searchables;
@@ -170,7 +170,7 @@
                         var type = types;
                     }
                     if(type == 'Freelancers') {
-                        type = 'freelancer';
+                        type = 'provider';
                     } else if(type == 'Employers') {
                         type = 'employer';
                     } else if(type == 'Jobs') {
@@ -205,7 +205,7 @@
                     var type = urlParams.get('type');
                 }   else {
                         if(type == 'Freelancers') {
-                            type = 'freelancer';
+                            type = 'provider';
                     }   else if(type == 'Employers') {
                             type = 'employer';
                     }   else if(type == 'Jobs') {
@@ -263,7 +263,7 @@
                 this.displayFiltersName(type);
                 this.getSearchableData(type);
             } else {
-                this.getSearchableData('freelancer');
+                this.getSearchableData('provider');
             }
         }
     }

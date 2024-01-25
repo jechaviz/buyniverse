@@ -68,7 +68,7 @@
             @endif
             @if ($add_f_navbar !== 'false')
                 <li style="{{!empty($freelancer_order) ? 'order:'.$freelancer_order : 'order:99' }}">
-                    <a href="{{url('search-results?type=freelancer')}}">
+                    <a href="{{url('search-results?type=provider')}}">
                         {{{ trans('lang.view_freelancers') }}}
                     </a>
                 </li>
@@ -141,7 +141,7 @@
             @endif
         @else
         @if(Auth::user())
-            @if ( Auth::user()->role === 'freelancer' )
+            @if ( Auth::user()->role === 'provider' )
             <li>
                 <a href="{{ route('freelancerJoblist') }}">
                 <i class="ti-search"></i> 

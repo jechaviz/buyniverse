@@ -101,7 +101,8 @@ class UserController extends Controller
     {
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
-        if($user->role == 'freelancer')
+        //dd($role);
+        if($user->role == 'provider')
         {
             $user->role = 'employer';
             $user->save();
@@ -109,7 +110,7 @@ class UserController extends Controller
         }            
         else
         {
-            $user->role = 'freelancer';
+            $user->role = 'provider';
             $user->save();
             return Redirect::to('provider/dashboard');
         }
@@ -512,7 +513,7 @@ class UserController extends Controller
                             Job::deleteRecord($job->id);
                         }
                     }
-                //} else if ($role == 'freelancer') {
+                //} else if ($role == 'provider') {
                     if (!empty($user->proposals)) {
                         foreach ($user->proposals as $key => $proposal) {
                             Proposal::deleteRecord($proposal->id);
@@ -728,8 +729,8 @@ class UserController extends Controller
                 $selected_user = DB::table('users')->select('id')
                     ->where('slug', $request['slug'])->get()->first();
                 $role = $this->user::getUserRoleType($selected_user->id);
-                if ($role->role_type == 'freelancer') {
-                    $json['user_type'] = 'freelancer';
+                if ($role->role_type == 'provider') {
+                    $json['user_type'] = 'provider';
                     if (in_array($selected_user->id, unserialize($profile->saved_freelancer))) {
                         $json['current_freelancer'] = 'true';
                     }
@@ -1830,7 +1831,7 @@ class UserController extends Controller
                                         );
                                 }
                             }
-                        } elseif ($role === 'freelancer') {
+                        } elseif ($role === 'provider') {
                             if (!empty($user->email)) {
                                 $email_params = array();
                                 $template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_package_subscribed')->get()->first();
@@ -1937,7 +1938,7 @@ class UserController extends Controller
      */
     public function getFreelancerInvoices($type = '')
     {
-        if (Auth::user()->getRoleNames()[0] != 'admin' && Auth::user()->role === 'freelancer') {
+        if (Auth::user()->getRoleNames()[0] != 'admin' && Auth::user()->role === 'provider') {
             $invoices = array();
             $invoices = DB::table('invoices')
                 ->join('items', 'items.invoice_id', '=', 'invoices.id')
@@ -1995,7 +1996,7 @@ class UserController extends Controller
                 $code = Helper::currencyList($currency_code);
                 $symbol = !empty($code) && !empty($code['symbol']) ? $code['symbol'] : '$';
             }
-            if (Auth::user()->role === 'freelancer') {
+            if (Auth::user()->role === 'provider') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/invoices/show.blade.php'))) {
                     return view::make('extend.back-end.freelancer.invoices.show', compact('invoice_info', 'symbol', 'currency_code'));
                 } else {
@@ -2514,7 +2515,7 @@ class UserController extends Controller
                 ]
             );
             $role = $this->user::getUserRoleType($request['refundable_user_id']);
-            if ($role->role_type == 'freelancer') {
+            if ($role->role_type == 'provider') {
                 $update_status = '';
                 if ($request['type'] == 'job') {
                     $update_status = $this->user->updateCancelProject($request);
