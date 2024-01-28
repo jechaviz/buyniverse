@@ -50,7 +50,7 @@ use App\Team;
 use App\Sub_job_skill;
 use App\Sub_job_cat;
 use App\Approver;
-use App\Freelancerinvite;
+use App\Providerinvite;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\Approverinvite;
 use App\Mail\Approveruserinvite;
@@ -775,22 +775,22 @@ class JobController extends Controller
                                 {
                                     $emails = $emails.", ".$email;
                                 }
-                            $freelancerinvite = new Freelancerinvite;
-                            $freelancerinvite->freelancers = $request->emails;
-                            $freelancerinvite->job_id = $job->id;
-                            $freelancerinvite->email_text = $request->email_text;
-                            $freelancerinvite->save();
+                            $providerinvite = new Providerinvite;
+                            $providerinvite->providers = $request->emails;
+                            $providerinvite->job_id = $job->id;
+                            $providerinvite->email_text = $request->email_text;
+                            $providerinvite->save();
                             }
                         }
                         else
                         {
                             if($request->invited_freelancers)
                             {
-                                //$freelancerinvite = new Freelancerinvite;
-                                //$freelancerinvite->freelancers = $emails;
-                                //$freelancerinvite->job_id = $job->id;
-                                //$freelancerinvite->email_text = $request->email_text;
-                                //$freelancerinvite->save();
+                                //$providerinvite = new Providerinvite;
+                                //$providerinvite->providers = $emails;
+                                //$providerinvite->job_id = $job->id;
+                                //$providerinvite->email_text = $request->email_text;
+                                //$providerinvite->save();
                                 $emails = "";
                                 
                                 foreach($request->invited_freelancers as $key => $email)
@@ -807,11 +807,11 @@ class JobController extends Controller
                                     //dd('email sent');
                                     $emails = $emails.", ".$email;
                                 }
-                                $freelancerinvite = new Freelancerinvite;
-                                $freelancerinvite->freelancers = $emails;
-                                $freelancerinvite->job_id = $job->id;
-                                $freelancerinvite->email_text = $request->email_text;
-                                $freelancerinvite->save();
+                                $providerinvite = new Providerinvite;
+                                $providerinvite->providers = $emails;
+                                $providerinvite->job_id = $job->id;
+                                $providerinvite->email_text = $request->email_text;
+                                $providerinvite->save();
                             }
                         }*/
                         //send email to admin
@@ -1186,22 +1186,22 @@ class JobController extends Controller
                                 {
                                     $emails = $emails.", ".$email;
                                 }
-                            $freelancerinvite = new Freelancerinvite;
-                            $freelancerinvite->freelancers = $request->emails;
-                            $freelancerinvite->job_id = $job->id;
-                            $freelancerinvite->email_text = $request->email_text;
-                            $freelancerinvite->save();
+                            $providerinvite = new Providerinvite;
+                            $providerinvite->providers = $request->emails;
+                            $providerinvite->job_id = $job->id;
+                            $providerinvite->email_text = $request->email_text;
+                            $providerinvite->save();
                             }
                         }
                         else
                         {
                             if($request->invited_freelancers)
                             {
-                                /*$freelancerinvite = new Freelancerinvite;
-                                $freelancerinvite->freelancers = $emails;
-                                $freelancerinvite->job_id = $job->id;
-                                $freelancerinvite->email_text = $request->email_text;
-                                $freelancerinvite->save();*/
+                                /*$providerinvite = new Providerinvite;
+                                $providerinvite->providers = $emails;
+                                $providerinvite->job_id = $job->id;
+                                $providerinvite->email_text = $request->email_text;
+                                $providerinvite->save();*/
                                 $emails = "";
                                 
                                 foreach($request->invited_freelancers as $key => $email)
@@ -1218,11 +1218,11 @@ class JobController extends Controller
                                     //dd('email sent');
                                     $emails = $emails.", ".$email;
                                 }
-                                $freelancerinvite = new Freelancerinvite;
-                                $freelancerinvite->freelancers = $emails;
-                                $freelancerinvite->job_id = $job->id;
-                                $freelancerinvite->email_text = $request->email_text;
-                                $freelancerinvite->save();
+                                $providerinvite = new Providerinvite;
+                                $providerinvite->providers = $emails;
+                                $providerinvite->job_id = $job->id;
+                                $providerinvite->email_text = $request->email_text;
+                                $providerinvite->save();
                             }
                         }
                         //send email to admin

@@ -28,7 +28,7 @@ use App\Sub_skill;
 use App\Sub_catetory; 
 use App\Sub_job_skill;
 use App\Sub_job_cat;
-use App\Freelancerinvite;
+use App\Providerinvite;
 use App\Live_contest;
 use App\Live_contest_participant;
 use App\Proposal;
@@ -690,12 +690,12 @@ class JobController extends Controller
     {
         
         $invitedf = array();
-        if(Freelancerinvite::where('job_id', $id)->exists())
+        if(Providerinvite::where('job_id', $id)->exists())
         {
-            $freelancerinvite = Freelancerinvite::where('job_id', $id)->first();
+            $providerinvite = Providerinvite::where('job_id', $id)->first();
             
-            $emails = explode(', ', $freelancerinvite->freelancers);
-            // dd($freelancerinvite);                        
+            $emails = explode(', ', $providerinvite->providers);
+            // dd($providerinvite);                        
             foreach($emails as $key => $email)
             {
                 if(User::where('email', $email)->exists())
@@ -718,9 +718,9 @@ class JobController extends Controller
     {
         $ids = explode('-', $id);
         //dd($id);
-        $invite = Freelancerinvite::where('job_id', $ids[0])->first();
-        $emails = explode(', ', $invite->freelancers);
-        $freelancers = $invite->freelancers;
+        $invite = Providerinvite::where('job_id', $ids[0])->first();
+        $emails = explode(', ', $invite->providers);
+        $providers = $invite->providers;
         if($ids[1] == $emails[0])
         {
             $ids[1] = $ids[1].', ';
@@ -732,9 +732,9 @@ class JobController extends Controller
         
         
         
-        $freelancers = str_replace($ids[1],"",$freelancers);
-        $invite->freelancers = $freelancers;
-        //dd($invite, $freelancers);
+        $providers = str_replace($ids[1],"",$providers);
+        $invite->providers = $providers;
+        //dd($invite, $providers);
         $invite->save();
         
     }
@@ -751,18 +751,18 @@ class JobController extends Controller
         
         Thanks in advance,
         {name}";
-        if(Freelancerinvite::where('job_id', $request->job_id)->exists())
+        if(Providerinvite::where('job_id', $request->job_id)->exists())
         {
-            $invite = Freelancerinvite::where('job_id', $request->job_id)->first();
+            $invite = Providerinvite::where('job_id', $request->job_id)->first();
         }
         else
         {
-            $invite = new Freelancerinvite;
+            $invite = new Providerinvite;
             $invite->job_id = $request->job_id;
             $invite->email_text = $email_text;
         }
-        $freelancers = $invite->freelancers.', '.$request->email;
-        $invite->freelancers = $freelancers;
+        $providers = $invite->providers.', '.$request->email;
+        $invite->providers = $providers;
         $invite->save();
     }
     public function deletesubskill($id)
@@ -922,10 +922,10 @@ class JobController extends Controller
         {
             $job = Job::find($job_id);
             //invite freelancer
-            /*$freelancerinvite = Freelancerinvite::where('job_id', $job_id)->first();
-            if($freelancerinvite->freelancers)
+            /*$providerinvite = Providerinvite::where('job_id', $job_id)->first();
+            if($providerinvite->providers)
             {
-                $emails = explode(', ', $freelancerinvite->freelancers);
+                $emails = explode(', ', $providerinvite->providers);
                 
                 $user1 = User::find($job->user_id);
                 foreach($emails as $key => $email)
@@ -934,7 +934,7 @@ class JobController extends Controller
                     
                     $name = $user1->first_name.' '.$user1->last_name;
                     $link = '<a href="http://worketic.apnahive.com/job/'. $job->slug .'">Link</a>';
-                    $messagex = str_replace('{name}', $name, $freelancerinvite->email_text);
+                    $messagex = str_replace('{name}', $name, $providerinvite->email_text);
                     $messagex = str_replace('{link}', $link, $messagex);
                     $message1 = str_replace(array("\r","\n",'\r','\n'), "<br>", $messagex);
                     $message1 = str_replace(array("<br><br>"), "<br>", $message1);

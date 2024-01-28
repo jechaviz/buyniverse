@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use App\Proposal;
 use App\Job;
 use App\Team;
-use App\Freelancerinvite;
+use App\Providerinvite;
 use App\Helper;
 use App\Mail\EmailVerificationMailable;
 use ZipArchive;
@@ -743,12 +743,12 @@ class ProposalController extends Controller
         $providers['approvers'] = $providersa;
         $providers['team'] = $providerst;
         $invitedf = array();
-        if(Freelancerinvite::where('job_id', $job->id)->exists())
+        if(Providerinvite::where('job_id', $job->id)->exists())
         {
-            $freelancerinvite = Freelancerinvite::where('job_id', $job->id)->first();
+            $providerinvite = Providerinvite::where('job_id', $job->id)->first();
             
-            $emails = explode(', ', $freelancerinvite->freelancers);
-            // dd($freelancerinvite);                        
+            $emails = explode(', ', $providerinvite->providers);
+            // dd($providerinvite);                        
             foreach($emails as $key => $email)
             {
                 if(User::where('email', $email)->exists())
