@@ -34,19 +34,19 @@
         </div>
         <div class="wt-dashboardboxcontent wt-jobdetailsholder">
 
-            <table class="wt-tablecategories no-border" v-if="job_contest.show_participant_to_freelancer == 'yes' && contest_users !== null">
+            <table class="wt-tablecategories no-border" v-if="job_contest.show_participant_to_provider == 'yes' && contest_users !== null">
                 
                 
                 <thead class="row">
                     <th class="col-md-4">{{ trans('lang.name')}}</th>
                     <th  class="col-md-4">{{ trans('lang.nickname')}}</th>
-                    <th v-if="job_contest.show_participant_to_freelancer == 'yes'"  class="col-md-4">{{ trans('lang.project_bid')}}</th>
+                    <th v-if="job_contest.show_participant_to_provider == 'yes'"  class="col-md-4">{{ trans('lang.project_bid')}}</th>
                 </thead>
                 <tbody>
                     <tr class="row" v-for="contest_user in contest_users" :key="contest_user.id">
                         <td class="col-md-4">{{ contest_user.name }}</td>
                         <td class="col-md-4">{{ contest_user.nickname }}</td>
-                        <td class="col-md-4" v-if="job_contest.show_participant_to_freelancer == 'yes'">{{ contest_user.bid }}</td>
+                        <td class="col-md-4" v-if="job_contest.show_participant_to_provider == 'yes'">{{ contest_user.bid }}</td>
                     </tr>
                 </tbody>
                 

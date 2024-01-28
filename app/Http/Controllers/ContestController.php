@@ -145,15 +145,15 @@ class ContestController extends Controller
         else
             $contest->show_participant = 'yes';
 
-        if($request->show_participant_to_freelancer == null)
-            $contest->show_participant_to_freelancer = 'no';
+        if($request->show_participant_to_provider == null)
+            $contest->show_participant_to_provider = 'no';
         else
-            $contest->show_participant_to_freelancer = 'yes';
+            $contest->show_participant_to_provider = 'yes';
 
-        if($request->show_participant_offer_to_freelancer == null)
-            $contest->show_participant_offer_to_freelancer = 'no';
+        if($request->show_participant_offer_to_provider == null)
+            $contest->show_participant_offer_to_provider = 'no';
         else
-            $contest->show_participant_offer_to_freelancer = 'yes';
+            $contest->show_participant_offer_to_provider = 'yes';
 
         $contest->time_limit = $request->time_limit;
         if($request->automatic_offer == null)
@@ -226,15 +226,15 @@ class ContestController extends Controller
         else
             $contest->show_participant = 'yes';
 
-        if($request->show_participant_to_freelancer == null)
-            $contest->show_participant_to_freelancer = 'no';
+        if($request->show_participant_to_provider == null)
+            $contest->show_participant_to_provider = 'no';
         else
-            $contest->show_participant_to_freelancer = 'yes';
+            $contest->show_participant_to_provider = 'yes';
 
-        if($request->show_participant_offer_to_freelancer == null)
-            $contest->show_participant_offer_to_freelancer = 'no';
+        if($request->show_participant_offer_to_provider == null)
+            $contest->show_participant_offer_to_provider = 'no';
         else
-            $contest->show_participant_offer_to_freelancer = 'yes';
+            $contest->show_participant_offer_to_provider = 'yes';
 
         $contest->time_limit = $request->time_limit;
         if($request->automatic_offer == null)

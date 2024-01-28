@@ -43,11 +43,11 @@
                     <div class="wt-dashboardboxcontent wt-jobdetailsholder">
 
                         <table class="wt-tablecategories">
-                            @if($contest->show_participant_to_freelancer == 'yes')
+                            @if($contest->show_participant_to_provider == 'yes')
                             @if (!empty($contest_user1) && $contest_user1->count() > 0)                           
                             <thead>
                                 <th>{{ trans('lang.name')}}</th>
-                                @if($contest->show_participant_offer_to_freelancer == 'yes')
+                                @if($contest->show_participant_offer_to_provider == 'yes')
                                 <th>{{ trans('lang.project_bid')}}</th>
                                 @endif
                             </thead>
@@ -55,7 +55,7 @@
                                 @foreach ($contest_user1 as $value)
                                 <tr>
                                     <td>{{ $value->name }}</td>
-                                    @if($contest->show_participant_offer_to_freelancer == 'yes')
+                                    @if($contest->show_participant_offer_to_provider == 'yes')
                                     <td>{{ $value->bid }}</td>
                                     @endif
                                 </tr>

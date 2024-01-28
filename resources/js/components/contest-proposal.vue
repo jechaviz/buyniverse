@@ -23,12 +23,12 @@
                         <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
                     </div>
                     <div class="form-group form-group-half" style="display:flex;">
-                        <input type="checkbox" id="show_participant_to_freelancer" name="show_participant_to_freelancer" v-model="form.show_participant_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                        <label for="show_participant_to_freelancer">{{ trans('lang.show_list_participants') }}</label>
+                        <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                        <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
                     </div>
                     <div class="form-group form-group-half" style="display:flex;">
-                        <input type="checkbox" id="show_participant_offer_to_freelancer" name="show_participant_offer_to_freelancer" v-model="form.show_participant_offer_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                        <label for="show_participant_offer_to_freelancer">{{ trans('lang.show_participant_offer') }}</label>
+                        <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                        <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
                     </div>
                     
                     <div class="form-group" style="margin-top: 30px;">
@@ -113,12 +113,12 @@
                                 <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
-                                <input type="checkbox" id="show_participant_to_freelancer" name="show_participant_to_freelancer" v-model="form1.show_participant_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_to_freelancer">{{ trans('lang.show_list_participants') }}</label>
+                                <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form1.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                                <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
-                                <input type="checkbox" id="show_participant_offer_to_freelancer" name="show_participant_offer_to_freelancer" v-model="form1.show_participant_offer_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_offer_to_freelancer">{{ trans('lang.show_participant_offer') }}</label>
+                                <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form1.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                                <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
                             </div>
                             <div class="form-group">
                                 <h4><label for="time_limit">{{ trans('lang.time_limit_freelancer') }}</label></h4>
@@ -336,7 +336,7 @@
                                             <span class="bt-content">{{ trans('lang.show_list_participants') }}</span>
                                         </td> 
                                         <td>
-                                            <span class="bt-content">{{ form1.show_participant_to_freelancer }}</span> 
+                                            <span class="bt-content">{{ form1.show_participant_to_provider }}</span> 
                                         </td>
                                     </tr>
                                     <tr>
@@ -344,7 +344,7 @@
                                             <span class="bt-content">{{ trans('lang.show_participant_offer') }}</span>
                                         </td> 
                                         <td>
-                                            <span class="bt-content">{{ form1.show_participant_offer_to_freelancer }}</span> 
+                                            <span class="bt-content">{{ form1.show_participant_offer_to_provider }}</span> 
                                         </td>
                                     </tr>
                                     <tr>
@@ -454,12 +454,12 @@
                                 <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
-                                <input type="checkbox" id="show_participant_to_freelancer" name="show_participant_to_freelancer" v-model="form.show_participant_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_to_freelancer">{{ trans('lang.show_list_participants') }}</label>
+                                <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                                <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
-                                <input type="checkbox" id="show_participant_offer_to_freelancer" name="show_participant_offer_to_freelancer" v-model="form.show_participant_offer_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_offer_to_freelancer">{{ trans('lang.show_participant_offer') }}</label>
+                                <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                                <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
                             </div>
                             
                             <div class="form-group" style="margin-top: 30px;">
@@ -546,12 +546,12 @@
                                 <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
-                                <input type="checkbox" id="show_participant_to_freelancer" name="show_participant_to_freelancer" v-model="form1.show_participant_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_to_freelancer">{{ trans('lang.show_list_participants') }}</label>
+                                <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form1.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                                <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
-                                <input type="checkbox" id="show_participant_offer_to_freelancer" name="show_participant_offer_to_freelancer" v-model="form1.show_participant_offer_to_freelancer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_offer_to_freelancer">{{ trans('lang.show_participant_offer') }}</label>
+                                <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form1.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
+                                <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
                             </div>
                             <div class="form-group">
                                 <h4><label for="time_limit">{{ trans('lang.time_limit_freelancer') }}</label></h4>
@@ -782,7 +782,7 @@
                                                         <span class="bt-content">{{ trans('lang.show_list_participants') }}</span>
                                                     </td> 
                                                     <td>
-                                                        <span class="bt-content">{{ form1.show_participant_to_freelancer }}</span> 
+                                                        <span class="bt-content">{{ form1.show_participant_to_provider }}</span> 
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -790,7 +790,7 @@
                                                         <span class="bt-content">{{ trans('lang.show_participant_offer') }}</span>
                                                     </td> 
                                                     <td>
-                                                        <span class="bt-content">{{ form1.show_participant_offer_to_freelancer }}</span> 
+                                                        <span class="bt-content">{{ form1.show_participant_offer_to_provider }}</span> 
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -869,8 +869,8 @@ export default {
             start_date : '',
             end_date : '',
             show_participant : '',
-            show_participant_to_freelancer : '',
-            show_participant_offer_to_freelancer : '',
+            show_participant_to_provider : '',
+            show_participant_offer_to_provider : '',
             time_limit : '',
             automatic_offer : '',
             automatic_offer_choice : '',
@@ -883,8 +883,8 @@ export default {
             start_date : '',
             end_date : '',
             show_participant : '',
-            show_participant_to_freelancer : '',
-            show_participant_offer_to_freelancer : '',
+            show_participant_to_provider : '',
+            show_participant_offer_to_provider : '',
             time_limit : '',
             automatic_offer : '',
             automatic_offer_choice : '',
@@ -1042,8 +1042,8 @@ export default {
                     self.form1.end_date = moment(response.data.end_date).format('YYYY-MM-DDThh:mm');
                     //self.form1.end_date = response.data.end_date;                    
                     self.form1.show_participant = response.data.show_participant;                    
-                    self.form1.show_participant_to_freelancer = response.data.show_participant_to_freelancer;                    
-                    self.form1.show_participant_offer_to_freelancer = response.data.show_participant_offer_to_freelancer;                    
+                    self.form1.show_participant_to_provider = response.data.show_participant_to_provider;                    
+                    self.form1.show_participant_offer_to_provider = response.data.show_participant_offer_to_provider;                    
                     self.form1.time_limit = response.data.time_limit;                    
                     self.form1.automatic_offer = response.data.automatic_offer;                    
                     self.form1.automatic_offer_choice = response.data.automatic_offer_choice;                    

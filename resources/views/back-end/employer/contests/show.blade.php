@@ -55,23 +55,23 @@
 									</tr>
 									<tr>
 										<td>
-											<span class="bt-content">Show the list of participants to the freelancer</span>
+											<span class="bt-content">Show the list of participants to the Provider</span>
 										</td> 
 										<td>
-											<span class="bt-content">{{ $contest->show_participant_to_freelancer }}</span> 
+											<span class="bt-content">{{ $contest->show_participant_to_provider }}</span> 
 										</td>
 									</tr>
 									<tr>
 										<td>
-											<span class="bt-content">Show participant offers to the freelancer</span>
+											<span class="bt-content">Show participant offers to the Provider</span>
 										</td> 
 										<td>
-											<span class="bt-content">{{ $contest->show_participant_offer_to_freelancer }}</span> 
+											<span class="bt-content">{{ $contest->show_participant_offer_to_provider }}</span> 
 										</td>
 									</tr>
 									<tr>
 										<td>
-											<span class="bt-content">Time limit for the freelancer to send a better offer</span>
+											<span class="bt-content">Time limit for the Provider to send a better offer</span>
 										</td> 
 										<td>
 											<span class="bt-content">{{ $contest->time_limit }} Minutes</span> 
@@ -79,7 +79,7 @@
 									</tr>
 									<tr>
 										<td>
-											<span class="bt-content">Make your own automatic bid to encourage freelancers to lower their costs.<br>If your offer is matched, you will offer a lower offer at a random time. Do you want to include your own automatic offer?</span>
+											<span class="bt-content">Make your own automatic bid to encourage Providers to lower their costs.<br>If your offer is matched, you will offer a lower offer at a random time. Do you want to include your own automatic offer?</span>
 										</td> 
 										<td>
 											<span class="bt-content">{{ $contest->automatic_offer }}</span> 
@@ -103,7 +103,7 @@
 									</tr>
 									<tr>
 										<td>
-											<span class="bt-content">Number of freelancer Award allowed</span>
+											<span class="bt-content">Number of Provider Award allowed</span>
 										</td> 
 										<td>
 											<span class="bt-content">{{ $contest->awarded_allowed }}</span> 
