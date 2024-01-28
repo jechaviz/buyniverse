@@ -18,7 +18,7 @@ use DB;
 use Auth;
 use App\Job;
 use App\EmailTemplate;
-use App\Mail\FreelancerEmailMailable;
+use App\Mail\ProviderEmailMailable;
 use App\User;
 use App\Proposal;
 use App\ProposalFile;

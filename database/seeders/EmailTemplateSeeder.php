@@ -157,10 +157,10 @@ class EmailTemplateSeeder extends Seeder
                 [
                     'admin_email' => 'info@yourdomain.com',
                     'email_type_id' => '11',
-                    'title' => 'Admin Email Content - Report Freelancer',
-                    'subject' => 'A freelancer has been reported!',
+                    'title' => 'Admin Email Content - Report Provider',
+                    'subject' => 'A Provider has been reported!',
                     'content' => '<p>Hello,</p>
-                    <p>A freelancer <a href="%link%"><strong>%reported_freelancer%</strong></a> has been reported by<strong> <a href="%report_by_link%">%reported_by% </a></strong>&nbsp;</p>
+                    <p>A Provider <a href="%link%"><strong>%reported_provider%</strong></a> has been reported by<strong> <a href="%report_by_link%">%reported_by% </a></strong>&nbsp;</p>
                     <p>Message is given below.</p>
                     <p>%message%</p>
                     <p>%signature%</p>',
@@ -186,7 +186,7 @@ class EmailTemplateSeeder extends Seeder
                     'title' => 'Admin Email Content - Job Completed',
                     'subject' => 'Job Completed',
                     'content' => '<p>Hello,</p>
-                    <p>The <a href="%freelancer_link%"><strong>%freelancer_name%</strong></a> has completed the following project (<strong><a href="%project_link%">%project_title%</a></strong>).</p>
+                    <p>The <a href="%provider_link%"><strong>%provider_name%</strong></a> has completed the following project (<strong><a href="%project_link%">%project_title%</a></strong>).</p>
                     <p>%signature%</p>',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -198,7 +198,7 @@ class EmailTemplateSeeder extends Seeder
                     'title' => 'Employer Email Content - Proposal Received',
                     'subject' => 'Proposal Received',
                     'content' => '<p>Hello <strong>%employer_name%</strong>,</p>
-                    <p><strong> <a href="%freelancer_link%">%freelancer_name%</a></strong> has sent a new proposal on the following project <a href="%project_link%"><strong>%project_title%</strong></a>. Project Information is given below.</p>
+                    <p><strong> <a href="%provider_link%">%provider_name%</a></strong> has sent a new proposal on the following project <a href="%project_link%"><strong>%project_title%</strong></a>. Project Information is given below.</p>
                     <p><strong>Proposal Amount :</strong> %proposal_amount%</p>
                     <p><strong>Project Duration :</strong> %proposal_duration%</p>
                     <p><strong>Message:</strong></p>
@@ -225,7 +225,7 @@ class EmailTemplateSeeder extends Seeder
                     'title' => 'Employer Email Content - Proposal Message',
                     'subject' => 'Proposal Message',
                     'content' => '<p>Hello <strong><a href="%employer_link%">%employer_name%</a></strong>,</p>
-                    <p>The <a href="%freelancer_link%"><strong>%freelancer_name%</strong></a> have submitted the proposal message on this job <strong><a href="%project_link%">%project_title%</a></strong>.</p>
+                    <p>The <a href="%provider_link%"><strong>%provider_name%</strong></a> have submitted the proposal message on this job <strong><a href="%project_link%">%project_title%</a></strong>.</p>
                     <p>Login to view your proposal message.</p>
                     <p><strong>Message: </strong></p>
                     <p>%message%</p>
@@ -245,13 +245,13 @@ class EmailTemplateSeeder extends Seeder
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
-                //Freelancer Email Templates
+                //Provider Email Templates
                 [
                     'admin_email' => null,
                     'email_type_id' => '18',
-                    'title' => 'Freelancer Email Content - New Proposal Submitted',
+                    'title' => 'Provider Email Content - New Proposal Submitted',
                     'subject' => 'New Proposal Submitted',
-                    'content' => '<p>Hello <strong><a href="%freelancer_link%">%freelancer_name%</a></strong>,</p>
+                    'content' => '<p>Hello <strong><a href="%provider_link%">%provider_name%</a></strong>,</p>
                     <p>You have submitted the proposal against this job <strong><a href="%project_link%">%project_title%</a></strong>. With the following details.</p>
                     <p><strong>Project Proposal Amount :</strong> %proposal_amount%</p>
                     <p><strong>Project Duration :</strong> %proposal_duration%</p>
@@ -263,9 +263,9 @@ class EmailTemplateSeeder extends Seeder
                 [
                     'admin_email' => null,
                     'email_type_id' => '19',
-                    'title' => 'Freelancer Email Content - Hire Freelancer',
+                    'title' => 'Provider Email Content - Hire Provider',
                     'subject' => 'Congratulation You are hired!',
-                    'content' => '<p>Hello <strong><a href="%freelancer_link%">%freelancer_name%</a></strong>,</p>
+                    'content' => '<p>Hello <strong><a href="%provider_link%">%provider_name%</a></strong>,</p>
                     <p>The <strong><a href="%employer_link%">%employer_name%</a></strong> hired you for the following job <strong><a href="%project_link%">%project_title%</a></strong>.</p>
                     <p>%signature%</p>',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -274,9 +274,9 @@ class EmailTemplateSeeder extends Seeder
                 [
                     'admin_email' => null,
                     'email_type_id' => '20',
-                    'title' => 'Freelancer Email Content - Send Offer',
+                    'title' => 'Provider Email Content - Send Offer',
                     'subject' => 'Offer Received',
-                    'content' => '<p>Hi <strong><a href="%freelancer_link%">%freelancer_name%</a></strong>,</p>
+                    'content' => '<p>Hi <strong><a href="%provider_link%">%provider_name%</a></strong>,</p>
                     <p>The <a href="%employer_link%"><strong>%employer_name%</strong></a> would like to invite you to consider working on the following project&nbsp;&nbsp;</p>
                     <p><strong>Project Name :</strong> <strong><a href="%project_link%">%project_title%</a> </strong></p>
                     <p><strong>Message:</strong></p>
@@ -288,9 +288,9 @@ class EmailTemplateSeeder extends Seeder
                 [
                     'admin_email' => null,
                     'email_type_id' => '21',
-                    'title' => 'Freelancer Email Content - Cancel Job',
+                    'title' => 'Provider Email Content - Cancel Job',
                     'subject' => 'Job Cancelled',
-                    'content' => '<p>Hello <strong><a href="%freelancer_link%">%freelancer_name%</a></strong>,</p>
+                    'content' => '<p>Hello <strong><a href="%provider_link%">%provider_name%</a></strong>,</p>
                     <p>Unfortunately <strong><a href="%employer_link%">%employer_name%</a></strong> cancelled the <strong><a href="%project_link%">%project_title%</a></strong> due to following reasons.</p>
                     <p>Job Cancel Reasons Below.</p>
                     <p><strong>Message:</strong></p>
@@ -302,10 +302,10 @@ class EmailTemplateSeeder extends Seeder
                 [
                     'admin_email' => null,
                     'email_type_id' => '22',
-                    'title' => 'Freelancer Email Content - Proposal Message',
+                    'title' => 'Provider Email Content - Proposal Message',
                     'subject' => 'Proposal Message',
                     'content' => '<p>Hello <strong><a href="%employer_link%">%employer_name%</a></strong>,</p>
-                    <p>The <strong><a href="%freelancer_link%">%freelancer_name%</a></strong>&nbsp;has submitted the proposal message on this job <strong><a href="%project_link%">%project_title%</a></strong>.</p>
+                    <p>The <strong><a href="%provider_link%">%provider_name%</a></strong>&nbsp;has submitted the proposal message on this job <strong><a href="%project_link%">%project_title%</a></strong>.</p>
                     <p>Login to view your proposal message.</p>
                     <p><strong>Message:</strong></p>
                     <p>%message%</p>
@@ -316,9 +316,9 @@ class EmailTemplateSeeder extends Seeder
                 [
                     'admin_email' => null,
                     'email_type_id' => '23',
-                    'title' => 'Freelancer Email Content - Package Subscribed',
+                    'title' => 'Provider Email Content - Package Subscribed',
                     'subject' => 'Package Purchased',
-                    'content' => '<p>Hello <strong><a href="%freelancer_link%">%freelancer_name%</a></strong>,</p>
+                    'content' => '<p>Hello <strong><a href="%provider_link%">%provider_name%</a></strong>,</p>
                     <p>You have subscribed to the following <strong>%package_name%</strong> package at cost of <strong>%package_price%</strong> which will be expired on <strong>%package_expiry%</strong>.</p>
                     <p>%signature%</p>',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -327,9 +327,9 @@ class EmailTemplateSeeder extends Seeder
                 [
                     'admin_email' => null,
                     'email_type_id' => '24',
-                    'title' => 'Freelancer Email Content - Job Completed',
+                    'title' => 'Provider Email Content - Job Completed',
                     'subject' => 'Job Completed',
-                    'content' => '<p>Hello <strong><a href="%freelancer_link%">%freelancer_name%</a></strong>,</p>
+                    'content' => '<p>Hello <strong><a href="%provider_link%">%provider_name%</a></strong>,</p>
                     <p>The <strong><a href="%employer_link%">%employer_name%</a></strong>&nbsp;has confirmed that the following project (<a href="%project_link%">"<strong>%project_title%</strong>"</a>) is completed.</p>
                     <p>You have received the following ratings from employer.</p>
                     <p><strong>Message: </strong></p>
@@ -345,7 +345,7 @@ class EmailTemplateSeeder extends Seeder
                     'title' => 'Admin Email Content - Dispute Raised',
                     'subject' => 'A dispute has been rasied',
                     'content' => '<p>Hello,</p>
-                    <p>A dispute has been raised by freelancer <strong><a href="%freelancer_link%"> %freelancer_name% </a></strong> against <a href="%project_link%">"<strong>%project_title%</strong>"</a>&nbsp;.</p>
+                    <p>A dispute has been raised by Provider <strong><a href="%provider_link%"> %provider_name% </a></strong> against <a href="%project_link%">"<strong>%project_title%</strong>"</a>&nbsp;.</p>
                     <p><strong>Reason:</strong> "%reason%"</p>
                     <p>Message is given below.</p>
                     <p>%message%</p>
@@ -373,7 +373,7 @@ class EmailTemplateSeeder extends Seeder
                     'title' => 'Admin Email Content - Job Cancelled',
                     'subject' => 'Job Cancelled',
                     'content' => '  <p>Hello,</p>
-                                    <p>An Employer <a href="%employer_link%">%employer_name%</a> has cancelled his ongoing project <a href="%project_link%">%project_title%</a> assigned to <a href="%freelancer_link%"> %freelancer_name% </a></p>
+                                    <p>An Employer <a href="%employer_link%">%employer_name%</a> has cancelled his ongoing project <a href="%project_link%">%project_title%</a> assigned to <a href="%provider_link%"> %provider_name% </a></p>
                                     <p>Job Cancel Reason is given below.</p>
                                     <p>%message%</p>
                                     <p>%signature%,</p>',

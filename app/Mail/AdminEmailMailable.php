@@ -61,8 +61,8 @@ class AdminEmailMailable extends Mailable
             $email_message = $this->prepareAdminEmailReportEmployer($this->email_params);
         } elseif ($this->type == 'admin_email_report_project') {
             $email_message = $this->prepareAdminEmailReportProject($this->email_params);
-        } elseif ($this->type == 'admin_email_report_freelancer') {
-            $email_message = $this->prepareAdminEmailReportFreelancer($this->email_params);
+        } elseif ($this->type == 'admin_email_report_provider') {
+            $email_message = $this->prepareAdminEmailReportprovider($this->email_params);
         } elseif ($this->type == 'admin_email_new_job_posted') {
             $email_message = $this->prepareAdminEmailJobPosted($this->email_params);
         } elseif ($this->type == 'admin_email_new_service_posted') {
@@ -245,7 +245,7 @@ class AdminEmailMailable extends Mailable
     }
 
     /**
-     * Email report freelancer
+     * Email report provider
      *
      * @param array $email_params Email Parameters
      *
@@ -253,18 +253,18 @@ class AdminEmailMailable extends Mailable
      *
      * @return string
      */
-    public function prepareAdminEmailReportFreelancer($email_params)
+    public function prepareAdminEmailReportprovider($email_params)
     {
         extract($email_params);
-        $freelancer = $reported_freelancer;
+        $provider = $reported_provider;
         $report_by = $reported_by;
         $report_message = $message;
         $reported_by_link = $report_by_link;
-        $freelancer_link = $link;
+        $provider_link = $link;
         $signature = EmailHelper::getSignature();
         $app_content = $this->template->content;
         $email_content_default =    "Hello,
-                                    A freelancer <a href='%link%'>%reported_freelancer%</a> has been reported by <a href='%report_by_link%'>%reported_by% </a>
+                                    A provider <a href='%link%'>%reported_provider%</a> has been reported by <a href='%report_by_link%'>%reported_by% </a>
                                     Message is given below.
                                     %message%
 
@@ -273,8 +273,8 @@ class AdminEmailMailable extends Mailable
         if (empty($app_content)) {
             $app_content = $email_content_default;
         }
-        $app_content = str_replace("%reported_freelancer%", $freelancer, $app_content);
-        $app_content = str_replace("%link%", $freelancer_link, $app_content);
+        $app_content = str_replace("%reported_provider%", $provider, $app_content);
+        $app_content = str_replace("%link%", $provider_link, $app_content);
         $app_content = str_replace("%report_by_link%", $reported_by_link, $app_content);
         $app_content = str_replace("%reported_by%", $report_by, $app_content);
         $app_content = str_replace("%message%", $report_message, $app_content);
@@ -341,12 +341,12 @@ class AdminEmailMailable extends Mailable
         extract($email_params);
         $title = $service_title;
         $service_link = $posted_service_link;
-        $freelancer_name = $name;
-        $freelancer_link = $link;
+        $provider_name = $name;
+        $provider_link = $link;
         $signature = EmailHelper::getSignature();
         $app_content = $this->template;
         $email_content_default =    "Hello,
-                                    A new service is posted by <a href='%freelancer_link%'>%freelancer_name%</a>.
+                                    A new service is posted by <a href='%provider_link%'>%provider_name%</a>.
                                     Click to view the service link. <a href='%service_link%' target='_blank' rel='noopener'>%service_title%</a>
 
                                     %signature%";
@@ -354,8 +354,8 @@ class AdminEmailMailable extends Mailable
         if (empty($app_content)) {
             $app_content = $email_content_default;
         }
-        $app_content = str_replace("%freelancer_link%", $freelancer_link, $app_content);
-        $app_content = str_replace("%freelancer_name%", $freelancer_name, $app_content);
+        $app_content = str_replace("%provider_link%", $provider_link, $app_content);
+        $app_content = str_replace("%provider_name%", $provider_name, $app_content);
         $app_content = str_replace("%service_link%", $service_link, $app_content);
         $app_content = str_replace("%service_title%", $title, $app_content);
         $app_content = str_replace("%signature%", $signature, $app_content);
@@ -381,21 +381,21 @@ class AdminEmailMailable extends Mailable
         extract($email_params);
         $title = $project_title;
         $project_link = $completed_project_link;
-        $freelancer_name = $name;
-        $freelancer_link = $link;
+        $provider_name = $name;
+        $provider_link = $link;
         $signature = EmailHelper::getSignature();
         $app_content = $this->template->content;
         $email_content_default =    "Hello,
 
-                                    The <a href='%freelancer_link%'>%freelancer_name%</a> has completed the following project (<a href='%project_link%'>%project_title%</a>).
+                                    The <a href='%provider_link%'>%provider_name%</a> has completed the following project (<a href='%project_link%'>%project_title%</a>).
 
                                     %signature%,";
         //set default contents
         if (empty($app_content)) {
             $app_content = $email_content_default;
         }
-        $app_content = str_replace("%freelancer_link%", $freelancer_link, $app_content);
-        $app_content = str_replace("%freelancer_name%", $freelancer_name, $app_content);
+        $app_content = str_replace("%provider_link%", $provider_link, $app_content);
+        $app_content = str_replace("%provider_name%", $provider_name, $app_content);
         $app_content = str_replace("%project_link%", $project_link, $app_content);
         $app_content = str_replace("%project_title%", $title, $app_content);
         $app_content = str_replace("%signature%", $signature, $app_content);
@@ -421,14 +421,14 @@ class AdminEmailMailable extends Mailable
         extract($email_params);
         $title = $project_title;
         $link = $project_link;
-        $freelancer_name = $name;
-        $freelancer_link = $sender_link;
+        $provider_name = $name;
+        $provider_link = $sender_link;
         $message = $msg;
         $dispute_reason = $reason;
         $signature = EmailHelper::getSignature();
         $app_content = $this->template->content;
         $email_content_default =   "Hello,
-                                    A dispute has been raised by a freelancer <a href='%freelancer_link%'> %freelancer_name% </a> against <a href='%project_link%'>%project_title%</a>
+                                    A dispute has been raised by a provider <a href='%provider_link%'> %provider_name% </a> against <a href='%project_link%'>%project_title%</a>
                                     Reason: '%reason%'
                                     Message is given below.
                                     %message%
@@ -438,8 +438,8 @@ class AdminEmailMailable extends Mailable
         if (empty($app_content)) {
             $app_content = $email_content_default;
         }
-        $app_content = str_replace("%freelancer_name%", $freelancer_name, $app_content);
-        $app_content = str_replace("%freelancer_link%", $freelancer_link, $app_content);
+        $app_content = str_replace("%provider_name%", $provider_name, $app_content);
+        $app_content = str_replace("%provider_link%", $provider_link, $app_content);
         $app_content = str_replace("%project_link%", $link, $app_content);
         $app_content = str_replace("%project_title%", $title, $app_content);
         $app_content = str_replace("%reason%", $dispute_reason, $app_content);
@@ -467,8 +467,8 @@ class AdminEmailMailable extends Mailable
         extract($email_params);
         $title = $project_title;
         $project_link = $cancelled_project_link;
-        $freelancer_name = $name;
-        $freelancer_link = $link;
+        $provider_name = $name;
+        $provider_link = $link;
         $employer_link = $employer_profile;
         $employer_name = $emp_name;
         $message = $msg;
@@ -480,7 +480,7 @@ class AdminEmailMailable extends Mailable
         }
 
         $email_content_default =    "Hello,
-                                    An Employer <a href=' %employer_link%'>%employer_name%</a> has been cancelled his ongoing project <a href='%project_link%'>%project_title%</a> assign to <a href='%freelancer_link%'> %freelancer_name% </a>
+                                    An Employer <a href=' %employer_link%'>%employer_name%</a> has been cancelled his ongoing project <a href='%project_link%'>%project_title%</a> assign to <a href='%provider_link%'> %provider_name% </a>
                                     Job Cancel Reasons Below.
                                     %message%
 
@@ -489,8 +489,8 @@ class AdminEmailMailable extends Mailable
         if (empty($app_content)) {
             $app_content = $email_content_default;
         }
-        $app_content = str_replace("%freelancer_link%", $freelancer_link, $app_content);
-        $app_content = str_replace("%freelancer_name%", $freelancer_name, $app_content);
+        $app_content = str_replace("%provider_link%", $provider_link, $app_content);
+        $app_content = str_replace("%provider_name%", $provider_name, $app_content);
         $app_content = str_replace("%employer_link%", $employer_link, $app_content);
         $app_content = str_replace("%employer_name%", $employer_name, $app_content);
         $app_content = str_replace("%project_link%", $project_link, $app_content);

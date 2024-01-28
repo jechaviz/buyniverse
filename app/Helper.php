@@ -4282,10 +4282,10 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getFreelancerNewOrderEmailContent()
+    public static function getproviderNewOrderEmailContent()
     {
         $output = "";
-        $output .= "Hello %freelancer_name%";
+        $output .= "Hello %provider_name%";
         $output .= "<a href='%employer_link%'>%employer_name%</a> has purchased your following service <a href='%service_link%'>%service_title%</a>.";
         $output .= "service Information is given below.";
         $output .= "service Amount : %service_amount%";
@@ -4301,10 +4301,10 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getFreelancerCompletedServiceEmailContent()
+    public static function getproviderCompletedServiceEmailContent()
     {
         $output = "";
-        $output .= "Hello %freelancer_name%";
+        $output .= "Hello %provider_name%";
         $output .= "The <a href='%employer_link%'>%employer_name%</a> has confirmed that the following project (%project_title%) is completed.";
         $output .= "You have received the following ratings %rating% from employer.";
         $output .= "%message%";
@@ -4319,10 +4319,10 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getFreelancerCancelledServiceEmailContent()
+    public static function getproviderCancelledServiceEmailContent()
     {
         $output = "";
-        $output .= "Hello <a href='%freelancer_link%'>%freelancer_name%</a>,";
+        $output .= "Hello <a href='%provider_link%'>%provider_name%</a>,";
         $output .= "Unfortunately <a href=' %employer_link%'>%employer_name%</a> cancelled the <a href='%project_link%'>%project_title%</a> service due to following below reasons.";
         $output .= "%message%";
         $output .= "%signature%";
@@ -4340,7 +4340,7 @@ class Helper extends Model
     {
         $output = "";
         $output .= "Hello";
-        $output .= "A new service is posted by <a href='%freelancer_link%'>%freelancer_name%</a>.";
+        $output .= "A new service is posted by <a href='%provider_link%'>%provider_name%</a>.";
         $output .= "Click to view the service link. <a href='%service_link%' target='_blank' rel='noopener'>%service_title%</a>";
         $output .= "%signature%";
         return $output;

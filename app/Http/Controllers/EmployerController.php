@@ -32,7 +32,7 @@ use App\Proposal;
 use DB;
 use App\Package;
 use App\EmailTemplate;
-use App\Mail\FreelancerEmailMailable;
+use App\Mail\ProviderEmailMailable;
 use App\Invoice;
 use App\Item;
 use Carbon\Carbon;

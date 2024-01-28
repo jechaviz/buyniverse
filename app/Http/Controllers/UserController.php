@@ -23,7 +23,7 @@ use App\Question;
 use App\Answer;
 use App\Language;
 use App\Mail\AdminEmailMailable;
-use App\Mail\FreelancerEmailMailable;
+use App\Mail\ProviderEmailMailable;
 use App\Mail\GeneralEmailMailable;
 use App\Package;
 use App\Profile;
@@ -835,10 +835,10 @@ class UserController extends Controller
                 $json['message'] = trans('lang.feedback_submit');
                 //send email
                 if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
-                    $freelancer = User::find($request['receiver_id']);
+                    $provider = User::find($request['receiver_id']);
                     $email_params = array();
-                    $email_params['name'] = Helper::getUserName($freelancer->id);
-                    $email_params['link'] = url('profile/' . $freelancer->slug);
+                    $email_params['name'] = Helper::getUserName($provider->id);
+                    $email_params['link'] = url('profile/' . $provider->slug);
                     $email_params['employer'] = Helper::getUserName($user_id);
                     $email_params['employer_profile'] = url('profile/' . Auth::user()->slug);
                     $email_params['ratings'] = $submit_review['rating'];
@@ -847,7 +847,7 @@ class UserController extends Controller
                         $job = Job::find($request['job_id']);
                         $email_params['project_title'] = $job->title;
                         $email_params['completed_project_link'] = url('/job/' . $job->slug);
-                        //$freelancer = Proposal::select('freelancer_id')->where('status', 'completed')->first();
+                        //$provider = Proposal::select('freelancer_id')->where('status', 'completed')->first();
                         $job_completed_template = DB::table('email_types')->select('id')->where('email_type', 'admin_email_job_completed')->get()->first();
                         if (!empty($job_completed_template->id)) {
                             $template_data = EmailTemplate::getEmailTemplateByID($job_completed_template->id);
@@ -860,13 +860,13 @@ class UserController extends Controller
                                     )
                                 );
                         }
-                        $freelancer_job_completed_template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_job_completed')->get()->first();
-                        if (!empty($freelancer_job_completed_template->id)) {
-                            $template_data = EmailTemplate::getEmailTemplateByID($freelancer_job_completed_template->id);
-                            Mail::to($freelancer->email)
+                        $provider_job_completed_template = DB::table('email_types')->select('id')->where('email_type', 'provider_email_job_completed')->get()->first();
+                        if (!empty($provider_job_completed_template->id)) {
+                            $template_data = EmailTemplate::getEmailTemplateByID($provider_job_completed_template->id);
+                            Mail::to($provider->email)
                                 ->send(
-                                    new FreelancerEmailMailable(
-                                        'freelancer_email_job_completed',
+                                    new ProviderEmailMailable(
+                                        'provider_email_job_completed',
                                         $template_data,
                                         $email_params
                                     )
@@ -876,11 +876,11 @@ class UserController extends Controller
                         $service = Service::find($request['service_id']);
                         $email_params['project_title'] = $service->title;
                         $email_params['completed_project_link'] = url('service/' . $service->slug);
-                        $template_data = Helper::getFreelancerCompletedServiceEmailContent();
-                        Mail::to($freelancer->email)
+                        $template_data = Helper::getproviderCompletedServiceEmailContent();
+                        Mail::to($provider->email)
                             ->send(
-                                new FreelancerEmailMailable(
-                                    'freelancer_email_job_completed',
+                                new ProviderEmailMailable(
+                                    'provider_email_job_completed',
                                     $template_data,
                                     $email_params
                                 )
@@ -987,8 +987,8 @@ class UserController extends Controller
             }
             if ($request['model'] == "App\Service" && $request['report_type'] <> 'service_cancel') {
                 $service = Service::find($request['id']);
-                $freelancer = $service->seller->first();
-                if ($freelancer->id == Auth::user()->id) {
+                $provider = $service->seller->first();
+                if ($provider->id == Auth::user()->id) {
                     $json['type'] = 'error';
                     $json['message'] = trans('lang.not_authorize');
                     return $json;
@@ -1002,7 +1002,7 @@ class UserController extends Controller
                 if (
                     $request['report_type'] == 'job-report'
                     || $request['report_type'] == 'employer-report'
-                    || $request['report_type'] == 'freelancer-report'
+                    || $request['report_type'] == 'provider-report'
                 ) {
                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
                         $email_params = array();
@@ -1044,20 +1044,20 @@ class UserController extends Controller
                                         )
                                     );
                             }
-                        } else if ($request['report_type'] == 'freelancer-report') {
-                            $report_freelancer_template = DB::table('email_types')->select('id')->where('email_type', 'admin_email_report_freelancer')->get()->first();
-                            if (!empty($report_freelancer_template->id)) {
-                                $freelancer = User::find($request['id']);
-                                $template_data = EmailTemplate::getEmailTemplateByID($report_freelancer_template->id);
-                                $email_params['reported_freelancer'] = Helper::getUserName($request['id']);
-                                $email_params['link'] = url('profile/' . $freelancer->slug);
+                        } else if ($request['report_type'] == 'provider-report') {
+                            $report_provider_template = DB::table('email_types')->select('id')->where('email_type', 'admin_email_report_provider')->get()->first();
+                            if (!empty($report_provider_template->id)) {
+                                $provider = User::find($request['id']);
+                                $template_data = EmailTemplate::getEmailTemplateByID($report_provider_template->id);
+                                $email_params['reported_provider'] = Helper::getUserName($request['id']);
+                                $email_params['link'] = url('profile/' . $provider->slug);
                                 $email_params['report_by_link'] = url('profile/' . $user->slug);
                                 $email_params['reported_by'] = Helper::getUserName(Auth::user()->id);
                                 $email_params['message'] = $request['description'];
                                 Mail::to(config('mail.username'))
                                     ->send(
                                         new AdminEmailMailable(
-                                            'admin_email_report_freelancer',
+                                            'admin_email_report_provider',
                                             $template_data,
                                             $email_params
                                         )
@@ -1066,25 +1066,25 @@ class UserController extends Controller
                         }
                     }
                 } else if ($request['report_type'] == 'proposal_cancel') {
-                    $freelancer_job_cancelled = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_cancel_job')->get()->first();
+                    $provider_job_cancelled = DB::table('email_types')->select('id')->where('email_type', 'provider_email_cancel_job')->get()->first();
                     $json['message'] = trans('lang.job_cancelled');
-                    if (!empty($freelancer_job_cancelled->id)) {
+                    if (!empty($provider_job_cancelled->id)) {
                         if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
-                            $template_data = EmailTemplate::getEmailTemplateByID($freelancer_job_cancelled->id);
+                            $template_data = EmailTemplate::getEmailTemplateByID($provider_job_cancelled->id);
                             $job = Job::find($request['id']);
                             $proposal = Proposal::where('id', $request['proposal_id'])->first();
-                            $freelancer = User::find($proposal->freelancer_id);
+                            $provider = User::find($proposal->provider_id);
                             $email_params['project_title'] = $job->title;
                             $email_params['cancelled_project_link'] = url('job/' . $job->slug);
                             $email_params['name'] = Helper::getUserName($proposal->freelancer_id);
-                            $email_params['link'] = url('profile/' . $freelancer->slug);
+                            $email_params['link'] = url('profile/' . $provider->slug);
                             $email_params['employer_profile'] = url('profile/' . Auth::user()->slug);
                             $email_params['emp_name'] = Helper::getUserName(Auth::user()->id);
                             $email_params['msg'] = $request['description'];
-                            Mail::to($freelancer->email)
+                            Mail::to($provider->email)
                                 ->send(
-                                    new FreelancerEmailMailable(
-                                        'freelancer_email_cancel_job',
+                                    new ProviderEmailMailable(
+                                        'provider_email_cancel_job',
                                         $template_data,
                                         $email_params
                                     )
@@ -1108,22 +1108,22 @@ class UserController extends Controller
                 } else if ($request['report_type'] == 'service_cancel') {
                     $json['message'] = trans('lang.service_cancelled');
                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
-                        $freelancer_job_cancelled = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_cancel_job')->get()->first();
-                        if (!empty($freelancer_job_cancelled->id)) {
-                            $template_data = EmailTemplate::getEmailTemplateByID($freelancer_job_cancelled->id);
+                        $provider_job_cancelled = DB::table('email_types')->select('id')->where('email_type', 'provider_email_cancel_job')->get()->first();
+                        if (!empty($provider_job_cancelled->id)) {
+                            $template_data = EmailTemplate::getEmailTemplateByID($provider_job_cancelled->id);
                             $service = Service::find($request['id']);
-                            $freelancer = $service->seller->first();
+                            $provider = $service->seller->first();
                             $email_params['project_title'] = $service->title;
                             $email_params['cancelled_project_link'] = url('service/' . $service->slug);
-                            $email_params['name'] = Helper::getUserName($freelancer->id);
-                            $email_params['link'] = url('profile/' . $freelancer->slug);
+                            $email_params['name'] = Helper::getUserName($provider->id);
+                            $email_params['link'] = url('profile/' . $provider->slug);
                             $email_params['employer_profile'] = url('profile/' . Auth::user()->slug);
                             $email_params['emp_name'] = Helper::getUserName(Auth::user()->id);
                             $email_params['msg'] = $request['description'];
-                            Mail::to($freelancer->email)
+                            Mail::to($provider->email)
                                 ->send(
-                                    new FreelancerEmailMailable(
-                                        'freelancer_email_cancel_job',
+                                    new ProviderEmailMailable(
+                                        'provider_email_cancel_job',
                                         $template_data,
                                         $email_params
                                     )
@@ -1642,23 +1642,23 @@ class UserController extends Controller
                     $message->save();
                     // send mail
                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
-                        $freelancer = User::find($proposal->freelancer_id);
+                        $provider = User::find($proposal->freelancer_id);
                         $employer = User::find($job->user_id);
-                        if (!empty($freelancer->email)) {
+                        if (!empty($provider->email)) {
                             $email_params = array();
-                            $template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_hire_freelancer')->get()->first();
+                            $template = DB::table('email_types')->select('id')->where('email_type', 'provider_email_hire_provider')->get()->first();
                             if (!empty($template->id)) {
                                 $template_data = EmailTemplate::getEmailTemplateByID($template->id);
                                 $email_params['project_title'] = $job->title;
                                 $email_params['hired_project_link'] = url('job/' . $job->slug);
-                                $email_params['name'] = Helper::getUserName($freelancer->id);
-                                $email_params['link'] = url('profile/' . $freelancer->slug);
+                                $email_params['name'] = Helper::getUserName($provider->id);
+                                $email_params['link'] = url('profile/' . $provider->slug);
                                 $email_params['employer_profile'] = url('profile/' . $employer->slug);
                                 $email_params['emp_name'] = Helper::getUserName($employer->id);
-                                Mail::to($freelancer->email)
+                                Mail::to($provider->email)
                                     ->send(
-                                        new FreelancerEmailMailable(
-                                            'freelancer_email_hire_freelancer',
+                                        new ProviderEmailMailable(
+                                            'provider_email_hire_provider',
                                             $template_data,
                                             $email_params
                                         )
@@ -1698,11 +1698,11 @@ class UserController extends Controller
                         
                     }
 
-                    // send message to freelancer
+                    // send message to provider
                     /*$message = new Message();
                     $user = User::find(intval($order->user_id));
                     $message->user()->associate($user);
-                    $message->receiver_id = intval($proposal->freelancer_id);
+                    $message->receiver_id = intval($proposal->provider_id);
                     $message->body = trans('lang.quiz') . ' ' . $quiz->title . ' ' . trans('lang.quiz');
                     $message->status = 0;
                     $message->save();*/
@@ -1720,7 +1720,7 @@ class UserController extends Controller
                     $amount = $service->price;
                     // $service->users()->attach($order->user_id, ['type' => 'employer', 'status' => 'hired', 'seller_id' => $service->seller->id, 'paid' => 'pending']);
                     // $service->save();
-                    // send message to freelancer
+                    // send message to provider
                     $message = new Message();
                     $user = User::find(intval($order->user_id));
                     $message->user()->associate($user);
@@ -1738,11 +1738,11 @@ class UserController extends Controller
                         $email_params['freelancer_name'] = Helper::getUserName($service->seller[0]->id);
                         $email_params['employer_profile'] = url('profile/' . $user->slug);
                         $email_params['employer_name'] = Helper::getUserName($user->id);
-                        $freelancer_data = User::find(intval($service->seller[0]->id));
-                        Mail::to($freelancer_data->email)
+                        $provider_data = User::find(intval($service->seller[0]->id));
+                        Mail::to($provider_data->email)
                             ->send(
-                                new FreelancerEmailMailable(
-                                    'freelancer_email_new_order',
+                                new ProviderEmailMailable(
+                                    'provider_email_new_order',
                                     $template_data,
                                     $email_params
                                 )
@@ -1834,18 +1834,18 @@ class UserController extends Controller
                         } elseif ($role === 'provider') {
                             if (!empty($user->email)) {
                                 $email_params = array();
-                                $template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_package_subscribed')->get()->first();
+                                $template = DB::table('email_types')->select('id')->where('email_type', 'provider_email_package_subscribed')->get()->first();
                                 if (!empty($template->id)) {
                                     $template_data = EmailTemplate::getEmailTemplateByID($template->id);
-                                    $email_params['freelancer'] = Helper::getUserName($user->id);
-                                    $email_params['freelancer_profile'] = url('profile/' . $user->slug);
+                                    $email_params['provider'] = Helper::getUserName($user->id);
+                                    $email_params['provider_profile'] = url('profile/' . $user->slug);
                                     $email_params['name'] = !empty($package) ? $package->title : '';
                                     $email_params['price'] = !empty($package) ? $package->cost : '';
                                     $email_params['expiry_date'] = !empty($expiry_date) ? Carbon::parse($expiry_date)->format('M d, Y') : '';
                                     Mail::to($user->email)
                                         ->send(
-                                            new FreelancerEmailMailable(
-                                                'freelancer_email_package_subscribed',
+                                            new ProviderEmailMailable(
+                                                'provider_email_package_subscribed',
                                                 $template_data,
                                                 $email_params
                                             )
@@ -1930,7 +1930,7 @@ class UserController extends Controller
     }
 
     /**
-     * Get Freelancer Invoices.
+     * Get provider Invoices.
      *
      * @param \Illuminate\Http\Request $type type
      *
@@ -2184,19 +2184,19 @@ class UserController extends Controller
                     //send email
                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
                         $email_params = array();
-                        $send_freelancer_offer = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_send_offer')->get()->first();
+                        $send_provider_offer = DB::table('email_types')->select('id')->where('email_type', 'provider_email_send_offer')->get()->first();
                         $message = new Message();
-                        if (!empty($send_freelancer_offer->id)) {
+                        if (!empty($send_provider_offer->id)) {
                             $job = Job::where('id', $request['projects'])->first();
-                            $freelancer = User::find($request['freelancer_id']);
-                            $f_link = url('profile/' . $freelancer->slug);
-                            $f_name = Helper::getUserName($freelancer->id);
+                            $provider = User::find($request['provider_id']);
+                            $f_link = url('profile/' . $provider->slug);
+                            $f_name = Helper::getUserName($provider->id);
                             $e_name = Helper::getUserName(Auth::user()->id);
                             $e_link = url('profile/' . $user->slug);
                             $p_link = url('job/' . $job->slug);
                             $p_title = $job->title;
                             $msg = $request['desc'];
-                            $template_data = EmailTemplate::getEmailTemplateByID($send_freelancer_offer->id);
+                            $template_data = EmailTemplate::getEmailTemplateByID($send_provider_offer->id);
                             $message->user_id = intval(Auth::user()->id);
                             $message->receiver_id = intval($request['freelancer_id']);
                             $message->body = Helper::getProjectOfferContent($e_name, $e_link, $p_link, $p_title, $msg);
@@ -2209,10 +2209,10 @@ class UserController extends Controller
                             $email_params['link'] = $f_link;
                             $email_params['name'] = $f_name;
                             $email_params['msg'] = $msg;
-                            Mail::to($freelancer->email)
+                            Mail::to($provider->email)
                                 ->send(
-                                    new FreelancerEmailMailable(
-                                        'freelancer_email_send_offer',
+                                    new ProviderEmailMailable(
+                                        'provider_email_send_offer',
                                         $template_data,
                                         $email_params
                                     )
@@ -2359,7 +2359,7 @@ class UserController extends Controller
     }
 
     /**
-     * Get Freelancer Payouts.
+     * Get provider Payouts.
      *
      * @return \Illuminate\Http\Response
      */

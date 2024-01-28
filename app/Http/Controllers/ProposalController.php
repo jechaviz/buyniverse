@@ -31,7 +31,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Mail;
 use App\SiteManagement;
 use App\Mail\EmployerEmailMailable;
-use App\Mail\FreelancerEmailMailable;
+use App\Mail\ProviderEmailMailable;
 use App\EmailTemplate;
 use App\Review;
 use App\Quiz;
@@ -405,7 +405,7 @@ class ProposalController extends Controller
                                 if (!empty($job->employer->email)) {
                                     $email_params = array();
                                     $proposal_received_template = DB::table('email_types')->select('id')->where('email_type', 'employer_email_proposal_received')->get()->first();
-                                    $proposal_submitted_template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_new_proposal_submitted')->get()->first();
+                                    $proposal_submitted_template = DB::table('email_types')->select('id')->where('email_type', 'provider_email_new_proposal_submitted')->get()->first();
                                     if (!empty($proposal_received_template->id)
                                         || !empty($proposal_submitted_template->id)
                                     ) {
@@ -413,8 +413,8 @@ class ProposalController extends Controller
                                         $template_submit_proposal = EmailTemplate::getEmailTemplateByID($proposal_submitted_template->id);
                                         $email_params['employer'] = Helper::getUserName($job->employer->id);
                                         $email_params['employer_profile'] = url('profile/' . $job->employer->slug);
-                                        $email_params['freelancer'] = Helper::getUserName(Auth::user()->id);
-                                        $email_params['freelancer_profile'] = url('profile/' . $user->slug);
+                                        $email_params['provider'] = Helper::getUserName(Auth::user()->id);
+                                        $email_params['provider_profile'] = url('profile/' . $user->slug);
                                         $email_params['title'] = $job->title;
                                         $email_params['link'] = url('job/' . $job->slug);
                                         $email_params['amount'] = number_format($request['amount']);
@@ -430,8 +430,8 @@ class ProposalController extends Controller
                                             );
                                         Mail::to($user->email)
                                             ->send(
-                                                new FreelancerEmailMailable(
-                                                    'freelancer_email_new_proposal_submitted',
+                                                new ProviderEmailMailable(
+                                                    'provider_email_new_proposal_submitted',
                                                     $template_submit_proposal,
                                                     $email_params
                                                 )
@@ -461,7 +461,7 @@ class ProposalController extends Controller
                             if (!empty($job->employer->email)) {
                                 $email_params = array();
                                 $proposal_received_template = DB::table('email_types')->select('id')->where('email_type', 'employer_email_proposal_received')->get()->first();
-                                $proposal_submitted_template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_new_proposal_submitted')->get()->first();
+                                $proposal_submitted_template = DB::table('email_types')->select('id')->where('email_type', 'provider_email_new_proposal_submitted')->get()->first();
                                 if (
                                     !empty($proposal_received_template->id)
                                     || !empty($proposal_submitted_template->id)
@@ -470,8 +470,8 @@ class ProposalController extends Controller
                                     $template_submit_proposal = EmailTemplate::getEmailTemplateByID($proposal_submitted_template->id);
                                     $email_params['employer'] = Helper::getUserName($job->employer->id);
                                     $email_params['employer_profile'] = url('profile/' . $job->employer->slug);
-                                    $email_params['freelancer'] = Helper::getUserName(Auth::user()->id);
-                                    $email_params['freelancer_profile'] = url('profile/' . $user->slug);
+                                    $email_params['provider'] = Helper::getUserName(Auth::user()->id);
+                                    $email_params['provider_profile'] = url('profile/' . $user->slug);
                                     $email_params['title'] = $job->title;
                                     $email_params['link'] = url('job/' . $job->slug);
                                     $email_params['amount'] = number_format($request['amount']);
@@ -487,8 +487,8 @@ class ProposalController extends Controller
                                         );
                                     Mail::to($user->email)
                                         ->send(
-                                            new FreelancerEmailMailable(
-                                                'freelancer_email_new_proposal_submitted',
+                                            new ProviderEmailMailable(
+                                                'provider_email_new_proposal_submitted',
                                                 $template_submit_proposal,
                                                 $email_params
                                             )
@@ -619,7 +619,7 @@ class ProposalController extends Controller
     }
 
     /**
-     * Hire freelancer.
+     * Hire provider.
      *
      * @param \Illuminate\Http\Request $request req->attr
      *

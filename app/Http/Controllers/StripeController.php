@@ -31,7 +31,7 @@ use DB;
 use App\Package;
 use Illuminate\Support\Facades\Mail;
 use App\EmailTemplate;
-use App\Mail\FreelancerEmailMailable;
+use App\Mail\ProviderEmailMailable;
 use App\Mail\EmployerEmailMailable;
 use App\Helper;
 use App\Item;
@@ -267,18 +267,18 @@ class StripeController extends Controller
                                     } elseif ($role === 'provider') {
                                         if (!empty(Auth::user()->email)) {
                                             $email_params = array();
-                                            $template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_package_subscribed')->get()->first();
+                                            $template = DB::table('email_types')->select('id')->where('email_type', 'provider_email_package_subscribed')->get()->first();
                                             if (!empty($template->id)) {
                                                 $template_data = EmailTemplate::getEmailTemplateByID($template->id);
-                                                $email_params['freelancer'] = Helper::getUserName(Auth::user()->id);
-                                                $email_params['freelancer_profile'] = url('profile/' . Auth::user()->slug);
+                                                $email_params['provider'] = Helper::getUserName(Auth::user()->id);
+                                                $email_params['provider_profile'] = url('profile/' . Auth::user()->slug);
                                                 $email_params['name'] = $package->title;
                                                 $email_params['price'] = $package->cost;
                                                 $email_params['expiry_date'] = !empty($expiry_date) ? Carbon::parse($expiry_date)->format('M d, Y') : '';
                                                 Mail::to(Auth::user()->email)
                                                     ->send(
-                                                        new FreelancerEmailMailable(
-                                                            'freelancer_email_package_subscribed',
+                                                        new ProviderEmailMailable(
+                                                            'provider_email_package_subscribed',
                                                             $template_data,
                                                             $email_params
                                                         )
@@ -293,15 +293,15 @@ class StripeController extends Controller
                                 $project_type = session()->get('project_type');
                                 if ($project_type == 'service') {
                                     $id = session()->get('product_id');
-                                    $freelancer = session()->get('service_seller');
+                                    $provider = session()->get('service_seller');
                                     $service = Service::find($id);
-                                    $service->users()->attach(Auth::user()->id, ['type' => 'employer', 'status' => 'hired', 'seller_id' => $freelancer, 'paid' => 'pending']);
+                                    $service->users()->attach(Auth::user()->id, ['type' => 'employer', 'status' => 'hired', 'seller_id' => $provider, 'paid' => 'pending']);
                                     $service->save();
-                                    // send message to freelancer
+                                    // send message to provider
                                     $message = new Message();
                                     $user = User::find(intval(Auth::user()->id));
                                     $message->user()->associate($user);
-                                    $message->receiver_id = intval($freelancer);
+                                    $message->receiver_id = intval($provider);
                                     $message->body = Helper::getUserName(Auth::user()->id) . ' ' . trans('lang.service_purchase') . ' ' . $service->title;
                                     $message->status = 0;
                                     $message->save();
@@ -312,14 +312,14 @@ class StripeController extends Controller
                                         $email_params['title'] = $service->title;
                                         $email_params['service_link'] = url('service/' . $service->slug);
                                         $email_params['amount'] = $service->price;
-                                        $email_params['freelancer_name'] = Helper::getUserName($freelancer);
+                                        $email_params['provider_name'] = Helper::getUserName($provider);
                                         $email_params['employer_profile'] = url('profile/' . $user->slug);
                                         $email_params['employer_name'] = Helper::getUserName($user->id);
-                                        $freelancer_data = User::find(intval($freelancer));
-                                        Mail::to($freelancer_data->email)
+                                        $provider_data = User::find(intval($provider));
+                                        Mail::to($provider_data->email)
                                             ->send(
-                                                new FreelancerEmailMailable(
-                                                    'freelancer_email_new_order',
+                                                new ProviderEmailMailable(
+                                                    'provider_email_new_order',
                                                     $template_data,
                                                     $email_params
                                                 )
@@ -336,7 +336,7 @@ class StripeController extends Controller
                                 $job = Job::find($proposal->job->id);
                                 $job->status = 'hired';
                                 $job->save();
-                                // send message to freelancer
+                                // send message to provider
                                 $message = new Message();
                                 $user = User::find(intval(Auth::user()->id));
                                 $message->user()->associate($user);
@@ -346,23 +346,23 @@ class StripeController extends Controller
                                 $message->save();
                                 // send mail
                                 if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
-                                    $freelancer = User::find($proposal->freelancer_id);
+                                    $provider = User::find($proposal->freelancer_id);
                                     $employer = User::find($job->user_id);
-                                    if (!empty($freelancer->email)) {
+                                    if (!empty($provider->email)) {
                                         $email_params = array();
-                                        $template = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_hire_freelancer')->get()->first();
+                                        $template = DB::table('email_types')->select('id')->where('email_type', 'provider_email_hire_provider')->get()->first();
                                         if (!empty($template->id)) {
                                             $template_data = EmailTemplate::getEmailTemplateByID($template->id);
                                             $email_params['project_title'] = $job->title;
                                             $email_params['hired_project_link'] = url('job/' . $job->slug);
-                                            $email_params['name'] = Helper::getUserName($freelancer->id);
-                                            $email_params['link'] = url('profile/' . $freelancer->slug);
+                                            $email_params['name'] = Helper::getUserName($provider->id);
+                                            $email_params['link'] = url('profile/' . $provider->slug);
                                             $email_params['employer_profile'] = url('profile/' . $employer->slug);
                                             $email_params['emp_name'] = Helper::getUserName($employer->id);
-                                            Mail::to($freelancer->email)
+                                            Mail::to($provider->email)
                                                 ->send(
-                                                    new FreelancerEmailMailable(
-                                                        'freelancer_email_hire_freelancer',
+                                                    new ProviderEmailMailable(
+                                                        'provider_email_hire_provider',
                                                         $template_data,
                                                         $email_params
                                                     )
@@ -415,10 +415,10 @@ class StripeController extends Controller
                 session()->forget('type');
                 return $json;
             }
-        } else if (Auth::user()->role == "freelancer") {
+        } else if (Auth::user()->role == "provider") {
             $json['type'] = 'success';
             $json['message'] = trans('lang.thanks_subscription');
-            $json['url'] = url('dashboard/packages/freelancer');
+            $json['url'] = url('dashboard/packages/provider');
             session()->forget('type');
             return $json;
         }

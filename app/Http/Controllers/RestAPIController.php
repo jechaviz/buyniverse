@@ -37,7 +37,7 @@ use App\Department;
 use App\Mail\AdminEmailMailable;
 use App\Mail\EmailVerificationMailable;
 use App\Mail\EmployerEmailMailable;
-use App\Mail\FreelancerEmailMailable;
+use App\Mail\ProviderEmailMailable;
 use App\Mail\GeneralEmailMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Pagination\Paginator;
@@ -571,7 +571,7 @@ class RestAPIController extends Controller
                                 ->where('email_type', 'employer_email_proposal_message')
                                 ->get()->first();
                             $proposal_submitted_template = DB::table('email_types')->select('id')
-                                ->where('email_type', 'freelancer_email_new_proposal_submitted')
+                                ->where('email_type', 'provider_email_new_proposal_submitted')
                                 ->get()->first();
                             if (
                                 !empty($proposal_received_template->id)
@@ -583,8 +583,8 @@ class RestAPIController extends Controller
                                 $template_submit_proposal = EmailTemplate::getEmailTemplateByID($proposal_submitted_template->id);
                                 $email_params['employer'] = Helper::getUserName($job->employer->id);
                                 $email_params['employer_profile'] = url('profile/' . $job->employer->slug);
-                                $email_params['freelancer'] = Helper::getUserName($user_id);
-                                $email_params['freelancer_profile'] = url('profile/' . $user->slug);
+                                $email_params['provider'] = Helper::getUserName($user_id);
+                                $email_params['provider_profile'] = url('profile/' . $user->slug);
                                 $email_params['title'] = $job->title;
                                 $email_params['link'] = url('job/' . $job->slug);
                                 $email_params['amount'] = $amount;
@@ -608,8 +608,8 @@ class RestAPIController extends Controller
                                     );
                                 Mail::to($user->email)
                                     ->send(
-                                        new FreelancerEmailMailable(
-                                            'freelancer_email_new_proposal_submitted',
+                                        new ProviderEmailMailable(
+                                            'provider_email_new_proposal_submitted',
                                             $template_submit_proposal,
                                             $email_params
                                         )
@@ -1500,12 +1500,12 @@ class RestAPIController extends Controller
                 //send email
                 if (!empty($email_settings) && !empty($email_settings[0]['email'])) {
                     $email_params = array();
-                    $send_freelancer_offer = DB::table('email_types')->select('id')->where('email_type', 'freelancer_email_send_offer')->get()->first();
+                    $send_provider_offer = DB::table('email_types')->select('id')->where('email_type', 'provider_email_send_offer')->get()->first();
                     $message = new Message();
-                    if (!empty($send_freelancer_offer->id)) {
+                    if (!empty($send_provider_offer->id)) {
                         $job = Job::where('id', $request['job_id'])->first();
-                        $freelancer = User::find($request['freelancer_id']);
-                        $template_data = EmailTemplate::getEmailTemplateByID($send_freelancer_offer->id);
+                        $provider = User::find($request['freelancer_id']);
+                        $template_data = EmailTemplate::getEmailTemplateByID($send_provider_offer->id);
                         $message->user_id = intval($request['user_id']);
                         $message->receiver_id = intval($request['freelancer_id']);
                         $message->body = $template_data->content;
@@ -1515,13 +1515,13 @@ class RestAPIController extends Controller
                         $email_params['project_link'] = url('job/' . $job->slug);
                         $email_params['employer_profile'] = url('profile/' . $user->slug);
                         $email_params['emp_name'] = Helper::getUserName($request['user_id']);
-                        $email_params['link'] = url('profile/' . $freelancer->slug);
-                        $email_params['name'] = Helper::getUserName($freelancer->id);
+                        $email_params['link'] = url('profile/' . $provider->slug);
+                        $email_params['name'] = Helper::getUserName($provider->id);
                         $email_params['msg'] = $request['desc'];
-                        Mail::to($freelancer->email)
+                        Mail::to($provider->email)
                             ->send(
-                                new FreelancerEmailMailable(
-                                    'freelancer_email_send_offer',
+                                new ProviderEmailMailable(
+                                    'provider_email_send_offer',
                                     $template_data,
                                     $email_params
                                 )
