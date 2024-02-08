@@ -72,19 +72,19 @@ class Review extends Model
         }
         $review->save();
 
-        $freelancer_total_rating =  Self::select('avg_rating')
+        $provider_total_rating =  Self::select('avg_rating')
             ->where('receiver_id', $request['receiver_id'])->sum('avg_rating');
-        $freelancer_rating = $freelancer_total_rating / Self::where('receiver_id', $request['receiver_id'])->count();
-        if (!empty($freelancer_rating)) {
+        $provider_rating = $provider_total_rating / Self::where('receiver_id', $request['receiver_id'])->count();
+        if (!empty($provider_rating)) {
             $rating = array();
             $profile = Profile::select('id')->where('user_id', $request['receiver_id'])->first();
-            $freelancer_profile = Profile::find($profile->id);
-            $rating = unserialize($freelancer_profile->rating);
+            $provider_profile = Profile::find($profile->id);
+            $rating = unserialize($provider_profile->rating);
             $rating = !empty($rating) && is_array($rating) ? $rating : array();
-            $rating[] = round($freelancer_rating);
+            $rating[] = round($provider_rating);
             $rating = array_unique($rating);
-            $freelancer_profile->ratings = serialize($rating);
-            $freelancer_profile->save();   
+            $provider_profile->ratings = serialize($rating);
+            $provider_profile->save();   
         }
         if ($project_type == 'service') {
             DB::table('service_user')

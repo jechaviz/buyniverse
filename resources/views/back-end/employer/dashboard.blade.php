@@ -201,7 +201,7 @@
                                     <tbody>
                                         @foreach ($ongoing_jobs as $project)
                                             @php
-                                                $proposal_freelancer = $project->proposals->where('status', 'hired')->pluck('freelancer_id')->first();
+                                                $proposal_freelancer = $project->proposals->where('status', 'hired')->pluck('provider_id')->first();
                                                 $freelancer = !empty($proposal_freelancer) ? \App\User::find($proposal_freelancer) : ''; 
                                                 $user_name = Helper::getUsername($proposal_freelancer);
                                             @endphp

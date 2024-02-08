@@ -52,7 +52,7 @@ class Category extends Model
      *
      * @return relation
      */
-    public function freelancers()
+    public function providers()
     {
         return $this->morphedByMany('App\User', 'catable');
     }

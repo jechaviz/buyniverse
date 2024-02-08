@@ -12,7 +12,7 @@
  */
 namespace App\Http\Controllers;
 
-use App\Freelancer;
+use App\Provider;
 use Illuminate\Http\Request;
 use App\Helper;
 use App\Location;
@@ -60,20 +60,20 @@ class ProviderController extends Controller
      * Defining scope of the variable
      *
      * @access protected
-     * @var    array $freelancer
+     * @var    array $provider
      */
-    protected $freelancer;
+    protected $provider;
 
     /**
      * Create a new controller instance.
      *
-     * @param instance $freelancer instance
+     * @param instance $provider instance
      *
      * @return void
      */
-    public function __construct(Profile $freelancer, Payout $payout)
+    public function __construct(Profile $provider, Payout $payout)
     {
-        $this->freelancer = $freelancer;
+        $this->provider = $provider;
     }
 
     /**
@@ -85,7 +85,7 @@ class ProviderController extends Controller
     {
         $locations = Location::pluck('title', 'id');
         $skills = Skill::pluck('title', 'id');
-        $profile = $this->freelancer::where('user_id', Auth::user()->id)
+        $profile = $this->provider::where('user_id', Auth::user()->id)
             ->get()->first();
         $gender = !empty($profile->gender) ? $profile->gender : '';
         $hourly_rate = !empty($profile->hourly_rate) ? $profile->hourly_rate : '';
@@ -241,7 +241,7 @@ class ProviderController extends Controller
                         $json['message'] = trans('lang.cannot_add_morethan') . '' . $options['no_of_skills'] . ' ' . trans('lang.skills');
                         return $json;
                     } else {
-                        $profile =  $this->freelancer->storeProfile($request, Auth::user()->id);
+                        $profile =  $this->provider->storeProfile($request, Auth::user()->id);
                         if ($profile = 'success') {
                             $json['type'] = 'success';
                             $json['message'] = '';
@@ -254,7 +254,7 @@ class ProviderController extends Controller
                     return $json;
                 }
             } else {
-                $profile =  $this->freelancer->storeProfile($request, Auth::user()->id);
+                $profile =  $this->provider->storeProfile($request, Auth::user()->id);
                 if ($profile = 'success') {
                     $json['type'] = 'success';
                     $json['message'] = '';
@@ -271,11 +271,11 @@ class ProviderController extends Controller
     }
 
     /**
-     * Get freelancer skills.
+     * Get provider skills.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerSkills()
+    public function getproviderSkills()
     {
         $json = array();
         if (Auth::user()) {
@@ -283,7 +283,7 @@ class ProviderController extends Controller
                 ->orderBy('title')->get()->toArray();
             if (!empty($skills)) {
                 $json['type'] = 'success';
-                $json['freelancer_skills'] = $skills;
+                $json['provider_skills'] = $skills;
                 return $json;
             } else {
                 $json['type'] = 'error';
@@ -296,38 +296,38 @@ class ProviderController extends Controller
     }
 
     /**
-     * Get top freelancer
+     * Get top provider
      *
      * @return \Illuminate\Http\Response
      */
-    public function getTopFreelancers()
+    public function getTopproviders()
     {
         $json = array();
-        $freelancers = User::getTopFreelancers();
-        $top_freelancers = array();
-        if (!empty($freelancers)) {
-            foreach ($freelancers as $key => $freelancer) {
-                $user = User::find($freelancer->id);
-                $top_freelancers[$key]['id'] = $freelancer->id;
-                $top_freelancers[$key]['name'] = Helper::getUserName($freelancer->id);
-                $top_freelancers[$key]['slug'] = $user->slug;
-                $top_freelancers[$key]['image'] = asset(Helper::getProfileImage($freelancer->id));
-                $top_freelancers[$key]['flag'] = !empty($user->location->flag) ? Helper::getLocationFlag($user->location->flag) :'';
-                $top_freelancers[$key]['location'] = !empty($user->location->title) ? $user->location->title :'';
-                $top_freelancers[$key]['tagline'] = !empty($user->profile->tagline) ? $user->profile->tagline :'';
-                $top_freelancers[$key]['hourly_rate'] = !empty($user->profile->hourly_rate) ? $user->profile->hourly_rate :'';
+        $providers = User::getTopProviders();
+        $top_providers = array();
+        if (!empty($providers)) {
+            foreach ($providers as $key => $provider) {
+                $user = User::find($provider->id);
+                $top_providers[$key]['id'] = $provider->id;
+                $top_providers[$key]['name'] = Helper::getUserName($provider->id);
+                $top_providers[$key]['slug'] = $user->slug;
+                $top_providers[$key]['image'] = asset(Helper::getProfileImage($provider->id));
+                $top_providers[$key]['flag'] = !empty($user->location->flag) ? Helper::getLocationFlag($user->location->flag) :'';
+                $top_providers[$key]['location'] = !empty($user->location->title) ? $user->location->title :'';
+                $top_providers[$key]['tagline'] = !empty($user->profile->tagline) ? $user->profile->tagline :'';
+                $top_providers[$key]['hourly_rate'] = !empty($user->profile->hourly_rate) ? $user->profile->hourly_rate :'';
                 $currency   = SiteManagement::getMetaValue('commision');
                 $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
-                $top_freelancers[$key]['symbol'] = !empty($symbol['symbol']) ? $symbol['symbol'] : '$';
-                $top_freelancers[$key]['average_rating_count'] = !empty($freelancer->total_reviews) ? $freelancer->rating/$freelancer->total_reviews : 0;
-                $top_freelancers[$key]['total_reviews'] = !empty($freelancer->total_reviews) ? $freelancer->total_reviews : 0;
-                $top_freelancers[$key]['save_freelancers'] = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
-                $top_freelancers[$key]['skills'] = !empty($user->skills) ? $user->skills->pluck('title', 'id') : array();
+                $top_providers[$key]['symbol'] = !empty($symbol['symbol']) ? $symbol['symbol'] : '$';
+                $top_providers[$key]['average_rating_count'] = !empty($provider->total_reviews) ? $provider->rating/$provider->total_reviews : 0;
+                $top_providers[$key]['total_reviews'] = !empty($provider->total_reviews) ? $provider->total_reviews : 0;
+                $top_providers[$key]['save_providers'] = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
+                $top_providers[$key]['skills'] = !empty($user->skills) ? $user->skills->pluck('title', 'id') : array();
             }
         }
-        if (!empty($top_freelancers)) {
+        if (!empty($top_providers)) {
             $json['type'] = 'success';
-            $json['freelancers'] = $top_freelancers;
+            $json['providers'] = $top_providers;
             return $json;
         } else {
             $json['type'] = 'error';
@@ -336,38 +336,38 @@ class ProviderController extends Controller
     }
 
     /**
-     * Get all freelancer
+     * Get all provider
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAllFreelancers()
+    public function getAllProviders()
     {
         $json = array();
-        $freelancers = User::getAllFreelancers();
-        $top_freelancers = array();
-        if (!empty($freelancers)) {
-            foreach ($freelancers as $key => $freelancer) {
-                $user = User::find($freelancer->id);
-                $top_freelancers[$key]['id'] = $freelancer->id;
-                $top_freelancers[$key]['name'] = Helper::getUserName($freelancer->id);
-                $top_freelancers[$key]['slug'] = $user->slug;
-                $top_freelancers[$key]['image'] = asset(Helper::getProfileImage($freelancer->id));
-                $top_freelancers[$key]['flag'] = !empty($user->location->flag) ? Helper::getLocationFlag($user->location->flag) :'';
-                $top_freelancers[$key]['location'] = !empty($user->location->title) ? $user->location->title :'';
-                $top_freelancers[$key]['tagline'] = !empty($user->profile->tagline) ? $user->profile->tagline :'';
-                $top_freelancers[$key]['hourly_rate'] = !empty($user->profile->hourly_rate) ? $user->profile->hourly_rate :'';
+        $providers = User::getAllProviders();
+        $top_providers = array();
+        if (!empty($providers)) {
+            foreach ($providers as $key => $provider) {
+                $user = User::find($provider->id);
+                $top_providers[$key]['id'] = $provider->id;
+                $top_providers[$key]['name'] = Helper::getUserName($provider->id);
+                $top_providers[$key]['slug'] = $user->slug;
+                $top_providers[$key]['image'] = asset(Helper::getProfileImage($provider->id));
+                $top_providers[$key]['flag'] = !empty($user->location->flag) ? Helper::getLocationFlag($user->location->flag) :'';
+                $top_providers[$key]['location'] = !empty($user->location->title) ? $user->location->title :'';
+                $top_providers[$key]['tagline'] = !empty($user->profile->tagline) ? $user->profile->tagline :'';
+                $top_providers[$key]['hourly_rate'] = !empty($user->profile->hourly_rate) ? $user->profile->hourly_rate :'';
                 $currency   = SiteManagement::getMetaValue('commision');
                 $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
-                $top_freelancers[$key]['symbol'] = !empty($symbol['symbol']) ? $symbol['symbol'] : '$';
-                $top_freelancers[$key]['average_rating_count'] = !empty($freelancer->total_reviews) ? $freelancer->rating/$freelancer->total_reviews : 0;
-                $top_freelancers[$key]['total_reviews'] = !empty($freelancer->total_reviews) ? $freelancer->total_reviews : 0;
-                $top_freelancers[$key]['save_freelancers'] = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
-                $top_freelancers[$key]['skills'] = !empty($user->skills) ? $user->skills->pluck('title', 'id') : array();
+                $top_providers[$key]['symbol'] = !empty($symbol['symbol']) ? $symbol['symbol'] : '$';
+                $top_providers[$key]['average_rating_count'] = !empty($provider->total_reviews) ? $provider->rating/$provider->total_reviews : 0;
+                $top_providers[$key]['total_reviews'] = !empty($provider->total_reviews) ? $provider->total_reviews : 0;
+                $top_providers[$key]['save_providers'] = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
+                $top_providers[$key]['skills'] = !empty($user->skills) ? $user->skills->pluck('title', 'id') : array();
             }
         }
-        if (!empty($top_freelancers)) {
+        if (!empty($top_providers)) {
             $json['type'] = 'success';
-            $json['freelancers'] = $top_freelancers;
+            $json['providers'] = $top_providers;
             return $json;
         } else {
             $json['type'] = 'error';
@@ -479,7 +479,7 @@ class ProviderController extends Controller
             ]
         );
         $user_id = Auth::user()->id;
-        $update_experience_education = $this->freelancer->updateExperienceEducation($request, $user_id);
+        $update_experience_education = $this->provider->updateExperienceEducation($request, $user_id);
         if ($update_experience_education['type'] == 'success') {
             $json['type'] = 'success';
             $json['message'] = trans('lang.saving_profile');
@@ -496,12 +496,12 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerExperiences()
+    public function getproviderExperiences()
     {
         $json = array();
         $user_id = Auth::user()->id;
         if (Auth::user()) {
-            $profile = $this->freelancer::select('experience')
+            $profile = $this->provider::select('experience')
                 ->where('user_id', $user_id)->get()->first();
             if (!empty($profile)) {
                 $json['type'] = 'success';
@@ -522,12 +522,12 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerEducations()
+    public function getproviderEducations()
     {
         $json = array();
         $user_id = Auth::user()->id;
         if (Auth::user()) {
-            $profile = $this->freelancer::select('education')
+            $profile = $this->provider::select('education')
                 ->where('user_id', $user_id)->get()->first();
             if (!empty($profile)) {
                 $json['type'] = 'success';
@@ -572,7 +572,7 @@ class ProviderController extends Controller
                 ]
             );
             $user_id = Auth::user()->id;
-            $store_awards_projects = $this->freelancer->updateAwardProjectSettings($request, $user_id);
+            $store_awards_projects = $this->provider->updateAwardProjectSettings($request, $user_id);
             if ($store_awards_projects['type'] == 'success') {
                 $json['type'] = 'success';
                 $json['message'] = trans('lang.saving_profile');
@@ -586,16 +586,16 @@ class ProviderController extends Controller
     }
 
     /**
-     * Get freelancer's projects
+     * Get provider's projects
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerProjects()
+    public function getproviderProjects()
     {
         $user_id = Auth::user()->id;
         $json = array();
         if (Auth::user()) {
-            $profile = $this->freelancer::select('projects')
+            $profile = $this->provider::select('projects')
                 ->where('user_id', $user_id)->get()->first();
             $profile_projects = array();
             if (!empty($profile)) {
@@ -622,16 +622,16 @@ class ProviderController extends Controller
     }
 
     /**
-     * Get freelancer's awards
+     * Get provider's awards
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerAwards()
+    public function getproviderAwards()
     {
         $user_id = Auth::user()->id;
         $json = array();
         if (Auth::user()) {
-            $profile = $this->freelancer::select('awards')
+            $profile = $this->provider::select('awards')
                 ->where('user_id', $user_id)->get()->first();
             $profile_awards = array();
             if (!empty($profile)) {
@@ -658,31 +658,31 @@ class ProviderController extends Controller
     }
 
     /**
-     * Show Freelancer Jobs.
+     * Show provider Jobs.
      *
      * @param string $status job status
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function freelancerJobs ()
+    public function providerJobs ()
     {
         //dd('this is the test', $jobs);
         
         $ongoing_jobs = array();
-        $freelancer_id = Auth::user()->id;
+        $provider_id = Auth::user()->id;
         
         
         $currency  = SiteManagement::getMetaValue('commision');
         $symbol    = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         if (Auth::user()) {
-            $ongoing_jobs = Proposal::select('job_id')->latest()->where('freelancer_id', $freelancer_id)->where('status', 'hired')->paginate(7);
-            $completed_jobs = Proposal::select('job_id')->latest()->where('freelancer_id', $freelancer_id)->where('status', 'completed')->paginate(7);
-            $cancelled_jobs = Proposal::select('job_id')->latest()->where('freelancer_id', $freelancer_id)->where('status', 'cancelled')->paginate(7);
+            $ongoing_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'hired')->paginate(7);
+            $completed_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'completed')->paginate(7);
+            $cancelled_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'cancelled')->paginate(7);
             $email = Auth::user()->email;
             $teams = Team::where('email', $email)->select('job_id')->get();
             $fteams = Fteam::where('email', $email)->select('user_id')->get();
-            $fteams_jobs = Proposal::select('job_id')->latest()->whereIn('freelancer_id', $fteams)->where('status', 'hired')->get();
+            $fteams_jobs = Proposal::select('job_id')->latest()->whereIn('provider_id', $fteams)->where('status', 'hired')->get();
             //dd($fteams_jobs, $fteams);
             $team_jobs = Job::whereIn('id', $teams)->get();
             return view(
@@ -702,10 +702,10 @@ class ProviderController extends Controller
         
     }
 
-    public function freelancerJoblist()
+    public function providerJoblist()
     {
         
-        $freelancer_id = Auth::user()->id;
+        $provider_id = Auth::user()->id;
         $currency  = SiteManagement::getMetaValue('commision');
         $symbol    = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         if (Auth::user()) {
@@ -717,7 +717,7 @@ class ProviderController extends Controller
             $locations  = Location::all();
             $languages  = Language::all();
             $skills     = Skill::all();
-            $freelancer_skills = Helper::getFreelancerLevelList();
+            $provider_skills = Helper::getFreelancerLevelList();
             $project_length = Helper::getJobDurationList();
             $current_date = Carbon::now()->toDateTimeString();
             $address = !empty($_GET['addr']) ? $_GET['addr'] : '';
@@ -770,7 +770,7 @@ class ProviderController extends Controller
                         'categories',
                         'locations',
                         'languages',
-                        'freelancer_skills',
+                        'provider_skills',
                         'project_length',
                         'Jobs_total_records',
                         'keyword',
@@ -793,7 +793,7 @@ class ProviderController extends Controller
                         'categories',
                         'locations',
                         'languages',
-                        'freelancer_skills',
+                        'provider_skills',
                         'project_length',
                         'Jobs_total_records',
                         'keyword',
@@ -812,16 +812,16 @@ class ProviderController extends Controller
         }
     }
 
-    public function showFreelancerJobs($status)
+    public function showproviderJobs($status)
     {
         $ongoing_jobs = array();
-        $freelancer_id = Auth::user()->id;
+        $provider_id = Auth::user()->id;
         $currency  = SiteManagement::getMetaValue('commision');
         $symbol    = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         if (Auth::user()) {
-            $ongoing_jobs = Proposal::select('job_id')->latest()->where('freelancer_id', $freelancer_id)->where('status', 'hired')->paginate(7);
-            $completed_jobs = Proposal::select('job_id')->latest()->where('freelancer_id', $freelancer_id)->where('status', 'completed')->paginate(7);
-            $cancelled_jobs = Proposal::select('job_id')->latest()->where('freelancer_id', $freelancer_id)->where('status', 'cancelled')->paginate(7);
+            $ongoing_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'hired')->paginate(7);
+            $completed_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'completed')->paginate(7);
+            $cancelled_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'cancelled')->paginate(7);
             if (!empty($status) && $status === 'hired') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/ongoing.blade.php'))) {
                     return view(
@@ -881,7 +881,7 @@ class ProviderController extends Controller
     }
 
     /**
-     * Show Freelancer Job Details.
+     * Show provider Job Details.
      *
      * @param string $slug job slug
      *
@@ -913,10 +913,10 @@ class ProviderController extends Controller
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
 
 
-            $freelancers = Provider_type::where('job_id', $job->id)->get();
-            $project_freelancer = Helper::getFreelancerLevelList();
-            foreach ($freelancers as $key => $value) {
-                foreach ($project_freelancer as $key1 => $value1) {
+            $providers = Provider_type::where('job_id', $job->id)->get();
+            $project_provider = Helper::getFreelancerLevelList();
+            foreach ($providers as $key => $value) {
+                foreach ($project_provider as $key1 => $value1) {
                     //dd($value, $key1, $project_english);
                     if($value->provider_type == $key1)
                         $value->name = $value1;
@@ -947,7 +947,7 @@ class ProviderController extends Controller
                         'profile_image',
                         'employer_image',
                         'proposal',
-                        'freelancers',
+                        'providers',
                         'project_duration',
                         'english',
                         'lang',
@@ -966,7 +966,7 @@ class ProviderController extends Controller
                         'profile_image',
                         'employer_image',
                         'proposal',
-                        'freelancers',
+                        'providers',
                         'project_duration',
                         'english',
                         'lang',
@@ -999,10 +999,10 @@ class ProviderController extends Controller
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
 
 
-            $freelancers = Provider_type::where('job_id', $job->id)->get();
-            $project_freelancer = Helper::getFreelancerLevelList();
-            foreach ($freelancers as $key => $value) {
-                foreach ($project_freelancer as $key1 => $value1) {
+            $providers = Provider_type::where('job_id', $job->id)->get();
+            $project_provider = Helper::getFreelancerLevelList();
+            foreach ($providers as $key => $value) {
+                foreach ($project_provider as $key1 => $value1) {
                     //dd($value, $key1, $project_english);
                     if($value->provider_type == $key1)
                         $value->name = $value1;
@@ -1032,7 +1032,7 @@ class ProviderController extends Controller
                         'duration',
                         'profile_image',
                         'employer_image',
-                        'freelancers',
+                        'providers',
                         'project_duration',
                         'english',
                         'lang',
@@ -1050,7 +1050,7 @@ class ProviderController extends Controller
                         'duration',
                         'profile_image',
                         'employer_image',
-                        'freelancers',
+                        'providers',
                         'project_duration',
                         'english',
                         'lang',
@@ -1064,14 +1064,14 @@ class ProviderController extends Controller
     }
 
     /**
-     * Show freelancer proposals.
+     * Show provider proposals.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showFreelancerProposals()
+    public function showproviderProposals()
     {
         
-        $proposals = Proposal::select('job_id', 'status', 'id')->where('freelancer_id', Auth::user()->id)->latest()->paginate(7);
+        $proposals = Proposal::select('job_id', 'status', 'id')->where('provider_id', Auth::user()->id)->latest()->paginate(7);
         $currency  = SiteManagement::getMetaValue('commision');
         $symbol    = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         $project_duration = Helper::getJobDurationList();
@@ -1113,27 +1113,27 @@ class ProviderController extends Controller
     }
 
     /**
-     * Show freelancer dashboard.
+     * Show provider dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function freelancerDashboard()
+    public function providerDashboard()
     {
         //dd(Auth::user());
         if (Auth::user()) {
             $ongoing_jobs = array();
-            $freelancer_id = Auth::user()->id;
-            $ongoing_projects = Proposal::getProposalsByStatus($freelancer_id, 'hired');
-            $cancelled_projects = Proposal::getProposalsByStatus($freelancer_id, 'cancelled');
-            $package_item = Item::where('subscriber', $freelancer_id)->first();
+            $provider_id = Auth::user()->id;
+            $ongoing_projects = Proposal::getProposalsByStatus($provider_id, 'hired');
+            $cancelled_projects = Proposal::getProposalsByStatus($provider_id, 'cancelled');
+            $package_item = Item::where('subscriber', $provider_id)->first();
             $package = !empty($package_item) ? Package::find($package_item->product_id) : array();
             $option = !empty($package) && !empty($package['options']) ? unserialize($package['options']) : '';
             $expiry = !empty($option) ? $package_item->updated_at->addDays($option['duration']) : '';
             $expiry_date = !empty($expiry) ? Carbon::parse($expiry)->toDateTimeString() : '';
-            $message_status = Message::where('status', 0)->where('receiver_id', $freelancer_id)->count();
+            $message_status = Message::where('status', 0)->where('receiver_id', $provider_id)->count();
             $notify_class = $message_status > 0 ? 'wt-insightnoticon' : '';
-            $completed_projects = Proposal::getProposalsByStatus($freelancer_id, 'completed');
-            $completed_projects_history = Proposal::getProposalsByStatus($freelancer_id, 'completed', 'completed');
+            $completed_projects = Proposal::getProposalsByStatus($provider_id, 'completed');
+            $completed_projects_history = Proposal::getProposalsByStatus($provider_id, 'completed', 'completed');
             $currency   = SiteManagement::getMetaValue('commision');
             $symbol     = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
             $trail      = !empty($package) && $package['trial'] == 1 ? 'true' : 'false';
@@ -1156,7 +1156,7 @@ class ProviderController extends Controller
                 return view(
                     'extend.back-end.freelancer.dashboard',
                     compact(
-                        'freelancer_id',
+                        'provider_id',
                         'completed_projects_history',
                         'access_type',
                         'ongoing_projects',
@@ -1186,7 +1186,7 @@ class ProviderController extends Controller
                 return view(
                     'back-end.freelancer.dashboard',
                     compact(
-                        'freelancer_id',
+                        'provider_id',
                         'completed_projects_history',
                         'access_type',
                         'ongoing_projects',
@@ -1223,16 +1223,16 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function freelancerServices()
+    public function providerServices()
     {
-        $freelancer_id = Auth::user()->id;
+        $provider_id = Auth::user()->id;
         if (Auth::user()) {
-            $freelancer = User::find($freelancer_id);
+            $provider = User::find($provider_id);
             $currency   = SiteManagement::getMetaValue('commision');
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
             $status_list = array_pluck(Helper::getFreelancerServiceStatus(), 'title', 'value');
             //if (!empty($status) && $status === 'posted') {
-                //$services = $freelancer->services;
+                //$services = $provider->services;
                 $hired_services = Helper::getFreelancerServices('hired', Auth::user()->id);
                 $completed_services = Helper::getFreelancerServices('completed', Auth::user()->id);
                 $cancelled_services = Helper::getFreelancerServices('cancelled', Auth::user()->id);
@@ -1261,77 +1261,19 @@ class ProviderController extends Controller
                         )
                     );
                 }
-            //} 
-            /*else if (!empty($status) && $status === 'hired') {
-                $services = Helper::getFreelancerServices('hired', Auth::user()->id);
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/ongoing.blade.php'))) {
-                    return view(
-                        'extend.back-end.freelancer.services.ongoing',
-                        compact(
-                            'services',
-                            'symbol'
-                        )
-                    );
-                } else {
-                    return view(
-                        'back-end.freelancer.services.ongoing',
-                        compact(
-                            'services',
-                            'symbol'
-                        )
-                    );
-                }
-            } elseif (!empty($status) && $status === 'completed') {
-                $services = Helper::getFreelancerServices('completed', Auth::user()->id);
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/completed.blade.php'))) {
-                    return view(
-                        'extend.back-end.freelancer.services.completed',
-                        compact(
-                            'services',
-                            'symbol'
-                        )
-                    );
-                } else {
-                    return view(
-                        'back-end.freelancer.services.completed',
-                        compact(
-                            'services',
-                            'symbol'
-                        )
-                    );
-                }
-            } elseif (!empty($status) && $status === 'cancelled') {
-                $services = Helper::getFreelancerServices('cancelled', Auth::user()->id);
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/cancelled.blade.php'))) {
-                    return view(
-                        'extend.back-end.freelancer.services.cancelled',
-                        compact(
-                            'services',
-                            'symbol'
-                        )
-                    );
-                } else {
-                    return view(
-                        'back-end.freelancer.services.cancelled',
-                        compact(
-                            'services',
-                            'symbol'
-                        )
-                    );
-                }
-            }*/
+            
         }
     }
     public function showServices($status)
     {
-        $freelancer_id = Auth::user()->id;
+        $provider_id = Auth::user()->id;
         if (Auth::user()) {
-            $freelancer = User::find($freelancer_id);
+            $provider = User::find($provider_id);
             $currency   = SiteManagement::getMetaValue('commision');
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
             $status_list = array_pluck(Helper::getFreelancerServiceStatus(), 'title', 'value');
             if (!empty($status) && $status === 'posted') {
-                $services = $freelancer->services;
+                $services = $provider->services;
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/index.blade.php'))) {
                     return view(
                         'extend.back-end.freelancer.services.index',
@@ -1431,20 +1373,20 @@ class ProviderController extends Controller
             $service = Service::find($pivot_service->service_id);
             $seller = Helper::getServiceSeller($service->id);
             $purchaser = $service->purchaser->first();
-            $freelancer = !empty($seller) ? User::find($seller->user_id) : ''; 
+            $provider = !empty($seller) ? User::find($seller->user_id) : ''; 
             $service_status = Helper::getProjectStatus();
             $review_options = DB::table('review_options')->get()->all();
-            $avg_rating = !empty($freelancer) ? Review::where('receiver_id', $freelancer->id)->sum('avg_rating') : '';
+            $avg_rating = !empty($provider) ? Review::where('receiver_id', $provider->id)->sum('avg_rating') : '';
 
             
             
 
 
-            $freelancer_rating  = !empty($freelancer) && !empty($freelancer->profile->ratings) ? Helper::getUnserializeData($freelancer->profile->ratings) : 0;
-            $rating = !empty($freelancer_rating) ? $freelancer_rating[0] : 0;
-            $stars  =  !empty($freelancer_rating) ? $freelancer_rating[0] / 5 * 100 : 0;
-            $reviews = !empty($freelancer) ? Review::where('receiver_id', $freelancer->id)->where('job_id', $id)->where('project_type', 'service')->get() : '';
-            $feedbacks = !empty($freelancer) ? Review::select('feedback')->where('receiver_id', $freelancer->id)->count() : '';
+            $provider_rating  = !empty($provider) && !empty($provider->profile->ratings) ? Helper::getUnserializeData($provider->profile->ratings) : 0;
+            $rating = !empty($provider_rating) ? $provider_rating[0] : 0;
+            $stars  =  !empty($provider_rating) ? $provider_rating[0] / 5 * 100 : 0;
+            $reviews = !empty($provider) ? Review::where('receiver_id', $provider->id)->where('job_id', $id)->where('project_type', 'service')->get() : '';
+            $feedbacks = !empty($provider) ? Review::select('feedback')->where('receiver_id', $provider->id)->count() : '';
             $cancel_proposal_text = trans('lang.cancel_proposal_text');
             $cancel_proposal_button = trans('lang.send_request');
             $validation_error_text = trans('lang.field_required');
@@ -1461,7 +1403,7 @@ class ProviderController extends Controller
                         'pivot_service',
                         'id',
                         'service',
-                        'freelancer',
+                        'provider',
                         'service_status',
                         'attachment',
                         'review_options',
@@ -1485,7 +1427,7 @@ class ProviderController extends Controller
                         'pivot_service',
                         'id',
                         'service',
-                        'freelancer',
+                        'provider',
                         'service_status',
                         'attachment',
                         'review_options',
@@ -1509,7 +1451,7 @@ class ProviderController extends Controller
     }
 
     /**
-     * Get freelancer payouts.
+     * Get provider payouts.
      *
      * @return \Illuminate\Http\Response
      */
@@ -1567,7 +1509,7 @@ class ProviderController extends Controller
                 $user = User::find($value->user_id);
                 $name = $user->first_name.' '.$user->last_name;
                 $value->name = $name;
-                $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $value->user_id)->first();
+                $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $value->user_id)->first();
                 $bid = $proposal->amount;
                 $value->bid = $bid;
                 

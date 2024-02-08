@@ -82,7 +82,7 @@ class ProposalController extends Controller
             if (Auth::user() && !empty(Auth::user()->id)) {
                 $submitted_proposals_count = DB::table('proposals')
                     ->where('job_id', $job->id)
-                    ->where('freelancer_id', Auth::user()->id)->first();
+                    ->where('provider_id', Auth::user()->id)->first();
             }
             //dd($submitted_proposals_count);
             if($submitted_proposals_count)
@@ -114,7 +114,7 @@ class ProposalController extends Controller
                 $settings = SiteManagement::getMetaValue('settings');
                 $required_connects = !empty($settings) && !empty($settings[0]['connects_per_job']) ? $settings[0]['connects_per_job'] : 2;
                 $remaining_proposals = !empty($options) && !empty($options['no_of_connects']) ? $options['no_of_connects'] / $required_connects : 0;
-                $submitted_proposals = $this->proposal::where('freelancer_id', Auth::user()->id)->where('created_at', '>',  $package->updated_at)->count();
+                $submitted_proposals = $this->proposal::where('provider_id', Auth::user()->id)->where('created_at', '>',  $package->updated_at)->count();
                 $duration =  Helper::getJobDurationList($job->duration);
                 $job_completion_time = Helper::getJobDurationList();
                 $commision_amount = SiteManagement::getMetaValue('commision');
@@ -178,7 +178,7 @@ class ProposalController extends Controller
             if (Auth::user() && !empty(Auth::user()->id)) {
                 $submitted_proposals_count = DB::table('proposals')
                     ->where('job_id', $job->id)
-                    ->where('freelancer_id', Auth::user()->id)->first();
+                    ->where('provider_id', Auth::user()->id)->first();
             }
             //dd($submitted_proposals_count);
             $job_quizzes = Job_quiz::where('job_id', $job->id)->get();
@@ -207,7 +207,7 @@ class ProposalController extends Controller
                 $settings = SiteManagement::getMetaValue('settings');
                 $required_connects = !empty($settings) && !empty($settings[0]['connects_per_job']) ? $settings[0]['connects_per_job'] : 2;
                 $remaining_proposals = !empty($options) && !empty($options['no_of_connects']) ? $options['no_of_connects'] / $required_connects : 0;
-                $submitted_proposals = $this->proposal::where('freelancer_id', Auth::user()->id)->where('created_at', '>',  $package->updated_at)->count();
+                $submitted_proposals = $this->proposal::where('provider_id', Auth::user()->id)->where('created_at', '>',  $package->updated_at)->count();
                 $duration =  Helper::getJobDurationList($job->duration);
                 $job_completion_time = Helper::getJobDurationList();
                 $commision_amount = SiteManagement::getMetaValue('commision');
@@ -357,7 +357,7 @@ class ProposalController extends Controller
                     return $json;
                 }
                 $package = DB::table('items')->where('subscriber', Auth::user()->id)->select('product_id', 'updated_at')->first();
-                $proposals = $this->proposal::where('freelancer_id', Auth::user()->id)->where('created_at', '>',  $package->updated_at)->count();
+                $proposals = $this->proposal::where('provider_id', Auth::user()->id)->where('created_at', '>',  $package->updated_at)->count();
                 $settings = SiteManagement::getMetaValue('settings');
                 $payment_settings = SiteManagement::getMetaValue('commision');
                 $required_connects = !empty($settings) && !empty($settings[0]['connects_per_job']) ? $settings[0]['connects_per_job'] : 2;
@@ -365,7 +365,7 @@ class ProposalController extends Controller
                 if (Auth::user() && $request['user_id']) {
                     $proposal = DB::table('proposals')
                         ->where('job_id', $request['id'])
-                        ->where('freelancer_id', $request['user_id'])->count();
+                        ->where('provider_id', $request['user_id'])->count();
                     if ($proposal > 0) {
                         $json['type'] = 'error';
                         $json['message'] = trans('lang.proposal_already_submitted');
@@ -543,7 +543,7 @@ class ProposalController extends Controller
                 {
                     $live1 = Live_contest::where('job_id', $job->id)->first();
 
-                    if(Live_contest_participant::where('live_id', $live1->id)->where('user_id', $proposal->freelancer_id)->exists())
+                    if(Live_contest_participant::where('live_id', $live1->id)->where('user_id', $proposal->provider_id)->exists())
                         $proposal->sent = 'true';
                     else
                         $proposal->sent = 'false';
@@ -551,9 +551,9 @@ class ProposalController extends Controller
                 foreach($job_quizzes as $job_quiz)
                 {
                     $quiz = Quiz::find($job_quiz->quiz_id);
-                    if(Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->freelancer_id)->exists())
+                    if(Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->provider_id)->exists())
                     {
-                        $marks = Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->freelancer_id)->first();
+                        $marks = Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->provider_id)->first();
                         
                         $proposal->quiz_title = $quiz->title;
                         $proposal->marks = $marks;
@@ -675,16 +675,16 @@ class ProposalController extends Controller
         //dd($item, $order);
         if($accepted_proposal)
         {
-            $freelancer_name = Helper::getUserName($accepted_proposal->freelancer_id);
+            $freelancer_name = Helper::getUserName($accepted_proposal->provider_id);
             $completion_time = !empty($accepted_proposal->completion_time) ?
             Helper::getJobDurationList($accepted_proposal->completion_time) : '';
-            $profile = User::find($accepted_proposal->freelancer_id)->profile;
+            $profile = User::find($accepted_proposal->provider_id)->profile;
             $attachments = !empty($accepted_proposal->attachments) ? unserialize($accepted_proposal->attachments) : '';
-            $profile_image = !empty($user_image) ? '/uploads/users/' . $accepted_proposal->freelancer_id . '/' . $user_image : 'images/user-login.png';
-            $user_slug = User::find($accepted_proposal->freelancer_id)->slug;
-            $feedbacks = Review::select('feedback')->where('receiver_id', $accepted_proposal->freelancer_id)->count();
-            $avg_rating = Review::where('receiver_id', $accepted_proposal->freelancer_id)->sum('avg_rating');
-            $reviews = Review::where('receiver_id', $accepted_proposal->freelancer_id)->get();
+            $profile_image = !empty($user_image) ? '/uploads/users/' . $accepted_proposal->provider_id . '/' . $user_image : 'images/user-login.png';
+            $user_slug = User::find($accepted_proposal->provider_id)->slug;
+            $feedbacks = Review::select('feedback')->where('receiver_id', $accepted_proposal->provider_id)->count();
+            $avg_rating = Review::where('receiver_id', $accepted_proposal->provider_id)->sum('avg_rating');
+            $reviews = Review::where('receiver_id', $accepted_proposal->provider_id)->get();
             $user_image = !empty($profile) ? $profile->avater : '';
             $rating  = $avg_rating != 0 ? round($avg_rating/Review::count()) : 0;
             $stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
@@ -695,9 +695,9 @@ class ProposalController extends Controller
             foreach($job_quizzes as $job_quiz)
             {
                 $quiz = Quiz::find($job_quiz->quiz_id);
-                if(Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $accepted_proposal->freelancer_id)->exists())
+                if(Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $accepted_proposal->provider_id)->exists())
                 {
-                    $marks = Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $accepted_proposal->freelancer_id)->first();
+                    $marks = Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $accepted_proposal->provider_id)->first();
                     
                     $accepted_proposal->quiz_title = $quiz->title;
                     $accepted_proposal->marks = $marks;
@@ -789,7 +789,7 @@ class ProposalController extends Controller
             {
                 $live1 = Live_contest::where('job_id', $job->id)->first();
 
-                if(Live_contest_participant::where('live_id', $live1->id)->where('user_id', $proposal->freelancer_id)->exists())
+                if(Live_contest_participant::where('live_id', $live1->id)->where('user_id', $proposal->provider_id)->exists())
                     $proposal->sent = 'true';
                 else
                     $proposal->sent = 'false';
@@ -797,9 +797,9 @@ class ProposalController extends Controller
             foreach($job_quizzes as $job_quiz)
             {
                 $quiz = Quiz::find($job_quiz->quiz_id);
-                if(Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->freelancer_id)->exists())
+                if(Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->provider_id)->exists())
                 {
-                    $marks = Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->freelancer_id)->first();
+                    $marks = Marks::where('quiz_id', $job_quiz->quiz_id)->where('user_id', $proposal->provider_id)->first();
                     
                     $proposal->quiz_title = $quiz->title;
                     $proposal->marks = $marks;

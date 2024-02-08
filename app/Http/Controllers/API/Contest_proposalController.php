@@ -55,7 +55,7 @@ class Contest_proposalController extends Controller
                 $value->tagline = $profile->tagline;
                 array_push($name, $value->name);
                 
-                $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $value->user_id)->first();
+                $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $value->user_id)->first();
                 $saved = ($proposal->original - $proposal->amount) * 100 / $proposal->original;
                 
                 

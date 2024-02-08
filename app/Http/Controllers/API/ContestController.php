@@ -188,7 +188,7 @@ class ContestController extends Controller
 
             $value->name = $user->first_name.' '.$user->last_name;
             $value->tagline = $profile->tagline;
-            $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $value->user_id)->first();
+            $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $value->user_id)->first();
             $value->proposal = $proposal;
         }
         $now =  Carbon::today();

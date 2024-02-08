@@ -223,7 +223,7 @@
                                                                 <tbody>
                                                                     @foreach ($ongoing_jobs as $project)
                                                                         @php
-                                                                            $proposal_freelancer = $project->proposals->where('status', 'hired')->pluck('freelancer_id')->first();
+                                                                            $proposal_freelancer = $project->proposals->where('status', 'hired')->pluck('provider_id')->first();
                                                                             $freelancer = !empty($proposal_freelancer) ? \App\User::find($proposal_freelancer) : ''; 
                                                                             $user_name = Helper::getUsername($proposal_freelancer);
                                                                         @endphp
@@ -275,360 +275,7 @@
                                         <div class="wt-btnarea "><a href="{{{ url(route('employerPostJob')) }}}" class="wt-btn float-right">{{{ trans('lang.post_job') }}}</a>
                                         </div>
                                     </div>
-                                    <!--project Started -->      
-                                    <!--<div class="wt-dashboardbox wt-dashboardtabsholder wt-saveitemholder">
-                                        <div class="wt-dashboardtabs">
-                                            <ul class="wt-tabstitle nav navbar-nav">
-                                                <li class="nav-item">
-                                                    <a class="active show" data-toggle="tab" href="#wt-draft">Draft</a>
-                                                </li>
-                                                <li class="nav-item"><a data-toggle="tab" href="#wt-open" class="">Open</a></li>
-                                                <li class="nav-item"><a data-toggle="tab" href="#wt-pause" class="">Paused</a></li>
-                                                <li class="nav-item"><a data-toggle="tab" href="#wt-progress" class="">In Progress</a></li>
-                                                <li class="nav-item"><a data-toggle="tab" href="#wt-completed" class="">Completed</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="wt-tabscontent tab-content tab-savecontent">
-                                            <div class="wt-personalskillshold tab-pane fade" id="wt-draft" style="overflow-x: scroll;">
-                                                <div class="wt-yourdetails">
-                                                    <div class="wt-dashboradsaveitem">
-                                                        
-                                                        <table class="wt-tablecategories">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>
-                                                                        ID
-                                                                    </th>
-                                                                    
-                                                                    <th>Project Name</th>
-                                                                    <th>Type</th>
-                                                                    <th>Budget</th>
-                                                                    <th>Duration</th>
-                                                                    <th>Status</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @if (!empty($job_details) && $job_details->count() > 0)
-                                                                @foreach ($job_details as $job)
-                                                                @php
-                                                                    $image = '';
-                                                                    $duration  =  \App\Helper::getJobDurationList($job->duration);
-                                                                    $user_name = $job->employer->first_name.' '.$job->employer->last_name;
-                                                                    $proposals = \App\Proposal::where('job_id', $job->id)->where('status', '!=', 'cancelled')->get();
-                                                                    $employer_img = \App\Profile::select('avater')->where('user_id', $job->employer->id)->first();
-                                                                    $image = !empty($employer_img->avater) ? '/uploads/users/'.$job->employer->id.'/'.$employer_img->avater : '';
-                                                                    $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
-                                                                    $project_type  = Helper::getProjectTypeList($job->project_type);
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>
-                                                                    {{{ $job->id }}}	
-                                                                    </td>								
-                                                                    <td data-th="Name"><span class="bt-content"><a href="{{{ url('job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                        @if (!empty($job->project_type))
-                                                                        <a href="javascript:void(0);" class="wt-clicksavefolder"><img class="wt-job-icon" src="{{asset('images/job-icons/job-type.png')}}"> {{{ trans('lang.type') }}} {{{ $project_type }}}</a>
-                                                                        @endif
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    @if (!empty($job->price))
-                                                                        <span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ $job->price }}}</span>
-                                                                    @endif
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    @if (!empty($job->duration)  && !is_array($duration))
-                                                                        <span class="wt-dashboradclock"><img class="wt-job-icon" src="{{asset('images/job-icons/job-duration.png')}}"> {{ trans('lang.duration') }} {{{ $duration }}}</span>
-                                                                    @endif
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>
-                                                                    <td data-th="Action"><span class="bt-content">
-                                                                        <div class="wt-actionbtn">
-                                                                            <a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
-                                                                            <a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>
-                                                                        </div>
-                                                                    </span></td>
-                                                                </tr>
-                                                                @endforeach
-                                                            @else
-                                                                @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
-                                                                    @include('extend.errors.no-record')
-                                                                @else 
-                                                                    @include('errors.no-record')
-                                                                @endif
-                                                            @endif
-                                                            </tbody>
-                                                        </table>
-                                                        															
-                                                    </div>										
-                                                </div>
-                                            </div>
-                                            <div class="wt-educationholder tab-pane fade" id="wt-open" style="overflow-x: scroll;">
-                                                <div class="wt-userexperience wt-followcompomy">
-                                                    <div class="wt-focomponylist">
-                                                    <table class="wt-tablecategories">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>
-                                                                    ID
-                                                                </th>
-                                                                
-                                                                <th>Project Name</th>
-                                                                <th>Proposals</th>
-                                                                <th>Type</th>
-                                                                <th>Average Bid</th>
-                                                                <th>Budget</th>
-                                                                <th>Bid End Date</th>
-                                                                <th>Action</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        @if (!empty($job_details) && $job_details->count() > 0)
-                                                            @foreach ($job_details as $job)
-                                                            @php
-                                                                $image = '';
-                                                                $duration  =  \App\Helper::getJobDurationList($job->duration);
-                                                                $user_name = $job->employer->first_name.' '.$job->employer->last_name;
-                                                                $proposals = \App\Proposal::where('job_id', $job->id)->where('status', '!=', 'cancelled')->get();
-                                                                $employer_img = \App\Profile::select('avater')->where('user_id', $job->employer->id)->first();
-                                                                $image = !empty($employer_img->avater) ? '/uploads/users/'.$job->employer->id.'/'.$employer_img->avater : '';
-                                                                $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
-                                                                $project_type  = Helper::getProjectTypeList($job->project_type);
-                                                            @endphp
-                                                            <tr>
-                                                                <td>
-                                                                {{{ $job->id }}}	
-                                                                </td>								
-                                                                <td data-th="Name"><span class="bt-content"><a href="{{{ url('job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
-                                                                <td data-th="Name"><span class="bt-content">
-                                                                <h4>{{{ $proposals->count() }}}</h4><span>{{ trans('lang.proposals') }}</span>
-                                                                    @if ($proposals->count() > 0)
-                                                                        <ul class="wt-hireduserimgs">
-                                                                            @foreach ($proposals as $proposal)
-                                                                                @php
-                                                                                    $profile = \App\User::find($proposal->freelancer_id)->profile;
-                                                                                    $user_image = !empty($profile) ? $profile->avater : '';
-                                                                                    $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
-                                                                                @endphp
-                                                                                <li><figure><img src="{{{ asset($profile_image) }}}" alt="{{ trans('lang.profile_img') }}" class="mCS_img_loaded"></figure></li>
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    @endif
-                                                                </span></td>
-                                                                <td data-th="Slug"><span class="bt-content">
-                                                                    @if (!empty($job->project_type))
-                                                                    <a href="javascript:void(0);" class="wt-clicksavefolder"><img class="wt-job-icon" src="{{asset('images/job-icons/job-type.png')}}"> {{{ trans('lang.type') }}} {{{ $project_type }}}</a>
-                                                                    @endif
-                                                                </span></td>
-                                                                <td data-th="Slug"><span class="bt-content">
-                                                                @if (!empty($job->price))
-                                                                    <span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ $job->price }}}</span>
-                                                                @endif
-                                                                </span></td>
-                                                                <td data-th="Slug"><span class="bt-content">
-                                                                @if (!empty($job->price))
-                                                                    <span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ $job->price }}}</span>
-                                                                @endif
-                                                                </span></td>
-                                                                <td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>
-                                                                <td data-th="Action"><span class="bt-content">
-                                                                    <div class="wt-actionbtn">
-                                                                        @if ($proposals->count() > 0)
-                                                                            <a href="{{{ url('employer/dashboard/job/'.$job->slug.'/proposals') }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
-                                                                        @endif
-                                                                        <a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
-                                                                        <a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>
-                                                                    </div>
-                                                                </span></td>
-                                                            </tr>
-                                                            @endforeach
-                                                        @else
-                                                            @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
-                                                                @include('extend.errors.no-record')
-                                                            @else 
-                                                                @include('errors.no-record')
-                                                            @endif
-                                                        @endif
-                                                        </tbody>
-                                                    </table>		
-                                                    </div>											
-                                                </div>
-                                            </div>
-                                            <div class="wt-awardsholder tab-pane fade" id="wt-pause" style="overflow-x: scroll;">
-                                                <div class="wt-addprojectsholder wt-likefreelan">
-                                                    <div class="wt-likedfreelancers wt-haslayout">
-                                                    
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wt-awardsholder tab-pane fade" id="wt-progress" style="overflow-x: scroll;">
-                                                <div class="wt-addprojectsholder wt-likefreelan">
-                                                    <div class="wt-likedfreelancers wt-haslayout">
-                                                        <table class="wt-tablecategories">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>
-                                                                        ID
-                                                                    </th>
-                                                                    
-                                                                    <th>Project Name</th>
-                                                                    <th>Awarded To</th>
-                                                                    <th>Type</th>
-                                                                    <th>Awarded Bid</th>
-                                                                    <th>Released Milestones</th>
-                                                                    <th>Deadline</th>
-                                                                    <th>Progress</th>
-                                                                    <th>Status</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @if (!empty($ongoing_jobs) && $ongoing_jobs->count() > 0)
-                                                                @foreach ($ongoing_jobs as $job)
-                                                                @php
-                                                                    $accepted_proposal = array();
-                                                                    $duration  =  \App\Helper::getJobDurationList($job->duration);
-                                                                    $user_name = $job->employer->first_name.' '.$job->employer->last_name;
-                                                                    $accepted_proposal = \App\Job::find($job->id)->proposals()->where('status', 'hired')->first();
-                                                                    $freelancer_name = \App\Helper::getUserName($accepted_proposal->freelancer_id);
-                                                                    $profile = \App\User::find($accepted_proposal->freelancer_id)->profile;
-                                                                    $user_image = !empty($profile) ? $profile->avater : '';
-                                                                    $profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
-                                                                    $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
-                                                                    $project_type  = Helper::getProjectTypeList($job->project_type);
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>
-                                                                    {{{ $job->id }}}	
-                                                                    </td>								
-                                                                    <td data-th="Name"><span class="bt-content"><a href="{{{ url('job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
-                                                                    <td data-th="Name"><span class="bt-content">
-                                                                        <span>{{{ Helper::getUserName($accepted_proposal->freelancer_id) }}}</span>
-                                                                        <ul class="wt-hireduserimgs">
-                                                                            <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->freelancer_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
-                                                                        </ul>
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                        @if (!empty($job->project_type))
-                                                                        <a href="javascript:void(0);" class="wt-clicksavefolder"><img class="wt-job-icon" src="{{asset('images/job-icons/job-type.png')}}"> {{{ trans('lang.type') }}} {{{ $project_type }}}</a>
-                                                                        @endif
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    {{ $accepted_proposal->amount  }}
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    Released Milestones
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    Deadline
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                        Progress
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                        Status
-                                                                    </span></td>
-                                                                    <td data-th="Action"><span class="bt-content">
-                                                                        <div class="wt-actionbtn">
-                                                                            <a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-addinfo wt-skillsaddinfo"><i class="fas fa-eye"></i></a>
-                                                                            <a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
-                                                                            <a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>
-                                                                        </div>
-                                                                    </span></td>
-                                                                </tr>
-                                                                @endforeach
-                                                            @else
-                                                                @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
-                                                                    @include('extend.errors.no-record')
-                                                                @else 
-                                                                    @include('errors.no-record')
-                                                                @endif
-                                                            @endif
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wt-awardsholder tab-pane fade" id="wt-completed" style="overflow-x: scroll;">
-                                                <div class="wt-addprojectsholder wt-likefreelan">
-                                                    <div class="wt-likedfreelancers wt-haslayout">
-                                                        <table class="wt-tablecategories">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>
-                                                                        ID
-                                                                    </th>
-                                                                    
-                                                                    <th>Project Name</th>
-                                                                    <th>Awarded To</th>
-                                                                    <th>Type</th>
-                                                                    <th>Awarded Bid</th>
-                                                                    <th>Released Milestones</th>
-                                                                    <th>Finished On</th>
-                                                                    <th>Experience</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @if (!empty($completed_jobs) && $completed_jobs->count() > 0)
-                                                                @foreach ($completed_jobs as $job)
-                                                                @php
-                                                                    $accepted_proposal = \App\Job::find($job->id)->proposals()->where('status', 'completed')->first();
-                                                                    $profile = \App\User::find($accepted_proposal->freelancer_id)->profile;
-                                                                    $user_image = !empty($profile) ? $profile->avater : '';
-                                                                    $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
-                                                                    $project_type  = Helper::getProjectTypeList($job->project_type);
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>
-                                                                    {{{ $job->id }}}	
-                                                                    </td>								
-                                                                    <td data-th="Name"><span class="bt-content"><a href="{{{ url('job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
-                                                                    <td data-th="Name"><span class="bt-content">
-                                                                        <span>{{{ Helper::getUserName($accepted_proposal->freelancer_id) }}}</span>
-                                                                        <ul class="wt-hireduserimgs">
-                                                                            <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->freelancer_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
-                                                                        </ul>
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                        @if (!empty($job->project_type))
-                                                                        <a href="javascript:void(0);" class="wt-clicksavefolder"><img class="wt-job-icon" src="{{asset('images/job-icons/job-type.png')}}"> {{{ trans('lang.type') }}} {{{ $project_type }}}</a>
-                                                                        @endif
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    {{ $accepted_proposal->amount  }}
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    Released Milestones
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                    Finished On
-                                                                    </span></td>
-                                                                    <td data-th="Slug"><span class="bt-content">
-                                                                        <span class="badge badge-secondary">4.9</span> <i class="fas fa-star"></i>
-                                                                    </span></td>
-                                                                    <td data-th="Action"><span class="bt-content">
-                                                                        <div class="wt-actionbtn">
-                                                                            <a href="javascript:void(0);" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-pencil"></i></a>
-                                                                            <a href="javascript:void(0);" class="wt-deleteinfo"><i class="lnr lnr-trash"></i></a>
-                                                                        </div>
-                                                                    </span></td>
-                                                                </tr>
-                                                                @endforeach
-                                                            @else
-                                                                @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
-                                                                    @include('extend.errors.no-record')
-                                                                @else 
-                                                                    @include('errors.no-record')
-                                                                @endif
-                                                            @endif
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
+                                    
                                     <link rel="stylesheet" href="{{ asset('css/bootstrap1.min.css') }}">
                                     <style>
 		@media (min-width: 992px)
@@ -692,84 +339,7 @@
                                         </ul>
 
                                         <div class="tab-content" style="width: 100%;margin: 10px;background-color: white;border: #e2dbd1 1px solid">
-                                            <!--<div id="home" class="tab-pane fade ">
-                                            <table class="wt-tablecategories">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            ID
-                                                        </th>
-                                                        
-                                                        <th>Project Name</th>
-                                                        <th>Type</th>
-                                                        <th>Budget</th>
-                                                        <th>Duration</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                @if (!empty($job_details) && $job_details->count() > 0)
-                                                    @foreach ($job_details as $job)
-                                                    @php
-                                                        $image = '';
-                                                        $duration  =  \App\Helper::getJobDurationList($job->duration);
-                                                        $user_name = $job->employer->first_name.' '.$job->employer->last_name;
-                                                        $proposals = \App\Proposal::where('job_id', $job->id)->where('status', '!=', 'cancelled')->get();
-                                                        $employer_img = \App\Profile::select('avater')->where('user_id', $job->employer->id)->first();
-                                                        $image = !empty($employer_img->avater) ? '/uploads/users/'.$job->employer->id.'/'.$employer_img->avater : '';
-                                                        $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
-                                                        $project_type  = Helper::getProjectTypeList($job->project_type);
-                                                    @endphp
-                                                    <tr>
-                                                        <td>
-                                                        {{{ $job->id }}}	
-                                                        </td>								
-                                                        <td data-th="Name"><span class="bt-content"><a href="{{{ url('job/'.$job->slug) }}}">{{{ $job->title }}}</a></span></td>
-                                                        <td data-th="Slug"><span class="bt-content">
-                                                            @if (!empty($job->project_type))
-                                                            <a href="javascript:void(0);" class="wt-clicksavefolder"> {{{ $project_type }}}</a>
-                                                            @endif
-                                                        </span></td>
-                                                        <td data-th="Slug"><span class="bt-content">
-                                                        @if (!empty($job->price))
-                                                            <span class="wt-dashboraddoller"><i>{{ !empty($symbol) ? $symbol['symbol'] : '$' }}</i> {{{ $job->price }}}</span>
-                                                        @endif
-                                                        </span></td>
-                                                        <td data-th="Slug"><span class="bt-content">
-                                                        @if (!empty($job->duration)  && !is_array($duration))
-                                                            <span class="wt-dashboradclock"><img class="wt-job-icon" src="{{asset('images/job-icons/job-duration.png')}}"> {{ trans('lang.duration') }} {{{ $duration }}}</span>
-                                                        @endif
-                                                        </span></td>
-                                                        <td data-th="Slug"><span class="bt-content">{{{ $job->status }}}</span></td>
-                                                        <td data-th="Action"><span class="bt-content">
-                                                            <div class="">
-                                                                
-                                                                <a href="#"><button class="btn">Edit</button></a>
-                                                                <div class="dropdown">
-                                                                    <button class="btn" style="border-left:1px solid #b4b1b1">
-                                                                        <i class="fa fa-caret-down"></i>
-                                                                    </button>
-                                                                    <div class="dropdown-content">
-                                                                        <a href="#">Delete</a>											
-                                                                    </div>
-                                                                </div>
-                                                                    
-                                                            </div>
-                                                        </span></td>
-                                                    </tr>
-                                                    @endforeach
-                                                @else
-                                                    @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
-                                                        @include('extend.errors.no-record')
-                                                    @else 
-                                                        @include('errors.no-record')
-                                                    @endif
-                                                @endif
-                                                </tbody>
-                                            </table>
-                                            </div>-->
-                                            <div id="menu1" class="tab-pane fade in active">
+                                                                                        <div id="menu1" class="tab-pane fade in active">
                                             <table class="wt-tablecategories">
                                                 <thead>
                                                     <tr>
@@ -820,9 +390,9 @@
                                                                 <ul class="wt-hireduserimgs">
                                                                     @foreach ($proposals as $proposal)
                                                                         @php
-                                                                            $profile = \App\User::find($proposal->freelancer_id)->profile;
+                                                                            $profile = \App\User::find($proposal->provider_id)->profile;
                                                                             $user_image = !empty($profile) ? $profile->avater : '';
-                                                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                                                         @endphp
                                                                         <li><figure><img src="{{{ asset($profile_image) }}}" alt="{{ trans('lang.profile_img') }}" class="mCS_img_loaded"></figure></li>
                                                                     @endforeach
@@ -913,10 +483,10 @@
                                                         $duration  =  \App\Helper::getJobDurationList($job->duration);
                                                         $user_name = $job->employer->first_name.' '.$job->employer->last_name;
                                                         $accepted_proposal = \App\Job::find($job->id)->proposals()->where('status', 'hired')->first();
-                                                        $freelancer_name = \App\Helper::getUserName($accepted_proposal->freelancer_id);
-                                                        $profile = \App\User::find($accepted_proposal->freelancer_id)->profile;
+                                                        $freelancer_name = \App\Helper::getUserName($accepted_proposal->provider_id);
+                                                        $profile = \App\User::find($accepted_proposal->provider_id)->profile;
                                                         $user_image = !empty($profile) ? $profile->avater : '';
-                                                        $profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                                        $profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                                         $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
                                                         $project_type  = Helper::getProjectTypeList($job->project_type);
                                                     @endphp
@@ -926,9 +496,9 @@
                                                         </td>								
                                                         <td data-th="Name"><span class="bt-content"><a href="{{{  url('proposal/'.$job->slug.'/'.$job->status) }}}">{{{ $job->title }}}</a></span></td>
                                                         <td data-th="Name"><span class="bt-content" style="display: flex;">
-                                                            <span>{{{ Helper::getUserName($accepted_proposal->freelancer_id) }}}</span>
+                                                            <span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
                                                             <ul class="wt-hireduserimgs">
-                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->freelancer_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
                                                             </ul>
                                                         </span></td>
                                                         <td data-th="Slug"><span class="bt-content">
@@ -1010,7 +580,7 @@
                                                     @foreach ($completed_jobs as $job)
                                                     @php
                                                         $accepted_proposal = \App\Job::find($job->id)->proposals()->where('status', 'completed')->first();
-                                                        $profile = \App\User::find($accepted_proposal->freelancer_id)->profile;
+                                                        $profile = \App\User::find($accepted_proposal->provider_id)->profile;
                                                         $user_image = !empty($profile) ? $profile->avater : '';
                                                         $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
                                                         $project_type  = Helper::getProjectTypeList($job->project_type);
@@ -1021,9 +591,9 @@
                                                         </td>								
                                                         <td data-th="Name"><span class="bt-content"><a href="{{{  url('proposal/'.$job->slug.'/'.$job->status) }}}">{{{ $job->title }}}</a></span></td>
                                                         <td data-th="Name"><span class="bt-content" style="display: flex;">
-                                                            <span>{{{ Helper::getUserName($accepted_proposal->freelancer_id) }}}</span>
+                                                            <span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
                                                             <ul class="wt-hireduserimgs">
-                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->freelancer_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
                                                             </ul>
                                                         </span></td>
                                                         <td data-th="Slug"><span class="bt-content">

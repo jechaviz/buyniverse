@@ -1385,7 +1385,7 @@ class JobController extends Controller
     {
         $job = $this->job::all()->where('slug', $slug)->first();
         if (!empty($job)) {
-            $submitted_proposals = $job->proposals->where('status', '!=', 'cancelled')->pluck('freelancer_id')->toArray();
+            $submitted_proposals = $job->proposals->where('status', '!=', 'cancelled')->pluck('provider_id')->toArray();
             $employer_id = !empty($job->employer) ? $job->employer->id : '';
             $profile = !empty($employer_id) ? User::find($employer_id)->profile : '';
             $user_image = !empty($profile) ? $profile->avater : '';

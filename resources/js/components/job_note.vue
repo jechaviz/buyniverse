@@ -25,35 +25,6 @@
                             </p>
                         </div>
                         <div class="d-flex align-items-center">
-                            <!--<ul class="list-unstyled order-list m-b-0">
-                                <li class="team-member team-member-sm"><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->freelancer_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
-                                <li class="team-member team-member-sm"><img class="rounded-circle" src="assets/img/users/user-6.png" alt="user" data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                <li class="team-member team-member-sm"><img class="rounded-circle" src="assets/img/users/user-3.png" alt="user" data-toggle="tooltip" title="" data-original-title="Sarah Smith"></li>
-                                <li class="avatar avatar-sm"><span class="badge badge-primary">+2</span></li>
-                            </ul>-->
-                            <!--<div class="ml-auto">
-                                <div class="category-selector btn-group">
-                                    <a class="nav-link dropdown-toggle category-dropdown label-group p-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
-                                        <div class="category">
-                                            <div class="category-work"></div>
-                                            <div class="category-family"></div>
-                                            <div class="category-important"></div>
-                                            <span class="more-options text-dark"><i class="icon-options-vertical"></i></span>
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right category-menu">
-                                        <a class="note-work badge-group-item badge-work dropdown-item position-relative category-work" href="javascript:void(0);">
-                                        <i class="far fa-dot-circle mr-2"></i>Work
-                                        </a>
-                                        <a class="note-family badge-group-item badge-family dropdown-item position-relative category-family" href="javascript:void(0);">
-                                        <i class="far fa-dot-circle mr-2"></i> Family
-                                        </a>
-                                        <a class="note-important badge-group-item badge-important dropdown-item position-relative category-important" href="javascript:void(0);">
-                                        <i class="far fa-dot-circle mr-2"></i> Important
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>-->
                         </div>
                     </div>
                 </div>

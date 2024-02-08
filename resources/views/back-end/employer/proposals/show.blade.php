@@ -3,7 +3,7 @@
     @php
         $count = 0;
         if($accepted_proposal)
-        $reviews = \App\Review::where('receiver_id', $accepted_proposal->freelancer_id)->count();
+        $reviews = \App\Review::where('receiver_id', $accepted_proposal->provider_id)->count();
         $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
         $project_type  = Helper::getProjectTypeList($job->project_type);
     @endphp
@@ -140,12 +140,12 @@
 
                                         @php
                                         
-                                            $user = \App\User::find($accepted_proposal->freelancer_id);
-                                            $profile = \App\User::find($accepted_proposal->freelancer_id)->profile;
+                                            $user = \App\User::find($accepted_proposal->provider_id);
+                                            $profile = \App\User::find($accepted_proposal->provider_id)->profile;
                                             $user_image = !empty($profile) ? $profile->avater : '';
                                             $flag = !empty($user->location->flag) ? Helper::getLocationFlag($user->location->flag) :
                                                         '/images/img-01.png';
-                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                             $user_name = Helper::getUserName($user->id);
                                             $feedbacks = \App\Review::select('feedback')->where('receiver_id', $user->id)->count();
                                             $avg_rating = App\Review::where('receiver_id', $user->id)->sum('avg_rating');
@@ -177,7 +177,7 @@
                                                     <div class="wt-title">
                                                         
                                                         <h2>
-                                                            <a href="{{ url('profile/'.$user->slug.'/freelancer') }}">
+                                                            <a href="{{ url('profile/'.$user->slug.'/provider') }}">
                                                                 <span><img src="/public/{{{ asset($flag)}}}" alt="Flag"> {{$user_name}} <i class="fa fa-check-circle"></i>
                                                                 <br>
                                                                 <span style="font-size: 12px;">{{ $user->profile->tagline }}</span>
@@ -264,15 +264,15 @@
                                             
                                         @foreach ($proposals as $proposal)
                                             @php
-                                                $user = \App\User::find($proposal->freelancer_id);
-                                                $profile = \App\User::find($proposal->freelancer_id)->profile;
+                                                $user = \App\User::find($proposal->provider_id);
+                                                $profile = \App\User::find($proposal->provider_id)->profile;
                                                 $user_image = !empty($profile) ? $profile->avater : '';
-                                                $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                                $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                                 $user_name = $user->first_name.' '.$user->last_name;
-                                                $feedbacks = \App\Review::select('feedback')->where('receiver_id', $proposal->freelancer_id)->count();
-                                                $avg_rating = App\Review::where('receiver_id', $proposal->freelancer_id)->sum('avg_rating');
+                                                $feedbacks = \App\Review::select('feedback')->where('receiver_id', $proposal->provider_id)->count();
+                                                $avg_rating = App\Review::where('receiver_id', $proposal->provider_id)->sum('avg_rating');
                                                 $rating  = $avg_rating != 0 ? round($avg_rating/\App\Review::count()) : 0;
-                                                $reviews = \App\Review::where('receiver_id', $proposal->freelancer_id)->get();
+                                                $reviews = \App\Review::where('receiver_id', $proposal->provider_id)->get();
                                                 $stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                                                 $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                                                 $completion_time = !empty($proposal->completion_time) ? \App\Helper::getJobDurationList($proposal->completion_time) : '';
@@ -293,7 +293,7 @@
                                                     $badge_color = '';
                                                     $badge_img    = '';
                                                 }
-                                                $categories = \App\Catable::where('catable_id', $proposal->freelancer_id)->where('catable_type', 'App\User')->get();
+                                                $categories = \App\Catable::where('catable_id', $proposal->provider_id)->where('catable_type', 'App\User')->get();
                                                 foreach($categories as $cat)
                                                 {
                                                     $name = \App\Category::find($cat->category_id);
@@ -312,7 +312,7 @@
                                                     <div class="wt-title">
                                                         
                                                         <h2>
-                                                            <a href="{{ url('profile/'.$user->slug.'/freelancer') }}">
+                                                            <a href="{{ url('profile/'.$user->slug.'/provider') }}">
                                                                 <span> {{$user_name}} <i class="fa fa-check-circle"></i>
                                                                 <br>
                                                                 <span style="font-size: 12px;">{{ $user->profile->tagline }}</span>
@@ -410,7 +410,7 @@
                                                             <span style="margin-right: 20px;font-weight: bold;">{{ trans('lang.invitation_sent') }}</span>
                                                         @endif
                                                         @endif
-                                                        <a href="{{{ route('startchat', $proposal->freelancer_id.'_'.$job->id.'_'.$user->id) }}}" class="wt-btn"><i class="fa fa-circle" aria-hidden="true"></i> {{ trans('lang.chat') }}</a>
+                                                        <a href="{{{ route('startchat', $proposal->provider_id.'_'.$job->id.'_'.$user->id) }}}" class="wt-btn"><i class="fa fa-circle" aria-hidden="true"></i> {{ trans('lang.chat') }}</a>
                                                         @if($job->approver == 0)
                                                         @if($mode == 'false')
                                                         <a href="{{ route('generate.order', [$proposal->id, 'job']) }}" class="wt-btn">{{ trans('lang.hire_now') }}</a>
@@ -512,7 +512,7 @@
                         @endif
                         <div id="menu7" class="tab-pane fade" style="">
                             @if($accepted_proposal)
-                            <job_ticket freelancerid="{{ $accepted_proposal->freelancer_id }}" jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
+                            <job_ticket freelancerid="{{ $accepted_proposal->provider_id }}" jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
                             @else
                             <job_ticket freelancerid="0" jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
                             @endif
@@ -587,10 +587,10 @@
                                 </div>
                             @endforeach
                         @endif
-                        <input type="hidden" name="receiver_id" value="{{{$accepted_proposal->freelancer_id}}}">
+                        <input type="hidden" name="receiver_id" value="{{{$accepted_proposal->provider_id}}}">
                         <input type="hidden" name="proposal_id" value="{{{$accepted_proposal->id}}}">
                         <div class="form-group wt-btnarea">
-                            <a class="wt-btn" href="javascript:void(0);" v-on:click='submitFeedback({{$accepted_proposal->freelancer_id}}, {{$job->id}})'>{{ trans('lang.btn_send_feedback') }}</a>
+                            <a class="wt-btn" href="javascript:void(0);" v-on:click='submitFeedback({{$accepted_proposal->provider_id}}, {{$job->id}})'>{{ trans('lang.btn_send_feedback') }}</a>
                         </div>
                     </fieldset>
                 </form>

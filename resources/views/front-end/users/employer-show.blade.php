@@ -54,8 +54,8 @@
                                             <a href="{{{ url('profile/'.$user->slug.'/employer') }}}"><i class="fa fa-check-circle"></i> {{ trans('lang.verified_company') }}</a>
                                         @endif
                                         <h2>{{{ $user_name }}}</h2>
-                                        <a href="{{ url('profile/'.$user->slug.'/freelancer') }}" id="freelancer-51" class="wt-clicksavebtn" style="padding: 5px 5px;margin-top: 20px;"><i></i>
-                                        Freelancer
+                                        <a href="{{ url('profile/'.$user->slug.'/provider') }}" id="freelancer-51" class="wt-clicksavebtn" style="padding: 5px 5px;margin-top: 20px;"><i></i>
+                                        Provider
                                     </a>
                                     </div>
                                 </div>

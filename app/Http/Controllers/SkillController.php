@@ -195,16 +195,16 @@ class SkillController extends Controller
     }
 
     /**
-     * Get Freelancer Skills.
+     * Get provider Skills.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerSkills()
+    public function getProviderSkills()
     {
         $json = array();
         $db_skills = Skill::select('id')->get()->pluck('id')->toArray();
-        $freelancer_skills = Skill::getFreelancerSkill(Auth::user()->id);
-        $result = array_diff($db_skills, $freelancer_skills);
+        $provider_skills = Skill::getProviderSkill(Auth::user()->id);
+        $result = array_diff($db_skills, $provider_skills);
         if (!empty($result)) {
             $skills = DB::table('skills')
                 ->whereIn('id', $result)

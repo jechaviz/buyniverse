@@ -45,11 +45,11 @@ class Skill extends Model
     ];
 
     /**
-     * The freelancer that belong to the skill.
+     * The provider that belong to the skill.
      *
      * @return relation
      */
-    public function freelancers()
+    public function providers()
     {
         return $this->belongsToMany('App\User');
     }
@@ -145,7 +145,7 @@ class Skill extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public static function getFreelancerSkill($user_id)
+    public static function getProviderSkill($user_id)
     {
         return DB::table('skill_user')->select('skill_id')
             ->where('user_id', $user_id)

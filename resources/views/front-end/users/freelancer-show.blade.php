@@ -59,7 +59,7 @@
                                                 {{{ trans('lang.member_since') }}}&nbsp;{{{ $joining_date }}}
                                             @endif
                                             <br>
-                                            <a href="{{url('profile/'.$user->slug.'/freelancer')}}">{{ '@' }}{{{ $user->slug }}}</a>
+                                            <a href="{{url('profile/'.$user->slug.'/provider')}}">{{ '@' }}{{{ $user->slug }}}</a>
                                             <br>
                                             <a href="{{ url('profile/'.$user->slug.'/employer') }}" id="freelancer-51" class="wt-clicksavebtn" style="padding: 0px 5px;margin-top: 20px;"><i></i>
                                                 Employer

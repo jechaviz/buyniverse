@@ -14,7 +14,7 @@
                                 @foreach ($completed_jobs as $job)
                                     @php
                                         $accepted_proposal = \App\Job::find($job->id)->proposals()->where('status', 'completed')->first();
-                                        $profile = \App\User::find($accepted_proposal->freelancer_id)->profile;
+                                        $profile = \App\User::find($accepted_proposal->provider_id)->profile;
                                         $user_image = !empty($profile) ? $profile->avater : '';
                                         $verified_user = \App\User::select('user_verified')->where('id', $job->employer->id)->pluck('user_verified')->first();
                                         $project_type  = Helper::getProjectTypeList($job->project_type);
@@ -57,9 +57,9 @@
                                                     <a href="{{{ url('proposal/'.$job->slug.'/'.$job->status) }}}" class="wt-btn">{{ trans('lang.view_detail') }}</a>
                                                 </div>
                                                 <div class="wt-hireduserstatus">
-                                                    <h4>{{ trans('lang.hired') }}</h4><span>{{{ Helper::getUserName($accepted_proposal->freelancer_id) }}}</span>
+                                                    <h4>{{ trans('lang.hired') }}</h4><span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
                                                     <ul class="wt-hireduserimgs">
-                                                        <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->freelancer_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+                                                        <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
                                                     </ul>
                                                 </div>
                                             </div>

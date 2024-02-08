@@ -463,7 +463,7 @@ class JobController extends Controller
                 $name = $user->first_name.' '.$user->last_name;
                 $value->nickname = $user->nickname;
                 $value->name = $name;
-                $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $value->user_id)->first();
+                $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $value->user_id)->first();
                 $bid = $proposal->amount;
                 $value->bid = $bid;
                 
@@ -525,7 +525,7 @@ class JobController extends Controller
         $bid = $ids[0];
         if($ids[0] < $best_proposal->amount)
         {
-            $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $user->id)->first();
+            $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $user->id)->first();
             $proposal->amount = $bid;
             $contest_bid = new Contest_bid;
             $contest_bid->bid = $bid;
@@ -921,7 +921,7 @@ class JobController extends Controller
         else
         {
             $job = Job::find($job_id);
-            //invite freelancer
+            //invite provider
             /*$providerinvite = Providerinvite::where('job_id', $job_id)->first();
             if($providerinvite->providers)
             {
@@ -930,7 +930,7 @@ class JobController extends Controller
                 $user1 = User::find($job->user_id);
                 foreach($emails as $key => $email)
                 {
-                    //Mail::to($email)->send(new InviteFreelancer($user, $job->slug));
+                    //Mail::to($email)->send(new Inviteprovider($user, $job->slug));
                     
                     $name = $user1->first_name.' '.$user1->last_name;
                     $link = '<a href="http://worketic.apnahive.com/job/'. $job->slug .'">Link</a>';
@@ -1221,8 +1221,8 @@ class JobController extends Controller
     }
     public function deletefreelancer($id)
     {
-        $freelancer = Provider_type::find($id);
-        $freelancer->delete();
+        $provider = Provider_type::find($id);
+        $provider->delete();
     }
     public function getProjectLevel()
     {

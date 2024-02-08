@@ -37,7 +37,7 @@
                             
                             @foreach ($proposals as $proposal)
                                 @php
-                                    $freelancer_proposal = \App\Proposal::find($proposal->id);
+                                    $provider_proposal = \App\Proposal::find($proposal->id);
                                     $duration = Helper::getJobDurationList($proposal->job->duration);
                                     $status_btn = $proposal->status == 'cancelled' ? trans('lang.view_reason') : trans('lang.view_detail');
                                     $detail_link = $proposal->status == 'hired' ? url('provider/job/'.$proposal->job->slug) : 'javascript:void(0);';

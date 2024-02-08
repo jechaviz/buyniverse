@@ -66,14 +66,14 @@ class BotManController extends Controller
                 $job = Job::find($contest->job_id);
                 $best_proposal = $this->find_proposal($job->id);
                 //$botman->reply('best bid is '.$best_proposal);
-                if($best_proposal->freelancer_id == $user->id)
+                if($best_proposal->provider_id == $user->id)
                 {
                     $botman->reply("Your proposal is the best in all the bids. <br><br> best bid is ".$best_proposal->amount);
                     //$botman->reply('best bid is '.$best_proposal->amount);
                 }
                 else
                 {
-                    $name = User::find($best_proposal->freelancer_id);
+                    $name = User::find($best_proposal->provider_id);
                     $botman->reply('Best Bid is from '.$name->first_name.' '.$name->last_name .'<br><br> Best bid is '.$best_proposal->amount);
                 }
                 $this->askNewBid($botman);             
@@ -117,7 +117,7 @@ class BotManController extends Controller
                     
                     $contest = Live_contest::find($payload['userId']);
                     $job = Job::find($contest->job_id);
-                    $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $user->id)->first();
+                    $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $user->id)->first();
                     $proposal->amount = $amount;
                     $contest_bid = new Contest_bid;
                     $contest_bid->bid = $amount;

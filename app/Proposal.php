@@ -51,11 +51,11 @@ class Proposal extends Model
     }
 
     /**
-     * Get the freelancer that owns the proposal.
+     * Get the provider that owns the proposal.
      *
      * @return relation
      */
-    public function freelancer()
+    public function provider()
     {
         return $this->belongsTo('App\User');
     }
@@ -103,13 +103,13 @@ class Proposal extends Model
         $json = array();
         if (!empty($request)) {
             $user_id = !empty($login_id) ? $login_id :Auth::user()->id;
-            $proposal = self::where('freelancer_id', $user_id)->where('job_id', $id)->first();
+            $proposal = self::where('provider_id', $user_id)->where('job_id', $id)->first();
             $proposal->amount = intval($request['amount']);
             $proposal['original'] = intval($request['amount']);
             
             $proposal->completion_time = filter_var($request['completion_time'], FILTER_SANITIZE_STRING);
             $proposal->content = filter_var($request['description'], FILTER_SANITIZE_STRING);
-            //$proposal->freelancer_id = intval($user_id);
+            //$proposal->provider_id = intval($user_id);
             //$job = Job::find($id);
             //$this->job()->associate($job);
             //$old_path = 'uploads\proposals\temp';
@@ -150,7 +150,7 @@ class Proposal extends Model
             
             $this->completion_time = filter_var($request['completion_time'], FILTER_SANITIZE_STRING);
             $this->content = filter_var($request['description'], FILTER_SANITIZE_STRING);
-            $this->freelancer_id = intval($user_id);
+            $this->provider_id = intval($user_id);
             $job = Job::find($id);
             $this->job()->associate($job);
             $old_path = 'uploads\proposals\temp';
@@ -188,7 +188,7 @@ class Proposal extends Model
                     //$size_unit = $this->formatSizeUnits($size);
                     //$origin = explode('.', $name);
 
-                    //$proposal = Proposal::where('job_id', $job->id)->where('freelancer_id', $user_id)->first();
+                    //$proposal = Proposal::where('job_id', $job->id)->where('provider_id', $user_id)->first();
 
                     //$file = $request->file('file');
                     /*$job_file = new ProposalFile;
@@ -293,7 +293,7 @@ class Proposal extends Model
      * Get message
      *
      * @param mixed $user_id       User ID
-     * @param int   $freelancer_id Freelancer ID
+     * @param int   $provider_id provider ID
      * @param int   $proposal_id   Proposal
      *
      * @return response
@@ -352,7 +352,7 @@ class Proposal extends Model
     public static function getProposalsByStatus($user_id, $status, $paid_status = '', $limit = 3)
     {
         $projects = Proposal::select('id', 'amount', 'updated_at')->latest()
-            ->where('freelancer_id', $user_id)
+            ->where('provider_id', $user_id)
             ->where('status', $status);
         if (!empty($paid_status)) {
             $projects->where('paid', $paid_status);
@@ -372,9 +372,9 @@ class Proposal extends Model
         $json = array();
         $skill = '';
         if (!empty($job_skills)) {
-            $freelancer_skills = auth()->user()->skills->pluck('id')->toArray();
+            $provider_skills = auth()->user()->skills->pluck('id')->toArray();
             foreach ($job_skills as $key => $skill) {
-                if (!(in_array($skill, $freelancer_skills))) {
+                if (!(in_array($skill, $provider_skills))) {
                     $json[$key] = $skill;
                 }
 
@@ -388,7 +388,7 @@ class Proposal extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancersTotalAmount()
+    public function getProvidersTotalAmount()
     {
         $this::where('status', 'completed')->sum(amount);
     }

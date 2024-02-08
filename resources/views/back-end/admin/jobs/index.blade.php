@@ -94,7 +94,7 @@
                                             $verified_user = !empty($job->employer->id) ? $job->employer->user_verified : '';
                                             $cancel_proposal = $job->proposals->where('status', 'cancelled')->first();
                                             if (!empty($cancel_proposal)) {
-                                                $freelancer = Helper::getUserName($cancel_proposal->freelancer_id);
+                                                $freelancer = Helper::getUserName($cancel_proposal->provider_id);
                                             }
                                             $project_type  = Helper::getProjectTypeList($job->project_type);
                                         @endphp
@@ -193,7 +193,7 @@
                                                                         <option value="{{$job->employer->id}}">{{ trans('lang.search_filter_list.employers_val') }}</option>
                                                                     @endif
                                                                     @if (!empty($cancel_proposal))
-                                                                        <option value="{{$cancel_proposal->freelancer_id}}">{{ trans('lang.search_filter_list.freelancer_val') }}</option>
+                                                                        <option value="{{$cancel_proposal->provider_id}}">{{ trans('lang.search_filter_list.freelancer_val') }}</option>
                                                                     @endif
                                                                 </select>
                                                             </span>
@@ -273,9 +273,9 @@
 										<ul class="wt-hireduserimgs">
 											@foreach ($proposals as $proposal)
 												@php
-													$profile = \App\User::find($proposal->freelancer_id)->profile;
+													$profile = \App\User::find($proposal->provider_id)->profile;
 													$user_image = !empty($profile) ? $profile->avater : '';
-													$profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+													$profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->provider_id.'/'.$user_image : 'images/user-login.png';
 												@endphp
 												<li><figure><img src="{{{ asset($profile_image) }}}" alt="{{ trans('lang.profile_img') }}" class="mCS_img_loaded"></figure></li>
 											@endforeach
@@ -342,7 +342,7 @@
                                                             <option value="{{$job->employer->id}}">{{ trans('lang.search_filter_list.employers_val') }}</option>
                                                         @endif
                                                         @if (!empty($cancel_proposal))
-                                                            <option value="{{$cancel_proposal->freelancer_id}}">{{ trans('lang.search_filter_list.freelancer_val') }}</option>
+                                                            <option value="{{$cancel_proposal->provider_id}}">{{ trans('lang.search_filter_list.freelancer_val') }}</option>
                                                         @endif
                                                     </select>
                                                 </span>

@@ -58,7 +58,7 @@ class RestAPIController extends Controller
 {
 
     /**
-     * Get freelancers API
+     * Get providers API
      *
      * @access public
      *
@@ -151,8 +151,8 @@ class RestAPIController extends Controller
                     $filters['skills'] = $search_skills;
                     $skills = Skill::whereIn('slug', $search_skills)->get();
                     foreach ($skills as $key => $skill) {
-                        if (!empty($skill->freelancers[$key]->id)) {
-                            $user_id[] = $skill->freelancers[$key]->id;
+                        if (!empty($skill->providers[$key]->id)) {
+                            $user_id[] = $skill->providers[$key]->id;
                         }
                     }
                     $users->whereIn('id', $user_id);
@@ -522,7 +522,7 @@ class RestAPIController extends Controller
                 }
                 $package = DB::table('items')->where('subscriber', $user_id)->select('product_id')->first();
                 $proposal = new Proposal();
-                $proposals = $proposal::where('freelancer_id', $user_id)->count();
+                $proposals = $proposal::where('provider_id', $user_id)->count();
                 $settings = SiteManagement::getMetaValue('settings');
                 $required_connects = !empty($settings) && !empty($settings[0]['connects_per_job']) ? $settings[0]['connects_per_job'] : 2;
                 if (!empty($package->product_id)) {
@@ -533,7 +533,7 @@ class RestAPIController extends Controller
                         $proposal->amount = intval($amount);
                         $proposal->completion_time = filter_var($duration, FILTER_SANITIZE_STRING);
                         $proposal->content = filter_var($description, FILTER_SANITIZE_STRING);
-                        $proposal->freelancer_id = intval($user_id);
+                        $proposal->provider_id = intval($user_id);
                         $job = Job::find($project_id);
                         $proposal->job()->associate($job);
                         $proposal_attachments = array();
@@ -1484,7 +1484,7 @@ class RestAPIController extends Controller
             $offer = new Offer();
             $user = User::find($request['user_id']);
             if ($user->role === 'employer') {
-                $offer->freelancer_id = filter_var($request['freelancer_id'], FILTER_SANITIZE_STRING);
+                $offer->provider_id = filter_var($request['freelancer_id'], FILTER_SANITIZE_STRING);
                 $offer->project_id = filter_var($request['job_id'], FILTER_SANITIZE_STRING);
                 $offer->description = filter_var($request['desc'], FILTER_SANITIZE_STRING);
                 $offer->user()->associate($user);

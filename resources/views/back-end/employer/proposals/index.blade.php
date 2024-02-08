@@ -88,9 +88,9 @@
                                                 <ul class="wt-hireduserimgs">
                                                     @foreach ($proposals as $proposal)
                                                         @php
-                                                            $profile = \App\User::find($proposal->freelancer_id)->profile;
+                                                            $profile = \App\User::find($proposal->provider_id)->profile;
                                                             $user_image = !empty($profile) ? $profile->avater : '';
-                                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                                         @endphp
                                                         <li><figure><img src="{{{ asset($profile_image) }}}" alt="{{ trans('lang.img') }}" class="mCS_img_loaded"></figure></li>
                                                     @endforeach
@@ -107,10 +107,10 @@
                                 </div>
                                 <div class="wt-managejobcontent">
                                     @php
-                                        $user = \App\User::find($accepted_proposal->freelancer_id);
-                                        $profile = \App\User::find($accepted_proposal->freelancer_id)->profile;
+                                        $user = \App\User::find($accepted_proposal->provider_id);
+                                        $profile = \App\User::find($accepted_proposal->provider_id)->profile;
                                         $user_image = !empty($profile) ? $profile->avater : '';
-                                        $profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                        $profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                         $user_name = Helper::getUserName($user->id);
                                         $feedbacks = \App\Review::select('feedback')->where('receiver_id', $user->id)->count();
                                         $avg_rating = App\Review::where('receiver_id', $user->id)->sum('avg_rating');
@@ -175,12 +175,12 @@
                                                     @if (!empty($p_attachments))
                                                         {!! Form::open(['url' => url('proposal/download-attachments'), 'class' =>'post-job-form wt-haslayout', 'id' => 'accepted-download-attachments-form-'.$accepted_proposal->id]) !!}
                                                             @foreach ($p_attachments as $attachments)
-                                                                @if (Storage::disk('local')->exists('uploads/proposals/'.$accepted_proposal->freelancer_id.'/'.$attachments))
+                                                                @if (Storage::disk('local')->exists('uploads/proposals/'.$accepted_proposal->provider_id.'/'.$attachments))
                                                                     {!! Form::hidden('attachments['.$count.']', $attachments, []) !!}
                                                                     @php $count++; @endphp
                                                                 @endif
                                                             @endforeach
-                                                            {!! Form::hidden('freelancer_id', $accepted_proposal->freelancer_id, []) !!}
+                                                            {!! Form::hidden('freelancer_id', $accepted_proposal->provider_id, []) !!}
                                                         {!! form::close(); !!}
                                                         <a href="javascript:void(0);"  v-on:click.prevent="downloadAttachments('{{'accepted-download-attachments-form-'.$accepted_proposal->id}}')" ><span>{{{ $count }}} {{ trans('lang.files_attached') }}</span></a>
                                                     @else
@@ -205,15 +205,15 @@
                                         <div class="wt-managejobcontent">
                                             @foreach ($proposals as $proposal)
                                                 @php
-                                                    $user = \App\User::find($proposal->freelancer_id);
-                                                    $profile = \App\User::find($proposal->freelancer_id)->profile;
+                                                    $user = \App\User::find($proposal->provider_id);
+                                                    $profile = \App\User::find($proposal->provider_id)->profile;
                                                     $user_image = !empty($profile) ? $profile->avater : '';
-                                                    $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                                    $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                                     $user_name = $user->first_name.' '.$user->last_name;
-                                                    $feedbacks = \App\Review::select('feedback')->where('receiver_id', $proposal->freelancer_id)->count();
-                                                    $avg_rating = App\Review::where('receiver_id', $proposal->freelancer_id)->sum('avg_rating');
+                                                    $feedbacks = \App\Review::select('feedback')->where('receiver_id', $proposal->provider_id)->count();
+                                                    $avg_rating = App\Review::where('receiver_id', $proposal->provider_id)->sum('avg_rating');
                                                     $rating  = $avg_rating != 0 ? round($avg_rating/\App\Review::count()) : 0;
-                                                    $reviews = \App\Review::where('receiver_id', $proposal->freelancer_id)->get();
+                                                    $reviews = \App\Review::where('receiver_id', $proposal->provider_id)->get();
                                                     $stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                                                     $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                                                     $completion_time = !empty($proposal->completion_time) ? \App\Helper::getJobDurationList($proposal->completion_time) : '';
@@ -295,12 +295,12 @@
                                                             @if (!empty($attachments))
                                                                 {!! Form::open(['url' => url('proposal/download-attachments'), 'class' =>'post-job-form wt-haslayout', 'id' => 'download-attachments-form-'.$proposal->id]) !!}
                                                                     @foreach ($attachments as $attachment)
-                                                                        @if (Storage::disk('local')->exists('uploads/proposals/'.$proposal->freelancer_id.'/'.$attachment))
+                                                                        @if (Storage::disk('local')->exists('uploads/proposals/'.$proposal->provider_id.'/'.$attachment))
                                                                             {!! Form::hidden('attachments['.$received_proposal_count.']', $attachment, []) !!}
                                                                             @php $received_proposal_count++; @endphp
                                                                         @endif
                                                                     @endforeach
-                                                                    {!! Form::hidden('freelancer_id', $proposal->freelancer_id, []) !!}
+                                                                    {!! Form::hidden('freelancer_id', $proposal->provider_id, []) !!}
                                                                 {!! form::close(); !!}
                                                                 <a href="javascript:void(0);"  v-on:click.prevent="downloadAttachments('{{'download-attachments-form-'.$proposal->id}}')" ><span>{{{ $received_proposal_count }}} {{ trans('lang.files_attached') }}</span></a>
                                                             @else
@@ -444,21 +444,21 @@
                                 </div>
                                 @if ($proposals->count() > 0) 
                                 <div class="wt-userlistingholder wt-userlisting wt-haslayout" style="padding: 20px;">
-                                    <!--<div class="wt-userlistingtitle"><span>Other Freelancers </span></div>-->
+                                    <!--<div class="wt-userlistingtitle"><span>Other providers </span></div>-->
 
                                     @foreach ($proposals as $proposal)
                                         @php
-                                            $user = \App\User::find($proposal->freelancer_id);
-                                            $profile = \App\User::find($proposal->freelancer_id)->profile;
+                                            $user = \App\User::find($proposal->provider_id);
+                                            $profile = \App\User::find($proposal->provider_id)->profile;
                                             $user_image = !empty($profile) ? $profile->avater : '';
-                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->freelancer_id.'/'.$user_image : 'images/user-login.png';
+                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$proposal->provider_id.'/'.$user_image : 'images/user-login.png';
                                             $user_name = $user->first_name.' '.$user->last_name;
-                                            $feedbacks = \App\Review::select('feedback')->where('receiver_id', $proposal->freelancer_id)->count();
+                                            $feedbacks = \App\Review::select('feedback')->where('receiver_id', $proposal->provider_id)->count();
                                             $flag = !empty($user->location->flag) ? Helper::getLocationFlag($user->location->flag) :
                                                     '/images/img-01.png';
-                                            $avg_rating = App\Review::where('receiver_id', $proposal->freelancer_id)->sum('avg_rating');
+                                            $avg_rating = App\Review::where('receiver_id', $proposal->provider_id)->sum('avg_rating');
                                             $rating  = $avg_rating != 0 ? round($avg_rating/\App\Review::count()) : 0;
-                                            $reviews = \App\Review::where('receiver_id', $proposal->freelancer_id)->get();
+                                            $reviews = \App\Review::where('receiver_id', $proposal->provider_id)->get();
                                             $stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                                             $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                                             $completion_time = !empty($proposal->completion_time) ? \App\Helper::getJobDurationList($proposal->completion_time) : '';

@@ -116,7 +116,7 @@ class TaskController extends Controller
         foreach($job->proposals as $proposal)
         {
             if($proposal->status == "hired")
-            $hired = $proposal->freelancer_id;
+            $hired = $proposal->provider_id;
         }
         if($hired != 0)
         {

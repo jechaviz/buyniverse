@@ -66,7 +66,7 @@ class FilesController extends Controller
         $size_unit = $this->formatSizeUnits($size);
         $origin = explode('.', $name);
 
-        $proposal = Proposal::where('job_id', $request->job_id)->where('freelancer_id', $request->user_id)->first();
+        $proposal = Proposal::where('job_id', $request->job_id)->where('provider_id', $request->user_id)->first();
 
         //$file = $request->file('file');
         $job_file = new ProposalFile;

@@ -1171,12 +1171,12 @@ class EmployerController extends Controller
                 $employer = User::find($user_id);
                 $proposal = Proposal::where('id', $id)->get()->first();
                 $job = $proposal->job;
-                $freelancer = User::find($proposal->freelancer_id);
-                $freelancer_name = Helper::getUserName($proposal->freelancer_id);
-                $profile = User::find($proposal->freelancer_id)->profile;
+                $provider = User::find($proposal->provider_id);
+                $provider_name = Helper::getUserName($proposal->provider_id);
+                $profile = User::find($proposal->provider_id)->profile;
                 $attachments = !empty($proposal->attachments) ? unserialize($proposal->attachments) : '';
                 $user_image = !empty($profile) ? $profile->avater : '';
-                $profile_image = !empty($user_image) ? '/uploads/users/' . $proposal->freelancer_id . '/' . $user_image : 'images/user-login.png';
+                $profile_image = !empty($user_image) ? '/uploads/users/' . $proposal->provider_id . '/' . $user_image : 'images/user-login.png';
                 $payout_settings = SiteManagement::getMetaValue('commision');
                 $payment_gateway = !empty($payout_settings) && !empty($payout_settings[0]['payment_method']) ? $payout_settings[0]['payment_method'] : null;
                 $currency   = SiteManagement::getMetaValue('commision');
@@ -1189,7 +1189,7 @@ class EmployerController extends Controller
                         compact(
                             'job',
                             'stripe_img',
-                            'freelancer_name',
+                            'provider_name',
                             'profile_image',
                             'proposal',
                             'payment_gateway',

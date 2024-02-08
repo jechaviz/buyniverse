@@ -58,7 +58,7 @@ class ContestController extends Controller
         $participant = Live_contest_participant::where('live_id', $contest->id)->get();
         foreach($participant as $value)
         {
-            $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $value->user_id)->first();
+            $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $value->user_id)->first();
             $saved = ($proposal->original - $proposal->amount) * 100 / $proposal->original;
 
             $saved = round($saved, 2);
@@ -87,7 +87,7 @@ class ContestController extends Controller
         else
         {
             $contest = Live_contest::find($id);
-            $proposal = Proposal::where('job_id', $contest->job_id)->where('freelancer_id', $ids[1])->first();
+            $proposal = Proposal::where('job_id', $contest->job_id)->where('provider_id', $ids[1])->first();
 
             $contest_bid = new Contest_bid;
             $contest_bid->bid = $proposal->amount;

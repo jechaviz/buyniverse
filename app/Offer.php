@@ -27,7 +27,7 @@ class Offer extends Model
      * @var    array $fillable
      */
     protected $fillable = array(
-        'user_id', 'freelancer_id', 'project_id', 'description'
+        'user_id', 'provider_id', 'project_id', 'description'
     );
 
     /**
@@ -55,7 +55,7 @@ class Offer extends Model
      * Get Meta Values form meta keys.
      *
      * @param string $request $req->attr
-     * @param string $id      FreelancerID
+     * @param string $id      providerID
      *
      * @return \Illuminate\Http\Response
      */
@@ -63,7 +63,7 @@ class Offer extends Model
     {
         $user = User::find(Auth::user()->id);
         if ($user->role === 'employer') {
-            $this->freelancer_id = filter_var($id, FILTER_SANITIZE_STRING);
+            $this->provider_id = filter_var($id, FILTER_SANITIZE_STRING);
             $this->project_id = filter_var($request['projects'], FILTER_SANITIZE_STRING);
             $this->description = filter_var($request['desc'], FILTER_SANITIZE_STRING);
             $this->user()->associate($user);

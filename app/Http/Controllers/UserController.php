@@ -530,7 +530,7 @@ class UserController extends Controller
                     ->orWhere('receiver_id', $request['user_id'])->delete();
                 DB::table('payouts')->where('user_id', $request['user_id'])->delete();
                 DB::table('offers')->where('user_id', $request['user_id'])
-                    ->orWhere('freelancer_id', $request['user_id'])->delete();
+                    ->orWhere('provider_id', $request['user_id'])->delete();
                 DB::table('messages')->where('user_id', $request['user_id'])
                     ->orWhere('receiver_id', $request['user_id'])->delete();
                 DB::table('items')->where('subscriber', $request['user_id'])
@@ -847,7 +847,7 @@ class UserController extends Controller
                         $job = Job::find($request['job_id']);
                         $email_params['project_title'] = $job->title;
                         $email_params['completed_project_link'] = url('/job/' . $job->slug);
-                        //$provider = Proposal::select('freelancer_id')->where('status', 'completed')->first();
+                        //$provider = Proposal::select('provider_id')->where('status', 'completed')->first();
                         $job_completed_template = DB::table('email_types')->select('id')->where('email_type', 'admin_email_job_completed')->get()->first();
                         if (!empty($job_completed_template->id)) {
                             $template_data = EmailTemplate::getEmailTemplateByID($job_completed_template->id);
@@ -1076,7 +1076,7 @@ class UserController extends Controller
                             $provider = User::find($proposal->provider_id);
                             $email_params['project_title'] = $job->title;
                             $email_params['cancelled_project_link'] = url('job/' . $job->slug);
-                            $email_params['name'] = Helper::getUserName($proposal->freelancer_id);
+                            $email_params['name'] = Helper::getUserName($proposal->provider_id);
                             $email_params['link'] = url('profile/' . $provider->slug);
                             $email_params['employer_profile'] = url('profile/' . Auth::user()->slug);
                             $email_params['emp_name'] = Helper::getUserName(Auth::user()->id);
@@ -1632,17 +1632,17 @@ class UserController extends Controller
                     $job = Job::find($proposal->job->id);
                     $job->status = 'hired';
                     $job->save();
-                    // send message to freelancer
+                    // send message to provider
                     $message = new Message();
                     $user = User::find(intval($order->user_id));
                     $message->user()->associate($user);
-                    $message->receiver_id = intval($proposal->freelancer_id);
+                    $message->receiver_id = intval($proposal->provider_id);
                     $message->body = trans('lang.hire_for') . ' ' . $job->title . ' ' . trans('lang.project');
                     $message->status = 0;
                     $message->save();
                     // send mail
                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
-                        $provider = User::find($proposal->freelancer_id);
+                        $provider = User::find($proposal->provider_id);
                         $employer = User::find($job->user_id);
                         if (!empty($provider->email)) {
                             $email_params = array();

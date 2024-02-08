@@ -1838,7 +1838,7 @@ class Helper extends Model
         $admin_commission = !empty($commision) && !empty($commision[0]['commision']) ? $commision[0]['commision'] : 0;
         if (Schema::hasColumn('proposals', 'paid_progress')) {
             $job_balance =  Proposal::select('amount')
-                ->where('freelancer_id', $user_id)
+                ->where('provider_id', $user_id)
                 ->where('status', $status)->where('paid_progress', $paid_progress)->sum('amount');
             $job_total_amount = !empty($job_balance) ? $job_balance - ($job_balance / 100) * $admin_commission : 0;
         }
@@ -1868,7 +1868,7 @@ class Helper extends Model
      */
     public static function getProposals($user_id, $status)
     {
-        return Proposal::select('job_id')->latest()->where('freelancer_id', $user_id)->where('status', $status)->get();
+        return Proposal::select('job_id')->latest()->where('provider_id', $user_id)->where('status', $status)->get();
     }
 
     /**
@@ -3474,7 +3474,7 @@ class Helper extends Model
     }
 
     /**
-     * Get freelancer earning
+     * Get provider earning
      *
      * @param int $user_id User ID
      * @param int $status  Status
@@ -3486,13 +3486,13 @@ class Helper extends Model
         $commision = SiteManagement::getMetaValue('commision');
         $admin_commission = !empty($commision) && !empty($commision[0]['commision']) ? $commision[0]['commision'] : 0;
         $job_balance =  Proposal::select('amount')
-            ->where('freelancer_id', $user_id)
+            ->where('provider_id', $user_id)
             ->where('status', $status)->where('paid', $paid_status)->sum('amount');
         return !empty($job_balance) ? $job_balance - ($job_balance / 100) * $admin_commission : 0;
     }
 
     /**
-     * Get freelancer earning
+     * Get provider earning
      *
      * @param int $user_id User ID
      * @param int $status  Status
@@ -3521,13 +3521,13 @@ class Helper extends Model
         $currency  = !empty($payment_settings) && !empty($payment_settings[0]['currency']) ? $payment_settings[0]['currency'] : 'USD';
         $job_payouts = DB::select(
             DB::raw(
-                "SELECT id, freelancer_id AS user_id, 
+                "SELECT id, provider_id AS user_id, 
                 SUM(amount) AS total,
                 GROUP_CONCAT(id) AS job_ids
                 FROM proposals
                 WHERE paid = 'pending' 
                 AND status = 'completed' 
-                GROUP BY freelancer_id"
+                GROUP BY provider_id"
             )
         );
         $purchased_services = DB::select(
@@ -4684,7 +4684,7 @@ class Helper extends Model
      */
     public static function getTotalProposalsByStatus($user_id, $status)
     {
-        return Proposal::select('id', 'amount', 'updated_at')->where('freelancer_id', $user_id)
+        return Proposal::select('id', 'amount', 'updated_at')->where('provider_id', $user_id)
             ->where('status', $status)->count();
     }
 
@@ -4904,7 +4904,7 @@ class Helper extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public static function getSecondHomeFreelancer()
+    public static function getSecondHomeProvider()
     {
         $data = array();
         $data['title'] = 'Top Providers';
@@ -5049,7 +5049,7 @@ class Helper extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public static function getThirdHomeFreelancer()
+    public static function getThirdHomeProvider()
     {
         $data = array();
         $data['title'] = 'Top Providers';

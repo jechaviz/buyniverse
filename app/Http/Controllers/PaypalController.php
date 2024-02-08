@@ -494,13 +494,13 @@ class PaypalController extends Controller
                     $message = new Message();
                     $user = User::find(intval(Auth::user()->id));
                     $message->user()->associate($user);
-                    $message->receiver_id = intval($proposal->freelancer_id);
+                    $message->receiver_id = intval($proposal->provider_id);
                     $message->body = trans('lang.hire_for') . ' ' . $job->title . ' ' . trans('lang.project');
                     $message->status = 0;
                     $message->save();
                     // send mail
                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
-                        $provider = User::find($proposal->freelancer_id);
+                        $provider = User::find($proposal->provider_id);
                         $employer = User::find($job->user_id);
                         if (!empty($provider->email)) {
                             $email_params = array();

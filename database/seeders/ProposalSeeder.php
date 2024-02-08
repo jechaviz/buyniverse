@@ -31,7 +31,7 @@ class ProposalSeeder extends Seeder
         DB::table('proposals')->insert(
             [
                 [
-                    'freelancer_id' => 21,
+                    'provider_id' => 21,
                     'job_id' => 3,
                     'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in risus id mauris convallis sollicitudin. Etiam porta, massa finibus bibendum fermentum, velit diam hendrerit libero, eu consectetur sapien velit ac nibh. Ut in volutpat nisi, et suscipit libero. In molestie blandit elit in condimentum. Vivamus cursus ultrices risus sed consectetur. Etiam hendrerit erat tellus. Nullam iaculis mauris sed elit consequat tempus. In hac habitasse platea dictumst. Donec nibh augue, tristique vel metus ut, bibendum pellentesque dolor. Sed id pharetra dolor, vel tincidunt nisi. Suspendisse potenti. Quisque eu blandit magna, eget porttitor urna.
 

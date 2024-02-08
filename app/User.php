@@ -172,7 +172,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the services for the freelancer.
+     * Get the services for the provider.
      *
      * @return relation
      */
@@ -212,13 +212,13 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the proposals for the freelancer.
+     * Get the proposals for the provider.
      *
      * @return relation
      */
     public function proposals()
     {
-        return $this->hasMany('App\Proposal', 'freelancer_id');
+        return $this->hasMany('App\Proposal', 'provider_id');
     }
 
     /**
@@ -455,8 +455,8 @@ class User extends Authenticatable
                 $filters['skills'] = $search_skills;
                 $skills = Skill::whereIn('slug', $search_skills)->get();
                 foreach ($skills as $key => $skill) {
-                    if (!empty($skill->freelancers[$key]->id)) {
-                        $user_id[] = $skill->freelancers[$key]->id;
+                    if (!empty($skill->providers[$key]->id)) {
+                        $user_id[] = $skill->providers[$key]->id;
                     }
                 }
                 $users->whereIn('id', $user_id);
@@ -478,20 +478,20 @@ class User extends Authenticatable
             }
             if (!empty($search_freelaner_types)) {
                 $filters['freelaner_type'] = $search_freelaner_types;
-                $freelancers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
-                foreach ($freelancers as $key => $freelancer) {
-                    if (!empty($freelancer->user_id)) {
-                        $user_id[] = $freelancer->user_id;
+                $providers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
+                foreach ($providers as $key => $provider) {
+                    if (!empty($provider->user_id)) {
+                        $user_id[] = $provider->user_id;
                     }
                 }
                 $users->whereIn('id', $user_id)->get();
             }
             if (!empty($search_english_levels)) {
                 $filters['english_level'] = $search_english_levels;
-                $freelancers = Profile::whereIn('english_level', $search_english_levels)->get();
-                foreach ($freelancers as $key => $freelancer) {
-                    if (!empty($freelancer->user_id)) {
-                        $user_id[] = $freelancer->user_id;
+                $providers = Profile::whereIn('english_level', $search_english_levels)->get();
+                foreach ($providers as $key => $provider) {
+                    if (!empty($provider->user_id)) {
+                        $user_id[] = $provider->user_id;
                     }
                 }
                 $users->whereIn('id', $user_id)->get();
@@ -583,15 +583,15 @@ class User extends Authenticatable
                 $categories = Category::whereIn('id', $cat1)->get();
                 //dd($categories);
                 foreach ($categories as $key => $cat) {
-                    if(!empty($cat->freelancers))
+                    if(!empty($cat->providers))
                     {
-                        foreach($cat->freelancers as $cat1)
+                        foreach($cat->providers as $cat1)
                         $user_id[] = $cat1->id;
                     }
 
 
-                    /*if (!empty($cat->freelancers[$key]->id)) {
-                        $user_id[] = $cat->freelancers[$key]->id;
+                    /*if (!empty($cat->providers[$key]->id)) {
+                        $user_id[] = $cat->providers[$key]->id;
                     }*/
                 }
                 //dd($user_id);
@@ -603,8 +603,8 @@ class User extends Authenticatable
                 $skills = Skill::whereIn('id', $search_skills)->get();
                 //dd($skills);
                 foreach ($skills as $key => $skill) {
-                    if (!empty($skill->freelancers[$key]->id)) {
-                        $user_id[] = $skill->freelancers[$key]->id;
+                    if (!empty($skill->providers[$key]->id)) {
+                        $user_id[] = $skill->providers[$key]->id;
                     }
                 }
                 $users->whereIn('id', $user_id);
@@ -626,20 +626,20 @@ class User extends Authenticatable
             }
             if (!empty($search_freelaner_types)) {
                 $filters['freelaner_type'] = $search_freelaner_types;
-                $freelancers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
-                foreach ($freelancers as $key => $freelancer) {
-                    if (!empty($freelancer->user_id)) {
-                        $user_id[] = $freelancer->user_id;
+                $providers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
+                foreach ($providers as $key => $provider) {
+                    if (!empty($provider->user_id)) {
+                        $user_id[] = $provider->user_id;
                     }
                 }
                 $users->whereIn('id', $user_id)->get();
             }
             if (!empty($search_english_levels)) {
                 $filters['english_level'] = $search_english_levels;
-                $freelancers = Profile::whereIn('english_level', $search_english_levels)->get();
-                foreach ($freelancers as $key => $freelancer) {
-                    if (!empty($freelancer->user_id)) {
-                        $user_id[] = $freelancer->user_id;
+                $providers = Profile::whereIn('english_level', $search_english_levels)->get();
+                foreach ($providers as $key => $provider) {
+                    if (!empty($provider->user_id)) {
+                        $user_id[] = $provider->user_id;
                     }
                 }
                 $users->whereIn('id', $user_id)->get();
@@ -796,7 +796,7 @@ class User extends Authenticatable
      *
      * @return relation
      */
-    public static function getTopFreelancers()
+    public static function getTopProviders()
     {
         return 
             DB::select(
@@ -816,7 +816,7 @@ class User extends Authenticatable
      *
      * @return relation
      */
-    public static function getAllFreelancers()
+    public static function getAllProviders()
     {
         return 
             DB::select(
