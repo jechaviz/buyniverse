@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="form-group form-group-half wt-formwithlabel">
                                                 <span class="wt-select">
-                                                    {!! Form::select('provider_type', $freelancer_level_list, e($job->provider_type)) !!}
+                                                    {!! Form::select('provider_type', $provider_level_list, e($job->provider_type)) !!}
                                                 </span>
                                             </div>
                                             <div class="form-group form-group-half wt-formwithlabel">
@@ -317,12 +317,12 @@
                                     <p class='form_head'>Category</p>
                                     <div class="wt-jobcategories wt-tabsinfo">
                                         <div class="wt-tabscontenttitle">
-                                            <h2>{{ trans('lang.select_freelancer_level') }}</h2>
+                                            <h2>{{ trans('lang.select_provider_level') }}</h2>
                                         </div>
                                         <div class="wt-divtheme wt-userform wt-userformvtwo wt-userformvtwo1">
                                             <div class="form-group ">
                                                 <span class="wt-select">
-                                                    {!! Form::select('provider_type', $freelancer_level_list, e($job->provider_type), array('placeholder' => trans('lang.select_freelancer_level'), 'class' => '')) !!}
+                                                    {!! Form::select('provider_type', $provider_level_list, e($job->provider_type), array('placeholder' => trans('lang.select_provider_level'), 'class' => '')) !!}
                                                 </span>
                                             </div>
                                         </div>
@@ -493,7 +493,7 @@
                                             <h2 style="font-size: x-large;">Contracts to be signed</h2>
                                         </div>
                                         <div class="wt-tabscontenttitle">
-                                            <h2>Before freelancer post a bid</h2>
+                                            <h2>Before provider post a bid</h2>
                                         </div>
                                         <div class="wt-divtheme wt-userform wt-userformvtwo wt-userformvtwo1">
                                             <div class="form-group">
@@ -510,7 +510,7 @@
                                     </div>
                                     <div class="wt-languages-holder wt-tabsinfo">
                                         <div class="wt-tabscontenttitle">
-                                            <h2>If freelancer is awarded</h2>
+                                            <h2>If provider is awarded</h2>
                                         </div>
                                         <div class="wt-divtheme wt-userform wt-userformvtwo wt-userformvtwo1">
                                             <div class="form-group">
@@ -639,7 +639,7 @@
                                     <div>
                                     <!--<div class="wt-jobcategories wt-tabsinfo">
                                         <div class="wt-tabscontenttitle">
-                                            <h2>Invite Freelancers</h2>
+                                            <h2>Invite providers</h2>
                                         </div>
                                         <div class="wt-divtheme wt-userform wt-userformvtwo wt-userformvtwo1">                                
                                             <div class="form-group">
@@ -651,7 +651,7 @@
                                     -->
                                     <!--<div class="wt-featuredholder wt-tabsinfo" id="wt-new-added">
                                         <div class="wt-tabscontenttitle">
-                                            <h2>Invite freelancers</h2>
+                                            <h2>Invite providers</h2>
                                         </div>
                                         <div>
                                             <div class="wt-jobskills wt-jobskills-holder wt-tabsinfo">

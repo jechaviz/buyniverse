@@ -1048,7 +1048,7 @@ class RestAPIController extends Controller
         $json = array();
         $rates = array();
         $english_levels = array();
-        $freelancer_level = array();
+        $provider_level = array();
         $duration_list = array();
         $project_type = array();
         $reason_types = array();
@@ -1088,12 +1088,12 @@ class RestAPIController extends Controller
                     return Response::json($json, 203);
                 }
             }
-            //Freelancer Levels
-            if ($type === 'freelancer_level') {
-                $freelancer_level = Helper::getProviderLevelList();
-                if (!empty($freelancer_level)) {
+            //provider Levels
+            if ($type === 'provider_level') {
+                $provider_level = Helper::getProviderLevelList();
+                if (!empty($provider_level)) {
                     $count = 0;
-                    foreach ($freelancer_level as $value => $level) {
+                    foreach ($provider_level as $value => $level) {
                         $json[$count]['title'] = !empty($level) ? Helper::getProviderLevelList($value) : '';
                         $json[$count]['value'] = !empty($level) ? $value : '';
                         $count++;
@@ -1690,7 +1690,7 @@ class RestAPIController extends Controller
             $json['error'] = 'Job description is required.';
             return Response::json($json, 203);
         }
-        $provider_type = !empty($request['freelancer_level']) ? $request['freelancer_level'] : null;
+        $provider_type = !empty($request['provider_level']) ? $request['provider_level'] : null;
         $is_featured = !empty($request['is_featured']) ? $request['is_featured'] : false;
         $show_attachments = !empty($request['show_attachments']) ? $request['show_attachments'] : false;
         $address = !empty($request['address']) ? $request['address'] : null;

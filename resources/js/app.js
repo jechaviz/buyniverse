@@ -3457,7 +3457,7 @@ if (document.getElementById("post_job")) {
             title: '',
             project_level: '',
             job_duration: '',
-            freelancer_level: '',
+            provider_level: '',
             english_level: '',
             message: '',
             form_errors: [],

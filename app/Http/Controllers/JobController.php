@@ -125,8 +125,8 @@ class JobController extends Controller
         $english_levels = Helper::getEnglishLevelList();
         $project_levels = Helper::getProjectLevel();
         $job_duration = Helper::getJobDurationList();
-        $freelancer_level = Helper::getProviderLevelList();
-        //dd($freelancer_level);
+        $provider_level = Helper::getProviderLevelList();
+        //dd($provider_level);
         $skills = Skill::pluck('title', 'id');
         $categories = Category::pluck('title', 'id');
         $role_id =  Helper::getRoleByUserID(Auth::user()->id);
@@ -140,7 +140,7 @@ class JobController extends Controller
                     'languages',
                     'project_levels',
                     'job_duration',
-                    'freelancer_level',
+                    'provider_level',
                     'skills',
                     'categories',
                     'locations',
@@ -158,7 +158,7 @@ class JobController extends Controller
                     'languages',
                     'project_levels',
                     'job_duration',
-                    'freelancer_level',
+                    'provider_level',
                     'skills',
                     'categories',
                     'locations',
@@ -203,8 +203,8 @@ class JobController extends Controller
         $english_levels = Helper::getEnglishLevelList();
         $project_levels = Helper::getProjectLevel();
         $job_duration = Helper::getJobDurationList();
-        $freelancer_level = Helper::getProviderLevelList();
-        //dd($freelancer_level);
+        $provider_level = Helper::getProviderLevelList();
+        //dd($provider_level);
         $skills = Skill::pluck('title', 'id');
         $categories = Category::pluck('title', 'id');
         $role_id =  Helper::getRoleByUserID(Auth::user()->id);
@@ -218,7 +218,7 @@ class JobController extends Controller
                     'languages',
                     'project_levels',
                     'job_duration',
-                    'freelancer_level',
+                    'provider_level',
                     'skills',
                     'categories',
                     'locations',
@@ -237,7 +237,7 @@ class JobController extends Controller
                     'languages',
                     'project_levels',
                     'job_duration',
-                    'freelancer_level',
+                    'provider_level',
                     'skills',
                     'categories',
                     'locations',
@@ -351,7 +351,7 @@ class JobController extends Controller
             $project_levels = Helper::getProjectLevel();
             $english_levels = Helper::getEnglishLevelList();
             $job_duration = Helper::getJobDurationList();
-            $freelancer_level_list = Helper::getProviderLevelList();
+            $provider_level_list = Helper::getProviderLevelList();
             $attachments = !empty($job->attachments) ? unserialize($job->attachments) : '';
             foreach($quizzes as $quiz)
             {
@@ -393,7 +393,7 @@ class JobController extends Controller
                             'project_levels',
                             'english_levels',
                             'job_duration',
-                            'freelancer_level_list',
+                            'provider_level_list',
                             'languages',
                             'categories',
                             'skills',
@@ -413,7 +413,7 @@ class JobController extends Controller
                             'project_levels',
                             'english_levels',
                             'job_duration',
-                            'freelancer_level_list',
+                            'provider_level_list',
                             'languages',
                             'categories',
                             'skills',
@@ -769,9 +769,9 @@ class JobController extends Controller
                         // Send Email
                         /*if($approvers)
                         {
-                            if($request->invited_freelancers)
+                            if($request->invited_providers)
                             {
-                                foreach($request->invited_freelancers as $key => $email)
+                                foreach($request->invited_providers as $key => $email)
                                 {
                                     $emails = $emails.", ".$email;
                                 }
@@ -784,7 +784,7 @@ class JobController extends Controller
                         }
                         else
                         {
-                            if($request->invited_freelancers)
+                            if($request->invited_providers)
                             {
                                 //$providerinvite = new Providerinvite;
                                 //$providerinvite->providers = $emails;
@@ -793,9 +793,9 @@ class JobController extends Controller
                                 //$providerinvite->save();
                                 $emails = "";
                                 
-                                foreach($request->invited_freelancers as $key => $email)
+                                foreach($request->invited_providers as $key => $email)
                                 {
-                                    //Mail::to($email)->send(new InviteFreelancer($user, $job->slug));
+                                    //Mail::to($email)->send(new Inviteprovider($user, $job->slug));
                                     $name = $user->first_name.' '.$user->last_name;
                                     $link = '<a href="http://worketic.apnahive.com/job/'. $job->slug .'">Link</a>';
                                     $messagex = str_replace('{name}', $name, $request->email_text);

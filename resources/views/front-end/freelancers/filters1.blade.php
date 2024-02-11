@@ -1,6 +1,6 @@
 <aside id="wt-sidebar" class="wt-sidebar wt-usersidebar">
     {!! Form::open(['url' => url('search-results'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch', 'id' => 'wt-formsearch']) !!}
-        <input type="hidden" value="freelancer" name="type">
+        <input type="hidden" value="provider" name="type">
         <div class="wt-widget wt-effectiveholder wt-startsearch">
             <div class="wt-widgettitle">
                 <h2>{{ trans('lang.start_search') }}</h2>
@@ -9,7 +9,7 @@
                 <div class="wt-formtheme wt-formsearch">
                     <fieldset>
                         <div class="form-group">
-                            <input type="text" name="s" class="form-control" placeholder="{{ trans('lang.ph_search_freelancer') }}" value="{{$keyword}}">
+                            <input type="text" name="s" class="form-control" placeholder="{{ trans('lang.ph_search_provider') }}" value="{{$keyword}}">
                         </div>
                     </fieldset>
                 </div>
@@ -104,11 +104,11 @@
             <div class="wt-widgetcontent">
                 <div class="wt-formtheme wt-formsearch">
                     <div class="wt-checkboxholder wt-verticalscrollbar">
-                        @foreach (Helper::getProviderLevelList() as $key => $freelancer_level)
+                        @foreach (Helper::getProviderLevelList() as $key => $provider_level)
                         @php $checked = ( !empty($_GET['freelaner_type']) && in_array($key, $_GET['freelaner_type'])) ? 'checked' : '' @endphp
                             <span class="wt-checkbox">
                                 <input id="rate-{{ $key }}" type="checkbox" name="freelaner_type[]" value="{{ $key }}" {{ $checked }}>
-                                <label for="rate-{{ $key }}">{{ $freelancer_level }}</label>
+                                <label for="rate-{{ $key }}">{{ $provider_level }}</label>
                             </span>
                         @endforeach
                     </div>

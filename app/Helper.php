@@ -715,9 +715,9 @@ class Helper extends Model
                 'id' => ''
             ),
             '7' => array(
-                'name' => trans('lang.freelancer_section'),
-                'section' => 'freelancer_section',
-                'value' => 'freelancers',
+                'name' => trans('lang.provider_section'),
+                'section' => 'provider_section',
+                'value' => 'providers',
                 'icon' => 'img-08.png',
                 'id' => '',
             ),
@@ -750,9 +750,9 @@ class Helper extends Model
                 'id' => ''
             ),
             '12' => array(
-                'name' => trans('lang.freelancer_section_v2'),
-                'section' => 'freelancer_section_v2',
-                'value' => 'freelancersSecondVersion',
+                'name' => trans('lang.provider_section_v2'),
+                'section' => 'provider_section_v2',
+                'value' => 'providersSecondVersion',
                 'icon' => 'f-V2.png',
                 'id' => '',
             ),
@@ -879,16 +879,16 @@ class Helper extends Model
         $symbol_array   = !empty($currency) && !empty($currency[0]['currency']) ? self::currencyList($currency[0]['currency']) : array();
         $symbol = !empty($symbol_array['symbol']) ? $symbol_array['symbol'] : '$';
         $list = array(
-            '0-5' => trans('lang.freelancer_hourly_rate.0_5', ['currency' => $symbol]),
-            '5-10' => trans('lang.freelancer_hourly_rate.5_10', ['currency' => $symbol]),
-            '10-20' => trans('lang.freelancer_hourly_rate.10_20', ['currency' => $symbol]),
-            '20-30' => trans('lang.freelancer_hourly_rate.20_30', ['currency' => $symbol]),
-            '30-40' => trans('lang.freelancer_hourly_rate.30_40', ['currency' => $symbol]),
-            '40-50' => trans('lang.freelancer_hourly_rate.40_50', ['currency' => $symbol]),
-            '50-60' => trans('lang.freelancer_hourly_rate.50_60', ['currency' => $symbol]),
-            '60-70' => trans('lang.freelancer_hourly_rate.60_70', ['currency' => $symbol]),
-            '70-80' => trans('lang.freelancer_hourly_rate.70_80', ['currency' => $symbol]),
-            '90-0' => trans('lang.freelancer_hourly_rate.90_0', ['currency' => $symbol]),
+            '0-5' => trans('lang.provider_hourly_rate.0_5', ['currency' => $symbol]),
+            '5-10' => trans('lang.provider_hourly_rate.5_10', ['currency' => $symbol]),
+            '10-20' => trans('lang.provider_hourly_rate.10_20', ['currency' => $symbol]),
+            '20-30' => trans('lang.provider_hourly_rate.20_30', ['currency' => $symbol]),
+            '30-40' => trans('lang.provider_hourly_rate.30_40', ['currency' => $symbol]),
+            '40-50' => trans('lang.provider_hourly_rate.40_50', ['currency' => $symbol]),
+            '50-60' => trans('lang.provider_hourly_rate.50_60', ['currency' => $symbol]),
+            '60-70' => trans('lang.provider_hourly_rate.60_70', ['currency' => $symbol]),
+            '70-80' => trans('lang.provider_hourly_rate.70_80', ['currency' => $symbol]),
+            '90-0' => trans('lang.provider_hourly_rate.90_0', ['currency' => $symbol]),
         );
         if (!empty($key) && array_key_exists($key, $list)) {
             return $list[$key];
@@ -933,9 +933,9 @@ class Helper extends Model
     public static function getProviderLevelList($key = "") 
     {
         $list = array(
-            'independent'       => trans('lang.freelancer_level.independent'),
-            'agency'            => trans('lang.freelancer_level.agency'),
-            'rising_talent'     => trans('lang.freelancer_level.rising_talent'),
+            'independent'       => trans('lang.provider_level.independent'),
+            'agency'            => trans('lang.provider_level.agency'),
+            'rising_talent'     => trans('lang.provider_level.rising_talent'),
         );
         if (!empty($key) && array_key_exists($key, $list)) {
             return $list[$key];
@@ -1136,15 +1136,15 @@ class Helper extends Model
                 );
             } elseif ($role == 'provider') {
                 $list = array(
-                    '0' => trans('lang.freelancer_pkg_opt.price'),
-                    '1' => trans('lang.freelancer_pkg_opt.no_of_credits'),
-                    '2' => trans('lang.freelancer_pkg_opt.no_of_skills'),
-                    '3' => trans('lang.freelancer_pkg_opt.no_of_services'),
-                    '4' => trans('lang.freelancer_pkg_opt.no_of_featured_services'),
-                    '5' => trans('lang.freelancer_pkg_opt.pkg_duration'),
-                    '6' => trans('lang.freelancer_pkg_opt.badge'),
-                    '7' => trans('lang.freelancer_pkg_opt.banner'),
-                    '8' => trans('lang.freelancer_pkg_opt.pvt_cht'),
+                    '0' => trans('lang.provider_pkg_opt.price'),
+                    '1' => trans('lang.provider_pkg_opt.no_of_credits'),
+                    '2' => trans('lang.provider_pkg_opt.no_of_skills'),
+                    '3' => trans('lang.provider_pkg_opt.no_of_services'),
+                    '4' => trans('lang.provider_pkg_opt.no_of_featured_services'),
+                    '5' => trans('lang.provider_pkg_opt.pkg_duration'),
+                    '6' => trans('lang.provider_pkg_opt.badge'),
+                    '7' => trans('lang.provider_pkg_opt.banner'),
+                    '8' => trans('lang.provider_pkg_opt.pvt_cht'),
                 );
             }
             return $list;
@@ -1173,14 +1173,14 @@ class Helper extends Model
                 );
             } elseif ($role == 'provider') {
                 $list = array(
-                    'no_of_connects' => trans('lang.freelancer_pkg_opt.no_of_credits'),
-                    'no_of_skills' => trans('lang.freelancer_pkg_opt.no_of_skills'),
-                    'no_of_services' => trans('lang.freelancer_pkg_opt.no_of_services'),
-                    'no_of_featured_services' => trans('lang.freelancer_pkg_opt.no_of_featured_services'),
-                    'duration' => trans('lang.freelancer_pkg_opt.pkg_duration'),
-                    'badge' => trans('lang.freelancer_pkg_opt.badge'),
-                    'banner_option' => trans('lang.freelancer_pkg_opt.banner'),
-                    'private_chat' => trans('lang.freelancer_pkg_opt.pvt_cht'),
+                    'no_of_connects' => trans('lang.provider_pkg_opt.no_of_credits'),
+                    'no_of_skills' => trans('lang.provider_pkg_opt.no_of_skills'),
+                    'no_of_services' => trans('lang.provider_pkg_opt.no_of_services'),
+                    'no_of_featured_services' => trans('lang.provider_pkg_opt.no_of_featured_services'),
+                    'duration' => trans('lang.provider_pkg_opt.pkg_duration'),
+                    'badge' => trans('lang.provider_pkg_opt.badge'),
+                    'banner_option' => trans('lang.provider_pkg_opt.banner'),
+                    'private_chat' => trans('lang.provider_pkg_opt.pvt_cht'),
                 );
             }
             return $list;
@@ -1305,8 +1305,8 @@ class Helper extends Model
     {
         $list = array(
             '0' => array(
-                'title' => trans('lang.search_filter_list.freelancer'),
-                'value' => 'freelancer',
+                'title' => trans('lang.search_filter_list.provider'),
+                'value' => 'provider',
             ),
             '1' => array(
                 'title' => trans('lang.search_filter_list.jobs'),
@@ -4009,7 +4009,7 @@ class Helper extends Model
             ),
             'liked_freelancer' => array(
                 'value' => 'liked_freelancer',
-                'title' => trans('lang.liked_freelancers'),
+                'title' => trans('lang.liked_providers'),
             ),
             'cancel_job' => array(
                 'value' => 'cancel_job',
@@ -4509,7 +4509,7 @@ class Helper extends Model
     {
         if (Auth::user()) {
             if (Auth::user()->role == 'provider') {
-                return trans('lang.freelancer');
+                return trans('lang.provider');
             } elseif (Auth::user()->role == 'employer') {
                 return trans('lang.employer');
             } else {
