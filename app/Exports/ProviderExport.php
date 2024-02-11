@@ -53,7 +53,7 @@ class ProviderExport implements FromCollection, WithHeadings, WithEvents, WithSt
 
                 
                 $drop_column = 'B';
-                $provider_type = Helper::getFreelancerLevelList();
+                $provider_type = Helper::getProviderLevelList();
                 $departments = Department::all();
                 $locations = Location::all();
                 $english_levels = Helper::getEnglishLevelList();
@@ -139,7 +139,7 @@ class ProviderExport implements FromCollection, WithHeadings, WithEvents, WithSt
 
                     $objValidation->setFormula1('"' . $configs . '"');
 
-                    //freelancer type
+                    //Provider type
                     $objValidation1 = $sheet->getCell('G'.$i)->getDataValidation();
                     $objValidation1->setType(DataValidation::TYPE_LIST);
                     $objValidation1->setErrorStyle(DataValidation::STYLE_INFORMATION);

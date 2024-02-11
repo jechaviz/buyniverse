@@ -659,7 +659,7 @@ class PublicController extends Controller
         $skills     = Skill::all();
         $currency   = SiteManagement::getMetaValue('commision');
         $symbol     = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
-        $freelancer_skills = Helper::getFreelancerLevelList();
+        $freelancer_skills = Helper::getProviderLevelList();
         $project_length = Helper::getJobDurationList();
         $address = !empty($_GET['addr']) ? $_GET['addr'] : '';
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';

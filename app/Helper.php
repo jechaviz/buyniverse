@@ -922,7 +922,7 @@ class Helper extends Model
     }
 
     /**
-     * Get Freelancer Level
+     * Get Provider Level
      *
      * @param string $key key
      *
@@ -930,7 +930,7 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getFreelancerLevelList($key = "") 
+    public static function getProviderLevelList($key = "") 
     {
         $list = array(
             'independent'       => trans('lang.freelancer_level.independent'),
@@ -1015,7 +1015,7 @@ class Helper extends Model
     }
 
     /**
-     * Get Freelancer Badge
+     * Get Provider Badge
      *
      * @param string $key key
      *
@@ -1023,7 +1023,7 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getFreelancerBadgeList($key = "")
+    public static function getProviderBadgeList($key = "")
     {
         $list = array(
             'gold'   => trans('lang.badge.gold'),
@@ -3481,7 +3481,7 @@ class Helper extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public static function getFreelancerJobTotalEarning($user_id, $status, $paid_status = 'pending')
+    public static function getProviderJobTotalEarning($user_id, $status, $paid_status = 'pending')
     {
         $commision = SiteManagement::getMetaValue('commision');
         $admin_commission = !empty($commision) && !empty($commision[0]['commision']) ? $commision[0]['commision'] : 0;
@@ -4097,7 +4097,7 @@ class Helper extends Model
     }
 
     /**
-     * Get freelancer status list
+     * Get Provider status list
      *
      * @param string $status status
      *
@@ -4105,7 +4105,7 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getFreelancerServiceStatus($status = '')
+    public static function getProviderServiceStatus($status = '')
     {
         $status_list = array(
             'published' => array(
@@ -4156,7 +4156,7 @@ class Helper extends Model
     }
 
     /**
-     * Get freelancer services
+     * Get Provider services
      *
      * @param string $status pivot table status
      *
@@ -4164,7 +4164,7 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getFreelancerServices($status, $user_id, $paid_status = '')
+    public static function getProviderServices($status, $user_id, $paid_status = '')
     {
         $services = DB::table('services')
             ->join('service_user', 'service_user.service_id', '=', 'services.id')
@@ -4178,7 +4178,7 @@ class Helper extends Model
     }
 
     /**
-     * Get total freelancer services
+     * Get total Provider services
      *
      * @param string $status pivot table status
      *
@@ -4186,7 +4186,7 @@ class Helper extends Model
      *
      * @return array
      */
-    public static function getTotalFreelancerServices($status, $user_id)
+    public static function getTotalProviderServices($status, $user_id)
     {
         return DB::table('services')
             ->join('service_user', 'service_user.service_id', '=', 'services.id')
@@ -4198,7 +4198,7 @@ class Helper extends Model
     /**
      * Get service reviews
      *
-     * @param int $receiver_id freelancer id
+     * @param int $receiver_id Provider id
      * @param int $service_id  user service id
      *
      * @access public

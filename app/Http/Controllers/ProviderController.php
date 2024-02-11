@@ -717,7 +717,7 @@ class ProviderController extends Controller
             $locations  = Location::all();
             $languages  = Language::all();
             $skills     = Skill::all();
-            $provider_skills = Helper::getFreelancerLevelList();
+            $provider_skills = Helper::getProviderLevelList();
             $project_length = Helper::getJobDurationList();
             $current_date = Carbon::now()->toDateTimeString();
             $address = !empty($_GET['addr']) ? $_GET['addr'] : '';
@@ -914,7 +914,7 @@ class ProviderController extends Controller
 
 
             $providers = Provider_type::where('job_id', $job->id)->get();
-            $project_provider = Helper::getFreelancerLevelList();
+            $project_provider = Helper::getProviderLevelList();
             foreach ($providers as $key => $value) {
                 foreach ($project_provider as $key1 => $value1) {
                     //dd($value, $key1, $project_english);
@@ -1000,7 +1000,7 @@ class ProviderController extends Controller
 
 
             $providers = Provider_type::where('job_id', $job->id)->get();
-            $project_provider = Helper::getFreelancerLevelList();
+            $project_provider = Helper::getProviderLevelList();
             foreach ($providers as $key => $value) {
                 foreach ($project_provider as $key1 => $value1) {
                     //dd($value, $key1, $project_english);
@@ -1230,12 +1230,12 @@ class ProviderController extends Controller
             $provider = User::find($provider_id);
             $currency   = SiteManagement::getMetaValue('commision');
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
-            $status_list = array_pluck(Helper::getFreelancerServiceStatus(), 'title', 'value');
+            $status_list = array_pluck(Helper::getProviderServiceStatus(), 'title', 'value');
             //if (!empty($status) && $status === 'posted') {
                 //$services = $provider->services;
-                $hired_services = Helper::getFreelancerServices('hired', Auth::user()->id);
-                $completed_services = Helper::getFreelancerServices('completed', Auth::user()->id);
-                $cancelled_services = Helper::getFreelancerServices('cancelled', Auth::user()->id);
+                $hired_services = Helper::getProviderServices('hired', Auth::user()->id);
+                $completed_services = Helper::getProviderServices('completed', Auth::user()->id);
+                $cancelled_services = Helper::getProviderServices('cancelled', Auth::user()->id);
                 $attachment = Helper::getUnserializeData($completed_services[0]->attachments);
                 //dd($completed_services);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/index.blade.php'))) {
@@ -1271,7 +1271,7 @@ class ProviderController extends Controller
             $provider = User::find($provider_id);
             $currency   = SiteManagement::getMetaValue('commision');
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
-            $status_list = array_pluck(Helper::getFreelancerServiceStatus(), 'title', 'value');
+            $status_list = array_pluck(Helper::getProviderServiceStatus(), 'title', 'value');
             if (!empty($status) && $status === 'posted') {
                 $services = $provider->services;
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/index.blade.php'))) {
@@ -1294,7 +1294,7 @@ class ProviderController extends Controller
                     );
                 }
             } else if (!empty($status) && $status === 'hired') {
-                $services = Helper::getFreelancerServices('hired', Auth::user()->id);
+                $services = Helper::getProviderServices('hired', Auth::user()->id);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/ongoing.blade.php'))) {
                     return view(
                         'extend.back-end.freelancer.services.ongoing',
@@ -1313,7 +1313,7 @@ class ProviderController extends Controller
                     );
                 }
             } elseif (!empty($status) && $status === 'completed') {
-                $services = Helper::getFreelancerServices('completed', Auth::user()->id);
+                $services = Helper::getProviderServices('completed', Auth::user()->id);
                 //dd($services);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/completed.blade.php'))) {
                     return view(
@@ -1333,7 +1333,7 @@ class ProviderController extends Controller
                     );
                 }
             } elseif (!empty($status) && $status === 'cancelled') {
-                $services = Helper::getFreelancerServices('cancelled', Auth::user()->id);
+                $services = Helper::getProviderServices('cancelled', Auth::user()->id);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/cancelled.blade.php'))) {
                     return view(
                         'extend.back-end.freelancer.services.cancelled',

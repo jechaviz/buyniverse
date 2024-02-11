@@ -1204,7 +1204,7 @@ class JobController extends Controller
     public function getFreelancer($id)
     {
         $freelancer = Provider_type::where('job_id', $id)->get();
-        $project_freelancer = Helper::getFreelancerLevelList();
+        $project_freelancer = Helper::getProviderLevelList();
         foreach ($freelancer as $key => $value) {
             foreach ($project_freelancer as $key1 => $value1) {
                 //dd($value, $key1, $project_english);
@@ -1241,7 +1241,7 @@ class JobController extends Controller
     }
     public function getProjectfreelancerlevel()
     {
-        $project_freelancer = Helper::getFreelancerLevelList();
+        $project_freelancer = Helper::getProviderLevelList();
         return response()->json($project_freelancer);
     }
     public function postProjectLevel($id)

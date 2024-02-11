@@ -1090,11 +1090,11 @@ class RestAPIController extends Controller
             }
             //Freelancer Levels
             if ($type === 'freelancer_level') {
-                $freelancer_level = Helper::getFreelancerLevelList();
+                $freelancer_level = Helper::getProviderLevelList();
                 if (!empty($freelancer_level)) {
                     $count = 0;
                     foreach ($freelancer_level as $value => $level) {
-                        $json[$count]['title'] = !empty($level) ? Helper::getFreelancerLevelList($value) : '';
+                        $json[$count]['title'] = !empty($level) ? Helper::getProviderLevelList($value) : '';
                         $json[$count]['value'] = !empty($level) ? $value : '';
                         $count++;
                     }

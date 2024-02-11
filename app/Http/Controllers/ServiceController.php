@@ -776,7 +776,7 @@ class ServiceController extends Controller
         }
         $currency   = SiteManagement::getMetaValue('commision');
         $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
-        $status_list = array_pluck(Helper::getFreelancerServiceStatus(), 'title', 'value');
+        $status_list = array_pluck(Helper::getProviderServiceStatus(), 'title', 'value');
         if (file_exists(resource_path('views/extend/back-end/admin/services/index.blade.php'))) {
             return view(
                 'extend.back-end.admin.services.index',

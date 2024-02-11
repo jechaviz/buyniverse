@@ -137,7 +137,7 @@
                                     </figure>
                                     <div class="wt-insightdetails">
                                         <div class="wt-title">
-                                            <h3>{{{ Helper::getTotalFreelancerServices('hired', Auth::user()->id)->count() }}}</h3>
+                                            <h3>{{{ Helper::getTotalProviderServices('hired', Auth::user()->id)->count() }}}</h3>
                                             <h3>{{ trans('lang.total_ongoing_services') }}</h3>
                                             <a href="{{{ url('provider/services/hired') }}}">{{ trans('lang.click_view') }}</a>
                                         </div>
@@ -151,7 +151,7 @@
                                     </figure>
                                     <div class="wt-insightdetails">
                                         <div class="wt-title">
-                                            <h3>{{{ Helper::getTotalFreelancerServices('completed', Auth::user()->id)->count() }}}</h3>
+                                            <h3>{{{ Helper::getTotalProviderServices('completed', Auth::user()->id)->count() }}}</h3>
                                             <h3>{{ trans('lang.total_completed_services') }}</h3>
                                             <a href="{{{ url('provider/services/completed') }}}">{{ trans('lang.click_view') }}</a>
                                         </div>
@@ -165,7 +165,7 @@
                                     </figure>
                                     <div class="wt-insightdetails">
                                         <div class="wt-title">
-                                            <h3>{{{ Helper::getTotalFreelancerServices('cancelled', Auth::user()->id)->count() }}}</h3>
+                                            <h3>{{{ Helper::getTotalProviderServices('cancelled', Auth::user()->id)->count() }}}</h3>
                                             <h3>{{ trans('lang.total_cancelled_services') }}</h3>
                                             <a href="{{{ url('provider/services/cancelled') }}}">{{ trans('lang.click_view') }}</a>
                                         </div>
@@ -179,7 +179,7 @@
                                     </figure>
                                     <div class="wt-insightdetails">
                                         <div class="wt-title">
-                                            <h3>{{{ Helper::getTotalFreelancerServices('published', Auth::user()->id)->count() }}}</h3>
+                                            <h3>{{{ Helper::getTotalProviderServices('published', Auth::user()->id)->count() }}}</h3>
                                             <h3>{{ trans('lang.total_published_services') }}</h3>
                                             <a href="{{{ url('provider/services/posted') }}}">{{ trans('lang.click_view') }}</a>
                                         </div>

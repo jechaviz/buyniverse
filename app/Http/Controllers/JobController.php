@@ -125,7 +125,7 @@ class JobController extends Controller
         $english_levels = Helper::getEnglishLevelList();
         $project_levels = Helper::getProjectLevel();
         $job_duration = Helper::getJobDurationList();
-        $freelancer_level = Helper::getFreelancerLevelList();
+        $freelancer_level = Helper::getProviderLevelList();
         //dd($freelancer_level);
         $skills = Skill::pluck('title', 'id');
         $categories = Category::pluck('title', 'id');
@@ -203,7 +203,7 @@ class JobController extends Controller
         $english_levels = Helper::getEnglishLevelList();
         $project_levels = Helper::getProjectLevel();
         $job_duration = Helper::getJobDurationList();
-        $freelancer_level = Helper::getFreelancerLevelList();
+        $freelancer_level = Helper::getProviderLevelList();
         //dd($freelancer_level);
         $skills = Skill::pluck('title', 'id');
         $categories = Category::pluck('title', 'id');
@@ -351,7 +351,7 @@ class JobController extends Controller
             $project_levels = Helper::getProjectLevel();
             $english_levels = Helper::getEnglishLevelList();
             $job_duration = Helper::getJobDurationList();
-            $freelancer_level_list = Helper::getFreelancerLevelList();
+            $freelancer_level_list = Helper::getProviderLevelList();
             $attachments = !empty($job->attachments) ? unserialize($job->attachments) : '';
             foreach($quizzes as $quiz)
             {
@@ -1521,7 +1521,7 @@ class JobController extends Controller
         $categories = Category::all();
         $locations = Location::all();
         $languages = Language::all();
-        $freelancer_skills = Helper::getFreelancerLevelList();
+        $freelancer_skills = Helper::getProviderLevelList();
         $project_length = Helper::getJobDurationList();
         $skills = Skill::all();
         $keyword = '';
