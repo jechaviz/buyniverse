@@ -652,7 +652,7 @@ class UserController extends Controller
             $user = $this->user::find(Auth::user()->id);
             $profile = $user->profile;
             $saved_jobs        = !empty($profile->saved_jobs) ? unserialize($profile->saved_jobs) : array();
-            $saved_freelancers = !empty($profile->saved_freelancer) ? unserialize($profile->saved_freelancer) : array();
+            $saved_providers = !empty($profile->saved_provider) ? unserialize($profile->saved_provider) : array();
             $saved_employers   = !empty($profile->saved_employers) ? unserialize($profile->saved_employers) : array();
             $currency          = SiteManagement::getMetaValue('commision');
             $symbol            = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
@@ -663,7 +663,7 @@ class UserController extends Controller
                         compact(
                             'profile',
                             'saved_jobs',
-                            'saved_freelancers',
+                            'saved_providers',
                             'saved_employers',
                             'symbol'
                         )
@@ -674,7 +674,7 @@ class UserController extends Controller
                         compact(
                             'profile',
                             'saved_jobs',
-                            'saved_freelancers',
+                            'saved_providers',
                             'saved_employers',
                             'symbol'
                         )
@@ -687,7 +687,7 @@ class UserController extends Controller
                         compact(
                             'profile',
                             'saved_jobs',
-                            'saved_freelancers',
+                            'saved_providers',
                             'saved_employers',
                             'symbol'
                         )
@@ -698,7 +698,7 @@ class UserController extends Controller
                         compact(
                             'profile',
                             'saved_jobs',
-                            'saved_freelancers',
+                            'saved_providers',
                             'saved_employers',
                             'symbol'
                         )
@@ -731,7 +731,7 @@ class UserController extends Controller
                 $role = $this->user::getUserRoleType($selected_user->id);
                 if ($role->role_type == 'provider') {
                     $json['user_type'] = 'provider';
-                    if (in_array($selected_user->id, unserialize($profile->saved_freelancer))) {
+                    if (in_array($selected_user->id, unserialize($profile->saved_provider))) {
                         $json['current_freelancer'] = 'true';
                     }
                     return $json;
@@ -773,7 +773,7 @@ class UserController extends Controller
             if (!empty($request['id'])) {
                 $user_id = Auth::user()->id;
                 $id = $request['id'];
-                if (!empty($request['column']) && ($request['column'] === 'saved_employers' || $request['column'] === 'saved_freelancer' || $request['column'] === 'saved_services')) {
+                if (!empty($request['column']) && ($request['column'] === 'saved_employers' || $request['column'] === 'saved_provider' || $request['column'] === 'saved_services')) {
                     if (!empty($request['seller_id'])) {
                         if ($user_id == $request['seller_id']) {
                             $json['type'] = 'error';

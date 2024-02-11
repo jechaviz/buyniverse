@@ -306,7 +306,7 @@ class PublicController extends Controller
                 $rating = !empty($freelancer_rating) ? $freelancer_rating[0] : 0;
                 $joining_date = !empty($profile->created_at) ? Carbon::parse($profile->created_at)->format('M d, Y') : '';
                 $jobs = Job::select('title', 'id')->get()->pluck('title', 'id');
-                $save_freelancer = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
+                $save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $badge = Helper::getUserBadge($user->id);
                 $feature_class = !empty($badge) ? 'wt-featured' : '';
                 $badge_color = !empty($badge) ? $badge->color : '';
@@ -699,8 +699,8 @@ class PublicController extends Controller
                     $search_languages
                 );
                 $users = count($search['users']) > 0 ? $search['users'] : '';
-                $save_freelancer = !empty(auth()->user()->profile->saved_freelancer) ?
-                    unserialize(auth()->user()->profile->saved_freelancer) : array();
+                $save_freelancer = !empty(auth()->user()->profile->saved_provider) ?
+                    unserialize(auth()->user()->profile->saved_provider) : array();
                 $save_employer = !empty(auth()->user()->profile->saved_employers) ?
                     unserialize(auth()->user()->profile->saved_employers) : array();
                 if ($type === 'employer') {

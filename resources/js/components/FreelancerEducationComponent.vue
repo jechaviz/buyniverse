@@ -27,7 +27,7 @@
 
 <script>
     export default{
-        props: ['freelancer_id', 'no_of_post'],
+        props: ['provider_id', 'no_of_post'],
         data() {
             return {
                 educations: [],
@@ -39,7 +39,7 @@
             getEducation(){
                 let self = this;
                 axios.post(APP_URL + '/get-provider-education',{
-                    id:self.freelancer_id
+                    id:self.provider_id
                 })
                 .then(function (response) {
                     self.educations = response.data.education;

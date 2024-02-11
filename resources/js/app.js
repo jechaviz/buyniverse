@@ -2062,7 +2062,7 @@ if (document.getElementById("user_profile")) {
                     .then(function (response) {
                         if (response.data.authentication == true) {
                             if (response.data.type == 'success') {
-                                if (column == 'saved_freelancer') {
+                                if (column == 'saved_provider') {
                                     jQuery('#' + element_id).parents('li').addClass('wt-btndisbaled');
                                     jQuery('#' + element_id).addClass('wt-clicksave');
                                     jQuery('#' + element_id).find('.save_text').text(saved_text);
@@ -5131,7 +5131,7 @@ if (document.getElementById("services")) {
                     .then(function (response) {
                         if (response.data.authentication == true) {
                             if (response.data.type == 'success') {
-                                if (column == 'saved_freelancer') {
+                                if (column == 'saved_provider') {
                                     jQuery('#' + element_id).parents('li').addClass('wt-btndisbaled');
                                     jQuery('#' + element_id).addClass('wt-clicksave');
                                     jQuery('#' + element_id).find('.save_text').text(saved_text);

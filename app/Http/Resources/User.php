@@ -21,8 +21,8 @@ class User extends JsonResource
     {
         $json = array();
         $user = User::find($request['profile_id']);
-        $save_freelancer = !empty($user->profile->saved_freelancer) ?
-            unserialize($user->profile->saved_freelancer) : array();
+        $save_freelancer = !empty($user->profile->saved_provider) ?
+            unserialize($user->profile->saved_provider) : array();
         $type = $request['listing_type'];
         $user_by_role =  User::role($type)->select('id')->get()->pluck('id')->toArray();
         $users = User::whereIn('id', $user_by_role)->get()->toArray();

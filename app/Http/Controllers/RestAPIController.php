@@ -112,8 +112,8 @@ class RestAPIController extends Controller
                     return Response::json($json, 203);
                 }
             } elseif ($type === 'favorite') {
-                $save_freelancer = !empty($login_user->profile->saved_freelancer) ?
-                    unserialize($login_user->profile->saved_freelancer) : array();
+                $save_freelancer = !empty($login_user->profile->saved_provider) ?
+                    unserialize($login_user->profile->saved_provider) : array();
                 if (!empty($save_freelancer)) {
                     $users =  $users->whereIn('id', $save_freelancer)->orderBy('updated_at', 'desc')
                         ->paginate($post_per_page);
@@ -211,8 +211,8 @@ class RestAPIController extends Controller
             if (!empty($users) && $users->count() > 0) {
                 foreach ($users as $key => $user) {
                     $user_object = User::find($user['id']);
-                    $save_freelancer = !empty($login_user->profile->saved_freelancer) ?
-                        unserialize($login_user->profile->saved_freelancer) : array();
+                    $save_freelancer = !empty($login_user->profile->saved_provider) ?
+                        unserialize($login_user->profile->saved_provider) : array();
                     $amount = Payout::where('user_id', $user_object->id)->select('amount')->pluck('amout')->first();
                     $json[$key]['favorit'] = in_array($user['id'], $save_freelancer) ? 'yes' : '';
                     $json[$key]['name'] = Helper::getUserName($user['id']);

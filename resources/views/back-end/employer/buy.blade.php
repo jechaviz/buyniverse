@@ -880,7 +880,7 @@
                                                     $stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                                                     $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                                                     $verified_user = \App\User::select('user_verified')->where('id', $freelancer->id)->pluck('user_verified')->first();
-                                                    $save_freelancer = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
+                                                    $save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                                                     $badge = Helper::getUserBadge($freelancer->id);
                                                     if (!empty($enable_package) && $enable_package === 'true') {
                                                         $feature_class = (!empty($badge) && $freelancer->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
@@ -938,7 +938,7 @@
                                                                     </li>-->
                                                                 @else
                                                                     <!--<li v-cloak>
-                                                                        <a href="javascrip:void(0);" class="wt-clicklike" id="freelancer-{{$freelancer->id}}" @click.prevent="add_wishlist('freelancer-{{$freelancer->id}}', {{$freelancer->id}}, 'saved_freelancer', '{{trans("lang.saved")}}')">
+                                                                        <a href="javascrip:void(0);" class="wt-clicklike" id="freelancer-{{$freelancer->id}}" @click.prevent="add_wishlist('freelancer-{{$freelancer->id}}', {{$freelancer->id}}, 'saved_provider', '{{trans("lang.saved")}}')">
                                                                             <i class="fa fa-heart"></i>
                                                                             <span class="save_text">{{ trans('lang.click_to_save') }}</span>
                                                                         </a>

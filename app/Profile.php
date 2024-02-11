@@ -40,7 +40,7 @@ class Profile extends Model
     protected $fillable = [
         'user_id', 'department_id', 'no_of_employees', 'provider_type',
         'english_level', 'hourly_rate', 'experience', 'education', 'awards',
-        'projects', 'saved_freelancer', 'saved_jobs', 'saved_employers',
+        'projects', 'saved_provider', 'saved_jobs', 'saved_employers',
         'rating', 'address', 'longitude', 'latitude', 'avater', 'banner',
         'gender', 'tagline', 'description', 'delete_reason', 'delete_description',
         'profile_searchable', 'profile_blocked', 'weekly_alerts', 'message_alerts'
@@ -348,7 +348,7 @@ class Profile extends Model
         $wishlist = array_unique($wishlist);
         $profile->$column = serialize($wishlist);
         $profile->save();
-        if (!empty($column) && ($column === 'saved_employers' || $column === 'saved_freelancer')) {
+        if (!empty($column) && ($column === 'saved_employers' || $column === 'saved_provider')) {
             DB::table('followers')->insert(
                 [
                     'follower' => $user_id, 'following' => $id,

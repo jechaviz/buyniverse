@@ -186,7 +186,7 @@ class JobController extends Controller
                 $user->stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                 $user->average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $user->verified_user = \App\User::select('user_verified')->where('id', $user->id)->pluck('user_verified')->first();
-                $user->save_freelancer = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
+                $user->save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $user->badge = Helper::getUserBadge($user->id);
                 if (!empty($enable_package) && $enable_package === 'true') {
                     $user->feature_class = (!empty($badge) && $user->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
@@ -276,7 +276,7 @@ class JobController extends Controller
                 $user->stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                 $user->average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $user->verified_user = \App\User::select('user_verified')->where('id', $user->id)->pluck('user_verified')->first();
-                $user->save_freelancer = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
+                $user->save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $user->badge = Helper::getUserBadge($user->id);
                 if (!empty($enable_package) && $enable_package === 'true') {
                     $user->feature_class = (!empty($badge) && $user->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
@@ -367,7 +367,7 @@ class JobController extends Controller
                 $user->stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                 $user->average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $user->verified_user = \App\User::select('user_verified')->where('id', $user->id)->pluck('user_verified')->first();
-                $user->save_freelancer = !empty(auth()->user()->profile->saved_freelancer) ? unserialize(auth()->user()->profile->saved_freelancer) : array();
+                $user->save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $user->badge = Helper::getUserBadge($user->id);
                 if (!empty($enable_package) && $enable_package === 'true') {
                     $user->feature_class = (!empty($badge) && $user->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';

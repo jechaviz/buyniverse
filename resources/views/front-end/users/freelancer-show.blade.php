@@ -61,7 +61,7 @@
                                             <br>
                                             <a href="{{url('profile/'.$user->slug.'/provider')}}">{{ '@' }}{{{ $user->slug }}}</a>
                                             <br>
-                                            <a href="{{ url('profile/'.$user->slug.'/employer') }}" id="freelancer-51" class="wt-clicksavebtn" style="padding: 0px 5px;margin-top: 20px;"><i></i>
+                                            <a href="{{ url('profile/'.$user->slug.'/employer') }}" id="provider-51" class="wt-clicksavebtn" style="padding: 0px 5px;margin-top: 20px;"><i></i>
                                                 Employer
                                             </a>
                                         </span>
@@ -86,7 +86,7 @@
                                                 </span>
                                             </li>
                                         @endif
-                                        @if (in_array($profile->id, $save_freelancer))
+                                        @if (in_array($profile->id, $save_provider))
                                             <!--<li class="wt-btndisbaled">
                                                 <a href="javascrip:void(0);" class="wt-clicksave wt-clicksave">
                                                     <i class="fa fa-heart"></i>
@@ -96,7 +96,7 @@
                                             </li>-->
                                         @else
                                             <!--<li v-bind:class="disable_btn" v-cloak>
-                                                <a href="javascrip:void(0);" v-bind:class="click_to_save" id="freelancer-{{$profile->id}}" @click.prevent="add_wishlist('freelancer'-{{$profile->id}}, {{$profile->id}}, 'saved_freelancer', '{{trans("lang.saved")}}')" v-cloak>
+                                                <a href="javascrip:void(0);" v-bind:class="click_to_save" id="provider-{{$profile->id}}" @click.prevent="add_wishlist('provider'-{{$profile->id}}, {{$profile->id}}, 'saved_provider', '{{trans("lang.saved")}}')" v-cloak>
                                                     <i v-bind:class="saved_class"></i>
                                                     @{{ text }}
                                                 </a>
@@ -161,10 +161,10 @@
                                                 $total_orders = Helper::getServiceCount($service->id, 'hired');
                                             @endphp
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 float-left">
-                                                <div class="wt-freelancers-info {{$no_attachments}}">
+                                                <div class="wt-providers-info {{$no_attachments}}">
                                                     @if (!empty($attachments))
-                                                        @php $enable_slider = count($attachments) > 1 ? 'wt-freelancerslider owl-carousel' : ' '; @endphp
-                                                        <div class="wt-freelancers {{{$enable_slider}}}">
+                                                        @php $enable_slider = count($attachments) > 1 ? 'wt-providerslider owl-carousel' : ' '; @endphp
+                                                        <div class="wt-providers {{{$enable_slider}}}">
                                                             @foreach ($attachments as $attachment)
                                                                 <figure class="item">
                                                                     <a href="{{{ url('profile/'.$user->slug) }}}"><img src="{{{ asset(Helper::getImage('uploads/services/'.$user->id, $attachment, 'medium-', 'medium-service.jpg')) }}}" alt="img description" class="item"></a>
@@ -175,18 +175,18 @@
                                                     @if ($service->is_featured == 'true')
                                                         <span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>
                                                     @endif
-                                                    <div class="wt-freelancers-details">
-                                                        <figure class="wt-freelancers-img">
+                                                    <div class="wt-providers-details">
+                                                        <figure class="wt-providers-img">
                                                             <img src="{{ asset(Helper::getProfileImage($user->id)) }}" alt="img description">
                                                         </figure>
-                                                        <div class="wt-freelancers-content">
+                                                        <div class="wt-providers-content">
                                                             <div class="dc-title">
                                                                 <a href="{{{ url('profile/'.$user->slug) }}}"><i class="fa fa-check-circle"></i> {{{Helper::getUserName($user->id)}}}</a>
                                                                 <a href="{{{url('service/'.$service->slug)}}}"><h3>{{{$service->title}}}</h3></a>
                                                                 <span><strong>{{ $symbol }}{{{$service->price}}}</strong> {{trans('lang.starting_from')}}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="wt-freelancers-rating">
+                                                        <div class="wt-providers-rating">
                                                             <ul>
                                                                 <li><span><i class="fa fa-star"></i>{{{ $service_rating }}}/<i>5</i> ({{{$service_reviews->count()}}})</span></li>
                                                                 <li>
@@ -314,7 +314,7 @@
                                     <h2>{{{ trans('lang.crafted_projects') }}}</h2>
                                 </div>
                                 @if (!empty($projects))
-                                    <crafted_project :no_of_post="3" :project="'{{  json_encode($projects) }}'" :freelancer_id="'{{$profile->user_id}}'" :img="'{{ trans('lang.img') }}'"></crafted_project>
+                                    <crafted_project :no_of_post="3" :project="'{{  json_encode($projects) }}'" :provider_id="'{{$profile->user_id}}'" :img="'{{ trans('lang.img') }}'"></crafted_project>
                                 @else
                                     <div class="wt-userprofile">
                                         @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
@@ -367,7 +367,7 @@
                                 </div>
                                 @if (!empty($experiences))
                                     <div class="wt-experiencelisting-hold">
-                                        <experience :freelancer_id="'{{$profile->user_id}}'" :no_of_post="2"></experience>
+                                        <experience :provider_id="'{{$profile->user_id}}'" :no_of_post="2"></experience>
                                     </div>
                                 @else
                                     <div class="wt-userprofile">
@@ -384,7 +384,7 @@
                                     <h2>{{{ trans('lang.education') }}}</h2>
                                 </div>
                                 @if (!empty($education))
-                                    <education :freelancer_id="'{{$profile->user_id}}'" :no_of_post="1"></education>
+                                    <education :provider_id="'{{$profile->user_id}}'" :no_of_post="1"></education>
                                 @else
                                     <div class="wt-userprofile">
                                         @if (file_exists(resource_path('views/extend/errors/no-record.blade.php'))) 
@@ -455,7 +455,7 @@
                             </div>
                             <div class="wt-widget wt-sharejob">
                                 <div class="wt-widgettitle">
-                                    <h2>{{ trans('lang.share_freelancer') }}</h2>
+                                    <h2>{{ trans('lang.share_provider') }}</h2>
                                 </div>
                                 <div class="wt-widgetcontent">
                                     <ul class="wt-socialiconssimple">
@@ -484,7 +484,7 @@
                                     <h2>{{ trans('lang.report_user') }}</h2>
                                 </div>
                                 <div class="wt-widgetcontent">
-                                    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-formreport', 'id' => 'submit-report',  '@submit.prevent'=>'submitReport("'.$profile->user_id.'","freelancer-report")']) !!}
+                                    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-formreport', 'id' => 'submit-report',  '@submit.prevent'=>'submitReport("'.$profile->user_id.'","provider-report")']) !!}
                                         <fieldset>
                                             <div class="form-group">
                                                 <span class="wt-select">
@@ -537,9 +537,9 @@
     <script type="text/javascript" src="{{ asset('js/appear.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script>
-        /* FREELANCERS SLIDER */
-        var _wt_freelancerslider = jQuery('.wt-freelancerslider')
-        _wt_freelancerslider.owlCarousel({
+        /* providerS SLIDER */
+        var _wt_providerslider = jQuery('.wt-providerslider')
+        _wt_providerslider.owlCarousel({
             items: 1,
             loop:true,
             rtl:true,

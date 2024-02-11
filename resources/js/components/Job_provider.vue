@@ -109,7 +109,7 @@
                                                         
                                                         
                                                             <!--<li v-cloak>
-                                                                <a href="javascrip:void(0);" class="wt-clicklike" :id="'freelancer-' + freelancer.id" @click.prevent="add_wishlist('freelancer-' + freelancer.id,  freelancer.id, 'saved_freelancer', trans('lang.saved'))">
+                                                                <a href="javascrip:void(0);" class="wt-clicklike" :id="'freelancer-' + freelancer.id" @click.prevent="add_wishlist('freelancer-' + freelancer.id,  freelancer.id, 'saved_provider', trans('lang.saved'))">
                                                                     <i class="fa fa-heart"></i>
                                                                     <span class="save_text">{{ trans('lang.click_to_save') }}</span>
                                                                 </a>

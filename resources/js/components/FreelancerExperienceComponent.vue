@@ -27,7 +27,7 @@
 
 <script>
     export default{
-        props: ['freelancer_id', 'no_of_post'],
+        props: ['provider_id', 'no_of_post'],
         data() {
             return {
                 experiences: [],
@@ -39,7 +39,7 @@
             getExperiences(){
                 let self = this;
                 axios.post(APP_URL + '/get-provider-experiences',{
-                    id:self.freelancer_id
+                    id:self.provider_id
                 })
                 .then(function (response) {
                     self.experiences = response.data.experience;

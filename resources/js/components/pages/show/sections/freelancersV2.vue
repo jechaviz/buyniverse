@@ -74,7 +74,7 @@
                                 <i class="ti-heart"></i> {{trans("lang.saved")}}</a>
                             </li>
                             <li v-else>
-                                <a href="javascript:void(0);" class="wt-savefreelancer" :id="'freelancer-'+freelancer.id" @click.prevent="add_wishlist('freelancer-'+freelancer.id, freelancer.id, 'saved_freelancer')">
+                                <a href="javascript:void(0);" class="wt-savefreelancer" :id="'freelancer-'+freelancer.id" @click.prevent="add_wishlist('freelancer-'+freelancer.id, freelancer.id, 'saved_provider')">
                                 <i class="ti-heart"></i><span  class="save_text">{{trans("lang.save")}} </span></a>
                             </li>
                         </ul>
@@ -144,7 +144,7 @@ export default {
             .then(function (response) {
                 if (response.data.authentication == true) {
                     if (response.data.type == 'success') {
-                        if (column == 'saved_freelancer') {
+                        if (column == 'saved_provider') {
                             jQuery('#' + element_id).parents('li').addClass('wt-btndisbaled');
                             jQuery('#' + element_id).addClass('wt-liked');
                             jQuery('#' + element_id).find('.save_text').text(Vue.prototype.trans('lang.saved'));

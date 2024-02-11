@@ -39,7 +39,7 @@
                                                 <a href="javascript:void(0);" class="wt-clicksave"><i class="fa fa-heart"></i>{{ trans('lang.saved') }}</a>
                                             </li>
                                             <li v-else>
-                                                <a href="javascrip:void(0);" class="wt-clicklike" :id="'freelancer-'+freelancer.id" @click.prevent="add_wishlist('freelancer-'+freelancer.id, freelancer.id, 'saved_freelancer')">
+                                                <a href="javascrip:void(0);" class="wt-clicklike" :id="'freelancer-'+freelancer.id" @click.prevent="add_wishlist('freelancer-'+freelancer.id, freelancer.id, 'saved_provider')">
                                                     <i class="fa fa-heart"></i><span class="save_text">{{trans("lang.click_to_save")}}</span>
                                                 </a>
                                             </li>-->
@@ -128,7 +128,7 @@ export default {
             .then(function (response) {
                 if (response.data.authentication == true) {
                     if (response.data.type == 'success') {
-                        if (column == 'saved_freelancer') {
+                        if (column == 'saved_provider') {
                             jQuery('#' + element_id).parents('li').addClass('wt-btndisbaled');
                             jQuery('#' + element_id).addClass('wt-clicksave');
                             jQuery('#' + element_id).find('.save_text').text(Vue.prototype.trans('lang.saved'));

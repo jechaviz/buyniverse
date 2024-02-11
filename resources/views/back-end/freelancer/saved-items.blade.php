@@ -10,7 +10,7 @@
                                 <a class="active" data-toggle="tab" href="#wt-skills">{{ trans('lang.saved_jobs') }}</a>
                             </li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-education">{{ trans('lang.followed_companies') }}</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#wt-awards">{{ trans('lang.liked_freelancers') }}</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#wt-awards">{{ trans('lang.liked_providers') }}</a></li>
                         </ul>
                     </div>
                     <div class="wt-tabscontent tab-content tab-savecontent">
@@ -140,24 +140,24 @@
                         <div class="wt-awardsholder tab-pane fade" id="wt-awards">
                             <div class="wt-addprojectsholder wt-likefreelan la-likefreelanfav">
                                 <div class="wt-tabscontenttitle">
-                                    <h2>{{ trans('lang.liked_freelancers') }}</h2>
+                                    <h2>{{ trans('lang.liked_providers') }}</h2>
                                 </div>
-                                @if (!empty($saved_freelancers))
-                                <div class="wt-likedfreelancers wt-haslayout">
-                                    @foreach ($saved_freelancers as $key => $freelancer)
+                                @if (!empty($saved_providers))
+                                <div class="wt-likedproviders wt-haslayout">
+                                    @foreach ($saved_providers as $key => $provider)
                                         @php
-                                            $user = \App\User::find($freelancer);
-                                            $profile = \App\User::find($freelancer)->profile;
+                                            $user = \App\User::find($provider);
+                                            $profile = \App\User::find($provider)->profile;
                                             $rating = !empty($profile->rating) ? $profile->rating : 0;
                                             $user_image = !empty($profile) ? $profile->avater : '';
-                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$freelancer.'/'.$user_image : 'images/user.jpg';
-                                            $user_name = Helper::getUserName($freelancer);
-                                            $reviews = \App\Review::where('receiver_id', $freelancer)->count();
-                                            $proposal = \App\Proposal::select('job_id')->where('freelancer_id', $user->id)->pluck('job_id')->first();
+                                            $profile_image = !empty($user_image) ? '/uploads/users/'.$provider.'/'.$user_image : 'images/user.jpg';
+                                            $user_name = Helper::getUserName($provider);
+                                            $reviews = \App\Review::where('receiver_id', $provider)->count();
+                                            $proposal = \App\Proposal::select('job_id')->where('provider_id', $user->id)->pluck('job_id')->first();
                                             $employer_id = !empty($proposal) ? \App\Job::select('user_id')->where('id', $proposal)->pluck('user_id')->first() : '';
                                             $job = !empty($employer_id) ? \App\Job::where('user_id', $employer_id)->first() : '';
                                             $featured_class = (!empty($job) && $job->is_featured == 'true') ? 'wt-featured' : '';
-                                            $verified_user = \App\User::select('user_verified')->where('id', $freelancer)->pluck('user_verified')->first();
+                                            $verified_user = \App\User::select('user_verified')->where('id', $provider)->pluck('user_verified')->first();
                                             $avg_rating = \App\Review::where('receiver_id', $user->id)->sum('avg_rating');
                                             $user_rating  = $avg_rating != 0 ? round($avg_rating/\App\Review::count()) : 0;
                                             $user_reviews = \App\Review::where('receiver_id', $user->id)->get();
@@ -204,8 +204,8 @@
                                     @endif
                                 @endif
                             </div>
-                            @if ( method_exists($saved_freelancers,'links') )
-                                {{ $saved_freelancers->links('pagination.custom') }}
+                            @if ( method_exists($saved_providers,'links') )
+                                {{ $saved_providers->links('pagination.custom') }}
                             @endif
                         </div>
                     </div>
@@ -241,8 +241,8 @@
                                 {{ Helper::getImages('images','save-3.png', 'users') }}
                             </figure>
                             <div class="wt-title">
-                                <h3>{{{ count($saved_freelancers) }}}</h3>
-                                <span>{{ trans('lang.freelancers_liked') }}</span>
+                                <h3>{{{ count($saved_providers) }}}</h3>
+                                <span>{{ trans('lang.providers_liked') }}</span>
                             </div>
                         </div>
                     </div>
