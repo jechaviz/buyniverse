@@ -126,7 +126,7 @@ class ServiceController extends Controller
         $categories = Category::pluck('title', 'id');
         if (file_exists(resource_path('views/extend/back-end/freelancer/services/create.blade.php'))) {
             return view(
-                'extend.back-end.freelancer.services.create',
+                'extend.back-end.provider.services.create',
                 compact(
                     'english_levels',
                     'languages',
@@ -138,7 +138,7 @@ class ServiceController extends Controller
             );
         } else {
             return view(
-                'back-end.freelancer.services.create',
+                'back-end.provider.services.create',
                 compact(
                     'english_levels',
                     'languages',
@@ -446,7 +446,7 @@ class ServiceController extends Controller
         $attachments = !empty($serialize_attachment) ? unserialize($serialize_attachment) : '';
         if (file_exists(resource_path('views/extend/back-end/freelancer/services/edit.blade.php'))) {
             return view(
-                'extend.back-end.freelancer.services.edit',
+                'extend.back-end.provider.services.edit',
                 compact(
                     'english_levels',
                     'languages',
@@ -461,7 +461,7 @@ class ServiceController extends Controller
             );
         } else {
             return view(
-                'back-end.freelancer.services.edit',
+                'back-end.provider.services.edit',
                 compact(
                     'english_levels',
                     'languages',

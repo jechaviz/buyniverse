@@ -24,7 +24,7 @@ class FteamController extends Controller
     {
         $user_id = Auth::user()->id;
         $teams = Fteam::where('user_id', $user_id)->get();
-        return view('back-end.freelancer.fteams.index', compact('teams'));
+        return view('back-end.provider.fteams.index', compact('teams'));
     }
 
     /**
@@ -96,7 +96,7 @@ class FteamController extends Controller
     public function edit($id)
     {
         $team = Fteam::find($id);
-        return view('back-end.freelancer.fteams.edit', compact('team'));
+        return view('back-end.provider.fteams.edit', compact('team'));
     }
 
     /**

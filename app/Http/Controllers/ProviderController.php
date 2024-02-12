@@ -103,7 +103,7 @@ class ProviderController extends Controller
         $videos = !empty($profile->videos) ? Helper::getUnserializeData($profile->videos) : '';
         if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/personal-detail/index.blade.php'))) {
             return view(
-                'extend.back-end.freelancer.profile-settings.personal-detail.index',
+                'extend.back-end.provider.profile-settings.personal-detail.index',
                 compact(
                     'videos',
                     'locations',
@@ -123,7 +123,7 @@ class ProviderController extends Controller
             );
         } else {
             return view(
-                'back-end.freelancer.profile-settings.personal-detail.index',
+                'back-end.provider.profile-settings.personal-detail.index',
                 compact(
                     'videos',
                     'locations',
@@ -406,9 +406,9 @@ class ProviderController extends Controller
             trans('lang.months.december'),
         ];
         if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/experience-education/index.blade.php'))) {
-            return view('extend.back-end.freelancer.profile-settings.experience-education.index', compact('weekdays', 'months'));
+            return view('extend.back-end.provider.profile-settings.experience-education.index', compact('weekdays', 'months'));
         } else {
-            return view('back-end.freelancer.profile-settings.experience-education.index', compact('weekdays', 'months'));
+            return view('back-end.provider.profile-settings.experience-education.index', compact('weekdays', 'months'));
         }
     }
 
@@ -443,9 +443,9 @@ class ProviderController extends Controller
             trans('lang.months.december'),
         ];
         if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/projects-awards/index.blade.php'))) {
-            return view('extend.back-end.freelancer.profile-settings.projects-awards.index', compact('weekdays', 'months'));
+            return view('extend.back-end.provider.profile-settings.projects-awards.index', compact('weekdays', 'months'));
         } else {
-            return view('back-end.freelancer.profile-settings.projects-awards.index', compact('weekdays', 'months'));
+            return view('back-end.provider.profile-settings.projects-awards.index', compact('weekdays', 'months'));
         }
     }
 
@@ -686,7 +686,7 @@ class ProviderController extends Controller
             //dd($fteams_jobs, $fteams);
             $team_jobs = Job::whereIn('id', $teams)->get();
             return view(
-                'back-end.freelancer.jobs.index',
+                'back-end.provider.jobs.index',
                 compact(
                     'ongoing_jobs',
                     'completed_jobs',
@@ -763,7 +763,7 @@ class ProviderController extends Controller
 
             if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/list.blade.php'))) {
                 return view(
-                    'extend.back-end.freelancer.jobs.list',
+                    'extend.back-end.provider.jobs.list',
                     compact(
                         'address',
                         'jobs',
@@ -786,7 +786,7 @@ class ProviderController extends Controller
                 );
             } else {
                 return view(
-                    'back-end.freelancer.jobs.list',
+                    'back-end.provider.jobs.list',
                     compact(
                         'address',
                         'jobs',
@@ -825,7 +825,7 @@ class ProviderController extends Controller
             if (!empty($status) && $status === 'hired') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/ongoing.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.jobs.ongoing',
+                        'extend.back-end.provider.jobs.ongoing',
                         compact(
                             'ongoing_jobs',
                             'symbol'
@@ -833,7 +833,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.jobs.ongoing',
+                        'back-end.provider.jobs.ongoing',
                         compact(
                             'ongoing_jobs',
                             'symbol'
@@ -843,7 +843,7 @@ class ProviderController extends Controller
             } elseif (!empty($status) && $status === 'completed') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/completed.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.jobs.completed',
+                        'extend.back-end.provider.jobs.completed',
                         compact(
                             'completed_jobs',
                             'symbol'
@@ -851,7 +851,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.jobs.completed',
+                        'back-end.provider.jobs.completed',
                         compact(
                             'completed_jobs',
                             'symbol'
@@ -861,7 +861,7 @@ class ProviderController extends Controller
             } elseif (!empty($status) && $status === 'cancelled') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/cancelled.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.jobs.cancelled',
+                        'extend.back-end.provider.jobs.cancelled',
                         compact(
                             'cancelled_jobs',
                             'symbol'
@@ -869,7 +869,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.jobs.cancelled',
+                        'back-end.provider.jobs.cancelled',
                         compact(
                             'cancelled_jobs',
                             'symbol'
@@ -939,7 +939,7 @@ class ProviderController extends Controller
 
             if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/show.blade.php'))) {
                 return view(
-                    'extend.back-end.freelancer.jobs.show',
+                    'extend.back-end.provider.jobs.show',
                     compact(
                         'job',
                         'employer_name',
@@ -958,7 +958,7 @@ class ProviderController extends Controller
                 );
             } else {
                 return view(
-                    'back-end.freelancer.jobs.show',
+                    'back-end.provider.jobs.show',
                     compact(
                         'job',
                         'employer_name',
@@ -1025,7 +1025,7 @@ class ProviderController extends Controller
 
             if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/show.blade.php'))) {
                 return view(
-                    'extend.back-end.freelancer.jobs.team',
+                    'extend.back-end.provider.jobs.team',
                     compact(
                         'job',
                         'employer_name',
@@ -1043,7 +1043,7 @@ class ProviderController extends Controller
                 );
             } else {
                 return view(
-                    'back-end.freelancer.jobs.team',
+                    'back-end.provider.jobs.team',
                     compact(
                         'job',
                         'employer_name',
@@ -1093,7 +1093,7 @@ class ProviderController extends Controller
         //dd($proposals);
         if (file_exists(resource_path('views/extend/back-end/freelancer/proposals/index.blade.php'))) {
             return view(
-                'extend.back-end.freelancer.proposals.index',
+                'extend.back-end.provider.proposals.index',
                 compact(
                     'proposals',
                     'project_duration',
@@ -1102,7 +1102,7 @@ class ProviderController extends Controller
             );
         } else {
             return view(
-                'back-end.freelancer.proposals.index',
+                'back-end.provider.proposals.index',
                 compact(
                     'proposals',
                     'project_duration',
@@ -1154,7 +1154,7 @@ class ProviderController extends Controller
             $access_type = Helper::getAccessType();
             if (file_exists(resource_path('views/extend/back-end/freelancer/dashboard.blade.php'))) {
                 return view(
-                    'extend.back-end.freelancer.dashboard',
+                    'extend.back-end.provider.dashboard',
                     compact(
                         'provider_id',
                         'completed_projects_history',
@@ -1184,7 +1184,7 @@ class ProviderController extends Controller
                 );
             } else {
                 return view(
-                    'back-end.freelancer.dashboard',
+                    'back-end.provider.dashboard',
                     compact(
                         'provider_id',
                         'completed_projects_history',
@@ -1240,7 +1240,7 @@ class ProviderController extends Controller
                 //dd($completed_services);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/index.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.services.manage',
+                        'extend.back-end.provider.services.manage',
                         compact(
                             'hired_services',
                             'completed_services',
@@ -1251,7 +1251,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.services.manage',
+                        'back-end.provider.services.manage',
                         compact(
                             'hired_services',
                             'completed_services',
@@ -1276,7 +1276,7 @@ class ProviderController extends Controller
                 $services = $provider->services;
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/index.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.services.index',
+                        'extend.back-end.provider.services.index',
                         compact(
                             'services',
                             'symbol',
@@ -1285,7 +1285,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.services.index',
+                        'back-end.provider.services.index',
                         compact(
                             'services',
                             'symbol',
@@ -1297,7 +1297,7 @@ class ProviderController extends Controller
                 $services = Helper::getProviderServices('hired', Auth::user()->id);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/ongoing.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.services.ongoing',
+                        'extend.back-end.provider.services.ongoing',
                         compact(
                             'services',
                             'symbol'
@@ -1305,7 +1305,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.services.ongoing',
+                        'back-end.provider.services.ongoing',
                         compact(
                             'services',
                             'symbol'
@@ -1317,7 +1317,7 @@ class ProviderController extends Controller
                 //dd($services);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/completed.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.services.completed',
+                        'extend.back-end.provider.services.completed',
                         compact(
                             'services',
                             'symbol'
@@ -1325,7 +1325,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.services.completed',
+                        'back-end.provider.services.completed',
                         compact(
                             'services',
                             'symbol'
@@ -1336,7 +1336,7 @@ class ProviderController extends Controller
                 $services = Helper::getProviderServices('cancelled', Auth::user()->id);
                 if (file_exists(resource_path('views/extend/back-end/freelancer/services/cancelled.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.services.cancelled',
+                        'extend.back-end.provider.services.cancelled',
                         compact(
                             'services',
                             'symbol'
@@ -1344,7 +1344,7 @@ class ProviderController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.services.cancelled',
+                        'back-end.provider.services.cancelled',
                         compact(
                             'services',
                             'symbol'
@@ -1398,7 +1398,7 @@ class ProviderController extends Controller
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
             if (file_exists(resource_path('views/extend/back-end/employer/services/show.blade.php'))) {
                 return view(
-                    'extend.back-end.freelancer.services.show',
+                    'extend.back-end.provider.services.show',
                     compact(
                         'pivot_service',
                         'id',
@@ -1422,7 +1422,7 @@ class ProviderController extends Controller
                 );
             } else {
                 return view(
-                    'back-end.freelancer.services.show',
+                    'back-end.provider.services.show',
                     compact(
                         'pivot_service',
                         'id',
@@ -1460,12 +1460,12 @@ class ProviderController extends Controller
         $payouts =  Payout::where('user_id', Auth::user()->id)->paginate(10);
         if (file_exists(resource_path('views/extend/back-end/freelancer/payouts.blade.php'))) {
             return view(
-                'extend.back-end.freelancer.payouts.payouts',
+                'extend.back-end.provider.payouts.payouts',
                 compact('payouts')
             );
         } else {
             return view(
-                'back-end.freelancer.payouts.payouts',
+                'back-end.provider.payouts.payouts',
                 compact('payouts')
             );
         }
@@ -1484,11 +1484,11 @@ class ProviderController extends Controller
             $payout_settings = $user->profile->count() > 0 ? Helper::getUnserializeData($user->profile->payout_settings) : '';
             if (file_exists(resource_path('views/extend/back-end/freelancer/payouts/payout_settings.blade.php'))) {
                 return view(
-                    'extend.back-end.freelancer.payouts.payout_settings', compact('payrols', 'payout_settings')
+                    'extend.back-end.provider.payouts.payout_settings', compact('payrols', 'payout_settings')
                 );
             } else {
                 return view(
-                    'back-end.freelancer.payouts.payout_settings', compact('payrols', 'payout_settings')
+                    'back-end.provider.payouts.payout_settings', compact('payrols', 'payout_settings')
                 );
             }
         } else {
@@ -1530,7 +1530,7 @@ class ProviderController extends Controller
                 $rank++;
             }
             //dd($contest_user1);
-            return view('back-end.freelancer.jobs.contest', compact('contest', 'contest_user1', 'job'));
+            return view('back-end.provider.jobs.contest', compact('contest', 'contest_user1', 'job'));
         }
         else
             return view('errors.503');//sent to unauthorize page

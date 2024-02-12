@@ -683,7 +683,7 @@ class UserController extends Controller
             } elseif ($request->path() === 'freelancer/saved-items') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/saved-items.blade.php'))) {
                     return view(
-                        'extend.back-end.freelancer.saved-items',
+                        'extend.back-end.provider.saved-items',
                         compact(
                             'profile',
                             'saved_jobs',
@@ -694,7 +694,7 @@ class UserController extends Controller
                     );
                 } else {
                     return view(
-                        'back-end.freelancer.saved-items',
+                        'back-end.provider.saved-items',
                         compact(
                             'profile',
                             'saved_jobs',
@@ -1952,15 +1952,15 @@ class UserController extends Controller
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
             if ($type === 'project') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/invoices/project.blade.php'))) {
-                    return view('extend.back-end.freelancer.invoices.project', compact('invoices', 'type', 'expiry_date', 'symbol'));
+                    return view('extend.back-end.provider.invoices.project', compact('invoices', 'type', 'expiry_date', 'symbol'));
                 } else {
-                    return view('back-end.freelancer.invoices.project', compact('invoices', 'type', 'expiry_date', 'symbol'));
+                    return view('back-end.provider.invoices.project', compact('invoices', 'type', 'expiry_date', 'symbol'));
                 }
             } elseif ($type === 'package') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/invoices/package.blade.php'))) {
-                    return view('extend.back-end.freelancer.invoices.package', compact('invoices', 'type', 'expiry_date', 'symbol'));
+                    return view('extend.back-end.provider.invoices.package', compact('invoices', 'type', 'expiry_date', 'symbol'));
                 } else {
-                    return view('back-end.freelancer.invoices.package', compact('invoices', 'type', 'expiry_date', 'symbol'));
+                    return view('back-end.provider.invoices.package', compact('invoices', 'type', 'expiry_date', 'symbol'));
                 }
             }
         } else {
@@ -1998,9 +1998,9 @@ class UserController extends Controller
             }
             if (Auth::user()->role === 'provider') {
                 if (file_exists(resource_path('views/extend/back-end/freelancer/invoices/show.blade.php'))) {
-                    return view::make('extend.back-end.freelancer.invoices.show', compact('invoice_info', 'symbol', 'currency_code'));
+                    return view::make('extend.back-end.provider.invoices.show', compact('invoice_info', 'symbol', 'currency_code'));
                 } else {
-                    return view::make('back-end.freelancer.invoices.show', compact('invoice_info', 'symbol', 'currency_code'));
+                    return view::make('back-end.provider.invoices.show', compact('invoice_info', 'symbol', 'currency_code'));
                 }
             } elseif (Auth::user()->role === 'employer') {
                 if (file_exists(resource_path('views/extend/back-end/employer/invoices/show.blade.php'))) {
@@ -2254,7 +2254,7 @@ class UserController extends Controller
         $reasons = Arr::pluck(Helper::getReportReasons(), 'title', 'title');
         if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/dispute.blade.php'))) {
             return View(
-                'extend.back-end.freelancer.jobs.dispute',
+                'extend.back-end.provider.jobs.dispute',
                 compact(
                     'job',
                     'reasons',
@@ -2263,7 +2263,7 @@ class UserController extends Controller
             );
         } else {
             return View(
-                'back-end.freelancer.jobs.dispute',
+                'back-end.provider.jobs.dispute',
                 compact(
                     'job',
                     'reasons',

@@ -57,7 +57,7 @@ class MarksController extends Controller
             $value->answers = Answer::where('question_id', $value->id)->get();
         }
         
-        return view('back-end.freelancer.jobs.quiz', compact('quiz'));
+        return view('back-end.provider.jobs.quiz', compact('quiz'));
         //dd($quiz);
     }
 
