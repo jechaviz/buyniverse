@@ -168,7 +168,7 @@
                                 @if (!empty(Route::getCurrentRoute()) && Route::getCurrentRoute()->uri() != '/' && Route::getCurrentRoute()->uri() != 'home')
                                     <!--<search-form
                                     :placeholder="'{{ trans('lang.looking_for') }}'"
-                                    :freelancer_placeholder="'{{ trans('lang.search_filter_list.freelancer') }}'"
+                                    :provider_placeholder="'{{ trans('lang.search_filter_list.freelancer') }}'"
                                     :employer_placeholder="'{{ trans('lang.search_filter_list.employers') }}'"
                                     :job_placeholder="'{{ trans('lang.search_filter_list.jobs') }}'"
                                     :service_placeholder="'{{ trans('lang.search_filter_list.services') }}'"
@@ -289,7 +289,7 @@
                             @if (!empty(Route::getCurrentRoute()) && Route::getCurrentRoute()->uri() != '/' && Route::getCurrentRoute()->uri() != 'home')
                                 <!--<search-form
                                 :placeholder="'{{ trans('lang.looking_for') }}'"
-                                :freelancer_placeholder="'{{ trans('lang.search_filter_list.freelancer') }}'"
+                                :provider_placeholder="'{{ trans('lang.search_filter_list.provider') }}'"
                                 :employer_placeholder="'{{ trans('lang.search_filter_list.employers') }}'"
                                 :job_placeholder="'{{ trans('lang.search_filter_list.jobs') }}'"
                                 :service_placeholder="'{{ trans('lang.search_filter_list.services') }}'"

@@ -17,8 +17,8 @@
       <div class="container wt-main-section" v-if="howWorkSkeleton && skeleton == 'work_tab_section'">
         <how-work-skeleton />
      </div>
-      <div class="container wt-main-section" v-if="freelancerSkeleton && skeleton == 'freelancer_section'">
-        <freelancer-skeleton />
+      <div class="container wt-main-section" v-if="providerSkeleton && skeleton == 'provider_section'">
+        <provider-skeleton />
      </div>
       <div class="container wt-main-section" v-if="articleSkeleton && skeleton == 'article_section'">
         <article-skeleton />
@@ -32,8 +32,8 @@
       <div class="container wt-main-section" v-if="jobSkeleton && skeleton == 'jobs_section'">
         <job-skeleton />
      </div>
-      <div class="container-fluid wt-main-section" v-if="freelancerV2Skeleton && skeleton == 'freelancer_section_v2'">
-        <freelancer-v2-skeleton />
+      <div class="container-fluid wt-main-section" v-if="providerV2Skeleton && skeleton == 'provider_section_v2'">
+        <provider-v2-skeleton />
      </div>
       <div class="container wt-main-section" v-if="packageSkeleton && skeleton == 'package_section'">
         <package-skeleton />
@@ -91,7 +91,7 @@
         :freelancers="form.meta.freelancers"
         @editData="editSection(element)"
         :parent_index="index" 
-        v-else-if="element.section =='freelancer_section'">
+        v-else-if="element.section =='provider_section'">
       </freelancers>
       <articles 
         :element_id="element.id"
@@ -154,7 +154,7 @@
         @editData="editSection(element)"
         :parent_index="index" 
         :pageID="page_id"
-        v-else-if="element.section =='freelancer_section_v2'">
+        v-else-if="element.section =='provider_section_v2'">
       </freelancers-v2>
       <jobs 
         :element_id="element.id"
@@ -208,12 +208,12 @@ import welcomeSkeleton from './skeleton/welcome'
 import appSkeleton from './skeleton/app'
 import serviceSkeleton from './skeleton/services'
 import howWorkSkeleton from './skeleton/how-work'
-import freelancerSkeleton from './skeleton/freelancers'
+import providerSkeleton from './skeleton/providers'
 import articleSkeleton from './skeleton/articles'
 import workVideoSkeleton from './skeleton/work_video'
 import categoryV2Skeleton from './skeleton/categoriesV2'
 import jobSkeleton from './skeleton/jobs'
-import freelancerV2Skeleton from './skeleton/freelancersV2'
+import providerV2Skeleton from './skeleton/providersV2'
 import packageSkeleton from './skeleton/packages'
 import categoryV3Skeleton from './skeleton/categoriesV3'
 import headingSkeleton from './skeleton/heading'
@@ -224,12 +224,12 @@ export default {
     headingSkeleton,
     categoryV3Skeleton,
     packageSkeleton,
-    freelancerV2Skeleton,
+    providerV2Skeleton,
     jobSkeleton,
     categoryV2Skeleton,
     workVideoSkeleton,
     articleSkeleton,
-    freelancerSkeleton,
+    providerSkeleton,
     howWorkSkeleton,
     serviceSkeleton,
     appSkeleton,
@@ -260,12 +260,12 @@ export default {
       headingSkeleton: false,
       categoryV3Skeleton: false,
       packageSkeleton: false,
-      freelancerV2Skeleton: false,
+      providerV2Skeleton: false,
       jobSkeleton: false,
       categoryV2Skeleton: false,
       workVideoSkeleton: false,
       articleSkeleton: false,
-      freelancerSkeleton: false,
+      providerSkeleton: false,
       howWorkSkeleton: false,
       serviceSkeleton: false,
       appSkeleton: false,
@@ -357,8 +357,8 @@ export default {
                   if (element.section == 'work_tab_section') {
                     self.howWorkSkeleton = true 
                   }
-                  if (element.section == 'freelancer_section') {
-                    self.freelancerSkeleton = true 
+                  if (element.section == 'provider_section') {
+                    self.providerSkeleton = true 
                   }
                   if (element.section == 'article_section') {
                     self.articleSkeleton = true 
@@ -372,8 +372,8 @@ export default {
                   if (element.section == 'jobs_section') {
                     self.jobSkeleton = true 
                   }
-                  if (element.section == 'freelancer_section_v2') {
-                    self.freelancerV2Skeleton = true 
+                  if (element.section == 'provider_section_v2') {
+                    self.providerV2Skeleton = true 
                   }
                   if (element.section == 'package_section') {
                     self.packageSkeleton = true 
@@ -431,12 +431,12 @@ export default {
                 self.appSkeleton = false
                 self.serviceSkeleton = false
                 self.howWorkSkeleton = false
-                self.freelancerSkeleton = false
+                self.providerSkeleton = false
                 self.articleSkeleton = false
                 self.workVideoSkeleton = false
                 self.categoryV2Skeleton = false
                 self.jobSkeleton = false
-                self.freelancerV2Skeleton = false
+                self.providerV2Skeleton = false
                 self.packageSkeleton = false
                 self.categoryV3Skeleton = false
                 self.headingSkeleton = false

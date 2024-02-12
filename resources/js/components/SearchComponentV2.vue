@@ -69,7 +69,7 @@
 </template>
 <script>
  export default{
-    props: ['style_type', 'widget_type', 'no_record_message', 'placeholder', 'freelancer_placeholder', 'employer_placeholder', 'job_placeholder', 'service_placeholder', 'slider', 'symbol'],
+    props: ['style_type', 'widget_type', 'no_record_message', 'placeholder', 'provider_placeholder', 'employer_placeholder', 'job_placeholder', 'service_placeholder', 'slider', 'symbol'],
         data(){
             return {
                 reverse: false,
@@ -101,7 +101,7 @@
             },
             displayFiltersName(type) {
                 if(type == 'provider') {
-                    this.selected_type = this.freelancer_placeholder;
+                    this.selected_type = this.provider_placeholder;
                 } else if(type == 'employer') {
                     this.selected_type = this.employer_placeholder;
                 } else if(type == 'job') {

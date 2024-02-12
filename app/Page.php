@@ -312,7 +312,7 @@ class Page extends Model
                             }
                         } elseif ($key == 'providersSecondVersion' && !empty($value)) {
                             foreach ($value as $meta_key => $meta_value) {
-                                $freelancer_section = array();
+                                $provider_section = array();
                                 $meta = new Meta();
                                 foreach ($meta_value as $banner_key => $banner_value) {
                                     if ($banner_key == 'backgroundImg' && !empty($banner_value)) {
@@ -325,13 +325,13 @@ class Page extends Model
                                         } else {
                                             $filename = $banner_value;
                                         }
-                                        $freelancer_section[$banner_key] = $filename;
+                                        $provider_section[$banner_key] = $filename;
                                     } else {
-                                        $freelancer_section[$banner_key] = $banner_value;
+                                        $provider_section[$banner_key] = $banner_value;
                                     }
                                 }
                                 $meta->meta_key = $key . (string) $value[$meta_key]['parentIndex'];
-                                $meta->meta_value = serialize($freelancer_section);
+                                $meta->meta_value = serialize($provider_section);
                                 $page->meta()->save($meta);
                             }
                         } elseif ($key == 'bannerFirstVersion' && !empty($value)) {
@@ -796,7 +796,7 @@ class Page extends Model
                             }
                         } elseif ($key == 'providersSecondVersion' && !empty($value)) {
                             foreach ($value as $meta_key => $meta_value) {
-                                $freelancer_section = array();
+                                $provider_section = array();
                                 $meta = new Meta();
                                 foreach ($meta_value as $banner_key => $banner_value) {
                                     if ($banner_key == 'backgroundImg' && !empty($banner_value)) {
@@ -809,13 +809,13 @@ class Page extends Model
                                         } else {
                                             $filename = $banner_value;
                                         }
-                                        $freelancer_section[$banner_key] = $filename;
+                                        $provider_section[$banner_key] = $filename;
                                     } else {
-                                        $freelancer_section[$banner_key] = $banner_value;
+                                        $provider_section[$banner_key] = $banner_value;
                                     }
                                 }
                                 $meta->meta_key = $key . (string) $value[$meta_key]['parentIndex'];
-                                $meta->meta_value = serialize($freelancer_section);
+                                $meta->meta_value = serialize($provider_section);
                                 $pages->meta()->save($meta);
                             }
                         } elseif ($key == 'bannerFirstVersion' && !empty($value)) {
@@ -1171,7 +1171,7 @@ class Page extends Model
                                         <p>{{{ Helper::getHomeBanner('description') }}}</p>
                                     </div>
                                 </div>
-                                <search-form :widget_type="'home'" :placeholder="'{{ trans('lang.looking_for') }}'" :freelancer_placeholder="'{{ trans('lang.search_filter_list.freelancer') }}'" :employer_placeholder="'{{ trans('lang.search_filter_list.employers') }}'" :job_placeholder="'{{ trans('lang.search_filter_list.jobs') }}'" :service_placeholder="'{{ trans('lang.search_filter_list.services') }}'" :no_record_message="'{{ trans('lang.no_record') }}'">
+                                <search-form :widget_type="'home'" :placeholder="'{{ trans('lang.looking_for') }}'" :provider_placeholder="'{{ trans('lang.search_filter_list.provider') }}'" :employer_placeholder="'{{ trans('lang.search_filter_list.employers') }}'" :job_placeholder="'{{ trans('lang.search_filter_list.jobs') }}'" :service_placeholder="'{{ trans('lang.search_filter_list.services') }}'" :no_record_message="'{{ trans('lang.no_record') }}'">
                                 </search-form>
                                 <div class="wt-videoholder">
                                     <div class="wt-videoshow">

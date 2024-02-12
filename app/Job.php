@@ -310,7 +310,7 @@ class Job extends Model
                 //$job = Job::where('user_id', Auth::user()->id)->latest()->first();
                 foreach($emails as $key => $email)
                 {
-                    Mail::to($email)->send(new InviteFreelancer($user, $job->slug));
+                    Mail::to($email)->send(new InviteProvider($user, $job->slug));
                 }
             }*/
 

@@ -290,7 +290,7 @@
               </td>
           </tr>
           <!--<tr id="tr13" class="hidden">
-              <td class="job-details"><b>{{ trans('lang.invited_freelancer') }}</b></td>
+              <td class="job-details"><b>{{ trans('lang.invited_provider') }}</b></td>
               <td class="job-details">
                   <span v-for="invite in invited" :key="invite.id">
                         <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ invite.name }}<br> {{invite.email}} </span><i  @click="deleteinvited(invite.email)" class="fa fa-times" aria-hidden="true"></i></span><br>

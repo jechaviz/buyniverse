@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\EmailHelper;
 
-class InviteFreelancer extends Mailable
+class InviteProvider extends Mailable
 {
     use Queueable, SerializesModels;
 

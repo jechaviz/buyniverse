@@ -35,7 +35,7 @@ use App\SiteManagement;
 use App\Mail\AdminEmailMailable;
 use App\Mail\EmployerEmailMailable;
 use App\EmailTemplate;
-use App\Mail\InviteFreelancer;
+use App\Mail\InviteProvider;
 use App\Mail\InviteRaw;
 use App\Mail\TeamInvite;
 use App\Mail\UserInvite;
@@ -1180,9 +1180,9 @@ class JobController extends Controller
                         // Send Email
                         if($approvers)
                         {
-                            if($request->invited_freelancers)
+                            if($request->invited_providers)
                             {
-                                foreach($request->invited_freelancers as $key => $email)
+                                foreach($request->invited_providers as $key => $email)
                                 {
                                     $emails = $emails.", ".$email;
                                 }
@@ -1195,7 +1195,7 @@ class JobController extends Controller
                         }
                         else
                         {
-                            if($request->invited_freelancers)
+                            if($request->invited_providers)
                             {
                                 /*$providerinvite = new Providerinvite;
                                 $providerinvite->providers = $emails;
@@ -1204,9 +1204,9 @@ class JobController extends Controller
                                 $providerinvite->save();*/
                                 $emails = "";
                                 
-                                foreach($request->invited_freelancers as $key => $email)
+                                foreach($request->invited_providers as $key => $email)
                                 {
-                                    //Mail::to($email)->send(new InviteFreelancer($user, $job->slug));
+                                    //Mail::to($email)->send(new InviteProvider($user, $job->slug));
                                     $name = $user->first_name.' '.$user->last_name;
                                     $link = '<a href="http://buyniverse.com/job/'. $job->slug .'">Link</a>';
                                     $messagex = str_replace('{name}', $name, $request->email_text);

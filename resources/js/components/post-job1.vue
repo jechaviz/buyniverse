@@ -266,14 +266,14 @@
                         </td>
                     </tr>
                     <tr id="tr16" class="hidden">
-                        <td class="job-details"><b>{{ trans('lang.invited_freelancer') }}</b></td>
+                        <td class="job-details"><b>{{ trans('lang.invited_provider') }}</b></td>
                         <td class="job-details">
-                            <span v-for="(invited_freelancer, key) in form.invited_freelancers" :key="key">
-                                <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ invited_freelancer }} </span><i  @click="deleteinvited_freelancer(key)" class="fa fa-times" aria-hidden="true"></i></span><br>
+                            <span v-for="(invited_provider, key) in form.invited_providers" :key="key">
+                                <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ invited_provider }} </span><i  @click="deleteinvited_provider(key)" class="fa fa-times" aria-hidden="true"></i></span><br>
                             </span>
                             <div id="editemail" class="">            
-                                <input type="email" class="form-control form-control-sm " id="invited_freelancers" name="invited_freelancers" autocomplete="off" >
-                                <button @click="updateinvited_freelancers" class="btn btn-sm x-submit-button" style="color: white;    background-color: #005178;" id="card-comment-post-button">
+                                <input type="email" class="form-control form-control-sm " id="invited_providers" name="invited_providers" autocomplete="off" >
+                                <button @click="updateinvited_providers" class="btn btn-sm x-submit-button" style="color: white;    background-color: #005178;" id="card-comment-post-button">
                                 {{ trans('lang.add') }}
                             </button>
                             </div>
@@ -412,7 +412,7 @@ export default {
             days : '',
             hours : '',
             expiry_date : '',
-            invited_freelancers : [],
+            invited_providers : [],
             email_text : '',
             //subskills_show : [],
             
@@ -1007,11 +1007,11 @@ export default {
             $('#tr16').removeClass('hidden');
             $('#addsubcategory-select').addClass('hidden');
         },
-        updateinvited_freelancers() {
+        updateinvited_providers() {
             let self = this;
-            var email = $("#invited_freelancers").val();
-            self.form.invited_freelancers.push(email);
-            $("#invited_freelancers").val("");
+            var email = $("#invited_providers").val();
+            self.form.invited_providers.push(email);
+            $("#invited_providers").val("");
             Fire.$emit('postupdate');
         },
         updateemail_text() {
@@ -1039,7 +1039,7 @@ export default {
             $('#price').addClass('hidden');
             $('#editprice').removeClass('hidden');
         }, 
-        deleteinvited_freelancer(id) {
+        deleteinvited_provider(id) {
 
         }, 
         deleteenglish(id) {

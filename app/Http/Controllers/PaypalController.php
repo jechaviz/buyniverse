@@ -462,7 +462,7 @@ class PaypalController extends Controller
                         // send mail
                         if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
                             $email_params = array();
-                            $template_data = Helper::getFreelancerNewOrderEmailContent();
+                            $template_data = Helper::getproviderNewOrderEmailContent();
                             $email_params['title'] = $service->title;
                             $email_params['service_link'] = url('service/' . $service->slug);
                             $email_params['amount'] = $service->price;

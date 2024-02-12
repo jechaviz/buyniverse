@@ -61,14 +61,14 @@
             :freelancers="form.meta.freelancers"
             @editData="editSection(element)"
             :parent_index="index" 
-            v-else-if="element.section =='freelancer_section'">
+            v-else-if="element.section =='provider_section'">
           </freelancers>
           <freelancers-v2 
             :element_id="element.id"
             :freelancers="form.meta.providersSecondVersion"
             @editData="editSection(element)"
             :parent_index="index" 
-            v-else-if="element.section =='freelancer_section_v2'">
+            v-else-if="element.section =='provider_section_v2'">
           </freelancers-v2>
           <articles 
             :element_id="element.id"
@@ -266,13 +266,13 @@
             />
             <freelancers-form
               :freelancer="form.meta.freelancers[this.currentElementIndex]"
-              v-if="currentSection =='freelancer_section'"
+              v-if="currentSection =='provider_section'"
             />
             <freelancers-v2-form
               :freelancer="form.meta.providersSecondVersion[this.currentElementIndex]"
               :currentElementID="currentElementID"
               :cloneElement="cloneElement"
-              v-if="currentSection =='freelancer_section_v2'"
+              v-if="currentSection =='provider_section_v2'"
             />
             <articles-form
               :article="form.meta.articles[this.currentElementIndex]"
@@ -749,7 +749,7 @@ export default {
             parentIndex: ''
           }
           this.form.meta.services.push(service)
-        } else if (evt.added.element.section == 'freelancer_section') {
+        } else if (evt.added.element.section == 'provider_section') {
             var freelancer = {
               title:'Freelancer Title',
               subtitle:'Freelancer Subtitle',
@@ -777,7 +777,7 @@ export default {
               parentIndex: ''
             }
             this.form.meta.freelancers.push(freelancer)
-        } else if (evt.added.element.section == 'freelancer_section_v2') {
+        } else if (evt.added.element.section == 'provider_section_v2') {
             var freelancer = {
               title:'Top',
               titleTwo:'Freelancers',
@@ -1137,7 +1137,7 @@ export default {
             Event.$emit('work-video-section-update')
           } else if (evt.moved.section == 'work_tab_section') {
             Event.$emit('work-section-update')
-          } else if (evt.moved.section == 'freelancer_section') {
+          } else if (evt.moved.section == 'provider_section') {
             Event.$emit('freelancer-section-update')
           } else if (evt.moved.section == 'content_section') {
             Event.$emit('editor-section-update')
@@ -1147,7 +1147,7 @@ export default {
             Event.$emit('category-sectionV2-update')
           } else if (evt.moved.section == 'categoryV3') {
             Event.$emit('category-sectionV3-update')
-          } else if (evt.moved.section == 'freelancer_section_v2') {
+          } else if (evt.moved.section == 'provider_section_v2') {
             Event.$emit('freelancer-sectionV2-update')
           } else if (evt.moved.section == 'jobs_section') {
             Event.$emit('job-section-update')

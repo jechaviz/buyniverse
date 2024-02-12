@@ -1090,11 +1090,7 @@ class EmployerController extends Controller
             $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
 
 
-
-
-            // $freelancer_rating  = !empty($freelancer) && !empty($freelancer->profile->ratings) ? Helper::getUnserializeData($freelancer->profile->ratings) : 0;
-            // $rating = !empty($freelancer_rating) ? $freelancer_rating[0] : 0;
-            // $stars  =  !empty($freelancer_rating) ? $freelancer_rating[0] / 5 * 100 : 0;
+           
 
             $reviews = !empty($freelancer) ? Review::where('receiver_id', $freelancer->id)->where('job_id', $service_id)->where('project_type', 'service')->get() : '';
             $cancel_proposal_text = trans('lang.cancel_proposal_text');
