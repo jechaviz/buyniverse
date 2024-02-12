@@ -180,7 +180,7 @@
                                                                     @php $count++; @endphp
                                                                 @endif
                                                             @endforeach
-                                                            {!! Form::hidden('freelancer_id', $accepted_proposal->provider_id, []) !!}
+                                                            {!! Form::hidden('provider_id', $accepted_proposal->provider_id, []) !!}
                                                         {!! form::close(); !!}
                                                         <a href="javascript:void(0);"  v-on:click.prevent="downloadAttachments('{{'accepted-download-attachments-form-'.$accepted_proposal->id}}')" ><span>{{{ $count }}} {{ trans('lang.files_attached') }}</span></a>
                                                     @else
@@ -266,7 +266,7 @@
                                                                         <h5>{{trans('lang.pending_hiring')}}</h5>
                                                                    @endif
                                                                 @else
-                                                                    <a href="javascript:void(0);"  v-on:click.prevent="hireFreelancer('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>
+                                                                    <a href="javascript:void(0);"  v-on:click.prevent="hireProvider('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>
                                                                 @endif
                                                             @endif
                                                         </div>
@@ -300,7 +300,7 @@
                                                                             @php $received_proposal_count++; @endphp
                                                                         @endif
                                                                     @endforeach
-                                                                    {!! Form::hidden('freelancer_id', $proposal->provider_id, []) !!}
+                                                                    {!! Form::hidden('provider_id', $proposal->provider_id, []) !!}
                                                                 {!! form::close(); !!}
                                                                 <a href="javascript:void(0);"  v-on:click.prevent="downloadAttachments('{{'download-attachments-form-'.$proposal->id}}')" ><span>{{{ $received_proposal_count }}} {{ trans('lang.files_attached') }}</span></a>
                                                             @else
@@ -532,7 +532,7 @@
                                                         <h5>{{trans('lang.pending_hiring')}}</h5>
                                                     @endif
                                                 @else
-                                                    <a href="javascript:void(0);"  v-on:click.prevent="hireFreelancer('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>
+                                                    <a href="javascript:void(0);"  v-on:click.prevent="hireProvider('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>
                                                 @endif
                                             @endif
                                          </div>   

@@ -150,7 +150,7 @@
       </categories-v3>
       <freelancers-v2 
         :element_id="element.id"
-        :freelancers="form.meta.freelancersSecondVersion"
+        :freelancers="form.meta.providersSecondVersion"
         @editData="editSection(element)"
         :parent_index="index" 
         :pageID="page_id"
@@ -297,7 +297,7 @@ export default {
           welcome_sections:[],
           articles:[],
           categoriesSecondVersion:[],
-          freelancersSecondVersion:[],
+          providersSecondVersion:[],
           jobs:[],
           packages:[],
           bannerFirstVersion:[],

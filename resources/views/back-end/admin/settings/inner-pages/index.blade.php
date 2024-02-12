@@ -93,11 +93,11 @@
                     <div class="wt-settingscontent">
                         <div class="wt-settingscontent la-settingsradio">
                             <div class="wt-description"><p>{{ trans('lang.header_styling_note') }}</p></div>
-                            <switch_button v-model="freelancer_header_styling">{{{ trans('lang.enable_disable') }}}</switch_button>
-                            <input type="hidden" :value="freelancer_header_styling" name="inner_page[0][freelancer_header_styling]">
+                            <switch_button v-model="provider_header_styling">{{{ trans('lang.enable_disable') }}}</switch_button>
+                            <input type="hidden" :value="provider_header_styling" name="inner_page[0][provider_header_styling]">
                         </div>
                     </div>
-                    <div class="wt-settingscontent2 wt-sidepadding" v-if="freelancer_header_styling && colorSettings">
+                    <div class="wt-settingscontent2 wt-sidepadding" v-if="provider_header_styling && colorSettings">
                         <div class="amt-element-title amt-element-titlecontent">
                             <h6>{{ trans('lang.menu_color') }}</h6>
                             <verte menuPosition="right" model="hex" v-model="freelancerHeaderStyling.textColor"></verte>

@@ -1477,14 +1477,14 @@ class RestAPIController extends Controller
         }
         $json = array();
         if (!empty($request['user_id'])
-            && $request['freelancer_id']
+            && $request['provider_id']
             && $request['job_id']
             && $request['desc']
         ) {
             $offer = new Offer();
             $user = User::find($request['user_id']);
             if ($user->role === 'employer') {
-                $offer->provider_id = filter_var($request['freelancer_id'], FILTER_SANITIZE_STRING);
+                $offer->provider_id = filter_var($request['provider_id'], FILTER_SANITIZE_STRING);
                 $offer->project_id = filter_var($request['job_id'], FILTER_SANITIZE_STRING);
                 $offer->description = filter_var($request['desc'], FILTER_SANITIZE_STRING);
                 $offer->user()->associate($user);
@@ -1504,10 +1504,10 @@ class RestAPIController extends Controller
                     $message = new Message();
                     if (!empty($send_provider_offer->id)) {
                         $job = Job::where('id', $request['job_id'])->first();
-                        $provider = User::find($request['freelancer_id']);
+                        $provider = User::find($request['provider_id']);
                         $template_data = EmailTemplate::getEmailTemplateByID($send_provider_offer->id);
                         $message->user_id = intval($request['user_id']);
-                        $message->receiver_id = intval($request['freelancer_id']);
+                        $message->receiver_id = intval($request['provider_id']);
                         $message->body = $template_data->content;
                         $message->status = 0;
                         $message->save();

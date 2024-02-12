@@ -106,7 +106,7 @@ class PackageController extends Controller
             $packages = $this->package::orderBy('role_id', 'desc')->paginate(10);
         }
         $employer_trial = $this->package::select('trial')->where('role_id', 2)->where('trial', 1)->get();
-        $freelancer_trial = $this->package::select('trial')->where('role_id', 3)->where('trial', 1)->get();
+        $provider_trial = $this->package::select('trial')->where('role_id', 3)->where('trial', 1)->get();
         $roles = Role::where('name', '!=', 'admin')->get();
         $durations = Helper::getPackageDurationList();
         $badges = Badge::select('id', 'title')->get()->pluck('title', 'id');
@@ -126,7 +126,7 @@ class PackageController extends Controller
                     'roles',
                     'badges',
                     'employer_trial',
-                    'freelancer_trial'
+                    'provider_trial'
                 )
             );
         } else {
@@ -141,7 +141,7 @@ class PackageController extends Controller
                     'roles',
                     'badges',
                     'employer_trial',
-                    'freelancer_trial'
+                    'provider_trial'
                 )
             );
         }
@@ -192,7 +192,7 @@ class PackageController extends Controller
             $durations = \App\Helper::getPackageDurationList();
             $badges = Badge::select('id', 'title')->get()->pluck('title', 'id');
             $employer_trial = $this->package::select('trial')->where('role_id', 2)->where('trial', 1)->get();
-            $freelancer_trial = $this->package::select('trial')->where('role_id', 3)->where('trial', 1)->get();
+            $provider_trial = $this->package::select('trial')->where('role_id', 3)->where('trial', 1)->get();
             $package_duration = unserialize($package['options'])['duration'];
             if (!empty($package)) {
                 if (file_exists(resource_path('views/extend/back-end/admin/packages/edit.blade.php'))) {
@@ -207,7 +207,7 @@ class PackageController extends Controller
                             'roles',
                             'badges',
                             'employer_trial',
-                            'freelancer_trial',
+                            'provider_trial',
                             'package_duration'
                         )
                     );
@@ -223,7 +223,7 @@ class PackageController extends Controller
                             'roles',
                             'badges',
                             'employer_trial',
-                            'freelancer_trial',
+                            'provider_trial',
                             'package_duration'
                         )
                     );

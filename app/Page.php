@@ -310,7 +310,7 @@ class Page extends Model
                                 $meta->meta_value = serialize($cat_section);
                                 $page->meta()->save($meta);
                             }
-                        } elseif ($key == 'freelancersSecondVersion' && !empty($value)) {
+                        } elseif ($key == 'providersSecondVersion' && !empty($value)) {
                             foreach ($value as $meta_key => $meta_value) {
                                 $freelancer_section = array();
                                 $meta = new Meta();
@@ -794,7 +794,7 @@ class Page extends Model
                                 $meta->meta_value = serialize($cat_section);
                                 $pages->meta()->save($meta);
                             }
-                        } elseif ($key == 'freelancersSecondVersion' && !empty($value)) {
+                        } elseif ($key == 'providersSecondVersion' && !empty($value)) {
                             foreach ($value as $meta_key => $meta_value) {
                                 $freelancer_section = array();
                                 $meta = new Meta();

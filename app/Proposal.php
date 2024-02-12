@@ -298,7 +298,7 @@ class Proposal extends Model
      *
      * @return response
      */
-    public static function getMessages($user_id, $freelancer_id, $proposal_id, $project_type)
+    public static function getMessages($user_id, $provider_id, $proposal_id, $project_type)
     {
         return DB::table('private_messages')
             ->join('private_messages_to', 'private_messages.id', '=', 'private_messages_to.private_message_id')
@@ -306,13 +306,13 @@ class Proposal extends Model
             ->select('private_messages.id', 'private_messages.*', 'profiles.avater')
             ->where('private_messages.proposal_id', $proposal_id)
             ->where('private_messages.project_type', $project_type)
-            ->orWhere(function ($query) use ($user_id, $freelancer_id) {
+            ->orWhere(function ($query) use ($user_id, $provider_id) {
                 $query
                     ->where('private_messages_to.recipent_id', '=', $user_id)
-                    ->Where('private_messages.author_id', '=', $freelancer_id);
+                    ->Where('private_messages.author_id', '=', $provider_id);
             })
-            ->orWhere(function ($query) use ($user_id, $freelancer_id) {
-                $query->where('private_messages_to.recipent_id', '=', $freelancer_id)
+            ->orWhere(function ($query) use ($user_id, $provider_id) {
+                $query->where('private_messages_to.recipent_id', '=', $provider_id)
                     ->Where('private_messages.author_id', '=', $user_id);
             })
             ->orderBy('private_messages.created_at')->get()->toArray();
@@ -322,12 +322,12 @@ class Proposal extends Model
      * Get message
      *
      * @param mixed $user_id       User ID
-     * @param int   $freelancer_id Freelancer ID
+     * @param int   $provider_id Provider ID
      * @param int   $proposal_id   Proposal
      *
      * @return response
      */
-    public static function getProjectHistory($user_id, $freelancer_id, $proposal_id, $project_type)
+    public static function getProjectHistory($user_id, $provider_id, $proposal_id, $project_type)
     {
         return DB::table('private_messages')
             ->join('private_messages_to', 'private_messages.id', '=', 'private_messages_to.private_message_id')

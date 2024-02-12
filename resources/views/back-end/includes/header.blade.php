@@ -482,7 +482,7 @@
                                             <!--<li style="line-height: 13px!important;font-size: small;">
                                                 <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="{{{ route('showFreelancerProposals') }}}">{{ trans('lang.jobs') }} {{ trans('lang.proposals') }}</a></li>
+                                                    <li><a href="{{{ route('showProviderProposals') }}}">{{ trans('lang.jobs') }} {{ trans('lang.proposals') }}</a></li>
                                                     <li><a href="{{ route('freelancerPostService') }}">{{ trans('lang.services') }}</a></li>
                                                 </ul>
                                             </li>-->
@@ -491,7 +491,7 @@
                                                 <ul class="sub-menu">
                                                     <li><a href="{{{ route('freelancerJobs') }}}">{{ trans('lang.manage_job') }}</a></li>
                                                     <li><a href="{{url('search-results?type=job')}}">{{ trans('lang.findjobs') }}</a></li>
-                                                    <li><a href="{{route('showFreelancerProposals')}}">{{ trans('lang.all_proposals') }}</a></li>
+                                                    <li><a href="{{route('showProviderProposals')}}">{{ trans('lang.all_proposals') }}</a></li>
                                                     <li><a href="{{route('fteam.index')}}">{{ trans('lang.team')}}</a></li>
                                                     
                                                 </ul>

@@ -355,7 +355,7 @@
                                                                 @php $count++; @endphp
                                                             @endif
                                                         @endforeach
-                                                        {!! Form::hidden('freelancer_id', $user->id, []) !!}
+                                                        {!! Form::hidden('provider_id', $user->id, []) !!}
                                                     {!! form::close(); !!}
                                                     <a onclick="event.preventDefault(); document.getElementById('download-attachments-form-{{$user->id}}').submit();"><span>{{{ $count }}} {{trans('lang.file_attached')}}</span></a>
                                                 </div>
@@ -417,7 +417,7 @@
                                                         @else
                                                         @endif
                                                         <!--<hirenow proposalid="{{$proposal->id}}" mode="{{$mode}}"></hirenow>-->
-                                                        <!--<a href="javascript:void(0);"  v-on:click.prevent="hireFreelancer('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>-->
+                                                        <!--<a href="javascript:void(0);"  v-on:click.prevent="hireProvider('{{{$proposal->id}}}', '{{$mode}}')" class="wt-btn">{{ trans('lang.hire_now') }}</a>-->
                                                         @endif
 
                                                     @endif

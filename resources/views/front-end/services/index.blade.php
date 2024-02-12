@@ -86,7 +86,7 @@
                                         <li style="line-height: 13px!important;font-size: small;">
                                             <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                             <ul class="sub-menu">
-                                                <li><a href="{{{ route('showFreelancerProposals') }}}">{{ trans('lang.proposals') }}</a></li>
+                                                <li><a href="{{{ route('showProviderProposals') }}}">{{ trans('lang.proposals') }}</a></li>
                                                 <li><a href="{{ route('freelancerPostService') }}">{{ trans('lang.services') }}</a></li>
                                             </ul>
                                         </li>

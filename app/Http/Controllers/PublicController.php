@@ -659,7 +659,7 @@ class PublicController extends Controller
         $skills     = Skill::all();
         $currency   = SiteManagement::getMetaValue('commision');
         $symbol     = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
-        $freelancer_skills = Helper::getProviderLevelList();
+        $provider_skills = Helper::getProviderLevelList();
         $project_length = Helper::getJobDurationList();
         $address = !empty($_GET['addr']) ? $_GET['addr'] : '';
         $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
@@ -715,7 +715,7 @@ class PublicController extends Controller
                                 'users',
                                 'locations',
                                 'languages',
-                                'freelancer_skills',
+                                'provider_skills',
                                 'project_length',
                                 'keyword',
                                 'type',
@@ -737,7 +737,7 @@ class PublicController extends Controller
                                 'users',
                                 'locations',
                                 'languages',
-                                'freelancer_skills',
+                                'provider_skills',
                                 'project_length',
                                 'keyword',
                                 'type',
@@ -911,7 +911,7 @@ class PublicController extends Controller
                                 'categories',
                                 'locations',
                                 'languages',
-                                'freelancer_skills',
+                                'provider_skills',
                                 'project_length',
                                 'Jobs_total_records',
                                 'keyword',
@@ -935,7 +935,7 @@ class PublicController extends Controller
                                 'categories',
                                 'locations',
                                 'languages',
-                                'freelancer_skills',
+                                'provider_skills',
                                 'project_length',
                                 'Jobs_total_records',
                                 'keyword',

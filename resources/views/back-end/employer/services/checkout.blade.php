@@ -54,7 +54,7 @@
                                 </tr>
                                 <tr>
                                     <td>{{ trans('lang.freelancer') }}</td>
-                                    <td>{{{ $freelancer_name }}}</td>
+                                    <td>{{{ $provider_name }}}</td>
                                 </tr>
                                 <tr>
                                     <td>{{ trans('lang.total') }}</td>

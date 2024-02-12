@@ -9,7 +9,7 @@
                     <div class="form-group">
                         <div class="form-group-holder">
                             <span class="wt-select">
-                                <select id="freelancer_skill">
+                                <select id="provider_skill">
                                     <option v-for="(stored_skill, index) in stored_skills" :key="index" :value="stored_skill.id">{{stored_skill.title}}</option>
                                 </select>
                             </span>
@@ -24,15 +24,15 @@
         </div>
         <div class="wt-myskills">
             <ul id="skill_list" class="sortable list">
-                <li v-for="(freelancer_skill, index) in freelancer_skills" :key="index" v-if="freelancer_skills" class="skill-element" :ref="'skill-'+index">
+                <li v-for="(provider_skill, index) in provider_skills" :key="index" v-if="provider_skills" class="skill-element" :ref="'skill-'+index">
                     <div class="wt-dragdroptool">
                         <a href="javascript:void(0)" class="lnr lnr-menu"></a>
                     </div>
                     <span class="skill-dynamic-html">
-                        {{freelancer_skill.title}} (<em class="skill-val">{{freelancer_skill.pivot.skill_rating}}</em>%)</span>
+                        {{provider_skill.title}} (<em class="skill-val">{{provider_skill.pivot.skill_rating}}</em>%)</span>
                     <span class="skill-dynamic-field sss">
-                        <input type="hidden" v-bind:name="'skills['+index+'][id]'" :value="freelancer_skill.id">
-                        <input type="text" v-bind:name="'skills['+index+'][rating]'" :value="freelancer_skill.pivot.skill_rating">
+                        <input type="hidden" v-bind:name="'skills['+index+'][id]'" :value="provider_skill.id">
+                        <input type="text" v-bind:name="'skills['+index+'][rating]'" :value="provider_skill.pivot.skill_rating">
                     </span>
                     <div class="wt-rightarea">
                         <a href="javascript:void(0);" class="wt-addinfo" @click="editInput(index)"><i class="lnr lnr-pencil"></i></a>
@@ -86,7 +86,7 @@
                     count: 0
                 },
                 skills: [],
-                freelancer_skills: [],
+                provider_skills: [],
                 counts:0,
                 notificationSystem: {
                     error: {
@@ -111,11 +111,11 @@
                 let self = this;
                 axios.get(APP_URL + '/provider/get-provider-skills')
                 .then(function (response) {
-                    self.freelancer_skills = response.data.freelancer_skills;
+                    self.provider_skills = response.data.provider_skills;
                 });
             },
             addSkill: function () {
-                var skillsSelect = document.getElementById("freelancer_skill");
+                var skillsSelect = document.getElementById("provider_skill");
                 var ratingSelect = document.getElementById("selected_rating_value");
                 if (skillsSelect.value === "" || ratingSelect.value === "") {
                     this.showError('empty field not allow');
@@ -126,7 +126,7 @@
                     
                     if(skillsSelect.options[skillsSelect.selectedIndex]) {
                         this.selected_skill_text = skillsSelect.options[skillsSelect.selectedIndex].text;
-                        this.selected_skill = document.getElementById("freelancer_skill").value;
+                        this.selected_skill = document.getElementById("provider_skill").value;
                         this.selected_rating = document.getElementById("selected_rating_value").value;
                         this.skills.push(Vue.util.extend({}, this.skill, this.skill.count++, this.skill.title = this.selected_skill_text, this.skill.id = this.selected_skill, this.skill.rating = this.selected_rating ))
                         skillsSelect.remove(skillsSelect.selectedIndex);
@@ -158,7 +158,7 @@
                     var self = this;
                     if(result.value) {
                         let option = self.skills[index];
-                        var select = document.getElementById("freelancer_skill");
+                        var select = document.getElementById("provider_skill");
                         select.options[select.options.length] = new Option(option.title, option.id, false, false);
                         self.skills.splice(index, 1);
                         self.$swal('Deleted', 'Skill Deleted', 'success')
@@ -183,10 +183,10 @@
                   }).then((result) => {
                     var self = this;
                     if(result.value) {
-                        let option = self.freelancer_skills[index];
-                        var select = document.getElementById("freelancer_skill");
+                        let option = self.provider_skills[index];
+                        var select = document.getElementById("provider_skill");
                         select.options[select.options.length] = new Option(option.title, option.id, false, false);
-                        self.freelancer_skills.splice(index, 1);
+                        self.provider_skills.splice(index, 1);
                         self.$swal('Deleted', 'Skill Deleted', 'success')
                     } else {
                         this.$swal.close()

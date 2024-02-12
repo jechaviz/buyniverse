@@ -1202,7 +1202,7 @@ class EmployerController extends Controller
                         compact(
                             'job',
                             'stripe_img',
-                            'freelancer_name',
+                            'provider_name',
                             'profile_image',
                             'proposal',
                             'payment_gateway',

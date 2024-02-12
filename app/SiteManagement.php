@@ -183,7 +183,7 @@ class SiteManagement extends Model
                 $inner_page_data_array[$key]['add_service_navbar'] = $inner_page['add_service_navbar'];
                 $inner_page_data_array[$key]['add_article_navbar'] = $inner_page['add_article_navbar'];
                 $inner_page_data_array[$key]['f_header_style'] = !empty($inner_page['f_header_style']) ? $inner_page['f_header_style'] : '';
-                $inner_page_data_array[$key]['freelancer_header_styling'] = !empty($inner_page['freelancer_header_styling']) ? $inner_page['freelancer_header_styling'] : '';
+                $inner_page_data_array[$key]['provider_header_styling'] = !empty($inner_page['provider_header_styling']) ? $inner_page['provider_header_styling'] : '';
                 $inner_page_data_array[$key]['f_menu_text_color'] = !empty($inner_page['f_menu_text_color']) ? $inner_page['f_menu_text_color'] : '';
                 $inner_page_data_array[$key]['f_menu_color'] = !empty($inner_page['f_menu_color']) ? $inner_page['f_menu_color'] : '';
                 $inner_page_data_array[$key]['f_hover_color'] = !empty($inner_page['f_hover_color']) ? $inner_page['f_hover_color'] : '';
@@ -901,9 +901,9 @@ class SiteManagement extends Model
                 $section_settings[$key]['company_title'] = $section['company_title'];
                 $section_settings[$key]['company_desc'] = $section['company_desc'];
                 $section_settings[$key]['company_url'] = $section['company_url'];
-                $section_settings[$key]['freelancer_title'] = $section['freelancer_title'];
-                $section_settings[$key]['freelancer_desc'] = $section['freelancer_desc'];
-                $section_settings[$key]['freelancer_url'] = $section['freelancer_url'];
+                $section_settings[$key]['provider_title'] = $section['provider_title'];
+                $section_settings[$key]['provider_desc'] = $section['provider_desc'];
+                $section_settings[$key]['provider_url'] = $section['provider_url'];
                 $section_settings[$key]['app_title'] = $section['app_title'];
                 $section_settings[$key]['app_subtitle'] = $section['app_subtitle'];
                 if (!empty($section['section_bg'])) {

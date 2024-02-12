@@ -321,8 +321,8 @@ class ProposalController extends Controller
             //$json['type'] = 'success';
             //$json['message'] = trans('lang.proposal_submitted');
             Session::flash('message', trans('lang.proposal_submitted'));
-            return redirect()->route('showFreelancerProposals');
-            //showFreelancerProposals
+            return redirect()->route('showProviderProposals');
+            //showProviderProposals
         }
 
     }
@@ -658,7 +658,7 @@ class ProposalController extends Controller
         $profile = array();
         $accepted_proposal = array();
         $count = new \stdClass;
-        $freelancer_name = '';
+        $provider_name = '';
         $profile_image = '';
         $user_slug = '';
         $attachments = array();
@@ -675,7 +675,7 @@ class ProposalController extends Controller
         //dd($item, $order);
         if($accepted_proposal)
         {
-            $freelancer_name = Helper::getUserName($accepted_proposal->provider_id);
+            $provider_name = Helper::getUserName($accepted_proposal->provider_id);
             $completion_time = !empty($accepted_proposal->completion_time) ?
             Helper::getJobDurationList($accepted_proposal->completion_time) : '';
             $profile = User::find($accepted_proposal->provider_id)->profile;
@@ -712,7 +712,7 @@ class ProposalController extends Controller
         }
         else
         {
-            $freelancer_name = '';
+            $provider_name = '';
             $completion_time = '';
             $profile = '';
             $attachments = '';
@@ -898,7 +898,7 @@ class ProposalController extends Controller
                     'employer_name',
                     'profile_image',
                     'completion_time',
-                    'freelancer_name',
+                    'provider_name',
                     'attachments',
                     'review_options',
                     'user_slug',
@@ -931,7 +931,7 @@ class ProposalController extends Controller
                     'employer_name',
                     'profile_image',
                     'completion_time',
-                    'freelancer_name',
+                    'provider_name',
                     'attachments',
                     'review_options',
                     'user_slug',

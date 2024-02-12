@@ -1521,7 +1521,7 @@ class JobController extends Controller
         $categories = Category::all();
         $locations = Location::all();
         $languages = Language::all();
-        $freelancer_skills = Helper::getProviderLevelList();
+        $provider_skills = Helper::getProviderLevelList();
         $project_length = Helper::getJobDurationList();
         $skills = Skill::all();
         $keyword = '';
@@ -1543,7 +1543,7 @@ class JobController extends Controller
                     'categories',
                     'locations',
                     'languages',
-                    'freelancer_skills',
+                    'provider_skills',
                     'project_length',
                     'keyword',
                     'Jobs_total_records',
@@ -1565,7 +1565,7 @@ class JobController extends Controller
                     'categories',
                     'locations',
                     'languages',
-                    'freelancer_skills',
+                    'provider_skills',
                     'project_length',
                     'keyword',
                     'Jobs_total_records',

@@ -106,7 +106,7 @@
           </categories-v3>
           <freelancers-v2 
             :element_id="element.id"
-            :freelancers="form.meta.freelancersSecondVersion"
+            :freelancers="form.meta.providersSecondVersion"
             @editData="editSection(element)"
             :parent_index="index" 
             :pageID="page_id"
@@ -284,7 +284,7 @@
               v-if="currentSection =='freelancer_section'"
             />
             <freelancers-v2-form
-              :freelancer="form.meta.freelancersSecondVersion[this.currentElementIndex]"
+              :freelancer="form.meta.providersSecondVersion[this.currentElementIndex]"
               :pageID="page_id"
               :cloneElement="cloneElement"
               :currentElementID="currentElementID"
@@ -489,7 +489,7 @@ export default {
           welcome_sections:[],
           articles:[],
           categoriesSecondVersion:[],
-          freelancersSecondVersion:[],
+          providersSecondVersion:[],
           jobs:[],
           packages:[],
           bannerFirstVersion:[],
@@ -902,7 +902,7 @@ export default {
               id: this.sections[evt.added.newIndex].id,
               parentIndex: ''
             }
-            this.form.meta.freelancersSecondVersion.push(freelancer)
+            this.form.meta.providersSecondVersion.push(freelancer)
         } else if (evt.added.element.section == 'article_section') {
             var article = {
               title:'article title',

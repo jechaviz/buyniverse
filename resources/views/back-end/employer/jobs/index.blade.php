@@ -404,7 +404,7 @@
 								$duration  =  \App\Helper::getJobDurationList($job->duration);
 								$user_name = $job->employer->first_name.' '.$job->employer->last_name;
 								$accepted_proposal = \App\Job::find($job->id)->proposals()->where('status', 'hired')->first();
-								$freelancer_name = \App\Helper::getUserName($accepted_proposal->provider_id);
+								$provider_name = \App\Helper::getUserName($accepted_proposal->provider_id);
 								$profile = \App\User::find($accepted_proposal->provider_id)->profile;
 								$user_image = !empty($profile) ? $profile->avater : '';
 								$profile_image = !empty($user_image) ? '/uploads/users/'.$accepted_proposal->provider_id.'/'.$user_image : 'images/user-login.png';

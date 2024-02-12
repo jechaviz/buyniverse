@@ -195,7 +195,7 @@
                                             <switch_button v-model="private_chat">{{{ trans('lang.enabale_disable_pvt_chat') }}}</switch_button>
                                             <input type="hidden" :value="private_chat" name="freelancer[private_chat]">
                                         </div>
-                                        @if ($freelancer_trial->count() == 0)
+                                        @if ($provider_trial->count() == 0)
                                             <div class="form-group">
                                                 <span class="wt-checkbox">
                                                     <input id="trial" type="checkbox" name="trial">

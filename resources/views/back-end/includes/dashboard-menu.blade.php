@@ -313,7 +313,7 @@
                                 </li>
                             @endif
                             <li>
-                                <a href="{{{ route('showFreelancerProposals') }}}">
+                                <a href="{{{ route('showProviderProposals') }}}">
                                     <i class="ti-bookmark-alt"></i>
                                     <span> {{ trans('lang.proposals') }}</span>
                                 </a>

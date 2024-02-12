@@ -293,9 +293,9 @@ class SiteManagementController extends Controller
         $company_title = !empty($section_settings[0]['company_title']) ? $section_settings[0]['company_title'] : null;
         $company_desc = !empty($section_settings[0]['company_desc']) ? $section_settings[0]['company_desc'] : null;
         $company_url = !empty($section_settings[0]['company_url']) ? $section_settings[0]['company_url'] : null;
-        $freelancer_title = !empty($section_settings[0]['freelancer_title']) ? $section_settings[0]['freelancer_title'] : null;
-        $freelancer_desc = !empty($section_settings[0]['freelancer_desc']) ? $section_settings[0]['freelancer_desc'] : null;
-        $freelancer_url = !empty($section_settings[0]['freelancer_url']) ? $section_settings[0]['freelancer_url'] : null;
+        $provider_title = !empty($section_settings[0]['provider_title']) ? $section_settings[0]['provider_title'] : null;
+        $provider_desc = !empty($section_settings[0]['provider_desc']) ? $section_settings[0]['provider_desc'] : null;
+        $provider_url = !empty($section_settings[0]['provider_url']) ? $section_settings[0]['provider_url'] : null;
         $download_app_img = !empty($section_settings[0]['download_app_img']) ? $section_settings[0]['download_app_img'] : null;
         $app_title = !empty($section_settings[0]['app_title']) ? $section_settings[0]['app_title'] : null;
         $app_subtitle = !empty($section_settings[0]['app_subtitle']) ? $section_settings[0]['app_subtitle'] : null;
@@ -316,8 +316,8 @@ class SiteManagementController extends Controller
                     'banner_title', 'banner_subtitle', 'banner_description',
                     'banner_video_link', 'banner_video_title', 'banner_video_desc',
                     'banner_bg', 'banner_bg_image', 'company_title', 'company_desc',
-                    'company_url', 'freelancer_title', 'freelancer_desc',
-                    'freelancer_url', 'section_bg', 'download_app_img',
+                    'company_url', 'provider_title', 'provider_desc',
+                    'provider_url', 'section_bg', 'download_app_img',
                     'app_title', 'app_subtitle', 'app_desc', 'app_android_link',
                     'app_ios_link', 'cat_sec_title', 'cat_sec_subtitle', 'service_sec_title',
                     'service_sec_subtitle', 'service_sec_description'
@@ -330,8 +330,8 @@ class SiteManagementController extends Controller
                     'banner_title', 'banner_subtitle', 'banner_description',
                     'banner_video_link', 'banner_video_title', 'banner_video_desc',
                     'banner_bg', 'banner_bg_image', 'company_title', 'company_desc',
-                    'company_url', 'freelancer_title', 'freelancer_desc',
-                    'freelancer_url', 'section_bg', 'download_app_img',
+                    'company_url', 'provider_title', 'provider_desc',
+                    'provider_url', 'section_bg', 'download_app_img',
                     'app_title', 'app_subtitle', 'app_desc', 'app_android_link',
                     'app_ios_link', 'cat_sec_title', 'cat_sec_subtitle', 'service_sec_title',
                     'service_sec_subtitle', 'service_sec_description'
@@ -424,9 +424,9 @@ class SiteManagementController extends Controller
                 $json['show_f_banner'] = 'true';
             }
         }
-        if (!empty($inner_page_settings[0]['freelancer_header_styling'])) {
-            if ($inner_page_settings[0]['freelancer_header_styling'] == 'true') {
-                $json['freelancer_header_styling'] = 'true';
+        if (!empty($inner_page_settings[0]['provider_header_styling'])) {
+            if ($inner_page_settings[0]['provider_header_styling'] == 'true') {
+                $json['provider_header_styling'] = 'true';
             }
         }
         $json['f_menu_text_color'] = !empty($inner_page_settings[0]['f_menu_text_color']) ? $inner_page_settings[0]['f_menu_text_color'] : '';

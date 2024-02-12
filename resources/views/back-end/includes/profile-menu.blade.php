@@ -256,7 +256,7 @@
                         </li>-->
                     @endif
                     <!--<li>
-                        <a href="{{{ route('showFreelancerProposals') }}}">
+                        <a href="{{{ route('showProviderProposals') }}}">
                             <span>{{ trans('lang.proposals') }}</span>
                         </a>
                     </li>-->

@@ -25,7 +25,7 @@
                                 <div class="wt-insightdetails">
                                     <div class="wt-title">
                                         <h3>{{ trans('lang.latest_proposals') }}</h3>
-                                        <a href="{{route('showFreelancerProposals')}}">{{ trans('lang.click_view') }}</a>
+                                        <a href="{{route('showProviderProposals')}}">{{ trans('lang.click_view') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                     </figure>
                                     <div class="wt-insightdetails">
                                         <div class="wt-title">
-                                            <h3>{{{ Helper::getTotalProposalsByStatus($freelancer_id, 'cancelled') }}}</h3>
+                                            <h3>{{{ Helper::getTotalProposalsByStatus($provider_id, 'cancelled') }}}</h3>
                                             <h3>{{ trans('lang.total_cancelled_projects') }}</h3>
                                             <a href="{{{ url('provider/jobs/cancelled') }}}">{{ trans('lang.click_view') }}</a>
                                         </div>
@@ -95,7 +95,7 @@
                                     </figure>
                                     <div class="wt-insightdetails">
                                         <div class="wt-title">
-                                            <h3>{{{ Helper::getTotalProposalsByStatus($freelancer_id, 'hired') }}}</h3>
+                                            <h3>{{{ Helper::getTotalProposalsByStatus($provider_id, 'hired') }}}</h3>
                                             <h3>{{ trans('lang.total_ongoing_projects') }}</h3>
                                             <a href="{{{ url('provider/jobs/hired') }}}">{{ trans('lang.click_view') }}</a>
                                         </div>

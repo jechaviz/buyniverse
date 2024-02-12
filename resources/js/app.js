@@ -1998,7 +1998,7 @@ if (document.getElementById("user_profile")) {
                 this.loading = true;
                 let offer_form = document.getElementById('send-offer-form');
                 let form_data = new FormData(offer_form);
-                form_data.append('freelancer_id', id);
+                form_data.append('provider_id', id);
                 var self = this;
                 axios.post(APP_URL + '/store/project-offer', form_data)
                     .then(function (response) {
@@ -2166,7 +2166,7 @@ if (document.getElementById("settings")) {
                 menuColor:'',
                 HoverColor:'',
             },
-            freelancer_header_styling:false,
+            provider_header_styling:false,
             employerHeaderStyling:{
                 textColor:'',
                 menuColor:'',
@@ -3013,10 +3013,10 @@ if (document.getElementById("settings")) {
                         } else {
                             self.show_f_banner = false;
                         }
-                        if ((response.data.freelancer_header_styling == 'true')) {
-                            self.freelancer_header_styling = true;
+                        if ((response.data.provider_header_styling == 'true')) {
+                            self.provider_header_styling = true;
                         } else {
-                            self.freelancer_header_styling = false;
+                            self.provider_header_styling = false;
                         }
                         if ((response.data.show_emp_banner == 'true')) {
                             self.show_emp_banner = true;
@@ -3886,7 +3886,7 @@ if (document.getElementById("jobs")) {
                         }
                     });
             },
-            hireFreelancer: function (id, mode) {
+            hireProvider: function (id, mode) {
                 this.$swal({
                     title: Vue.prototype.trans('lang.want_to_hire'),
                     type: "warning",
@@ -4032,7 +4032,7 @@ if (document.getElementById("jobs")) {
                 this.loading = true;
                 let review_form = document.getElementById('submit-review-form');
                 let form_data = new FormData(review_form);
-                form_data.append('freelancer_id', id);
+                form_data.append('provider_id', id);
                 form_data.append('job_id', job_id);
                 var self = this;
                 axios.post(APP_URL + '/user/submit-review', form_data)
@@ -4117,9 +4117,9 @@ if (document.getElementById("jobs")) {
         }
     });
 }
-/*if (document.getElementById("hirefreelancer")) {
+/*if (document.getElementById("hireProvider")) {
     const jobVue = new Vue({
-        el: '#hirefreelancer',
+        el: '#hireProvider',
         mounted: function () {
             if (document.getElementsByClassName("flash_msg") != null) {
                 flashVue.$emit('showFlashMessage');
@@ -4204,7 +4204,7 @@ if (document.getElementById("jobs")) {
         },
         methods: {
             
-            hireFreelancer: function (id, mode) {
+            hireProvider: function (id, mode) {
                 this.$swal({
                     title: Vue.prototype.trans('lang.want_to_hire'),
                     type: "warning",
@@ -5164,7 +5164,7 @@ if (document.getElementById("services")) {
                         console.log(error);
                     });
             },
-            hireFreelancer: function (id, title, text, mode) {
+            hireProvider: function (id, title, text, mode) {
                 this.$swal({
                     title: title,
                     text: text,
@@ -5268,7 +5268,7 @@ if (document.getElementById("services")) {
                 this.loading = true;
                 let review_form = document.getElementById('submit-review-form');
                 let form_data = new FormData(review_form);
-                form_data.append('freelancer_id', id);
+                form_data.append('provider_id', id);
                 form_data.append('job_id', job_id);
                 form_data.append('type', 'service');
                 var self = this;

@@ -914,8 +914,8 @@ class UserController extends Controller
     public function downloadAttachments(Request $request)
     {
         if (!empty($request['attachments'])) {
-            $freelancer_id = $request['freelancer_id'];
-            $path = storage_path() . '/app/uploads/proposals/' . $freelancer_id;
+            $provider_id = $request['provider_id'];
+            $path = storage_path() . '/app/uploads/proposals/' . $provider_id;
             if (!file_exists($path)) {
                 File::makeDirectory($path, 0755, true, true);
             }
@@ -924,18 +924,18 @@ class UserController extends Controller
                 $zip->make($path . '/attachments.zip')->add($path . '/' . $attachment);
                 $zip->close();
             }
-            return response()->download(storage_path('app/uploads/proposals/' . $freelancer_id . '/attachments.zip'));
+            return response()->download(storage_path('app/uploads/proposals/' . $provider_id . '/attachments.zip'));
         } else {
             Session::flash('error', trans('lang.files_not_found'));
             return Redirect::back();
         }
     }
 
-    public function downloadAttachment($freelancer_id, $attachments)
+    public function downloadAttachment($provider_id, $attachments)
     {
         if (!empty($request['attachments'])) {
-            $freelancer_id = $request['freelancer_id'];
-            $path = storage_path() . '/app/uploads/proposals/' . $freelancer_id;
+            $provider_id = $request['provider_id'];
+            $path = storage_path() . '/app/uploads/proposals/' . $provider_id;
             if (!file_exists($path)) {
                 File::makeDirectory($path, 0755, true, true);
             }
@@ -944,7 +944,7 @@ class UserController extends Controller
                 $zip->make($path . '/attachments.zip')->add($path . '/' . $attachment);
                 $zip->close();
             }
-            return response()->download(storage_path('app/uploads/proposals/' . $freelancer_id . '/attachments.zip'));
+            return response()->download(storage_path('app/uploads/proposals/' . $provider_id . '/attachments.zip'));
         } else {
             Session::flash('error', trans('lang.files_not_found'));
             return Redirect::back();
@@ -1242,7 +1242,7 @@ class UserController extends Controller
         if (Auth::user()) {
             $user_id = Auth::user()->id;
             if (!empty($request['id'])) {
-                $freelancer_id = $request['recipent_id'];
+                $provider_id = $request['recipent_id'];
                 $proposal_id = $request['id'];
                 $project_type = !empty($request['project_type']) ? $request['project_type'] : 'job';
                 $proposal = new Proposal();
@@ -1253,12 +1253,12 @@ class UserController extends Controller
                         $job = DB::table('proposals')->select('job_id')->where('id', $proposal_id)->first();
                         $project = DB::table('jobs')->where('id', $job->job_id)->select('user_id')->first();
                     }
-                    $message_data = $proposal::getProjectHistory($project->user_id, $freelancer_id, $proposal_id, $project_type);
+                    $message_data = $proposal::getProjectHistory($project->user_id, $provider_id, $proposal_id, $project_type);
                 } else {
-                    $freelancer_id = '';
-                    $message_data = $proposal::getMessages($user_id, $freelancer_id, $proposal_id, $project_type);
+                    $provider_id = '';
+                    $message_data = $proposal::getMessages($user_id, $provider_id, $proposal_id, $project_type);
                 }
-                // $message_data = $proposal::getMessages($user_id, $freelancer_id, $proposal_id, $project_type);
+                // $message_data = $proposal::getMessages($user_id, $provider_id, $proposal_id, $project_type);
                 if (!empty($message_data)) {
                     foreach ($message_data as $key => $data) {
                         $content = $data->content;
@@ -1735,7 +1735,7 @@ class UserController extends Controller
                         $email_params['title'] = $service->title;
                         $email_params['service_link'] = url('service/' . $service->slug);
                         $email_params['amount'] = number_format($service->price);
-                        $email_params['freelancer_name'] = Helper::getUserName($service->seller[0]->id);
+                        $email_params['provider_name'] = Helper::getUserName($service->seller[0]->id);
                         $email_params['employer_profile'] = url('profile/' . $user->slug);
                         $email_params['employer_name'] = Helper::getUserName($user->id);
                         $provider_data = User::find(intval($service->seller[0]->id));
@@ -2175,7 +2175,7 @@ class UserController extends Controller
         if (!empty($request)) {
             $offer = new Offer();
             if (Auth::user()->getRoleNames()->first() === 'employer') {
-                $storeProjectOffers = $offer->saveProjectOffer($request, $request['freelancer_id']);
+                $storeProjectOffers = $offer->saveProjectOffer($request, $request['provider_id']);
                 if ($storeProjectOffers == "success") {
                     $json['type'] = 'success';
                     $json['progressing'] = trans('lang.send_offer');
@@ -2198,7 +2198,7 @@ class UserController extends Controller
                             $msg = $request['desc'];
                             $template_data = EmailTemplate::getEmailTemplateByID($send_provider_offer->id);
                             $message->user_id = intval(Auth::user()->id);
-                            $message->receiver_id = intval($request['freelancer_id']);
+                            $message->receiver_id = intval($request['provider_id']);
                             $message->body = Helper::getProjectOfferContent($e_name, $e_link, $p_link, $p_title, $msg);
                             $message->status = 0;
                             $message->save();

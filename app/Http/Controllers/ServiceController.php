@@ -691,7 +691,7 @@ class ServiceController extends Controller
                 $service = Service::find($id);
                 $seller = Helper::getServiceSeller($service->id);
                 $freelancer = User::find($seller->user_id);
-                $freelancer_name = Helper::getUserName($freelancer->id);
+                $provider_name = Helper::getUserName($freelancer->id);
                 $profile = User::find($freelancer->id)->profile;
                 $user_image = !empty($profile) ? $profile->avater : '';
                 $profile_image = !empty($user_image) ? '/uploads/users/' . $freelancer->id . '/' . $user_image : 'images/user-login.png';
@@ -707,7 +707,7 @@ class ServiceController extends Controller
                         compact(
                             'stripe_img',
                             'service',
-                            'freelancer_name',
+                            'provider_name',
                             'profile_image',
                             'payment_gateway',
                             'symbol',
@@ -721,7 +721,7 @@ class ServiceController extends Controller
                         compact(
                             'stripe_img',
                             'service',
-                            'freelancer_name',
+                            'provider_name',
                             'profile_image',
                             'payment_gateway',
                             'symbol',

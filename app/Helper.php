@@ -3865,9 +3865,9 @@ class Helper extends Model
         $company_title = !empty($section_settings) && !empty($section_settings[0]['company_title']) ? $section_settings[0]['company_title'] : null;
         $company_desc = !empty($section_settings) && !empty($section_settings[0]['company_desc']) ? $section_settings[0]['company_desc'] : null;
         $company_url = !empty($section_settings) && !empty($section_settings[0]['company_url']) ? $section_settings[0]['company_url'] : '#';
-        $freelancer_title = !empty($section_settings) && !empty($section_settings[0]['freelancer_title']) ? $section_settings[0]['freelancer_title'] : null;
-        $freelancer_desc = !empty($section_settings) && !empty($section_settings[0]['freelancer_desc']) ? $section_settings[0]['freelancer_desc'] : null;
-        $freelancer_url = !empty($section_settings) && !empty($section_settings[0]['freelancer_url']) ? $section_settings[0]['freelancer_url'] : '#';
+        $provider_title = !empty($section_settings) && !empty($section_settings[0]['provider_title']) ? $section_settings[0]['provider_title'] : null;
+        $provider_desc = !empty($section_settings) && !empty($section_settings[0]['provider_desc']) ? $section_settings[0]['provider_desc'] : null;
+        $provider_url = !empty($section_settings) && !empty($section_settings[0]['provider_url']) ? $section_settings[0]['provider_url'] : '#';
         if ($type == 'show_cat_section') {
             return $show_cat_section;
         }
@@ -3900,13 +3900,13 @@ class Helper extends Model
             return $company_url;
         }
         if ($type == 'right_title') {
-            return $freelancer_title;
+            return $provider_title;
         }
         if ($type == 'right_description') {
-            return $freelancer_desc;
+            return $provider_desc;
         }
         if ($type == 'right_url') {
-            return $freelancer_url;
+            return $provider_url;
         }
     }
 
@@ -4007,8 +4007,8 @@ class Helper extends Model
                 'value' => 'followed_company',
                 'title' => trans('lang.followed_companies'),
             ),
-            'liked_freelancer' => array(
-                'value' => 'liked_freelancer',
+            'liked_provider' => array(
+                'value' => 'liked_provider',
                 'title' => trans('lang.liked_providers'),
             ),
             'cancel_job' => array(
