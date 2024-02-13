@@ -35,16 +35,16 @@
 									@foreach ($services as $service)
 										@php 
 											$seller = Helper::getServiceSeller($service['id']);
-											$freelancer = !empty($seller) ? App\User::find($seller->user_id) : '';
+											$provider = !empty($seller) ? App\User::find($seller->user_id) : '';
 											$attachment = Helper::getUnserializeData($service['attachments']); 
 										@endphp
 										<tr class="del-{{{ $service['status'] }}}">
 											<td data-th="Service Title">
 												<span class="bt-content">
 													<div class="wt-service-tabel">
-														@if (!empty($freelancer))
+														@if (!empty($provider))
 															@if (!empty($attachment))
-																<figure class="service-feature-image"><img src="{{{asset(Helper::getImage('uploads/services/'.$freelancer->id, $attachment[0], 'medium-', 'small-service.jpg'))}}}" alt="{{{$service['title']}}}"></figure>
+																<figure class="service-feature-image"><img src="{{{asset(Helper::getImage('uploads/services/'.$provider->id, $attachment[0], 'medium-', 'small-service.jpg'))}}}" alt="{{{$service['title']}}}"></figure>
 															@endif
 														@endif
 														<div class="wt-freelancers-content">
@@ -60,21 +60,21 @@
 												</span>
 											</td>
 											<td>
-												@if (!empty($freelancer))
+												@if (!empty($provider))
 													<span class="bt-content">
 														<div class="wt-userlistingsingle">
 															<figure class="wt-userlistingimg">
-																<img src="{{{asset(Helper::getProfileImage($freelancer->id))}}}" alt="image description">
+																<img src="{{{asset(Helper::getProfileImage($provider->id))}}}" alt="image description">
 															</figure>
 															<div class="wt-userlistingcontent">
 																<div class="wt-contenthead wt-followcomhead">
 																<div class="wt-title">
-																	<a href="{{{url('profile/'.$freelancer->slug)}}}">
-																		@if ($freelancer->user_verified)
-																			<i class="fa fa-check-circle"></i> {{{Helper::getUserName($freelancer->id)}}}
+																	<a href="{{{url('profile/'.$provider->slug)}}}">
+																		@if ($provider->user_verified)
+																			<i class="fa fa-check-circle"></i> {{{Helper::getUserName($provider->id)}}}
 																		@endif
 																	</a>
-																	<h3>{{{$freelancer->profile->tagline}}}</h3>
+																	<h3>{{{$provider->profile->tagline}}}</h3>
 																</div>
 																</div>
 															</div>

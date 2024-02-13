@@ -396,7 +396,7 @@ Route::group(
         Route::get('employer/products', 'EmployerController@products')->name('products');
     }
 );
-// Freelancer Routes
+// Provider Routes
 Route::group(
     ['middleware' => ['role:provider|employer']],
     function () {
@@ -422,15 +422,15 @@ Route::group(
         Route::get('provider/dashboard', 'ProviderController@providerDashboard')->name('providerrDashboard');
         Route::get('provider/profile', 'ProviderController@index')->name('personalDetail');
         Route::post('provider/upload-temp-image', 'ProviderController@uploadTempImage');
-        Route::get('provider/dashboard/post-service', 'ServiceController@create')->name('freelancerPostService');
-        Route::get('provider/payout-settings', 'ProviderController@payoutSettings')->name('freelancerPayoutsSettings');
-        Route::get('provider/payouts', 'ProviderController@getPayouts')->name('getFreelancerPayouts');
+        Route::get('provider/dashboard/post-service', 'ServiceController@create')->name('providerPostService');
+        Route::get('provider/payout-settings', 'ProviderController@payoutSettings')->name('providerPayoutsSettings');
+        Route::get('provider/payouts', 'ProviderController@getPayouts')->name('getProviderPayouts');
         Route::get('provider/jobs/', 'ProviderController@providerJobs')->name('providerJobs');
         Route::get('provider/team/{slug}', 'ProviderController@showOnGoingJobTeamDetail')->name('showOnGoingJobTeamDetail');
 
         Route::get('provider/quiz/{id}', 'MarksController@show')->name('getQuiz');
         Route::put('provider/quiz/{id}', 'MarksController@update')->name('postquiz');
-        Route::get('provider/contest/{id}', 'ProviderController@contest')->name('freelancercontest');
+        Route::get('provider/contest/{id}', 'ProviderController@contest')->name('providercontest');
         Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 
         Route::get('provider/teams', 'FteamController@index')->name('fteam.index');
@@ -442,7 +442,7 @@ Route::group(
         
     }
 );
-// Employer|Freelancer Routes
+// Employer|Provider Routes
 Route::group(
     ['middleware' => ['role:employer|provider|admin']],
     function () {
@@ -477,7 +477,7 @@ Route::group(
         Route::get('user/order/bacs/{id}/{order}/{type}/{project_type?}', 'UserController@bankCheckout')->name('bankCheckout');
         Route::get('user/generate-order/bacs/{id}/{type}', 'UserController@generateOrder')->name('generate.order');
         Route::get('employer/{type}/invoice', 'UserController@getEmployerInvoices')->name('employerInvoice');
-        Route::get('freelancer/{type}/invoice', 'UserController@getFreelancerInvoices')->name('freelancerInvoice');
+        Route::get('provider/{type}/invoice', 'UserController@getProviderInvoices')->name('providerInvoice');
         Route::get('show/invoice/{id}', 'UserController@showInvoice');
         Route::post('service/upload-temp-message_attachments', 'ServiceController@uploadTempMessageAttachments');
         // Route::post('user/verify/emailcode', 'UserController@verifyUserEmailCode');
@@ -494,8 +494,8 @@ Route::get('get-seven-categories', 'CategoryController@getSevenCategories');
 Route::get('get-articles', 'PublicController@getArticles');
 Route::get('get-home-slider/{id}', 'PageController@getSlider');
 // Route::get('section/get-iframe/{video}', 'PublicController@getVideo');
-Route::get('get-top-providers', 'ProviderController@getTopFreelancers');
-Route::get('get-all-providers', 'ProviderController@getAllFreelancers');
+Route::get('get-top-providers', 'ProviderController@getTopProviders');
+Route::get('get-all-providers', 'ProviderController@getAllProviders');
 Route::get('get-services', 'ServiceController@getServices');
 Route::post('job/get-wishlist', 'JobController@getWishlist');
 Route::get('dashboard/packages/{role}', 'PackageController@index');
@@ -525,8 +525,8 @@ Route::get('check-proposal-auth-user', 'PublicController@checkProposalAuth');
 Route::get('check-service-auth-user', 'PublicController@checkServiceAuth');
 Route::post('proposal/submit-proposal', 'ProposalController@store');
 Route::post('proposal/update-proposal', 'ProposalController@estore');
-Route::post('get-provider-experiences', 'PublicController@getFreelancerExperience');
-Route::post('get-provider-education', 'PublicController@getFreelancerEducation');
+Route::post('get-provider-experiences', 'PublicController@getProviderExperience');
+Route::post('get-provider-education', 'PublicController@getProviderEducation');
 
 Route::get('addmoney/stripe', array('as' => 'addmoney.paywithstripe', 'uses' => 'StripeController@payWithStripe',));
 Route::post('addmoney/stripe', array('as' => 'addmoney.stripe', 'uses' => 'StripeController@postPaymentWithStripe',));
@@ -594,12 +594,12 @@ Route::group(
         Route::get('job_project_level', 'API\JobController@getProjectLevel');
         Route::get('job_project_duration', 'API\JobController@getProjectduration');
         Route::get('job_project_english', 'API\JobController@getProjectenglishlevel');
-        Route::get('job_project_freelancer', 'API\JobController@getProjectfreelancerlevel');
+        Route::get('job_project_provider', 'API\JobController@getProjectproviderlevel');
         Route::get('job_overview/project_level/{id}', 'API\JobController@postProjectLevel');
         Route::get('job_overview/project_duration/{id}', 'API\JobController@postProjectDuration');
         Route::get('job_overview/postprojecttype/{id}', 'API\JobController@postProjecttype');
         Route::get('job_overview/project_price/{id}', 'API\JobController@postProjectprice');
-        Route::get('job_overview/project_freelancer/{id}', 'API\JobController@postProjectfreelavcer');
+        Route::get('job_overview/project_provider/{id}', 'API\JobController@postProjectprovider');
         Route::get('job_overview/project_english/{id}', 'API\JobController@postProjectenglish');
         Route::get('job_overview/project_expirydate/{id}', 'API\JobController@postProjectexpirydate');
         Route::get('job_overview/project_jobmonth/{id}', 'API\JobController@postProjectmonth');
@@ -637,8 +637,8 @@ Route::group(
         Route::get('job_overview/getenglish/{id}', 'API\JobController@getEnglish');
         Route::get('job_overview/deleteenglish/{id}', 'API\JobController@deleteenglish');
 
-        Route::get('job_overview/getfreelancer/{id}', 'API\JobController@getFreelancer');
-        Route::get('job_overview/deletefreelancer/{id}', 'API\JobController@deletefreelancer');
+        Route::get('job_overview/getprovider/{id}', 'API\JobController@getProvider');
+        Route::get('job_overview/deleteprovider/{id}', 'API\JobController@deleteProvider');
 
         Route::get('contest_proposal/hascontest/{id}', 'API\Contest_proposalController@hascontest');
 

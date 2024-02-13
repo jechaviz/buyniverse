@@ -302,11 +302,11 @@ class PublicController extends Controller
                 $projects = !empty($profile->projects) ? unserialize($profile->projects) : array();
                 $experiences = !empty($profile->experience) ? unserialize($profile->experience) : array();
                 $education = !empty($profile->education) ? unserialize($profile->education) : array();
-                $freelancer_rating  = !empty($user->profile->ratings) ? Helper::getUnserializeData($user->profile->ratings) : 0;
-                $rating = !empty($freelancer_rating) ? $freelancer_rating[0] : 0;
+                $provider_rating  = !empty($user->profile->ratings) ? Helper::getUnserializeData($user->profile->ratings) : 0;
+                $rating = !empty($provider_rating) ? $provider_rating[0] : 0;
                 $joining_date = !empty($profile->created_at) ? Carbon::parse($profile->created_at)->format('M d, Y') : '';
                 $jobs = Job::select('title', 'id')->get()->pluck('title', 'id');
-                $save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
+                $save_provider = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $badge = Helper::getUserBadge($user->id);
                 $feature_class = !empty($badge) ? 'wt-featured' : '';
                 $badge_color = !empty($badge) ? $badge->color : '';
@@ -324,9 +324,9 @@ class PublicController extends Controller
                 $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $show_earnings = !empty($settings) && !empty($settings[0]['show_earnings']) ? $settings[0]['show_earnings'] : true;
                 //dd($videos);
-                if (file_exists(resource_path('views/extend/front-end/users/freelancer-show.blade.php'))) {
+                if (file_exists(resource_path('views/extend/front-end/users/provider-show.blade.php'))) {
                     return View(
-                        'extend.front-end.users.freelancer-show',
+                        'extend.front-end.users.provider-show',
                         compact(
                             'show_earnings',
                             'average_rating_count',
@@ -349,7 +349,7 @@ class PublicController extends Controller
                             'projects',
                             'awards',
                             'joining_date',
-                            'save_freelancer',
+                            'save_provider',
                             'auth_user',
                             'badge',
                             'feature_class',
@@ -367,7 +367,7 @@ class PublicController extends Controller
                     );
                 } else {
                     return View(
-                        'front-end.users.freelancer-show',
+                        'front-end.users.provider-show',
                         compact(
                             'show_earnings',
                             'average_rating_count',
@@ -390,7 +390,7 @@ class PublicController extends Controller
                             'projects',
                             'awards',
                             'joining_date',
-                            'save_freelancer',
+                            'save_provider',
                             'auth_user',
                             'badge',
                             'feature_class',
@@ -699,7 +699,7 @@ class PublicController extends Controller
                     $search_languages
                 );
                 $users = count($search['users']) > 0 ? $search['users'] : '';
-                $save_freelancer = !empty(auth()->user()->profile->saved_provider) ?
+                $save_provider = !empty(auth()->user()->profile->saved_provider) ?
                     unserialize(auth()->user()->profile->saved_provider) : array();
                 $save_employer = !empty(auth()->user()->profile->saved_employers) ?
                     unserialize(auth()->user()->profile->saved_employers) : array();
@@ -754,14 +754,14 @@ class PublicController extends Controller
                         );
                     }
                 } elseif ($type === 'provider') {
-                    //dd('freelancers', $symbol);
-                    $f_list_meta_title = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_title']) ? $inner_page[0]['f_list_meta_title'] : trans('lang.freelancer_listing');
-                    $f_list_meta_desc = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_desc']) ? $inner_page[0]['f_list_meta_desc'] : trans('lang.freelancer_meta_desc');
+                    //dd('providers', $symbol);
+                    $f_list_meta_title = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_title']) ? $inner_page[0]['f_list_meta_title'] : trans('lang.provider_listing');
+                    $f_list_meta_desc = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_desc']) ? $inner_page[0]['f_list_meta_desc'] : trans('lang.provider_meta_desc');
                     $show_f_banner = !empty($inner_page) && !empty($inner_page[0]['show_f_banner']) ? $inner_page[0]['show_f_banner'] : 'true';
                     $f_inner_banner = !empty($inner_page) && !empty($inner_page[0]['f_inner_banner']) ? $inner_page[0]['f_inner_banner'] : null;
-                    if (file_exists(resource_path('views/extend/front-end/freelancers/index.blade.php'))) {
+                    if (file_exists(resource_path('views/extend/front-end/providers/index.blade.php'))) {
                         return view(
-                            'extend.front-end.freelancers.index',
+                            'extend.front-end.providers.index',
                             compact(
                                 'type',
                                 'users',
@@ -772,7 +772,7 @@ class PublicController extends Controller
                                 'project_length',
                                 'keyword',
                                 'users_total_records',
-                                'save_freelancer',
+                                'save_provider',
                                 'symbol',
                                 'current_date',
                                 'f_list_meta_title',
@@ -785,7 +785,7 @@ class PublicController extends Controller
                         );
                     } else {
                         return view(
-                            'front-end.freelancers.index',
+                            'front-end.providers.index',
                             compact(
                                 'type',
                                 'users',
@@ -796,7 +796,7 @@ class PublicController extends Controller
                                 'project_length',
                                 'keyword',
                                 'users_total_records',
-                                'save_freelancer',
+                                'save_provider',
                                 'symbol',
                                 'current_date',
                                 'f_list_meta_title',
@@ -1083,10 +1083,10 @@ class PublicController extends Controller
     {
         $json = array();
         $id = $request['id'];
-        $freelancer = User::find($id);
-        if (!empty($freelancer)) {
+        $provider = User::find($id);
+        if (!empty($provider)) {
             $json['type'] = 'success';
-            $json['experience'] = unserialize($freelancer->profile->experience);
+            $json['experience'] = unserialize($provider->profile->experience);
             return $json;
         } else {
             $json['type'] = 'error';
@@ -1105,10 +1105,10 @@ class PublicController extends Controller
     {
         $json = array();
         $id = $request['id'];
-        $freelancer = User::find($id);
-        if (!empty($freelancer)) {
+        $provider = User::find($id);
+        if (!empty($provider)) {
             $json['type'] = 'success';
-            $json['education'] = unserialize($freelancer->profile->education);
+            $json['education'] = unserialize($provider->profile->education);
             return $json;
         } else {
             $json['type'] = 'error';
@@ -1127,11 +1127,11 @@ class PublicController extends Controller
     {
         $json = array();
         $id = $request['id'];
-        $freelancer = User::find($id);
-        if (!empty($freelancer)) {
+        $provider = User::find($id);
+        if (!empty($provider)) {
             $json['type'] = 'success';
-            $json['user'] = $freelancer;
-            $json['services'] = Helper::getUnserializeData($freelancer->services);
+            $json['user'] = $provider;
+            $json['services'] = Helper::getUnserializeData($provider->services);
             return $json;
         } else {
             $json['type'] = 'error';

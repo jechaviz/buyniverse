@@ -10,10 +10,10 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 float-right" id="invoice_list">
                 <div class="wt-dashboardbox wt-dashboardinvocies">
-                    @if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/tabs.blade.php')))
-                        @include('extend.back-end.freelancer.payouts.tabs')
+                    @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/tabs.blade.php')))
+                        @include('extend.back-end.provider.payouts.tabs')
                     @else
-                        @include('back-end.freelancer.payouts.tabs')
+                        @include('back-end.provider.payouts.tabs')
                     @endif
                     <div class="wt-tabscontent tab-content">
                         <div class="wt-tabscontenttitle">

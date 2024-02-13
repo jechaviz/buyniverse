@@ -37,7 +37,7 @@
                                 @endif
                                 @if ($job->status != 'posted')
                                     <li class="alert alert-danger alert-dismissible fade show">
-                                        <span>{{{ trans('lang.hired_freelancer_note') }}}</span>
+                                        <span>{{{ trans('lang.hired_provider_note') }}}</span>
                                         <a href="javascript:void(0)" class="wt-alertbtn danger close" data-dismiss="alert" aria-label="Close">Got It</a>
                                         <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close">
                                             <i class="fa fa-close"></i>
@@ -46,7 +46,7 @@
                                 @endif
                                 @if (!empty($check_skill_req))
                                     <li class="alert alert-primary alert-dismissible fade show">
-                                        <span><em>{{trans('lang.info')}}: </em> {{{ trans('lang.skill_req_freelancer_note') }}}</span>
+                                        <span><em>{{trans('lang.info')}}: </em> {{{ trans('lang.skill_req_provider_note') }}}</span>
                                         <a href="javascript:void(0)" class="wt-alertbtn primary close" data-dismiss="alert" aria-label="Close">Got It</a>
                                         <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><i class="fa fa-close"></i></a>
                                     </li>

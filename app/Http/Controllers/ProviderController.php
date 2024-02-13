@@ -101,7 +101,7 @@ class ProviderController extends Controller
         $package_options = Package::select('options')->where('role_id', $role_id)->first();
         $options = !empty($package_options) ? unserialize($package_options['options']) : array();
         $videos = !empty($profile->videos) ? Helper::getUnserializeData($profile->videos) : '';
-        if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/personal-detail/index.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/personal-detail/index.blade.php'))) {
             return view(
                 'extend.back-end.provider.profile-settings.personal-detail.index',
                 compact(
@@ -405,7 +405,7 @@ class ProviderController extends Controller
             trans('lang.months.november'),
             trans('lang.months.december'),
         ];
-        if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/experience-education/index.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/experience-education/index.blade.php'))) {
             return view('extend.back-end.provider.profile-settings.experience-education.index', compact('weekdays', 'months'));
         } else {
             return view('back-end.provider.profile-settings.experience-education.index', compact('weekdays', 'months'));
@@ -442,7 +442,7 @@ class ProviderController extends Controller
             trans('lang.months.november'),
             trans('lang.months.december'),
         ];
-        if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/projects-awards/index.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/projects-awards/index.blade.php'))) {
             return view('extend.back-end.provider.profile-settings.projects-awards.index', compact('weekdays', 'months'));
         } else {
             return view('back-end.provider.profile-settings.projects-awards.index', compact('weekdays', 'months'));
@@ -761,7 +761,7 @@ class ProviderController extends Controller
             //dd($jobs);
 
 
-            if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/list.blade.php'))) {
+            if (file_exists(resource_path('views/extend/back-end/provider/jobs/list.blade.php'))) {
                 return view(
                     'extend.back-end.provider.jobs.list',
                     compact(
@@ -823,7 +823,7 @@ class ProviderController extends Controller
             $completed_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'completed')->paginate(7);
             $cancelled_jobs = Proposal::select('job_id')->latest()->where('provider_id', $provider_id)->where('status', 'cancelled')->paginate(7);
             if (!empty($status) && $status === 'hired') {
-                if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/ongoing.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/jobs/ongoing.blade.php'))) {
                     return view(
                         'extend.back-end.provider.jobs.ongoing',
                         compact(
@@ -841,7 +841,7 @@ class ProviderController extends Controller
                     );
                 }
             } elseif (!empty($status) && $status === 'completed') {
-                if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/completed.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/jobs/completed.blade.php'))) {
                     return view(
                         'extend.back-end.provider.jobs.completed',
                         compact(
@@ -859,7 +859,7 @@ class ProviderController extends Controller
                     );
                 }
             } elseif (!empty($status) && $status === 'cancelled') {
-                if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/cancelled.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/jobs/cancelled.blade.php'))) {
                     return view(
                         'extend.back-end.provider.jobs.cancelled',
                         compact(
@@ -937,7 +937,7 @@ class ProviderController extends Controller
             $lang = $job->languages;
             $skills = $job->skills;
 
-            if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/show.blade.php'))) {
+            if (file_exists(resource_path('views/extend/back-end/provider/jobs/show.blade.php'))) {
                 return view(
                     'extend.back-end.provider.jobs.show',
                     compact(
@@ -1023,7 +1023,7 @@ class ProviderController extends Controller
             $lang = $job->languages;
             $skills = $job->skills;
 
-            if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/show.blade.php'))) {
+            if (file_exists(resource_path('views/extend/back-end/provider/jobs/show.blade.php'))) {
                 return view(
                     'extend.back-end.provider.jobs.team',
                     compact(
@@ -1091,7 +1091,7 @@ class ProviderController extends Controller
             
         }
         //dd($proposals);
-        if (file_exists(resource_path('views/extend/back-end/freelancer/proposals/index.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/proposals/index.blade.php'))) {
             return view(
                 'extend.back-end.provider.proposals.index',
                 compact(
@@ -1152,7 +1152,7 @@ class ProviderController extends Controller
             $completed_services_icon = !empty($icons['hidden_completed_services']) ? $icons['hidden_completed_services'] : 'completed-task.png';
             $ongoing_services_icon = !empty($icons['hidden_ongoing_services']) ? $icons['hidden_ongoing_services'] : 'onservice.png';
             $access_type = Helper::getAccessType();
-            if (file_exists(resource_path('views/extend/back-end/freelancer/dashboard.blade.php'))) {
+            if (file_exists(resource_path('views/extend/back-end/provider/dashboard.blade.php'))) {
                 return view(
                     'extend.back-end.provider.dashboard',
                     compact(
@@ -1238,7 +1238,7 @@ class ProviderController extends Controller
                 $cancelled_services = Helper::getProviderServices('cancelled', Auth::user()->id);
                 $attachment = Helper::getUnserializeData($completed_services[0]->attachments);
                 //dd($completed_services);
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/index.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/services/index.blade.php'))) {
                     return view(
                         'extend.back-end.provider.services.manage',
                         compact(
@@ -1274,7 +1274,7 @@ class ProviderController extends Controller
             $status_list = array_pluck(Helper::getProviderServiceStatus(), 'title', 'value');
             if (!empty($status) && $status === 'posted') {
                 $services = $provider->services;
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/index.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/services/index.blade.php'))) {
                     return view(
                         'extend.back-end.provider.services.index',
                         compact(
@@ -1295,7 +1295,7 @@ class ProviderController extends Controller
                 }
             } else if (!empty($status) && $status === 'hired') {
                 $services = Helper::getProviderServices('hired', Auth::user()->id);
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/ongoing.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/services/ongoing.blade.php'))) {
                     return view(
                         'extend.back-end.provider.services.ongoing',
                         compact(
@@ -1315,7 +1315,7 @@ class ProviderController extends Controller
             } elseif (!empty($status) && $status === 'completed') {
                 $services = Helper::getProviderServices('completed', Auth::user()->id);
                 //dd($services);
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/completed.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/services/completed.blade.php'))) {
                     return view(
                         'extend.back-end.provider.services.completed',
                         compact(
@@ -1334,7 +1334,7 @@ class ProviderController extends Controller
                 }
             } elseif (!empty($status) && $status === 'cancelled') {
                 $services = Helper::getProviderServices('cancelled', Auth::user()->id);
-                if (file_exists(resource_path('views/extend/back-end/freelancer/services/cancelled.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/services/cancelled.blade.php'))) {
                     return view(
                         'extend.back-end.provider.services.cancelled',
                         compact(
@@ -1458,7 +1458,7 @@ class ProviderController extends Controller
     public function getPayouts()
     {
         $payouts =  Payout::where('user_id', Auth::user()->id)->paginate(10);
-        if (file_exists(resource_path('views/extend/back-end/freelancer/payouts.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/payouts.blade.php'))) {
             return view(
                 'extend.back-end.provider.payouts.payouts',
                 compact('payouts')
@@ -1482,7 +1482,7 @@ class ProviderController extends Controller
             $payrols = Helper::getPayoutsList();
             $user = User::find(Auth::user()->id);
             $payout_settings = $user->profile->count() > 0 ? Helper::getUnserializeData($user->profile->payout_settings) : '';
-            if (file_exists(resource_path('views/extend/back-end/freelancer/payouts/payout_settings.blade.php'))) {
+            if (file_exists(resource_path('views/extend/back-end/provider/payouts/payout_settings.blade.php'))) {
                 return view(
                     'extend.back-end.provider.payouts.payout_settings', compact('payrols', 'payout_settings')
                 );

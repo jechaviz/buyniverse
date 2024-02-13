@@ -69,7 +69,7 @@
             @if ($add_f_navbar !== 'false')
                 <li style="{{!empty($freelancer_order) ? 'order:'.$freelancer_order : 'order:99' }}">
                     <a href="{{url('search-results?type=provider')}}">
-                        {{{ trans('lang.view_freelancers') }}}
+                        {{{ trans('lang.view_providers') }}}
                     </a>
                 </li>
             @endif

@@ -636,7 +636,7 @@ class ProposalController extends Controller
         if (!empty($request['id'])) {
             $this->proposal->assignJob($request['id']);
             $json['type'] = 'success';
-            $json['message'] = trans('lang.freelancer_hire');
+            $json['message'] = trans('lang.provider_hire');
             return $json;
         }
     }

@@ -43,9 +43,9 @@ class TrialPackageSeeder extends Seeder
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
                 [
-                    'title' => 'Trial Freelancer',
+                    'title' => 'Trial Provider',
                     'subtitle' => '30 Days Trial',
-                    'slug' => 'trial-freelancer',
+                    'slug' => 'trial-provider',
                     'cost' => '0',
                     'role_id' => '3',
                     'trial' => '1',

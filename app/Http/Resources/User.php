@@ -21,13 +21,13 @@ class User extends JsonResource
     {
         $json = array();
         $user = User::find($request['profile_id']);
-        $save_freelancer = !empty($user->profile->saved_provider) ?
+        $save_provider = !empty($user->profile->saved_provider) ?
             unserialize($user->profile->saved_provider) : array();
         $type = $request['listing_type'];
         $user_by_role =  User::role($type)->select('id')->get()->pluck('id')->toArray();
         $users = User::whereIn('id', $user_by_role)->get()->toArray();
         foreach ($users as $key => $user) {
-            $json[$key]['favourite'] = in_array($user['id'], $save_freelancer) ? 'yes' : 'no';
+            $json[$key]['favourite'] = in_array($user['id'], $save_provider) ? 'yes' : 'no';
             $json[$key]['id'] = $user['id'];
         }
         return $json;

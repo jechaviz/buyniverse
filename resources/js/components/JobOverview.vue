@@ -144,16 +144,16 @@
           <!--<tr>
               <td class="job-details"><b>{{ trans('lang.provider_typex') }}</b></td>
               <td class="job-details">
-                  <span id="projectfreelancer"><span v-for="(item, key) in freelancer" :key="key" :value="key">
-                      <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ item.name }} <i @click="deletefreelancer(item.id)" v-show="isapprover == '1' || permission == 2" class="fa fa-times" aria-hidden="true"></i></span>
+                  <span id="projectprovider"><span v-for="(item, key) in provider" :key="key" :value="key">
+                      <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ item.name }} <i @click="deleteprovider(item.id)" v-show="isapprover == '1' || permission == 2" class="fa fa-times" aria-hidden="true"></i></span>
                   </span><br>
                   </span>
-                  <span @click="editfreelancer" v-show="isapprover == '1' || permission == 2" id="addprojectfreelancer"><i class="fa fa-plus"></i></span>
-                  <div id="editfreelancer" v-show="isapprover == '1' || permission == 2" class="hidden">
+                  <span @click="editprovider" v-show="isapprover == '1' || permission == 2" id="addprojectprovider"><i class="fa fa-plus"></i></span>
+                  <div id="editprovider" v-show="isapprover == '1' || permission == 2" class="hidden">
                         
-                        <select class="form-control form-control-sm" id="editfreelancer-select" name="editfreelancer-select" v-on:change="updatefreelancer">
+                        <select class="form-control form-control-sm" id="editprovider-select" name="editprovider-select" v-on:change="updateprovider">
                             <option selected>{{ trans('lang.select') }}</option>
-                            <option v-for="(item, key) in project_freelancer" :key="key" :value="key">{{ item }}</option>
+                            <option v-for="(item, key) in project_provider" :key="key" :value="key">{{ item }}</option>
                         </select>                        
                     </div>
                 </td>
@@ -432,7 +432,7 @@ export default {
         project_levels : {},
         project_duration : {},
         project_english : {},
-        project_freelancer : {},
+        project_provider : {},
         quizadd : {},
         languages : {},
         langs : {},
@@ -444,7 +444,7 @@ export default {
         approvers : {},
         invited : {},
         english : {},
-        freelancer : {},
+        provider : {},
         form1 : new Form({
             id: '',
             name : '',
@@ -587,10 +587,10 @@ export default {
                 Fire.$emit('Afterinvited');
             });
         },
-        loadfreelancer() {
+        loadprovider() {
             let self = this;
-            axios.get(APP_URL + '/api/job_overview/getfreelancer/'+ this.jobid).then(function (response) {
-                self.freelancer = response.data;
+            axios.get(APP_URL + '/api/job_overview/getprovider/'+ this.jobid).then(function (response) {
+                self.provider = response.data;
                 //console.log(self.project_levels);
             });  
         },
@@ -887,10 +887,10 @@ export default {
                 Fire.$emit('Afterenglish');
             });
         },
-        deletefreelancer(id) {
+        deleteprovider(id) {
             this.saving('Deleting . . .');
-            axios.get(APP_URL + '/api/job_overview/deletefreelancer/' + id).then(function (response) {
-                Fire.$emit('Afterfreelancer');
+            axios.get(APP_URL + '/api/job_overview/deleteprovider/' + id).then(function (response) {
+                Fire.$emit('Afterprovider');
             });
         },
         editquiz() {
@@ -940,12 +940,12 @@ export default {
             $('#editdescription').addClass('hidden');
             $('#description').removeClass('hidden');
         },
-        loadprojectfreelancer() {
+        loadprojectprovider() {
             let self = this;
             
-            axios.get(APP_URL + '/api/job_project_freelancer/').then(function (response) {
-                self.project_freelancer = response.data;
-                //console.log(self.project_freelancer);
+            axios.get(APP_URL + '/api/job_project_provider/').then(function (response) {
+                self.project_provider = response.data;
+                //console.log(self.project_provider);
             });  
                  
         },
@@ -1013,17 +1013,17 @@ export default {
                 $('#price').removeClass('hidden');
             });
         },
-        editfreelancer() {
-            $('#addprojectfreelancer').addClass('hidden');
-            $('#editfreelancer').removeClass('hidden');
+        editprovider() {
+            $('#addprojectprovider').addClass('hidden');
+            $('#editprovider').removeClass('hidden');
         },
-        updatefreelancer(e) {
+        updateprovider(e) {
             this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
-            axios.get(APP_URL + '/api/job_overview/project_freelancer/' + statp).then(function (response) {
-                Fire.$emit('Afterfreelancer');
-                $('#editfreelancer').addClass('hidden');
-                $('#addprojectfreelancer').removeClass('hidden');
+            axios.get(APP_URL + '/api/job_overview/project_provider/' + statp).then(function (response) {
+                Fire.$emit('Afterprovider');
+                $('#editprovider').addClass('hidden');
+                $('#addprojectprovider').removeClass('hidden');
             });
         },
         editenglish() {
@@ -1134,11 +1134,11 @@ export default {
         this.loadprojectlevel();
         this.loadprojectduration();
         //this.loadprojectenglish();
-        this.loadprojectfreelancer();
+        this.loadprojectprovider();
         this.loadteam();
         this.loadapprover();
         //this.loadenglish();
-        this.loadfreelancer();
+        this.loadprovider();
         //this.loadsubskills();
         //this.loadinvited();
         this.loadcategory();
@@ -1154,8 +1154,8 @@ export default {
         Fire.$on('Afterapprover', () => {
             this.loadapprover();
         });
-        Fire.$on('Afterfreelancer', () => {
-            this.loadfreelancer();
+        Fire.$on('Afterprovider', () => {
+            this.loadprovider();
         });
         
         Fire.$on('AfterCreate', () => {

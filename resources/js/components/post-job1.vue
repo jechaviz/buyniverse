@@ -88,16 +88,16 @@
                     <tr id="tr4" class="hidden">
                         <td class="job-details"><b>{{ trans('lang.provider_typex') }}</b></td>
                         <td class="job-details">
-                            <span id="projectfreelancer" v-if="form.freelancer.length > 0"><span v-for="(item, index) in form.freelancer" :key="index">
-                                <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;" v-for="(item1, key1) in project_freelancer" :key="key1" v-if="item == item1[0]">{{ item1[1] }} <i @click="deletefreelancer(index)" class="fa fa-times" aria-hidden="true"></i></span>
+                            <span id="projectprovider" v-if="form.provider.length > 0"><span v-for="(item, index) in form.provider" :key="index">
+                                <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;" v-for="(item1, key1) in project_provider" :key="key1" v-if="item == item1[0]">{{ item1[1] }} <i @click="deleteprovider(index)" class="fa fa-times" aria-hidden="true"></i></span>
                             </span><br>
                             </span>
-                            <span @click="editfreelancer" id="addprojectfreelancer"><i class="fa fa-plus"></i></span>
-                            <div id="editfreelancer" class="hidden">
-                                <select class="form-control form-control-sm" id="editfreelancer-select" name="editfreelancer-select" v-on:change="updatefreelancer"
+                            <span @click="editprovider" id="addprojectprovider"><i class="fa fa-plus"></i></span>
+                            <div id="editprovider" class="hidden">
+                                <select class="form-control form-control-sm" id="editprovider-select" name="editprovider-select" v-on:change="updateprovider"
                                 >
                                     <option selected>{{ trans('lang.select') }}</option>
-                                    <option v-for="(item, key) in project_freelancer" :key="key" :value="item[0]">{{ item[1] }}</option>
+                                    <option v-for="(item, key) in project_provider" :key="key" :value="item[0]">{{ item[1] }}</option>
                                 </select>
                             </div>
                         </td>
@@ -397,7 +397,7 @@ export default {
             project_duration : '',
             price : '',
             payment : '',
-            freelancer : [],
+            provider : [],
             english : [],
             langs : [],
             skills : [],
@@ -433,7 +433,7 @@ export default {
         }),
         project_levels : {},
         project_duration : {},
-        project_freelancer : {},
+        project_provider : {},
         project_english : {},
         languages : {},
         xskills : {},
@@ -527,9 +527,9 @@ export default {
             $('#tr4').removeClass('hidden');
             //$('#editprice').removeClass('hidden');
         },
-        editfreelancer() {
+        editprovider() {
             //$('#editprice').addClass('hidden');
-            $('#editfreelancer').removeClass('hidden');
+            $('#editprovider').removeClass('hidden');
 
         },
         editenglish() {
@@ -678,39 +678,39 @@ export default {
                     }
                 });
         },
-        updatefreelancer(e) {
+        updateprovider(e) {
 
             let self = this;
             var check = 0;
             
             
-            if(self.form.freelancer.length == 0)
+            if(self.form.provider.length == 0)
             {
-                if(self.form.freelancer == 'Select')
+                if(self.form.provider == 'Select')
                 {}
                 else
-                    self.form.freelancer[0] = e.target.value;
+                    self.form.provider[0] = e.target.value;
             }
             else
             {
-                if(self.form.freelancer == 'Select')
+                if(self.form.provider == 'Select')
                 {}
                 else
                 {
-                    for(let i = 0; i < self.form.freelancer.length; i++ )
+                    for(let i = 0; i < self.form.provider.length; i++ )
                     {
-                        //console.log(freelancer[key], e.target.value);
-                        if(self.form.freelancer[i] == e.target.value)
+                        //console.log(provider[key], e.target.value);
+                        if(self.form.provider[i] == e.target.value)
                         check = 1;
                     }
                     
                     if(check == 0)
-                        self.form.freelancer[self.form.freelancer.length] = e.target.value;
+                        self.form.provider[self.form.provider.length] = e.target.value;
                 }
             }
             Fire.$emit('postupdate');
             $('#tr5').removeClass('hidden');
-            $('#editfreelancer').addClass('hidden');
+            $('#editprovider').addClass('hidden');
             
         },
         updateenglish(e) {
@@ -733,7 +733,7 @@ export default {
                 {
                     for(let i = 0; i < self.form.english.length; i++ )
                     {
-                        //console.log(freelancer[key], e.target.value);
+                        //console.log(provider[key], e.target.value);
                         if(self.form.english[i] == e.target.value)
                         check = 1;
                     }
@@ -766,7 +766,7 @@ export default {
                 {
                     for(let i = 0; i < self.form.langs.length; i++ )
                     {
-                        //console.log(freelancer[key], e.target.value);
+                        //console.log(provider[key], e.target.value);
                         if(self.form.langs[i] == e.target.value)
                         check = 1;
                     }
@@ -865,7 +865,7 @@ export default {
                 {
                     for(let i = 0; i < self.form.subskills.length; i++ )
                     {
-                        //console.log(freelancer[key], e.target.value);
+                        //console.log(provider[key], e.target.value);
                         if(self.form.subskills[i] == e.target.value)
                         check = 1;
                     }
@@ -953,7 +953,7 @@ export default {
                                 {
                                     for(let i = 0; i < self.form.english.length; i++ )
                                     {
-                                        //console.log(freelancer[key], e.target.value);
+                                        //console.log(provider[key], e.target.value);
                                         if(self.form.english[i] == e.target.value)
                                         check = 1;
                                     }
@@ -990,7 +990,7 @@ export default {
                 {
                     for(let i = 0; i < self.form.subcategory.length; i++ )
                     {
-                        //console.log(freelancer[key], e.target.value);
+                        //console.log(provider[key], e.target.value);
                         if(self.form.subcategory[i] == e.target.value)
                         check = 1;
                     }
@@ -1047,10 +1047,10 @@ export default {
             self.form.english.splice(id, 1);
             Fire.$emit('postupdate');
         },      
-        deletefreelancer(id) {
+        deleteprovider(id) {
             let self = this;
             //console.log(id);
-            self.form.freelancer.splice(id, 1);
+            self.form.provider.splice(id, 1);
             Fire.$emit('postupdate');
             //array.splice(index, 1);
 
@@ -1098,10 +1098,10 @@ export default {
                 self.project_duration = response.data;
             });  
         },
-        loadprojectfreelancer() {
+        loadprojectprovider() {
             let self = this;
-            axios.get(APP_URL + '/api/job_project_freelancer/').then(function (response) {
-                self.project_freelancer = Object.entries(response.data);
+            axios.get(APP_URL + '/api/job_project_provider/').then(function (response) {
+                self.project_provider = Object.entries(response.data);
             });  
                  
         },
@@ -1169,7 +1169,7 @@ export default {
     mounted: function() {
         this.loadprojectlevel();
         this.loadprojectduration();
-        this.loadprojectfreelancer();
+        this.loadprojectprovider();
         this.loadprojectenglish();
         this.loadlanguage();
         this.loadskill();

@@ -124,7 +124,7 @@ class ServiceController extends Controller
         $delivery_time = DeliveryTime::pluck('title', 'id');
         $english_levels = Helper::getEnglishLevelList();
         $categories = Category::pluck('title', 'id');
-        if (file_exists(resource_path('views/extend/back-end/freelancer/services/create.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/services/create.blade.php'))) {
             return view(
                 'extend.back-end.provider.services.create',
                 compact(
@@ -442,9 +442,9 @@ class ServiceController extends Controller
             },
             $service->attachments
         );
-        $freelancer  = Helper::getServiceSeller($service->id);
+        $provider  = Helper::getServiceSeller($service->id);
         $attachments = !empty($serialize_attachment) ? unserialize($serialize_attachment) : '';
-        if (file_exists(resource_path('views/extend/back-end/freelancer/services/edit.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/services/edit.blade.php'))) {
             return view(
                 'extend.back-end.provider.services.edit',
                 compact(
@@ -456,7 +456,7 @@ class ServiceController extends Controller
                     'delivery_time',
                     'service',
                     'attachments',
-                    'freelancer'
+                    'provider'
                 )
             );
         } else {
@@ -471,7 +471,7 @@ class ServiceController extends Controller
                     'delivery_time',
                     'service',
                     'attachments',
-                    'freelancer'
+                    'provider'
                 )
             );
         }
@@ -690,11 +690,11 @@ class ServiceController extends Controller
                 $employer = User::find($user_id);
                 $service = Service::find($id);
                 $seller = Helper::getServiceSeller($service->id);
-                $freelancer = User::find($seller->user_id);
-                $provider_name = Helper::getUserName($freelancer->id);
-                $profile = User::find($freelancer->id)->profile;
+                $provider = User::find($seller->user_id);
+                $provider_name = Helper::getUserName($provider->id);
+                $profile = User::find($provider->id)->profile;
                 $user_image = !empty($profile) ? $profile->avater : '';
-                $profile_image = !empty($user_image) ? '/uploads/users/' . $freelancer->id . '/' . $user_image : 'images/user-login.png';
+                $profile_image = !empty($user_image) ? '/uploads/users/' . $provider->id . '/' . $user_image : 'images/user-login.png';
                 $payout_settings = SiteManagement::getMetaValue('commision');
                 $payment_gateway = !empty($payout_settings) && !empty($payout_settings[0]['payment_method']) ? $payout_settings[0]['payment_method'] : null;
                 $currency   = SiteManagement::getMetaValue('commision');
@@ -712,7 +712,7 @@ class ServiceController extends Controller
                             'payment_gateway',
                             'symbol',
                             'user_id',
-                            'freelancer'
+                            'provider'
                         )
                     );
                 } else {
@@ -726,7 +726,7 @@ class ServiceController extends Controller
                             'payment_gateway',
                             'symbol',
                             'user_id',
-                            'freelancer'
+                            'provider'
                         )
                     );
                 }

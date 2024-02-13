@@ -130,7 +130,7 @@ class Page extends Model
             if (!empty($request['meta'])) {
                 foreach ($request['meta'] as $key => $value) {
                     if (!empty($value)) {
-                        if ($key == 'headings' || $key == 'freelancers' || $key == 'cat' || $key == 'services' || $key == 'articles') {
+                        if ($key == 'headings' || $key == 'providers' || $key == 'cat' || $key == 'services' || $key == 'articles') {
                             foreach ($value as $meta_key => $meta_value) {
                                 $meta = new Meta();
                                 $meta->meta_key = $key . (string) $value[$meta_key]['parentIndex'];
@@ -606,7 +606,7 @@ class Page extends Model
             if (!empty($request['meta'])) {
                 foreach ($request['meta'] as $key => $value) {
                     if (!empty($value)) {
-                        if ($key == 'headings' || $key == 'freelancers' || $key == 'cat' || $key == 'services' || $key == 'articles') {
+                        if ($key == 'headings' || $key == 'providers' || $key == 'cat' || $key == 'services' || $key == 'articles') {
                             foreach ($value as $meta_key => $meta_value) {
                                 $meta = new Meta();
                                 $meta->meta_key = $key . (string) $value[$meta_key]['parentIndex'];

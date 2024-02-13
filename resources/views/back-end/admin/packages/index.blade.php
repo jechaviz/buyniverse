@@ -115,20 +115,20 @@
                                     </div>
                                     <div v-if="freelancer_options" v-cloak>
                                         <div class="form-group">
-                                            {!! Form::text('freelancer[no_of_connects]', null, array('class' => 'form-control', 'placeholder' => trans('lang.no_of_connects'), 'v-model'=>'package.conneects')) !!}
+                                            {!! Form::text('provider[no_of_connects]', null, array('class' => 'form-control', 'placeholder' => trans('lang.no_of_connects'), 'v-model'=>'package.conneects')) !!}
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::number( 'freelancer[no_of_services]', null, ['class' =>'form-control ', 'placeholder' => trans('lang.freelancer_pkg_opt.no_of_services'), 'v-model'=>'package.services'] ) !!}
+                                            {!! Form::number( 'provider[no_of_services]', null, ['class' =>'form-control ', 'placeholder' => trans('lang.provider_pkg_opt.no_of_services'), 'v-model'=>'package.services'] ) !!}
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::number( 'freelancer[no_of_featured_services]', null, ['class' =>'form-control ', 'placeholder' => trans('lang.freelancer_pkg_opt.no_of_featured_services'), 'v-model'=>'package.featured_services'] ) !!}
+                                            {!! Form::number( 'provider[no_of_featured_services]', null, ['class' =>'form-control ', 'placeholder' => trans('lang.provider_pkg_opt.no_of_featured_services'), 'v-model'=>'package.featured_services'] ) !!}
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::text('freelancer[no_of_skills]', null, array('class' => 'form-control', 'placeholder' => trans('lang.no_of_skills'), 'v-model'=>'package.skills')) !!}
+                                            {!! Form::text('provider[no_of_skills]', null, array('class' => 'form-control', 'placeholder' => trans('lang.no_of_skills'), 'v-model'=>'package.skills')) !!}
                                         </div>
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                <select name="freelancer[duration]">
+                                                <select name="provider[duration]">
                                                     <option value="" disabled="">{{ trans('lang.select_duration') }}</option>
                                                     @foreach ($durations as $key => $duration)
                                                         <option value="{{$key}}">{{ Helper::getPackageDurationList($key) }}</option>
@@ -138,16 +138,16 @@
                                         </div>
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                {!! Form::select('freelancer[badge]', $badges, null, array('placeholder' => trans('lang.select_badge'))) !!}
+                                                {!! Form::select('provider[badge]', $badges, null, array('placeholder' => trans('lang.select_badge'))) !!}
                                             </span>
                                         </div>
                                         <div class="form-group">
                                             <switch_button v-model="banner_option">{{{ trans('lang.show_banner_opt') }}}</switch_button>
-                                            <input type="hidden" :value="banner_option" name="freelancer[banner_option]">
+                                            <input type="hidden" :value="banner_option" name="provider[banner_option]">
                                         </div>
                                         <div class="form-group">
                                             <switch_button v-model="private_chat">{{{ trans('lang.enabale_disable_pvt_chat') }}}</switch_button>
-                                            <input type="hidden" :value="private_chat" name="freelancer[private_chat]">
+                                            <input type="hidden" :value="private_chat" name="provider[private_chat]">
                                         </div>
                                         @if ($provider_trial->count() == 0)
                                             <div class="form-group">

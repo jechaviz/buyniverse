@@ -419,7 +419,7 @@
 								<td data-th="Name"><span class="bt-content" style="display: flex;">
 									<span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
 									<ul class="wt-hireduserimgs">
-										<li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+										<li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.provider') }}}"></figure></li>
 									</ul>
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">
@@ -517,7 +517,7 @@
 								<td data-th="Name"><span class="bt-content" style="display: flex;">
 									<span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
 									<ul class="wt-hireduserimgs">
-										<li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+										<li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.provider') }}}"></figure></li>
 									</ul>
 								</span></td>
 								<td data-th="Slug"><span class="bt-content">

@@ -1077,22 +1077,22 @@ class EmployerController extends Controller
             $pivot_service = Helper::getPivotService($pivot_id);
             $service = Service::find($service_id);
             $seller = Helper::getServiceSeller($service->id);
-            $freelancer = !empty($seller) ? User::find($seller->user_id) : '';
+            $provider = !empty($seller) ? User::find($seller->user_id) : '';
             $service_status = Helper::getProjectStatus();
             $review_options = DB::table('review_options')->get()->all();
-            // $avg_rating = Review::where('receiver_id', $freelancer->id)->sum('avg_rating');
+            // $avg_rating = Review::where('receiver_id', $provider->id)->sum('avg_rating');
 
-            $feedbacks = !empty($freelancer) ? Review::select('feedback')->where('receiver_id', $freelancer->id)->count() : '';
-            $avg_rating = Review::where('receiver_id', $freelancer->id)->sum('avg_rating');
+            $feedbacks = !empty($provider) ? Review::select('feedback')->where('receiver_id', $provider->id)->count() : '';
+            $avg_rating = Review::where('receiver_id', $provider->id)->sum('avg_rating');
             $rating  = $avg_rating != 0 ? round($avg_rating/Review::count()) : 0;
-            $reviews = Review::where('receiver_id', $freelancer->id)->get();
+            $reviews = Review::where('receiver_id', $provider->id)->get();
             $stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
             $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
 
 
            
 
-            $reviews = !empty($freelancer) ? Review::where('receiver_id', $freelancer->id)->where('job_id', $service_id)->where('project_type', 'service')->get() : '';
+            $reviews = !empty($provider) ? Review::where('receiver_id', $provider->id)->where('job_id', $service_id)->where('project_type', 'service')->get() : '';
             $cancel_proposal_text = trans('lang.cancel_proposal_text');
             $cancel_proposal_button = trans('lang.send_request');
             $validation_error_text = trans('lang.field_required');
@@ -1107,7 +1107,7 @@ class EmployerController extends Controller
                         'average_rating_count',
                         'pivot_service',
                         'service',
-                        'freelancer',
+                        'provider',
                         'service_status',
                         'attachment',
                         'review_options',
@@ -1130,7 +1130,7 @@ class EmployerController extends Controller
                         'average_rating_count',
                         'pivot_service',
                         'service',
-                        'freelancer',
+                        'provider',
                         'service_status',
                         'attachment',
                         'review_options',

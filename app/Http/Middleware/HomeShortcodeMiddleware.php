@@ -27,7 +27,7 @@ class HomeShortcodeMiddleware
                         </div>
                         <div class="wt-radioholder">
                             <span class="wt-radio">
-                                <input id="wt-freelancers" data-title="Freelancers" type="radio" name="searchtype" value="freelancer" checked="">
+                                <input id="wt-freelancers" data-title="Providers" type="radio" name="searchtype" value="provider" checked="">
                                 <label for="wt-freelancers">Providers</label>
                             </span>
                             <span class="wt-radio">

@@ -95,7 +95,7 @@
 																					<select id="refundable_user_id-{{$order->id}}" class="form-control" placeholder="{{ trans('lang.select_users') }}" v-model="refundable_user">
 																						<option value="">{{ trans('lang.select_users') }}</option>
 																						<option value="{{$employer->id}}">{{ trans('lang.search_filter_list.employers_val') }}</option>
-																						<option value="{{$order->seller_id}}">{{ trans('lang.search_filter_list.freelancer_val') }}</option>
+																						<option value="{{$order->seller_id}}">{{ trans('lang.search_filter_list.provider_val') }}</option>
 																					</select>
 																				</span>
 																			</div>

@@ -104,7 +104,7 @@
                         <li><a data-toggle="tab" href="#menu8">{{ trans('lang.notes') }} <!--<span class="badge bg-danger">{{$job->notes}}</span>--></a> </li>
                         <!--<li><a data-toggle="tab" href="#menu9">{{ trans('lang.financial') }} <span class="badge bg-danger"></span></a> </li>-->
                         <!--<li><a data-toggle="tab" href="#menu10">{{ trans('lang.quiz') }} <span class="badge bg-danger"></span></a> </li>-->
-                        <!--<li><a data-toggle="tab" href="#provider">{{ trans('lang.freelancer') }} <span class="badge bg-danger"></span></a> </li>-->
+                        <!--<li><a data-toggle="tab" href="#provider">{{ trans('lang.provider') }} <span class="badge bg-danger"></span></a> </li>-->
                     </ul>
 
                     <div class="tab-content" style="width: 100%;margin: 10px;background-color: white;border: #e4dede 1px solid;">
@@ -123,7 +123,7 @@
                             <div class="row" style="margin: 0px;">
                                 <ul class="nav nav-tabs" style="width: 100%;">
                                     <li id="sproposals" class="active"><a data-toggle="tab" href="#proposals">{{ trans('lang.proposals') }}</a></li>
-                                    <li id="sproviders"><a data-toggle="tab" href="#providers">{{ trans('lang.freelancers') }} </a></li>
+                                    <li id="sproviders"><a data-toggle="tab" href="#providers">{{ trans('lang.providers') }} </a></li>
                                     <li id="scontest"><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>
                                     <li id="sinvited"><a data-toggle="tab" href="#invited">{{ trans('lang.invited') }} </a></li>
                                 </ul>

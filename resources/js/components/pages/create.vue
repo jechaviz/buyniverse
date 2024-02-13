@@ -751,9 +751,9 @@ export default {
           this.form.meta.services.push(service)
         } else if (evt.added.element.section == 'provider_section') {
             var freelancer = {
-              title:'Freelancer Title',
-              subtitle:'Freelancer Subtitle',
-              description:'Freelancer Description',
+              title:'Provider Title',
+              subtitle:'Provider Subtitle',
+              description:'Provider Description',
               sectionColor: '#ffffff',
               titleColor:'#3d4461',
               subtitleColor:'#3d4461',
@@ -780,8 +780,8 @@ export default {
         } else if (evt.added.element.section == 'provider_section_v2') {
             var freelancer = {
               title:'Top',
-              titleTwo:'Freelancers',
-              description:'Freelancer Description',
+              titleTwo:'Providers',
+              description:'Provider Description',
               backgroundImg:'',
               sectionColor: '#ffffff',
               titleColor:'#3d4461',

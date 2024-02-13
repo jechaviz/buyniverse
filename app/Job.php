@@ -288,7 +288,7 @@ class Job extends Model
                     ]);
                 }
             }
-            $provider_type = $request['freelancer'];
+            $provider_type = $request['provider'];
             if (!empty($provider_type)) {
                 foreach ($provider_type as $key => $value) {
                     //$this->skills()->attach($skill['id']);

@@ -32,7 +32,7 @@
                     </div>
                     
                     <div class="form-group" style="margin-top: 30px;">
-                        <h4><label for="time_limit">{{ trans('lang.time_limit_freelancer') }}</label></h4>
+                        <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
                         <input type="text" name="time_limit" v-model="form.time_limit" class="form-control" placeholder="In minutes">
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                                 <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
                             </div>
                             <div class="form-group">
-                                <h4><label for="time_limit">{{ trans('lang.time_limit_freelancer') }}</label></h4>
+                                <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
                                 <input type="text" name="time_limit" v-model="form1.time_limit" class="form-control" placeholder="In minutes">
                             </div>
                         </div>
@@ -463,7 +463,7 @@
                             </div>
                             
                             <div class="form-group" style="margin-top: 30px;">
-                                <h4><label for="time_limit">{{ trans('lang.time_limit_freelancer') }}</label></h4>
+                                <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
                                 <input type="text" name="time_limit" v-model="form.time_limit" class="form-control" placeholder="In minutes">
                             </div>
                         </div>
@@ -554,7 +554,7 @@
                                 <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
                             </div>
                             <div class="form-group">
-                                <h4><label for="time_limit">{{ trans('lang.time_limit_freelancer') }}</label></h4>
+                                <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
                                 <input type="text" name="time_limit" v-model="form1.time_limit" class="form-control" placeholder="In minutes">
                             </div>
                         </div>

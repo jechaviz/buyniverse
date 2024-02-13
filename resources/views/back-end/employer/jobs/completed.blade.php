@@ -59,7 +59,7 @@
                                                 <div class="wt-hireduserstatus">
                                                     <h4>{{ trans('lang.hired') }}</h4><span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
                                                     <ul class="wt-hireduserimgs">
-                                                        <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+                                                        <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.provider') }}}"></figure></li>
                                                     </ul>
                                                 </div>
                                             </div>

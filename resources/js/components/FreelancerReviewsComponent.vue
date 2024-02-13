@@ -59,7 +59,7 @@
         methods: {
             getReviews(){
                 let self = this;
-                axios.post(APP_URL + '/get-freelancer-reviews',{
+                axios.post(APP_URL + '/get-provider-reviews',{
                     service_id:self.service_id
                 })
                 .then(function (response) {

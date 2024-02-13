@@ -168,7 +168,7 @@
                                 @if (!empty(Route::getCurrentRoute()) && Route::getCurrentRoute()->uri() != '/' && Route::getCurrentRoute()->uri() != 'home')
                                     <!--<search-form
                                     :placeholder="'{{ trans('lang.looking_for') }}'"
-                                    :provider_placeholder="'{{ trans('lang.search_filter_list.freelancer') }}'"
+                                    :provider_placeholder="'{{ trans('lang.search_filter_list.provider') }}'"
                                     :employer_placeholder="'{{ trans('lang.search_filter_list.employers') }}'"
                                     :job_placeholder="'{{ trans('lang.search_filter_list.jobs') }}'"
                                     :service_placeholder="'{{ trans('lang.search_filter_list.services') }}'"
@@ -474,7 +474,7 @@
                                                 </ul>
                                             </li> 
                                             <li style="line-height: 13px!important;font-size: small;">
-                                                <a class="header-menu-a" href="{{url('search-results?type=provider')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.freelancers')}}</i></a>
+                                                <a class="header-menu-a" href="{{url('search-results?type=provider')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.providers')}}</i></a>
                                             </li> 
                                             @endif
 

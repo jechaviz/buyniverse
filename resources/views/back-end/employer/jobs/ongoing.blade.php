@@ -72,7 +72,7 @@
                                                     <div class="wt-hireduserstatus">
                                                         <h4>{{ trans('lang.hired') }}</h4><span>{{{ $provider_name }}}</span>
                                                         <ul class="wt-hireduserimgs">
-                                                            <li><figure><img src="{{{ asset($profile_image) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+                                                            <li><figure><img src="{{{ asset($profile_image) }}}" alt="{{{ trans('lang.provider') }}}"></figure></li>
                                                         </ul>
                                                     </div>
                                                 </div>

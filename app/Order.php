@@ -42,7 +42,7 @@ class Order extends Model
     /**
      * Store record in order storage
      *
-     * @param int $id $     FreelancerID
+     * @param int $id $     providerID
      * @param int $product_id product_id
      *
      * @return \Illuminate\Http\Response

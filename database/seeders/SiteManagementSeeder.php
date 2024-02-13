@@ -33,7 +33,7 @@ class SiteManagementSeeder extends Seeder
             [
                 [
                     'meta_key' => 'home_settings',
-                    'meta_value' => 'a:1:{i:0;a:8:{s:11:"home_banner";s:14:"banner-img.jpg";s:17:"home_banner_image";s:10:"img-01.png";s:12:"banner_title";s:23:"Hire expert freelancers";s:15:"banner_subtitle";s:19:"for any job, Online";s:18:"banner_description";s:101:"Consectetur adipisicing elit sed dotem eiusmod tempor incuntes ut labore etdolore maigna aliqua enim.";s:10:"video_link";s:43:"https://www.youtube.com/watch?v=B-ph2g5o2K4";s:11:"video_title";s:17:"See For Yourself!";s:10:"video_desc";s:43:"How it works & experience the ultimate joy.";}}',
+                    'meta_value' => 'a:1:{i:0;a:8:{s:11:"home_banner";s:14:"banner-img.jpg";s:17:"home_banner_image";s:10:"img-01.png";s:12:"banner_title";s:23:"Hire expert providers";s:15:"banner_subtitle";s:19:"for any job, Online";s:18:"banner_description";s:101:"Consectetur adipisicing elit sed dotem eiusmod tempor incuntes ut labore etdolore maigna aliqua enim.";s:10:"video_link";s:43:"https://www.youtube.com/watch?v=B-ph2g5o2K4";s:11:"video_title";s:17:"See For Yourself!";s:10:"video_desc";s:43:"How it works & experience the ultimate joy.";}}',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
@@ -82,7 +82,7 @@ class SiteManagementSeeder extends Seeder
                 ],
                 [
                     'meta_key' => 'search_menu',
-                    'meta_value' => 'a:4:{i:0;a:2:{s:5:"title";s:18:"Freelancers in USA";s:3:"url";s:1:"#";}i:1;a:2:{s:5:"title";s:21:"Freelancers in Turkey";s:3:"url";s:1:"#";}i:2;a:2:{s:5:"title";s:11:"Jobs in USA";s:3:"url";s:1:"#";}i:3;a:2:{s:5:"title";s:9:"Find Jobs";s:3:"url";s:1:"#";}}',
+                    'meta_value' => 'a:4:{i:0;a:2:{s:5:"title";s:18:"Providers in USA";s:3:"url";s:1:"#";}i:1;a:2:{s:5:"title";s:21:"Providers in Turkey";s:3:"url";s:1:"#";}i:2;a:2:{s:5:"title";s:11:"Jobs in USA";s:3:"url";s:1:"#";}i:3;a:2:{s:5:"title";s:9:"Find Jobs";s:3:"url";s:1:"#";}}',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],

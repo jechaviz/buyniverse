@@ -140,7 +140,7 @@
                                     <li style="line-height: 13px!important;font-size: small;">
                                         <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.iamemployer') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{{ route('changerole', $user->role) }}}"><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.freelancer') }}</a></li>
+                                            <li><a href="{{{ route('changerole', $user->role) }}}"><i class="fa fa-refresh" aria-hidden="true"></i> {{ trans('lang.provider') }}</a></li>
                                         </ul>
                                     </li>
                                     @endif 
@@ -190,7 +190,7 @@
                                         <a class="header-menu-a" href="{{{ route('employerServices') }}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services')}}<i class="ti-angle-down"></i></a>
                                     </li> 
                                     <li style="line-height: 13px!important;font-size: small;">
-                                        <a class="header-menu-a" href="{{url('search-results?type=provider')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.freelancers')}}</i></a>
+                                        <a class="header-menu-a" href="{{url('search-results?type=provider')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.providers')}}</i></a>
                                     </li> 
                                     @endif
 
@@ -199,7 +199,7 @@
                                         <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="{{{ route('showProviderProposals') }}}">{{ trans('lang.jobs') }} {{ trans('lang.proposals') }}</a></li>
-                                            <li><a href="{{ route('freelancerPostService') }}">{{ trans('lang.services') }}</a></li>
+                                            <li><a href="{{ route('providerPostService') }}">{{ trans('lang.services') }}</a></li>
                                         </ul>
                                     </li>-->
                                     <li style="line-height: 13px!important;font-size: small;">

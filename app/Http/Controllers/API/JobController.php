@@ -186,7 +186,7 @@ class JobController extends Controller
                 $user->stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                 $user->average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $user->verified_user = \App\User::select('user_verified')->where('id', $user->id)->pluck('user_verified')->first();
-                $user->save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
+                $user->save_provider = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $user->badge = Helper::getUserBadge($user->id);
                 if (!empty($enable_package) && $enable_package === 'true') {
                     $user->feature_class = (!empty($badge) && $user->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
@@ -276,7 +276,7 @@ class JobController extends Controller
                 $user->stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                 $user->average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $user->verified_user = \App\User::select('user_verified')->where('id', $user->id)->pluck('user_verified')->first();
-                $user->save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
+                $user->save_provider = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $user->badge = Helper::getUserBadge($user->id);
                 if (!empty($enable_package) && $enable_package === 'true') {
                     $user->feature_class = (!empty($badge) && $user->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
@@ -367,7 +367,7 @@ class JobController extends Controller
                 $user->stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                 $user->average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
                 $user->verified_user = \App\User::select('user_verified')->where('id', $user->id)->pluck('user_verified')->first();
-                $user->save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
+                $user->save_provider = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
                 $user->badge = Helper::getUserBadge($user->id);
                 if (!empty($enable_package) && $enable_package === 'true') {
                     $user->feature_class = (!empty($badge) && $user->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
@@ -1203,16 +1203,16 @@ class JobController extends Controller
     }
     public function getFreelancer($id)
     {
-        $freelancer = Provider_type::where('job_id', $id)->get();
-        $project_freelancer = Helper::getProviderLevelList();
-        foreach ($freelancer as $key => $value) {
-            foreach ($project_freelancer as $key1 => $value1) {
+        $provider = Provider_type::where('job_id', $id)->get();
+        $project_provider = Helper::getProviderLevelList();
+        foreach ($provider as $key => $value) {
+            foreach ($project_provider as $key1 => $value1) {
                 //dd($value, $key1, $project_english);
                 if($value->Provider_type == $key1)
                     $value->name = $value1;
             }   
         }
-        return $freelancer;
+        return $provider;
     }
     public function deleteenglish($id)
     {
@@ -1241,8 +1241,8 @@ class JobController extends Controller
     }
     public function getProjectfreelancerlevel()
     {
-        $project_freelancer = Helper::getProviderLevelList();
-        return response()->json($project_freelancer);
+        $project_provider = Helper::getProviderLevelList();
+        return response()->json($project_provider);
     }
     public function postProjectLevel($id)
     {
@@ -1299,10 +1299,10 @@ class JobController extends Controller
         {}
         else
         {
-            $freelancer = new Provider_type;
-            $freelancer->job_id = $ids[0];
-            $freelancer->Provider_type = $ids[1];
-            $freelancer->save();
+            $provider = new Provider_type;
+            $provider->job_id = $ids[0];
+            $provider->Provider_type = $ids[1];
+            $provider->save();
         }
         /*$job = Job::find($ids[0]);
         $job->Provider_type = $ids[1];

@@ -653,8 +653,8 @@ class PageController extends Controller
         }
         $inner_pages = array( 
             '0' => array(
-                'id' => 'freelancers',
-                'title' => 'View Freelancers',
+                'id' => 'providers',
+                'title' => 'View Providers',
                 'type' => 'innerPages',
             ),
             '1' => array(

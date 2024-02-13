@@ -24,7 +24,7 @@
                     <div class="col-12">
                         <div class="wt-switcharea">
                             <div class="wt-switchtitle">
-                                <h6>{{ trans('lang.i_m_freelancer') }}</h6>
+                                <h6>{{ trans('lang.i_m_provider') }}</h6>
                             </div>
                             <div class="wt-switch">
                                 <input type="checkbox" id="wt-switch" name="switch" @change="getPackages" v-model="roleType">

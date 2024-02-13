@@ -1891,7 +1891,7 @@ if (document.getElementById("user_profile")) {
                 var self = this;
                 var payment = document.getElementById('payment_settings');
                 let form_data = new FormData(payment);
-                axios.post(APP_URL + '/freelancer/store-payment-settings', form_data)
+                axios.post(APP_URL + '/provider/store-payment-settings', form_data)
                     .then(function (response) {
                         if (response.data.type == 'success') {
                             self.showInfo(response.data.processing);

@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @if (!empty($freelancer))
+                            @if (!empty($provider))
                                 <div class="wt-attachmentsholder">
                                     <div class="lara-attachment-files">
                                         <div class="wt-tabscontenttitle">
@@ -151,10 +151,10 @@
                                                     <li id="attachment-item-{{$key}}">
                                                         <span>{{{Helper::formateFileName($attachment)}}}</span>
                                                         <em>
-                                                            @if (Storage::disk('local')->exists('uploads/services/'.$freelancer->user_id.'/'.$attachment))
-                                                                {{ trans('lang.file_size') }} {{{Helper::bytesToHuman(Storage::size('uploads/services/'.$freelancer->user_id.'/'.$attachment))}}}
+                                                            @if (Storage::disk('local')->exists('uploads/services/'.$provider->user_id.'/'.$attachment))
+                                                                {{ trans('lang.file_size') }} {{{Helper::bytesToHuman(Storage::size('uploads/services/'.$provider->user_id.'/'.$attachment))}}}
                                                             @endif
-                                                            <a href="{{{route('getfile', ['type'=>'services','attachment'=>$attachment,'id'=>$freelancer->user_id])}}}"><i class="lnr lnr-download"></i></a>
+                                                            <a href="{{{route('getfile', ['type'=>'services','attachment'=>$attachment,'id'=>$provider->user_id])}}}"><i class="lnr lnr-download"></i></a>
                                                             <a href="#" v-on:click.prevent="deleteAttachment('attachment-item-{{$key}}')"><i class="lnr lnr-cross"></i></a>
                                                         </em>
                                                         <input type="hidden" value="{{{$attachment}}}" class="" name="attachments[{{$key}}]">

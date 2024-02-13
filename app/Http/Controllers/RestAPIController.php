@@ -99,7 +99,7 @@ class RestAPIController extends Controller
                 } else {
                     unset($json[0]);
                     $json['type']        = 'error';
-                    $json['message']    = trans('lang.no_freelancers_list');
+                    $json['message']    = trans('lang.no_providers_list');
                     return Response::json($json, 203);
                 }
             } elseif ($type === 'latest') {
@@ -108,19 +108,19 @@ class RestAPIController extends Controller
                 } else {
                     unset($json[0]);
                     $json['type']        = 'error';
-                    $json['message']    = trans('lang.no_freelancers_list');
+                    $json['message']    = trans('lang.no_providers_list');
                     return Response::json($json, 203);
                 }
             } elseif ($type === 'favorite') {
-                $save_freelancer = !empty($login_user->profile->saved_provider) ?
+                $save_provider = !empty($login_user->profile->saved_provider) ?
                     unserialize($login_user->profile->saved_provider) : array();
-                if (!empty($save_freelancer)) {
-                    $users =  $users->whereIn('id', $save_freelancer)->orderBy('updated_at', 'desc')
+                if (!empty($save_provider)) {
+                    $users =  $users->whereIn('id', $save_provider)->orderBy('updated_at', 'desc')
                         ->paginate($post_per_page);
                 } else {
                     unset($json[0]);
                     $json['type']        = 'error';
-                    $json['message']    = trans('lang.no_freelancers_list');
+                    $json['message']    = trans('lang.no_providers_list');
                     return Response::json($json, 203);
                 }
             } elseif ($type === 'search') {
@@ -174,20 +174,20 @@ class RestAPIController extends Controller
                 }
                 if (!empty($search_freelaner_types)) {
                     $filters['freelaner_type'] = $search_freelaner_types;
-                    $freelancers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
-                    foreach ($freelancers as $key => $freelancer) {
-                        if (!empty($freelancer->user_id)) {
-                            $user_id[] = $freelancer->user_id;
+                    $providers = Profile::whereIn('provider_type', $search_freelaner_types)->get();
+                    foreach ($providers as $key => $provider) {
+                        if (!empty($provider->user_id)) {
+                            $user_id[] = $provider->user_id;
                         }
                     }
                     $users->whereIn('id', $user_id)->get();
                 }
                 if (!empty($search_english_levels)) {
                     $filters['english_level'] = $search_english_levels;
-                    $freelancers = Profile::whereIn('english_level', $search_english_levels)->get();
-                    foreach ($freelancers as $key => $freelancer) {
-                        if (!empty($freelancer->user_id)) {
-                            $user_id[] = $freelancer->user_id;
+                    $providers = Profile::whereIn('english_level', $search_english_levels)->get();
+                    foreach ($providers as $key => $provider) {
+                        if (!empty($provider->user_id)) {
+                            $user_id[] = $provider->user_id;
                         }
                     }
                     $users->whereIn('id', $user_id)->get();
@@ -211,10 +211,10 @@ class RestAPIController extends Controller
             if (!empty($users) && $users->count() > 0) {
                 foreach ($users as $key => $user) {
                     $user_object = User::find($user['id']);
-                    $save_freelancer = !empty($login_user->profile->saved_provider) ?
+                    $save_provider = !empty($login_user->profile->saved_provider) ?
                         unserialize($login_user->profile->saved_provider) : array();
                     $amount = Payout::where('user_id', $user_object->id)->select('amount')->pluck('amout')->first();
-                    $json[$key]['favorit'] = in_array($user['id'], $save_freelancer) ? 'yes' : '';
+                    $json[$key]['favorit'] = in_array($user['id'], $save_provider) ? 'yes' : '';
                     $json[$key]['name'] = Helper::getUserName($user['id']);
                     $json[$key]['freelancer_link'] = url('profile/' . $user_object->slug);
                     $json[$key]['total_earnings'] = !empty($user_obj) ? $amount : '';

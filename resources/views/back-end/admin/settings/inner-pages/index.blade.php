@@ -22,7 +22,7 @@
     {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'inner-page-form', '@submit.prevent'=>'submitInnerPage'])!!}
         <div class="wt-location wt-tabsinfo">
             <div class="wt-tabscontenttitle">
-                <h2>{{{ trans('lang.freelancer_listing') }}}</h2>
+                <h2>{{{ trans('lang.provider_listing') }}}</h2>
             </div>
             <div class="wt-sidepadding">
                 <div class="wt-settingscontent">

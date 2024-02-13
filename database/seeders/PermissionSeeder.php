@@ -139,7 +139,7 @@ class PermissionSeeder extends Seeder
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
                 [
-                    'name' => 'hire_freelancer',
+                    'name' => 'hire_provider',
                     'guard_name' => 'employer',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -150,7 +150,7 @@ class PermissionSeeder extends Seeder
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
-                //================================= Freelancer
+                //================================= provider
 
             ]
         );

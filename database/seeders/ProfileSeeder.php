@@ -415,7 +415,7 @@ Laborum sed ut perspiciatis unde omnis iste natus error sitems voluptatem accusa
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
-                //Freelancers
+                //providers
                 [
                     'user_id' => '13',
                     'department_id' => null,

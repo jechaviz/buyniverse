@@ -118,24 +118,24 @@
         </div>
     </div>
     {{-- Loader end --}}
-    {{-- Freelancer earning --}}
+    {{-- provider earning --}}
     <div class="wt-securitysettings wt-tabsinfo wt-haslayout">
         <div class="wt-tabscontenttitle">
-            <h2>{{{ trans('lang.freelancer_earnings') }}}</h2>
+            <h2>{{{ trans('lang.provider_earnings') }}}</h2>
         </div>
         <div class="wt-settingscontent">
             <div class="wt-description">
-                <p>{{{ trans('lang.show_hide_freelancer_earnings_note') }}}</p>
+                <p>{{{ trans('lang.show_hide_provider_earnings_note') }}}</p>
             </div>
             <ul class="wt-accountinfo">
                 <li>
-                    <switch_button v-model="show_earnings">{{{ trans('lang.show_hide_freelancer_earning') }}}</switch_button>
+                    <switch_button v-model="show_earnings">{{{ trans('lang.show_hide_provider_earning') }}}</switch_button>
                     <input type="hidden" :value="show_earnings" name="settings[0][show_earnings]">
                 </li>
             </ul>
         </div>
     </div>
-    {{-- Freelancer end --}}
+    {{-- provider end --}}
     <div class="wt-securitysettings wt-tabsinfo wt-haslayout">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.chat_setting') }}}</h2>

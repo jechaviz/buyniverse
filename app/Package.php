@@ -65,14 +65,14 @@ class Package extends Model
             if ($request->roles == '2') {
                 $this->options = serialize($request['employer']);
             } else {
-                $this->options = serialize($request['freelancer']);
+                $this->options = serialize($request['provider']);
             }
             if (!empty($request->trial)) {
                 $this->trial = 1;
             } else {
                 $this->trial = 0;
             }
-            $this->badge_id = !empty($request['freelancer']['badge']) ? intval($request['freelancer']['badge']) : 0;
+            $this->badge_id = !empty($request['provider']['badge']) ? intval($request['provider']['badge']) : 0;
             $old_path = Helper::assetPath() . '/uploads/packages/temp';
             if (!empty($request['uploaded_image'])) {
                 $filename = $request['uploaded_image'];
@@ -117,9 +117,9 @@ class Package extends Model
             if ($request->roles == '2') {
                 $package->options = serialize($request['employer']);
             } else {
-                $package->options = serialize($request['freelancer']);
+                $package->options = serialize($request['provider']);
             }
-            $package->badge_id = !empty($request['freelancer']['badge']) ? intval($request['freelancer']['badge']) : 0;
+            $package->badge_id = !empty($request['provider']['badge']) ? intval($request['provider']['badge']) : 0;
             $old_path = Helper::assetPath() . '/uploads/packages/temp';
             if (!empty($request['uploaded_image'])) {
                 $filename = $request['uploaded_image'];

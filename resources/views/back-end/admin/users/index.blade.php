@@ -54,7 +54,7 @@
                                                 <td>
                                                     <div class="wt-actionbtn">
                                                         <a href="javascript:void()" v-on:click.prevent="deleteUser({{$user->id}})" class="wt-deleteinfo wt-skillsaddinfo"><i class="fa fa-trash"></i></a>
-                                                        <a href="{{ url('profile/'.$user->slug.'/freelancer') }}" title="freelancer" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-eye"></i></a>
+                                                        <a href="{{ url('profile/'.$user->slug.'/provider') }}" title="provider" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-eye"></i></a>
                                                         <a href="{{ url('profile/'.$user->slug.'/employer') }}" title="Employer" class="wt-addinfo wt-skillsaddinfo"><i class="lnr lnr-eye"></i></a>
                                                     </div>
                                                 </td>

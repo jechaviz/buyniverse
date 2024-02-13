@@ -83,7 +83,7 @@
 					<h4>Outstanding Demos</h4>
 					<p>With easy<em> ONE CLICK INSTALL</em> and fully customizable options, our demos are the best start you'll ever get!!</p>
 					<div class="wt-demo-btns">
-						<a href="https://codecanyon.net/item/worketic-market-place-for-freelancers/23712284" target="blank" class="wt-demo-btn">Click To LAUNCH</a>
+						
 					</div>
 				</div>
 			</div>

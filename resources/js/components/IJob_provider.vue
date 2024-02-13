@@ -9,7 +9,7 @@
                                 <form class="wt-formtheme wt-formsearch" id="wt-formsearch" @submit.prevent="search_filter()">
 
                                 
-                                    <input type="hidden" value="freelancer" name="type">
+                                    <input type="hidden" value="provider" name="type">
                                     <div class="wt-widget wt-effectiveholder wt-startsearch">
                                         <div class="wt-widgettitle">
                                             <h2>{{ trans('lang.start_search') }}</h2>
@@ -18,7 +18,7 @@
                                             <div class="wt-formtheme wt-formsearch">
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <input type="text" name="s" class="form-control" :placeholder="trans('lang.ph_search_freelancer')" :value="form.s">
+                                                        <input type="text" name="s" class="form-control" :placeholder="trans('lang.ph_search_provider')" :value="form.s">
                                                     </div>
                                                 </fieldset>
                                             </div>
@@ -62,37 +62,37 @@
                                     <span v-if="users.length > 0"> {{fusers.length}} of {{users.length}} results <span v-if="keyword">for <em>"{{keyword}}"</em></span></span>
                                 </div>
                                 <div v-if="users.length > 0">
-                                    <div v-for="(freelancer, key) in users" :key="key" >
-                                        <div :class="'wt-userlistinghold ' + freelancer.feature_class" v-if="freelancer.invitation == true">
+                                    <div v-for="(provider, key) in users" :key="key" >
+                                        <div :class="'wt-userlistinghold ' + provider.feature_class" v-if="provider.invitation == true">
                                             
                                             <figure class="wt-userlistingimg">
-                                                <img :src="appurl+freelancer.image" :alt="trans('lang.img')">
+                                                <img :src="appurl+provider.image" :alt="trans('lang.img')">
                                             </figure>
                                             <div class="wt-userlistingcontent">
                                                 <div class="wt-contenthead">
                                                     <div class="wt-title">
-                                                        <a @click="gotourl('profile/' + freelancer.slug + '/freelancer')" style="font-size: 18px;">
+                                                        <a @click="gotourl('profile/' + provider.slug + '/provider')" style="font-size: 18px;">
                                                             
-                                                                <i v-if="freelancer.verified_user" class="fa fa-check-circle"></i>
+                                                                <i v-if="provider.verified_user" class="fa fa-check-circle"></i>
                                                             
-                                                            {{freelancer.username}}
+                                                            {{provider.username}}
                                                         </a>
                                                         
-                                                            <p v-if="freelancer.tagline" style="font-size: 14px!important;"><a @click="gotourl('profile/' + freelancer.slug + '/freelancer')">{{ freelancer.tagline }}</a></p>
+                                                            <p v-if="provider.tagline" style="font-size: 14px!important;"><a @click="gotourl('profile/' + provider.slug + '/provider')">{{ provider.tagline }}</a></p>
                                                         
                                                     </div>
                                                     <ul class="wt-userlisting-breadcrumb">
                                                         
-                                                            <li v-if="freelancer.hourly_rate"><span><i class="far fa-money-bill-alt"></i>
-                                                                <span>{{freelancer.symbol.code}}</span>{{ freelancer.hourly_rate }} {{ trans('lang.per_hour') }}</span>
+                                                            <li v-if="provider.hourly_rate"><span><i class="far fa-money-bill-alt"></i>
+                                                                <span>{{provider.symbol.code}}</span>{{ provider.hourly_rate }} {{ trans('lang.per_hour') }}</span>
                                                             </li>
                                                         
                                                         
-                                                            <li v-if="freelancer.location"><span><img :src="appurl1+freelancer.flag" alt="Flag"> {{ freelancer.location_title }}</span></li>
+                                                            <li v-if="provider.location"><span><img :src="appurl1+provider.flag" alt="Flag"> {{ provider.location_title }}</span></li>
                                                         
                                                         
                                                             <!--<li v-cloak>
-                                                                <a href="javascrip:void(0);" class="wt-clicklike" :id="'freelancer-' + freelancer.id" @click.prevent="add_wishlist('freelancer-' + freelancer.id,  freelancer.id, 'saved_provider', trans('lang.saved'))">
+                                                                <a href="javascrip:void(0);" class="wt-clicklike" :id="'provider-' + provider.id" @click.prevent="add_wishlist('provider-' + provider.id,  provider.id, 'saved_provider', trans('lang.saved'))">
                                                                     <i class="fa fa-heart"></i>
                                                                     <span class="save_text">{{ trans('lang.click_to_save') }}</span>
                                                                 </a>
@@ -101,19 +101,19 @@
                                                     </ul>
                                                 </div>
                                                 <div class="wt-rightarea">
-                                                    <span class="wt-stars"><span :style="'width: ' + freelancer.stars + '%;'"></span></span>
+                                                    <span class="wt-stars"><span :style="'width: ' + provider.stars + '%;'"></span></span>
                                                     <span class="wt-starcontent">
-                                                        {{ freelancer.average_rating_count }}<sub>{{ trans('lang.5') }}</sub> <em>({{ freelancer.feedbacks }} {{ trans('lang.feedbacks') }})</em>
+                                                        {{ provider.average_rating_count }}<sub>{{ trans('lang.5') }}</sub> <em>({{ provider.feedbacks }} {{ trans('lang.feedbacks') }})</em>
                                                     </span>
                                                 </div>
                                             </div>
                                             
-                                                <div class="wt-description" v-if="freelancer.description">
-                                                    <p v-html="freelancer.description"></p>
+                                                <div class="wt-description" v-if="provider.description">
+                                                    <p v-html="provider.description"></p>
                                                 </div>
                                             
                                             <div class="wt-tag wt-widgettag">
-                                                    <a v-for="(skill, key1) in freelancer.categories" :key="key1">{{ skill.name }}</a>
+                                                    <a v-for="(skill, key1) in provider.categories" :key="key1">{{ skill.name }}</a>
                                             </div>
                                             
                                         </div>

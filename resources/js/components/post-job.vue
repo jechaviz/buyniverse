@@ -825,8 +825,8 @@ export default {
                 
                 
                 
-                $('#addprojectfreelancer').addClass('hidden');
-                $('#editfreelancer').removeClass('hidden');
+                $('#addprojectprovider').addClass('hidden');
+                $('#editprovider').removeClass('hidden');
             });
         },
         
@@ -919,13 +919,13 @@ export default {
         this.loadprojectlevel();
         this.loadprojectduration();
         //this.loadprojectenglish();
-        //this.loadprojectfreelancer();
+        //this.loadprojectprovider();
         this.loadcategory();
         this.loadcurrency();
         //this.loadteam();
         //this.loadapprover();
         //this.loadenglish();
-        //this.loadfreelancer();
+        //this.loadprovider();
         //this.loadsubskills();
         //this.loadinvited();
         

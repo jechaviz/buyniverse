@@ -38,7 +38,7 @@
                                         date="{{$expiry_date}}"
                                         :image_url="'{{{ Helper::getDashExpiryImages('uploads/settings/icon',$latest_package_expiry_icon, 'img-21.png') }}}'"
                                         :title=trans('lang.check_pkg_expiry')
-                                        :package_url="'{{url('dashboard/packages/freelancer')}}'"
+                                        :package_url="'{{url('dashboard/packages/provider')}}'"
                                         :trail="'{{$trail}}'"
                                         :current_package="'{{$package->title}}'"
                                         >
@@ -68,7 +68,7 @@
                                 <div class="wt-insightdetails">
                                     <div class="wt-title">
                                         <h3>{{ trans('lang.view_saved_items') }}</h3>
-                                        <a href="{{url('freelancer/saved-items')}}">{{ trans('lang.click_view') }}</a>
+                                        <a href="{{url('provider/saved-items')}}">{{ trans('lang.click_view') }}</a>
                                     </div>
                                 </div>
                             </div>

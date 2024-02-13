@@ -103,7 +103,7 @@
                             @if (!empty($accepted_proposal))
                                 <div class="wt-freelancerholder wt-rcvproposalholder la-free-proposal">
                                 <div class="wt-tabscontenttitle">
-                                    <h2>{{ trans('lang.hired_freelancers') }}</h2>
+                                    <h2>{{ trans('lang.hired_providers') }}</h2>
                                 </div>
                                 <div class="wt-managejobcontent">
                                     @php
@@ -135,7 +135,7 @@
                                             @if(!empty($enable_package) && $enable_package === 'true')     
                                                 @if (!empty($badge))
                                                     <span class="wt-featuredtag" style="border-top: 40px solid {{ $badge_color }};">
-                                                        <img src="{{{ asset(Helper::getBadgeImage($badge_img)) }}}" alt="{{ trans('lang.hired_freelancers') }}" data-tipso="Plus Member" class="template-content tipso_style">
+                                                        <img src="{{{ asset(Helper::getBadgeImage($badge_img)) }}}" alt="{{ trans('lang.hired_providers') }}" data-tipso="Plus Member" class="template-content tipso_style">
                                                     </span>
                                                 @endif
                                             @endif
@@ -380,7 +380,7 @@
                                                 <td class="job-details"><i>{{ Helper::getCurrencySymbol($job->currency) }}</i> {{ $job->price}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="job-details"><b>Freelancer Type</b></td>
+                                                <td class="job-details"><b>Provider Type</b></td>
                                                 <td class="job-details">{{ $job->provider_type}}</td>
                                             </tr>
                                             <tr>

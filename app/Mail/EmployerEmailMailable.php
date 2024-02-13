@@ -83,8 +83,8 @@ class EmployerEmailMailable extends Mailable
     {
         extract($email_params);
         $employer_name = $employer;
-        $provider_name = $freelancer;
-        $freelancer_link = $freelancer_profile;
+        $provider_name = $provider;
+        $provider_link = $provider_profile;
         $project_title = $title;
         $project_link = $link;
         $proposal_amount = $amount;
@@ -94,7 +94,7 @@ class EmployerEmailMailable extends Mailable
         $app_content = $this->template->content;
         $email_content_default =    "Hello %employer_name%,
 
-                                    <a href='%freelancer_link%'>%provider_name%</a> has sent a new proposal on the following project <a href='%project_link%'>%project_title%</a>.
+                                    <a href='%provider_link%'>%provider_name%</a> has sent a new proposal on the following project <a href='%project_link%'>%project_title%</a>.
                                     Message is given below.
                                     Project Proposal Amount : %proposal_amount%
                                     Project Duration : %proposal_duration%
@@ -106,7 +106,7 @@ class EmployerEmailMailable extends Mailable
             $app_content = $email_content_default;
         }
         $app_content = str_replace("%employer_name%", $employer_name, $app_content);
-        $app_content = str_replace("%freelancer_link%", $freelancer_link, $app_content);
+        $app_content = str_replace("%provider_link%", $provider_link, $app_content);
         $app_content = str_replace("%provider_name%", $provider_name, $app_content);
         $app_content = str_replace("%project_link%", $project_link, $app_content);
         $app_content = str_replace("%project_title%", $project_title, $app_content);
@@ -176,8 +176,8 @@ class EmployerEmailMailable extends Mailable
         extract($email_params);
         $employer_name = $employer;
         $employer_link = $employer_profile;
-        $provider_name = $freelancer;
-        $freelancer_link = $freelancer_profile;
+        $provider_name = $provider;
+        $provider_link = $provider_profile;
         $project_title = $title;
         $project_link = $link;
         $proposal_message = $message;
@@ -185,7 +185,7 @@ class EmployerEmailMailable extends Mailable
         $app_content = $this->template->content;
         $email_content_default =    "Hello <a href='%employer_link%'>%employer_name%</a>,
 
-                                    The <a href='%freelancer_link%'>%provider_name%</a> submit the proposal message on this job <a href='%project_link%'>%project_title%</a>.
+                                    The <a href='%provider_link%'>%provider_name%</a> submit the proposal message on this job <a href='%project_link%'>%project_title%</a>.
                                     Login to view your proposal message.
                                     Message: %message%
 
@@ -196,7 +196,7 @@ class EmployerEmailMailable extends Mailable
         }
         $app_content = str_replace("%employer_name%", $employer_name, $app_content);
         $app_content = str_replace("%employer_link%", $employer_link, $app_content);
-        $app_content = str_replace("%freelancer_link%", $freelancer_link, $app_content);
+        $app_content = str_replace("%provider_link%", $provider_link, $app_content);
         $app_content = str_replace("%provider_name%", $provider_name, $app_content);
         $app_content = str_replace("%project_link%", $project_link, $app_content);
         $app_content = str_replace("%project_title%", $project_title, $app_content);

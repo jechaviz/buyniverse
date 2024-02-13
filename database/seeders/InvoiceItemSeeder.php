@@ -152,12 +152,12 @@ class InvoiceItemSeeder extends Seeder
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ],
-                //Freelancers
+                //Providers
                 [
                     'invoice_id' => '1',
                     'product_id' => '2',
                     'subscriber' => '13',
-                    'item_name' => 'Trial Freelancer',
+                    'item_name' => 'Trial Provider',
                     'item_price' => '0.00',
                     'item_qty' => '1',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -197,7 +197,7 @@ class InvoiceItemSeeder extends Seeder
                     'invoice_id' => '1',
                     'product_id' => '2',
                     'subscriber' => '17',
-                    'item_name' => 'Trial Freelancer',
+                    'item_name' => 'Trial Provider',
                     'item_price' => '0.00',
                     'item_qty' => '1',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -237,7 +237,7 @@ class InvoiceItemSeeder extends Seeder
                     'invoice_id' => '1',
                     'product_id' => '2',
                     'subscriber' => '21',
-                    'item_name' => 'Trial Freelancer',
+                    'item_name' => 'Trial Provider',
                     'item_price' => '0.00',
                     'item_qty' => '1',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

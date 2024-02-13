@@ -19,7 +19,6 @@ export default {
     
     methods: {
         hire(proposal, mode) {
-            console.log('hire freelancer');
             this.$swal({
                 title: Vue.prototype.trans('lang.want_to_hire'),
                 type: "warning",

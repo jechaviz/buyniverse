@@ -308,7 +308,7 @@ class StripeController extends Controller
                                     // send mail
                                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
                                         $email_params = array();
-                                        $template_data = Helper::getFreelancerNewOrderEmailContent();
+                                        $template_data = Helper::getProviderNewOrderEmailContent();
                                         $email_params['title'] = $service->title;
                                         $email_params['service_link'] = url('service/' . $service->slug);
                                         $email_params['amount'] = $service->price;
@@ -405,7 +405,7 @@ class StripeController extends Controller
                     $json['url'] = url('employer/jobs/hired');
                 }
                 $json['type'] = 'success';
-                $json['message'] = trans('lang.freelancer_successfully_hired');
+                $json['message'] = trans('lang.provider_successfully_hired');
                 session()->forget('type');
                 return $json;
             } else {

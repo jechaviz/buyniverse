@@ -61,7 +61,7 @@
                                 </div>
                                 <!--<div class="tg-authorcodescan">
                                     <figure class="tg-qrcodeimg">
-                                        {!! QrCode::size(100)->generate(Request::url('profile/'.$user->slug.'/freelancer')); !!}
+                                        {!! QrCode::size(100)->generate(Request::url('profile/'.$user->slug.'/provider')); !!}
                                     </figure>
                                     <div class="tg-qrcodedetail">
                                         <span class="lnr lnr-laptop-phone"></span>

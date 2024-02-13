@@ -36,7 +36,7 @@ class ImportProvider implements ToCollection, WithHeadingRow
             '*.email.required' => 'email Cant be empty',
             '*.location.required' => 'location Cant be empty',
             '*.department.required' => 'Department Cant be empty',
-            '*.provider_type.required' => 'freelancer type Cant be empty',
+            '*.provider_type.required' => 'provider type Cant be empty',
             '*.english_level.required' => 'english level Cant be empty',
             '*.tagline.required' => 'tagline Cant be empty',
             '*.description.required' => 'description Cant be empty',            

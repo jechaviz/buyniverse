@@ -283,7 +283,7 @@ class SiteManagementController extends Controller
         $section_settings = $this->settings::getMetaValue('section_settings');
         $banner_bg = !empty($home_settings[0]['home_banner']) ? $home_settings[0]['home_banner'] : null;
         $banner_bg_image = !empty($home_settings[0]['home_banner_image']) ? $home_settings[0]['home_banner_image'] : null;
-        $banner_title = !empty($home_settings[0]['banner_title']) ? $home_settings[0]['banner_title'] : 'Hire expert freelancers';
+        $banner_title = !empty($home_settings[0]['banner_title']) ? $home_settings[0]['banner_title'] : 'Hire expert providers';
         $banner_subtitle = !empty($home_settings[0]['banner_subtitle']) ? $home_settings[0]['banner_subtitle'] : 'for any job, Online';
         $banner_description = !empty($home_settings[0]['banner_description']) ? $home_settings[0]['banner_description'] : null;
         $banner_video_link = !empty($home_settings[0]['video_link']) ? $home_settings[0]['video_link'] : null;

@@ -16,10 +16,10 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
                     <div class="wt-dashboardbox wt-dashboardtabsholder">
-                        @if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/tabs.blade.php'))) 
-                            @include('extend.back-end.freelancer.profile-settings.tabs')
+                        @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/tabs.blade.php'))) 
+                            @include('extend.back-end.provider.profile-settings.tabs')
                         @else 
-                            @include('back-end.freelancer.profile-settings.tabs')
+                            @include('back-end.provider.profile-settings.tabs')
                         @endif
                         <div class="wt-tabscontent tab-content">
                             @if (Session::has('message'))
@@ -39,17 +39,17 @@
                             <div class="wt-awardsholder" id="wt-awards">
                                 {!! Form::open(['url' => url('provider/store-project-award-settings'), 'class' =>'wt-formtheme wt-userform wt-formprojectinfo', 'id' => 'awards_projects', '@submit.prevent' => 'submitAwardsProjects']) !!}
                                     <div class="wt-addprojectsholder wt-tabsinfo">
-                                        @if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/projects-awards/projects.blade.php'))) 
-                                            @include('extend.back-end.freelancer.profile-settings.projects-awards.projects')
+                                        @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/projects-awards/projects.blade.php'))) 
+                                            @include('extend.back-end.provider.profile-settings.projects-awards.projects')
                                         @else 
-                                            @include('back-end.freelancer.profile-settings.projects-awards.projects')
+                                            @include('back-end.provider.profile-settings.projects-awards.projects')
                                         @endif
                                     </div>
                                     <div class="wt-addprojectsholder wt-tabsinfo la-awards">
-                                        @if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/projects-awards/awards.blade.php'))) 
-                                            @include('extend.back-end.freelancer.profile-settings.projects-awards.awards') 
+                                        @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/projects-awards/awards.blade.php'))) 
+                                            @include('extend.back-end.provider.profile-settings.projects-awards.awards') 
                                         @else 
-                                            @include('back-end.freelancer.profile-settings.projects-awards.awards') 
+                                            @include('back-end.provider.profile-settings.projects-awards.awards') 
                                         @endif
                                     </div>
                                     <div class="wt-updatall">

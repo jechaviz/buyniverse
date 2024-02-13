@@ -49,8 +49,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="job-details"><b>{{ trans('lang.hired_freelancer') }}</b></td>
-                                        <td class="job-details"> <a href="{{{url('profile/'.$freelancer->slug)}}}"> {{{Helper::getUserName($freelancer->id)}}}</a>
+                                        <td class="job-details"><b>{{ trans('lang.hired_provider') }}</b></td>
+                                        <td class="job-details"> <a href="{{{url('profile/'.$provider->slug)}}}"> {{{Helper::getUserName($provider->id)}}}</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -66,10 +66,10 @@
                                         </td>
                                     </tr>
                                     @if (Auth::user()->role == 'employer')
-                                        @if (!empty($freelancer))
+                                        @if (!empty($provider))
                                             @if ($pivot_service->status == 'hired')
                                     <tr>
-                                        <td class="job-details"><b>{{ trans('lang.hired_freelancer') }}</b></td>
+                                        <td class="job-details"><b>{{ trans('lang.hired_provider') }}</b></td>
                                         <td class="job-details"> 
                                             <form class="wt-formtheme wt-formsearch" id="change_job_status">
                                                 <fieldset>
@@ -92,9 +92,9 @@
                         </div>
                         <!--<div class="wt-service-tabel wt-jobservice-details">
                             @if (!empty($attachment))
-                                <figure class="service-feature-image"><img src="{{{asset(Helper::getImage('uploads/services/'.$freelancer->id, $attachment[0], 'medium-', 'small-service.jpg'))}}}" alt="{{{$service['title']}}}"></figure>
+                                <figure class="service-feature-image"><img src="{{{asset(Helper::getImage('uploads/services/'.$provider->id, $attachment[0], 'medium-', 'small-service.jpg'))}}}" alt="{{{$service['title']}}}"></figure>
                             @endif
-                            <div class="wt-freelancers-content">
+                            <div class="wt-providers-content">
                                 <div class="dc-title">
                                     @if ($service['is_featured'] == 'true')
                                         <span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>
@@ -104,20 +104,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="wt-rcvproposalholder wt-hiredfreelancer wt-tabsinfo">
+                        <div class="wt-rcvproposalholder wt-hiredprovider wt-tabsinfo">
                             <div class="wt-tabscontenttitle">
-                                <h2>{{ trans('lang.hired_freelancer') }}</h2>
+                                <h2>{{ trans('lang.hired_provider') }}</h2>
                             </div>
                             <div class="wt-jobdetailscontent">
                                 <div class="wt-userlistinghold wt-featured wt-proposalitem">
                                     <span class="wt-featuredtag"><img src="{{{ asset('images/featured.png') }}}" alt="img description" data-tipso="Plus Member" class="template-content tipso_style mCS_img_loaded"></span>
                                     <figure class="wt-userlistingimg">
-                                        <img src="{{{asset(Helper::getProfileImage($freelancer->id))}}}" alt="image description">
+                                        <img src="{{{asset(Helper::getProfileImage($provider->id))}}}" alt="image description">
                                     </figure>
                                     <div class="wt-proposaldetails">
                                         <div class="wt-contenthead">
                                             <div class="wt-title">
-                                                <a href="{{{url('profile/'.$freelancer->slug)}}}"> {{{Helper::getUserName($freelancer->id)}}}</a>
+                                                <a href="{{{url('profile/'.$provider->slug)}}}"> {{{Helper::getUserName($provider->id)}}}</a>
                                             </div>
                                         </div>
                                         <div class="wt-proposalfeedback">
@@ -186,10 +186,10 @@
                                 </div>
                             @endforeach
                         @endif
-                        <input type="hidden" name="receiver_id" value="{{{$freelancer->id}}}">
+                        <input type="hidden" name="receiver_id" value="{{{$provider->id}}}">
                         <input type="hidden" name="service_id" value="{{{$service->id}}}">
                         <div class="form-group wt-btnarea">
-                           <a class="wt-btn" href="javascript:void(0);" v-on:click='submitFeedback({{$freelancer->id}}, {{$id}})'>{{ trans('lang.btn_send_feedback') }}</a>
+                           <a class="wt-btn" href="javascript:void(0);" v-on:click='submitFeedback({{$provider->id}}, {{$id}})'>{{ trans('lang.btn_send_feedback') }}</a>
                         </div>
                     </fieldset>
                 </form>

@@ -91,7 +91,7 @@ class ModelRoleSeeder extends Seeder
                     'model_id' => '12',
                     'model_type' => 'App\User',
                 ],
-                //Freelancers
+                //providers
                 [
                     'role_id' => '3',
                     'model_id' => '13',

@@ -680,8 +680,8 @@ class UserController extends Controller
                         )
                     );
                 }
-            } elseif ($request->path() === 'freelancer/saved-items') {
-                if (file_exists(resource_path('views/extend/back-end/freelancer/saved-items.blade.php'))) {
+            } elseif ($request->path() === 'provider/saved-items') {
+                if (file_exists(resource_path('views/extend/back-end/provider/saved-items.blade.php'))) {
                     return view(
                         'extend.back-end.provider.saved-items',
                         compact(
@@ -1731,7 +1731,7 @@ class UserController extends Controller
                     // send mail
                     if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
                         $email_params = array();
-                        $template_data = Helper::getFreelancerNewOrderEmailContent();
+                        $template_data = Helper::getProviderNewOrderEmailContent();
                         $email_params['title'] = $service->title;
                         $email_params['service_link'] = url('service/' . $service->slug);
                         $email_params['amount'] = number_format($service->price);
@@ -1951,13 +1951,13 @@ class UserController extends Controller
             $currency   = SiteManagement::getMetaValue('commision');
             $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
             if ($type === 'project') {
-                if (file_exists(resource_path('views/extend/back-end/freelancer/invoices/project.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/invoices/project.blade.php'))) {
                     return view('extend.back-end.provider.invoices.project', compact('invoices', 'type', 'expiry_date', 'symbol'));
                 } else {
                     return view('back-end.provider.invoices.project', compact('invoices', 'type', 'expiry_date', 'symbol'));
                 }
             } elseif ($type === 'package') {
-                if (file_exists(resource_path('views/extend/back-end/freelancer/invoices/package.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/invoices/package.blade.php'))) {
                     return view('extend.back-end.provider.invoices.package', compact('invoices', 'type', 'expiry_date', 'symbol'));
                 } else {
                     return view('back-end.provider.invoices.package', compact('invoices', 'type', 'expiry_date', 'symbol'));
@@ -1997,7 +1997,7 @@ class UserController extends Controller
                 $symbol = !empty($code) && !empty($code['symbol']) ? $code['symbol'] : '$';
             }
             if (Auth::user()->role === 'provider') {
-                if (file_exists(resource_path('views/extend/back-end/freelancer/invoices/show.blade.php'))) {
+                if (file_exists(resource_path('views/extend/back-end/provider/invoices/show.blade.php'))) {
                     return view::make('extend.back-end.provider.invoices.show', compact('invoice_info', 'symbol', 'currency_code'));
                 } else {
                     return view::make('back-end.provider.invoices.show', compact('invoice_info', 'symbol', 'currency_code'));
@@ -2252,7 +2252,7 @@ class UserController extends Controller
         $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
         $job = Job::where('slug', $slug)->first();
         $reasons = Arr::pluck(Helper::getReportReasons(), 'title', 'title');
-        if (file_exists(resource_path('views/extend/back-end/freelancer/jobs/dispute.blade.php'))) {
+        if (file_exists(resource_path('views/extend/back-end/provider/jobs/dispute.blade.php'))) {
             return View(
                 'extend.back-end.provider.jobs.dispute',
                 compact(

@@ -30,26 +30,26 @@
                         </ul>
                     @endif
                     <div class="wt-dashboardbox wt-dashboardtabsholder">
-                        @if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/tabs.blade.php'))) 
-                            @include('extend.back-end.freelancer.profile-settings.tabs')
+                        @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/tabs.blade.php'))) 
+                            @include('extend.back-end.provider.profile-settings.tabs')
                         @else 
-                            @include('back-end.freelancer.profile-settings.tabs')
+                            @include('back-end.provider.profile-settings.tabs')
                         @endif
                         <div class="wt-tabscontent tab-content">
                             <div class="wt-educationholder" id="wt-education">
                                 {!! Form::open(['url' => url('provider/store-experience-settings'), 'class' =>'wt-formtheme wt-userform', 'id' => 'experience_form', '@submit.prevent'=>'submitExperienceEduction']) !!}
                                     <div class="wt-userexperience wt-tabsinfo">
-                                        @if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/experience-education/experience.blade.php'))) 
-                                            @include('extend.back-end.freelancer.profile-settings.experience-education.experience')
+                                        @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/experience-education/experience.blade.php'))) 
+                                            @include('extend.back-end.provider.profile-settings.experience-education.experience')
                                         @else 
-                                            @include('back-end.freelancer.profile-settings.experience-education.experience')
+                                            @include('back-end.provider.profile-settings.experience-education.experience')
                                         @endif
                                     </div>
                                     <div class="wt-userexperience wt-tabsinfo">
-                                        @if (file_exists(resource_path('views/extend/back-end/freelancer/profile-settings/experience-education/education.blade.php'))) 
-                                            @include('extend.back-end.freelancer.profile-settings.experience-education.education')
+                                        @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/experience-education/education.blade.php'))) 
+                                            @include('extend.back-end.provider.profile-settings.experience-education.education')
                                         @else 
-                                            @include('back-end.freelancer.profile-settings.experience-education.education')
+                                            @include('back-end.provider.profile-settings.experience-education.education')
                                         @endif
                                     </div>
                                     <div class="wt-updatall">

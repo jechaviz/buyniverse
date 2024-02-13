@@ -193,7 +193,7 @@
                                     <thead>
                                         <tr>
                                             <th>{{trans('lang.project_title')}}</th>
-                                            <th>{{trans('lang.hired_freelancers')}}</th>
+                                            <th>{{trans('lang.hired_providers')}}</th>
                                             <th>{{trans('lang.project_cost')}}</th>
                                             <th>{{trans('lang.actions')}}</th>
                                         </tr>
@@ -201,17 +201,17 @@
                                     <tbody>
                                         @foreach ($ongoing_jobs as $project)
                                             @php
-                                                $proposal_freelancer = $project->proposals->where('status', 'hired')->pluck('provider_id')->first();
-                                                $freelancer = !empty($proposal_freelancer) ? \App\User::find($proposal_freelancer) : ''; 
-                                                $user_name = Helper::getUsername($proposal_freelancer);
+                                                $proposal_provider = $project->proposals->where('status', 'hired')->pluck('provider_id')->first();
+                                                $provider = !empty($proposal_provider) ? \App\User::find($proposal_provider) : ''; 
+                                                $user_name = Helper::getUsername($proposal_provider);
                                             @endphp
                                             <tr>
                                                 <td data-th="Project title"><span class="bt-content"><a target="_blank" href="{{{ url('job/'.$project->slug) }}}">{{{ $project->title }}}</a></span></td>
-                                                @if (!empty($freelancer))
+                                                @if (!empty($provider))
                                                     <td data-th="Hired freelancer">
                                                         <span class="bt-content">
-                                                            <a href="{{{url('profile/'.$freelancer->slug)}}}">
-                                                                @if ($freelancer->user_verified)
+                                                            <a href="{{{url('profile/'.$provider->slug)}}}">
+                                                                @if ($provider->user_verified)
                                                                     <i class="fa fa-check-circle"></i>&nbsp;
                                                                 @endif
                                                                 {{{$user_name}}}

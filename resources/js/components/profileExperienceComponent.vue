@@ -248,7 +248,7 @@ export default {
         count: 0
       },
       experiences: [],
-      freelancer_experiences: [],
+      provider_experiences: [],
       count: 0
     };
   },

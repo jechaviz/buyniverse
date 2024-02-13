@@ -22,7 +22,7 @@
                             <li class="nav-item"><a data-toggle="tab" href="#wt-project" class="">{{ trans('lang.project_contest') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-product" class="">{{ trans('lang.products') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-services" class="">{{ trans('lang.services') }}</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#wt-freelancer" class="">{{ trans('lang.freelancers') }}</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#wt-freelancer" class="">{{ trans('lang.providers') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-talent" class="">{{ trans('lang.talents') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-course" class="">{{ trans('lang.courses') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-travel" class="">{{ trans('lang.travel') }}</a></li>
@@ -215,7 +215,7 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th>{{trans('lang.project_title')}}</th>
-                                                                        <th>{{trans('lang.hired_freelancers')}}</th>
+                                                                        <th>{{trans('lang.hired_providers')}}</th>
                                                                         <th>{{trans('lang.project_cost')}}</th>
                                                                         <th>{{trans('lang.actions')}}</th>
                                                                     </tr>
@@ -223,17 +223,17 @@
                                                                 <tbody>
                                                                     @foreach ($ongoing_jobs as $project)
                                                                         @php
-                                                                            $proposal_freelancer = $project->proposals->where('status', 'hired')->pluck('provider_id')->first();
-                                                                            $freelancer = !empty($proposal_freelancer) ? \App\User::find($proposal_freelancer) : ''; 
-                                                                            $user_name = Helper::getUsername($proposal_freelancer);
+                                                                            $proposal_provider = $project->proposals->where('status', 'hired')->pluck('provider_id')->first();
+                                                                            $provider = !empty($proposal_provider) ? \App\User::find($proposal_provider) : ''; 
+                                                                            $user_name = Helper::getUsername($proposal_provider);
                                                                         @endphp
                                                                         <tr>
                                                                             <td data-th="Project title"><span class="bt-content"><a target="_blank" href="{{{ url('job/'.$project->slug) }}}">{{{ $project->title }}}</a></span></td>
-                                                                            @if (!empty($freelancer))
+                                                                            @if (!empty($provider))
                                                                                 <td data-th="Hired freelancer">
                                                                                     <span class="bt-content">
-                                                                                        <a href="{{{url('profile/'.$freelancer->slug)}}}">
-                                                                                            @if ($freelancer->user_verified)
+                                                                                        <a href="{{{url('profile/'.$provider->slug)}}}">
+                                                                                            @if ($provider->user_verified)
                                                                                                 <i class="fa fa-check-circle"></i>&nbsp;
                                                                                             @endif
                                                                                             {{{$user_name}}}
@@ -498,7 +498,7 @@
                                                         <td data-th="Name"><span class="bt-content" style="display: flex;">
                                                             <span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
                                                             <ul class="wt-hireduserimgs">
-                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.provider') }}}"></figure></li>
                                                             </ul>
                                                         </span></td>
                                                         <td data-th="Slug"><span class="bt-content">
@@ -593,7 +593,7 @@
                                                         <td data-th="Name"><span class="bt-content" style="display: flex;">
                                                             <span>{{{ Helper::getUserName($accepted_proposal->provider_id) }}}</span>
                                                             <ul class="wt-hireduserimgs">
-                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.freelancer') }}}"></figure></li>
+                                                                <li><figure><img src="{{{ asset(Helper::getProjectImage($user_image, $accepted_proposal->provider_id)) }}}" alt="{{{ trans('lang.provider') }}}"></figure></li>
                                                             </ul>
                                                         </span></td>
                                                         <td data-th="Slug"><span class="bt-content">
@@ -858,7 +858,7 @@
                         <div class="wt-awardsholder tab-pane fade" id="wt-freelancer">
                             <div class="wt-addprojectsholder wt-likefreelan">
                                 <div class="wt-likedfreelancers wt-haslayout">
-                                    <!--start Freelancer -->
+                                    <!--start provider -->
                                     <div class="wt-userlistingholder wt-userlisting wt-haslayout">
                                         <div class="wt-userlistingtitle">
                                             @if (!empty($users))
@@ -866,24 +866,24 @@
                                             @endif
                                         </div>
                                         @if (!empty($users))
-                                            @foreach ($users as $key => $freelancer)
+                                            @foreach ($users as $key => $provider)
                                                 @php
-                                                    $user_image = !empty($freelancer->profile->avater) ?
-                                                                    '/uploads/users/'.$freelancer->id.'/'.$freelancer->profile->avater :
+                                                    $user_image = !empty($provider->profile->avater) ?
+                                                                    '/uploads/users/'.$provider->id.'/'.$provider->profile->avater :
                                                                     'images/user.jpg';
-                                                    $flag = !empty($freelancer->location->flag) ? Helper::getLocationFlag($freelancer->location->flag) :
+                                                    $flag = !empty($provider->location->flag) ? Helper::getLocationFlag($provider->location->flag) :
                                                             '/images/img-01.png';
-                                                    $feedbacks = \App\Review::select('feedback')->where('receiver_id', $freelancer->id)->count();
-                                                    $avg_rating = App\Review::where('receiver_id', $freelancer->id)->sum('avg_rating');
+                                                    $feedbacks = \App\Review::select('feedback')->where('receiver_id', $provider->id)->count();
+                                                    $avg_rating = App\Review::where('receiver_id', $provider->id)->sum('avg_rating');
                                                     $rating  = $avg_rating != 0 ? round($avg_rating/\App\Review::count()) : 0;
-                                                    $reviews = \App\Review::where('receiver_id', $freelancer->id)->get();
+                                                    $reviews = \App\Review::where('receiver_id', $provider->id)->get();
                                                     $stars  = $reviews->sum('avg_rating') != 0 ? (($reviews->sum('avg_rating')/$feedbacks)/5)*100 : 0;
                                                     $average_rating_count = !empty($feedbacks) ? $reviews->sum('avg_rating')/$feedbacks : 0;
-                                                    $verified_user = \App\User::select('user_verified')->where('id', $freelancer->id)->pluck('user_verified')->first();
-                                                    $save_freelancer = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
-                                                    $badge = Helper::getUserBadge($freelancer->id);
+                                                    $verified_user = \App\User::select('user_verified')->where('id', $provider->id)->pluck('user_verified')->first();
+                                                    $save_provider = !empty(auth()->user()->profile->saved_provider) ? unserialize(auth()->user()->profile->saved_provider) : array();
+                                                    $badge = Helper::getUserBadge($provider->id);
                                                     if (!empty($enable_package) && $enable_package === 'true') {
-                                                        $feature_class = (!empty($badge) && $freelancer->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
+                                                        $feature_class = (!empty($badge) && $provider->expiry_date >= $current_date) ? 'wt-featured' : 'wt-exp';
                                                         $badge_color = !empty($badge) ? $badge->color : '';
                                                         $badge_img  = !empty($badge) ? $badge->image : '';
                                                     } else {
@@ -894,7 +894,7 @@
                                                 @endphp
                                                 <div class="wt-userlistinghold {{ $feature_class }}">
                                                     @if(!empty($enable_package) && $enable_package === 'true')
-                                                        @if ($freelancer->expiry_date >= $current_date && !empty($freelancer->badge_id))
+                                                        @if ($provider->expiry_date >= $current_date && !empty($provider->badge_id))
                                                             <span class="wt-featuredtag" style="border-top: 40px solid {{ $badge_color }};">
                                                                 @if (!empty($badge_img))
                                                                     <img src="{{{ asset(Helper::getBadgeImage($badge_img)) }}}" alt="{{ trans('lang.is_featured') }}" data-tipso="Plus Member" class="template-content tipso_style">
@@ -905,31 +905,31 @@
                                                         @endif
                                                     @endif
                                                     <figure class="wt-userlistingimg">
-                                                        <img src="{{{ asset(Helper::getImageWithSize('uploads/users/'.$freelancer->id, $freelancer->profile->avater, 'listing')) }}}" alt="{{ trans('lang.img') }}">
+                                                        <img src="{{{ asset(Helper::getImageWithSize('uploads/users/'.$provider->id, $provider->profile->avater, 'listing')) }}}" alt="{{ trans('lang.img') }}">
                                                     </figure>
                                                     <div class="wt-userlistingcontent">
                                                         <div class="wt-contenthead">
                                                             <div class="wt-title">
-                                                                <a href="{{{ url('profile/'.$freelancer->slug) }}}">
+                                                                <a href="{{{ url('profile/'.$provider->slug) }}}">
                                                                     @if ($verified_user == 1)
                                                                         <i class="fa fa-check-circle"></i>
                                                                     @endif
-                                                                    {{{ Helper::getUserName($freelancer->id) }}}
+                                                                    {{{ Helper::getUserName($provider->id) }}}
                                                                 </a>
-                                                                @if (!empty($freelancer->profile->tagline))
-                                                                    <h2><a href="{{{ url('profile/'.$freelancer->slug) }}}">{{{ $freelancer->profile->tagline }}}</a></h2>
+                                                                @if (!empty($provider->profile->tagline))
+                                                                    <h2><a href="{{{ url('profile/'.$provider->slug) }}}">{{{ $provider->profile->tagline }}}</a></h2>
                                                                 @endif
                                                             </div>
                                                             <ul class="wt-userlisting-breadcrumb">
-                                                                @if (!empty($freelancer->profile->hourly_rate))
+                                                                @if (!empty($provider->profile->hourly_rate))
                                                                     <li><span><i class="far fa-money-bill-alt"></i>
-                                                                        {{ (!empty($symbol['symbol'])) ? $symbol['symbol'] : '$' }}{{{ $freelancer->profile->hourly_rate }}} {{ trans('lang.per_hour') }}</span>
+                                                                        {{ (!empty($symbol['symbol'])) ? $symbol['symbol'] : '$' }}{{{ $provider->profile->hourly_rate }}} {{ trans('lang.per_hour') }}</span>
                                                                     </li>
                                                                 @endif
-                                                                @if (!empty($freelancer->location))
-                                                                    <li><span><img src="{{{ asset($flag)}}}" alt="Flag"> {{{ !empty($freelancer->location->title) ? $freelancer->location->title : '' }}}</span></li>
+                                                                @if (!empty($provider->location))
+                                                                    <li><span><img src="{{{ asset($flag)}}}" alt="Flag"> {{{ !empty($provider->location->title) ? $provider->location->title : '' }}}</span></li>
                                                                 @endif
-                                                                @if (in_array($freelancer->id, $save_freelancer))
+                                                                @if (in_array($provider->id, $save_provider))
                                                                     <!--<li class="wt-btndisbaled">
                                                                         <a href="javascrip:void(0);" class="wt-clicksave wt-clicksave">
                                                                             <i class="fa fa-heart"></i>
@@ -938,7 +938,7 @@
                                                                     </li>-->
                                                                 @else
                                                                     <!--<li v-cloak>
-                                                                        <a href="javascrip:void(0);" class="wt-clicklike" id="freelancer-{{$freelancer->id}}" @click.prevent="add_wishlist('freelancer-{{$freelancer->id}}', {{$freelancer->id}}, 'saved_provider', '{{trans("lang.saved")}}')">
+                                                                        <a href="javascrip:void(0);" class="wt-clicklike" id="provider-{{$provider->id}}" @click.prevent="add_wishlist('provider-{{$provider->id}}', {{$provider->id}}, 'saved_provider', '{{trans("lang.saved")}}')">
                                                                             <i class="fa fa-heart"></i>
                                                                             <span class="save_text">{{ trans('lang.click_to_save') }}</span>
                                                                         </a>
@@ -953,14 +953,14 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    @if (!empty($freelancer->profile->description))
+                                                    @if (!empty($provider->profile->description))
                                                         <div class="wt-description">
-                                                            <p>{!! html_entity_decode(nl2br(e(str_limit($freelancer->profile->description, 180)))) !!}</p>
+                                                            <p>{!! html_entity_decode(nl2br(e(str_limit($provider->profile->description, 180)))) !!}</p>
                                                         </div>
                                                     @endif
-                                                    @if (!empty($freelancer->skills))
+                                                    @if (!empty($provider->skills))
                                                         <div class="wt-tag wt-widgettag">
-                                                            @foreach($freelancer->skills as $skill)
+                                                            @foreach($provider->skills as $skill)
                                                                 <a href="{{{url('search-results?type=job&skills%5B%5D='.$skill->slug)}}}">{{{ $skill->title }}}</a>
                                                             @endforeach
                                                         </div>
@@ -978,7 +978,7 @@
                                             @endif
                                         @endif
                                     </div>
-                                    <!--end freelancer -->
+                                    <!--end provider -->
                                 </div>
                             </div>
                         </div>

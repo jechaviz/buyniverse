@@ -30,7 +30,7 @@
                         session()->put(['product_price' => e($service->price)]);
                         session()->put(['type' => 'project']);
                         session()->put(['project_type' => 'service']);
-                        session()->put(['service_seller' => $freelancer->id]);
+                        session()->put(['service_seller' => $provider->id]);
                     @endphp
                     <table class="sj-checkouttable">
                         <thead>
@@ -53,7 +53,7 @@
                                     <td>{{ !empty($symbol['symbol']) ? $symbol['symbol'] : '$' }}{{{$service->price}}} </td>
                                 </tr>
                                 <tr>
-                                    <td>{{ trans('lang.freelancer') }}</td>
+                                    <td>{{ trans('lang.provider') }}</td>
                                     <td>{{{ $provider_name }}}</td>
                                 </tr>
                                 <tr>

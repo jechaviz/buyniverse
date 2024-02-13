@@ -121,9 +121,9 @@
                                             <!--<tr>
                                                 <td class="job-details"><b>{{ trans('lang.provider_typex')}}</b></td>
                                                 <td class="job-details">
-                                                @foreach ($freelancers as $freelancer)
+                                                @foreach ($providers as $provider)
                                                     <span>
-                                                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ $freelancer->name }} </span>
+                                                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ $provider->name }} </span>
                                                     </span>
                                                 @endforeach
                                                 </td>

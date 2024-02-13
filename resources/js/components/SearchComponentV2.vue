@@ -78,7 +78,7 @@
                 filters:[],
                 isActive: false,
                 searchable_data:[],
-                freelancers:[],
+                providers:[],
                 employers:[],
                 jobs:[],
                 query:'',
@@ -184,7 +184,7 @@
                     } else {
                         var type = types;
                     }
-                    if(type == 'Freelancers') {
+                    if(type == 'Providers') {
                         type = 'provider';
                     } else if(type == 'Employers') {
                         type = 'employer';
@@ -223,7 +223,7 @@
                 if (urlParams.get('type') && this.type_change == false) {
                     var type = urlParams.get('type');
                 }   else {
-                        if(type == 'Freelancers') {
+                        if(type == 'Providers') {
                             type = 'provider';
                         }   else if(type == 'Employers') {
                                 type = 'employer';

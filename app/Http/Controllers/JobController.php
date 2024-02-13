@@ -921,7 +921,7 @@ class JobController extends Controller
         
         
         //convert values
-        $request->provider_type = $request->freelancer;
+        $request->provider_type = $request->provider;
         $request->english_level = $request->english;
         $request->project_levels = $request->project_level;
         $request->job_duration = $request->project_duration;

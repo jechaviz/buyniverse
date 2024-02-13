@@ -246,7 +246,7 @@ export default {
         count: 0
       },
       educations: [],
-      freelancer_educations: [],
+      provider_educations: [],
       count: 0
     };
   },
