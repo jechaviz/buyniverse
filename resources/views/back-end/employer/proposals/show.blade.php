@@ -122,7 +122,7 @@
                         <div id="menu3" class="tab-pane fade" style="background-color: #f7f7f7;">
                             <div class="row" style="margin: 0px;">
                                 <ul class="nav nav-tabs" style="width: 100%;">
-                                    <li id="sproposals" class="active"><a data-toggle="tab" href="#proposals">{{ trans('lang.proposals') }}</a></li>
+                                    <li id="sproposals" class="active"><a data-toggle="tab" href="#proposal">{{ trans('lang.proposals') }}</a></li>
                                     <li id="sproviders"><a data-toggle="tab" href="#providers">{{ trans('lang.providers') }} </a></li>
                                     <li id="scontest"><a data-toggle="tab" href="#contest">{{ trans('lang.contest') }} </a></li>
                                     <li id="sinvited"><a data-toggle="tab" href="#invited">{{ trans('lang.invited') }} </a></li>
@@ -630,14 +630,14 @@ if(window.location.hash != "") {
 });
     </script>   
     <script>
-    /*document.getElementById("add_providers").addEventListener("click", function(event){
-        console.log('add_providers');
+    document.getElementById("add_providers").addEventListener("click", function(event){
+        //console.log('add_providers');
         $('#sproposals').removeClass('active');
-        $('#proposals').removeClass('show active in');
+        //$('#proposals').removeClass('show in active');
         $('#sproviders').addClass('active');
-        $('#proposals').removeClass('in active');
-        $('#providers').addClass('in active');
-    });*/
+        $('#proposal').removeClass('show in active');
+        $('#providers').addClass('show in active');
+    });
 
 </script> 
 @endpush
