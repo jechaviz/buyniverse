@@ -86,13 +86,13 @@
         :access_type="access_type" 
         v-else-if="element.section =='service_section'">
       </services>
-      <freelancers 
+      <providers 
         :element_id="element.id"
-        :freelancers="form.meta.freelancers"
+        :providers="form.meta.providers"
         @editData="editSection(element)"
         :parent_index="index" 
         v-else-if="element.section =='provider_section'">
-      </freelancers>
+      </providers>
       <articles 
         :element_id="element.id"
         :articles="form.meta.articles"
@@ -148,14 +148,14 @@
         :pageID="page_id"
         v-else-if="element.section =='categoryV3'">
       </categories-v3>
-      <freelancers-v2 
+      <providers-v2 
         :element_id="element.id"
-        :freelancers="form.meta.providersSecondVersion"
+        :providers="form.meta.providersSecondVersion"
         @editData="editSection(element)"
         :parent_index="index" 
         :pageID="page_id"
         v-else-if="element.section =='provider_section_v2'">
-      </freelancers-v2>
+      </providers-v2>
       <jobs 
         :element_id="element.id"
         :jobs="form.meta.jobs"
@@ -190,7 +190,7 @@ import heading from './sections/heading'
 import editor from './sections/editor'
 import categories from './sections/categories'
 import services from './sections/services'
-import freelancers from './sections/freelancers'
+import providers from './sections/providers'
 import articles from './sections/articles'
 import app from './sections/app/index'
 import workTab from './sections/work_tab'
@@ -198,7 +198,7 @@ import workVideo from './sections/work_video'
 import welcome from './sections/welcome'
 import categoriesV2 from './sections/categoriesV2'
 import categoriesV3 from './sections/categoriesV3'
-import freelancersV2 from './sections/freelancersV2'
+import providersV2 from './sections/providersV2'
 import jobs from './sections/jobs'
 import packages from './sections/packages'
 import bannerV1 from './sections/bannerV1'
@@ -241,7 +241,7 @@ export default {
     editor,
     categories,
     services,
-    freelancers,
+    providers,
     articles,
     app,
     workTab,
@@ -249,7 +249,7 @@ export default {
     welcome,
     categoriesV2,
     categoriesV3,
-    freelancersV2,
+    providersV2,
     jobs,
     packages,
     bannerV1
@@ -290,7 +290,7 @@ export default {
           content: [],
           cat:[],
           services:[],
-          freelancers:[],
+          providers:[],
           app_section:[],
           work_tabs:[],
           work_videos:[],

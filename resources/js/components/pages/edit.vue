@@ -42,13 +42,13 @@
             :access_type="access_type" 
             v-else-if="element.section =='service_section'">
           </services>
-          <freelancers 
+          <providers 
             :element_id="element.id"
-            :freelancers="form.meta.freelancers"
+            :providers="form.meta.providers"
             @editData="editSection(element)"
             :parent_index="index" 
             v-else-if="element.section =='provider_section'">
-          </freelancers>
+          </providers>
           <articles 
             :element_id="element.id"
             :articles="form.meta.articles"
@@ -104,14 +104,14 @@
             :pageID="page_id"
             v-else-if="element.section =='categoryV3'">
           </categories-v3>
-          <freelancers-v2 
+          <providers-v2 
             :element_id="element.id"
-            :freelancers="form.meta.providersSecondVersion"
+            :providers="form.meta.providersSecondVersion"
             @editData="editSection(element)"
             :parent_index="index" 
             :pageID="page_id"
             v-else-if="element.section =='provider_section_v2'">
-          </freelancers-v2>
+          </providers-v2>
           <jobs 
             :element_id="element.id"
             :jobs="form.meta.jobs"
@@ -279,12 +279,12 @@
               :service="form.meta.services[this.currentElementIndex]"
               v-if="currentSection =='service_section'"
             />
-            <freelancers-form
-              :freelancer="form.meta.freelancers[this.currentElementIndex]"
+            <providers-form
+              :provider="form.meta.providers[this.currentElementIndex]"
               v-if="currentSection =='provider_section'"
             />
-            <freelancers-v2-form
-              :freelancer="form.meta.providersSecondVersion[this.currentElementIndex]"
+            <providers-v2-form
+              :provider="form.meta.providersSecondVersion[this.currentElementIndex]"
               :pageID="page_id"
               :cloneElement="cloneElement"
               :currentElementID="currentElementID"
@@ -377,8 +377,8 @@ import categories from './sections/categories'
 import categoriesForm from './section-forms/categories'
 import services from './sections/services'
 import servicesForm from './section-forms/services'
-import freelancersForm from './section-forms/freelancers'
-import freelancers from './sections/freelancers'
+import providersForm from './section-forms/providers'
+import providers from './sections/providers'
 import articles from './sections/articles'
 import articlesForm from './section-forms/articles'
 import appForm from './section-forms/app'
@@ -393,8 +393,8 @@ import categoriesV2Form from './section-forms/categoriesV2'
 import categoriesV2 from './sections/categoriesV2'
 import categoriesV3Form from './section-forms/categoriesV3'
 import categoriesV3 from './sections/categoriesV3'
-import freelancersV2Form from './section-forms/freelancersV2'
-import freelancersV2 from './sections/freelancersV2'
+import providersV2Form from './section-forms/providersV2'
+import providersV2 from './sections/providersV2'
 import jobsForm from './section-forms/jobs'
 import jobs from './sections/jobs'
 import packagesForm from './section-forms/packages'
@@ -425,8 +425,8 @@ export default {
     categoriesForm,
     services,
     servicesForm,
-    freelancersForm,
-    freelancers,
+    providersForm,
+    providers,
     articles,
     articlesForm,
     appForm,
@@ -439,8 +439,8 @@ export default {
     welcome,
     categoriesV2Form,
     categoriesV2,
-    freelancersV2Form,
-    freelancersV2,
+    providersV2Form,
+    providersV2,
     jobsForm,
     jobs,
     packagesForm,
@@ -482,7 +482,7 @@ export default {
           content: [],
           cat:[],
           services:[],
-          freelancers:[],
+          providers:[],
           app_section:[],
           work_tabs:[],
           work_videos:[],
@@ -847,8 +847,8 @@ export default {
           }
           this.form.meta.services.push(service)
         } else if (evt.added.element.section == 'provider_section') {
-            var freelancer = {
-              title:'Top Freelancers',
+            var provider = {
+              title:'Top providers',
               subtitle:'Start With Great Peoples',
               description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget leo rutrum, ullamcorper dolor eu, faucibus massa.',
               sectionColor: '#ffffff',
@@ -873,12 +873,12 @@ export default {
               id: this.sections[evt.added.newIndex].id,
               parentIndex: ''
             }
-            this.form.meta.freelancers.push(freelancer)
+            this.form.meta.providers.push(provider)
         } else if (evt.added.element.section == 'provider_section_v2') {
-            var freelancer = {
+            var provider = {
               title:'Top',
-              titleTwo:'Freelancers',
-              description:'freelancer desc',
+              titleTwo:'providers',
+              description:'provider desc',
               sectionColor: '#ffffff',
               backgroundImg:'',
               titleColor:'#3d4461',
@@ -902,7 +902,7 @@ export default {
               id: this.sections[evt.added.newIndex].id,
               parentIndex: ''
             }
-            this.form.meta.providersSecondVersion.push(freelancer)
+            this.form.meta.providersSecondVersion.push(provider)
         } else if (evt.added.element.section == 'article_section') {
             var article = {
               title:'article title',

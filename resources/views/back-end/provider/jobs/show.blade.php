@@ -43,7 +43,7 @@
                         <h2>{{ trans('lang.job_dtl') }}</h2>
                     </div>
                     <div class="wt-dashboardboxcontent wt-jobdetailsholder">
-                        <div class="wt-freelancerholder wt-tabsinfo">
+                        <div class="wt-providerholder wt-tabsinfo">
                             <div class="wt-jobdetailscontent">
                                 <div class="wt-userlistinghold wt-featured wt-userlistingvtwo">
                                     @if (!empty($job->is_featured) && $job->is_featured === 'true')

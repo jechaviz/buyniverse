@@ -33,8 +33,8 @@ body.rtl .wt-proposalhead,
 .wt-companycontent,.wt-statisticcontent,
 .wt-providers-rating ul li,
 .wt-widgettag a,
-.wt-freelancer-price,
-.wt-freelancer-footer li,
+.wt-provider-price,
+.wt-provider-footer li,
 .wt-addnav ul li,
 .wt-bannerthree-form,
 .wt-particlehold figure,
@@ -103,7 +103,7 @@ body.rtl .wt-proposalsrcontent,
 .wt-bannerholderthree .wt-bannercontent .wt-videoholder,
 .wt-latestjob-holder,
 .wt-mobapp-wrap,
-.wt-freelancer-head,
+.wt-provider-head,
 .wt-footertwo .wt-footerholder,
 .jb-package-feature,
 .wt-bannerthree-content,
@@ -142,7 +142,7 @@ body.rtl .wt-viewjobholder,
 body.rtl .wt-userlogedin .wt-usernav,
 .wt-navigation>ul>.menu-item-has-children:after,
 .wt-workvideo-img:before,
-.wt-freelancer:before
+.wt-provider:before
 {
 	right: auto;
 	left: 0;
@@ -477,20 +477,20 @@ body.rtl .wt-formbanner.wt-formbannertwo.wt-newformbanner fieldset .wt-radiohold
     margin-right: 10px;
     margin-left: 0;
 }
-.wt-freelancer-price span i{
+.wt-provider-price span i{
 	margin-left: 8px;
 	margin-right: 0;
 }
-.wt-freelancer-img{
+.wt-provider-img{
 	float: right;
 	border-radius: 4px 0 0 4px;
 }
-.wt-freelancer-img img{	border-radius: 4px 0 0 4px;}
-.wt-freelancer-footer li + li {
+.wt-provider-img img{	border-radius: 4px 0 0 4px;}
+.wt-provider-footer li + li {
     border-right: 1px solid #eee;
     border-left: 0;
 }
-.wt-freelancer-footer li i{
+.wt-provider-footer li i{
 	margin-left: 10px;
 	margin-right: 0;
 }

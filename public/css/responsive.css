@@ -422,12 +422,12 @@
 	.wt-formbanner.wt-formbannertwo.wt-newformbanner fieldset .wt-radioholder{right: 107px;}
 }
 @media (max-width:1080px){
-	.wt-freelancer-img{
+	.wt-provider-img{
 		border-radius: 4px 4px 0 0;
 		margin-top: 0;
 		width: 100%;
 	}
-	.wt-freelancer-img img{border-radius: 4px 4px 0 0;}
+	.wt-provider-img img{border-radius: 4px 4px 0 0;}
 	.wt-bannerthree-title,
 	.wt-bannerthree-form{width: 50%;}
 	.wt-bannerthree-title h2
@@ -455,9 +455,9 @@
 }
 @media (max-width:991px){
 	.wt-headereleven .wt-userlogedin {margin: 9px 0;}
-	.wt-freelancer-head .wt-title h3{line-height: 1.2;}
-	.wt-freelancer-footer{font-size: 13px;}
-	.wt-freelancer-footer li{padding: 15px 5px;}
+	.wt-provider-head .wt-title h3{line-height: 1.2;}
+	.wt-provider-footer{font-size: 13px;}
+	.wt-provider-footer li{padding: 15px 5px;}
 	.wt-packagetwo{margin-top: 30px;}
 	.wt-categories-holder{
 		margin: 0 0 40px;

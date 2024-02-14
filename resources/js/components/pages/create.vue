@@ -56,20 +56,20 @@
             :access_type="access_type" 
             v-else-if="element.section =='service_section'">
           </services>
-          <freelancers 
+          <providers 
             :element_id="element.id"
-            :freelancers="form.meta.freelancers"
+            :providers="form.meta.providers"
             @editData="editSection(element)"
             :parent_index="index" 
             v-else-if="element.section =='provider_section'">
-          </freelancers>
-          <freelancers-v2 
+          </providers>
+          <providers-v2 
             :element_id="element.id"
-            :freelancers="form.meta.providersSecondVersion"
+            :providers="form.meta.providersSecondVersion"
             @editData="editSection(element)"
             :parent_index="index" 
             v-else-if="element.section =='provider_section_v2'">
-          </freelancers-v2>
+          </providers-v2>
           <articles 
             :element_id="element.id"
             :articles="form.meta.articles"
@@ -264,12 +264,12 @@
               :currentElementID="currentElementID"
               v-if="currentSection =='service_section'"
             />
-            <freelancers-form
-              :freelancer="form.meta.freelancers[this.currentElementIndex]"
+            <providers-form
+              :provider="form.meta.providers[this.currentElementIndex]"
               v-if="currentSection =='provider_section'"
             />
-            <freelancers-v2-form
-              :freelancer="form.meta.providersSecondVersion[this.currentElementIndex]"
+            <providers-v2-form
+              :provider="form.meta.providersSecondVersion[this.currentElementIndex]"
               :currentElementID="currentElementID"
               :cloneElement="cloneElement"
               v-if="currentSection =='provider_section_v2'"
@@ -353,8 +353,8 @@ import categories from './sections/categories'
 import categoriesForm from './section-forms/categories'
 import services from './sections/services'
 import servicesForm from './section-forms/services'
-import freelancersForm from './section-forms/freelancers'
-import freelancers from './sections/freelancers'
+import providersForm from './section-forms/providers'
+import providers from './sections/providers'
 import articles from './sections/articles'
 import articlesForm from './section-forms/articles'
 import appForm from './section-forms/app'
@@ -369,8 +369,8 @@ import categoriesV2Form from './section-forms/categoriesV2'
 import categoriesV2 from './sections/categoriesV2'
 import categoriesV3Form from './section-forms/categoriesV3'
 import categoriesV3 from './sections/categoriesV3'
-import freelancersV2Form from './section-forms/freelancersV2'
-import freelancersV2 from './sections/freelancersV2'
+import providersV2Form from './section-forms/providersV2'
+import providersV2 from './sections/providersV2'
 import jobsForm from './section-forms/jobs'
 import jobs from './sections/jobs'
 import packagesForm from './section-forms/packages'
@@ -400,8 +400,8 @@ export default {
     categoriesForm,
     services,
     servicesForm,
-    freelancersForm,
-    freelancers,
+    providersForm,
+    providers,
     articles,
     articlesForm,
     appForm,
@@ -414,8 +414,8 @@ export default {
     welcome,
     categoriesV2Form,
     categoriesV2,
-    freelancersV2Form,
-    freelancersV2,
+    providersV2Form,
+    providersV2,
     jobsForm,
     jobs,
     packagesForm,
@@ -456,7 +456,7 @@ export default {
           cat:[],
           categoriesSecondVersion:[],
           services:[],
-          freelancers:[],
+          providers:[],
           providersSecondVersion:[],
           app_section:[],
           work_tabs:[],
@@ -750,7 +750,7 @@ export default {
           }
           this.form.meta.services.push(service)
         } else if (evt.added.element.section == 'provider_section') {
-            var freelancer = {
+            var provider = {
               title:'Provider Title',
               subtitle:'Provider Subtitle',
               description:'Provider Description',
@@ -776,9 +776,9 @@ export default {
               id: this.sections[evt.added.newIndex].id,
               parentIndex: ''
             }
-            this.form.meta.freelancers.push(freelancer)
+            this.form.meta.providers.push(provider)
         } else if (evt.added.element.section == 'provider_section_v2') {
-            var freelancer = {
+            var provider = {
               title:'Top',
               titleTwo:'Providers',
               description:'Provider Description',
@@ -805,7 +805,7 @@ export default {
               id: this.sections[evt.added.newIndex].id,
               parentIndex: ''
             }
-            this.form.meta.providersSecondVersion.push(freelancer)
+            this.form.meta.providersSecondVersion.push(provider)
         } else if (evt.added.element.section == 'article_section') {
             var article = {
               title:'Article Title',

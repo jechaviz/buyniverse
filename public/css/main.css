@@ -5997,42 +5997,42 @@ select.is-invalid {border-color: #dc3545;}
 }
 .wt-forgotpassword-holder .card .card-body{padding: 30px;}
 .wt-forgotpassword-holder .card .card-body form .form-group button[type=submit]{border: 0;}
-.la-ps-freelancer .wt-updatall,
-.la-aw-freelancer .wt-updatall,
-.la-ed-freelancer .wt-updatall,
-.la-pm-freelancer .wt-educationholder .wt-updatall,
+.la-ps-provider .wt-updatall,
+.la-aw-provider .wt-updatall,
+.la-ed-provider .wt-updatall,
+.la-pm-provider .wt-educationholder .wt-updatall,
 .wt-accountsettingholder .wt-securityhold .wt-userform .wt-updatall{
 	margin: 30px 0 0;
 	box-shadow: none;
 	background: #f7f7f7;
 }
-.la-ed-freelancer .wt-updatall{
+.la-ed-provider .wt-updatall{
 	margin: 0;
 	overflow: hidden;
 }
-.la-ed-freelancer .wt-userform fieldset{overflow: visible;}
-.la-ed-freelancer .wt-userform fieldset .vdpComponent input,
-.la-ed-freelancer .wt-userform fieldset .vdpComponent{width: 100%;}
-.la-aw-freelancer .wt-projecttitle figure .dz-remove{display: none;}
-.la-aw-freelancer .wt-projecttitle figure{overflow: hidden;}
-.la-aw-freelancer .wt-projecttitle figure img{
+.la-ed-provider .wt-userform fieldset{overflow: visible;}
+.la-ed-provider .wt-userform fieldset .vdpComponent input,
+.la-ed-provider .wt-userform fieldset .vdpComponent{width: 100%;}
+.la-aw-provider .wt-projecttitle figure .dz-remove{display: none;}
+.la-aw-provider .wt-projecttitle figure{overflow: hidden;}
+.la-aw-provider .wt-projecttitle figure img{
 	object-fit: cover;
 	height: 50px;
 	max-width: none;
 }
-.la-aw-freelancer .wt-updatall{margin: 0;}
-.la-aw-freelancer .wt-projecttitle .wt-uploadingbox figure{width: 50px;}
-.la-aw-freelancer .wt-accordioninnertitle .dz-preview em{display: none;}
-.la-aw-freelancer .wt-accordioninnertitle .wt-uploadingbox{
+.la-aw-provider .wt-updatall{margin: 0;}
+.la-aw-provider .wt-projecttitle .wt-uploadingbox figure{width: 50px;}
+.la-aw-provider .wt-accordioninnertitle .dz-preview em{display: none;}
+.la-aw-provider .wt-accordioninnertitle .wt-uploadingbox{
 	width: auto;
 	border-radius: 4px;
 	margin: 0 20px 0 0;
 }
-.la-pm-freelancer .wt-educationholder .wt-updatall{margin: 0;}
-.la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2){padding:0 20px; }
-.la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group{padding-right: 175px;}
-.la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group .form-control{border-radius: 0 4px 4px 0;}
-.la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-btnarea.form-group{padding: 0; right: 5px;top: 5px;}
+.la-pm-provider .wt-educationholder .wt-updatall{margin: 0;}
+.la-ps-provider .wt-userform .wt-skills > div:nth-child(2){padding:0 20px; }
+.la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group{padding-right: 175px;}
+.la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group .form-control{border-radius: 0 4px 4px 0;}
+.la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-btnarea.form-group{padding: 0; right: 5px;top: 5px;}
 .wt-accountsettingholder .wt-securityhold .wt-userform .wt-updatall{margin: 0;}
 .la-color-picker-form-wrapper .wt-settingscontent .wt-userform .wt-uploadingbox{margin-top: 10px;}
 .la-color-picker-form-wrapper .wt-dashboardboxcontent .wt-formtheme .wt-settingscontent{
@@ -6742,7 +6742,7 @@ select.is-invalid {border-color: #dc3545;}
 }
 .la-jobalerts-holder .wt-jobalerts{margin: 0;}
 .la-jobalerts-holder .wt-jobalerts .alert:last-child{margin-bottom: 30px;}
-.wt-dashboardboxcontent .wt-freelancerholder .wt-emptydata-holder{padding: 0;}
+.wt-dashboardboxcontent .wt-providerholder .wt-emptydata-holder{padding: 0;}
 .wt-stars:before{
 	content: '\f006 \f006 \f006 \f006 \f006';
 	font-size: 16px;
@@ -7093,8 +7093,8 @@ body.lang-pt .wt-userlistingcontent .wt-viewjobholder ul li span .wt-viewjobdoll
 	font-style: normal;
 	display: inline-block;
 }
-body.lang-pt .la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group:first-child{padding-right: 215px;}
-body.lang-fr .la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group:first-child{padding-right: 240px;}
+body.lang-pt .la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group:first-child{padding-right: 215px;}
+body.lang-fr .la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group:first-child{padding-right: 240px;}
 body.lang-fr .wt-skillsform fieldset .form-group.wt-btnarea .wt-btn,
 body.lang-pt .wt-skillsform fieldset .form-group.wt-btnarea .wt-btn{padding: 0 20px;}
 body.lang-fr .wt-dashboardsave .wt-proposalsr .wt-proposalsrcontent .wt-title{width: 190px;}
@@ -7765,7 +7765,7 @@ body.lang-ja .wt-loginfooterinfo a + a:before {
 .la-order-cancelled h4{color: #005178;}
 .la-home-page > .wt-bannerholder{margin:0;}
 .la-home-page > div + .wt-main-section{padding-top:100px;}
-.la-freelancers-grid > div{
+.la-providers-grid > div{
 	float: none !important;
 	display: inline-block;
 	vertical-align: top;
@@ -8110,7 +8110,7 @@ body.lang-ja .wt-loginfooterinfo a + a:before {
 	line-height: 26px;
 	margin: 0 0 23px;
 }
-/*top freelancers*/
+/*top providers*/
 .wt-topproviders{
 	width: 100%;
 	float: left;
@@ -8119,44 +8119,44 @@ body.lang-ja .wt-loginfooterinfo a + a:before {
 .wt-topproviders > div{
 	margin-top: 30px; 
 }
-.wt-freelanceritems{
+.wt-provideritems{
 	width: 100%;
 	float: left;
 }
-.wt-freelanceritems .wt-userlistinghold .wt-userlistingcontent figure{
+.wt-provideritems .wt-userlistinghold .wt-userlistingcontent figure{
 	margin: 0 0 20px;
 	width: 100%;
 	float: left;
 }
-.wt-freelanceritems .wt-userlistingcontent .wt-viewjobholder .wt-freestars i{
+.wt-provideritems .wt-userlistingcontent .wt-viewjobholder .wt-freestars i{
 	color: #fecb02;
 }
-.wt-freelanceritems .wt-userlistingcontent .wt-viewjobholder ul li span{
+.wt-provideritems .wt-userlistingcontent .wt-viewjobholder ul li span{
 	color: #767676;
 	font-size: 13px;
 }
-.wt-freelanceritems .wt-userlistingcontent .wt-viewjobholder ul li + li{margin: 8px 0 0;}
-.wt-freelanceritems .wt-userlistingcontent .wt-viewjobholder .wt-freestars{color: #767676;}
-.wt-freelanceritems .wt-userlistingcontent .wt-viewjobholder li a em{
+.wt-provideritems .wt-userlistingcontent .wt-viewjobholder ul li + li{margin: 8px 0 0;}
+.wt-provideritems .wt-userlistingcontent .wt-viewjobholder .wt-freestars{color: #767676;}
+.wt-provideritems .wt-userlistingcontent .wt-viewjobholder li a em{
 	color: #55acee;
 	font-size: 13px;
 	font-style: normal;
 }
-.wt-freelanceritems .wt-userlistinghold .wt-userlistingcontent .wt-contenthead .wt-title h2{
+.wt-provideritems .wt-userlistinghold .wt-userlistingcontent .wt-contenthead .wt-title h2{
 	line-height: 26px;
 	overflow: visible;
 	white-space: normal;
 }
-.wt-freelanceritems .wt-userlistinghold .wt-userlistingcontent figure img{
+.wt-provideritems .wt-userlistinghold .wt-userlistingcontent figure img{
 	width: 100%;
 	display: block;
 	border-radius: 4px;
 }
-.wt-freelanceritems .wt-userlistinghold{
+.wt-provideritems .wt-userlistinghold{
 	padding: 20px;
 	border: 1px solid #eee;
 }
-.wt-freelanceritems .wt-userlistingcontent .wt-viewjobholder{
+.wt-provideritems .wt-userlistingcontent .wt-viewjobholder{
     width: 100%;
     float: left;
     padding: 0;
@@ -8165,7 +8165,7 @@ body.lang-ja .wt-loginfooterinfo a + a:before {
     position: relative;
     background: transparent;
 }
-.wt-freelanceritems .wt-userlistingcontent .wt-viewjobholder ul{padding: 0;margin: 0;}
+.wt-provideritems .wt-userlistingcontent .wt-viewjobholder ul{padding: 0;margin: 0;}
 /* Home Page V Four */
 .wt-headervfour{
 	z-index: auto;
@@ -9904,7 +9904,7 @@ a:focus{text-decoration: none !important;}
 	display: block;
 	margin: 0 auto;
 }
-/* Top Freelancers Style */
+/* Top providers Style */
 .wt-providers-wrap{
 	float: left;
 	width: 100%;
@@ -9920,21 +9920,21 @@ a:focus{text-decoration: none !important;}
 	padding: 30px;
 	margin: -30px;
 }
-.wt-freelancer{
+.wt-provider{
 	float: left;
 	width: 100%;
 	background: #fff;
 	border-radius: 4px;
 	position: relative;
 }
-.wt-freelancer:hover{
+.wt-provider:hover{
 	-webkit-box-shadow: 0 16px 20px 0 rgba(0,0,0,0.1);
 	box-shadow: 0 16px 20px 0 rgba(0,0,0,0.1);
 }
-.wt-freelancer:hover .wt-freelancer-img img{
+.wt-provider:hover .wt-provider-img img{
 	opacity: 0.4;
 }
-.wt-freelancer:before{
+.wt-provider:before{
 	top: 0;
 	right: 0;
 	width: 200px;
@@ -9944,29 +9944,29 @@ a:focus{text-decoration: none !important;}
 	height: 200px;
 	opacity: 0.08;
 }
-.wt-freelancer-head{
+.wt-provider-head{
 	float: left;
 	width: 100%;
 	padding: 30px;
 }
-.wt-freelancer-tag{
+.wt-provider-tag{
 	float: left;
 	width: 100%;
 	margin: 0 0 8px;
 }
-.wt-freelancer-tag a{
+.wt-provider-tag a{
 	display: block;
 	font-size: 13px;
 	color: #55acee;
 	line-height: 16px;
 }
-.wt-freelancer-head .wt-title h3{
+.wt-provider-head .wt-title h3{
 	color: #333;
 	font-size: 16px;
 	line-height: 16px;
 	font-weight: 500;
 }
-.wt-freelancer-img{
+.wt-provider-img{
 	margin: 0;
 	float: left;
 	width: 320px;
@@ -9974,26 +9974,26 @@ a:focus{text-decoration: none !important;}
 	background: #333;
 	border-radius: 0 4px 4px 0;
 }
-.wt-freelancer-img img{
+.wt-provider-img img{
 	width: 100%;
 	display: block;
 	border-radius: 0 4px 4px 0;
 }
-.wt-freelancer-about{
+.wt-provider-about{
 	float: left;
 	width: 100%;
 }
-.wt-freelancer-price{
+.wt-provider-price{
 	float: left;
 	color: #676767;
 }
-.wt-freelancer-price span{
+.wt-provider-price span{
 	display: block;
 	color: #676767;
 	font-size: 13px;
 	line-height: 16px;
 }
-.wt-freelancer-price span i{
+.wt-provider-price span i{
 	color: #999999;
 	font-size: 14px;
 	margin-right: 8px; 
@@ -10024,33 +10024,33 @@ a:focus{text-decoration: none !important;}
 	float: left;
 	vertical-align: middle;
 }
-.wt-freelancer-social{
+.wt-provider-social{
 	float: left;
 	width: 100%;
 	margin-top: 18px; 
 }
-.wt-freelancer-social ul{
+.wt-provider-social ul{
 	margin: -3px;
 	display: flex;
 	flex-wrap: wrap;
 	list-style: none;
 	line-height: 16px;
 }
-.wt-freelancer-social ul li{
+.wt-provider-social ul li{
 	float: left;
 	width: auto;
 	padding: 3px;
 	line-height: inherit;
 	list-style-type: none;
 }
-.wt-freelancer-social ul li a{
+.wt-provider-social ul li a{
 	font-size: 13px;
 	position: relative;
 	color: #676767;
 	line-height: inherit;
 }
-.wt-freelancer-social ul li a:hover{color: #55acee}
-.wt-freelancer-social ul li:nth-last-child(n+2) a:after {
+.wt-provider-social ul li a:hover{color: #55acee}
+.wt-provider-social ul li:nth-last-child(n+2) a:after {
 	content: ',';
 	position: absolute;
 	font: inherit;
@@ -10058,7 +10058,7 @@ a:focus{text-decoration: none !important;}
 	right: -3.5px;
 	bottom: 0;
 }
-.wt-freelancer-footer{
+.wt-provider-footer{
 	float: left;
 	width: 100%;
 	list-style: none;
@@ -10066,7 +10066,7 @@ a:focus{text-decoration: none !important;}
 	line-height: 20px;
 	border-top: 1px solid #eee;
 }
-.wt-freelancer-footer li{
+.wt-provider-footer li{
 	float: left;
 	width: 50%;
 	text-align: center;
@@ -10074,30 +10074,30 @@ a:focus{text-decoration: none !important;}
 	line-height: inherit;
 	list-style-type: none;
 }
-.wt-freelancer-footer li + li{
+.wt-provider-footer li + li{
 	border-left: 1px solid #eee;
 }
-.wt-freelancer-footer li address{
+.wt-provider-footer li address{
 	margin: 0;
 	width: auto;
 	display: block;
 	font-style: normal;
 	line-height: inherit;
 }
-.wt-freelancer-footer li i{
+.wt-provider-footer li i{
 	margin-right: 10px; 
 	display: inline-block;
 	vertical-align: middle;
 }
-.wt-freelancer-footer li address i{
+.wt-provider-footer li address i{
 	color: #6bb0df
 }
-.wt-freelancer-footer li a{
+.wt-provider-footer li a{
 	color: #676767;
 	display: block;
 	line-height: inherit;
 }
-.wt-freelancer-footer li a.wt-liked i{
+.wt-provider-footer li a.wt-liked i{
 	color: #e74c3c;
 }
 .wt-sliderdots{
@@ -11174,9 +11174,9 @@ a:focus{text-decoration: none !important;}
 	position: static;
 	flex: none;
 }
-.la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-formgroupwrap .form-group{padding-right: 5px;}
-.la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-formgroupwrap .wt-btnarea.form-group{padding: 5px;}
-.la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-formgroupwrap .wt-btnarea.form-group .wt-btn{padding: 0 20px;}
+.la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-formgroupwrap .form-group{padding-right: 5px;}
+.la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-formgroupwrap .wt-btnarea.form-group{padding: 5px;}
+.la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-formgroupwrap .wt-btnarea.form-group .wt-btn{padding: 0 20px;}
 .wt-skillsform .wt-formgroupwrap .form-group{padding-right: 10px;}
 .wt-service-listing-holder{
 	margin-top: -45px;

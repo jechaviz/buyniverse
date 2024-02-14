@@ -1,6 +1,6 @@
 @extends(file_exists(resource_path('views/extend/back-end/master.blade.php')) ? 'extend.back-end.master' : 'back-end.master')
 @section('content')
-    <div class="wt-dbsectionspace wt-haslayout la-ed-freelancer">
+    <div class="wt-dbsectionspace wt-haslayout la-ed-provider">
     <div class="row"  style="margin-left: 10px;padding-bottom: 15px;">
                             <ol class="wt-breadcrumb">
                                 <li><a href="{{ route('home') }}">{{ trans('lang.home') }}</a></li>
@@ -9,7 +9,7 @@
                         </div>  
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-9">
-                <div class="freelancer-profile" id="user_profile">
+                <div class="provider-profile" id="user_profile">
                     <div class="preloader-section" v-if="loading" v-cloak>
                         <div class="preloader-holder">
                             <div class="loader"></div>

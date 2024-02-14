@@ -6,7 +6,7 @@
                 <h2>{{ trans('lang.ongoing_jobs') }}</h2>
             </div>
             <div class="wt-dashboardboxcontent wt-jobdetailsholder">
-                <div class="wt-freelancerholder">
+                <div class="wt-providerholder">
                     @if(!empty($ongoing_jobs) && $ongoing_jobs->count() > 0 )
                         <div class="wt-managejobcontent wt-verticalscrollbar mCustomScrollbar _mCS_1">
                             @foreach ($ongoing_jobs as $job_id)

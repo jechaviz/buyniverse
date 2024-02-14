@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             @if (!empty($accepted_proposal))
-                                <div class="wt-freelancerholder wt-rcvproposalholder la-free-proposal">
+                                <div class="wt-providerholder wt-rcvproposalholder la-free-proposal">
                                 <div class="wt-tabscontenttitle">
                                     <h2>{{ trans('lang.hired_providers') }}</h2>
                                 </div>
@@ -197,7 +197,7 @@
                                         </div>
                                 </b-modal>
                             @endif 
-                            <div class="wt-freelancerholder wt-rcvproposalholder">
+                            <div class="wt-providerholder wt-rcvproposalholder">
                                     <div class="wt-tabscontenttitle">
                                         <h2>{{ trans('lang.received_proposals') }}</h2>
                                     </div>

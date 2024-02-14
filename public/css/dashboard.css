@@ -1435,11 +1435,11 @@ table.wt-tablecategories tbody tr td figure img{
 	padding: 0 20px;
 }
 .wt-focomponylist .wt-followedcompnies + .wt-followedcompnies {margin-top: 20px ;}
-.wt-likedfreelancers{padding: 0 20px;}
-.wt-likedfreelancers .wt-userlistinghold{background: #fafafa;}
-.wt-likedfreelancers .wt-userlistinghold + .wt-userlistinghold{margin-top: 20px;}
-.wt-likedfreelancers .wt-userlistinghold .wt-userlistingimg{margin: 0 30px 0 0;}
-.wt-likedfreelancers .wt-userlistinghold:hover{
+.wt-likedproviders{padding: 0 20px;}
+.wt-likedproviders .wt-userlistinghold{background: #fafafa;}
+.wt-likedproviders .wt-userlistinghold + .wt-userlistinghold{margin-top: 20px;}
+.wt-likedproviders .wt-userlistinghold .wt-userlistingimg{margin: 0 30px 0 0;}
+.wt-likedproviders .wt-userlistinghold:hover{
 	-webkit-box-shadow: none;
     box-shadow: none;
 }
@@ -1681,7 +1681,7 @@ table.wt-tablecategories tbody tr td figure img{
 .wt-onlined:before{background: #57E50C;}
 .wt-busyd:before{background: #E50C0F;}
 .wt-awayd:before{background: #FFC30D;}
-.wt-freelancerholder{
+.wt-providerholder{
 	float: left;
 	width: 100%;
 }
@@ -2690,23 +2690,23 @@ li.collapsed .wt-msgbtns .wt-msgbtn i.lnr-chevron-up:before{content: "\e874";}
 .wt-earningsholder{margin-top:30px; }
 .wt-earningsholder .wt-dashboardboxcontent .wt-emptydata-holder{padding: 0;}
 .wt-earningsholder table.wt-tablecategories tbody tr td{padding: 15px 20px;}
-.wt-hiredfreelancer .wt-userlistinghold .wt-proposaldetails{max-width: 150px;}
-.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch{
+.wt-hiredprovider .wt-userlistinghold .wt-proposaldetails{max-width: 150px;}
+.wt-hiredprovider .wt-titlewithsearch .wt-formsearch{
 	float: left;
 	width: auto;
 	padding: 30px 0;
 	min-width: 250px;
 }
-.wt-hiredfreelancer .wt-titlewithsearch{padding: 0;}
-.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch .wt-searchgbtn{
+.wt-hiredprovider .wt-titlewithsearch{padding: 0;}
+.wt-hiredprovider .wt-titlewithsearch .wt-formsearch .wt-searchgbtn{
 	z-index: 1;
 	font-size: 16px;
 }
-.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch .wt-searchgbtn.job_status_popup{
+.wt-hiredprovider .wt-titlewithsearch .wt-formsearch .wt-searchgbtn.job_status_popup{
 	z-index: 5;
 }
-.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch .wt-select select{padding-right:50px; }
-.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch .wt-select:after{right: 70px;}
+.wt-hiredprovider .wt-titlewithsearch .wt-formsearch .wt-select select{padding-right:50px; }
+.wt-hiredprovider .wt-titlewithsearch .wt-formsearch .wt-select:after{right: 70px;}
 .wt-modaldialog{max-width: 540px;}
 .wt-modalcontent{
 	padding: 20px;
@@ -2808,7 +2808,7 @@ a.wt-back:hover{color: #55acee;}
 	font-size: 14px;
 	line-height: 36px;
 }
-.wt-likedfreelancers .wt-userlistingcontent .wt-contenthead{max-width: 370px;}
+.wt-likedproviders .wt-userlistingcontent .wt-contenthead{max-width: 370px;}
 .wt-btnmenutoggle:before{
 	top: 0;
 	left: 10px;
@@ -3568,7 +3568,7 @@ input[type=submit],
 .la-dbproposal .wt-historycontent .wt-userform .wt-attachfile em a,
 .la-dbproposal .lara-attachment-files .wt-attachfile li:first-child{margin: 0;}
 .la-dbproposal .lara-attachment-files .multile-file-attachments{padding: 0;}
-.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch{
+.wt-hiredprovider .wt-titlewithsearch .wt-formsearch{
 	min-height: 140px;
     text-align: center;
     display: -webkit-box;
@@ -3849,7 +3849,7 @@ table.wt-tablecategories.wt-tableservice tbody tr td figure img{width: 80px;}
     overflow: hidden;
 }
 .swal2-container .swal2-popup .swal2-title{margin: 0 0 20px;}
-.la-alljob-holder .wt-jobdetailsholder .wt-freelancerholder .wt-managejobcontent > div:nth-child(odd){margin: 20px 0 0;}
+.la-alljob-holder .wt-jobdetailsholder .wt-providerholder .wt-managejobcontent > div:nth-child(odd){margin: 20px 0 0;}
 .wt-accountsettingholder .wt-securityhold .wt-userform .wt-updatall{overflow: hidden;}
 .user_current_package .wt-insightdetails .wt-title a{
 	display: inline-block;
@@ -5222,7 +5222,7 @@ table.wt-tablecategories.wt-tableservice tbody tr td figure img{width: 80px;}
 .dz-preview{
 	position: relative;
 }
-.la-aw-freelancer .wt-accordioninnertitle .dz-preview em{
+.la-aw-provider .wt-accordioninnertitle .dz-preview em{
 	position: absolute;
     right: -10px;
     width: 20px;
@@ -5602,11 +5602,11 @@ body.rtl .wt-skillsform fieldset .form-group .wt-select select{
 	border-right: 0;
 	border-left: 1px solid #ddd;
 }
-body.rtl .la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group{
+body.rtl .la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group{
 	padding-right:5px;
 	padding-left:175px;
 }
-body.rtl .la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-btnarea.form-group{
+body.rtl .la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform .wt-btnarea.form-group{
 	left: 5px;
 	right: auto;
 	padding: 0;
@@ -5866,7 +5866,7 @@ body.rtl .lara-attachment-files .wt-on-off .switch-button-control .switch-button
 	}
 }
 @media (max-width: 1440px){
-	body.rtl .la-ps-freelancer .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group{padding-left:5px; }
+	body.rtl .la-ps-provider .wt-userform .wt-skills > div:nth-child(2) .wt-skillsform fieldset .form-group{padding-left:5px; }
 }
 @media (max-width: 1400px){body.rtl .wt-dashboardsave .wt-proposalsr .wt-proposalsrcontent figure{
 		margin-left: 0;

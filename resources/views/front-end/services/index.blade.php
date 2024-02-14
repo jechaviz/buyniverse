@@ -146,7 +146,7 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
                             <div class="row">
-                                <div class="wt-providers-holder la-freelancers-grid wt-service-listing-holder">
+                                <div class="wt-providers-holder la-providers-grid wt-service-listing-holder">
                                     @if (!empty($keyword))
                                         <div class="wt-userlistingtitle">
                                             <span>{{ trans('lang.01') }} {{$services->count()}} of {{$services_total_records}} results for <em>"{{{$keyword}}}"</em></span>

@@ -10,7 +10,7 @@
 						</div>
 						<div class="wt-dashboardboxcontent wt-jobdetailsholder">
 							@if (!empty($job_details) && $job_details->count() > 0)
-								<div class="wt-freelancerholder">
+								<div class="wt-providerholder">
 									<div class="wt-tabscontenttitle">
 										<h2>{{ trans('lang.posted_jobs') }}</h2>
 									</div>

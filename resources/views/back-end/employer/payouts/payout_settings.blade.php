@@ -1,7 +1,7 @@
 @extends(file_exists(resource_path('views/extend/back-end/master.blade.php')) ? 'extend.back-end.master' : 'back-end.master')
 @section('content')
-    <div class="wt-dbsectionspace wt-haslayout la-ps-freelancer">
-        <div class="freelancer-profile" id="invoice_list">
+    <div class="wt-dbsectionspace wt-haslayout la-ps-provider">
+        <div class="provider-profile" id="invoice_list">
             <div class="preloader-section" v-if="loading" v-cloak>
                 <div class="preloader-holder">
                     <div class="loader"></div>

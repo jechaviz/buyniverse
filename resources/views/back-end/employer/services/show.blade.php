@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                         @else
-                            <div class="wt-freelancerholder wt-tabsinfo">
+                            <div class="wt-providerholder wt-tabsinfo">
                                 <div class="wt-jobdetailscontent">
                                     <div class="wt-userlistinghold wt-featured wt-userlistingvtwo">
                                         @if (!empty($service->is_featured) && $service->is_featured === 'true')
@@ -162,7 +162,7 @@
                         @endif
                         @if (!empty($provider))
                             @if (Auth::user()->getRoleNames()[0] == 'employer')
-                                <div class="wt-rcvproposalholder wt-hiredfreelancer wt-tabsinfo">
+                                <div class="wt-rcvproposalholder wt-hiredprovider wt-tabsinfo">
                                     <div class="wt-tabscontenttitle">
                                         <h2>{{ trans('lang.hired_provider') }}</h2>
                                     </div>

@@ -1,5 +1,5 @@
 @media (max-width:1680px){
-	.wt-likedfreelancers .wt-userlistingcontent .wt-rightarea{
+	.wt-likedproviders .wt-userlistingcontent .wt-rightarea{
 		float: left;
 		margin: 20px 0 0;
 	}
@@ -82,8 +82,8 @@
 		margin: 20px 0 -25px;
 		border-top: 1px solid #ddd;
 	}
-	.la-ps-freelancer .wt-userform .wt-skills.la-skills-holder > div:nth-child(2) .wt-skillsform fieldset .form-group{padding-right:5px; }
-	.la-ps-freelancer .wt-userform .wt-skills.la-skills-holder > div:nth-child(2) .wt-skillsform .wt-btnarea.form-group{position: static;padding: 5px;}
+	.la-ps-provider .wt-userform .wt-skills.la-skills-holder > div:nth-child(2) .wt-skillsform fieldset .form-group{padding-right:5px; }
+	.la-ps-provider .wt-userform .wt-skills.la-skills-holder > div:nth-child(2) .wt-skillsform .wt-btnarea.form-group{position: static;padding: 5px;}
 	.wt-header-color .la-color-picker{width: 50%;}
 	.wt-header-color .la-color-picker:nth-child(n+3){padding-top: 15px;}
 }
@@ -131,12 +131,12 @@
 		clear: both;
 		margin: 10px 0 0;
 	}
-	.wt-hiredfreelancer .wt-rightarea .wt-hireduserstatus{
+	.wt-hiredprovider .wt-rightarea .wt-hireduserstatus{
 		margin: 0;
 		min-width: 0;
 		padding: 30px 20px;
 	}
-	.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch{margin-right:20px; }
+	.wt-hiredprovider .wt-titlewithsearch .wt-formsearch{margin-right:20px; }
 }
 @media (max-width:1199px){
 	#packages + #packages{margin-top: 30px; }
@@ -274,13 +274,13 @@
 	.tab-savecontent .wt-likefreelan{padding: 30px 10px;}
 	.tab-savecontent .wt-dashboradsaveitem{padding: 0 10px;}
 	.tab-savecontent .wt-focomponylist{padding: 0;}
-	.wt-likedfreelancers{padding: 0;}
-	.wt-likedfreelancers .wt-userlistingcontent{
+	.wt-likedproviders{padding: 0;}
+	.wt-likedproviders .wt-userlistingcontent{
 		width: 100%;
 		float: left;
 	}
-	.wt-likedfreelancers .wt-userlistinghold .wt-userlistingimg{margin: 0 0 20px;}
-	.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch{
+	.wt-likedproviders .wt-userlistinghold .wt-userlistingimg{margin: 0 0 20px;}
+	.wt-hiredprovider .wt-titlewithsearch .wt-formsearch{
 		margin: 0;
 		width: 100%;
 		min-width: 0;
@@ -559,14 +559,14 @@
 		margin-top:10px;
 		float: none !important;
 	}
-	.wt-likedfreelancers .wt-userlistinghold{padding: 30px 10px;}
+	.wt-likedproviders .wt-userlistinghold{padding: 30px 10px;}
 	.tab-savecontent{padding: 0 !important;}
-	.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch .wt-select select{
+	.wt-hiredprovider .wt-titlewithsearch .wt-formsearch .wt-select select{
 		padding:10px 20px;
 		border-radius: 4px 4px 0 0;
 	}
-	.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch .wt-select:after{right: 10px;}
-	.wt-hiredfreelancer .wt-titlewithsearch .wt-formsearch .wt-searchgbtn{
+	.wt-hiredprovider .wt-titlewithsearch .wt-formsearch .wt-select:after{right: 10px;}
+	.wt-hiredprovider .wt-titlewithsearch .wt-formsearch .wt-searchgbtn{
 		float: left;
 		width: 100%;
 		position: static;

@@ -189,7 +189,7 @@
                         </div>
                         @if (!empty($ongoing_jobs) && $ongoing_jobs->count() > 0)
                             <div class="wt-dashboardboxcontent wt-hiredfreelance">
-                                <table class="wt-tablecategories wt-freelancer-table">
+                                <table class="wt-tablecategories wt-provider-table">
                                     <thead>
                                         <tr>
                                             <th>{{trans('lang.project_title')}}</th>
@@ -208,7 +208,7 @@
                                             <tr>
                                                 <td data-th="Project title"><span class="bt-content"><a target="_blank" href="{{{ url('job/'.$project->slug) }}}">{{{ $project->title }}}</a></span></td>
                                                 @if (!empty($provider))
-                                                    <td data-th="Hired freelancer">
+                                                    <td data-th="Hired provider">
                                                         <span class="bt-content">
                                                             <a href="{{{url('profile/'.$provider->slug)}}}">
                                                                 @if ($provider->user_verified)

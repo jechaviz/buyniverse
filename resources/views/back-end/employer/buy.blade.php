@@ -22,7 +22,7 @@
                             <li class="nav-item"><a data-toggle="tab" href="#wt-project" class="">{{ trans('lang.project_contest') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-product" class="">{{ trans('lang.products') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-services" class="">{{ trans('lang.services') }}</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#wt-freelancer" class="">{{ trans('lang.providers') }}</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#wt-provider" class="">{{ trans('lang.providers') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-talent" class="">{{ trans('lang.talents') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-course" class="">{{ trans('lang.courses') }}</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#wt-travel" class="">{{ trans('lang.travel') }}</a></li>
@@ -211,7 +211,7 @@
                                                     </div>
                                                     @if (!empty($ongoing_jobs) && $ongoing_jobs->count() > 0)
                                                         <div class="wt-dashboardboxcontent wt-hiredfreelance">
-                                                            <table class="wt-tablecategories wt-freelancer-table">
+                                                            <table class="wt-tablecategories wt-provider-table">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>{{trans('lang.project_title')}}</th>
@@ -230,7 +230,7 @@
                                                                         <tr>
                                                                             <td data-th="Project title"><span class="bt-content"><a target="_blank" href="{{{ url('job/'.$project->slug) }}}">{{{ $project->title }}}</a></span></td>
                                                                             @if (!empty($provider))
-                                                                                <td data-th="Hired freelancer">
+                                                                                <td data-th="Hired provider">
                                                                                     <span class="bt-content">
                                                                                         <a href="{{{url('profile/'.$provider->slug)}}}">
                                                                                             @if ($provider->user_verified)
@@ -648,7 +648,7 @@
                         </div>
                         <div class="wt-awardsholder tab-pane fade" id="wt-product">
                             <div class="wt-addprojectsholder wt-likefreelan">
-                                <div class="wt-likedfreelancers wt-haslayout">
+                                <div class="wt-likedproviders wt-haslayout">
                                     <!--products -->
                                     <div class="wt-dashboardboxtitle wt-titlewithsearch">
                                         <h2>{{ trans('lang.all_categories') }}</h2>
@@ -765,12 +765,12 @@
                         </div>
                         <div class="wt-awardsholder tab-pane fade" id="wt-services">
                             <div class="wt-addprojectsholder wt-likefreelan">
-                                <div class="wt-likedfreelancers wt-haslayout">
+                                <div class="wt-likedproviders wt-haslayout">
                                     <!-- services -->
                                     <!--<link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">-->
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
                                         <div class="row">
-                                            <div class="wt-providers-holder la-freelancers-grid wt-service-listing-holder">
+                                            <div class="wt-providers-holder la-providers-grid wt-service-listing-holder">
                                                 @if (!empty($keyword))
                                                     <div class="wt-userlistingtitle">
                                                         <span>{{ trans('lang.01') }} {{$services->count()}} of {{$services_total_records}} results for <em>"{{{$keyword}}}"</em></span>
@@ -855,9 +855,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="wt-awardsholder tab-pane fade" id="wt-freelancer">
+                        <div class="wt-awardsholder tab-pane fade" id="wt-provider">
                             <div class="wt-addprojectsholder wt-likefreelan">
-                                <div class="wt-likedfreelancers wt-haslayout">
+                                <div class="wt-likedproviders wt-haslayout">
                                     <!--start provider -->
                                     <div class="wt-userlistingholder wt-userlisting wt-haslayout">
                                         <div class="wt-userlistingtitle">
@@ -984,25 +984,25 @@
                         </div>
                         <div class="wt-awardsholder tab-pane fade" id="wt-talent">
                             <div class="wt-addprojectsholder wt-likefreelan">
-                                <div class="wt-likedfreelancers wt-haslayout">
+                                <div class="wt-likedproviders wt-haslayout">
                                 </div>
                             </div>
                         </div>
                         <div class="wt-awardsholder tab-pane fade" id="wt-course">
                             <div class="wt-addprojectsholder wt-likefreelan">
-                                <div class="wt-likedfreelancers wt-haslayout">
+                                <div class="wt-likedproviders wt-haslayout">
                                 </div>
                             </div>
                         </div>
                         <div class="wt-awardsholder tab-pane fade" id="wt-travel">
                             <div class="wt-addprojectsholder wt-likefreelan">
-                                <div class="wt-likedfreelancers wt-haslayout">
+                                <div class="wt-likedproviders wt-haslayout">
                                 </div>
                             </div>
                         </div>
                         <div class="wt-awardsholder tab-pane fade" id="wt-more">
                             <div class="wt-addprojectsholder wt-likefreelan">
-                                <div class="wt-likedfreelancers wt-haslayout">
+                                <div class="wt-likedproviders wt-haslayout">
                                 </div>
                             </div>
                         </div>
