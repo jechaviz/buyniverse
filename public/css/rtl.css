@@ -31,7 +31,7 @@ body.rtl .wt-skillsrequired .wt-tag,
 body.rtl .wt-proposalsrcontent .wt-title,
 body.rtl .wt-proposalhead,
 .wt-companycontent,.wt-statisticcontent,
-.wt-freelancers-rating ul li,
+.wt-providers-rating ul li,
 .wt-widgettag a,
 .wt-freelancer-price,
 .wt-freelancer-footer li,
@@ -98,7 +98,7 @@ body.rtl .wt-greetingcontent,
 body.rtl .wt-proposalhead,
 body.rtl .wt-projectdetail-holder,
 body.rtl .wt-proposalsrcontent,
-.wt-freelancers-details,
+.wt-providers-details,
 .wt-articles,
 .wt-bannerholderthree .wt-bannercontent .wt-videoholder,
 .wt-latestjob-holder,
@@ -365,12 +365,12 @@ body.rtl .wt-categoryslidercontent figure{margin-left: 15px; margin-right: 0;}
 .wt-categoryslidup a i:before {
     content: "\f060";
 }
-.wt-freelancers-img{
+.wt-providers-img{
 	float: right;
 	margin-right: 0;
 	margin-left: 15px;
 }
-.wt-freelancers-rating ul li + li {
+.wt-providers-rating ul li + li {
 	border-right: 1px solid #ddd;
 	border-left: 0;
 }
@@ -504,7 +504,7 @@ body.rtl .wt-formbanner.wt-formbannertwo.wt-newformbanner fieldset .wt-radiohold
     padding-right: 7px;
     padding-left: 0;
 }
-.wt-freelancers-silder .owl-item{
+.wt-providers-silder .owl-item{
 	margin-right: 0 !important;
 	margin-left: 30px;
 }

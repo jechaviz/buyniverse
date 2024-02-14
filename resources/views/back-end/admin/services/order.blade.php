@@ -37,7 +37,7 @@
 														@if (!empty($service->seller->count() > 0 && $attachment))
 															<figure class="service-feature-image"><img src="{{{asset( Helper::getImageWithSize('uploads/services/'.$service->seller[0]->id, $attachment[0], 'small' ))}}}" alt="{{{$service->title}}}"></figure>
 														@endif
-														<div class="wt-freelancers-content">
+														<div class="wt-providers-content">
 															<div class="dc-title">
 																@if ($service->is_featured == 'true')
 																	<span class="wt-featuredtagvtwo">Featured</span>
@@ -56,7 +56,7 @@
 															@if (!empty($attachment))
 																<figure class="service-feature-image"><img src="{{{asset(Helper::getProfileImage($employer->id))}}}" alt="{{{trans('lang.image')}}}"></figure>
 															@endif
-															<div class="wt-freelancers-content">
+															<div class="wt-providers-content">
 																<div class="dc-title">
 																	@if ($employer->user_verified == 1)
 																		<span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>

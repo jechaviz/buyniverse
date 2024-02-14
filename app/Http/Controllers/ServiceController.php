@@ -849,7 +849,7 @@ class ServiceController extends Controller
                 $service_list[$key]['attachments'] = Helper::getUnserializeData($service->attachments);
                 $attachments = Helper::getUnserializeData($service->attachments);
                 // $service_list[$key]['enable_slider'] = !empty($attachments) ? 'wt-servicesslider' : '';
-                $service_list[$key]['enable_slider'] = !empty($attachments) && count($attachments) > 1 ? 'wt-freelancerslider owl-carousel' : '';
+                $service_list[$key]['enable_slider'] = !empty($attachments) && count($attachments) > 1 ? 'wt-providerslider owl-carousel' : '';
                 $service_list[$key]['no_attachments'] = empty($attachments) ? 'la-service-info' : '';
                 $service_list[$key]['total_orders'] = Helper::getServiceCount($service->id, 'hired');
                 $service_list[$key]['seller_name'] = !empty($service->seller[0]) ? Helper::getUserName($service->seller[0]->id) : '';

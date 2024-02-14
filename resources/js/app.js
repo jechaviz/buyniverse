@@ -271,10 +271,10 @@ Vue.component('switch_button', require('./components/SwitchButton.vue').default)
 Vue.component('user_skills', require('./components/ProfileSkillComponent.vue').default);
 Vue.component('user_category', require('./components/ProfileCategoryComponent.vue').default);
 Vue.component('page-order', require('./components/PageOrderComponent.vue').default);
-Vue.component('freelancer_experience', require('./components/ProfileExperienceComponent.vue').default);
-Vue.component('freelancer_education', require('./components/ProfileEducationComponent.vue').default);
-Vue.component('freelancer_project', require('./components/ProfileProjectComponent.vue').default);
-Vue.component('freelancer_award', require('./components/ProfileAwardComponent.vue').default);
+Vue.component('provider_experience', require('./components/ProfileExperienceComponent.vue').default);
+Vue.component('provider_education', require('./components/ProfileEducationComponent.vue').default);
+Vue.component('provider_project', require('./components/ProfileProjectComponent.vue').default);
+Vue.component('provider_award', require('./components/ProfileAwardComponent.vue').default);
 Vue.component('job_attachments', require('./components/UploadJobAttachmentComponent.vue').default);
 Vue.component('job_multiple-attachments', require('./components/JobMultipleAttachmentComponent.vue').default);
 Vue.component('job_skills', require('./components/JobSkillComponent.vue').default);
@@ -295,13 +295,13 @@ Vue.component('message-center1', require('./components/ChatComponent1.vue').defa
 Vue.component('emoji-textarea', require('./components/emojiTexeareaComponent.vue').default);
 Vue.component('delete', require('./components/DeleteRecordComponent.vue').default);
 Vue.component('countdown', require('./components/CountdownComponent.vue').default);
-Vue.component('experience', require('./components/FreelancerExperienceComponent.vue').default);
-Vue.component('education', require('./components/FreelancerEducationComponent.vue').default);
-Vue.component('crafted_project', require('./components/FreelancerCraftedProjetcsComponent.vue').default);
+Vue.component('experience', require('./components/ProviderExperienceComponent.vue').default);
+Vue.component('education', require('./components/ProviderEducationComponent.vue').default);
+Vue.component('crafted_project', require('./components/ProviderCraftedProjetcsComponent.vue').default);
 Vue.component('custom-map', require('./components/map.vue').default);
 Vue.component('dashboard-icon', require('./components/DashboardIconUploadComponent.vue').default);
 Vue.component('image-attachments', require('./components/UploadServiceAttachmentComponent.vue').default);
-Vue.component('freelancer-reviews', require('./components/FreelancerReviewsComponent.vue').default);
+Vue.component('provider-reviews', require('./components/ProviderReviewsComponent.vue').default);
 Vue.component('job-expiry', require('./components/JobExperyComponent.vue').default);
 Vue.component('second-slider', require('./components/pages/show/sections/sliders/style2.vue').default);
 Vue.component('third-slider', require('./components/pages/show/sections/sliders/style3.vue').default);
@@ -1698,7 +1698,7 @@ if (document.getElementById("location")) {
     })
 }
 if (document.getElementById("user_profile")) {
-    const freelancerProfile = new Vue({
+    const providerProfile = new Vue({
         el: '#user_profile',
         mounted: function () {
             if (document.getElementsByClassName("flash_msg") != null) {
@@ -1780,7 +1780,7 @@ if (document.getElementById("user_profile")) {
                         timeout: 3000,
                         class: 'info_notification',
                         onClosing: function (instance, toast, closedBy) {
-                            freelancerProfile.showCompleted(Vue.prototype.trans('lang.profile_update_success'));
+                            providerProfile.showCompleted(Vue.prototype.trans('lang.profile_update_success'));
                         }
                     }
                 }
@@ -1836,9 +1836,9 @@ if (document.getElementById("user_profile")) {
                 this.uploaded_banner = true;
                 document.getElementById("hidden_banner").value = '';
             },
-            submitFreelancerProfile: function () {
+            submitProviderProfile: function () {
                 var self = this;
-                var profile_data = document.getElementById('freelancer_profile');
+                var profile_data = document.getElementById('provider_profile');
                 let form_data = new FormData(profile_data);
                 axios.post(APP_URL + '/provider/store-profile-settings', form_data)
                     .then(function (response) {
@@ -2105,7 +2105,7 @@ if (document.getElementById("user_profile")) {
                 })
                     .then(function (response) {
                         if (response.data.user_type == 'provider') {
-                            if (response.data.current_freelancer == 'true') {
+                            if (response.data.current_provider == 'true') {
                                 self.disable_btn = 'wt-btndisbaled';
                                 self.text = Vue.prototype.trans('lang.saved');
                                 self.saved_class = 'fa fa-heart';
@@ -2161,7 +2161,7 @@ if (document.getElementById("settings")) {
             jobSelectedHeader:"style1",
             serviceSelectedHeader:"style1",
             articleSelectedHeader:"style1",
-            freelancerHeaderStyling:{
+            providerHeaderStyling:{
                 textColor:'',
                 menuColor:'',
                 HoverColor:'',
@@ -2993,9 +2993,9 @@ if (document.getElementById("settings")) {
                         self.jobSelectedHeader = response.data.job_header_style
                         self.serviceSelectedHeader = response.data.service_header_style
                         self.articleSelectedHeader = response.data.article_header_style
-                        self.freelancerHeaderStyling.textColor = response.data.f_menu_text_color
-                        self.freelancerHeaderStyling.menuColor = response.data.f_menu_color
-                        self.freelancerHeaderStyling.HoverColor = response.data.f_hover_color
+                        self.providerHeaderStyling.textColor = response.data.f_menu_text_color
+                        self.providerHeaderStyling.menuColor = response.data.f_menu_color
+                        self.providerHeaderStyling.HoverColor = response.data.f_hover_color
                         self.employerHeaderStyling.textColor = response.data.e_menu_text_color
                         self.employerHeaderStyling.menuColor = response.data.e_menu_color
                         self.employerHeaderStyling.HoverColor = response.data.e_hover_color
@@ -4264,7 +4264,7 @@ if (document.getElementById("packages")) {
             user_role: '',
             selected_role: '',
             employer_options: false,
-            freelancer_options: false,
+            provider_options: false,
             banner_option: false,
             private_chat: false,
             packageID: '',
@@ -4306,10 +4306,10 @@ if (document.getElementById("packages")) {
                 this.selected_role = role;
                 if (role == 2) {
                     this.employer_options = true;
-                    this.freelancer_options = false;
+                    this.provider_options = false;
                 } else if (role == 3) {
                     this.employer_options = false;
-                    this.freelancer_options = true;
+                    this.provider_options = true;
                 }
             },
             generateOrder: function(id) {

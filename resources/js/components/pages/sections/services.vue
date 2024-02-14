@@ -17,22 +17,22 @@
                             <div class="wt-description" v-if="service.description" v-html="service.description"></div>
                         </div>
                     </div>
-                    <div class="wt-freelancers-holder wt-freelancers-home row" v-if="access_type == 'service' || access_type == 'both'">
+                    <div class="wt-providers-holder wt-providers-home row" v-if="access_type == 'service' || access_type == 'both'">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-4 float-left" v-for="(service_item, index) in serviceList" :key="index">
-                            <div :class="'wt-freelancers-info ' +service_item.no_attachments">
-                                <!-- <carousel id="wt-freelancers-silder" class="wt-freelancers wt-freelancers-silder" :items='1' :loop='true' :nav='false' :dots='false' :autoplay='false' v-if="service_item.attachments && service_item.seller.length > 0"> -->
-                                    <div :class="'wt-freelancers ' +service_item.enable_slider" v-if="service_item.attachments && service_item.seller.length > 0">
+                            <div :class="'wt-providers-info ' +service_item.no_attachments">
+                                <!-- <carousel id="wt-providers-silder" class="wt-providers wt-providers-silder" :items='1' :loop='true' :nav='false' :dots='false' :autoplay='false' v-if="service_item.attachments && service_item.seller.length > 0"> -->
+                                    <div :class="'wt-providers ' +service_item.enable_slider" v-if="service_item.attachments && service_item.seller.length > 0">
                                         <figure class="item" v-for="(attachment, attachmentIndex) in service_item.attachments" :key="attachmentIndex">
                                             <a :href="baseUrl+'/profile/'+service_item.seller[0].slug" v-if="service_item.seller[0].slug"><img :src="attachment" alt="img description" class="item"></a>
                                         </figure>
                                     </div>
                                 <!-- </carousel> -->
                                 <span class="wt-featuredtagvtwo" v-if="service_item.is_featured == 'true'">{{ trans('lang.featured') }}</span>
-                                <div class="wt-freelancers-details">
-                                    <figure class="wt-freelancers-img" v-if="service_item.seller_count > 0">
+                                <div class="wt-providers-details">
+                                    <figure class="wt-providers-img" v-if="service_item.seller_count > 0">
                                         <img :src="service_item.seller_image" alt="img description">
                                     </figure>
-                                    <div class="wt-freelancers-content">
+                                    <div class="wt-providers-content">
                                         <div class="dc-title">
                                             <a :href="baseUrl+'/profile/'+service_item.seller[0].slug" v-if="service_item.seller_count > 0">
                                                 <i class="fa fa-check-circle"></i> {{service_item.seller_name}}
@@ -41,7 +41,7 @@
                                             <span><strong>{{ service_item.symbol }} {{service_item.price}}</strong> {{trans('lang.starting_from')}}</span>
                                         </div>
                                     </div>
-                                    <div class="wt-freelancers-rating">
+                                    <div class="wt-providers-rating">
                                         <ul>
                                             <li><span><i class="fa fa-star"></i>{{service_item.service_rating}}/<i>5</i> ({{service_item.service_reviews}})</span></li>
                                             <li>
@@ -120,8 +120,8 @@ export default {
                 if (response.data.type == "success") {
                     self.serviceList =response.data.services
                     Vue.nextTick(function(){
-                        var _wt_freelancerslider = jQuery('.wt-freelancerslider')
-                        _wt_freelancerslider.owlCarousel({
+                        var _wt_providerslider = jQuery('.wt-providerslider')
+                        _wt_providerslider.owlCarousel({
                             items: 1,
                             loop:true,
                             rtl:true,

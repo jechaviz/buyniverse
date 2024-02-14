@@ -1201,7 +1201,7 @@ class JobController extends Controller
         }
         return $english;
     }
-    public function getFreelancer($id)
+    public function getProvider($id)
     {
         $provider = Provider_type::where('job_id', $id)->get();
         $project_provider = Helper::getProviderLevelList();
@@ -1219,7 +1219,7 @@ class JobController extends Controller
         $english = English_level::find($id);
         $english->delete();
     }
-    public function deletefreelancer($id)
+    public function deleteProvider($id)
     {
         $provider = Provider_type::find($id);
         $provider->delete();
@@ -1239,7 +1239,7 @@ class JobController extends Controller
         $project_english = Helper::getEnglishLevelList();
         return response()->json($project_english);
     }
-    public function getProjectfreelancerlevel()
+    public function getProjectProviderlevel()
     {
         $project_provider = Helper::getProviderLevelList();
         return response()->json($project_provider);
@@ -1291,7 +1291,7 @@ class JobController extends Controller
         $job->price = $ids[1];
         $job->save(); 
     }
-    public function postProjectfreelavcer($id)
+    public function postProjectprovider($id)
     {
         
         $ids = explode('-', $id);

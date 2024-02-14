@@ -625,7 +625,7 @@ class ProposalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function hiredFreelencer(Request $request)
+    public function hiredProvider(Request $request)
     {
         $json = array();
         $server = Helper::worketicIsDemoSiteAjax();

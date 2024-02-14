@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="btn" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;margin-top: -71px;" v-if="role == 'employer' && freelancerid != 0"><button @click="newticket" class="wt-btn"> {{ trans('lang.new_ticket') }} </button></div>
+        <div class="btn" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;margin-top: -71px;" v-if="role == 'employer' && providerid != 0"><button @click="newticket" class="wt-btn"> {{ trans('lang.new_ticket') }} </button></div>
         
         <table class="wt-tablecategories" v-if="tickets.length > 0">
             
@@ -256,7 +256,7 @@ export default {
   props: {
       jobid: String,
       userid: String,
-      freelancerid: String
+      providerid: String
   },
   methods: {
         newticket() 
@@ -369,7 +369,7 @@ export default {
         },
         loadUsers() {
             let self = this;
-            axios.get(APP_URL + '/api/job_ticket/teams/' + this.freelancerid).then(function (response) {
+            axios.get(APP_URL + '/api/job_ticket/teams/' + this.providerid).then(function (response) {
                 self.users = response.data;
             });
         }

@@ -40,7 +40,7 @@
                     @endif
                     @elseif ($user->role === 'provider')
                         @if (Helper::getAccessType() == 'both' || Helper::getAccessType() == 'services')
-                            <div class="wt-btnarea"><a href="{{{ url(route('freelancerPostService')) }}}" class="wt-btn">{{{ trans('lang.post_service') }}}</a></div>
+                            <div class="wt-btnarea"><a href="{{{ url(route('providerPostService')) }}}" class="wt-btn">{{{ trans('lang.post_service') }}}</a></div>
                         @else
                             <div class="wt-btnarea"><a href="{{{ url(route('showUserProfile', ['slug' => Auth::user()->slug])) }}}" class="wt-btn">{{{ trans('lang.view_profile') }}}</a></div>
                         @endif
@@ -305,7 +305,7 @@
                                     </a>
                                     <ul class="sub-menu">
                                         <li><hr><a href="{{{ route('ServiceListing', ['status'=>'posted']) }}}">{{ trans('lang.posted_services') }}</a></li>
-                                        <li><hr><a href="{{{ route('freelancerServices') }}}">{{ trans('lang.manage_services') }}</a></li>
+                                        <li><hr><a href="{{{ route('providerServices') }}}">{{ trans('lang.manage_services') }}</a></li>
                                         <!--<li><hr><a href="{{{ route('ServiceListing', ['status'=>'hired']) }}}">{{ trans('lang.ongoing_services') }}</a></li>
                                         <li><hr><a href="{{{ route('ServiceListing', ['status'=>'completed']) }}}">{{ trans('lang.completed_services') }}</a></li>
                                         <li><hr><a href="{{{ route('ServiceListing', ['status'=>'cancelled']) }}}">{{ trans('lang.cancelled_services') }}</a></li>-->
@@ -325,7 +325,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{{ route('FreelancerPayoutsSettings') }}}">
+                                <a href="{{{ route('ProviderPayoutsSettings') }}}">
                                     <i class="ti-money"></i>
                                     <span> {{ trans('lang.payouts') }}</span>
                                 </a>

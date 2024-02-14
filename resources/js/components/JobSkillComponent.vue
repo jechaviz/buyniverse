@@ -9,7 +9,7 @@
                     <div class="form-group">
                         <div class="form-group-holder">
                             <span class="wt-select">
-                                <select id="freelancer_skill" class="job-skills">
+                                <select id="provider_skill" class="job-skills">
                                     <option v-if="is_empty">{{this.all_skills_selected}}</option>
                                     <option v-for="(stored_skill, index) in stored_skills" :key="index+'-'+stored_skill.id" :value="stored_skill.id">{{stored_skill.title}}</option>
                                 </select>
@@ -121,10 +121,10 @@
                     var skill_list_count = jQuery('.wt-btn').parents('.wt-skillsform').next('.wt-myskills').find('ul#skill_list li').length;
                     skill_list_count = skill_list_count - 1;
                     this.skill.count = skill_list_count;
-                    var skillsSelect = document.getElementById("freelancer_skill");
+                    var skillsSelect = document.getElementById("provider_skill");
                     if(skillsSelect.options[skillsSelect.selectedIndex]) {
                         this.selected_skill_text = skillsSelect.options[skillsSelect.selectedIndex].text;
-                        this.selected_skill = document.getElementById("freelancer_skill").value;
+                        this.selected_skill = document.getElementById("provider_skill").value;
                         this.skills.push(Vue.util.extend({}, this.skill, this.skill.count++, this.skill.title = this.selected_skill_text, this.skill.id = this.selected_skill, this.skill.rating = this.selected_rating ))
                         skillsSelect.remove(skillsSelect.selectedIndex);
                         if(skillsSelect.options.length == 0 ) {
@@ -174,7 +174,7 @@
                     var self = this;
                     if(result.value) {
                         let option = self.job_skills[index];
-                        var select = document.getElementById("freelancer_skill");
+                        var select = document.getElementById("provider_skill");
                         select.options[select.options.length] = new Option(option.title, option.id, false, false);
                         self.job_skills.splice(index, 1);
                         self.is_empty = false;
@@ -200,7 +200,7 @@
                     var self = this;
                     if(result.value) {
                         let option = self.skills[index];
-                        var select = document.getElementById("freelancer_skill");
+                        var select = document.getElementById("provider_skill");
                         select.options[select.options.length] = new Option(option.title, option.id, false, false);
                         self.skills.splice(index, 1);
                         self.is_empty = false;

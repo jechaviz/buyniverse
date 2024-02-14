@@ -1079,7 +1079,7 @@ class PublicController extends Controller
      *
      * @return unserialize array
      */
-    public function getFreelancerExperience(Request $request)
+    public function getProviderExperience(Request $request)
     {
         $json = array();
         $id = $request['id'];
@@ -1101,7 +1101,7 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerEducation(Request $request)
+    public function getProviderEducation(Request $request)
     {
         $json = array();
         $id = $request['id'];
@@ -1123,7 +1123,7 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerService(Request $request)
+    public function getProviderService(Request $request)
     {
         $json = array();
         $id = $request['id'];

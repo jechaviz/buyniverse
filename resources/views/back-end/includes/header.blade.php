@@ -483,13 +483,13 @@
                                                 <a class="header-menu-a" href="" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.sell') }}<i class="ti-angle-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{{{ route('showProviderProposals') }}}">{{ trans('lang.jobs') }} {{ trans('lang.proposals') }}</a></li>
-                                                    <li><a href="{{ route('freelancerPostService') }}">{{ trans('lang.services') }}</a></li>
+                                                    <li><a href="{{ route('providerPostService') }}">{{ trans('lang.services') }}</a></li>
                                                 </ul>
                                             </li>-->
                                             <li style="line-height: 13px!important;font-size: small;">
                                                 <a class="header-menu-a" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.project_contest') }}<i class="ti-angle-down"></i></a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="{{{ route('freelancerJobs') }}}">{{ trans('lang.manage_job') }}</a></li>
+                                                    <li><a href="{{{ route('providerJobs') }}}">{{ trans('lang.manage_job') }}</a></li>
                                                     <li><a href="{{url('search-results?type=job')}}">{{ trans('lang.findjobs') }}</a></li>
                                                     <li><a href="{{route('showProviderProposals')}}">{{ trans('lang.all_proposals') }}</a></li>
                                                     <li><a href="{{route('fteam.index')}}">{{ trans('lang.team')}}</a></li>
@@ -506,9 +506,9 @@
                                                 <a class="header-menu-a" href="{{url('search-results?type=service')}}" style="margin-top: 5px;margin-bottom: 5px;">{{ trans('lang.services') }}<i class="ti-angle-down"></i></a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{{url('search-results?type=service')}}">{{ trans('lang.services_store') }}</a></li>
-                                                    <li><a href="{{route('freelancerServices')}}">{{ trans('lang.manage_services') }}</a></li>
+                                                    <li><a href="{{route('providerServices')}}">{{ trans('lang.manage_services') }}</a></li>
                                                     <li><a href="{{route('ServiceListing', 'posted')}}">{{ trans('lang.services_listing') }}</a></li>
-                                                    <li><a href="{{route('freelancerPostService')}}">{{ trans('lang.service_new')}}</a></li>
+                                                    <li><a href="{{route('providerPostService')}}">{{ trans('lang.service_new')}}</a></li>
                                                     
                                                 </ul>
                                             </li> 

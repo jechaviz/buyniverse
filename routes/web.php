@@ -385,7 +385,7 @@ Route::group(
         Route::post('job/job-post', 'JobController@storejob');
         Route::post('job/upload-temp-image', 'JobController@uploadTempImage');
         Route::post('user/submit-review', 'UserController@submitReview');
-        Route::post('proposal/hire-provider', 'ProposalController@hiredFreelencer');
+        Route::post('proposal/hire-provider', 'ProposalController@hiredProvider');
         Route::get('employer/services/{status}', 'EmployerController@showEmployerServices');
         Route::get('employer/services', 'EmployerController@employerServices')->name('employerServices');
         Route::get('employer/service/{service_id}/{id}/{status}', 'EmployerController@showServiceDetail');
@@ -418,12 +418,12 @@ Route::group(
         Route::get('provider/jobs/{status}', 'ProviderController@showproviderJobs');
         Route::get('provider/job-list', 'ProviderController@providerJoblist')->name('providerJoblist');
         Route::get('provider/job/{slug}', 'ProviderController@showOnGoingJobDetail')->name('showOnGoingJobDetail');
-        Route::get('provider/proposals', 'ProviderController@showproviderProposals')->name('showproviderProposals');
-        Route::get('provider/dashboard', 'ProviderController@providerDashboard')->name('providerrDashboard');
+        Route::get('provider/proposals', 'ProviderController@showproviderProposals')->name('showProviderProposals');
+        Route::get('provider/dashboard', 'ProviderController@providerDashboard')->name('providerDashboard');
         Route::get('provider/profile', 'ProviderController@index')->name('personalDetail');
         Route::post('provider/upload-temp-image', 'ProviderController@uploadTempImage');
         Route::get('provider/dashboard/post-service', 'ServiceController@create')->name('providerPostService');
-        Route::get('provider/payout-settings', 'ProviderController@payoutSettings')->name('providerPayoutsSettings');
+        Route::get('provider/payout-settings', 'ProviderController@payoutSettings')->name('ProviderPayoutsSettings');
         Route::get('provider/payouts', 'ProviderController@getPayouts')->name('getProviderPayouts');
         Route::get('provider/jobs/', 'ProviderController@providerJobs')->name('providerJobs');
         Route::get('provider/team/{slug}', 'ProviderController@showOnGoingJobTeamDetail')->name('showOnGoingJobTeamDetail');

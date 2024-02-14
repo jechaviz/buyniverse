@@ -64,7 +64,7 @@ class RestAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancer()
+    public function getProvider()
     {
         $json = array();
         $currency   = SiteManagement::getMetaValue('commision');
@@ -216,7 +216,7 @@ class RestAPIController extends Controller
                     $amount = Payout::where('user_id', $user_object->id)->select('amount')->pluck('amout')->first();
                     $json[$key]['favorit'] = in_array($user['id'], $save_provider) ? 'yes' : '';
                     $json[$key]['name'] = Helper::getUserName($user['id']);
-                    $json[$key]['freelancer_link'] = url('profile/' . $user_object->slug);
+                    $json[$key]['provider_link'] = url('profile/' . $user_object->slug);
                     $json[$key]['total_earnings'] = !empty($user_obj) ? $amount : '';
                     $json[$key]['user_id'] = "" . $user['id'] . "";
                     $json[$key]['profile_id'] = $user_object->profile->id;
@@ -233,49 +233,49 @@ class RestAPIController extends Controller
                     $json[$key]['wt_total_rating'] = $reviews->count();
                     $json[$key]['wt_total_percentage'] = $rating;
                     $educations = !empty(unserialize($user_object->profile->education)) ? unserialize($user_object->profile->education) : array();
-                    $freelancer_educations  = array();
+                    $provider_educations  = array();
                     if (!empty($educations)) {
                         foreach ($educations as $edu_key => $education) {
-                            $freelancer_educations[$edu_key]['title'] = !empty($education['degree_title']) ? $education['degree_title'] : '';
-                            $freelancer_educations[$edu_key]['institute'] = !empty($education['institute_title']) ? $education['institute_title'] : '';
-                            $freelancer_educations[$edu_key]['startdate'] = !empty($education['start_date']) ? url($education['start_date']) : '';
-                            $freelancer_educations[$edu_key]['enddate'] = !empty($education['end_date']) ? url($education['end_date']) : '';
-                            $freelancer_educations[$edu_key]['description'] = !empty($education['description']) ? url($education['description']) : '';
+                            $provider_educations[$edu_key]['title'] = !empty($education['degree_title']) ? $education['degree_title'] : '';
+                            $provider_educations[$edu_key]['institute'] = !empty($education['institute_title']) ? $education['institute_title'] : '';
+                            $provider_educations[$edu_key]['startdate'] = !empty($education['start_date']) ? url($education['start_date']) : '';
+                            $provider_educations[$edu_key]['enddate'] = !empty($education['end_date']) ? url($education['end_date']) : '';
+                            $provider_educations[$edu_key]['description'] = !empty($education['description']) ? url($education['description']) : '';
                         }
-                        $json[$key]['_educations'] = $freelancer_educations;
+                        $json[$key]['_educations'] = $provider_educations;
                     }
 
                     $experiences = !empty(unserialize($user_object->profile->experience)) ? unserialize($user_object->profile->experience) : array();
-                    $freelancer_experiences  = array();
+                    $provider_experiences  = array();
                     if (!empty($experiences)) {
                         foreach ($experiences as $exp_key => $experience) {
-                            $freelancer_experiences[$exp_key]['title'] = !empty($experience['job_title']) ? $experience['job_title'] : '';
-                            $freelancer_experiences[$exp_key]['company'] = !empty($experience['company_title']) ? $experience['company_title'] : '';
-                            $freelancer_experiences[$exp_key]['startdate'] = !empty($experience['start_date']) ? url($experience['start_date']) : '';
-                            $freelancer_experiences[$exp_key]['enddate'] = !empty($experience['end_date']) ? $experience['end_date'] : '';
-                            $freelancer_experiences[$exp_key]['description'] = !empty($experience['description']) ? $experience['description'] : '';
+                            $provider_experiences[$exp_key]['title'] = !empty($experience['job_title']) ? $experience['job_title'] : '';
+                            $provider_experiences[$exp_key]['company'] = !empty($experience['company_title']) ? $experience['company_title'] : '';
+                            $provider_experiences[$exp_key]['startdate'] = !empty($experience['start_date']) ? url($experience['start_date']) : '';
+                            $provider_experiences[$exp_key]['enddate'] = !empty($experience['end_date']) ? $experience['end_date'] : '';
+                            $provider_experiences[$exp_key]['description'] = !empty($experience['description']) ? $experience['description'] : '';
                         }
-                        $json[$key]['_experiences'] = $freelancer_experiences;
+                        $json[$key]['_experiences'] = $provider_experiences;
                     }
                     $projects = !empty(unserialize($user_object->profile->projects)) ? unserialize($user_object->profile->projects) : array();
-                    $freelancer_projects  = array();
+                    $provider_projects  = array();
                     if (!empty($projects)) {
                         foreach ($projects as $project_key => $project) {
-                            $freelancer_projects[$project_key]['title'] = !empty($project['project_title']) ? $project['project_title'] : '';
-                            $freelancer_projects[$project_key]['url'] = !empty($project['project_url']) ? $project['project_url'] : '';
-                            $freelancer_projects[$project_key]['image']['url'] = !empty($project['project_hidden_image']) ? url('/uploads/users/' . $user['id'] . '/projects/' . $project['project_hidden_image']) : '';
+                            $provider_projects[$project_key]['title'] = !empty($project['project_title']) ? $project['project_title'] : '';
+                            $provider_projects[$project_key]['url'] = !empty($project['project_url']) ? $project['project_url'] : '';
+                            $provider_projects[$project_key]['image']['url'] = !empty($project['project_hidden_image']) ? url('/uploads/users/' . $user['id'] . '/projects/' . $project['project_hidden_image']) : '';
                         }
-                        $json[$key]['_projects'] = $freelancer_projects;
+                        $json[$key]['_projects'] = $provider_projects;
                     }
                     $awards = !empty(unserialize($user_object->profile->awards)) ? unserialize($user_object->profile->awards) : array();
-                    $freelancer_awards  = array();
+                    $provider_awards  = array();
                     if (!empty($awards)) {
                         foreach ($awards as $award_key => $award) {
-                            $freelancer_awards[$award_key]['title'] = !empty($award['award_title']) ? $award['award_title'] : '';
-                            $freelancer_awards[$award_key]['date'] = !empty($award['award_date']) ? $award['award_date'] : '';
-                            $freelancer_awards[$award_key]['image']['url'] = !empty($award['award_hidden_image']) ? url('/uploads/users/' . $user['id'] . '/awards/' . $award['award_hidden_image']) : '';
+                            $provider_awards[$award_key]['title'] = !empty($award['award_title']) ? $award['award_title'] : '';
+                            $provider_awards[$award_key]['date'] = !empty($award['award_date']) ? $award['award_date'] : '';
+                            $provider_awards[$award_key]['image']['url'] = !empty($award['award_hidden_image']) ? url('/uploads/users/' . $user['id'] . '/awards/' . $award['award_hidden_image']) : '';
                         }
-                        $json[$key]['_awards'] = $freelancer_awards;
+                        $json[$key]['_awards'] = $provider_awards;
                     }
                     $json[$key]['_longitude'] = !empty($user_object->profile->longitude) ? $user_object->profile->longitude : '';
                     $json[$key]['_latitude'] = !empty($user_object->profile->latitude) ? $user_object->profile->latitude : '';
@@ -305,22 +305,22 @@ class RestAPIController extends Controller
                     $json[$key]['ongoning_jobs'] = Helper::getProposals($user['id'], 'hired')->count();
                     $json[$key]['cancelled_jobs'] = Helper::getProposals($user['id'], 'cancelled')->count();
                     $reviews = Review::where('receiver_id', $user['id'])->get();
-                    $freelancer_reviewes  = array();
+                    $provider_reviewes  = array();
                     if (!empty($reviews) && $reviews->count() > 0) {
                         foreach ($reviews as $reviews_key => $review) {
                             $job = Job::where('id', $review->job_id)->first();
                             $verified_user = User::select('user_verified')->where('id', $review->user_id)->pluck('user_verified')->first();
-                            $freelancer_reviewes[$reviews_key]['project_title'] = !empty($job->title) ? $job->title : '';
-                            $freelancer_reviewes[$reviews_key]['post_date'] = Carbon::parse($job->created_at)->format('M Y');
-                            $freelancer_reviewes[$reviews_key]['employer_image'] = !empty(Helper::getProfileImage($review->user_id)) ? asset(Helper::getProfileImage($review->user_id)) : '';
-                            $freelancer_reviewes[$reviews_key]['_is_verified'] = $verified_user == 1 ? 'yes' : 'no';
-                            $freelancer_reviewes[$reviews_key]['employer_name'] = Helper::getUserName($review->user_id);
-                            $freelancer_reviewes[$reviews_key]['level_title'] = !empty($job->project_level) ?  Helper::getProjectLevel($job->project_level) : '';
-                            $freelancer_reviewes[$reviews_key]['project_location'] = !empty($job->location) && !empty($job->location->title) ? $job->location->title : '';
-                            $freelancer_reviewes[$reviews_key]['project_rating'] = "" . $review->avg_rating . "";
-                            $freelancer_reviewes[$reviews_key]['review_content'] = !empty($review->feedback) ?  $review->feedback : '';
+                            $provider_reviewes[$reviews_key]['project_title'] = !empty($job->title) ? $job->title : '';
+                            $provider_reviewes[$reviews_key]['post_date'] = Carbon::parse($job->created_at)->format('M Y');
+                            $provider_reviewes[$reviews_key]['employer_image'] = !empty(Helper::getProfileImage($review->user_id)) ? asset(Helper::getProfileImage($review->user_id)) : '';
+                            $provider_reviewes[$reviews_key]['_is_verified'] = $verified_user == 1 ? 'yes' : 'no';
+                            $provider_reviewes[$reviews_key]['employer_name'] = Helper::getUserName($review->user_id);
+                            $provider_reviewes[$reviews_key]['level_title'] = !empty($job->project_level) ?  Helper::getProjectLevel($job->project_level) : '';
+                            $provider_reviewes[$reviews_key]['project_location'] = !empty($job->location) && !empty($job->location->title) ? $job->location->title : '';
+                            $provider_reviewes[$reviews_key]['project_rating'] = "" . $review->avg_rating . "";
+                            $provider_reviewes[$reviews_key]['review_content'] = !empty($review->feedback) ?  $review->feedback : '';
                         }
-                        $json[$key]['reviews'] = $freelancer_reviewes;
+                        $json[$key]['reviews'] = $provider_reviewes;
                     }
                 }
                 return Response::json($json, 200);
@@ -747,14 +747,14 @@ class RestAPIController extends Controller
                 $json[$key]['_following_employers'] = array();
                 $json[$key]['_saved_projects'] = !empty($user_object->profile->saved_jobs) ? $user_object->profile->saved_jobs : '';
                 $json[$key]['_is_verified'] = $user['user_verified'] == 1 ? 'yes' : 'no';
-                $freelancer_awards  = array();
+                $provider_awards  = array();
                 if (!empty($awards)) {
                     foreach ($awards as $award_key => $award) {
-                        $freelancer_awards[$award_key]['title'] = !empty($award['award_title']) ? $award['award_title'] : '';
-                        $freelancer_awards[$award_key]['date'] = !empty($award['award_date']) ? $award['award_date'] : '';
-                        $freelancer_awards[$award_key]['image']['url'] = !empty($award['award_hidden_image']) ? url($award['award_hidden_image']) : '';
+                        $provider_awards[$award_key]['title'] = !empty($award['award_title']) ? $award['award_title'] : '';
+                        $provider_awards[$award_key]['date'] = !empty($award['award_date']) ? $award['award_date'] : '';
+                        $provider_awards[$award_key]['image']['url'] = !empty($award['award_hidden_image']) ? url($award['award_hidden_image']) : '';
                     }
-                    $json[$key]['_awards'] = $freelancer_awards;
+                    $json[$key]['_awards'] = $provider_awards;
                 }
                 $json[$key]['location']['_country'] = !empty($user_object->location->title) ? $user_object->location->title : '';
                 $json[$key]['location']['flag'] = !empty($user_object->location->flag) ? url('/uploads/locations/' . $user_object->location->flag) : '';

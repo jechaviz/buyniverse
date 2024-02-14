@@ -100,18 +100,18 @@
                     <div class="wt-settingscontent2 wt-sidepadding" v-if="provider_header_styling && colorSettings">
                         <div class="amt-element-title amt-element-titlecontent">
                             <h6>{{ trans('lang.menu_color') }}</h6>
-                            <verte menuPosition="right" model="hex" v-model="freelancerHeaderStyling.textColor"></verte>
-                            <input type="hidden" :value="freelancerHeaderStyling.textColor" name="inner_page[0][f_menu_color]">
+                            <verte menuPosition="right" model="hex" v-model="providerHeaderStyling.textColor"></verte>
+                            <input type="hidden" :value="providerHeaderStyling.textColor" name="inner_page[0][f_menu_color]">
                         </div>
                         <div class="amt-element-title amt-element-titlecontent">
                             <h6>{{ trans('lang.hover_color') }}</h6>
-                            <verte menuPosition="right" model="hex" v-model="freelancerHeaderStyling.menuColor"></verte>
-                            <input type="hidden" :value="freelancerHeaderStyling.menuColor" name="inner_page[0][f_hover_color]">
+                            <verte menuPosition="right" model="hex" v-model="providerHeaderStyling.menuColor"></verte>
+                            <input type="hidden" :value="providerHeaderStyling.menuColor" name="inner_page[0][f_hover_color]">
                         </div>
                         <div class="amt-element-title amt-element-titlecontent">
                             <h6>{{ trans('lang.color') }}</h6>
-                            <verte menuPosition="right" model="hex" v-model="freelancerHeaderStyling.HoverColor"></verte>
-                            <input type="hidden" :value="freelancerHeaderStyling.HoverColor" name="inner_page[0][f_menu_text_color]">
+                            <verte menuPosition="right" model="hex" v-model="providerHeaderStyling.HoverColor"></verte>
+                            <input type="hidden" :value="providerHeaderStyling.HoverColor" name="inner_page[0][f_menu_text_color]">
                         </div>
                         @if (file_exists(resource_path('views/extend/back-end/admin/settings/inner-pages/f_logo.blade.php')))
                             @include('extend.back-end.admin.settings.inner-pages.f_logo')

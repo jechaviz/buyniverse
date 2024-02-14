@@ -16,7 +16,7 @@
                         <div class="wt-description" v-if="provider.description" v-html="provider.description"></div>
                     </div>
                 </div>
-                <div class="wt-topfreelancers">
+                <div class="wt-topproviders">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3 float-left" v-for="(provider, index) in topProviders" :key="index">
                         <div class="wt-freelanceritems">
                             <div class="wt-userlistinghold wt-featured">
@@ -97,7 +97,7 @@ export default {
     mounted: function() {
         this.isActive = false
         var self= this
-        Event.$on('freelancer-section-update', (data) => {
+        Event.$on('provider-section-update', (data) => {
             setTimeout(function(){ 
                 self.isActive = !self.isActive;
             }, 10);

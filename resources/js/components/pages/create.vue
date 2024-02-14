@@ -1138,7 +1138,7 @@ export default {
           } else if (evt.moved.section == 'work_tab_section') {
             Event.$emit('work-section-update')
           } else if (evt.moved.section == 'provider_section') {
-            Event.$emit('freelancer-section-update')
+            Event.$emit('provider-section-update')
           } else if (evt.moved.section == 'content_section') {
             Event.$emit('editor-section-update')
           } else if (evt.moved.section == 'article_section') {
@@ -1148,7 +1148,7 @@ export default {
           } else if (evt.moved.section == 'categoryV3') {
             Event.$emit('category-sectionV3-update')
           } else if (evt.moved.section == 'provider_section_v2') {
-            Event.$emit('freelancer-sectionV2-update')
+            Event.$emit('provider-sectionV2-update')
           } else if (evt.moved.section == 'jobs_section') {
             Event.$emit('job-section-update')
           } else if (evt.moved.section == 'package_section') {

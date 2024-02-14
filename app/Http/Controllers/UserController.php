@@ -732,7 +732,7 @@ class UserController extends Controller
                 if ($role->role_type == 'provider') {
                     $json['user_type'] = 'provider';
                     if (in_array($selected_user->id, unserialize($profile->saved_provider))) {
-                        $json['current_freelancer'] = 'true';
+                        $json['current_provider'] = 'true';
                     }
                     return $json;
                 } else if ($role->role_type == 'employer') {
@@ -1936,7 +1936,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFreelancerInvoices($type = '')
+    public function getProviderInvoices($type = '')
     {
         if (Auth::user()->getRoleNames()[0] != 'admin' && Auth::user()->role === 'provider') {
             $invoices = array();

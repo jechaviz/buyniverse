@@ -113,7 +113,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <div v-if="freelancer_options" v-cloak>
+                                    <div v-if="provider_options" v-cloak>
                                         <div class="form-group">
                                             {!! Form::text('provider[no_of_connects]', null, array('class' => 'form-control', 'placeholder' => trans('lang.no_of_connects'), 'v-model'=>'package.conneects')) !!}
                                         </div>

@@ -82,7 +82,7 @@
 															@else
 																<figure class="service-feature-image"><img src="{{{asset('images/order-no-image.jpg')}}}" alt="no-image"></figure>
 															@endif
-															<div class="wt-freelancers-content">
+															<div class="wt-providers-content">
 																<div class="dc-title">
 																	@if ($is_featured == 'true')
 																		<span class="wt-featuredtagvtwo">Featured</span>
@@ -100,7 +100,7 @@
 														<span class="bt-content">
 															<div class="wt-service-tabel">
 																<figure class="service-feature-image"><img src="{{{url(Helper::getProfileImage($user->id))}}}" alt="{{{trans('lang.image')}}}"></figure>
-																<div class="wt-freelancers-content">
+																<div class="wt-providers-content">
 																	<div class="dc-title">
 																		@if ($user->user_verified == 1)
 																			<span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>

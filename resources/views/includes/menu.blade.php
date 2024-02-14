@@ -53,7 +53,7 @@
                 $add_service_navbar = !empty($inner_page) && !empty($inner_page[0]['add_service_navbar']) ? $inner_page[0]['add_service_navbar'] : '';
                 $add_article_navbar = !empty($inner_page) && !empty($inner_page[0]['add_article_navbar']) ? $inner_page[0]['add_article_navbar'] : '';
                 $menu_settings  = App\SiteManagement::getMetaValue('menu_settings');
-                $freelancer_order = !empty($menu_settings['pages']) ? Helper::getArrayIndex($menu_settings['pages'], 'id', 'freelancers') : ""; 
+                $provider_order = !empty($menu_settings['pages']) ? Helper::getArrayIndex($menu_settings['pages'], 'id', 'providers') : ""; 
                 $employer_order = !empty($menu_settings['pages']) ? Helper::getArrayIndex($menu_settings['pages'], 'id', 'employers') : ''; 
                 $job_order = !empty($menu_settings['pages']) ? Helper::getArrayIndex($menu_settings['pages'], 'id', 'jobs') : ''; 
                 $service_order = !empty($menu_settings['pages']) ? Helper::getArrayIndex($menu_settings['pages'], 'id', 'services') : ''; 
@@ -67,7 +67,7 @@
                 </li>
             @endif
             @if ($add_f_navbar !== 'false')
-                <li style="{{!empty($freelancer_order) ? 'order:'.$freelancer_order : 'order:99' }}">
+                <li style="{{!empty($provider_order) ? 'order:'.$provider_order : 'order:99' }}">
                     <a href="{{url('search-results?type=provider')}}">
                         {{{ trans('lang.view_providers') }}}
                     </a>
@@ -143,7 +143,7 @@
         @if(Auth::user())
             @if ( Auth::user()->role === 'provider' )
             <li>
-                <a href="{{ route('freelancerJoblist') }}">
+                <a href="{{ route('providerJoblist') }}">
                 <i class="ti-search"></i> 
                 </a>
             </li>

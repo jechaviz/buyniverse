@@ -37,7 +37,7 @@
                                 </ul>
                             @endif
                             <div class="wt-personalskillshold tab-pane active fade show" id="wt-skills">
-                                {!! Form::open(['url' => '', 'class' =>'wt-userform', 'id' => 'freelancer_profile', '@submit.prevent'=>'submitFreelancerProfile']) !!}
+                                {!! Form::open(['url' => '', 'class' =>'wt-userform', 'id' => 'provider_profile', '@submit.prevent'=>'submitProviderProfile']) !!}
                                     <div class="wt-yourdetails wt-tabsinfo">
                                         @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/personal-detail/detail.blade.php'))) 
                                             @include('extend.back-end.provider.profile-settings.personal-detail.detail')

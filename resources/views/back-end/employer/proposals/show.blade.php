@@ -512,9 +512,9 @@
                         @endif
                         <div id="menu7" class="tab-pane fade" style="">
                             @if($accepted_proposal)
-                            <job_ticket freelancerid="{{ $accepted_proposal->provider_id }}" jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
+                            <job_ticket providerid="{{ $accepted_proposal->provider_id }}" jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
                             @else
-                            <job_ticket freelancerid="0" jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
+                            <job_ticket providerid="0" jobid = "{{ $job->id }}" userid = "{{ Auth::user()->id }}"></job_ticket>
                             @endif
                         </div>
                         <div id="menu8" class="tab-pane fade" style="">

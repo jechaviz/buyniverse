@@ -146,7 +146,7 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
                             <div class="row">
-                                <div class="wt-freelancers-holder la-freelancers-grid wt-service-listing-holder">
+                                <div class="wt-providers-holder la-freelancers-grid wt-service-listing-holder">
                                     @if (!empty($keyword))
                                         <div class="wt-userlistingtitle">
                                             <span>{{ trans('lang.01') }} {{$services->count()}} of {{$services_total_records}} results for <em>"{{{$keyword}}}"</em></span>
@@ -166,11 +166,11 @@
                                                 $total_orders = Helper::getServiceCount($service->id, 'hired');
                                             @endphp
                                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 float-left">
-                                                <div class="wt-freelancers-info {{$no_attachments}}">
+                                                <div class="wt-providers-info {{$no_attachments}}">
                                                     @if ($service->seller->count() > 0)
                                                         @if (!empty($attachments))
-                                                            @php $enable_slider = count($attachments) > 1 ? 'wt-freelancerslider owl-carousel' : ''; @endphp
-                                                            <div class="wt-freelancers {{{$enable_slider}}}">
+                                                            @php $enable_slider = count($attachments) > 1 ? 'wt-providerslider owl-carousel' : ''; @endphp
+                                                            <div class="wt-providers {{{$enable_slider}}}">
                                                                 @foreach ($attachments as $attachment)
                                                                     <figure class="item">
                                                                         <a href="{{{ url('profile/'.$service->seller[0]->slug) }}}"><img src="{{{asset(Helper::getImage('uploads/services/'.$service->seller[0]->id, $attachment, 'medium-', 'medium-service.jpg'))}}}" alt="img description" class="item"></a>
@@ -182,13 +182,13 @@
                                                     @if ($service->is_featured == 'true')
                                                         <span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>
                                                     @endif
-                                                    <div class="wt-freelancers-details">
+                                                    <div class="wt-providers-details">
                                                         @if ($service->seller->count() > 0)
-                                                            <figure class="wt-freelancers-img">
+                                                            <figure class="wt-providers-img">
                                                                 <img src="{{ asset(Helper::getProfileImage($service->seller[0]->id)) }}" alt="img description">
                                                             </figure>
                                                         @endif
-                                                        <div class="wt-freelancers-content">
+                                                        <div class="wt-providers-content">
                                                             <div class="dc-title">
                                                                 @if ($service->seller->count() > 0)
                                                                     <a href="{{{ url('profile/'.$service->seller[0]->slug) }}}"><i class="fa fa-check-circle"></i> {{{Helper::getUserName($service->seller[0]->id)}}}</a>
@@ -197,7 +197,7 @@
                                                                 <span><strong>{{ (!empty($symbol['symbol'])) ? $symbol['symbol'] : '$' }}{{{$service->price}}}</strong> {{trans('lang.starting_from')}}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="wt-freelancers-rating">
+                                                        <div class="wt-providers-rating">
                                                             <ul>
                                                                 <li><span><i class="fa fa-star"></i>{{{ $service_rating }}}/<i>5</i> ({{{!empty($service_reviews) ? $service_reviews->count() : ''}}})</span></li>
                                                                 <li>
@@ -236,8 +236,8 @@
 @push('scripts')
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script>
-        var _wt_freelancerslider = jQuery('.wt-freelancerslider')
-        _wt_freelancerslider.owlCarousel({
+        var _wt_providerslider = jQuery('.wt-providerslider')
+        _wt_providerslider.owlCarousel({
             items: 1,
             loop:true,
             rtl:true,

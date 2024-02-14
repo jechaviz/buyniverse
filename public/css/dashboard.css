@@ -2827,7 +2827,7 @@ a.wt-back:hover{color: #55acee;}
 	left: 0;
 	content: '\e875';
 }
-select#freelancer_skill {
+select#provider_skill {
     width: 100%;
     float: left;
 }
@@ -3700,11 +3700,11 @@ input[type=submit],
 	height: 80px;
 	width: 80px;
 }
-.wt-service-tabel .wt-freelancers-content{
+.wt-service-tabel .wt-providers-content{
 	overflow: hidden;
 	padding: 3px 0 2px;
 }
-.wt-service-tabel .wt-freelancers-content .dc-title .wt-featuredtagvtwo{
+.wt-service-tabel .wt-providers-content .dc-title .wt-featuredtagvtwo{
 	width: auto;
 	font-size: 12px;
 	position: static;
@@ -3755,9 +3755,9 @@ table.wt-tableservice tbody tr td{padding: 20px;}
 }
 .wt-jobservice-details .dc-title{width: auto;}
 .wt-jobservice-details .wt-featuredtagvtwo{vertical-align: top;}
-.wt-jobservice-details .wt-freelancers-content .wt-rightarea .wt-btn{line-height: 44px;}
-.wt-jobservice-details .wt-freelancers-content .wt-rightarea{margin: 15px 0;}
-.wt-jobservice-details .wt-freelancers-content .wt-rightarea .wt-btn:hover{box-shadow: none;}
+.wt-jobservice-details .wt-providers-content .wt-rightarea .wt-btn{line-height: 44px;}
+.wt-jobservice-details .wt-providers-content .wt-rightarea{margin: 15px 0;}
+.wt-jobservice-details .wt-providers-content .wt-rightarea .wt-btn:hover{box-shadow: none;}
 .wt-tableservice .wt-userlistingsingle .wt-userlistingimg{
 	margin: 0 20px 0 0;
 	min-width: 60px;
@@ -3813,19 +3813,19 @@ table.wt-tableservice tbody tr td{padding: 20px;}
 	line-height: 36px;
 }
 .wt-canceledinfo .wt-modalcontent .modal-body .wt-description p{margin-bottom: 13px;}
-.wt-freelancers-content .dc-title h3 {
+.wt-providers-content .dc-title h3 {
     font-size: 16px;
     margin: 0 0 6px;
     font-weight: 400;
     line-height: 26px;
 }
-.wt-freelancers-content .dc-title span {
+.wt-providers-content .dc-title span {
     display: block;
     font-size: 13px;
     line-height: 16px;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
-.wt-freelancers-content .dc-title span strong {
+.wt-providers-content .dc-title span strong {
     font-size: 20px;
     display: inline-block;
     line-height: inherit;

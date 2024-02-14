@@ -21,7 +21,7 @@
                 <div class="row"  style="margin-left: 10px;padding-bottom: 15px;">
                     <ol class="wt-breadcrumb">
                         <li><a href="{{ route('home') }}">{{ trans('lang.home') }}</a></li>
-                        <li><a href="{{ route('freelancerServices') }}">{{ trans('lang.manage_services') }}</a></li>
+                        <li><a href="{{ route('providerServices') }}">{{ trans('lang.manage_services') }}</a></li>
                         <li class="active">{{ trans('lang.service_detail')}}</li>
                     </ol>
                 </div>

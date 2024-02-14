@@ -17,7 +17,7 @@
                             <div class="wt-description" v-if="freelancer.description" v-html="freelancer.description"></div>
                         </div>
                     </div>
-                    <div class="wt-topfreelancers">
+                    <div class="wt-topproviders">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-3 float-left" v-for="(freelancer, index) in topFreelancers" :key="index">
                             <div class="wt-freelanceritems">
                                 <div class="wt-userlistinghold wt-featured">
@@ -99,7 +99,7 @@ export default {
     mounted: function() {
         this.isActive = false
         var self= this
-        Event.$on('freelancer-section-update', (data) => {
+        Event.$on('provider-section-update', (data) => {
             setTimeout(function(){ 
                 self.isActive = !self.isActive;
             }, 10);
@@ -110,7 +110,7 @@ export default {
             var self = this
             this.$emit("editData");
         },
-        getTopFreelancers: function() {
+        getTopProviders: function() {
             var self = this;
             axios
             .get(APP_URL + "/get-top-providers")
@@ -130,7 +130,7 @@ export default {
                 self.freelancer = self.freelancers[index]
             }
         }, 100);
-        this.getTopFreelancers()
+        this.getTopProviders()
     },
 };
 </script>

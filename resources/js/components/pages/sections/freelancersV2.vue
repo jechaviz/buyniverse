@@ -1,7 +1,7 @@
 <template>
     <div class="element-preview-wrapper" v-on:click="editElement">
         <section 
-            :class="freelancer.sectionClass + ' wt-main-section wt-section-bg wt-freelancers-wrap'"
+            :class="freelancer.sectionClass + ' wt-main-section wt-section-bg wt-providers-wrap'"
             :id="freelancer.sectionId" 
             :style="sectionStyle" 
             v-if="Object.entries(freelancer).length != 0"
@@ -27,9 +27,9 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <!-- <carousel id="wt-freelancers-silder" class="wt-freelancers-silder" :items='3' :loop='true' :nav='false' :dots='true' 
+                    <!-- <carousel id="wt-providers-silder" class="wt-providers-silder" :items='3' :loop='true' :nav='false' :dots='true' 
                     :autoplay='false' :margin='30' v-if="filtersApplied"> -->
-                        <div id="wt-freelancers-silder" class="wt-freelancers-silder owl-carousel">
+                        <div id="wt-providers-silder" class="wt-providers-silder owl-carousel">
                             <div class="wt-freelancer" v-for="(freelancer, index) in topFreelancers" :key="index">
                                 <figure class="wt-freelancer-img">
                                     <img :src="freelancer.image" alt="image">
@@ -123,7 +123,7 @@ export default {
     mounted: function() {
         this.isActive = false
         var self= this
-        Event.$on('freelancer-sectionV2-update', (data) => {
+        Event.$on('provider-sectionV2-update', (data) => {
             setTimeout(function(){ 
                 self.isActive = !self.isActive;
             }, 10);
@@ -167,7 +167,7 @@ export default {
                 console.log(error);
             });
         },
-        getTopFreelancers: function() {
+        getTopProviders: function() {
             var self = this;
             axios
             .get(APP_URL + "/get-top-providers")
@@ -177,7 +177,7 @@ export default {
                     self.filtersApplied = true
                     /* Freelancer Slider */
                     Vue.nextTick(function() {
-                        var wt_freelancers_silder = jQuery(".wt-freelancers-silder")
+                        var wt_freelancers_silder = jQuery(".wt-providers-silder")
                         wt_freelancers_silder.owlCarousel({
                             item: 3,
                             loop:true,
@@ -204,7 +204,7 @@ export default {
                 self.freelancer = self.freelancers[index]
             }
         }, 100);
-        this.getTopFreelancers()
+        this.getTopProviders()
     },
 };
 </script>

@@ -62,7 +62,7 @@
                                 </div>
                                 @if (!empty($attachments))
                                     @php $enable_slider = count($attachments) > 1 ? 'wt-servicesslider' : ''; @endphp
-                                    <div class="wt-freelancers-info">
+                                    <div class="wt-providers-info">
                                         <div id="{{$enable_slider}}" class="wt-servicesslider owl-carousel">
                                             @foreach ($attachments as $attachment)
                                                 <figure class="item">

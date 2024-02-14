@@ -1,6 +1,6 @@
 <template>
     <section 
-        :class="provider.sectionClass + ' wt-main-section wt-section-bg wt-freelancers-wrap'"
+        :class="provider.sectionClass + ' wt-main-section wt-section-bg wt-providers-wrap'"
         :id="provider.sectionId" 
         :style="sectionStyle" 
         v-if="Object.entries(provider).length != 0"
@@ -30,7 +30,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <carousel id="wt-freelancers-silder" class="wt-freelancers-silder" 
+                <carousel id="wt-providers-silder" class="wt-providers-silder" 
                     :items='4' :loop='false' :nav='false' :dots='false' :autoplay='false' :margin='30' 
                     :responsive="{
                         0:{items:1,},
@@ -128,7 +128,7 @@ export default {
     mounted: function() {
         this.isActive = false
         var self= this
-        Event.$on('freelancer-sectionV2-update', (data) => {
+        Event.$on('provider-sectionV2-update', (data) => {
             setTimeout(function(){ 
                 self.isActive = !self.isActive;
             }, 10);

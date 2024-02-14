@@ -97,7 +97,7 @@
 																<figure class="service-feature-image"><img src="{{{asset( Helper::getImage('uploads/services/'.$service->seller[0]->id, $attachment[0], 'small-', 'small-service.jpg'))}}}" alt="{{{$service['title']}}}"></figure>
 															@endif
 														@endif
-														<div class="wt-freelancers-content">
+														<div class="wt-providers-content">
 															<div class="dc-title">
 																@if ($service['is_featured'] == 'true')
 																	<span class="wt-featuredtagvtwo">Featured</span>

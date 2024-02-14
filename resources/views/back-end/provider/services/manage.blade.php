@@ -72,7 +72,7 @@
 													<figure class="service-feature-image"><img src="{{{asset(Helper::getImage('uploads/services/'.$provider->id, $attachment[0], 'medium-', 'small-service.jpg'))}}}" alt="{{{$service->title}}}"></figure>
 												@endif
 											@endif
-											<div class="wt-freelancers-content">
+											<div class="wt-providers-content">
 												<div class="dc-title">
 													@if ($service->is_featured == 'true')
 														<span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>
@@ -154,7 +154,7 @@
 											@if (!empty($attachment))
 												<figure class="service-feature-image"><img src="{{{asset(Helper::getImage('uploads/services/'.$provider->id, $attachment[0], 'medium-', 'small-service.jpg'))}}}" alt="{{{$service->title}}}"></figure>
 											@endif
-											<div class="wt-freelancers-content">
+											<div class="wt-providers-content">
 												<div class="dc-title">
 													@if ($service->is_featured == 'true')
 														<span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>
@@ -266,7 +266,7 @@
 											@if (!empty($attachment))
 												<figure class="service-feature-image"><img src="{{{asset(Helper::getImage('uploads/services/'.$provider->id, $attachment[0], 'medium-', 'small-service.jpg'))}}}" alt="{{{$service->title}}}"></figure>
 											@endif
-											<div class="wt-freelancers-content">
+											<div class="wt-providers-content">
 												<div class="dc-title">
 													@if ($service->is_featured == 'true')
 														<span class="wt-featuredtagvtwo">{{ trans('lang.featured') }}</span>

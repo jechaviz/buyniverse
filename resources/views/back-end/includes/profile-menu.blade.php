@@ -261,7 +261,7 @@
                         </a>
                     </li>-->
                     <li>
-                        <a href="{{{ route('FreelancerPayoutsSettings') }}}">
+                        <a href="{{{ route('ProviderPayoutsSettings') }}}">
                             <!--<i class="ti-money"></i>-->
                             <span>{{ trans('lang.payouts') }}</span>
                         </a>
