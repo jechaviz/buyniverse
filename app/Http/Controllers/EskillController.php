@@ -8,6 +8,8 @@ use Session;
 use App\Skill;
 use App\User;
 use App\Job;
+use App\Category;
+use App\CatSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
@@ -41,26 +43,35 @@ class EskillController extends Controller
      */
     public function index(Request $request)
     {
+        $cats = Category::all();
         if (!empty($_GET['keyword'])) {
             $keyword = $_GET['keyword'];
-            $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            //$skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            else
+                $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->where('status', 'appear_globally')->paginate(7)->setPath('');
             $pagination = $skills->appends(
                 array(
                     'keyword' => $request->get('keyword')
                 )
             );
         } else {
-            $skills = $this->skill->paginate(7);
+            //$skills = $this->skill->paginate(7);
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $skills = $this->skill->paginate(10);
+            else
+                $skills = $this->skill->where('status', 'appear_globally')->paginate(10);
         }
         if (file_exists(resource_path('views/extend/back-end/admin/skills/index.blade.php'))) {
             return View::make(
                 'extend.back-end.admin.skills.index',
-                compact('skills')
+                compact('skills', 'cats')
             );
         } else {
             return View::make(
                 'back-end.admin.skills.index',
-                compact('skills')
+                compact('skills', 'cats')
             );
         }
     }

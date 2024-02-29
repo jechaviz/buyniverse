@@ -16,6 +16,8 @@ namespace App;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+use App\CatSkill;
+use App\Category;
 
 /**
  * Class Skill
@@ -63,6 +65,18 @@ class Skill extends Model
     {
         return $this->belongsToMany('App\Job');
     }
+
+    /* For the future*/
+    public function category()
+    {
+        return $this->belongsToMany('App\Category', 'cat_skills', 'skill_id', 'cat_id');   
+    }
+
+    /*public static function getcategory($id)
+    {
+        $cat = Category::where('code', $id)->first();
+        return $currency->symbol;
+    }*/
 
     /**
      * Set slug before saving in DB
@@ -113,7 +127,15 @@ class Skill extends Model
             {
                 $this->admin = 0;
             }
-            return $this->save();
+            $this->save();
+
+            CatSkill::create([
+                'cat_id' => $request->cat_id,
+                'skill_id' => $this->id
+            ]);
+
+            //dd($this->id);
+            return true;
         }
     }
 
@@ -135,6 +157,21 @@ class Skill extends Model
             $skills->title = filter_var($request['skill_title'], FILTER_SANITIZE_STRING);
             $skills->description = filter_var($request['skill_desc'], FILTER_SANITIZE_STRING);
             $skills->save();
+
+            $cat = CatSkill::where('skill_id', $id)->first();
+            if($cat)
+            {
+                $cat->cat_id = $request->cat_id;
+                $cat->save();
+            }
+            else
+            {
+                CatSkill::create([
+                    'cat_id' => $request->cat_id,
+                    'skill_id' => $id
+                ]);
+            }
+            
         }
     }
 

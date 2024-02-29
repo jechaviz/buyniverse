@@ -275,6 +275,8 @@ Route::group(
 
         Route::get('admin/approve-category/{id}', 'Sub_categoryController@approve');
         Route::get('admin/reject-category/{id}', 'Sub_categoryController@reject');
+        Route::get('admin/approve-skill/{id}', 'SkillController@approve');
+        Route::get('admin/reject-skill/{id}', 'SkillController@reject');
 
     }
 );

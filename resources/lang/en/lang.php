@@ -1195,6 +1195,7 @@ return [
     'delete_user' => 'Delete User',
     'view_profile' => 'View Profile',
     'choose_parent_cat' => 'Choose Parent Category',
+    'choose_cat' => 'Choose Category',
     'badge_icon' => 'Badge Image',
     'add_badge' => 'Add Badge',
     'badges' => 'Badges',

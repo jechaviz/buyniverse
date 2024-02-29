@@ -78,6 +78,12 @@ class Category extends Model
         return $this->morphedByMany('App\Service', 'catable');
     }
 
+    public function skills()
+    {
+        return $this->belongsToMany('App\Skill', 'cat_skills', 'cat_id');        
+    }
+
+
     /**
      * Set slug before saving in DB
      *

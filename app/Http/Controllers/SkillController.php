@@ -19,6 +19,8 @@ use Session;
 use App\Skill;
 use App\User;
 use App\Job;
+use App\Category;
+use App\CatSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
@@ -56,28 +58,56 @@ class SkillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function approve($id)
+    {
+        $cat = Skill::find($id);
+        $cat->status = 'appear_globally';
+        $cat->approved_by = Auth::user()->id;
+        $cat->save();
+        return redirect()->back();
+    }
+
+    public function reject($id)
+    {
+        $cat = Skill::find($id);
+        $cat->status = 'rejected';
+        $cat->approved_by = Auth::user()->id;
+        $cat->save();
+        return redirect()->back();
+    } 
+
     public function index(Request $request)
     {
+        $cats = Category::all();
         if (!empty($_GET['keyword'])) {
             $keyword = $_GET['keyword'];
-            $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            //$skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
+            else
+                $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->where('status', 'appear_globally')->paginate(7)->setPath('');
             $pagination = $skills->appends(
                 array(
                     'keyword' => $request->get('keyword')
                 )
             );
         } else {
-            $skills = $this->skill->paginate(7);
+            //$skills = $this->skill->paginate(7);
+            if (Auth::user()->getRoleNames()[0] == 'admin')
+                $skills = $this->skill->paginate(10);
+            else
+                $skills = $this->skill->where('status', 'appear_globally')->paginate(10);
         }
         if (file_exists(resource_path('views/extend/back-end/admin/skills/index.blade.php'))) {
             return View::make(
                 'extend.back-end.admin.skills.index',
-                compact('skills')
+                compact('skills', 'cats')
             );
         } else {
             return View::make(
                 'back-end.admin.skills.index',
-                compact('skills')
+                compact('skills', 'cats')
             );
         }
     }
@@ -91,6 +121,7 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $server_verification = Helper::worketicIsDemoSite();
         if (!empty($server_verification)) {
             Session::flash('error', $server_verification);
@@ -100,6 +131,7 @@ class SkillController extends Controller
             $request,
             [
                 'skill_title' => 'required',
+                'cat_id' => 'required',
             ]
         );
         $this->skill->saveSkills($request);
@@ -118,16 +150,19 @@ class SkillController extends Controller
     {
         if (!empty($id)) {
             $skills = $this->skill::find($id);
+            $cats = Category::all();
+            //dd($skills);
+            //dd($skills->category);
             if (!empty($skills)) {
                 if (file_exists(resource_path('views/extend/back-end/admin/skills/edit.blade.php'))) {
                     return View::make(
                         'extend.back-end.admin.skills.edit',
-                        compact('id', 'skills')
+                        compact('id', 'skills', 'cats')
                     );
                 } else {
                     return View::make(
                         'back-end.admin.skills.edit',
-                        compact('id', 'skills')
+                        compact('id', 'skills', 'cats')
                     );
                 }
                 return Redirect::to('admin/skills');

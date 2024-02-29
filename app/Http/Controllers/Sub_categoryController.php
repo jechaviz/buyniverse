@@ -45,7 +45,7 @@ class Sub_categoryController extends Controller
         $cat->approved_by = Auth::user()->id;
         $cat->save();
         return redirect()->back();
-    }
+    } 
 
     /**
      * Store a newly created resource in storage.

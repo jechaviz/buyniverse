@@ -45,6 +45,19 @@
                                     {!! Form::textarea( 'skill_desc', null, ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc')] ) !!}
                                     <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                 </div>
+                                <div class="form-group">
+                                    <span class="wt-select">
+                                        <select class="form-control" name="cat_id">
+                                            <option value="0">{{ trans('lang.choose_cat') }}</option>
+                                            @if ($cats->count() > 0)
+                                            @foreach ($cats as $cat)
+                                            <option value="{{$cat->id}}">{{ $cat->title }}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                    </span>
+                                    <!--<span class="form-group-description">{{{ trans('lang.parent_desc') }}}</span>-->
+                                </div>
                                 <div class="form-group wt-btnarea">
                                     {!! Form::submit(trans('lang.add_skill'), ['class' => 'wt-btn']) !!}
                                 </div>
@@ -96,6 +109,8 @@
                                             @endif
                                             <th>{{{ trans('lang.name') }}}</th>
                                             <th>{{{ trans('lang.slug') }}}</th>
+                                            <th>{{{ trans('lang.cats') }}}</th>
+                                            <th>{{{ trans('lang.scope') }}}</th>
                                             <th>{{{ trans('lang.action') }}}</th>
                                         </tr>
                                     </thead>
@@ -114,26 +129,51 @@
                                                 <td>{{{ $skill->title }}}</td>
                                                 <td>{{{ $skill->slug }}}</td>
                                                 <td>
+                                                    @foreach ($skill->category as $cat)
+                                                    {{ $cat->title}}
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @if($skill->status == 'appear_globally')
+                                                    Globally
+                                                    @elseif($skill->status == 'appear_user')
+                                                    Locally
+                                                    @elseif($skill->status == 'rejected')
+                                                    Rejected
+                                                    @else
+                                                    Waiting
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <div class="wt-actionbtn">
                                                         @if ($role === 'admin')
+                                                        @if($skill->admin == 0)
+                                                        <a href="{{{ url('admin/approve-skill') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                            <i class="lnr lnr-thumbs-up"></i>
+                                                        </a>
+                                                        <a href="{{{ url('admin/reject-skill') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                            <i class="lnr lnr-thumbs-down"></i>
+                                                        </a>
+                                                        @endif
                                                         <a href="{{{ url('admin/skills/edit-skills') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                             <i class="lnr lnr-pencil"></i>
                                                         </a>
-                                                        <a href="{{{ url('admin/sub-skills') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                        <!--<a href="{{{ url('admin/sub-skills') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                             <i class="lnr lnr-eye"></i>
-                                                        </a>
+                                                        </a>-->
                                                         @else
                                                             @if($skill->user_id == Auth::user()->id)
                                                             <a href="{{{ url('employer/skills/edit-skills') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                                 <i class="lnr lnr-pencil"></i>
                                                             </a>
-                                                            <a href="{{{ url('employer/sub-skills') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
+                                                            <!--<a href="{{{ url('employer/sub-skills') }}}/{{{ $skill->id }}}" class="wt-addinfo wt-skillsaddinfo">
                                                                 <i class="lnr lnr-eye"></i>
-                                                            </a>
+                                                            </a>-->
                                                             @endif
                                                         @endif
-
+                                                        @if ($role === 'admin')
                                                         <delete :title="'{{trans("lang.ph_delete_confirm_title")}}'" :id="'{{$skill->id}}'" :message="'{{trans("lang.ph_skill_delete_message")}}'" :url="'{{url('admin/skills/delete-skills')}}'"></delete>
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

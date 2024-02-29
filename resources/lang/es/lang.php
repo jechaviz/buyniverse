@@ -1156,6 +1156,7 @@ return [
   'stripe_settings' => 'Ajustes de la raya',
   'delete_user' => 'Borrar usuario',
   'choose_parent_cat' => 'Elija la categoría principal',
+  'choose_cat' => 'Elegir la categoría',
   'badge_icon' => 'Imagen de la insignia',
   'add_badge' => 'Añadir placa',
   'badges' => 'Insignias',

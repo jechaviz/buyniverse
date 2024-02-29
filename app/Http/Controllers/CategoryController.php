@@ -117,8 +117,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+
         if (!empty($id)) {
             $cats = $this->category::find($id);
+            //dd($cats->skills);
             if (Auth::user()->getRoleNames()[0] == 'admin')
                 $cats1 = $this->category->paginate(10);
             else
