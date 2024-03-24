@@ -1,7 +1,8 @@
 <template>
     
-    <div>
-        <i class="fa fa-paperclip" @click="pfshowrow(form.user_id)"></i>
+    <div style="width: 70%;">
+        <a @click="pfshowrow(form.user_id)" class="wt-btn proposal-attachment" v-if="proposal_files.length > 0 || add_file == 'yes'"><i class="fa fa-paperclip" ></i> {{ trans('lang.attachments') }}</a>
+
         <div :class="'prow-' + form.user_id" class="btn hidden" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;" v-if="add_file == 'yes'"><button type="button" @click="newfile" class="wt-btn"> {{ trans('lang.add_files') }}</button></div>
         
         <table :class="'prow-' + form.user_id" class="hidden wt-tablecategories" v-if="proposal_files.length > 0">

@@ -190,13 +190,17 @@ export default {
         
         }
     },
-    computed: {
+    /*computed: {
         filteredusers() {
             let self = this;
             self.fusers = this.users.filter(x => x.invitation === false); // text or user, whichever field is for username
         },
-    },
+    },*/
     methods: {
+        updatefuser() {
+            let self = this;
+            self.fusers = this.users.filter(x => x.invitation === false);
+        },
         search_skill(e) {
             //console.log(e.target.value);
             this.search_filter();
@@ -214,6 +218,7 @@ export default {
                 self.categories = response.data.categories;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
+                Fire.$emit('UpdatefUsers');
             });
         },
         search_filter()
@@ -226,6 +231,7 @@ export default {
                 self.categories = response.data.categories;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
+                Fire.$emit('UpdatefUsers');
             })
             .catch(() => {
 
@@ -238,6 +244,9 @@ export default {
     },
     mounted: function() { 
         this.loadSearch();
+        Fire.$on('UpdatefUsers', () => {
+            this.updatefuser();
+        });
   }
 }
 </script>

@@ -220,6 +220,16 @@
                                                 @endforeach
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td class="job-details"><b>{{ trans('lang.skills')}}</b></td>
+                                                <td class="job-details">
+                                                @foreach ($job->skills as $cat)
+                                                    <span>
+                                                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;">{{ $cat->title }} </span>
+                                                    </span>
+                                                @endforeach
+                                                </td>
+                                            </tr>
                                             <!--<tr>
                                                 <td class="job-details"><b>{{ trans('lang.provider_typex')}}</b></td>
                                                 <td class="job-details">

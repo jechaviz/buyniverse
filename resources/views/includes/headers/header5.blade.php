@@ -106,7 +106,6 @@
                         <ul>
                             @if (!empty($categories))
                                 @foreach ($categories as $index => $cat) 
-                                    <?php if ($index == 7) break; ?>   
                                     <li>
                                         <a href="{{{url('search-results?type=job&category%5B%5D='.$cat['slug'])}}}">{{$cat['title']}}</a>
                                     </li>

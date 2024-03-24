@@ -331,18 +331,29 @@
                                             </div> 
                                             <div class="wt-description">
                                                 <p>{{{$proposal->content}}}</p>
-                                            </div> 
+                                            </div>
                                             @if (!empty($categories))
+                                                <div class="wt-tag wt-widgettag wt-rightarea">
+                                                    @foreach($categories as $skill)
+                                                    @if($skill->name)
+                                                        <a>{{{ $skill->name }}}</a>
+                                                    @endif    
+                                                    @endforeach
+                                                </div>
+                                            @endif 
+                                            <!--@if (!empty($categories))
                                                 <div class="wt-tag wt-widgettag">
                                                     @foreach($categories as $skill)
+                                                    @if($skill->name)
                                                         <a>{{{ $skill->name }}}</a>
+                                                    @endif    
                                                     @endforeach
                                                 </div>
                                             @endif
                                             <br>
                                                 <div class="wt-description">
                                                     <proposal_file addfile="no" proposalid="{{$proposal->id}}" jobid="{{$job->id}}" userid="{{$user->id}}"></proposal_file> 
-                                                </div>
+                                                </div>-->
                                             <!--
                                             @if (!empty($attachments))
                                             <br>
@@ -393,7 +404,7 @@
                                                     </div>
                                                 @endif
                                             @endif    
-                                            <div class="wt-rightarea" id="hire-now">
+                                            <div class="row" id="hire-now">
                                                 
                                                 @if (empty($accepted_proposal))
                                                     @if (!empty($order))
@@ -410,10 +421,10 @@
                                                             <span style="margin-right: 20px;font-weight: bold;">{{ trans('lang.invitation_sent') }}</span>
                                                         @endif
                                                         @endif
-                                                        <a href="{{{ route('startchat', $proposal->provider_id.'_'.$job->id.'_'.$user->id) }}}" class="wt-btn"><i class="fa fa-circle" aria-hidden="true"></i> {{ trans('lang.chat') }}</a>
+                                                        <a href="{{{ route('startchat', $proposal->provider_id.'_'.$job->id.'_'.$user->id) }}}" class="wt-btn proposal-attachment"><i class="fa fa-circle" aria-hidden="true"></i> {{ trans('lang.chat') }}</a>
                                                         @if($job->approver == 0)
                                                         @if($mode == 'false')
-                                                        <a href="{{ route('generate.order', [$proposal->id, 'job']) }}" class="wt-btn">{{ trans('lang.hire_now') }}</a>
+                                                        <a href="{{ route('generate.order', [$proposal->id, 'job']) }}" class="wt-btn proposal-attachment">{{ trans('lang.hire_now') }}</a>
                                                         @else
                                                         @endif
                                                         <!--<hirenow proposalid="{{$proposal->id}}" mode="{{$mode}}"></hirenow>-->
@@ -422,6 +433,7 @@
 
                                                     @endif
                                                 @endif
+                                                <proposal_file addfile="no" proposalid="{{$proposal->id}}" jobid="{{$job->id}}" userid="{{$user->id}}"></proposal_file> 
 
                                             </div>   
                                         </div>

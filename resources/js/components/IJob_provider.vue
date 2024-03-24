@@ -59,7 +59,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 col-md-offset-2">
                             <div class="wt-userlistingholder wt-userlisting wt-haslayout">
                                 <div class="wt-userlistingtitle">
-                                    <span v-if="users.length > 0"> {{fusers.length}} of {{users.length}} results <span v-if="keyword">for <em>"{{keyword}}"</em></span></span>
+                                    <span v-if="users.length > 0">{{fusers.length}} of {{users.length}} results <span v-if="keyword">for <em>"{{keyword}}"</em></span></span>
                                 </div>
                                 <div v-if="users.length > 0">
                                     <div v-for="(provider, key) in users" :key="key" >
@@ -169,19 +169,24 @@ export default {
         
         }
     },
-    computed: {
+    /*computed: {
         filteredusers() {
             let self = this;
             self.fusers = this.users.filter(x => x.invitation === true); // text or user, whichever field is for username
         },
-    },
+    },*/
     methods: {
+        updateuser() {
+            let self = this;
+            self.fusers = this.users.filter(x => x.invitation === true);
+        },
         loadSearch() {
             let self = this;            
             axios.get(APP_URL + '/api/get_search/'+ self.tjob).then(function (response) {
                 self.skills = response.data.skills;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
+                Fire.$emit('UpdateUsers');
             });
         },
         search_filter()
@@ -193,6 +198,7 @@ export default {
                 self.skills = response.data.skills;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
+                Fire.$emit('UpdateUsers');
             })
             .catch(() => {
 
@@ -205,6 +211,9 @@ export default {
     },
     mounted: function() { 
         this.loadSearch();
+        Fire.$on('UpdateUsers', () => {
+            this.updateuser();
+        });
   }
 }
 </script>

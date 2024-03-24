@@ -134,6 +134,21 @@
                     </span>
                 </td>
             </tr>
+            <tr id="tr51" class="hidden">
+              <td class="job-details"><b>{{ trans('lang.skills') }}</b></td>
+              <td class="job-details">
+                  <span>
+                    <span  v-if="xskills">
+                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;" v-for="skill in xskills" :key="skill.id">{{ skill.title }} <i @click="deleteskill(skill.id)" class="fa fa-times" aria-hidden="true"></i></span><br>
+                    </span>
+                    <span @click="addskill" id="addskill"><i class="fa fa-plus"></i></span>
+                    <select class="form-control form-control-sm hidden"  id="addskill-select" name="addskill-select" v-on:change="updateaddskill">
+                            <option selected>{{ trans('lang.select') }} </option>
+                            <option v-for="(item, key) in skills" :key="key" :value="item.id">{{ item.title }}</option>
+                        </select>
+                  </span>
+                </td>
+            </tr>
           <tr id="tr6" class="hidden">
               
               <td class="job-details"><b>{{ trans('lang.team') }}</b></td>
@@ -312,8 +327,8 @@ export default {
         permission : {},
         project_levels : {},
         project_duration : {},
-        
-        
+        skills : {},
+        xskills : {},        
         quizadd : {},
         
         
@@ -488,6 +503,36 @@ export default {
                 //console.log(self.xskills);
             });  
         },
+        loadskill() {
+            let self = this;
+            axios.get(APP_URL + '/api/job_overview/getskill/'+ self.job_id).then(function (response) {
+                self.xskills = response.data;
+                //console.log(self.xskills);
+            });  
+        },
+        loadskills() {
+            let self = this;
+            axios.get(APP_URL + '/api/job_overview/skill/'+ self.job_id).then(function (response) {
+                self.skills = response.data;
+                //console.log(self.project_levels);
+            });  
+        },
+        updateaddskill(e) {
+            this.saving('Saving Details');
+            let statp =  this.job1.id + '-' + e.target.value;
+            axios.get(APP_URL + '/api/job_overview/updateskill/' + statp).then(function (response) {
+                Fire.$emit('Afterskill');
+                $('#addskill-select').addClass('hidden');
+                $('#addskill').removeClass('hidden');
+            });
+        },
+        deleteskill(lang) {
+            this.saving('Deleting . . .');
+            let statp =  this.job1.id + '-' + lang;
+            axios.get(APP_URL + '/api/job_overview/deleteskill/' + statp).then(function (response) {
+                Fire.$emit('Afterskill');
+            });
+        },
         updateaddcurrency(e) {
             this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
@@ -514,6 +559,7 @@ export default {
             });
         
             Fire.$emit('AfterCreate');
+            Fire.$emit('loadskills');
             $('#addcategory-select').addClass('hidden');
             $('#tr6').removeClass('hidden');
             $('#tr7').removeClass('hidden');    
@@ -530,6 +576,7 @@ export default {
             let statp =  this.job1.id + '-' + id;
             axios.get(APP_URL + '/api/job_overview/deletecategory/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
+                Fire.$emit('loadskills');
             });
         },
         showquiz(id) {
@@ -579,6 +626,10 @@ export default {
         addapprover() {
             //$('#addskill').addClass('hidden');
             $('#addapprover-select').removeClass('hidden');
+        },
+        addskill() {
+            $('#addskill').addClass('hidden');
+            $('#addskill-select').removeClass('hidden');
         },
         Createinvite() {
             this.saving('Saving Details');
@@ -822,6 +873,7 @@ export default {
                 $('#editprice').addClass('hidden');
                 $('#price').removeClass('hidden');
                 $('#tr5').removeClass('hidden');
+                $('#tr51').removeClass('hidden');
                 
                 
                 
@@ -922,6 +974,9 @@ export default {
         //this.loadprojectprovider();
         this.loadcategory();
         this.loadcurrency();
+        this.loadskill();
+        this.loadskills();
+        //this.loadprovider();
         //this.loadteam();
         //this.loadapprover();
         //this.loadenglish();
@@ -929,7 +984,15 @@ export default {
         //this.loadsubskills();
         //this.loadinvited();
         
-        
+        Fire.$on('Afterskill', () => {
+            this.loadskill();
+        });
+        Fire.$on('loadskills', () => {
+            this.loadskills();
+        });
+        /*Fire.$on('Afterprovider', () => {
+            this.loadprovider();
+        });*/
         Fire.$on('Afterteam', () => {
             this.loadteam();
         });

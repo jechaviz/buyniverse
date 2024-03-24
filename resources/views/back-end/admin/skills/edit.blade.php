@@ -52,7 +52,7 @@
                                             <option value="0">{{ trans('lang.choose_cat') }}</option>
                                             @if ($cats->count() > 0)
                                             @foreach ($cats as $cat)
-                                            <option value="{{$cat->id}}" @if($cat->id == $skills->category[0]->id) selected @endif>{{ $cat->title }}</option>
+                                            <option value="{{$cat->id}}" @if($skills->category->count() > 0 && $cat->id == $skills->category[0]->id) selected @endif>{{ $cat->title }}</option>
                                             @endforeach
                                             @endif
                                         </select>

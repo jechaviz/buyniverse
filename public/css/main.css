@@ -1033,7 +1033,7 @@ li.wt-rss a { background:#ff6600; }
 	display: table;
 	table-layout: fixed;
 }
-.wt-rightarea{float: right;}
+.wt-rightarea{float: right!important;}
 .wt-headerelevenb .wt-rightarea{
 	display: flex;
 	align-items: center;
@@ -11464,3 +11464,8 @@ color:white;
 	  border: 5px #005178 solid!important;
 	  transition:all 400ms ease-out;
 	}
+
+.proposal-attachment {
+	margin-right: 5px;
+    height: 49px;
+}

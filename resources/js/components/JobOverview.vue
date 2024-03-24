@@ -141,6 +141,21 @@
                     </span>
                 </td>
             </tr>
+            <tr>
+              <td class="job-details"><b>{{ trans('lang.skills') }}</b></td>
+              <td class="job-details">
+                  <span>
+                    <span  v-if="xskills">
+                        <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:4;" v-for="skill in xskills" :key="skill.id">{{ skill.title }} <i @click="deleteskill(skill.id)" v-show="isapprover == '1' || permission == 2" class="fa fa-times" aria-hidden="true"></i></span><br>
+                    </span>
+                    <span @click="addskill" v-show="isapprover == '1' || permission == 2" id="addskill"><i class="fa fa-plus"></i></span>
+                    <select class="form-control form-control-sm hidden" v-show="isapprover == '1' || permission == 2" id="addskill-select" name="addskill-select" v-on:change="updateaddskill">
+                            <option selected>{{ trans('lang.select') }} </option>
+                            <option v-for="(item, key) in skills" :key="key" :value="item.id">{{ item.title }}</option>
+                        </select>
+                  </span>
+                </td>
+            </tr>
           <!--<tr>
               <td class="job-details"><b>{{ trans('lang.provider_typex') }}</b></td>
               <td class="job-details">
@@ -543,7 +558,7 @@ export default {
                 $('#addskill-select').addClass('hidden');
                 $('#addskill').removeClass('hidden');
             });
-        
+            Fire.$emit('loadskills');
             Fire.$emit('AfterCreate');
             $('#addcategory-select').addClass('hidden');
         },
@@ -553,6 +568,7 @@ export default {
             let statp =  this.job1.id + '-' + id;
             axios.get(APP_URL + '/api/job_overview/deletecategory/' + statp).then(function (response) {
                 Fire.$emit('AfterCreate');
+                Fire.$emit('loadskills');
             });
         },
         showquiz(id) {
@@ -1129,8 +1145,8 @@ export default {
         this.loadjob();
         //this.loadlang();
         //this.loadlanguage();
-        //this.loadskill();
-        //this.loadskills();
+        this.loadskill();
+        this.loadskills();
         this.loadprojectlevel();
         this.loadprojectduration();
         //this.loadprojectenglish();
@@ -1144,7 +1160,12 @@ export default {
         this.loadcategory();
         this.loadcurrency();
         
-        
+        Fire.$on('Afterskill', () => {
+            this.loadskill();
+        });
+        Fire.$on('loadskills', () => {
+            this.loadskills();
+        });
         Fire.$on('Afterteam', () => {
             this.loadteam();
         });

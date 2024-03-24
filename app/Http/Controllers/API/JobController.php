@@ -630,9 +630,32 @@ class JobController extends Controller
         $languages = Language::pluck('title', 'id');
         return $languages;
     }
-    public function Skill()
+    public function Skill($id)
     {
-        $skills = Skill::pluck('title', 'id');
+        //dd('test');
+        if($id == 'x')
+            $skills = Skill::pluck('title', 'id');
+        else
+        {
+            $job = Job::find($id);
+            $skills = null;
+            $categories = $job->categories;
+            foreach($categories as $key => $cat)
+            {                
+                $skill = $cat->skills;
+                if($skills == null)
+                {   
+                    $skills = $skill;
+                }    
+                else
+                {
+                    $skills = $skills->merge($skill);
+                }
+                
+            }
+            
+        }
+        
         return $skills;
     }
     public function getsubskill($id)
