@@ -209,6 +209,7 @@ Vue.component('jobshow', require('./components/jobshow.vue').default);
 Vue.component('sendinvite', require('./components/sendinvite.vue').default);
 Vue.component('sendinvitation', require('./components/Sendinvitation.vue').default);
 Vue.component('job_provider', require('./components/Job_provider.vue').default);
+Vue.component('provider_search', require('./components/Search_provider.vue').default);
 Vue.component('ijob_provider', require('./components/IJob_provider.vue').default);
 Vue.component('tinymce', tinymce);
 Vue.component('botman-tinker', TinkerComponent);
@@ -225,6 +226,12 @@ const app = new Vue({
     //router
 });
 }
+/*if (document.getElementById("show-provider")) {
+    const app = new Vue({
+        el: '#show-provider',
+        //router
+    });
+}*/
 if (document.getElementById("quiz-home")) {
     const app = new Vue({
         el: '#quiz-home',

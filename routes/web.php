@@ -547,6 +547,8 @@ Route::get('search/get-search-filtersV2', 'PublicController@getFilterOptions');
 
 Route::get('search/location-list', 'PublicController@getLocationList');
 
+Route::get('api/get_provider_search', 'API\JobController@get_provider_search');
+Route::post('api/search_provider_filter', 'API\JobController@search_provider_filter'); 
 //api routes
 Route::group(
     ['prefix' => 'api', 'middleware' => ['role:employer|provider|admin']],
@@ -682,5 +684,7 @@ Route::group(
         Route::get('get_search/{id}', 'API\JobController@get_search');
         Route::get('get_search_invited/{id}', 'API\JobController@get_search_invited');
         Route::post('search_filter/{id}', 'API\JobController@search_filter'); 
+
+        
     }
 ); 

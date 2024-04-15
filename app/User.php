@@ -577,8 +577,15 @@ class User extends Authenticatable
             if (!empty($search_category)) {
                 
                 //$filters['categories'] = $search_category;
-                foreach($search_category as $key => $val)                
-                $cat1[] = $val->category_id;
+                foreach($search_category as $key => $val) 
+                {
+                    //dd($val);
+                    if($val && isset($val->category_id)) 
+                        $cat1[] = $val->category_id;
+                    else
+                        $cat1[] = $val;
+                }               
+                
                 //dd($cat1);
                 $categories = Category::whereIn('id', $cat1)->get();
                 //dd($categories);
@@ -594,7 +601,7 @@ class User extends Authenticatable
                         $user_id[] = $cat->providers[$key]->id;
                     }*/
                 }
-                //dd($user_id);
+                //  dd($user_id);
                 $users->whereIn('id', $user_id);
             }
             if (!empty($search_skills)) {

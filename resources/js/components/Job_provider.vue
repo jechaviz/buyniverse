@@ -24,7 +24,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wt-widget wt-effectiveholder">
+                                    <!--<div class="wt-widget wt-effectiveholder">
                                         <div class="wt-widgettitle">
                                             <h2>{{ trans('lang.skills') }}</h2>
                                         </div>
@@ -40,7 +40,7 @@
                                                 </div>
                                             </fieldset>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="wt-widget wt-effectiveholder">
                                         <div class="wt-widgettitle">
@@ -53,6 +53,23 @@
                                                         <span v-for="(category, index) in categories" :key="index" class="wt-checkbox">
                                                             <input :id="'category-' + index " type="checkbox" name="categories[]" :value="index" v-model="form.category" @change="search_skill">
                                                             <label :for="'category-' + index">{{ category }}</label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="wt-widget wt-effectiveholder">
+                                        <div class="wt-widgettitle">
+                                            <h2>{{ trans('lang.skills') }}</h2>
+                                        </div>
+                                        <div class="wt-widgetcontent">
+                                            <fieldset>                                                
+                                                <div>
+                                                    <div class="wt-checkboxholder wt-verticalscrollbar" style="overflow: auto;">
+                                                        <span v-for="(skill, index) in skills" :key="index" class="wt-checkbox">
+                                                            <input :id="'skill-' + index " type="checkbox" name="skills[]" :value="index" v-model="form.skill" @change="search_skill">
+                                                            <label :for="'skill-' + index">{{ skill }}</label>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -130,7 +147,7 @@
                                                 </div>
                                             
                                             <div class="wt-tag wt-widgettag">
-                                                    <a v-for="(skill, key1) in provider.categories" :key="key1">{{ skill.name }}</a>
+                                                    <a v-for="(skill, key1) in provider.categories" :key="key1" v-if="skill.name">{{ skill.name }}</a>
                                             </div>
                                             <div class="wt-rightarea">
                                                 <sendinvitation :userid="provider.id" :invitation="provider.invitation" :jobid="tjob"></sendinvitation>
@@ -231,6 +248,11 @@ export default {
                 self.categories = response.data.categories;
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
+
+                //search
+                self.form.skill = response.data.skill;
+                self.form.category = response.data.category;
+
                 Fire.$emit('UpdatefUsers');
             })
             .catch(() => {

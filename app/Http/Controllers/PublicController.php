@@ -755,10 +755,32 @@ class PublicController extends Controller
                     }
                 } elseif ($type === 'provider') {
                     //dd('providers', $symbol);
+                    
                     $f_list_meta_title = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_title']) ? $inner_page[0]['f_list_meta_title'] : trans('lang.provider_listing');
                     $f_list_meta_desc = !empty($inner_page) && !empty($inner_page[0]['f_list_meta_desc']) ? $inner_page[0]['f_list_meta_desc'] : trans('lang.provider_meta_desc');
                     $show_f_banner = !empty($inner_page) && !empty($inner_page[0]['show_f_banner']) ? $inner_page[0]['show_f_banner'] : 'true';
                     $f_inner_banner = !empty($inner_page) && !empty($inner_page[0]['f_inner_banner']) ? $inner_page[0]['f_inner_banner'] : null;
+                    return view('front-end.providers.search_provider',
+                    compact(
+                        'type',
+                        'users',
+                        'categories',
+                        'locations',
+                        'languages',
+                        'skills',
+                        'project_length',
+                        'keyword',
+                        'users_total_records',
+                        'save_provider',
+                        'symbol',
+                        'current_date',
+                        'f_list_meta_title',
+                        'f_list_meta_desc',
+                        'show_f_banner',
+                        'f_inner_banner',
+                        'enable_package',
+                        'show_breadcrumbs'
+                    ));
                     if (file_exists(resource_path('views/extend/front-end/providers/index.blade.php'))) {
                         return view(
                             'extend.front-end.providers.index',

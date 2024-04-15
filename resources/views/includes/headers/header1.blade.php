@@ -49,7 +49,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <input id="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                        placeholder="Password" required>
+                                                        placeholder="Password" autocomplete="on" required>
                                                     @if ($errors->has('password'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('password') }}</strong>
