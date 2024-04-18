@@ -536,6 +536,7 @@ class User extends Authenticatable
         $search_languages,
         $search_category
     ) {
+        //dd('i am here');
         $json = array();
         $user_id = array();
         $user_by_role =  User::role($type)->select('id')->get()->pluck('id')->toArray();
@@ -607,14 +608,20 @@ class User extends Authenticatable
             if (!empty($search_skills)) {
                 
                 $filters['skills'] = $search_skills;
+                //dd($search_skills, $filters['skills']);
                 $skills = Skill::whereIn('id', $search_skills)->get();
                 //dd($skills);
                 foreach ($skills as $key => $skill) {
-                    if (!empty($skill->providers[$key]->id)) {
-                        $user_id[] = $skill->providers[$key]->id;
+                    //if($key == 2)
+                    //dd('test',$skill->providers);
+                    if (!empty($skill->providers)) {
+                        foreach($skill->providers as $value)
+                        $user_id[] = $value->id;
                     }
                 }
+                
                 $users->whereIn('id', $user_id);
+                //dd($user_id, $users->get());
             }
             if (!empty($search_hourly_rates)) {
                 $filters['hourly_rate'] = $search_hourly_rates;
@@ -668,6 +675,7 @@ class User extends Authenticatable
             }
             $users = $users->paginate(8)->setPath('');
         }
+        //dd($users,$filters);
         foreach ($filters as $key => $filter) {
             $pagination = $users->appends(
                 array(
@@ -675,6 +683,7 @@ class User extends Authenticatable
                 )
             );
         }
+        //dd($users,$filters);
         $json['users'] = $users;
         return $json;
     }
