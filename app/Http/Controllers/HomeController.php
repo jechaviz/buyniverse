@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //dd('I am here', Schema::hasTable('site_managements'));
         if (Schema::hasTable('site_managements')) {
             $homepage = SiteManagement::getMetaValue('homepage');
             //dd($homepage);
