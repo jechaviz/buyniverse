@@ -173,8 +173,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-        //Srmklive\PayPal\Providers\PayPalServiceProvider::class,
-        //Barryvdh\DomPDF\ServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*for excel import export*/
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
@@ -188,7 +188,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         //Collective\Html\HtmlServiceProvider::class,
         App\Providers\AmentotechServiceProvider::class,
-        //Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
 
         /*
          * Role Permission Service Providers...
