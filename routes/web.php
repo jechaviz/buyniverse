@@ -542,7 +542,7 @@ Route::get('page/get-sections/{id}', 'PageController@getEditPageSections');
 Route::post('get-latest-jobs', 'JobController@getLatestJobs');
 Route::get('get-top-packages/{role}', 'PackageController@getTopPackages');
 
-// Search Component V2
+// Search Component V2 
 Route::get('search/get-search-filtersV2', 'PublicController@getFilterOptions');
 
 Route::get('search/location-list', 'PublicController@getLocationList');

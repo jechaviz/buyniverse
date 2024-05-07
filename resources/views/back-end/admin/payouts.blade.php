@@ -14,7 +14,7 @@
                         @if ($selected_year)
                             <a href="javascript:;" v-on:click="generatePdfPayout('{{$selected_year}}', '{{$selected_month}}')" class="wt-btn"> {{ trans('lang.download') }}</a>
                         @endif
-                        {!! Form::open(['url' => url('admin/payouts'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch', 'id'=>'payout_year_filter']) !!}
+                        <form action="{{ route('adminPayouts') }}" class="wt-formtheme wt-formsearch" method="get" id="payout_year_filter">
                             <span class="wt-select">
                                 <select name="year" @change.prevent='getPayouts' id="payout_year">
                                     <option value="" disabled selected>{{ trans('lang.select_year') }}</option>
@@ -33,7 +33,7 @@
                                     @endforeach
                                 </select>
                             </span>
-                        {!! Form::close() !!}
+                        </form>
                     </div>
                     <div class="wt-dashboardboxcontent wt-categoriescontentholder wt-categoriesholder">
                         @if (file_exists(resource_path('views/extend/back-end/admin/payouts-table.blade.php'))) 

@@ -34,22 +34,6 @@
 				@endif
 			</div>
 			
-			
-			
-			<!--<div class="row" style="margin-top:30px;">
-				{!! Form::open(['url' => url('search-results'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch', 'id' => 'wt-formsearch']) !!}
-				<div class="wt-widgetcontent">
-					<div class="wt-formtheme wt-formsearch">
-						<fieldset>
-							<div class="form-group">
-								<input type="text" name="s" class="form-control" placeholder="{{ trans('lang.ph_search_jobs') }}" value="">
-							</div>
-						</fieldset>
-					</div>
-				</div>
-				<input type="submit" value="Apply Filters" class="wt-btn" style="display: none;">
-				{!! form::close(); !!}
-			</div>-->
 			<div class="row" style="margin-top:30px;">
 				<ul class="nav nav-tabs" style="width: 100%;">
 					<li><a data-toggle="tab" href="#draft">{{ trans('lang.draft')}} </a></li>
