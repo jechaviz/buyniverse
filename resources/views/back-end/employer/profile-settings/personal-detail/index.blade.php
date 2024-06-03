@@ -32,7 +32,9 @@
                             </ul>
                         @endif
                         <div class="wt-personalskillshold lare-employer-profile tab-pane active fade show" id="wt-profile">
-                            {!! Form::open(['url' => url('employer/store-profile-settings'), 'class' =>'wt-userform', 'id' => 'employer_data', '@submit.prevent' => 'submitEmployerProfile']) !!}
+                            
+                            <form action="{{ url('employer/store-profile-settings') }}" class="wt-userform" method="post" id="employer_data" @submit.prevent="submitEmployerProfile">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="wt-yourdetails wt-tabsinfo">
                                     @if (file_exists(resource_path('views/extend/back-end/employer/profile-settings/personal-detail/detail.blade.php')))
                                         @include('extend.back-end.employer.profile-settings.personal-detail.detail')
@@ -73,9 +75,10 @@
                                 <div class="wt-updatall">
                                     <i class="ti-announcement"></i>
                                     <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                    {!! Form::submit(trans('lang.btn_save_update'), ['class' => 'wt-btn', 'id'=>'submit-profile']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.btn_save_update') }}" class="wt-btn" id="submit-profile">
                                 </div>
-                            {!! form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

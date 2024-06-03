@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '', 'class' => 'wt-formtheme wt-skillsform', 'id'=>'social-management', '@submit.prevent'=>'submitSocialSettings']) !!}
+
+<form action="" class="wt-formtheme wt-skillsform" id="social-management" @submit.prevent="submitSocialSettings">
     <fieldset class="social-icons-content">
         @if (!empty($social_unserialize_array))
             @php $counter = 0 @endphp
@@ -17,8 +18,8 @@
                                         <option value="{{{$key}}}" {{{$selected_value}}}>{{{$value['title']}}}</option>
                                     @endforeach
                                 </select>
-                            </span> {!! Form::text('social['.$counter.'][url]', $unserializevalue['url'],
-                            ['class' => 'form-control author_title']) !!}
+                            </span> 
+                            <input type="text" name="social['{{ $counter }}'][url]" value="{{ $unserializevalue['url'] }}" class="form-control  author_title">
                         </div>
                         <div class="form-group wt-rightarea">
                             @if ($unserializeKey == 0 )
@@ -44,8 +45,8 @@
                                 @endforeach
                             </select>
                         </span>
-                        {!! Form::text('social[0][url]', null, ['class' => 'form-control author_title',
-                        'placeholder' => trans('lang.ph_social_url'),'v-model' => 'first_social_url']) !!}
+                        
+                        <input type="text" name="social[0][url]" value="" class="form-control author_title" placeholder="{{ trans('lang.ph_social_url') }}" v-model="first_social_url">
                     </div>
                 </div>
                 <div class="form-group wt-rightarea">
@@ -78,6 +79,6 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
-{!! Form::close() !!}
+</form>

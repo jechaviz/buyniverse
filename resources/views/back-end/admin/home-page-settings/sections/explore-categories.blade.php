@@ -3,7 +3,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][cat_sec_title]', e($cat_sec_title), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][cat_sec_title]" value="{{ $cat_sec_title }}" class="form-control">
             </div>
         </div>
     </div>
@@ -13,7 +14,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][cat_sec_subtitle]', e($cat_sec_subtitle), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][cat_sec_subtitle]" value="{{ $cat_sec_subtitle }}" class="form-control">
             </div>
         </div>
     </div>

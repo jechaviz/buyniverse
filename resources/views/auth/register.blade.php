@@ -136,7 +136,12 @@
                                             @if (!empty($locations))
                                                 <div class="form-group">
                                                     <span class="wt-select">
-                                                        {!! Form::select('locations', $locations, null, array('placeholder' => trans('lang.select_locations'), 'v-bind:class' => '{ "is-invalid": form_step2.is_locations_error }')) !!}
+                                                        
+                                                        <select name="locations" class="{{ $form_step2['is_locations_error'] ? 'is-invalid' : '' }}" placeholder="{{ trans('lang.select_locations') }}">
+                                                            @foreach ($locations as $key => $value)
+                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                            @endforeach
+                                                        </select>
                                                         <span class="help-block" v-if="form_step2.locations_error">
                                                             <strong v-cloak>@{{form_step2.locations_error}}</strong>
                                                         </span>
@@ -304,15 +309,11 @@
                                                     
                                                     <!--<div id="map" class="map"></div>-->
                                                     
-                                                    {!! Form::text( 'longitude', null, ['id'=>"lng-input", 'class' =>'form-control hidden', 'placeholder' => trans('lang.enter_logitude')]) !!}
-                                                    {!! Form::text( 'latitude', null, ['id'=>"lat-input", 'class' =>'form-control hidden', 'placeholder' => trans('lang.enter_latitude')]) !!}
-                                                    <!--<span class="wt-select">
-                                                        {!! Form::select('locations', $locations, null, array('placeholder' => trans('lang.select_locations'), 'v-bind:class' => '{ "is-invalid": form_step2.is_locations_error }')) !!}
-                                                        
-                                                        <span class="help-block" v-if="form_step2.locations_error">
-                                                            <strong v-cloak>@{{form_step2.locations_error}}</strong>
-                                                        </span>
-                                                    </span>-->
+                                                    
+                                                    <input type="text" name="longitude" value="" class="form-control hidden" placeholder="{{ trans('lang.enter_logitude')}}" id="lng-input">
+                                                    
+                                                    <input type="text" name="latitude" value="" class="form-control hidden" placeholder="{{ trans('lang.enter_latitude')}}" id="lat-input">
+                                                    
                                                 </div>
                                             @endif
                                             <div class="form-group form-group-half">

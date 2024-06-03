@@ -3,8 +3,8 @@
         <div class="loader"></div>
     </div>
 </div>
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform la-dashboard-icons', 'id'
-=>'upload_dashboard_icon', '@submit.prevent'=>'uploadDashboardIcons']) !!}
+
+<form action="" class="wt-formtheme wt-userform la-dashboard-icons" id="upload_dashboard_icon" @submit.prevent="uploadDashboardIcons">
 @foreach ($icons as $key => $icon)
     <div class="wt-selectdesignholder wt-tabsinfo">
         <div class="wt-selectdesign la-selectthemecolor">
@@ -38,9 +38,7 @@
 <div class="wt-updatall la-updateall-holder">
     <i class="ti-announcement"></i>
     <span>{{{ trans('lang.save_changes_note') }}}</span>
-    {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+    <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
 </div>
-{{-- <div class="wt-updatall la-updateall-holder">
-    {!! Form::submit(trans('lang.btn_save'), ['class' => 'wt-btn']) !!}
-</div> --}}
-{!! Form::close() !!}
+
+</form>

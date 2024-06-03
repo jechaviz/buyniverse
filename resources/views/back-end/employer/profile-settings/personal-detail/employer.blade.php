@@ -33,9 +33,12 @@
                         @endif
                         
                         <div class="wt-personalskillshold lare-employer-profile tab-pane active fade show" id="wt-profile">
-                            {!! Form::open(['url' => url('employer/store-employer-settings'), 'class' =>'wt-userform', 'id' => 'employer_data']) !!}
+                            
+                            <form action="{{ url('employer/store-employer-settings') }}" class="wt-userform" method="post" id="employer_data">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    {!! Form::text( 'name', $employer->name, ['placeholder' => trans('lang.ph_first_name'), 'class' =>'form-control'.($errors->has('name') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="name" value="{{ $employer->name }}" class="form-control {{( $errors->has('name') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_first_name')}}">
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -43,7 +46,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'taxId', $employer->taxId, ['placeholder' => trans('lang.taxId'), 'class' =>'form-control'.($errors->has('taxId') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="taxId" value="{{ $employer->taxId }}" class="form-control {{( $errors->has('taxId') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.taxId')}}">
                                     @if ($errors->has('taxId'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('taxId') }}</strong>
@@ -51,7 +55,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'taxPayerType', $employer->taxPayerType, ['placeholder' => trans('lang.taxPayerType'), 'class' =>'form-control'.($errors->has('taxPayerType') ? ' is-invalid' : '')] ) !!}
+                                    <input type="text" name="taxPayerType" value="{{ $employer->taxPayerType }}" class="form-control {{( $errors->has('taxPayerType') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.taxPayerType')}}">
                                     @if ($errors->has('taxPayerType'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('taxPayerType') }}</strong>
@@ -59,7 +63,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'privateKey', $employer->privateKey, ['placeholder' => trans('lang.privateKey'), 'class' =>'form-control'.($errors->has('privateKey') ? ' is-invalid' : '')] ) !!}
+                                    <input type="text" name="privateKey" value="{{ $employer->privateKey }}" class="form-control {{( $errors->has('privateKey') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.privateKey')}}">
+                                    
                                     @if ($errors->has('privateKey'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('privateKey') }}</strong>
@@ -67,7 +72,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'publicKey', $employer->publicKey, ['placeholder' => trans('lang.publicKey'), 'class' =>'form-control'.($errors->has('publicKey') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="publicKey" value="{{ $employer->publicKey }}" class="form-control {{( $errors->has('publicKey') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.publicKey')}}">
                                     @if ($errors->has('publicKey'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('publicKey') }}</strong>
@@ -75,7 +81,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'privateKeyPassword', $employer->privateKeyPassword, ['placeholder' => trans('lang.privateKeyPassword'), 'class' =>'form-control'.($errors->has('privateKeyPassword') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="privateKeyPassword" value="{{ $employer->privateKeyPassword }}" class="form-control {{( $errors->has('privateKeyPassword') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.privateKeyPassword')}}">
                                     @if ($errors->has('privateKeyPassword'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('privateKeyPassword') }}</strong>
@@ -83,7 +90,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'licence', $employer->licence, ['placeholder' => trans('lang.licence'), 'class' =>'form-control'.($errors->has('licence') ? ' is-invalid' : '')] ) !!}
+                                    <input type="text" name="licence" value="{{ $employer->licence }}" class="form-control {{( $errors->has('licence') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.licence')}}">
                                     @if ($errors->has('licence'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('licence') }}</strong>
@@ -92,7 +99,13 @@
                                 </div>
                                 <div class="form-group">
                                     <span class="wt-select">
-                                        {!! Form::select('mode', $modes, $employer->mode ,array('class' => '', 'placeholder' => trans('lang.mode'))) !!}
+                                        
+                                        <select name="mode" class="" placeholder="{{ trans('lang.mode') }}">
+                                            @foreach ($modes as $mode)
+                                                <option value="{{ $mode->id }}" @if ($mode->id == $employer->mode) selected @endif>{{ $mode->name }}</option>
+                                            @endforeach
+                                        </select>
+
                                     </span>
                                     @if ($errors->has('mode'))
                                         <span class="invalid-feedback" role="alert">
@@ -103,9 +116,10 @@
                                 <div class="wt-updatall">
                                     <i class="ti-announcement"></i>
                                     <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                    {!! Form::submit(trans('lang.btn_save_update'), ['class' => 'wt-btn', 'id'=>'submit-profile']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.btn_save_update') }}" class="wt-btn" id="submit-profile">
                                 </div>
-                            {!! form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

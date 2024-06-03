@@ -1,5 +1,6 @@
 <div class="la-inner-pages wt-haslayout">
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'project_settings_form', '@submit.prevent'=>'submitProjectSettings'])!!}
+
+<form action="" class="wt-formtheme wt-userform" id="project_settings_form" @submit.prevent="submitProjectSettings">
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.completed_projects') }}}</h2>
@@ -16,7 +17,7 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
-{!! Form::close() !!}
+</form>
 </div>

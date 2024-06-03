@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'general-setting-form', '@submit.prevent'=>'submitGeneralSettings'])!!}
+
+<form action="" class="wt-formtheme wt-userform" id="general-setting-form" @submit.prevent="submitGeneralSettings">
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.site_title') }}}</h2>
@@ -6,7 +7,8 @@
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::text('settings[0][title]', e($title), array('class' => 'form-control', 'placeholder'=>trans('lang.site_title'))) !!}
+                    
+                    <input type="text" name="settings[0][title]" value="{{ $title }}" class="form-control" placeholder="{{ ('lang.site_title') }}">
                 </div>
             </div>
         </div>
@@ -28,7 +30,8 @@
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::number('settings[0][connects_per_job]', e($connects_per_job), array('class' => 'form-control', 'min'=>1, 'placeholder'=>trans('lang.connect_per_job'))) !!}
+                    
+                    <input type="number" name="settings[0][connects_per_job]" value="{{ $connects_per_job }}" class="form-control" placeholder="{{ trans('lang.connect_per_job')}}" min="1">
                 </div>
             </div>
         </div>
@@ -40,7 +43,8 @@
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::text('settings[0][gmap_api_key]', e($gmap_api_key), array('class' => 'form-control', 'placeholder'=>trans('lang.api_key'))) !!}
+                    
+                    <input type="text" name="settings[0][gmap_api_key]" value="{{ $gmap_api_key }}" class="form-control" placeholder="{{ ('lang.api_key') }}">
                 </div>
             </div>
         </div>
@@ -96,7 +100,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('settings[0][price_range]', e($price_range), array('class' => 'form-control', 'placeholder'=>trans('lang.max_price_range'))) !!}
+                
+                <input type="text" name="settings[0][price_range]" value="{{ $price_range }}" class="form-control" placeholder="{{ ('lang.max_price_range') }}">
             </div>
         </div>
     </div>
@@ -178,6 +183,6 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
-{!! Form::close() !!}
+</form>

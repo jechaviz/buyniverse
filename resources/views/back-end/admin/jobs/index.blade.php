@@ -61,9 +61,7 @@
         </div>
         <div class="wt-dashboardboxtitle wt-titlewithsearch">
                         <h2>{{ trans('lang.all_jobs') }}</h2>
-                        {!! Form::open(['url' => url('admin/jobs/search'),
-                            'method' => 'get', 'class' => 'wt-formtheme wt-formsearch'])
-                        !!}
+						<form action="{{ url('admin/jobs/search') }}" class="wt-formtheme wt-formsearch" method="get">
                         <fieldset>
                             <div class="form-group">
                                 <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
@@ -71,7 +69,7 @@
                                 <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                             </div>
                         </fieldset>
-                        {!! Form::close() !!}
+                        </form>
                     </div>
                     <div class="row"  style="margin-left: 10px;padding-bottom: 15px;">
                             <ol class="wt-breadcrumb">
@@ -192,9 +190,7 @@
 							</tr>
                             <b-modal ref="myModalRef-{{ $job->id }}" hide-footer title="Refund" v-cloak>
                                 <div class="d-block text-center">
-                                    {!! Form::open(['url' => '', 'class' =>'wt-formtheme', 'id' => 'submit_refund_'.$job->id,  
-                                        '@submit.prevent'=>'submitRefund("'.$job->id.'")'])
-                                    !!}
+									<form action="" class="wt-formtheme" id="submit_refund_{{ $job->id }}" @submit.prevent="submitRefund({{$job->id}})">
                                         <fieldset>
                                             <div class="form-group">
                                                 <span class="wt-select">
@@ -216,10 +212,10 @@
                                             <input type="hidden" value="{{$job->id}}" id="refundable-job-id-{{$job->id}}">
 
                                             <div class="form-group wt-btnarea">
-                                                {!! Form::submit(trans('lang.refund'), ['class' => 'wt-btn']) !!}
+												<input type="submit" value="{{ trans('lang.refund') }}" class="wt-btn">
                                             </div>
                                         </fieldset>
-                                    {!! form::close(); !!}
+                                    </form>
                                 </div>
                             </b-modal>
 							@endforeach

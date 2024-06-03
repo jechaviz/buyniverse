@@ -29,13 +29,12 @@
                             <h2>{{{ trans('lang.edit_dpt') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([
-                                'url' => url('admin/departments/update-dpts/'.$departments->id.''), 'class' =>'wt-formtheme
-                                wt-formprojectinfo wt-formcategory','id' => 'departments'])
-                            !!}
+                            <form action="{{ url('admin/departments/update-dpts/'.$departments->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="departments">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text('department_title', e($departments['title']), ['class' =>'form-control'.($errors->has('department_title') ? ' is-invalid' : '')]) !!}
+                                        <input type="text" name="department_title" value="{{ $departments['title'] }}" class="form-control {{ ($errors->has('department_title') ? ' is-invalid' : '') }}">
                                         <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                         @if ($errors->has('department_title'))
                                             <span class="invalid-feedback" role="alert">
@@ -44,16 +43,14 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::textarea( 'department_desc', e($departments['description']), ['class' =>'form-control',
-                                            'placeholder' => trans('lang.ph_desc')] )
-                                        !!}
+                                        <textarea id="wt-email_text" name="department_desc" class="form-control" placeholder="{{ trans('lang.ph_desc') }}">{{ $departments['description'] }}</textarea>
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.update_dpt'), ['class' => 'wt-btn']) !!}
+                                        <input type="submit" value="{{ trans('lang.update_dpt') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

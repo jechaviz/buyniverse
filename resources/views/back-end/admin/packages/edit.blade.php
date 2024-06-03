@@ -29,27 +29,31 @@
                             <h2>{{{ trans('lang.edit_package') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open(['url' => url('admin/packages/update/'.$package->slug.''), 'class' =>'wt-formtheme wt-packagesform',
-                            'id' => 'packages'] ) !!}
+                            
+                            <form action="{{ url('admin/packages/update/'.$package->slug.'') }}" class="wt-formtheme wt-packagesform" method="post" id="packages">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'package_title', e($package->title), ['class' =>'form-control'.($errors->has('package_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_pkg_title')]) !!}
-                                        @if ($errors->has('package_title'))
+                                        
+                                        <input type="text" name="package_title" value="{{ $package->title }}" class="form-control {{( $errors->has('package_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_pkg_title')}}">
+                                        @if ($errors->has('package_title'))                                        
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('package_title') }}</strong>
                                             </span>
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::text( 'package_subtitle', e($package->subtitle), ['class' =>'form-control'.($errors->has('package_subtitle') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_pkg_subtitle')]) !!}
+                                        
+                                        <input type="text" name="package_subtitle" value="{{ $package->subtitle }}" class="form-control {{( $errors->has('package_subtitle') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_pkg_subtitle')}}">
                                         @if ($errors->has('package_subtitle'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('package_subtitle') }}</strong>
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="form-group">
-                                        {!! Form::number( 'package_price', e($package->cost), ['class' =>'form-control '.($errors->has('package_price') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_pkg_price')]) !!}
+                                    <div class="form-group">                                        
+                                        <input type="number" name="package_price" value="{{ $package->cost }}" class="form-control {{( $errors->has('package_price') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_pkg_price')}}">
                                         @if ($errors->has('package_price'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('package_price') }}</strong>
@@ -68,7 +72,7 @@
                                                             :name="'uploaded_image'"
                                                             >
                                                         </upload-image>
-                                                        {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                        <input type="hidden" name="uploaded_image" id="hidden_img" value="">
                                                     </div>
                                                     <div class="form-group" v-else>
                                                         <ul class="wt-attachfile">
@@ -93,14 +97,15 @@
                                                         :name="'uploaded_image'"
                                                         >
                                                     </upload-image>
-                                                    {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                    <input type="hidden" name="uploaded_image" id="hidden_img" value="">
                                                 </div>
                                             @endif
                                         </div>
                                     </div>
                                     @if ($package->role_id == 2)
                                         <div class="form-group">
-                                            {!! Form::text('employer[jobs]', e($options['jobs']), array('class' => 'form-control', 'placeholder' => trans('lang.no_of_jobs'))) !!}
+                                            
+                                            <input type="text" name="employer[jobs]" value="{{ $options['jobs'] }}" class="form-control" placeholder="{{ trans('lang.no_of_jobs') }}">
                                             @if ($errors->has('employer[jobs]'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('employer[jobs]') }}</strong>
@@ -108,7 +113,8 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::text('employer[featured_jobs]', e($options['featured_jobs']), array('class' => 'form-control', 'placeholder' => trans('lang.no_of_featuredjobs'))) !!}
+                                            
+                                            <input type="text" name="employer[featured_jobs]" value="{{ $options['featured_jobs'] }}" class="form-control" placeholder="{{ trans('lang.no_of_featuredjobs') }}">
                                             @if ($errors->has('employer[featured_jobs]'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('employer[featured_jobs]') }}</strong>
@@ -157,18 +163,20 @@
                                         @endif --}}
                                     @elseif ($package->role_id == 3)
                                         <div class="form-group">
-                                            {!! Form::number('provider[no_of_connects]', e($options['no_of_connects']), array('class' => 'form-control', 'placeholder'
-                                            => trans('lang.no_of_connects'))) !!}
+                                            
+                                            <input type="number" name="provider[no_of_connects]" value="{{ $options['no_of_connects'] }}" class="form-control" placeholder="{{ trans('lang.no_of_connects')}}">
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::number('provider[no_of_skills]', e($options['no_of_skills']), array('class' => 'form-control', 'placeholder'
-                                            => trans('lang.no_of_skills'))) !!}
+                                            
+                                            <input type="number" name="provider[no_of_skills]" value="{{ $options['no_of_skills'] }}" class="form-control" placeholder="{{ trans('lang.no_of_skills')}}">
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::number( 'provider[no_of_services]', e($no_of_services), ['class' =>'form-control ', 'placeholder' => trans('lang.provider_pkg_opt.no_of_services')] ) !!}
+                                            
+                                            <input type="number" name="provider[no_of_services]" value="{{ $no_of_services }}" class="form-control" placeholder="{{ trans('lang.provider_pkg_opt.no_of_services')}}">
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::number( 'provider[no_of_featured_services]', e($no_of_featured_services), ['class' =>'form-control ', 'placeholder' => trans('lang.provider_pkg_opt.no_of_featured_services')] ) !!}
+                                            
+                                            <input type="number" name="provider[no_of_featured_services]" value="{{ $no_of_featured_services }}" class="form-control" placeholder="{{ trans('lang.provider_pkg_opt.no_of_featured_services')}}">
                                         </div>
                                         <div class="form-group">
                                             <span class="wt-select">
@@ -183,7 +191,12 @@
                                         @if ($package->trial != 1)
                                             <div class="form-group">
                                                 <span class="wt-select">
-                                                    {!! Form::select('provider[badge]', $badges, $package->badge_id, array('placeholder' => trans('lang.select_badge'))) !!}
+                                                    
+                                                    <select name="provider[badge]" placeholder="{{ trans('lang.select_badge') }}">
+                                                        @foreach ($badges as $key => $value)
+                                                            <option value="{{ $key }}" {{ $package->badge_id == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </span>
                                             </div>
                                         @endif
@@ -206,10 +219,11 @@
                                     @endif
                                     <input type="hidden" value="{{{$package->role_id}}}" name="roles">
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.update_package'), ['class' => 'wt-btn']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.update_package') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

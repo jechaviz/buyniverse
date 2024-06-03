@@ -118,14 +118,16 @@
                             <div class="wt-title">
                                 <h2>{{{ trans('lang.proposal_amount') }}}</h2>
                             </div>
-                            {!! Form::open(['url' => url('proposal/update-proposal'), 'class' =>'wt-haslayout', 'id' => 'send-propsal',  '@submit.prevent'=>'submitJobProposal('.$job->id.', '.Auth::user()->id.')']) !!}
+                            
+                            <form action="{{ url('adminproposal/update-proposal') }}" class="wt-haslayout" method="post" id="send-propsal" @submit.prevent="submitJobProposal({{ $job->id }}, {{ Auth::user()->id }})">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="id" value="{{$job->id}}">
                                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                 <div class="wt-proposalamount accordion">
                                     <div class="form-group">
                                         <span>( <i>{{ Helper::getCurrencySymbol($job->currency) }}</i> )</span>
                                         
-                                        {!! Form::input('number', 'amount', $submitted_proposals_count->amount, ['class' => 'form-control', 'min' => 1, 'placeholder' => trans('lang.ph_proposal_amount'), 'v-model'=>'proposal.amount', 'v-on:keyup' => "calculate_amount('$commision')" ])!!}
+                                        <input class="form-control" min="1" placeholder="{{ trans('lang.ph_proposal_amount') }}" v-model="proposal.amount" v-on:keyup="calculate_amount('{{ $commision }}')" name="amount" type="number" value="{{ $submitted_proposals_count->amount }}">
                                         <!--<input min="1" placeholder="Enter Your Proposal Amount:" name="amount" type="number"  value="{{$submitted_proposals_count->amount}}" class="form-control">-->
 
                                         <a href="javascript:void(0);" class="collapsed" id="headingOne" data-toggle="collapse"
@@ -155,11 +157,17 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                {!! Form::select('completion_time', $job_completion_time, $submitted_proposals_count->completion_time, array('v-model'=>'proposal.completion_time', 'placeholder' => trans('lang.ph_job_completion_time') )) !!}
+                                                
+                                                <select name="completion_time" v-model="proposal.completion_time" placeholder="{{ trans('lang.ph_job_completion_time') }}">
+                                                    @foreach ($job_completion_time as $time)
+                                                        <option value="{{ $time->id }}" @if ($time->id == $submitted_proposals_count->completion_time) selected @endif>{{ $time->name }}</option>
+                                                    @endforeach
+                                                </select>
+
                                             </span>
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::textarea('description', $submitted_proposals_count->content, ['class' => 'form-control', 'id' => '', 'placeholder' =>  trans('lang.ph_cover_letter') , 'v-model'=>'proposal.description']) !!}
+                                            <textarea id="" name="description" class="form-control" placeholder="{{ trans('lang.ph_cover_letter'])') }}" v-model="proposal.description">{{ $submitted_proposals_count->content }}</textarea>
                                         </div>
                                     </fieldset>
                                     <div id="answer-home" class="wt-description">
@@ -180,10 +188,11 @@
                                         </div>
                                     </div>-->
                                     <div class="wt-btnarea">
-                                        {!! Form::submit(trans('lang.btn_send'), ['class' => 'wt-btn']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.btn_send') }}" class="wt-btn">
                                     </div>
                                 </div>
-                            {!! form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

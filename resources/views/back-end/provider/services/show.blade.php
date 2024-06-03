@@ -75,7 +75,13 @@
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <span class="wt-select" style="margin-top: 10px;margin-right: 10px;">
-                                                            {!! Form::select('status', $service_status, 'hired', array('id' =>'employer_service_status', 'data-placeholder' => trans('lang.select_status'), '@change' => 'serviceStatus('.$service->id.', '.$pivot_id.', '.Auth::user()->id.', "'.$cancel_proposal_text.'", "'.$cancel_proposal_button.'", "'.$validation_error_text.'", "'.$cancel_popup_title.'")')) !!}
+                                                            
+                                                            <select id="employer_service_status" name="status" data-placeholder="{{ trans('lang.select_status') }}" onchange="serviceStatus({{ $service->id }}, {{ $pivot_id }}, {{ Auth::user()->id }}, '{{ $cancel_proposal_text }}', '{{ $cancel_proposal_button }}', '{{ $validation_error_text }}', '{{ $cancel_popup_title }}')">
+                                                                @foreach ($service_status as $status)
+                                                                    <option value="{{ $status->id }}" @if ($status->id == 'hired') selected @endif>{{ $status->name }}</option>
+                                                                @endforeach
+                                                            </select>
+
                                                         </span>
                                                         <a href="javascrip:void(0);" class="wt-searchgbtn job_status_popup" @click.prevent='serviceStatus({{$service->id}}, {{$pivot_id}}, {{Auth::user()->id}}, "{{$cancel_proposal_text}}", "{{$cancel_proposal_button}}", "{{$validation_error_text}}", "{{$cancel_popup_title}}")'  style="margin-top: 10px;margin-right: 10px;"><i class="fa fa-check"></i></a>
                                                     </div>
@@ -131,7 +137,7 @@
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <span class="wt-select">
-                                                            {!! Form::select('status', $service_status, 'hired', array('id' =>'employer_service_status', 'data-placeholder' => trans('lang.select_status'), '@change' => 'serviceStatus('.$service->id.', '.$id.', '.Auth::user()->id.', "'.$cancel_proposal_text.'", "'.$cancel_proposal_button.'", "'.$validation_error_text.'", "'.$cancel_popup_title.'")')) !!}
+                                                            
                                                         </span>
                                                         <a href="javascrip:void(0);" class="wt-searchgbtn job_status_popup" @click.prevent='serviceStatus({{$service->id}}, {{$id}}, {{Auth::user()->id}}, "{{$cancel_proposal_text}}", "{{$cancel_proposal_button}}", "{{$validation_error_text}}", "{{$cancel_popup_title}}")'><i class="fa fa-check"></i></a>
                                                     </div>

@@ -24,13 +24,12 @@
                             <h2>{{{ trans('lang.add_dpt') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([
-                                'url' => url('admin/store-department'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory',
-                                'id' => 'dpts'])
-                            !!}
+                            <form action="{{ url('admin/store-department') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="dpts">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'department_title', null, ['class' =>'form-control'.($errors->has('department_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_dpt_title')] ) !!}
+                                        <input type="text" name="department_title" value="" class="form-control {{( $errors->has('department_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_dpt_title')}}">
                                         <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                         @if ($errors->has('department_title'))
                                             <span class="invalid-feedback" role="alert">
@@ -39,14 +38,14 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::textarea( 'department_desc', null, ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc')] ) !!}
+                                        <textarea name="department_desc" class="form-control" placeholder="{{ trans('lang.ph_desc') }}"></textarea>
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.add_dpt'), ['class' => 'wt-btn']) !!}
+                                        <input type="submit" value="{{ trans('lang.add_dpt') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -54,9 +53,7 @@
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle wt-titlewithsearch">
                             <h2>{{{ trans('lang.dpts') }}}</h2>
-                            {!! Form::open(['url' => url('admin/departments/search'),
-                                'method' => 'get', 'class' => 'wt-formtheme wt-formsearch'])
-                            !!}
+                            <form action="{{ url('admin/departments/search') }}" class="wt-formtheme wt-formsearch" method="get">
                                 <fieldset>
                                     <div class="form-group">
                                         <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
@@ -64,7 +61,7 @@
                                         <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                     </div>
                                 </fieldset>
-                            {!! Form::close() !!}
+                            </form>
                             <a href="javascript:void(0);" v-if="this.is_show" @click="deleteChecked('{{ trans('lang.ph_delete_confirm_title') }}', '{{ trans('lang.ph_dpt_delete_message') }}')" class="wt-skilldel">
                                 <i class="lnr lnr-trash"></i>
                                 <span>{{ trans('lang.del_select_rec') }}</span>

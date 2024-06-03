@@ -37,7 +37,9 @@
                                 </ul>
                             @endif
                             <div class="wt-awardsholder" id="wt-awards">
-                                {!! Form::open(['url' => url('provider/store-project-award-settings'), 'class' =>'wt-formtheme wt-userform wt-formprojectinfo', 'id' => 'awards_projects', '@submit.prevent' => 'submitAwardsProjects']) !!}
+                                
+                                <form action="{{ url('provider/store-project-award-settings') }}" class="wt-formtheme wt-formprojectinfo wt-userform" method="post" id="awards_projects" @submit.prevent="submitAwardsProjects">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="wt-addprojectsholder wt-tabsinfo">
                                         @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/projects-awards/projects.blade.php'))) 
                                             @include('extend.back-end.provider.profile-settings.projects-awards.projects')
@@ -55,9 +57,10 @@
                                     <div class="wt-updatall">
                                         <i class="ti-announcement"></i>
                                         <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                        {!! Form::submit(trans('lang.btn_save_update'), ['class' => 'wt-btn', 'id'=>'submit-profile']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.btn_save_update') }}" class="wt-btn" id="submit-profile">
                                     </div>
-                                {!! form::close(); !!}
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -32,9 +32,12 @@
                             </ul>
                         @endif
                         <div class="wt-personalskillshold lare-employer-profile tab-pane active fade show" id="wt-profile">
-                            {!! Form::open(['url' => url('employer/store-contact-settings'), 'class' =>'wt-userform', 'id' => 'employer_data', '@submit.prevent' => 'submitEmployerProfile']) !!}
+                            
+                            <form action="{{ url('employer/store-contact-settings') }}" class="wt-userform" method="post" id="employer_data" @submit.prevent="submitEmployerProfile">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    {!! Form::text( 'name', $contact->name, ['placeholder' => trans('lang.ph_first_name'), 'class' =>'form-control'.($errors->has('name') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="name" value="{{ $contact->name }}" class="form-control {{( $errors->has('name') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_first_name')}}">
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -42,7 +45,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'position', $contact->position, ['placeholder' => trans('lang.position'), 'class' =>'form-control'.($errors->has('position') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="position" value="{{ $contact->position }}" class="form-control {{( $errors->has('position') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.position')}}">
                                     @if ($errors->has('position'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('position') }}</strong>
@@ -50,7 +54,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'department', $contact->department, ['placeholder' => trans('lang.department'), 'class' =>'form-control'.($errors->has('department') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="department" value="{{ $contact->department }}" class="form-control {{( $errors->has('department') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.department')}}">
                                     @if ($errors->has('department'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('department') }}</strong>
@@ -58,7 +63,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'skype', $contact->skype, ['placeholder' => trans('lang.skype'), 'class' =>'form-control'.($errors->has('skype') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="skype" value="{{ $contact->skype }}" class="form-control {{( $errors->has('skype') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.skype')}}">
                                     @if ($errors->has('skype'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('skype') }}</strong>
@@ -66,7 +72,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'facebook', $contact->facebook, ['placeholder' => trans('lang.facebook'), 'class' =>'form-control'.($errors->has('facebook') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="facebook" value="{{ $contact->facebook }}" class="form-control {{( $errors->has('facebook') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.facebook')}}">
                                     @if ($errors->has('facebook'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('facebook') }}</strong>
@@ -74,7 +81,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'twitter', $contact->twitter, ['placeholder' => trans('lang.twitter'), 'class' =>'form-control'.($errors->has('twitter') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="twitter" value="{{ $contact->twitter }}" class="form-control {{( $errors->has('twitter') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.twitter')}}">
                                     @if ($errors->has('twitter'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('twitter') }}</strong>
@@ -82,7 +90,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'personalWebSite', $contact->personalWebSite, ['placeholder' => trans('lang.personalWebSite'), 'class' =>'form-control'.($errors->has('personalWebSite') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="personalWebSite" value="{{ $contact->personalWebSite }}" class="form-control {{( $errors->has('personalWebSite') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.personalWebSite')}}">
                                     @if ($errors->has('personalWebSite'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('personalWebSite') }}</strong>
@@ -92,9 +101,10 @@
                                 <div class="wt-updatall">
                                     <i class="ti-announcement"></i>
                                     <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                    {!! Form::submit(trans('lang.btn_save_update'), ['class' => 'wt-btn', 'id'=>'submit-profile']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.btn_save_update') }}" class="wt-btn" id="submit-profile">
                                 </div>
-                            {!! form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

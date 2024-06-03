@@ -33,7 +33,8 @@
                             </ul>
                         @endif
                         <div class="wt-personalskillshold tab-pane active show">
-                            {!! Form::open(['url' => '', 'class' =>'wt-userform', 'id' => 'admin_data', '@submit.prevent' => 'submitAdminProfile']) !!}
+                            
+                            <form action="" class="wt-userform" id="admin_data" @submit.prevent="submitAdminProfile">
                                 <div class="wt-yourdetails wt-tabsinfo">
                                     <div class="wt-tabscontenttitle">
                                         <h2>{{{ trans('lang.your_details') }}}</h2>
@@ -41,16 +42,19 @@
                                     <div class="lara-detail-form">
                                         <fieldset>
                                             <div class="form-group form-group-half">
-                                                {!! Form::text( 'first_name', e(Auth::user()->first_name), ['class' =>'form-control', 'placeholder' => trans('lang.ph_first_name')]) !!}
+                                                
+                                                <input type="text" name="first_name" value="{{ Auth::user()->first_name }}" class="form-control" placeholder="{{ trans('lang.ph_first_name')}}">
                                             </div>
                                             <div class="form-group form-group-half">
-                                                {!! Form::text( 'last_name', e(Auth::user()->last_name), ['class' =>'form-control', 'placeholder' => trans('lang.ph_last_name')]) !!}
+                                                
+                                                <input type="text" name="last_name" value="{{ Auth::user()->last_name }}" class="form-control" placeholder="{{ trans('lang.ph_last_name')}}">
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::text( 'nickname', e(Auth::user()->nickname), ['class' =>'form-control', 'placeholder' => trans('lang.nickname')]) !!}
+                                                
+                                                <input type="text" name="nickname" value="{{ Auth::user()->nickname }}" class="form-control" placeholder="{{ trans('lang.nickname')}}">
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::email('email', e(Auth::user()->email), array('class' => 'form-control', 'placeholder' => trans('lang.ph_email'))) !!}
+                                                <input type="email" name="email" value="{{ Auth::user()->email }}" class="form-control" placeholder="{{ trans('lang.ph_email')}}">
                                             </div>
                                         </fieldset>
                                     </div>
@@ -71,10 +75,11 @@
                                 </div>
                                 <div class="wt-updatall la-updateall-holder">
                                     <i class="ti-announcement"></i>
-                                    <span>{{{ trans('lang.save_changes_note') }}}</span> {!! Form::submit(trans('lang.btn_save_update'),
-                                    ['class' => 'wt-btn', 'id'=>'submit-profile']) !!}
+                                    <span>{{{ trans('lang.save_changes_note') }}}</span> 
+                                    
+                                    <input type="submit" value="{{ trans('lang.btn_save_update') }}" class="wt-btn" id="submit-profile">
                                 </div>
-                            {!! form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

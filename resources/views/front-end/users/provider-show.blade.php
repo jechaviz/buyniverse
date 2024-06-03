@@ -484,21 +484,7 @@
                                     <h2>{{ trans('lang.report_user') }}</h2>
                                 </div>
                                 <div class="wt-widgetcontent">
-                                    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-formreport', 'id' => 'submit-report',  '@submit.prevent'=>'submitReport("'.$profile->user_id.'","provider-report")']) !!}
-                                        <fieldset>
-                                            <div class="form-group">
-                                                <span class="wt-select">
-                                                    {!! Form::select('reason', \Illuminate\Support\Arr::pluck($reasons, 'title'), null ,array('class' => '', 'placeholder' => trans('lang.select_reason'), 'v-model' => 'report.reason')) !!}
-                                                </span>
-                                            </div>
-                                            <div class="form-group">
-                                                {!! Form::textarea( 'description', null, ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc'), 'v-model' => 'report.description'] ) !!}
-                                            </div>
-                                            <div class="form-group wt-btnarea">
-                                                {!! Form::submit(trans('lang.btn_submit'), ['class' => 'wt-btn']) !!}
-                                            </div>
-                                        </fieldset>
-                                    {!! form::close(); !!}
+                                    
                                 </div>
                             </div>-->
                         </aside>
@@ -508,7 +494,8 @@
         </div>
 		<b-modal ref="myModalRef" hide-footer title="Project Status">
             <div class="d-block text-center">
-                {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'send-offer-form', '@submit.prevent'=>'submitProjectOffer("'.$profile->user_id.'")'])!!}
+                
+                <form action="" class="wt-formtheme wt-userform" method="post" id="send-offer-form" @submit.prevent="submitProjectOffer({{ $profile->user_id }})">
                     <div class="wt-projectdropdown-hold">
                         <div class="wt-projectdropdown">
                             <span class="wt-select">
@@ -522,11 +509,12 @@
                                 {{{ Form::textarea('desc', null, array('placeholder' => trans('lang.ph_add_desc'))) }}}
                             </div>
                             <div class="form-group wt-btnarea">
-                                {!! Form::submit(trans('lang.btn_send_offer'), ['class' => 'wt-btn']) !!}
+                                
+                                <input type="submit" value="{{ trans('lang.btn_send_offer') }}" class="wt-btn">
                             </div>
                         </fieldset>
                     </div>
-                {!! Form::close() !!}
+                </form>
             </div>
         </b-modal>
     </div>

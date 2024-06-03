@@ -13,7 +13,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('home[0][banner_title]', e($banner_title), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="home[0][banner_title]" value="{{ $banner_title }}" class="form-control">
             </div>
         </div>
         
@@ -24,7 +25,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('home[0][banner_subtitle]', e($banner_subtitle), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="home[0][banner_subtitle]" value="{{ $banner_subtitle }}" class="form-control">
             </div>
         </div>
     </div>
@@ -34,7 +36,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::textarea('home[0][banner_description]', e($banner_description), array('class' => 'form-control')) !!}
+                
+                <textarea name="home[0][banner_description]" class="form-control">{{ $banner_description }}</textarea>
             </div>
         </div>
     </div>
@@ -45,7 +48,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('home[0][video_link]', e($banner_video_link), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="home[0][video_link]" value="{{ $banner_video_link }}" class="form-control">
             </div>
         </div>
     </div>
@@ -55,7 +59,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('home[0][video_title]', e($banner_video_title), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="home[0][video_title]" value="{{ $banner_video_title }}" class="form-control">
             </div>
         </div>
     </div>
@@ -65,7 +70,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('home[0][video_desc]', e($banner_video_desc), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="home[0][video_desc]" value="{{ $banner_video_desc }}" class="form-control">
             </div>
         </div>
     </div>

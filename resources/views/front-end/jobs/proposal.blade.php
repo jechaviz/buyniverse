@@ -117,11 +117,13 @@
                             <div class="wt-title">
                                 <h2>{{{ trans('lang.proposal_amount') }}}</h2>
                             </div>
-                            {!! Form::open(['url' => url('proposal/submit-proposal'), 'class' =>'wt-haslayout', 'id' => 'send-propsal',  '@submit.prevent'=>'submitJobProposal('.$job->id.', '.Auth::user()->id.')']) !!}
+                            
+                            <form action="{{ url('proposal/submit-proposal') }}" class="wt-haslayout" method="post" id="send-propsal" @submit.prevent="submitJobProposal({{ $job->id }}, {{ Auth::user()->id }})">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="wt-proposalamount accordion">
                                     <div class="form-group">
                                         <span>( <i>{{ Helper::getCurrencySymbol($job->currency) }}</i> )</span>
-                                        {!! Form::input('number', 'amount', null, ['class' => 'form-control', 'min' => 1, 'placeholder' => trans('lang.ph_proposal_amount'), 'v-model'=>'proposal.amount', 'v-on:keyup' => "calculate_amount('$commision')" ])!!}
+                                        <input class="form-control" min="1" placeholder="{{ trans('lang.ph_proposal_amount') }}" v-model="proposal.amount" v-on:keyup="calculate_amount('{{ $commision }}')" name="amount" type="number">
                                         <a href="javascript:void(0);" class="collapsed" id="headingOne" data-toggle="collapse"
                                             data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             <i class="lnr lnr-chevron-up"></i>
@@ -149,11 +151,18 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                {!! Form::select('completion_time', $job_completion_time, null, array('v-model'=>'proposal.completion_time', 'placeholder' => trans('lang.ph_job_completion_time') )) !!}
+                                                
+                                                <select name="completion_time" v-model="proposal.completion_time" placeholder="{{ trans('lang.ph_job_completion_time') }}">
+                                                    @foreach ($job_completion_time as $time)
+                                                        <option value="{{ $time->id }}">{{ $time->name }}</option>
+                                                    @endforeach
+                                                </select>
+
                                             </span>
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::textarea('description', null, ['class' => 'form-control', 'id' => '', 'placeholder' =>  trans('lang.ph_cover_letter') , 'v-model'=>'proposal.description']) !!}
+                                            
+                                            <textarea v-model="proposal.description" name="description" class="form-control" placeholder="{{ trans('lang.ph_cover_letter'])') }}"></textarea>
                                         </div>
                                     </fieldset>
                                     <div class="wt-attachments wt-attachmentsvtwo wt-attachmentsholder lara-proposal-attachment">
@@ -169,14 +178,15 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::textarea('fdescription', null, ['class' => 'form-control', 'id' => '', 'placeholder' =>  trans('lang.description') , 'v-model'=>'proposal.fdescription']) !!}
+                                            <textarea id="" name="fdescription" class="form-control" placeholder="{{ trans('lang.description'])') }}" v-model="proposal.fdescription"></textarea>
                                         </div>
                                     </div>
                                     <div class="wt-btnarea">
-                                        {!! Form::submit(trans('lang.btn_send'), ['class' => 'wt-btn']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.btn_send') }}" class="wt-btn">
                                     </div>
                                 </div>
-                            {!! form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

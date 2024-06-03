@@ -24,15 +24,13 @@
                             <h2>{{{ trans('lang.add_skill') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([
-                                'url' => url('admin/sub-skills'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory',
-                                'id' => 'skills'
-                                ])
-                            !!}
+                            
+                            <form action="{{ url('admin/sub-skills') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="skills">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'skill_title', null, ['class' =>'form-control'.($errors->has('skill_title') ? ' is-invalid' : ''),
-                                    'placeholder' => trans('lang.ph_skill_title')] ) !!}
+                                    
+                                    <input type="text" name="skill_title" value="" class="form-control {{( $errors->has('skill_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_skill_title')}}">
                                     <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                     @if ($errors->has('skill_title'))
                                         <span class="invalid-feedback" role="alert">
@@ -43,10 +41,11 @@
                                 <input type="hidden" name="skill_id" value="{{ $id }}">
                                 
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_skill'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.add_skill') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -29,12 +29,12 @@
                             <h2>{{{ trans('lang.edit_badge') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent la-editbadge">
-                            {!! Form::open(['url' => url('admin/badges/update-badges/'.$badges->id.''),
-                                'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id' => 'badges'] )
-                            !!}
+                            <form action="{{ url('admin/badges/update-badges/'.$badges->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="badges">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'badge_title', e($badges['title']), ['class' =>'form-control'] ) !!}
+                                        <input type="text" name="badge_title" class="form-control" value="{{ $badges['title'] }}">
                                     </div>
                                     <div class="wt-settingscontent">
                                         @if (!empty($badges['image']))
@@ -48,7 +48,7 @@
                                                         :name="'uploaded_image'"
                                                         >
                                                     </upload-image>
-                                                    {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                    <input type="hidden" name="uploaded_image" id="hidden_img">
                                                 </div>
                                                 <div class="form-group" v-else>
                                                     <ul class="wt-attachfile">
@@ -73,7 +73,7 @@
                                                     :name="'uploaded_image'"
                                                     >
                                                 </upload-image>
-                                                {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                <input type="hidden" name="uploaded_image" id="hidden_img">
                                             </div>
 
                                         @endif
@@ -83,10 +83,10 @@
                                         <input type="hidden" name="color" :value="color">
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.update_cat'), ['class' => 'wt-btn']) !!}
+                                        <input type="submit" value="{{ trans('lang.update_cat') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

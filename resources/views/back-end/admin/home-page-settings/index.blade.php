@@ -19,7 +19,8 @@
                     </div>
                     <div class="wt-tabscontent tab-content">
                         <div class="wt-securityhold tab-pane active la-banner-settings" id="wt-banner">
-                            {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'home-settings-form', '@submit.prevent'=>'submitHomeSettings'])!!}
+                            <form action="" class="wt-formtheme wt-userform" id="home-settings-form" @submit.prevent="submitHomeSettings">
+                            
                                 @if (file_exists(resource_path('views/extend/back-end/admin/home-page-settings/banner-settings/index.blade.php')))
                                     @include('extend.back-end.admin.home-page-settings.banner-settings.index')
                                 @else
@@ -28,15 +29,14 @@
                                 <div class="wt-updatall la-updateall-holder">
                                     <i class="ti-announcement"></i>
                                     <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                    {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+                                    <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">                                    
                                 </div>
-                                {{-- <div class="wt-updatall la-btn-setting">
-                                    {!! Form::submit(trans('lang.btn_save'), ['class' => 'wt-btn']) !!}
-                                </div> --}}
-                            {!! Form::close() !!}
+                                
+                            </form>
                         </div>
                         <div class="wt-securityhold tab-pane la-section-settings" id="wt-sections">
-                            {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'section-settings-form', '@submit.prevent'=>'submitSectionSettings'])!!}
+                            <form action="" class="wt-formtheme wt-userform" id="section-settings-form" @submit.prevent="submitSectionSettings">
+                            
                                 @if (file_exists(resource_path('views/extend/back-end/admin/home-page-settings/sections/index.blade.php')))
                                     @include('extend.back-end.admin.home-page-settings.sections.index')
                                 @else
@@ -45,9 +45,9 @@
                                 <div class="wt-updatall la-updateall-holder">
                                     <i class="ti-announcement"></i>
                                     <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                    {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+                                    <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
                                 </div>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div class="wt-securityhold tab-pane la-section-settings" id="wt-services-sections">
                             @if (file_exists(resource_path('views/extend/back-end/admin/home-page-settings/services-section.blade.php')))

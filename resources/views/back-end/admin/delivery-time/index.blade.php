@@ -24,10 +24,11 @@
                             <h2>{{{ trans('lang.add_delivery_time') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => 'admin/store-delivery-time', 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id' => 'delivery_time']) !!}
+                            <form action="{{ url('admin/store-delivery-time') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="delivery_time">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'delivery_time_title', null, ['class' =>'form-control'.($errors->has('delivery_time_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_delivery_time_title')]) !!}
+                                    <input type="text" name="delivery_time_title" value="" class="form-control {{($errors->has('delivery_time_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_delivery_time_title') }}">
                                     @if ($errors->has('delivery_time_title'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('delivery_time_title') }}</strong>
@@ -35,10 +36,10 @@
                                     @endif
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_delivery_time'), ['class' => 'wt-btn']) !!}
+                                    <input type="submit" value="{{ trans('lang.add_delivery_time') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

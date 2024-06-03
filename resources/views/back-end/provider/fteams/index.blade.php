@@ -24,15 +24,13 @@
                             <h2>{{{ trans('lang.add_team') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([
-                                'url' => url('provider/teams'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory',
-                                'id' => 'teams'
-                                ])
-                            !!}
+                            
+                            <form action="{{ url('provider/teams') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="teams">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'name', null, ['class' =>'form-control'.($errors->has('name') ? ' is-invalid' : ''),
-                                    'placeholder' => trans('lang.name')] ) !!}
+                                    
+                                    <input type="text" name="name" value="" class="form-control {{( $errors->has('name') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.name')}}">
                                     
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -41,8 +39,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'email', null, ['class' =>'form-control'.($errors->has('email') ? ' is-invalid' : ''),
-                                    'placeholder' => trans('lang.email')] ) !!}
+                                    
+                                    <input type="text" name="email" value="" class="form-control {{( $errors->has('email') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.email')}}">
                                     
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -51,8 +49,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'role', null, ['class' =>'form-control'.($errors->has('role') ? ' is-invalid' : ''),
-                                    'placeholder' => trans('lang.role')] ) !!}
+                                    
+                                    <input type="text" name="role" value="" class="form-control {{( $errors->has('role') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.role')}}">
                                     
                                     @if ($errors->has('role'))
                                         <span class="invalid-feedback" role="alert">
@@ -63,10 +61,11 @@
                                 
                                 
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_team'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.add_team') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

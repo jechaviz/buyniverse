@@ -25,9 +25,7 @@
                 <div class="wt-dashboardbox">
                     <div class="wt-dashboardboxtitle wt-titlewithsearch">
                         <h2>{{{ trans('lang.email_templates') }}}</h2>
-                        {!! Form::open(['url' => url('admin/email-templates'),
-                            'method' => 'get', 'class' => 'wt-formtheme wt-formsearch'])
-                        !!}
+                        <form action="{{ url('admin/email-templates') }}" class="wt-formtheme wt-formsearch" method="get">                        
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
@@ -35,14 +33,18 @@
                                     <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                 </div>
                             </fieldset>
-                        {!! Form::close() !!}
-                        {!! Form::open(['url' => url('admin/email-templates/filter-templates'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch la-mailfilter', 'id'=>'template_filter_form']) !!}
+                        </form>
+                        <form action="{{ url('admin/email-templates/filter-templates') }}" class="wt-formtheme wt-formsearch la-mailfilter" method="get" id="template_filter_form">
                             <div class="form-group">
                                 <span class="wt-select">
-                                    {!! Form::select('role', array_map('strtoupper', $roles) ,$selected_role, array('placeholder' => trans('lang.filter_by_roles'), '@change'=>'submitTemplateFilter')) !!}
+                                    <select name="role" data-placeholder="{{trans('lang.filter_by_roles')}}" onchange="submitTemplateFilter()">
+                                        @foreach($roles as $role)
+                                        <option value="{{ $role->id }}" @if($role->id == $selected_role) selected="selected" @endif>{{ strtoupper($role->name) }}</option>
+                                        @endforeach
+                                    </select>
                                 </span>
                             </div>
-                        {!! Form::close() !!}
+                        </form>
                     </div>
                     <div class="wt-dashboardboxcontent wt-categoriescontentholder">
                         <table class="wt-tablecategories">
@@ -71,11 +73,6 @@
                                     </tr>
                                     <b-modal ref="myModalRef-{{$key}}" hide-footer title="Email Content" v-cloak>
                                         <div class="d-block text-center">
-                                            {{-- {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-formfeedback', 'id' => 'update_content-'.$key,  '@submit.prevent'=>'']) !!}
-                                                <div class="form-group">
-                                                    {!! Form::textarea('email_content', $template->content, array('class' => 'wt-tinymceeditor', 'id' => 'wt-tinymceeditor'.$key) ) !!}
-                                                </div>
-                                            {!! Form::close() !!} --}}
                                             @php 
                                                 $body = "";
                                                 $body .= App\EmailHelper::getEmailHeader();

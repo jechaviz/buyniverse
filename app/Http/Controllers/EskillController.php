@@ -117,18 +117,19 @@ class EskillController extends Controller
     public function edit($id)
     {
         //dd('edit');
+        $cats = Category::all();
         if (!empty($id)) {
             $skills = $this->skill::find($id);
             if (!empty($skills)) {
                 if (file_exists(resource_path('views/extend/back-end/admin/skills/edit.blade.php'))) {
                     return View::make(
                         'extend.back-end.admin.skills.edit',
-                        compact('id', 'skills')
+                        compact('id', 'skills', 'cats')
                     );
                 } else {
                     return View::make(
                         'back-end.admin.skills.edit',
-                        compact('id', 'skills')
+                        compact('id', 'skills', 'cats')
                     );
                 }
                 return Redirect::to('employer/skills');

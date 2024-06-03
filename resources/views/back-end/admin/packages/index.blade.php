@@ -24,10 +24,13 @@
                             <h2>{{{ trans('lang.add_packages') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => url('admin/store/package'), 'class' =>'wt-formtheme wt-packagesform', 'id' => 'packages', '@submit.prevent' => 'submitPackage', 'id' => 'package_form' ]) !!}
+                            
+                            <form action="{{ url('admin/store/package') }}" class="wt-formtheme wt-packagesform" method="post" id="packages" @submit.prevent="submitPackage"> <!--id' => 'package_form'-->
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'package_title', null, ['class' =>'form-control'.($errors->has('package_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_pkg_title')] ) !!}
+                                        
+                                        <input type="text" name="package_title" value="" class="form-control {{( $errors->has('package_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_pkg_title')}}">
                                         @if ($errors->has('package_title'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('package_title') }}</strong>
@@ -35,7 +38,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::text( 'package_subtitle', null, ['class' =>'form-control '.($errors->has('package_subtitle') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_pkg_subtitle')] ) !!}
+                                        
+                                        <input type="text" name="package_subtitle" value="" class="form-control {{( $errors->has('package_subtitle') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_pkg_subtitle')}}">
                                         @if ($errors->has('package_subtitle'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('package_subtitle') }}</strong>
@@ -43,7 +47,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::number( 'package_price', null, ['class' =>'form-control '.($errors->has('package_price') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_pkg_price')] ) !!}
+                                        
+                                        <input type="number" name="package_price" value="" class="form-control {{( $errors->has('package_price') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_pkg_price')}}">
                                         @if ($errors->has('package_price'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('package_price') }}</strong>
@@ -60,7 +65,7 @@
                                                     :name="'uploaded_image'"
                                                     >
                                                 </upload-image>
-                                                {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                <input type="hidden" name="uploaded_image" id="hidden_img" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -81,10 +86,12 @@
                                     </div>
                                     <div v-if="employer_options" v-cloak>
                                         <div class="form-group">
-                                            {!! Form::text('employer[jobs]', null, array('class' => 'form-control'.($errors->has('employer[jobs]') ? ' is-invalid' : ''), 'placeholder' => trans('lang.no_of_jobs'), 'v-model'=>'package.jobs')) !!}
+                                            
+                                            <input type="text" name="employer[jobs]" value="" class="form-control {{( $errors->has('employer[jobs]') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.no_of_jobs')}}">
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::text('employer[featured_jobs]', null, array('class' => 'form-control'.($errors->has('employer[featured_jobs]') ? ' is-invalid' : ''), 'placeholder' => trans('lang.no_of_featuredjobs'), 'v-model'=>'package.featured_jobs')) !!}
+                                            
+                                            <input type="text" name="employer[featured_jobs]" value="" class="form-control {{( $errors->has('employer[featured_jobs]') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.no_of_featuredjobs')}}">
                                         </div>
                                         <div class="form-group {{ $errors->has('employer[duration]') ? ' is-invalid' : '' }}">
                                             <span class="wt-select">
@@ -115,16 +122,20 @@
                                     </div>
                                     <div v-if="provider_options" v-cloak>
                                         <div class="form-group">
-                                            {!! Form::text('provider[no_of_connects]', null, array('class' => 'form-control', 'placeholder' => trans('lang.no_of_connects'), 'v-model'=>'package.conneects')) !!}
+                                            
+                                            <input type="text" name="provider[no_of_connects]" value="" class="form-control" placeholder="{{ trans('lang.no_of_connects')}}" v-model="package.conneects">
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::number( 'provider[no_of_services]', null, ['class' =>'form-control ', 'placeholder' => trans('lang.provider_pkg_opt.no_of_services'), 'v-model'=>'package.services'] ) !!}
+                                            
+                                            <input type="number" name="provider[no_of_services]" value="" class="form-control" placeholder="{{ trans('lang.provider_pkg_opt.no_of_services')}}" v-model="package.services">
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::number( 'provider[no_of_featured_services]', null, ['class' =>'form-control ', 'placeholder' => trans('lang.provider_pkg_opt.no_of_featured_services'), 'v-model'=>'package.featured_services'] ) !!}
+                                            
+                                            <input type="number" name="provider[no_of_featured_services]" value="" class="form-control" placeholder="{{ trans('lang.provider_pkg_opt.no_of_featured_services')}}" v-model="package.featured_services">
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::text('provider[no_of_skills]', null, array('class' => 'form-control', 'placeholder' => trans('lang.no_of_skills'), 'v-model'=>'package.skills')) !!}
+                                            
+                                            <input type="text" name="provider[no_of_skills]" value="" class="form-control" placeholder="{{ trans('lang.no_of_skills')}}" v-model="package.skills">
                                         </div>
                                         <div class="form-group">
                                             <span class="wt-select">
@@ -138,7 +149,12 @@
                                         </div>
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                {!! Form::select('provider[badge]', $badges, null, array('placeholder' => trans('lang.select_badge'))) !!}
+                                                
+                                                <select name="provider[badge]" placeholder="{{ trans('lang.select_badge') }}">
+                                                    @foreach ($badges as $key => $value)
+                                                        <option value="{{ $key }}">{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
                                             </span>
                                         </div>
                                         <div class="form-group">
@@ -159,10 +175,11 @@
                                         @endif
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.add_packages'), ['class' => 'wt-btn']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.add_packages') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -170,14 +187,15 @@
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle wt-titlewithsearch">
                             <h2>{{{ trans('lang.packages') }}}</h2>
-                            {!! Form::open(['url' => url('admin/packages/search'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch']) !!}
+                            
+                            <form action="{{ url('admin/packages/search') }}" class="wt-formtheme wt-formsearch" method="get">
                                 <fieldset>
                                     <div class="form-group">
                                         <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}" class="form-control" placeholder="{{{ trans('lang.ph_search_packages') }}}">
                                         <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                     </div>
                                 </fieldset>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         @if (!empty($packages) || $packages->count() > 0)
                             <div class="wt-dashboardboxcontent wt-categoriescontentholder">

@@ -52,7 +52,8 @@
                 </div>
                 
                 <div class="row" style="margin-top:30px;">
-                    {!! Form::open(['url' => url('search-results'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch', 'id' => 'wt-formsearch']) !!}
+                    
+                    <form action="{{ url('search-results') }}" class="wt-formtheme wt-formsearch" method="get" id="wt-formsearch">
                     <div class="wt-widgetcontent">
                         <div class="wt-formtheme wt-formsearch">
                             <fieldset>
@@ -63,7 +64,7 @@
                         </div>
                     </div>
                     <input type="submit" value="Apply Filters" class="wt-btn" style="display: none;">
-                    {!! form::close(); !!}
+                    </form>
                 </div>
 
                 <div class="row" style="margin-top:30px;">

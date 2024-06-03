@@ -34,7 +34,8 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'skill_title', e($sub_skills['sub_skill']), ['class' =>'form-control'.($errors->has('skill_title') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="skill_title" value="{{ $sub_skills['sub_skill'] }}" class="form-control {{( $errors->has('skill_title') ? ' is-invalid' : '')}}">
                                     <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                     @if ($errors->has('skill_title'))
                                         <span class="invalid-feedback" role="alert">
@@ -44,10 +45,11 @@
                                 </div>
                                 
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.update_skill'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.update_skill') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

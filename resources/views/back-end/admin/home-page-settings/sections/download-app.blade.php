@@ -8,7 +8,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][app_title]', e($app_title), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][app_title]" value="{{ $app_title }}" class="form-control">
             </div>
         </div>
     </div>
@@ -18,7 +19,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][app_subtitle]', e($app_subtitle), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][app_subtitle]" value="{{ $app_subtitle }}" class="form-control">
             </div>
         </div>
     </div>
@@ -28,7 +30,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::textarea('app_desc', e($app_desc), array('class' => 'form-control wt-tinymceeditor', 'id' => 'app_desc_wt_tinymceeditor')) !!}
+                
+                <textarea id="app_desc_wt_tinymceeditor" name="app_desc" class="form-control wt-tinymceeditor">{{ $app_desc }}</textarea>
             </div>
         </div>
     </div>
@@ -38,7 +41,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('app_android_link', e($app_android_link), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="app_android_link" value="{{ $app_android_link }}" class="form-control">
             </div>
         </div>
     </div>
@@ -48,7 +52,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('app_ios_link', e($app_ios_link), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="app_ios_link" value="{{ $app_ios_link }}" class="form-control">
             </div>
         </div>
     </div>

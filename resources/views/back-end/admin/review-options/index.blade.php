@@ -24,10 +24,13 @@
                             <h2>{{{ trans('lang.add_review_option') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => 'admin/store-review-options', 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id' => 'review_options']) !!}
+                            
+                            <form action="{{ url('admin/store-review-options') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="review_options">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'review_option_title', null, ['class' =>'form-control'.($errors->has('review_option_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_review_option_title')]) !!}
+                                    
+                                    <input type="text" name="review_option_title" value="" class="form-control {{( $errors->has('review_option_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_review_option_title')}}">
                                     @if ($errors->has('review_option_title'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('review_option_title') }}</strong>
@@ -35,10 +38,11 @@
                                     @endif
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_review_option'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.add_review_option') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

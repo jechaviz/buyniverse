@@ -24,10 +24,11 @@
                             <h2>{{{ trans('lang.add_badge') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => url('admin/store-badge'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory','id'=> 'categories'])!!}
+                            <form action="{{ url('admin/store-badge') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="categories">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'badge_title', null, ['class' =>'form-control'.($errors->has('badge_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_badge_title')] ) !!}
+                                        <input type="text" name="badge_title" class="form-control{{ ($errors->has('badge_title') ? ' is-invalid' : '') }}" placeholder="{{ trans('lang.ph_badge_title') }}">
                                         <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                         @if ($errors->has('badge_title'))
                                             <span class="invalid-feedback" role="alert">
@@ -44,7 +45,7 @@
                                                 :name="'uploaded_image'"
                                                 >
                                             </upload-image>
-                                            {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                            <input type="hidden" name="uploaded_image" id="hidden_img">
                                             @if ($errors->has('uploaded_image'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('uploaded_image') }}</strong>
@@ -57,10 +58,11 @@
                                         <input type="hidden" name="color" :value="color">
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.add_badge'), ['class' => 'wt-btn']) !!}
+                                        <input type="submit" value="{{ trans('lang.add_badge') }}" class="wt-btn">
+                                        
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -68,14 +70,14 @@
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle wt-titlewithsearch">
                             <h2>{{{ trans('lang.badges') }}}</h2>
-                            {!! Form::open(['url' => url('admin/badges/search'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch']) !!}
+                            <form action="{{ url('admin/badges/search') }}" class="wt-formtheme wt-formsearch" method="get">
                                 <fieldset>
                                     <div class="form-group">
                                         <input type="search" name="s" value="{{{ !empty($_GET['s']) ? $_GET['s'] : '' }}}" class="form-control" placeholder="{{{ trans('lang.ph_search_badges') }}}">
                                         <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                     </div>
                                 </fieldset>
-                            {!! Form::close() !!}
+                            </form>
                             <a href="javascript:void(0);" v-if="this.is_show" @click="deleteChecked('{{ trans('lang.ph_delete_confirm_title') }}', '{{ trans('lang.ph_badge_delete_message') }}')" class="wt-skilldel">
                                 <i class="lnr lnr-trash"></i>
                                 <span>{{ trans('lang.del_select_rec') }}</span>

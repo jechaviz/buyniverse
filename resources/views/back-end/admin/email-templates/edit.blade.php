@@ -38,24 +38,25 @@
                             </div>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open(['url' => url('admin/email-templates/update-templates/'.$template->id.''),
-                                'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id' => 'update_email_templates'] )
-                            !!}
+                            <form action="{{ url('admin/email-templates/update-templates/'.$template->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="update_email_templates">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'title', e($template->title), ['class' =>'form-control', 'placeholder' => trans('lang.title')] ) !!}
+                                    <input type="text" name="title" value="{{ $template->title }}" class="form-control" placeholder="{{ trans('lang.title')}}">
                                 </div>
                                 <div class="form-group">
-                                        {!! Form::text( 'subject', e($template->subject), ['class' =>'form-control', 'placeholder' => trans('lang.subject')] ) !!}
-                                    </div>
+                                    <input type="text" name="subject" value="{{ $template->subject }}" class="form-control" placeholder="{{ trans('lang.subject')}}">                                        
+                                </div>
                                 <div class="form-group">
-                                    {!! Form::textarea('email_content', $template->content, array('class' => 'wt-tinymceeditor', 'id' => 'wt-tinymceeditor', 'placeholder' => trans('lang.add_template_content')) ) !!}
+                                    <textarea name="email_content" class="wt-tinymceeditor" id="wt-tinymceeditor" placeholder="{{ trans('lang.add_template_content') }}">{!! $template->content !!}</textarea>
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.update_email_template'), ['class' => 'wt-btn']) !!}
+                                    <input type="submit" value="{{ trans('lang.update_email_template') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

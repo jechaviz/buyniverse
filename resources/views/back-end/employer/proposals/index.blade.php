@@ -173,15 +173,8 @@
                                                 <div class="wt-hireduserstatus">
                                                     <i class="fa fa-paperclip"></i>
                                                     @if (!empty($p_attachments))
-                                                        {!! Form::open(['url' => url('proposal/download-attachments'), 'class' =>'post-job-form wt-haslayout', 'id' => 'accepted-download-attachments-form-'.$accepted_proposal->id]) !!}
-                                                            @foreach ($p_attachments as $attachments)
-                                                                @if (Storage::disk('local')->exists('uploads/proposals/'.$accepted_proposal->provider_id.'/'.$attachments))
-                                                                    {!! Form::hidden('attachments['.$count.']', $attachments, []) !!}
-                                                                    @php $count++; @endphp
-                                                                @endif
-                                                            @endforeach
-                                                            {!! Form::hidden('provider_id', $accepted_proposal->provider_id, []) !!}
-                                                        {!! form::close(); !!}
+                                                        
+                                                        </form>
                                                         <a href="javascript:void(0);"  v-on:click.prevent="downloadAttachments('{{'accepted-download-attachments-form-'.$accepted_proposal->id}}')" ><span>{{{ $count }}} {{ trans('lang.files_attached') }}</span></a>
                                                     @else
                                                         <span>{{{ $count }}} {{ trans('lang.files_attached') }}</span>
@@ -293,15 +286,7 @@
                                                         <div class="wt-hireduserstatus">
                                                             <i class="fa fa-paperclip"></i>
                                                             @if (!empty($attachments))
-                                                                {!! Form::open(['url' => url('proposal/download-attachments'), 'class' =>'post-job-form wt-haslayout', 'id' => 'download-attachments-form-'.$proposal->id]) !!}
-                                                                    @foreach ($attachments as $attachment)
-                                                                        @if (Storage::disk('local')->exists('uploads/proposals/'.$proposal->provider_id.'/'.$attachment))
-                                                                            {!! Form::hidden('attachments['.$received_proposal_count.']', $attachment, []) !!}
-                                                                            @php $received_proposal_count++; @endphp
-                                                                        @endif
-                                                                    @endforeach
-                                                                    {!! Form::hidden('provider_id', $proposal->provider_id, []) !!}
-                                                                {!! form::close(); !!}
+                                                                
                                                                 <a href="javascript:void(0);"  v-on:click.prevent="downloadAttachments('{{'download-attachments-form-'.$proposal->id}}')" ><span>{{{ $received_proposal_count }}} {{ trans('lang.files_attached') }}</span></a>
                                                             @else
                                                                 <span>{{{ $attachments_count }}} {{ trans('lang.files_attached') }}</span>

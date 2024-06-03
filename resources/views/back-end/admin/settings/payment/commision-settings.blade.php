@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'comission-form', '@submit.prevent'=>'submitCommisionSettings'])!!}
+
+<form action="" class="wt-formtheme wt-userform" id="comission-form" @submit.prevent="submitCommisionSettings">
     @if (file_exists(resource_path('views/extend/back-end/admin/settings/payment/site-payment-options.blade.php')))
         @include('extend.back-end.admin.settings.payment.site-payment-options')
     @else
@@ -33,7 +34,8 @@
             </div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::number('payment[0][commision]', $commision, array('class' => 'form-control', 'placeholder' => '0')) !!}
+                    
+                    <input type="number" name="payment[0][commision]" value="{{ $commision }}" class="form-control" placeholder="0">
                 </div>
             </div>
         </div>
@@ -48,7 +50,8 @@
             </div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::number('payment[0][min_payout]', e($min_payout), ['class' => 'form-control', 'placeholder' => trans('lang.ph_min_payout')]) !!}
+                    
+                    <input type="number" name="payment[0][min_payout]" value="{{ $min_payout }}" class="form-control" placeholder="{{ trans('lang.ph_min_payout')}}">
                 </div>
             </div>
         </div>
@@ -75,6 +78,6 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
-{!! Form::close() !!}
+</form>

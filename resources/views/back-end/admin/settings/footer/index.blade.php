@@ -6,8 +6,8 @@
     @else
         @include('back-end.admin.settings.footer.socials')
     @endif
-    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id'
-        =>'footer-setting-form', '@submit.prevent'=>'submitFooterSettings']) !!}
+    
+    <form action="" class="wt-formtheme wt-userform" id="footer-setting-form" @submit.prevent="submitFooterSettings">
         @if (file_exists(resource_path('views/extend/back-end/admin/settings/footer/logo.blade.php')))
             @include('extend.back-end.admin.settings.footer.logo')
         @else
@@ -51,7 +51,7 @@
             <div class="wt-settingscontent">
                 <div class="wt-formtheme wt-userform">
                     <div class="form-group">
-                        {!! Form::textarea('footer[description]', e($footer_desc), array('class' => 'form-control')) !!}
+                        <textarea name="footer[description]" class="form-control">{{ $footer_desc }}</textarea>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,8 @@
             <div class="wt-settingscontent">
                 <div class="wt-formtheme wt-userform">
                     <div class="form-group">
-                        {!! Form::text('footer[copyright]', e($footer_copyright), array('class' => 'form-control')) !!}
+                        
+                        <input type="text" name="footer[copyright]" value="{{ $footer_copyright }}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -71,7 +72,8 @@
             <div class="wt-settingscontent">
                 <div class="wt-formtheme wt-userform">
                     <div class="form-group">
-                        {!! Form::text('footer[menu_title_1]', $menu_title_1 ,array('class' => 'form-control', 'placeholder' => trans('lang.menu_title'))) !!}
+                        
+                        <input type="text" name="footer[menu_title_1]" value="{{ $menu_title_1 }}" class="form-control" placeholder="{{  trans('lang.menu_title')}}">
                     </div>
                 </div>
             </div>
@@ -79,7 +81,11 @@
                 <div class="wt-formtheme wt-userform">
                     <div class="form-group">
                         <span class="wt-select">
-                            {!! Form::select('footer[menu_pages_1][]', $pages, $menu_pages_1 ,array('class' => 'chosen-select', 'multiple', 'data-placeholder' => trans('lang.select_pages'))) !!}
+                            <select class="chosen-select" name="footer[menu_pages_1][]" multiple data-placeholder="{{ trans('lang.select_pages') }}">
+                                @foreach ($pages as $page)
+                                    <option value="{{ $page->id }}" {{ in_array($page->id, $menu_pages_1) ? 'selected' : '' }}>{{ $page->name }}</option>
+                                @endforeach
+                            </select>
                         </span>
                     </div>
                 </div>
@@ -91,7 +97,12 @@
                 <div class="wt-formtheme wt-userform">
                     <div class="form-group">
                         <span class="wt-select">
-                            {!! Form::select('footer[pages][]', $pages, $menu_pages ,array('class' => 'chosen-select', 'multiple', 'data-placeholder' => trans('lang.select_pages'))) !!}
+                            <select class="chosen-select" name="footer[pages][]" multiple data-placeholder="{{ trans('lang.select_pages') }}">
+                                @foreach ($pages as $page)
+                                    <option value="{{ $page->id }}" {{ in_array($page->id, $menu_pages) ? 'selected' : '' }}>{{ $page->name }}</option>
+                                @endforeach
+                            </select>
+
                         </span>
                     </div>
                 </div>
@@ -100,12 +111,13 @@
         <div class="wt-updatall la-updateall-holder">
             <i class="ti-announcement"></i>
             <span>{{{ trans('lang.save_changes_note') }}}</span>
-            {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+            <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
         </div>
         {{-- <div class="wt-updatall la-updateall-holder">
-            {!! Form::submit(trans('lang.btn_save'), ['class' => 'wt-btn']) !!}
+            
+            <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
         </div> --}}
-    {!! Form::close() !!}
+    </form>
     <div class="wt-settingscontent">
         @if (file_exists(resource_path('views/extend/back-end/admin/settings/footer/search-menu.blade.php')))
             @include('extend.back-end.admin.settings.footer.search-menu')

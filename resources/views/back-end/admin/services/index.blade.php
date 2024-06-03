@@ -115,7 +115,11 @@
 														<fieldset>
 															<div class="form-group">
 																<span class="wt-select">
-																	{!! Form::select('status', $status_list, $service['status'], array('id'=>$service->id.'-service_status', 'data-placeholder' => trans('lang.select_status'))) !!}
+																	<select name="status" id="{{ $service->id }}-service_status" data-placeholder="{{ trans('lang.select_status') }}">
+																		@foreach ($status_list as $key => $value)
+																			<option value="{{ $key }}" {{ $service['status'] == $key ? 'selected' : '' }}>{{ $value }}</option>
+																		@endforeach
+																	</select>
 																</span>
 																<a href="javascrip:void(0);" class="wt-searchgbtn job_status_popup" @click.prevent='changeStatus({{$service->id}})'><i class="fa fa-check"></i></a>
 															</div>

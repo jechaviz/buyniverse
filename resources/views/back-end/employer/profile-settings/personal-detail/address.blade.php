@@ -32,9 +32,12 @@
                             </ul>
                         @endif
                         <div class="wt-personalskillshold lare-employer-profile tab-pane active fade show" id="wt-profile">
-                            {!! Form::open(['url' => url('employer/store-address-settings'), 'class' =>'wt-userform', 'id' => 'employer_data']) !!}
+                            
+                            <form action="{{ url('employer/store-address-settings') }}" class="wt-userform" method="post" id="employer_data">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    {!! Form::text( 'name', $address->name, ['placeholder' => trans('lang.ph_first_name'), 'class' =>'form-control'.($errors->has('name') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="name" value="{{ $address->name }} class="form-control {{( $errors->has('name') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_first_name')}}" >
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -42,7 +45,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'type', $address->type, ['placeholder' => trans('lang.type'), 'class' =>'form-control'.($errors->has('type') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="type" value="{{ $address->type }} class="form-control {{( $errors->has('type') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.type')}}" >
                                     @if ($errors->has('type'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('type') }}</strong>
@@ -50,7 +54,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'street', $address->street, ['placeholder' => trans('lang.street'), 'class' =>'form-control'.($errors->has('street') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="street" value="{{ $address->street }} class="form-control {{( $errors->has('street') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.street')}}" >
                                     @if ($errors->has('street'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('street') }}</strong>
@@ -58,7 +63,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'externalNumber', $address->externalNumber, ['placeholder' => trans('lang.externalNumber'), 'class' =>'form-control'.($errors->has('externalNumber') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="externalNumber" value="{{ $address->externalNumber }} class="form-control {{( $errors->has('externalNumber') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.externalNumber')}}" >
                                     @if ($errors->has('externalNumber'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('externalNumber') }}</strong>
@@ -66,7 +72,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'internalNumber', $address->internalNumber, ['placeholder' => trans('lang.internalNumber'), 'class' =>'form-control'.($errors->has('internalNumber') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="internalNumber" value="{{ $address->internalNumber }} class="form-control {{( $errors->has('internalNumber') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.internalNumber')}}" >
                                     @if ($errors->has('internalNumber'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('internalNumber') }}</strong>
@@ -74,7 +81,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'neighborhood', $address->neighborhood, ['placeholder' => trans('lang.neighborhood'), 'class' =>'form-control'.($errors->has('neighborhood') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="neighborhood" value="{{ $address->neighborhood }} class="form-control {{( $errors->has('neighborhood') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.neighborhood')}}" >
                                     @if ($errors->has('neighborhood'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('neighborhood') }}</strong>
@@ -82,7 +90,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'locality', $address->locality, ['placeholder' => trans('lang.locality'), 'class' =>'form-control'.($errors->has('locality') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="locality" value="{{ $address->locality }} class="form-control {{( $errors->has('locality') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.locality')}}" >
                                     @if ($errors->has('locality'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('locality') }}</strong>
@@ -90,7 +99,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'reference', $address->reference, ['placeholder' => trans('lang.reference'), 'class' =>'form-control'.($errors->has('reference') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="reference" value="{{ $address->reference }} class="form-control {{( $errors->has('reference') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.reference')}}" >
                                     @if ($errors->has('reference'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('reference') }}</strong>
@@ -98,7 +108,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'city', $address->city, ['placeholder' => trans('lang.city'), 'class' =>'form-control'.($errors->has('city') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="city" value="{{ $address->city }} class="form-control {{( $errors->has('city') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.city')}}" >
                                     @if ($errors->has('city'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('city') }}</strong>
@@ -106,7 +117,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'state', $address->state, ['placeholder' => trans('lang.state'), 'class' =>'form-control'.($errors->has('state') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="state" value="{{ $address->state }} class="form-control {{( $errors->has('state') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.state')}}" >
                                     @if ($errors->has('state'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('state') }}</strong>
@@ -114,7 +126,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'country', $address->country, ['placeholder' => trans('lang.country'), 'class' =>'form-control'.($errors->has('country') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="country" value="{{ $address->country }} class="form-control {{( $errors->has('country') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.country')}}" >
                                     @if ($errors->has('country'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('country') }}</strong>
@@ -122,7 +135,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'zipCode', $address->zipCode, ['placeholder' => trans('lang.zipCode'), 'class' =>'form-control'.($errors->has('zipCode') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="zipCode" value="{{ $address->zipCode }} class="form-control {{( $errors->has('zipCode') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.zipCode')}}" >
                                     @if ($errors->has('zipCode'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('zipCode') }}</strong>
@@ -130,7 +144,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'latitude', $address->latitude, ['placeholder' => trans('lang.latitude'), 'class' =>'form-control'.($errors->has('latitude') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="latitude" value="{{ $address->latitude }} class="form-control {{( $errors->has('latitude') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.latitude')}}" >
                                     @if ($errors->has('latitude'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('latitude') }}</strong>
@@ -138,7 +153,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'longitude', $address->longitude, ['placeholder' => trans('lang.longitude'), 'class' =>'form-control'.($errors->has('longitude') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="longitude" value="{{ $address->longitude }} class="form-control {{( $errors->has('longitude') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.longitude')}}" >
                                     @if ($errors->has('longitude'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('longitude') }}</strong>
@@ -146,7 +162,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'website', $address->website, ['placeholder' => trans('lang.website'), 'class' =>'form-control'.($errors->has('website') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="website" value="{{ $address->website }}" class="form-control {{( $errors->has('website') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.website')}}" >
                                     @if ($errors->has('website'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('website') }}</strong>
@@ -156,9 +173,9 @@
                                 <div class="wt-updatall">
                                     <i class="ti-announcement"></i>
                                     <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                    {!! Form::submit(trans('lang.btn_save_update'), ['class' => 'wt-btn', 'id'=>'submit-profile']) !!}
+                                    <input type="submit" value="{{ trans('lang.btn_save_update') }}" class="wt-btn" id="submit-profile">
                                 </div>
-                            {!! form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

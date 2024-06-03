@@ -8,8 +8,8 @@
         <h2>{{{ trans('lang.site_access_type_settings') }}}</h2>
     </div>
     @if (Schema::hasTable('services') && Schema::hasTable('service_user'))
-        {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id'
-            =>'acces_types_form', '@submit.prevent'=>'submitAccessType']) !!}
+        
+        <form action="" class="wt-formtheme wt-userform" id="acces_types_form" @submit.prevent="submitAccessType">
             <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
                 <div class="wt-settingscontent">
                     <div class="wt-description">
@@ -36,9 +36,9 @@
             <div class="wt-updatall la-updateall-holder">
                 <i class="ti-announcement"></i>
                 <span>{{{ trans('lang.save_changes_note') }}}</span>
-                {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+                <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
             </div>
-        {!! Form::close() !!}
+        </form>
     @else
         <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
             <div class="wt-settingscontent">

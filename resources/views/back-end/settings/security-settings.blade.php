@@ -26,7 +26,9 @@
                 @endif
                 <div class="wt-tabscontent tab-content">
                     <div class="wt-securityhold la-langselect" id="wt-security">
-                        {!! Form::open(['url' => url('profile/settings/save-account-settings'), 'class' =>'wt-formtheme wt-userform'])!!}
+                        
+                        <form action="{{ url('profile/settings/save-account-settings') }}" class="wt-formtheme wt-userform" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="wt-securitysettings wt-tabsinfo wt-haslayout">
                                 <div class="wt-tabscontenttitle">
                                     <h2>{{{ trans('lang.manage_account') }}}</h2>
@@ -57,7 +59,13 @@
                                     </div>
                                     <div class="wt-formtheme wt-userform">
                                         <div class="form-group">
-                                            {!! Form::select('languages[]', $languages, $user_languages ,array('class' => 'chosen-select', 'multiple', 'data-placeholder' => trans('lang.select_lang'))) !!}
+                                            
+                                            <select name="languages[]" class="chosen-select" multiple data-placeholder="{{ trans('lang.select_lang') }}">
+                                                @foreach ($languages as $language)
+                                                    <option value="{{ $language->id }}" @if (in_array($language->id, $user_languages)) selected @endif>{{ $language->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </div>
                                     </div>
                                 </div>
@@ -73,16 +81,23 @@
                                     <div class="wt-formtheme wt-userform">
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                {!! Form::select('english_level', $english_levels, $user_level ,array()) !!}
+                                                
+                                                <select name="english_level">
+                                                    @foreach ($english_levels as $level)
+                                                        <option value="{{ $level->id }}" @if ($level->id == $user_level) selected @endif>{{ $level->name }}</option>
+                                                    @endforeach
+                                                </select>
+
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group form-group-half wt-btnarea">
-                                {!! Form::submit(trans('lang.btn_save'), ['class' => 'wt-btn']) !!}
+                                
+                                <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
                             </div>
-                        {!! Form::close() !!}
+                        </form>
                     </div>
                 </div>
             </div>

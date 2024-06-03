@@ -24,10 +24,11 @@
                             <h2>{{{ trans('lang.add_location') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open(['url' => url('admin/store-location'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id'=>'location_form'])!!}
+                            <form action="{{ url('admin/store-location') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="location_form">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'title', null, ['class' =>'form-control'.($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_location_title'), 'id'=>'location_title']) !!}
+                                    <input type="text" name="title" value="" class="form-control {{( $errors->has('title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_location_title')}}" id="location_title">
                                     <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                     @if ($errors->has('title'))
                                         <span class="invalid-feedback" role="alert">
@@ -47,7 +48,8 @@
                                     </div>
                                 @endif
                                 <div class="form-group">
-                                    {!! Form::textarea( 'abstract', null, ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc'), 'id'=>'location_abstract']) !!}
+                                    
+                                    <textarea id="location_abstract" name="abstract" class="form-control" placeholder="{{ trans('lang.ph_desc'])') }}"></textarea>
                                     <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                 </div>
                                 <div class="wt-settingscontent">
@@ -59,14 +61,15 @@
                                             :name="'uploaded_image'"
                                             >
                                         </upload-image>
-                                        {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                        <input type="hidden" name="uploaded_image" id="hidden_img" value="">
+                                        
                                     </div>
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_location'), ['class' => 'wt-btn']) !!}
+                                    <input type="submit" value="{{ trans('lang.add_location') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

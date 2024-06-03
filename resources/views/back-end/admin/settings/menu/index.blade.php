@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'menu-setting-form', '@submit.prevent'=>'submitMenuSettings'])!!}
+
+<form action="" class="wt-formtheme  wt-userform" id="menu-setting-form" @submit.prevent="submitMenuSettings">
     <div class="wt-securitysettings wt-tabsinfo wt-haslayout">
         <div class="wt-tabscontenttitle">
                 <h2>{{{ trans('lang.color_settings') }}}</h2>
@@ -33,6 +34,6 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
-{!! Form::close() !!}
+</form>

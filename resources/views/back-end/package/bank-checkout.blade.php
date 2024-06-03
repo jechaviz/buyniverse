@@ -92,7 +92,8 @@
                                 <h2>{{{trans('lang.submit_trans')}}}</h2>
                             </div>
                             <div class="wt-transection-holder">
-                                {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform sj-checkouttable', '@submit.prevent' => 'submitTransection("'.$product_id.'")', 'id' => 'trans_form' ])!!}
+                                
+                                <form action="" class="wt-formtheme wt-userform sj-checkouttable" id="categoriestrans_form" @submit.prevent="submitTransection({{ $product_id }})">
                                     <fieldset>
                                         <div class="form-group">
                                             <textarea name="trans_detail" id="transection_detail" class="form-control" placeholder="{{{ trans('lang.trans_detail') }}}"></textarea>
@@ -107,10 +108,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group form-group-half wt-btnarea">
-                                            {!! Form::submit(trans('lang.btn_submit'), ['class' => 'wt-btn']) !!}
+                                            
+                                            <input type="submit" value="{{ trans('lang.btn_submit') }}" class="wt-btn">
                                         </div>
                                     </fieldset>
-                                {!! Form::close() !!}
+                                </form>
                             </div>
                         </div>
                     </div>

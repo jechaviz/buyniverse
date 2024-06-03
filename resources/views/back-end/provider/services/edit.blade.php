@@ -9,8 +9,9 @@
                 </div>
             </div>
             <div class="wt-haslayout wt-post-job-wrap">
-                {!! Form::open(['url' => 'service/update-service', 'class' =>'wt-haslayout']) !!}
                 
+                <form action="{{ url('service/update-service') }}" class="wt-haslayout" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" value="{{$service->id}}" name="id">
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle">
@@ -24,15 +25,23 @@
                                 <div class="wt-formtheme wt-userform wt-userformvtwo">
                                     <fieldset>
                                         <div class="form-group">
-                                            {!! Form::text('title', e($service->title), array('class' => 'form-control', 'placeholder' => trans('lang.service_title'))) !!}
+                                            
+                                            <input type="text" name="title" value="{{ $service->title }}" class="form-control" placeholder="{{ trans('lang.service_title') }}">
                                         </div>
                                         <div class="form-group form-group-half wt-formwithlabel">
                                             <span class="wt-select">
-                                                {!! Form::select('delivery_time', $delivery_time, e($service->delivery_time_id), array('class' => '', 'placeholder' => trans('lang.select_delivery_time'))) !!}
+                                                
+                                                <select name="delivery_time" class="" placeholder="{{ trans('lang.select_delivery_time') }}">
+                                                    @foreach ($delivery_time as $time)
+                                                        <option value="{{ $time->id }}" @if ($time->id == $service->delivery_time_id) selected @endif>{{ $time->name }}</option>
+                                                    @endforeach
+                                                </select>
+
                                             </span>
                                         </div>
                                         <div class="form-group form-group-half wt-formwithlabel job-cost-input">
-                                            {!! Form::number('service_price', e($service->price), array('class' => '', 'placeholder' => trans('lang.service_price'))) !!}
+                                            
+                                            <input type="number" name="service_price" value="{{ $service->price }}" class="" placeholder="{{ trans('lang.service_price')}}">
                                         </div>
                                     </fieldset>
                                 </div>
@@ -44,7 +53,13 @@
                                 <div class="wt-divtheme wt-userform wt-userformvtwo">
                                     <div class="form-group">
                                         <span class="wt-select">
-                                            {!! Form::select('categories[]', $categories, $service->categories, array('class' => 'chosen-select', 'multiple', 'data-placeholder' => trans('lang.select_service_cats'))) !!}
+                                            
+                                            <select class="chosen-select" name="categories[]" multiple data-placeholder="{{ trans('lang.select_service_cats') }}">
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}" @if (in_array($category->id, $service->categories)) selected @endif>{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </span>
                                     </div>
                                 </div>
@@ -56,7 +71,13 @@
                                 <div class="wt-divtheme wt-userform wt-userformvtwo">
                                     <div class="form-group">
                                         <span class="wt-select">
-                                            {!! Form::select('response_time', $response_time, e($service->response_time_id), array('class' => '', 'placeholder' => trans('lang.select_response_time'))) !!}
+                                            
+                                            <select name="response_time" class="" placeholder="{{ trans('lang.select_response_time') }}">
+                                                @foreach ($response_time as $time)
+                                                    <option value="{{ $time->id }}" @if ($time->id == $service->response_time_id) selected @endif>{{ $time->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </span>
                                     </div>
                                 </div>
@@ -68,7 +89,13 @@
                                 <div class="wt-divtheme wt-userform wt-userformvtwo">
                                     <div class="form-group">
                                         <span class="wt-select">
-                                            {!! Form::select('languages[]', $languages, $service->languages, array('class' => 'chosen-select', 'multiple', 'data-placeholder' => trans('lang.select_lang'))) !!}
+                                            
+                                            <select class="chosen-select" name="languages[]" multiple data-placeholder="{{ trans('lang.select_lang') }}">
+                                                @foreach ($languages as $language)
+                                                    <option value="{{ $language->id }}" @if (in_array($language->id, $service->languages)) selected @endif>{{ $language->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </span>
                                     </div>
                                 </div>
@@ -80,7 +107,13 @@
                                 <div class="wt-divtheme wt-userform wt-userformvtwo">
                                     <div class="form-group">
                                         <span class="wt-select">
-                                            {!! Form::select('english_level', $english_levels, e($service->english_level), array('class' => '', 'placeholder' => trans('lang.select_english_level'))) !!}
+                                            
+                                            <select name="english_level" class="" placeholder="{{ trans('lang.select_english_level') }}">
+                                                @foreach ($english_levels as $level)
+                                                    <option value="{{ $level->id }}" @if ($level->id == $service->english_level) selected @endif>{{ $level->name }}</option>
+                                                @endforeach
+                                            </select>
+
                                         </span>
                                     </div>
                                 </div>
@@ -90,7 +123,8 @@
                                     <h2>{{ trans('lang.service_desc') }}</h2>
                                 </div>
                                 <div class="wt-formtheme wt-userform wt-userformvtwo">
-                                    {!! Form::textarea('description', e($service->description), ['class' => 'wt-tinymceeditor', 'id' => 'wt-tinymceeditor', 'placeholder' => trans('lang.service_desc_note')]) !!}
+                                    
+                                    <textarea id="wt-tinymceeditor" name="description" class="wt-tinymceeditor" placeholder="{{ trans('lang.service_desc_note'])') }}">{{ $service->description }}</textarea>
                                 </div>
                             </div>
                             <!--<div class="wt-joblocation wt-tabsinfo">
@@ -101,20 +135,20 @@
                                     <fieldset>
                                         <div class="form-group form-group-half">
                                             <span class="wt-select">
-                                                {!! Form::select('locations', $locations, e($service->location_id), array('class' => 'skill-dynamic-field', 'placeholder' => trans('lang.select_locations'))) !!}
+                                                
                                             </span>
                                         </div>
                                         <div class="form-group form-group-half">
-                                            {!! Form::text( 'address', e($service->address), ['id'=>"pac-input", 'class' =>'form-control', 'placeholder' => trans('lang.your_address')] ) !!}
+                                            
                                         </div>
                                         <div class="form-group wt-formmap">
                                             @include('includes.map')
                                         </div>
                                         <div class="form-group form-group-half">
-                                            {!! Form::text( 'longitude', e($service->longitude), ['id'=>"lng-input", 'class' =>'form-control', 'placeholder' => trans('lang.enter_logitude')]) !!}
+                                            
                                         </div>
                                         <div class="form-group form-group-half">
-                                            {!! Form::text( 'latitude', e($service->latitude), ['id'=>"lat-input", 'class' =>'form-control', 'placeholder' => trans('lang.enter_latitude')]) !!}
+                                            
                                         </div>
                                     </fieldset>
                                 </div>
@@ -172,9 +206,10 @@
                     <div class="wt-updatall">
                         <i class="ti-announcement"></i>
                         <span>{{{ trans('lang.save_changes_note') }}}</span>
-                        {!! Form::submit(trans('lang.post_service'), ['class' => 'wt-btn', 'id'=>'submit-service']) !!}
+                        
+                        <input type="submit" value="{{ trans('lang.post_service') }}" class="wt-btn" id="submit-service">
                     </div>
-                {!! form::close(); !!}
+                </form>
             </div>
         </div>
     </div>

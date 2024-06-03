@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'general-home-setting-form', '@submit.prevent'=>'submitGeneralHomeSettings'])!!}
+
+<form action="" class="wt-formtheme wt-userform" id="general-home-setting-form" @submit.prevent="submitGeneralHomeSettings">
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.homepage') }}}</h2>
@@ -21,6 +22,6 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
-{!! Form::close() !!}
+</form>

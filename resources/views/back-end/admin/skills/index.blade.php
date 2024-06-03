@@ -25,15 +25,13 @@
                         </div>
                         
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([
-                                'url' => url('admin/store-skill'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory',
-                                'id' => 'skills'
-                                ])
-                            !!}
+                            
+                            <form action="{{ url('admin/store-skill') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="skills">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'skill_title', null, ['class' =>'form-control'.($errors->has('skill_title') ? ' is-invalid' : ''),
-                                    'placeholder' => trans('lang.ph_skill_title')] ) !!}
+                                    
+                                    <input type="text" name="skill_title" value="" class="form-control {{( $errors->has('skill_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_skill_title')}}">
                                     <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                     @if ($errors->has('skill_title'))
                                         <span class="invalid-feedback" role="alert">
@@ -42,8 +40,9 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::textarea( 'skill_desc', null, ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc')] ) !!}
-                                    <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
+                                    
+                                    <textarea name="skill_desc" class="form-control" placeholder="{{ trans('lang.ph_desc') }}"></textarea>
+                                    <span class="form-group-description">{{ trans('lang.cat_desc') }}</span>
                                 </div>
                                 <div class="form-group">
                                     <span class="wt-select">
@@ -59,10 +58,11 @@
                                     <!--<span class="form-group-description">{{{ trans('lang.parent_desc') }}}</span>-->
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_skill'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.add_skill') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -75,9 +75,11 @@
                             @endphp
                             <h2>{{{ trans('lang.skills') }}}</h2>
                             @if ($role === 'admin')
-                            {!! Form::open(['url' => url('admin/skills/search'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch']) !!}
+                            
+                            <form action="{{ url('admin/skills/search') }}" class="wt-formtheme wt-formsearch" method="get">
                             @else
-                            {!! Form::open(['url' => url('employer/skills/search'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch']) !!}
+                            
+                            <form action="{{ url('employer/skills/search') }}" class="wt-formtheme wt-formsearch" method="get">
                             @endif
                             <fieldset>
                                 <div class="form-group">
@@ -86,7 +88,7 @@
                                     <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                 </div>
                             </fieldset>
-                            {!! Form::close() !!}
+                            </form>
                             @if ($role === 'admin')
                             <a href="javascript:void(0);" v-if="this.is_show" @click="deleteChecked('{{ trans('lang.ph_delete_confirm_title') }}', '{{ trans('lang.ph_skill_delete_message') }}')" class="wt-skilldel">
                                 <i class="lnr lnr-trash"></i>

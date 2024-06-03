@@ -32,7 +32,8 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             
                                 <div class="form-group">
-                                    {!! Form::text( 'name', e($team['name']), ['class' =>'form-control'.($errors->has('name') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="name" value="{{ $team['name'] }}" class="form-control {{( $errors->has('name') ? ' is-invalid' : '')}}">
                                     
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -41,7 +42,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'email', e($team['email']), ['class' =>'form-control'.($errors->has('email') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="email" value="{{ $team['email'] }}" class="form-control {{( $errors->has('email') ? ' is-invalid' : '')}}" >
                                     
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -50,7 +52,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text( 'role', e($team['role']), ['class' =>'form-control'.($errors->has('role') ? ' is-invalid' : '')] ) !!}
+                                    
+                                    <input type="text" name="role" value="{{ $team['role'] }}" class="form-control {{( $errors->has('role') ? ' is-invalid' : '')}}">
                                     
                                     @if ($errors->has('role'))
                                         <span class="invalid-feedback" role="alert">
@@ -60,10 +63,11 @@
                                 </div>
                                 
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.update_team'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.update_team') }}" class="wt-btn">
                                 </div>
                             
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

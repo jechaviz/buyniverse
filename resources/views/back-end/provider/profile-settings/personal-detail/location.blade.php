@@ -5,20 +5,29 @@
     <fieldset>
         <div class="form-group form-group-half">
             <span class="wt-select">
-                {!! Form::select('location', $locations, Auth::user()->location_id ,array('class' => '', 'placeholder' => trans('lang.select_location'))) !!}
+                
+                <select name="location" class="" placeholder="{{ trans('lang.select_location') }}">
+                    @foreach ($locations as $location)
+                        <option value="{{ $location->id }}" @if ($location->id == Auth::user()->location_id) selected @endif>{{ $location->name }}</option>
+                    @endforeach
+                </select>
+
             </span>
         </div>
         <div class="form-group form-group-half">
-            {!! Form::text( 'address', e($address), ['id'=>"pac-input", 'class' =>'form-control', 'placeholder' => trans('lang.your_address')] ) !!}
+            
+            <input type="text" name="address" value="{{ $address }}" class="form-control" placeholder="{{ trans('lang.your_address')}}" id="pac-input">
         </div>
         <div class="form-group wt-formmap">
             @include('includes.map')
         </div>
         <div class="form-group form-group-half">
-            {!! Form::text( 'longitude', e($longitude), ['id'=>"lng-input", 'class' =>'form-control', 'placeholder' => trans('lang.enter_logitude')] ) !!}
+            
+            <input type="text" name="longitude" value="{{ $longitude }}" class="form-control" placeholder="{{ trans('lang.enter_logitude')}}" id="lng-input">
         </div>
         <div class="form-group form-group-half">
-            {!! Form::text( 'latitude', e($latitude), ['id'=>"lat-input", 'class' =>'form-control', 'placeholder' => trans('lang.enter_latitude')] ) !!}
+            
+            <input type="text" name="latitude" value="{{ $latitude }}" class="form-control" placeholder="{{ trans('lang.enter_latitude')}}" id="lat-input">
         </div>
     </fieldset>
 </div>

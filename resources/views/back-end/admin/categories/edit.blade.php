@@ -28,19 +28,17 @@
                         <div class="wt-dashboardboxtitle">
                             <h2>{{{ trans('lang.edit_cat') }}}</h2>
                         </div>
-                        <div class="wt-dashboardboxcontent">
-                            {!! Form::open(['url' => url('admin/categories/update-cats/'.$cats->id.''),
-                                'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id' => 'categories'] )
-                            !!}
+                        <div class="wt-dashboardboxcontent">                            
+                            <form action="{{ url('admin/categories/update-cats/'.$cats->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="categories">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'category_title', e($cats['title']), ['class' =>'form-control'] ) !!}
+                                        <input type="text" name="category_title" value="{{ $cats['title'] }}" class="form-control">
                                         <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::textarea( 'category_abstract', e($cats['abstract']), ['class' =>'form-control',
-                                        'placeholder' => trans('lang.ph_desc')] )
-                                        !!}
+                                        <textarea id="wt-email_text" name="category_abstract" class="form-control" placeholder="{{ trans('lang.ph_desc') }}">{{ $cats['abstract'] }}</textarea>
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
                                     <div class="form-group">
@@ -67,7 +65,7 @@
                                                         :name="'uploaded_image'"
                                                         >
                                                     </upload-image>
-                                                    {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                    <input type="hidden" name="uploaded_image" id="hidden_img">
                                                 </div>
                                                 <div class="form-group" v-else>
                                                     <ul class="wt-attachfile">
@@ -92,15 +90,15 @@
                                                     :name="'uploaded_image'"
                                                     >
                                                 </upload-image>
-                                                {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                <input type="hidden" name="uploaded_image" id="hidden_img">
                                             </div>
                                         @endif
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.update_cat'), ['class' => 'wt-btn']) !!}
+                                        <input type="submit" value="{{ trans('lang.update_cat') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

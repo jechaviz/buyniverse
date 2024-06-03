@@ -24,10 +24,13 @@
                             <h2>{{{ trans('lang.add_response_time') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => 'admin/store-response-time', 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id' => 'response_time']) !!}
+                            
+                            <form action="{{ url('admin/store-response-time') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="response_time">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'response_time_title', null, ['class' =>'form-control'.($errors->has('response_time_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_response_time_title')]) !!}
+                                    
+                                    <input type="text" name="response_time_title" value="" class="form-control {{( $errors->has('response_time_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_response_time_title')}}">
                                     @if ($errors->has('response_time_title'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('response_time_title') }}</strong>
@@ -35,10 +38,11 @@
                                     @endif
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_response_time'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.add_response_time') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

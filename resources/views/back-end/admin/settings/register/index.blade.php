@@ -1,5 +1,7 @@
-{!! Form::open(['url' => 'admin/store/registration-settings', 'class' =>'wt-formtheme wt-userform', 'id'
-    =>'registration-setting-form']) !!}
+
+    
+<form action="{{ url('admin/store/registration-settings') }}" class="wt-formtheme wt-userform" method="post" id="registration-setting-form">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.registeration_form_type') }}}</h2>
@@ -46,14 +48,16 @@
             <div class="wt-description"><p>{{ trans('lang.reg_step_1') }}</p></div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::text('registration[0][step1-title]', $reg_one_title, array('class' => 'form-control', 'placeholder' => trans('lang.title'))) !!}
+                    
+                    <input type="text" name="registration[0][step1-title]" value="{{ $reg_one_title }}" class="form-control" placeholder="{{ trans('lang.title') }}">
                 </div>
             </div>
         </div>
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::textarea('registration[0][step1-subtitle]', $reg_one_subtitle, array('class' => 'form-control', 'placeholder' => trans('lang.description'))) !!}
+                    
+                    <textarea name="registration[0][step1-subtitle]" class="form-control" placeholder="{{ trans('lang.description'])') }}">{{ $reg_one_subtitle }}</textarea>
                 </div>
             </div>
         </div>
@@ -66,21 +70,24 @@
             <div class="wt-description"><p>{{ trans('lang.reg_step_2') }}</p></div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::text('registration[0][step2-title]', $reg_two_title, array('class' => 'form-control', 'placeholder' => trans('lang.title'))) !!}
+                    
+                    <input type="text" name="registration[0][step2-title]" value="{{ $reg_two_title }}" class="form-control" placeholder="{{ trans('lang.title') }}">
                 </div>
             </div>
         </div>
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::textarea('registration[0][step2-subtitle]', $reg_two_subtitle, array('class' => 'form-control', 'placeholder' => trans('lang.description'))) !!}
+                    
+                    <textarea name="registration[0][step2-subtitle]" class="form-control" placeholder="{{ trans('lang.description'])') }}">{{ $reg_two_subtitle }}</textarea>
                 </div>
             </div>
         </div>
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::textarea('registration[0][step2-term-note]', $term_note, array('class' => 'form-control', 'placeholder' => trans('lang.term_note'))) !!}
+                    
+                    <textarea name="registration[0][step2-term-note]" class="form-control" placeholder="{{ trans('lang.term_note'])') }}">{{ $term_note }}</textarea>
                 </div>
             </div>
         </div>
@@ -98,14 +105,15 @@
             <div class="wt-description"><p>{{ trans('lang.reg_step_3') }}</p></div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::text('registration[0][step3-title]', $reg_three_title, array('class' => 'form-control', 'placeholder' => trans('lang.title'))) !!}
+                    <input type="text" name="registration[0][step3-title]" value="{{ $reg_three_title }}" class="form-control" placeholder="{{ trans('lang.title') }}">
                 </div>
             </div>
         </div>
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::textarea('registration[0][step3-subtitle]', $reg_three_subtitle, array('class' => 'form-control', 'placeholder' => trans('lang.description'))) !!}
+                    
+                    <textarea name="registration[0][step3-subtitle]" class="form-control" placeholder="{{ trans('lang.description'])') }}">{{ $reg_three_subtitle }}</textarea>
                 </div>
             </div>
         </div>
@@ -113,7 +121,12 @@
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
                     <span class="wt-select">
-                        {!! Form::select('registration[0][step3-page]', $pages, $reg_page, array('class' => '', 'placeholder' => trans('lang.select_pages'))) !!}
+                        <select name="registration[0][step3-page]" class="" placeholder="{{ trans('lang.select_pages') }}">
+                            @foreach ($pages as $page)
+                                <option value="{{ $page->id }}" @if ($page->id == $reg_page) selected @endif>{{ $page->name }}</option>
+                            @endforeach
+                        </select>
+
                     </span>
                 </div>
             </div>
@@ -132,14 +145,15 @@
             <div class="wt-description"><p>{{ trans('lang.reg_step_4') }}</p></div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::text('registration[0][step4-title]', $reg_four_title, array('class' => 'form-control', 'placeholder' => trans('lang.title'))) !!}
+                    <input type="text" name="registration[0][step4-title]" value="{{ $reg_four_title }}" class="form-control" placeholder="{{ trans('lang.title') }}">
                 </div>
             </div>
         </div>
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::textarea('registration[0][step4-subtitle]', $reg_four_subtitle, array('class' => 'form-control', 'placeholder' => trans('lang.description'))) !!}
+                    
+                    <textarea name="registration[0][step4-subtitle]" class="form-control" placeholder="{{ trans('lang.description'])') }}">{{ $reg_four_subtitle }}</textarea>
                 </div>
             </div>
         </div>
@@ -164,9 +178,10 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
     {{-- <div class="wt-updatall la-updateall-holder">
-        {!! Form::submit(trans('lang.btn_save'), ['class' => 'wt-btn']) !!}
+        
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div> --}}
-{!! Form::close() !!}
+</form>

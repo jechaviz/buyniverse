@@ -88,7 +88,8 @@
 															</a>
 															<b-modal ref="myModalRef-{{ $order->id }}" hide-footer title="Refund" v-cloak>
 																<div class="d-block text-center">
-																	{!! Form::open(['url' => '', 'class' =>'wt-formtheme', 'id' => 'submit_refund_'.$order->id,  '@submit.prevent'=>'submitRefund("'.$order->id.'")']) !!}
+																	
+																	<form action="" class="wt-formtheme" id="submit_refund_{{ $order->id }}" @submit.prevent="submitRefund({{ $order->id}})">
 																		<fieldset>
 																			<div class="form-group">
 																				<span class="wt-select">
@@ -99,18 +100,15 @@
 																					</select>
 																				</span>
 																			</div>
-																			{{-- <div class="form-group">
-																				<span class="wt-select">
-																					{!! Form::select('payment_method', $payment_methods, null, array('class' => 'form-control', 'placeholder' => trans('lang.select_pay_method'), 'v-model' => 'refundable_payment_method')) !!}
-																				</span>
-																			</div> --}}
+																			
 																			<input type="hidden" value="{{$service->price}}" id="refundable-amount-{{$order->id}}">
-																			{{-- <input type="hidden" value="{{$order->id}}" id="refundable-order-id-{{$order->id}}"> --}}
+																			
 																			<div class="form-group wt-btnarea">
-																				{!! Form::submit(trans('lang.refund'), ['class' => 'wt-btn']) !!}
+																				
+																				<input type="submit" value="{{ trans('lang.refund') }}" class="wt-btn">
 																			</div>
 																		</fieldset>
-																	{!! form::close(); !!}
+																	</form>
 																</div>
 															</b-modal>	
 														@endif

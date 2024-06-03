@@ -1,5 +1,6 @@
 <aside id="wt-sidebar" class="wt-sidebar wt-usersidebar">
-    {!! Form::open(['url' => url('search-results'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch', 'id' => 'wt-formsearch']) !!}
+    
+    <form action="{{ url('search-results') }}" class="wt-formtheme wt-formsearch" method="get" id="wt-formsearch">
         <input type="hidden" value="{{$type}}" name="type">
         <div class="wt-widget wt-effectiveholder wt-startsearch">
             <div class="wt-widgettitle">
@@ -165,9 +166,10 @@
             <div class="wt-widgetcontent">
                 <div class="wt-applyfilters">
                     <span>{{ trans('lang.apply_filter') }}<br> {{ trans('lang.changes_by_you') }}</span>
-                    {!! Form::submit(trans('lang.btn_apply_filters'), ['class' => 'wt-btn']) !!}
+                    
+                    <input type="submit" value="{{ trans('lang.btn_apply_filters') }}" class="wt-btn">
                 </div>
             </div>
         </div>
-    {!! form::close(); !!}
+    </form>
 </aside>

@@ -37,7 +37,9 @@
                         @endif
                         <div class="wt-tabscontent tab-content">
                             <div class="wt-educationholder" id="wt-education">
-                                {!! Form::open(['url' => url('provider/store-experience-settings'), 'class' =>'wt-formtheme wt-userform', 'id' => 'experience_form', '@submit.prevent'=>'submitExperienceEduction']) !!}
+                                
+                                <form action="{{ url('provider/store-experience-settings') }}" class="wt-formtheme wt-userform" method="post" id="experience_form" @submit.prevent="submitExperienceEduction">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="wt-userexperience wt-tabsinfo">
                                         @if (file_exists(resource_path('views/extend/back-end/provider/profile-settings/experience-education/experience.blade.php'))) 
                                             @include('extend.back-end.provider.profile-settings.experience-education.experience')
@@ -55,9 +57,10 @@
                                     <div class="wt-updatall">
                                         <i class="ti-announcement"></i>
                                         <span>{{{ trans('lang.save_changes_note') }}}</span>
-                                        {!! Form::submit(trans('lang.btn_save_update'), ['class' => 'wt-btn', 'id'=>'submit-profile']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.btn_save_update') }}" class="wt-btn" id="submit-profile">
                                     </div>
-                                {!! form::close(); !!}
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -29,19 +29,18 @@
                             <h2>{{{ trans('lang.edit_article') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open(['url' => url('admin/articles/update-article/'.$articles->id.''),
-                                'class' =>'wt-formtheme la-articlebox-form', 'id' => 'categories'] )
-                            !!}
+                            <form action="{{ url('admin/articles/update-article/'.$articles->id) }}" method="POST" class="wt-formtheme la-articlebox-form" id="categories">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'title', e($articles['title']), ['class' =>'form-control', 'placeholder' => trans('lang.ph_title')] ) !!}
+                                        
+                                        <input type="text" name="title" value="{{ $articles['title'] }}" class="form-control" placeholder="{{ trans('lang.ph_title')}}">
                                         <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::textarea('description', e($articles['description']), ['class' => 'wt-tinymceeditor', 'id' => 'wt-tinymceeditor', 'placeholder' => trans('lang.ph_desc')]) !!}
-                                        {{-- {!! Form::textarea( 'description', e($articles['description']), ['class' =>'form-control',
-                                        'placeholder' => trans('lang.ph_desc')] )
-                                        !!} --}}
+                                        <textarea id="wt-tinymceeditor" name="description" class="wt-tinymceeditor" placeholder="{{ trans('lang.ph_desc'])') }}">{{ $articles['description'] }}</textarea>
+                                        
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
                                     <div class="form-group">
@@ -65,7 +64,7 @@
                                                         :name="'uploaded_image'"
                                                         >
                                                     </upload-image>
-                                                    {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                    <input type="hidden" name="uploaded_image" id="hidden_img" value="">
                                                 </div>
                                                 <div class="form-group" v-else>
                                                     <ul class="wt-attachfile">
@@ -90,15 +89,16 @@
                                                     :name="'uploaded_image'"
                                                     >
                                                 </upload-image>
-                                                {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                                <input type="hidden" name="uploaded_image" id="hidden_img" value="">
                                             </div>
                                         @endif
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.update_article'), ['class' => 'wt-btn']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.update_article') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

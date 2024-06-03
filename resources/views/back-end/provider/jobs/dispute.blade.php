@@ -27,24 +27,30 @@
                             <a href="{{{ url('job/'.$job->slug) }}}">{{{ $job->title }}}</a>
                         </div>
                         <div class="wt-proposalamount-holder">
-                            {!! Form::open([
-                                'url' => '', 'class' =>'"wt-formtheme wt-formproposal',
-                                'id' => 'dispute-form', '@submit.prevent' => 'submitDispute("'.$job->id.'")'])
-                            !!}
+                            
+                            <form action="" class="wt-formtheme wt-formproposal" id="dispute-form" @submit.prevent="submitDispute({{ $job->id }})">
                                 <div class="wt-tabscontenttitle"><span>{{ trans('lang.reason_for_dispute') }}</span></div>
                                 <div class="form-group">
                                     <span class="wt-select">
-                                        {!! Form::select('reason', $reasons, null, array('class' => 'form-control', 'data-placeholder' => trans('lang.select_reason'))) !!}
+                                        
+                                        <select class="form-control" name="reason" data-placeholder="{{ trans('lang.select_reason') }}">
+                                            @foreach ($reasons as $reason)
+                                                <option value="{{ $reason->id }}">{{ $reason->name }}</option>
+                                            @endforeach
+                                        </select>
+
                                     </span>
                                 </div>
                                 <div class="wt-tabscontenttitle"><span>{{ trans('lang.dispute_question') }}</span></div>
                                 <div class="form-group">
-                                        {!! Form::textarea('description', null, array('class' => 'form-control', 'placeholder' => trans('lang.dispute_desc'))) !!}
+                                        
+                                        <textarea name="description" class="form-control" placeholder="{{ trans('lang.dispute_desc'])') }}"></textarea>
                                 </div>
                                 <div class="wt-btnarea">
-                                    {!! Form::submit(trans('lang.btn_submit'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.btn_submit') }}" class="wt-btn">
                                 </div>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                     </div>
                 </div>

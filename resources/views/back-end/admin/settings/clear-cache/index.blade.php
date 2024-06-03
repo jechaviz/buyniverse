@@ -7,8 +7,8 @@
     <div class="wt-tabscontenttitle">
         <h2>{{{ trans('lang.menu_clear_cache') }}}</h2>
     </div>
-    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id'
-            =>'form-cache-clear', '@submit.prevent'=>'clearCache']) !!}
+    
+    <form action="" class="wt-formtheme wt-userform" id="form-cache-clear" @submit.prevent="clearCache">
         <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
             <div class="wt-settingscontent">
                 <div class="wt-description">
@@ -30,15 +30,16 @@
                 </ul>
             </div>
         </div>
-    {!! Form::submit(trans('lang.btn_clear_selected_cache'), array('class' => 'wt-btn')) !!}
-    {!! Form::close() !!}
+    
+    <input type="submit" value="{{ trans('lang.btn_clear_selected_cache') }}" class="wt-btn">
+    </form>
 </div>
 <div class="wt-location wt-tabsinfo">
     <div class="wt-tabscontenttitle">
         <h2>{{{ trans('lang.clr_all_cache') }}}</h2>
     </div>
-    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id'
-        =>'cache-clear', '@submit.prevent'=>'clearAllCache']) !!}
+    
+    <form action="" class="wt-formtheme wt-userform" id="cache-clear" @submit.prevent="clearAllCache">
         <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
             <div class="wt-settingscontent">
                 <div class="wt-description">
@@ -46,6 +47,7 @@
                 </div>
             </div>
         </div>
-    {!! Form::submit(trans('lang.btn_clear_all_cache'), array('class' => 'wt-btn')) !!}
-    {!! Form::close() !!}
+    
+    <input type="submit" value="{{ trans('lang.btn_clear_all_cache') }}" class="wt-btn">
+    </form>
 </div>

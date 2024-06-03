@@ -9,8 +9,8 @@
                 <div class="wrap-social-icons wt-haslayout">
                     <div class="form-group">
                         <div class="form-group-holder">
-                            {!! Form::text('video['.$counter.'][url]', e($mem_value['url']),
-                            ['class' => 'form-control']) !!}
+                            
+                            <input type="text" name="video['.$counter.'][url]" value="{{ $mem_value['url'] }}" class="form-control">
                         </div>
                         <div class="form-group wt-rightarea">
                             @if ($video_key == 0 )
@@ -29,9 +29,7 @@
             <div class="wrap-social-icons wt-haslayout">
                 <div class="form-group">
                     <div class="form-group-holder">
-                        {!! Form::text('video[0][url]', null, ['class' => 'form-control',
-                            'placeholder' => trans('lang.video_url')])
-                        !!}
+                        <input type="text" name="video[0][url]" value="" class="form-control" placeholder="{{ trans('lang.video_url') }}">
                     </div>
                     <div class="form-group wt-rightarea">
                         <span class="wt-addinfobtn" @click="addVideo"><i class="fa fa-plus"></i></span>

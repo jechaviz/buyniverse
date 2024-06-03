@@ -29,11 +29,12 @@
                             <h2>{{{ trans('lang.edit_lang') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => url('admin/languages/update-langs/'.$langs->id.''), 'class' =>'wt-formtheme wt-formprojectinfo
-                            wt-formcategory', 'id' => 'langs' ]) !!}
+                            <form action="{{ url('admin/languages/update-langs/'.$langs->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="langs">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'language_title', e($langs['title']), ['class' =>'form-control'.($errors->has('language_title') ? ' is-invalid' : '')] ) !!}
+                                        <input type="text" name="language_title" value="{{ $langs['title'] }}" class="form-control {{( $errors->has('language_title') ? ' is-invalid' : '')}}">
                                         <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                         @if ($errors->has('language_title'))
                                             <span class="invalid-feedback" role="alert">
@@ -42,14 +43,14 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::textarea( 'language_desc', e($langs['description']), ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc')]) !!}
+                                        <textarea name="language_desc" class="form-control" placeholder="{{ trans('lang.ph_desc') }}">{!! $langs['description'] !!}</textarea>
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.update_lang'), ['class' => 'wt-btn']) !!}
+                                        <input type="submit" value="{{ trans('lang.update_lang') }}" class="wt-btn">                                        
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -29,11 +29,14 @@
                             <h2>{{{ trans('lang.edit_review_options') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => url('admin/review-options/update-review-options/'.$review_options->id.''), 'class' =>'wt-formtheme
-                            wt-formprojectinfo wt-formcategory','id' => 'review_options']) !!}
+                            
+                            <form action="{{ url('admin/review-options/update-review-options/'.$review_options->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="review_options">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'review_option_title', e($review_options['title']), ['class' =>'form-control'.($errors->has('review_option_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_review_option_title')]) !!}
+                                    
+                                    <input type="text" name="review_option_title" value="{{ $review_options['title'] }}" class="form-control {{( $errors->has('review_option_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_review_option_title')}}">
                                     @if ($errors->has('review_option_title'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('review_option_title') }}</strong>
@@ -41,10 +44,11 @@
                                     @endif
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.update_review_options'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.update_review_options') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

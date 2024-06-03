@@ -30,27 +30,40 @@
                                 <h2>{{{ trans('lang.delete_account') }}}</h2>
                             </div>
                             <div class="wt-formtheme wt-userform">
-                                {!! Form::open(['url' => url('profile/settings/delete-user'), 'class' =>'wt-formtheme wt-userform delete-user-form', '@submit.prevent' => 'deleteAccount($event)', 'id' => 'delete_acc_form' ])!!}
+                                
+                                <form action="{{ url('profile/settings/delete-user') }}" class="wt-formtheme wt-userform delete-user-form" method="post" id="delete_acc_form" @submit.prevent="deleteAccount($event)">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <fieldset>
                                         <div class="form-group form-group-half">
-                                            {!! Form::password('old_password', ['class' => 'form-control','placeholder' => trans('lang.ph_oldpass')]) !!}
+                                            
+                                            <input type="password" name="old_password" class="form-control" placeholder="{{ trans('lang.ph_oldpass') }}">
+
                                         </div>
                                         <div class="form-group form-group-half">
-                                            {!! Form::password('retype_password', ['class' => 'form-control','placeholder' => trans('lang.ph_retype_pass')]) !!}
+                                            
+                                            <input type="password" name="retype_password" class="form-control" placeholder="{{ trans('lang.ph_retype_pass') }}">
                                         </div>
                                         <div class="form-group">
                                             <span class="wt-select">
-                                                {!! Form::select('delete_reason', Helper::getDeleteAccReason(), null, array('placeholder' => trans('lang.select_reason'))) !!}
+                                                
+                                                <select name="delete_reason" class="">
+                                                    <option value="" disabled selected>{{ trans('lang.select_reason') }}</option>
+                                                    @foreach (Helper::getDeleteAccReason() as $reason)
+                                                        <option value="{{ $reason->id }}">{{ $reason->name }}</option>
+                                                    @endforeach
+                                                </select>
+
                                             </span>
                                         </div>
                                         <div class="form-group">
                                             <textarea name="delete_description" class="form-control" placeholder="{{{ trans('lang.ph_desc_optional') }}}"></textarea>
                                         </div>
                                         <div class="form-group form-group-half wt-btnarea">
-                                            {!! Form::submit(trans('lang.btn_delete_account'), ['class' => 'wt-btn']) !!}
+                                            
+                                            <input type="submit" value="{{ trans('lang.btn_delete_account') }}" class="wt-btn">
                                         </div>
                                     </fieldset>
-                                {!! Form::close() !!}
+                                </form>
                             </div>
                         </div>
                     </div>

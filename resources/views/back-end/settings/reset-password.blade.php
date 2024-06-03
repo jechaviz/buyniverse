@@ -28,11 +28,13 @@
                                     <div class="wt-tabscontenttitle">
                                         <h2>{{{ trans('lang.change_pass') }}}</h2>
                                     </div>
-                                    {!! Form::open(['url' => url('profile/settings/request-password'), 'class' =>'wt-formtheme wt-userform'])!!}
+                                    
+                                    <form action="{{ url('profile/settings/request-password') }}" class="wt-formtheme wt-userform" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <fieldset>
                                             <div class="form-group form-group-half">
-                                                {!! Form::password('old_password', ['class' => 'form-control'.($errors->has('old_password') ? ' is-invalid' : ''),
-                                                    'placeholder' => trans('lang.ph_oldpass')]) !!}
+                                                
+                                                <input type="password" name="old_password" class="form-control {{ .($errors->has('old_password') ? ' is-invalid' : '') }}" placeholder="{{ trans('lang.ph_oldpass') }}">
                                                 @if ($errors->has('old_password'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('old_password') }}</strong>
@@ -40,17 +42,23 @@
                                                 @endif
                                             </div>
                                             <div class="form-group form-group-half">
-                                                {!! Form::password('confirm_password', ['class' => 'form-control','placeholder' => trans('lang.ph_newpass')]) !!}
+                                                
+                                                <input type="password" name="confirm_password" class="form-control" placeholder="{{ trans('lang.ph_newpass') }}">
+
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::password('confirm_new_password', ['class' => 'form-control','placeholder' => trans('lang.ph_confirm_new_pass')]) !!}
+                                                
+                                                <input type="password" name="confirm_new_password" class="form-control" placeholder="{{ trans('lang.ph_confirm_new_pass') }}">
                                             </div>
-                                            {!! Form::hidden('user_id', $user_id) !!}
+                                            
+                                            <input type="hidden" name="user_id" value="{{ $user_id }}">
+
                                             <div class="form-group form-group-half wt-btnarea">
-                                                {!! Form::submit(trans('lang.btn_save'), ['class' => 'wt-btn']) !!}
+                                                
+                                                <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
                                             </div>
                                         </fieldset>
-                                    {!! Form::close() !!}
+                                    </form>
                                 </div>
                             </div>
                         </div>

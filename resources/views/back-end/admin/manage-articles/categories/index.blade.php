@@ -24,14 +24,13 @@
                             <h2>{{{ trans('lang.add_cat') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([
-                                'url' => url('admin/article/store-category'),
-                                'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory', 'id'=> 'categories'
-                                ])
-                            !!}
+                            
+                            <form action="{{ url('admin/article/store-category') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="categories">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        {!! Form::text( 'category_title', null, ['class' =>'form-control'.($errors->has('category_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_cat_title')] ) !!}
+                                        
+                                        <input type="text" name="category_title" value="" class="form-control {{( $errors->has('category_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_cat_title')}}">
                                         <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                         @if ($errors->has('category_title'))
                                             <span class="invalid-feedback" role="alert">
@@ -40,7 +39,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::textarea( 'category_abstract', null, ['class' =>'form-control', 'placeholder' => trans('lang.ph_desc')] ) !!}
+                                        
+                                        <textarea name="category_abstract" class="form-control" placeholder="{{ trans('lang.ph_desc'])') }}"></textarea>
                                         <span class="form-group-description">{{{ trans('lang.cat_desc') }}}</span>
                                     </div>
                                     <div class="wt-settingscontent">
@@ -52,14 +52,15 @@
                                                 :name="'uploaded_image'"
                                                 >
                                             </upload-image>
-                                            {!! Form::hidden( 'uploaded_image', '', ['id'=>'hidden_img'] ) !!}
+                                            <input type="hidden" name="uploaded_image" id="hidden_img" value="">
                                         </div>
                                     </div>
                                     <div class="form-group wt-btnarea">
-                                        {!! Form::submit(trans('lang.add_cat'), ['class' => 'wt-btn']) !!}
+                                        
+                                        <input type="submit" value="{{ trans('lang.add_cat') }}" class="wt-btn">
                                     </div>
                                 </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -67,9 +68,8 @@
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle wt-titlewithsearch">
                             <h2>{{{ trans('lang.cats') }}}</h2>
-                            {!! Form::open(['url' => url('admin/article/categories/search'),
-                                'method' => 'get', 'class' => 'wt-formtheme wt-formsearch'])
-                            !!}
+                            
+                            <form action="{{ url('admin/article/categories/search') }}" class="wt-formtheme wt-formsearch" method="get">
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
@@ -77,7 +77,7 @@
                                     <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                 </div>
                             </fieldset>
-                            {!! Form::close() !!}
+                            </form>
                             <a href="javascript:void(0);" v-if="this.is_show" @click="deleteChecked('{{ trans('lang.ph_delete_confirm_title') }}', '{{ trans('lang.ph_cat_delete_message') }}')" class="wt-skilldel">
                                 <i class="lnr lnr-trash"></i>
                                 <span>{{ trans('lang.del_select_rec') }}</span>

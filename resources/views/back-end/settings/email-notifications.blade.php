@@ -31,13 +31,15 @@
                                     <div class="wt-description">
                                         <p>{{{ trans('lang.email_notifications_note') }}}</p>
                                     </div>
-                                    {!! Form::open(['url' => url('profile/settings/save-email-settings'), 'class' =>'wt-formtheme wt-userform', 'id'=>'notifications'])!!}
+                                    
+                                    <form action="{{ url('profile/settings/save-email-settings') }}" class="wt-formtheme wt-userform" method="post" id="notifications">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <fieldset>
                                             <div class="form-group form-disabeld">
                                                 <input type="email" name="user_email" class="form-control" placeholder="{{{ $user_email }}}" disabled="">
                                             </div>
                                         </fieldset>
-                                    {!! Form::close() !!}
+                                    </form>
                                 </div>
                             </div>
                         </div>

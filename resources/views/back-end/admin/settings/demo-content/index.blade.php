@@ -6,7 +6,8 @@
 <div class="wt-tabscontenttitle">
     <h2>{{{ trans('lang.import_demo') }}}</h2>
 </div>
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'import-demo', '@submit.prevent'=>'']) !!}
+
+<form action="" class="wt-formtheme wt-userform" id="import-demo" @submit.prevent=''>
     <div class="wt-selectdesign la-wt-demo">
         <ul>
             <li>
@@ -30,4 +31,4 @@
             </li>
         </ul>
     </div>
-{!! Form::close() !!}
+</form>

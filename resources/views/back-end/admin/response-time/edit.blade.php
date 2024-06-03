@@ -29,11 +29,14 @@
                             <h2>{{{ trans('lang.edit_response_time') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([ 'url' => url('admin/response-time/update-response-time/'.$response_time->id.''), 'class' =>'wt-formtheme
-                            wt-formprojectinfo wt-formcategory','id' => 'response_time']) !!}
+                            
+                            <form action="{{ url('admin/response-time/update-response-time/'.$response_time->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="response_time">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'response_time_title', e($response_time['title']), ['class' =>'form-control'.($errors->has('response_time_title') ? ' is-invalid' : ''), 'placeholder' => trans('lang.ph_response_time_title')]) !!}
+                                    
+                                    <input type="text" name="response_time_title" value="{{ $response_time['title'] }}" class="form-control {{( $errors->has('response_time_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_response_time_title')}}">
                                     @if ($errors->has('response_time_title'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('response_time_title') }}</strong>
@@ -41,10 +44,11 @@
                                     @endif
                                 </div>
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.update_response_time'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.update_response_time') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

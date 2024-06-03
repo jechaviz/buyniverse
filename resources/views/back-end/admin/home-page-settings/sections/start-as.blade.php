@@ -3,7 +3,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][company_title]', e($company_title), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][company_title]" value="{{ $company_title }}" class="form-control">
             </div>
         </div>
     </div>
@@ -13,7 +14,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::textarea('section[0][company_desc]', e($company_desc), array('class' => 'form-control')) !!}
+                
+                <textarea name="section[0][company_desc]" class="form-control">{{ $company_desc }}</textarea>
             </div>
         </div>
     </div>
@@ -23,7 +25,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][company_url]', e($company_url), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][company_url]" value="{{ $company_url }}" class="form-control">
             </div>
         </div>
     </div>
@@ -33,7 +36,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][provider_title]', e($provider_title), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][provider_title]" value="{{ $provider_title }}" class="form-control">
             </div>
         </div>
     </div>
@@ -43,7 +47,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::textarea('section[0][provider_desc]', e($provider_desc), array('class' => 'form-control')) !!}
+                
+                <textarea name="section[0][provider_desc]" class="form-control">{{ $provider_desc }}</textarea>
             </div>
         </div>
     </div>
@@ -53,7 +58,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('section[0][provider_url]', e($provider_url), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="section[0][provider_url]" value="{{ $provider_url }}" class="form-control">
             </div>
         </div>
     </div>

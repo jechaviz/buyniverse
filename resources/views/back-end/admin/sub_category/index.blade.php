@@ -24,15 +24,13 @@
                             <h2>{{{ trans('lang.add_cat') }}}</h2>
                         </div>
                         <div class="wt-dashboardboxcontent">
-                            {!! Form::open([
-                                'url' => url('admin/sub-category'), 'class' =>'wt-formtheme wt-formprojectinfo wt-formcategory',
-                                'id' => 'skills'
-                                ])
-                            !!}
+                            
+                            <form action="{{ url('admin/sub-category') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="skills">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    {!! Form::text( 'cat_title', null, ['class' =>'form-control'.($errors->has('cat_title') ? ' is-invalid' : ''),
-                                    'placeholder' => trans('lang.ph_cat_title')] ) !!}
+                                    
+                                    <input type="text" name="cat_title" value="" class="form-control {{( $errors->has('cat_title') ? ' is-invalid' : '')}}" placeholder="{{ trans('lang.ph_cat_title')}}">
                                     <span class="form-group-description">{{{ trans('lang.desc') }}}</span>
                                     @if ($errors->has('cat_title'))
                                         <span class="invalid-feedback" role="alert">
@@ -43,10 +41,11 @@
                                 <input type="hidden" name="category_id" value="{{ $id }}">
                                 
                                 <div class="form-group wt-btnarea">
-                                    {!! Form::submit(trans('lang.add_cat'), ['class' => 'wt-btn']) !!}
+                                    
+                                    <input type="submit" value="{{ trans('lang.add_cat') }}" class="wt-btn">
                                 </div>
                             </fieldset>
-                            {!! Form::close(); !!}
+                            </form>
                         </div>
                     </div>
                 </div>

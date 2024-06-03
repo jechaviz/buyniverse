@@ -10,7 +10,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('email_data[0][sender_name]', e($sender_name), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="email_data[0][sender_name]" value="{{ $sender_name }}" class="form-control">
             </div>
         </div>
     </div>
@@ -22,7 +23,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('email_data[0][sender_tagline]', e($sender_tagline), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="email_data[0][sender_tagline]" value="{{ $sender_tagline }}" class="form-control">
             </div>
         </div>
     </div>
@@ -34,7 +36,8 @@
     <div class="wt-settingscontent">
         <div class="wt-formtheme wt-userform">
             <div class="form-group">
-                {!! Form::text('email_data[0][sender_url]', e($sender_url), array('class' => 'form-control')) !!}
+                
+                <input type="text" name="email_data[0][sender_url]" value="{{ $sender_url }}" class="form-control">
             </div>
         </div>
     </div>

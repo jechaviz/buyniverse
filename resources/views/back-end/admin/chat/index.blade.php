@@ -67,7 +67,8 @@
                 <div class="wt-dashboardbox">
                     <div class="wt-dashboardboxtitle wt-titlewithsearch">
                         <h2>{{{ trans('lang.conversations') }}}</h2>
-                        {!! Form::open(['url' => url('admin/conversations/search'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch']) !!}
+                        <form action="{{ url('admin/conversations/search') }}" class="wt-formtheme wt-formsearch" method="get">
+                        
                         <fieldset>
                             <div class="form-group">
                                 <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
@@ -75,7 +76,7 @@
                                 <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                             </div>
                         </fieldset>
-                        {!! Form::close() !!}
+                        </form>
                     </div>
                     @if (count($conversations) > 0)
                         <div class="wt-dashboardboxcontent wt-categoriescontentholder">

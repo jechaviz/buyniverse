@@ -73,18 +73,7 @@
                 </div>
                 
                 <!--<div class="row" style="margin-top:30px;">
-                    {!! Form::open(['url' => url('search-results'), 'method' => 'get', 'class' => 'wt-formtheme wt-formsearch', 'id' => 'wt-formsearch']) !!}
-                    <div class="wt-widgetcontent">
-                        <div class="wt-formtheme wt-formsearch">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input type="text" name="s" class="form-control" placeholder="{{ trans('lang.ph_search_jobs') }}" value="">
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                    <input type="submit" value="Apply Filters" class="wt-btn" style="display: none;">
-                    {!! form::close(); !!}
+                    
                 </div>-->
 
                 <div class="row" style="margin-top:30px;">
@@ -244,7 +233,13 @@
                                                         <fieldset>
                                                             <div class="form-group">
                                                                 <span class="wt-select">
-                                                                    {!! Form::select('status', $project_status, $job->status, array('id' =>'job_status', 'data-placeholder' => trans('lang.select_status'), '@change' => 'jobStatus('.$job->id.', '.$accepted_proposal->id.', "'.$cancel_proposal_text.'", "'.$cancel_proposal_button.'", "'.$validation_error_text.'", "'.$cancel_popup_title.'")')) !!}
+                                                                    
+                                                                    <select id="job_status" name="status" data-placeholder="{{ trans('lang.select_status') }}" onchange="jobStatus({{ $job->id }}, {{ $accepted_proposal->id }}, '{{ $cancel_proposal_text }}', '{{ $cancel_proposal_button }}', '{{ $validation_error_text }}', '{{ $cancel_popup_title }}')">
+                                                                        @foreach ($project_status as $status)
+                                                                            <option value="{{ $status->id }}" @if ($status->id == $job->status) selected @endif>{{ $status->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+
                                                                 </span>
                                                                 <a href="javascrip:void(0);" class="wt-searchgbtn job_status_popup" @click.prevent='jobStatus({{$job->id}}, {{$accepted_proposal->id}}, "{{$cancel_proposal_text}}", "{{$cancel_proposal_button}}", "{{$validation_error_text}}", "{{$cancel_popup_title}}")'><i class="fa fa-check"></i></a>
                                                             </div>
@@ -359,15 +354,7 @@
                                             <br>
                                                 <div class="wt-description">
                                                     <i class="fa fa-paperclip"></i>
-                                                    {!! Form::open(['url' => url('proposal/download-attachments'), 'class' =>'post-job-form wt-haslayout', 'id' => 'download-attachments-form-'.$user->id]) !!}
-                                                        @foreach ($attachments as $attachment)
-                                                            @if (Storage::disk('local')->exists('uploads/proposals/'.$user->id.'/'.$attachment))
-                                                                {!! Form::hidden('attachments['.$count.']', $attachment, []) !!}
-                                                                @php $count++; @endphp
-                                                            @endif
-                                                        @endforeach
-                                                        {!! Form::hidden('provider_id', $user->id, []) !!}
-                                                    {!! form::close(); !!}
+                                                    
                                                     <a onclick="event.preventDefault(); document.getElementById('download-attachments-form-{{$user->id}}').submit();"><span>{{{ $count }}} {{trans('lang.file_attached')}}</span></a>
                                                 </div>
                                             @endif-->

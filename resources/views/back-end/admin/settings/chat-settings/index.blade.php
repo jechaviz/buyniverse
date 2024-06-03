@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'submit-chat-form', '@submit.prevent'=>'submitChatSettings'])!!}
+
+<form action="" class="wt-formtheme wt-userform" id="submit-chat-form" @submit.prevent="submitChatSettings">
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{ trans('lang.host') }}</h2>
@@ -12,7 +13,8 @@
             </div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::text('host', e($host), array('class' => 'form-control', 'placeholder'=>trans('lang.host'))) !!}
+                    
+                    <input type="text" name="host" value="{{ $host }}" class="form-control" placeholder="{{ trans('lang.host')}}">
                 </div>
             </div>
         </div>
@@ -36,7 +38,8 @@
             </div>
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {!! Form::number('port', e($port), array('class' => 'form-control', 'placeholder'=>trans('lang.port'))) !!}
+                    
+                    <input type="number" name="port" value="{{ $port }}" class="form-control" placeholder="{{ trans('lang.port')}}">
                 </div>
             </div>
         </div>
@@ -44,6 +47,6 @@
     <div class="wt-updatall la-updateall-holder">
         <i class="ti-announcement"></i>
         <span>{{{ trans('lang.save_changes_note') }}}</span>
-        {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+        <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
     </div>
-{!! Form::close() !!}
+</form>

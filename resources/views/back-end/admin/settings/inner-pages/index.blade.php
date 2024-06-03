@@ -1,5 +1,6 @@
 <div class="la-inner-pages wt-haslayout">
-    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'breadcrumb-option', '@submit.prevent'=>'submitBreadcrumbs'])!!}
+    
+    <form action="" class="wt-formtheme wt-userform" id="breadcrumb-option" @submit.prevent="submitBreadcrumbs">
         <div class="wt-location wt-tabsinfo">
             <div class="wt-tabscontenttitle">
                     <h2>{{{ trans('lang.breadcrumbs_option') }}}</h2>
@@ -16,10 +17,11 @@
         <div class="wt-updatall la-updateall-holder">
             <i class="ti-announcement"></i>
             <span>{{{ trans('lang.save_changes_note') }}}</span>
-            {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+            <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
         </div>
-    {!! Form::close() !!}
-    {!! Form::open(['url' => '', 'class' =>'wt-formtheme wt-userform', 'id' =>'inner-page-form', '@submit.prevent'=>'submitInnerPage'])!!}
+    </form>
+    
+    <form action="" class="wt-formtheme wt-userform" id="inner-page-form" @submit.prevent="submitInnerPage">
         <div class="wt-location wt-tabsinfo">
             <div class="wt-tabscontenttitle">
                 <h2>{{{ trans('lang.provider_listing') }}}</h2>
@@ -28,8 +30,8 @@
                 <div class="wt-settingscontent">
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_title') }}</p></div>
                     <div class="wt-formtheme wt-userform">
-                        <div class="form-group">
-                            {!! Form::text('inner_page[0][f_list_meta_title]', e($f_list_meta_title), array('class' => 'form-control')) !!}
+                        <div class="form-group">                            
+                            <input type="text" name="inner_page[0][f_list_meta_title]" value="{{ $f_list_meta_title }}" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -37,7 +39,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_desc') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::textarea('inner_page[0][f_list_meta_desc]', $f_list_meta_desc, array('class' => 'form-control')) !!}
+                            
+                            <textarea name="inner_page[0][f_list_meta_desc]" class="form-control">{{ $f_list_meta_desc }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -133,7 +136,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_title') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::text('inner_page[0][emp_list_meta_title]', $emp_list_meta_title, array('class' => 'form-control')) !!}
+                            
+                            <input type="text" name="inner_page[0][emp_list_meta_title]" value="{{ $emp_list_meta_title }}" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -141,7 +145,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_desc') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::textarea('inner_page[0][emp_list_meta_desc]', $emp_list_meta_desc, array('class' => 'form-control')) !!}
+                            
+                            <textarea name="inner_page[0][emp_list_meta_desc]" class="form-control">{{ $emp_list_meta_desc }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -236,7 +241,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_title') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::text('inner_page[0][job_list_meta_title]', $job_list_meta_title, array('class' => 'form-control')) !!}
+                            
+                            <input type="text" name="inner_page[0][job_list_meta_title]" value="{{ $job_list_meta_title }}" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -244,7 +250,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_desc') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::textarea('inner_page[0][job_list_meta_desc]', $job_list_meta_desc, array('class' => 'form-control')) !!}
+                            
+                            <textarea name="inner_page[0][job_list_meta_desc]" class="form-control">{{ $job_list_meta_desc }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -339,7 +346,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_title') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::text('inner_page[0][service_list_meta_title]', $service_meta_title, array('class' => 'form-control')) !!}
+                            
+                            <input type="text" name="inner_page[0][service_list_meta_title]" value="{{ $service_meta_title }}" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -347,7 +355,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_desc') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::textarea('inner_page[0][service_list_meta_desc]', $service_meta_desc, array('class' => 'form-control')) !!}
+                            
+                            <textarea name="inner_page[0][service_list_meta_desc]" class="form-control">{{ $service_meta_desc }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -442,7 +451,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_title') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::text('inner_page[0][article_list_meta_title]', $article_meta_title, array('class' => 'form-control')) !!}
+                            
+                            <input type="text" name="inner_page[0][article_list_meta_title]" value="{{ $article_meta_title }}" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -450,7 +460,8 @@
                     <div class="wt-description"><p>{{ trans('lang.seo_meta_desc') }}</p></div>
                     <div class="wt-formtheme wt-userform">
                         <div class="form-group">
-                            {!! Form::textarea('inner_page[0][article_list_meta_desc]', $article_meta_desc, array('class' => 'form-control')) !!}
+                            
+                            <textarea name="inner_page[0][article_list_meta_desc]" class="form-control">{{ $article_meta_desc }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -539,7 +550,7 @@
         <div class="wt-updatall la-updateall-holder">
             <i class="ti-announcement"></i>
             <span>{{{ trans('lang.save_changes_note') }}}</span>
-            {!! Form::submit(trans('lang.btn_save'),['class' => 'wt-btn']) !!}
+            <input type="submit" value="{{ trans('lang.btn_save') }}" class="wt-btn">
         </div>
-    {!! Form::close() !!}
+    </form>
 </div>
