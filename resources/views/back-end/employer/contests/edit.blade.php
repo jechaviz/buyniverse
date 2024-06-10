@@ -13,7 +13,7 @@
             </div>
             <div class="wt-haslayout">
                 <form action="{{ route('contests.update', $contest->id) }}" class="wt-haslayout" method="post">
-                <input type="hidden" name="_method" value="PUT">
+                <!--<input type="hidden" name="_method" value="PUT">-->
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">  
                     
                     <div class="wt-dashboardbox">

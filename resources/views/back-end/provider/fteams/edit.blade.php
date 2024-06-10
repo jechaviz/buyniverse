@@ -28,7 +28,7 @@
                         </div>
                         <div class="wt-dashboardboxcontent">
                         <form action="{{ route('fteam.update', $team->id) }}" class="wt-haslayout" method="post">
-                        <input type="hidden" name="_method" value="PUT">
+                        <!--<input type="hidden" name="_method" value="PUT">-->
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             
                                 <div class="form-group">

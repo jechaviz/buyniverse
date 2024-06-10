@@ -30,7 +30,7 @@
                         </div>
                         <div class="wt-dashboardboxcontent">
                         <form action="{{ route('sub-skills.update', $sub_skills->id) }}" class="wt-haslayout" method="post">
-                        <input type="hidden" name="_method" value="PUT">
+                        <!--<input type="hidden" name="_method" value="PUT">-->
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">

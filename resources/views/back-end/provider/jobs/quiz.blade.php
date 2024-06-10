@@ -12,7 +12,7 @@
         </div>
         <div class="wt-dashboardboxcontent wt-categoriescontentholder">
             <form method="POST" action="{{ route('postquiz', $quiz->id) }}">
-                <input type="hidden" name="_method" value="PUT">
+                <!--<input type="hidden" name="_method" value="PUT">-->
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 @foreach ($quiz->questions as $question)

@@ -39,7 +39,7 @@
                         </div>
                         <div class="wt-dashboardboxcontent">
                             <form action="{{ url('admin/email-templates/update-templates/'.$template->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="update_email_templates">
-                            <input type="hidden" name="_method" value="PUT">
+                            <!--<input type="hidden" name="_method" value="PUT">-->
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             
                             <fieldset>

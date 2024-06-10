@@ -31,7 +31,7 @@
                         <div class="wt-dashboardboxcontent">
                             
                             <form action="{{ url('admin/packages/update/'.$package->slug.'') }}" class="wt-formtheme wt-packagesform" method="post" id="packages">
-                                <input type="hidden" name="_method" value="PUT">
+                                <!--<input type="hidden" name="_method" value="PUT">-->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">

@@ -30,7 +30,7 @@
                         </div>
                         <div class="wt-dashboardboxcontent la-editbadge">
                             <form action="{{ url('admin/badges/update-badges/'.$badges->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post" id="badges">
-                                <input type="hidden" name="_method" value="PUT">
+                                <!--<input type="hidden" name="_method" value="PUT">-->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">

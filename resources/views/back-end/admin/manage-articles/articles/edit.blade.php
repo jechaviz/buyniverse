@@ -30,7 +30,7 @@
                         </div>
                         <div class="wt-dashboardboxcontent">
                             <form action="{{ url('admin/articles/update-article/'.$articles->id) }}" method="POST" class="wt-formtheme la-articlebox-form" id="categories">
-                                <input type="hidden" name="_method" value="PUT">
+                                <!--<input type="hidden" name="_method" value="PUT">-->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">

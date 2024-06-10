@@ -30,7 +30,7 @@
                         </div>
                         <div class="wt-dashboardboxcontent">
                             <form action="{{ url('admin/locations/update-location/'.$locations->id.'') }}" class="wt-formtheme wt-formprojectinfo wt-formcategory" method="post">
-                            <input type="hidden" name="_method" value="PUT">
+                            <!--<input type="hidden" name="_method" value="PUT">-->
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <input type="hidden" name="location" id="uploaded_id" value="{{ $locations->id }}">
