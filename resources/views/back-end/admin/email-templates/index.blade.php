@@ -25,7 +25,8 @@
                 <div class="wt-dashboardbox">
                     <div class="wt-dashboardboxtitle wt-titlewithsearch">
                         <h2>{{{ trans('lang.email_templates') }}}</h2>
-                        <form action="{{ url('admin/email-templates') }}" class="wt-formtheme wt-formsearch" method="get">                        
+                        <form action="{{ url('admin/email-templates') }}" class="wt-formtheme wt-formsearch" >                        
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
@@ -34,7 +35,8 @@
                                 </div>
                             </fieldset>
                         </form>
-                        <form action="{{ url('admin/email-templates/filter-templates') }}" class="wt-formtheme wt-formsearch la-mailfilter" method="get" id="template_filter_form">
+                        <form action="{{ url('admin/email-templates/filter-templates') }}" class="wt-formtheme wt-formsearch la-mailfilter"  id="template_filter_form">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <span class="wt-select">
                                     <select name="role" data-placeholder="{{trans('lang.filter_by_roles')}}" onchange="submitTemplateFilter()">

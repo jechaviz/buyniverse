@@ -70,7 +70,8 @@
                     <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle wt-titlewithsearch">
                             <h2>{{{ trans('lang.badges') }}}</h2>
-                            <form action="{{ url('admin/badges/search') }}" class="wt-formtheme wt-formsearch" method="get">
+                            <form action="{{ url('admin/badges/search') }}" class="wt-formtheme wt-formsearch">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
                                         <input type="search" name="s" value="{{{ !empty($_GET['s']) ? $_GET['s'] : '' }}}" class="form-control" placeholder="{{{ trans('lang.ph_search_badges') }}}">

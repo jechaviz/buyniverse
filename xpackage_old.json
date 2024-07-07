@@ -64,6 +64,6 @@
         "vue2-dropzone": "^3.6.0",
         "vue2-google-maps": "^0.10.7",
         "vuebar": "0.0.20",
-        "vuedraggable": "^2.24.3"
+        "vuedraggable": "^2.24.3" 
     }
 }

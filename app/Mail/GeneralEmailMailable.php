@@ -4,10 +4,7 @@
  *
  * @category Worktern
  *
- * @package Worktern
- * @author  Amentotech <theamentotech@gmail.com>
- * @license http://www.amentotech.com Amentotech
- * @link    http://www.amentotech.com
+ 
  */
 namespace App\Mail;
 

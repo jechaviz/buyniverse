@@ -127,7 +127,8 @@
                 
                 <div class="row" style="margin-top:30px;">
                     
-                    <form action="{{ url('search-results') }}" class="wt-formtheme wt-formsearch" method="get" id="wt-formsearch">
+                    <form action="{{ url('search-results') }}" class="wt-formtheme wt-formsearch"  id="wt-formsearch">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="wt-widgetcontent">
                         <div class="wt-formtheme wt-formsearch">
                             <fieldset>

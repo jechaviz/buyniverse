@@ -1,6 +1,7 @@
 <aside id="wt-sidebar" class="wt-sidebar wt-usersidebar">
     
-    <form action="{{ url('search-results') }}" class="wt-formtheme wt-formsearch" method="get" id="wt-formsearch">
+    <form action="{{ url('search-results') }}" class="wt-formtheme wt-formsearch"  id="wt-formsearch">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" value="{{$type}}" name="type">
         <div class="wt-widget wt-effectiveholder wt-startsearch">
             <div class="wt-widgettitle">

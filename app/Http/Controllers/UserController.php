@@ -3,13 +3,7 @@
 /**
  * Class UserController
  *
- * @category Worketic
- *
- * @package Worketic
- * @author  Amentotech <theamentotech@gmail.com>
- * @license http://www.amentotech.com Amentotech
- * @version <PHP: 1.0.0>
- * @link    http://www.amentotech.com
+ 
  */
 
 namespace App\Http\Controllers;

@@ -83,11 +83,11 @@
                         @endphp
                             <h2>{{{ trans('lang.cats') }}}</h2>
                             @if ($role === 'admin')
-                            <form action="{{ url('admin/categories/search') }}" class="wt-formtheme wt-formsearch" method="get">
+                            <form action="{{ url('admin/categories/search') }}" class="wt-formtheme wt-formsearch" >
                             @else
-                            <form action="{{ url('employer/categories/search') }}" class="wt-formtheme wt-formsearch" method="get">                            
+                            <form action="{{ url('employer/categories/search') }}" class="wt-formtheme wt-formsearch" >                            
                             @endif
-
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"

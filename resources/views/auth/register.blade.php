@@ -475,7 +475,7 @@
         </div>
     </div>
     
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <!--<script src="http://localhost:8000/js/tinymce/tinymce.min.js"></script>-->
     <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/multi/script.js') }}"></script>

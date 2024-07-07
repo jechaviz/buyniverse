@@ -78,7 +78,8 @@
                         <div class="wt-dashboardboxtitle wt-titlewithsearch">
                             <h2>{{{ trans('lang.articles') }}}</h2>
                             
-                            <form action="{{ url('admin/articles/search') }}" class="wt-formtheme wt-formsearch" method="get">
+                            <form action="{{ url('admin/articles/search') }}" class="wt-formtheme wt-formsearch" >
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"

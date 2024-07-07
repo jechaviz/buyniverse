@@ -5,12 +5,7 @@
  * routes are loaded by the RouteServiceProvider within a group which
  * contains the "web" middleware group. Now create something great!
  *
- * @category Worketic
- *
- * @package Worketic
- * @author  Amentotech <theamentotech@gmail.com>
- * @license http://www.amentotech.com amentotech
- * @link    http://www.amentotech.com
+ 
  */
 
 Route::fallback(

@@ -3,12 +3,7 @@
 /**
  * Class PublicController
  *
- * @category Worketic
- *
- * @package Worketic
- * @author  Amentotech <theamentotech@gmail.com>
- * @license http://www.amentotech.com Amentotech
- * @link    http://www.amentotech.com
+ 
  */
 
 namespace App\Http\Controllers;
@@ -433,6 +428,7 @@ class PublicController extends Controller
 
                 $invoices = Invoice::where('payer_email', $user->email)->get();
                 $total = 0;
+                $currrency = '$';
                 foreach($invoices as $invoice)
                 {
                     $currrency = $invoice->currency_code;
