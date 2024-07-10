@@ -4,10 +4,12 @@
  */
 
 require('./bootstrap');
-import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue'
+//import Vue from 'vue';
+import { createApp } from 'vue';
+//import BootstrapVue from 'bootstrap-vue'
 import 'vue-date-pick/dist/vueDatePick.css';
 import datePicker from 'vue-bootstrap-datetimepicker';
+import 'bootstrap/dist/css/bootstrap.css';
 import '../../public/js/tinymce/tinymce.min.js';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 import VueIziToast from 'vue-izitoast';
@@ -19,7 +21,7 @@ import { Printd } from "printd";
 import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
 import Vuebar from 'vuebar';
 import Event from './event.js';
-import * as VueGoogleMaps from 'vue2-google-maps'
+//import * as VueGoogleMaps from 'vue2-google-maps'
 import Verte from 'verte';
 import 'verte/dist/verte.css';
 import { Collapse, Slider } from 'ant-design-vue';
@@ -27,19 +29,33 @@ import './mixins/helper.js'
 import { Form, HasError, AlertError } from 'vform';
 import Swal from 'sweetalert2';
 import moment from 'moment';
-import {TinkerComponent} from 'botman-tinker';
+//import {TinkerComponent} from 'botman-tinker';
 import numeral from 'numeral';
 import numFormat from 'vue-filter-number-format';
 
-import tinymce from 'vue-tinymce-editor';
+//import tinymce from 'vue-tinymce-editor';
+import tinymce from 'tinymce/tinymce.js';
+
+import 'tinymce/skins/ui/oxide/skin.css';
+import 'tinymce/themes/silver';
+
+// Icon
+import 'tinymce/icons/default';
+
+// 用到的外掛
+import 'tinymce/plugins/emoticons';
+import 'tinymce/plugins/emoticons/js/emojis.js';
+import 'tinymce/plugins/table';
+import 'tinymce/plugins/quickbars';
 import Multiselect from 'vue-multiselect';
 
+const app = createApp({});
 
-Vue.prototype.trans = (key) => {
+app.prototype.trans = (key) => {
     return _.get(window.trans, key, key);
 };
 
-Vue.filter('two_digits', function (value) {
+/*Vue.filter('two_digits', function (value) {
     if (value.toString().length <= 1) {
         return "0" + value.toString();
     }
@@ -117,39 +133,32 @@ Vue.filter('formatMilestone', function(value) {
 Vue.filter('numFormat', numFormat(numeral));
 
 Vue.filter('toCurrency', function (value) {
-    /*if (typeof value !== "number") {
-        return value;
-    }
-    var formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    });
-    return formatter.format(value);*/
+    
     //return numeralIntl.NumberFormat(value);
     
-});
+});*/
 
 
 
-Vue.use(VueGoogleMaps, {
+/*Vue.use(VueGoogleMaps, {
     load: {
         key: '',
         libraries: 'places',
     },
-})
-Vue.use(VueIziToast);
-Vue.use(SmoothScrollbar)
-Vue.use(VueSweetalert2);
-Vue.use(Vuebar);
-Vue.use(Collapse);
-Vue.use(Slider);
+})*/
+app.use(VueIziToast);
+app.use(SmoothScrollbar)
+app.use(VueSweetalert2);
+app.use(Vuebar);
+app.use(Collapse);
+app.use(Slider);
 
 window.Vue = require('vue');
 window.flashVue = new Vue();
 window.deleteVue = new Vue();
 window.flashMessageVue = new Vue();
-Vue.use(datePicker);
-Vue.use(BootstrapVue);
+app.use(datePicker);
+//app.use(BootstrapVue);
 window.Form = Form;
 
 
@@ -188,43 +197,43 @@ window.Fire = new Vue();
 
 
 //Jobs vue components
-Vue.component('tasks', require('./components/tasks.vue').default);
-Vue.component('checklists', require('./components/checklists.vue').default);
-Vue.component('comments', require('./components/comments.vue').default);
-Vue.component('quiz', require('./components/quiz.vue').default);
-Vue.component('question', require('./components/question.vue').default);
-Vue.component('answer', require('./components/answer.vue').default);
-Vue.component('countdown', require('./components/countdown.vue').default);
-Vue.component('job_quiz', require('./components/JobQuiz.vue').default);
-Vue.component('contest', require('./components/contest.vue').default);
-Vue.component('contest-proposal', require('./components/contest-proposal.vue').default);
-Vue.component('job_file', require('./components/job_file.vue').default);
-Vue.component('proposal_file', require('./components/proposal_file.vue').default);
-Vue.component('job_note', require('./components/job_note.vue').default);
-Vue.component('job_ticket', require('./components/job_ticket.vue').default);
-Vue.component('job_title', require('./components/job_title.vue').default);
-Vue.component('joboverview', require('./components/joboverview.vue').default);
-Vue.component('jobshow', require('./components/jobshow.vue').default);
-//Vue.component('gmap', require('./components/gmap.vue').default);
-Vue.component('sendinvite', require('./components/sendinvite.vue').default);
-Vue.component('sendinvitation', require('./components/Sendinvitation.vue').default);
-Vue.component('job_provider', require('./components/Job_provider.vue').default);
-Vue.component('provider_search', require('./components/Search_provider.vue').default);
-Vue.component('ijob_provider', require('./components/IJob_provider.vue').default);
-Vue.component('tinymce', tinymce);
-Vue.component('botman-tinker', TinkerComponent);
-Vue.component('job_contest', require('./components/job_contest.vue').default);
-Vue.component('chatroom', require('./components/chatroom.vue').default);
-Vue.component('post-job', require('./components/post-job.vue').default);
-Vue.component('draft-job', require('./components/draft-job.vue').default);
-Vue.component('multiselect', Multiselect);
-Vue.component('hirenow', require('./components/hirenow.vue').default);
+app.component('tasks', require('./components/tasks.vue').default);
+app.component('checklists', require('./components/checklists.vue').default);
+app.component('comments', require('./components/comments.vue').default);
+app.component('quiz', require('./components/quiz.vue').default);
+app.component('question', require('./components/question.vue').default);
+app.component('answer', require('./components/answer.vue').default);
+app.component('countdown', require('./components/countdown.vue').default);
+app.component('job_quiz', require('./components/JobQuiz.vue').default);
+app.component('contest', require('./components/contest.vue').default);
+app.component('contest-proposal', require('./components/contest-proposal.vue').default);
+app.component('proposal_file', require('./components/proposal_file.vue').default);
+app.component('job_note', require('./components/job_note.vue').default);
+app.component('job_ticket', require('./components/job_ticket.vue').default);
+app.component('job_title', require('./components/job_title.vue').default);
+app.component('joboverview', require('./components/joboverview.vue').default);
+app.component('jobshow', require('./components/jobshow.vue').default);
+//app.component('gmap', require('./components/gmap.vue').default);
+app.component('sendinvite', require('./components/sendinvite.vue').default);
+app.component('sendinvitation', require('./components/Sendinvitation.vue').default);
+app.component('job_provider', require('./components/Job_provider.vue').default);
+app.component('provider_search', require('./components/Search_provider.vue').default);
+app.component('ijob_provider', require('./components/IJob_provider.vue').default);
+app.component('tinymce', tinymce);
+//app.component('botman-tinker', TinkerComponent);
+app.component('job_contest', require('./components/job_contest.vue').default);
+app.component('chatroom', require('./components/chatroom.vue').default);
+app.component('post-job', require('./components/post-job.vue').default);
+app.component('draft-job', require('./components/draft-job.vue').default);
+app.component('multiselect', Multiselect);
+app.component('hirenow', require('./components/hirenow.vue').default);
 
 if (document.getElementById("show-jobs")) {
-const app = new Vue({
+    app.mount('#wt-new-added');
+/*const app = new Vue({
     el: '#wt-new-added',
     //router
-});
+});*/
 }
 /*if (document.getElementById("show-provider")) {
     const app = new Vue({
@@ -233,28 +242,20 @@ const app = new Vue({
     });
 }*/
 if (document.getElementById("quiz-home")) {
-    const app = new Vue({
-        el: '#quiz-home',
-        //router
-    });
+    app.mount('#quiz-home');
+    
 }
 if (document.getElementById("question-home")) {
-    const app = new Vue({
-        el: '#question-home',
-        //router
-    });
+    app.mount('#question-home');
+    
 }
 if (document.getElementById("answer-home")) {
-    const app = new Vue({
-        el: '#answer-home',
-        //router
-    });
+    app.mount('#answer-home');
+    
 }
 if (document.getElementById("contest-home")) {
-    const app = new Vue({
-        el: '#contest-home',
-        //router
-    });
+    app.mount('#contest-home');
+    
 }
 /*if (document.getElementById("gmap")) {
     const app = new Vue({
@@ -263,10 +264,8 @@ if (document.getElementById("contest-home")) {
     });
 }*/
 if (document.getElementById("hire-now")) {
-    const app = new Vue({
-        el: '#hire-now',
-        //router
-    });
+    app.mount('#hire-now');
+    
 }
 
 

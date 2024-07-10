@@ -8,7 +8,7 @@
                 
                 <select name="location" class="" placeholder="{{ trans('lang.ph_select_location') }}">
                     @foreach ($locations as $location)
-                        <option value="{{ $location->id }}" @if ($location->id == Auth::user()->location_id) selected @endif>{{ $location->name }}</option>
+                        <option value="{{ $location->id }}" @if($location->id == Auth::user()->location_id) selected @endif>{{ $location->title }}</option>
                     @endforeach
                 </select>
 

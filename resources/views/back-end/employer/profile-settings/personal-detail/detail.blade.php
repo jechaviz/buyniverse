@@ -5,23 +5,23 @@
     <fieldset>
         <div class="form-group form-group-half">
             
-            <input type="text" name="first_name" value="{{ Auth::user()->first_name }]" class="form-control" placeholder="{{ trans('lang.ph_first_name')}}">
+            <input type="text" name="first_name" value="{{ Auth::user()->first_name }}" class="form-control" placeholder="{{ trans('lang.ph_first_name')}}">
         </div>
         <div class="form-group form-group-half">
             
-            <input type="text" name="last_name" value="{{ Auth::user()->last_name }]" class="form-control" placeholder="{{ trans('lang.ph_last_name')}}">
+            <input type="text" name="last_name" value="{{ Auth::user()->last_name }}" class="form-control" placeholder="{{ trans('lang.ph_last_name')}}">
         </div>
         <div class="form-group">
             
-            <input type="text" name="nickname" value="{{ Auth::user()->nickname }]" class="form-control" placeholder="{{ trans('lang.nickname')}}">
+            <input type="text" name="nickname" value="{{ Auth::user()->nickname }}" class="form-control" placeholder="{{ trans('lang.nickname')}}">
         </div>
         <div class="form-group">
             
-            <input type="text" name="tagline" value="{{ $tagline }]" class="form-control" placeholder="{{ trans('lang.ph_add_tagline')}}">
+            <input type="text" name="tagline" value="{{ $tagline }}" class="form-control" placeholder="{{ trans('lang.ph_add_tagline')}}">
         </div>
         <div class="form-group">
             
-            <textarea name="description" class="form-control" placeholder="{{ trans('lang.ph_desc'])') }}">{{ $description }}</textarea>
+            <textarea name="description" class="form-control" placeholder="{{ trans('lang.ph_desc') }}">{{ $description }}</textarea>
         </div>
     </fieldset>
 </div>

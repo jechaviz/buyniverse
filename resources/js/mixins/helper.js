@@ -1,4 +1,7 @@
-import Vue from 'vue'
+//import Vue from 'vue'
+import { createApp } from 'vue';
+
+const app = createApp({});
 
 Vue.mixin({
   data () {

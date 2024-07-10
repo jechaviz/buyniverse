@@ -19,8 +19,10 @@
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="icon" href="{{{ asset(Helper::getSiteFavicon()) }}}" type="image/x-icon">
 	@stack('PackageStyle')
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+	<!--<link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
 	<!--<link href="https://cloud-ex42.usaupload.com/file/5cow/app.css" rel="stylesheet"> -->
+	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/normalize-min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/scrollbar-min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome/fontawesome-all.min.css') }}" rel="stylesheet">
@@ -115,7 +117,7 @@
 	<script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 	<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 	@yield('bootstrap_script')
-	<script src="{{ asset('js/app.js') }}"></script>
+	<!--<script src="{{ asset('js/app.js') }}"></script>-->
 	<script src="{{ asset('js/vendor/jquery-library.js') }}"></script>
 	<script src="{{ asset('js/scrollbar.min.js') }}"></script>
 	<script src="{{ asset('js/particles.min.js') }}"></script>

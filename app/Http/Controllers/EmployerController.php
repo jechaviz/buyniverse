@@ -77,7 +77,12 @@ class EmployerController extends Controller
             ->get()->first();
         $employees = Helper::getEmployeesList();
         $departments = Department::all();
-        $locations = Location::pluck('title', 'id');
+        $locations = Location::select('title', 'id')->get();
+        // foreach($locations as $location)
+        // {
+        //     dd($location);
+        // }
+        //dd($locations);
         $gender = !empty($profile->gender) ? $profile->gender : '';
         $tagline = !empty($profile->tagline) ? $profile->tagline : '';
         $description = !empty($profile->description) ? $profile->description : '';
