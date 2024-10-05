@@ -1,8 +1,8 @@
 <template>
     <div :server_error_message="server_errors">
         <div class="wt-tabscontenttitle wt-addnew">
-            <h2>{{ trans('lang.add_your_awards')}}</h2>
-            <a href="javascript:void(0);" @click="addAward" class="add-award-btn">{{ trans('lang.add_awards') }}</a>
+            <h2>{{ $trans('lang.add_your_awards')}}</h2>
+            <a href="javascript:void(0);" @click="addAward" class="add-award-btn">{{ $trans('lang.add_awards') }}</a>
         </div>
         <ul class="wt-experienceaccordion accordion" id="award-list">
             <span v-if="stored_awards" class="award-inner-list">
@@ -50,9 +50,9 @@
                                     v-model="award.date"
                                     :weekdays="weekdayList" 
                                     :months="monthsList" 
-                                    :nextMonthCaption="trans('lang.next_month')"
-                                    :prevMonthCaption="trans('lang.pre_month')"
-                                    :setTimeCaption="trans('lang.set_time')">
+                                    :nextMonthCaption="$trans('lang.next_month')"
+                                    :prevMonthCaption="$trans('lang.pre_month')"
+                                    :setTimeCaption="$trans('lang.set_time')">
                                 </date-pick>
                                 <input type="hidden" v-bind:name="'award['+[award.count]+'][award_date]'" :value="award.date">
                             </div>

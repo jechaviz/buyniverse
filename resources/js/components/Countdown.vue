@@ -1,5 +1,5 @@
 <template>
-    <div>{{ trans('lang.event_start_in') }} {{ timerdate | countdown }}. </div>
+    <div>{{ $trans('lang.event_start_in') }} {{ $filters.countdown(timerdate) }}. </div>
 </template>
 
 <script>

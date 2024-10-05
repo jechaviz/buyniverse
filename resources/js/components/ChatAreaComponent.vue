@@ -7,14 +7,14 @@
                     <emoji-textarea></emoji-textarea>
                 </div>
                 <div class="wt-iconbox">
-                    <a href="javascript:void(0);" @click="sendMessage" class="wt-btnsendmsg">{{ trans('lang.btn_send') }}</a>
+                    <a href="javascript:void(0);" @click="sendMessage" class="wt-btnsendmsg">{{ $trans('lang.btn_send') }}</a>
                 </div>    
             </div>
         </div>
         <div class="wt-chatarea wt-chatarea-empty" v-else>
             <figure class="wt-chatemptyimg">
                 <img :src="no_record_img" :alt="img_desc">
-                <figcaption><h3>{{ trans('lang.no_message_select') }}</h3></figcaption>
+                <figcaption><h3>{{ $trans('lang.no_message_select') }}</h3></figcaption>
             </figure>
         </div>
     </div>

@@ -26,7 +26,7 @@
                                     </figure>
                                 </div>
                             <!-- </carousel> -->
-                            <span class="wt-featuredtagvtwo" v-if="service_item.is_featured == 'true'">{{ trans('lang.featured') }}</span>
+                            <span class="wt-featuredtagvtwo" v-if="service_item.is_featured == 'true'">{{ $trans('lang.featured') }}</span>
                             <div class="wt-providers-details">
                                 <figure class="wt-providers-img" v-if="service_item.seller_count > 0">
                                     <img :src="service_item.seller_image" alt="img description">
@@ -37,7 +37,7 @@
                                             <i class="fa fa-check-circle"></i> {{service_item.seller_name}}
                                         </a>
                                         <a :href="baseUrl+'/service/'+service_item.slug"><h3>{{service_item.title}}</h3></a>
-                                        <span><strong>{{ service_item.symbol }} {{service_item.price}}</strong> {{trans('lang.starting_from')}}</span>
+                                        <span><strong>{{ service_item.symbol }} {{service_item.price}}</strong> {{$trans('lang.starting_from')}}</span>
                                     </div>
                                 </div>
                                 <div class="wt-providers-rating">
@@ -45,7 +45,7 @@
                                         <li><span><i class="fa fa-star"></i>{{service_item.service_rating}}/<i>5</i> ({{service_item.service_reviews}})</span></li>
                                         <li>
                                             <i class="fa fa-spinner fa-spin" v-if="service_item.total_orders > 0"></i>
-                                            {{service_item.total_orders}} {{ trans('lang.in_queue') }}
+                                            {{service_item.total_orders}} {{ $trans('lang.in_queue') }}
                                         </li>
                                     </ul>
                                 </div>

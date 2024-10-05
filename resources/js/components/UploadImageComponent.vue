@@ -7,10 +7,10 @@
                 <div class="wt-labelgroup">
                     <label for="file">
                         <span class="wt-btn" v-if="btn_text">{{ btn_text }}</span>
-                        <span class="wt-btn" v-else>{{ trans('lang.select_files') }}</span>
+                        <span class="wt-btn" v-else>{{ $trans('lang.select_files') }}</span>
                     </label>
                     <span v-if="drop_text">{{ drop_text }}</span>
-                    <span v-else>{{ trans('lang.drop_files') }}</span>
+                    <span v-else>{{ $trans('lang.drop_files') }}</span>
                 </div>
             </div>
         </vue-dropzone> 

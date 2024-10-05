@@ -2,7 +2,7 @@
     <div class="wt-custom-scrollbar-wrapper wt-verticalscrollbar wt-dashboardscrollbar" id="scrollList" ref="scrollList">
         <div class="wt-messages messages">
             <!-- <small class="typing-test">
-                <i>{{this.typing}} {{trans('lang.is_typing')}}</i>
+                <i>{{this.typing}} {{$trans('lang.is_typing')}}</i>
             </small> -->
             <div v-for="(msg, index) in message" :key="index" :id="msg.id" :ref="'message-'+msg.id" v-bind:class="[msg.is_sender==='yes' ? 'wt-memessage' : 'wt-offerermessage', msg.read_status]">
                 <figure v-if="msg.image">

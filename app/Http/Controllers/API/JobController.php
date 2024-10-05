@@ -60,7 +60,7 @@ class JobController extends Controller
         $job = Job::find($request->job_id);
         $job->title = $request->title;
         $job->save();
-        
+        return true;
     }
 
     public function sendinvitation($id)
@@ -115,6 +115,7 @@ class JobController extends Controller
                 'catable_type' => 'App\User'
             ]);
         }
+        return true;
     }
 
     public function getusercategory()
@@ -137,6 +138,8 @@ class JobController extends Controller
     {
         if(DB::table('catables')->where('id', $id)->exists())
             DB::table('catables')->where('id', $id)->delete();
+        
+        return true;
     }
 
 
@@ -213,6 +216,7 @@ class JobController extends Controller
                 foreach($categories as $cat)
                 {
                     $name = Category::find($cat->category_id);
+                    //dd($name, $cat);
                     if($name)
                     $cat->name = $name->title;
                     else
@@ -668,6 +672,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->currency = $ids[1];
         $job->save(); 
+        return true;
     }
 
     public function updatecategory($id)
@@ -684,6 +689,7 @@ class JobController extends Controller
                 'catable_type' => 'App\Job'
             ]);
         }
+        return true;
     }
 
     public function deletecategory($id)
@@ -692,6 +698,8 @@ class JobController extends Controller
         
         if(DB::table('catables')->where('catable_id', $ids[0])->where('category_id', $ids[1])->where('catable_type', 'App\Job')->exists())
             DB::table('catables')->where('catable_id', $ids[0])->where('category_id', $ids[1])->where('catable_type', 'App\Job')->delete();
+
+        return true;
     }
 
     public function getcontest($id)
@@ -1005,6 +1013,7 @@ class JobController extends Controller
         $invite->providers = $providers;
         //dd($invite, $providers);
         $invite->save();
+        return true;
         
     }
     public function postInvite(Request $request)
@@ -1033,11 +1042,13 @@ class JobController extends Controller
         $providers = $invite->providers.', '.$request->email;
         $invite->providers = $providers;
         $invite->save();
+        return true;
     }
     public function deletesubskill($id)
     {
         $sub = Sub_job_skill::find($id);
         $sub->delete();
+        return true;
     }
     public function postsubskill($id)
     {
@@ -1052,6 +1063,7 @@ class JobController extends Controller
             $sub->sub_skill_id = $ids[1];
             $sub->save();
         }
+        return true;
     }
     public function getTeam($id)
     {
@@ -1100,6 +1112,7 @@ class JobController extends Controller
     {
         $team = Team::find($id);
         $team->delete();
+        return true;
     }
 
     public function getApprover($id)
@@ -1379,6 +1392,7 @@ class JobController extends Controller
     {
         $approver = Approver::find($id);
         $approver->delete();
+        return true;
     }
 
 
@@ -1411,6 +1425,7 @@ class JobController extends Controller
                 'job_id' => $ids[0]
             ]);
         }
+        return true;
     }
     public function deleteskill($id)
     {
@@ -1420,6 +1435,8 @@ class JobController extends Controller
         
         if(DB::table('job_skill')->where('job_id', $ids[0])->where('skill_id', $ids[1])->exists())
             DB::table('job_skill')->where('job_id', $ids[0])->where('skill_id', $ids[1])->delete();
+
+        return true;
         
     }
     public function updatelang($id)
@@ -1435,12 +1452,16 @@ class JobController extends Controller
                 'langable_type' => 'App\Job'
             ]);
         }
+
+        return true;
     }
     public function deletelang($id)
     {
         $ids = explode('-', $id);
         if(DB::table('langables')->where('language_id', $ids[1])->where('langable_id', $ids[0])->where('langable_type', 'App\Job')->exists())
             DB::table('langables')->where('language_id', $ids[1])->where('langable_id', $ids[0])->where('langable_type', 'App\Job')->delete();
+
+        return true;
     }
     public function updatequiz($id)
     {
@@ -1449,6 +1470,8 @@ class JobController extends Controller
         $job_quiz->quiz_id = $ids[1];
         $job_quiz->job_id = $ids[0];
         $job_quiz->save();
+
+        return true;
     }
     public function deletequiz($id)
     {
@@ -1456,6 +1479,8 @@ class JobController extends Controller
         $job_quiz = Job_quiz::where('quiz_id', $ids[1])->where('job_id', $ids[0]);
         //dd($job_quiz);
         $job_quiz->delete();
+
+        return true;
     }
     public function getEnglish($id)
     {
@@ -1487,11 +1512,13 @@ class JobController extends Controller
     {
         $english = English_level::find($id);
         $english->delete();
+        return true;
     }
     public function deleteProvider($id)
     {
         $provider = Provider_type::find($id);
         $provider->delete();
+        return true;
     }
     public function getProjectLevel()
     {
@@ -1520,6 +1547,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->project_level = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postProjectDuration($id)
     {
@@ -1528,6 +1556,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->duration = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postProjecttype($id)
     {
@@ -1536,6 +1565,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->type = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postquiz($id)
     {
@@ -1551,6 +1581,7 @@ class JobController extends Controller
                 $job_quiz->delete();
             }
         } 
+        return true;
     }
     public function postProjectprice($id)
     {
@@ -1559,6 +1590,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->price = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postProjectprovider($id)
     {
@@ -1576,6 +1608,7 @@ class JobController extends Controller
         /*$job = Job::find($ids[0]);
         $job->Provider_type = $ids[1];
         $job->save(); */
+        return true;
     }
     public function postProjectenglish($id)
     {
@@ -1590,6 +1623,7 @@ class JobController extends Controller
             $english->english_level = $ids[1];
             $english->save();
         }
+        return true;
         /*$job = Job::find($ids[0]);
         $job->english_level = $ids[1];
         $job->save(); */
@@ -1601,6 +1635,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->expiry_date = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postProjectmonth($id)
     {   
@@ -1608,6 +1643,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->month = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postProjectweek($id)
     {   
@@ -1615,6 +1651,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->week = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postProjectday($id)
     {   
@@ -1622,6 +1659,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->day = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postProjecthour($id)
     {   
@@ -1629,6 +1667,7 @@ class JobController extends Controller
         $job = Job::find($ids[0]);
         $job->hour = $ids[1];
         $job->save(); 
+        return true;
     }
     public function postdescription(Request $request, $id)
     {
@@ -1637,6 +1676,7 @@ class JobController extends Controller
         $job->description = $request->description;
         //dd($job);
         $job->save();
+        return true;
     }
     /**
      * Update the specified resource in storage.

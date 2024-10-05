@@ -13,7 +13,7 @@
             <i class="fa fa-user-circle fa-4x chatbox-popup__avatar" aria-hidden="true"></i>
             </aside>-->
             <aside style="flex:8">
-            {{ trans('lang.chatroom_contest') }}
+            {{ $trans('lang.chatroom_contest') }}
             </aside>
             <!--<aside style="flex:1">
             <button class="chatbox-maximize"><i class="fa fa-window-maximize" aria-hidden="true"></i></button>
@@ -34,7 +34,7 @@
                     {{message.message}}
                   </p> 
                   <div class="clearfix"></div> 
-                  <time :datetime="message.created_at">{{ message.created_at | formatAgo}}</time>
+                  <time :datetime="message.created_at">{{ $filters.formatAgo(message.created_at) }}</time>
                 </div>
                 </div>
                 <div class="wt-memessage" v-if="message.user_id == userid">
@@ -48,7 +48,7 @@
                     {{message.message}}
                   </p> 
                   <div class="clearfix"></div> 
-                  <time :datetime="message.created_at">{{ message.created_at | formatAgo}}</time>
+                  <time :datetime="message.created_at">{{ $filters.formatAgo(message.created_at) }}</time>
                 </div>
                 </div>
               </div>
@@ -147,9 +147,10 @@ export default {
             });
         },
         sendmessage() {
+          let self = this; 
           this.form.post('/api/contest/sendmessage')
             .then(() => {
-                Fire.$emit('loadmessages');
+                self.emitter.emit('loadmessages');
                 this.form.message = '';
             })
             .catch(() => {
@@ -169,7 +170,7 @@ export default {
     mounted: function() {
       this.checkcontest();
       this.loadchat();
-      Fire.$on('loadmessages', () => {
+      this.emitter.on('loadmessages', () => {
           this.loadchat();
       });
       

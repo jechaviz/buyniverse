@@ -2,7 +2,7 @@
     <!--checklist-->
         <div class="card-checklist" id="card-checklist">
             <div class="x-heading clearfix">
-                <span class="pull-left"><i class="mdi mdi-checkbox-marked"></i>{{ trans('lang.checklist') }}</span>
+                <span class="pull-left"><i class="mdi mdi-checkbox-marked"></i>{{ $trans('lang.checklist') }}</span>
                 <span class="pull-right p-t-5" id="card-checklist-progress">0/0</span>
             </div>
             <div class="progress" id="card-checklist-progress-container"><div class="progress-bar bg-success h-px-6 w-0" role="progressbar"></div></div>
@@ -20,7 +20,7 @@
 
         </div>
             <div class="x-action">
-                <a href="javascript:void(0)" class="js-card-checklist-toggle" id="card-checklist-add-new" @click="newchecklist">{{ trans('lang.create_new_item') }}</a>
+                <a href="javascript:void(0)" class="js-card-checklist-toggle" id="card-checklist-add-new" @click="newchecklist">{{ $trans('lang.create_new_item') }}</a>
             </div>
             <form @submit.prevent="CreateItem()">
             <div id="element-checklist-text" class="hidden copied-checklist-text" style="">
@@ -28,13 +28,13 @@
                 
                 <div class="text-right">
                     <button class="btn btn-default  btn-xs  js-card-checklist-toggle" @click="close">
-                        {{ trans('lang.close') }}
+                        {{ $trans('lang.close') }}
                     </button>
                     <button v-show="wcreate" type="submit" class="btn btn-danger btn-xs js-" id="checklist-submit-button">
-                        {{ trans('lang.add') }}
+                        {{ $trans('lang.add') }}
                     </button>
                     <button v-show="!wcreate" class="btn btn-danger btn-xs js-" id="checklist-submit-button">
-                        {{ trans('lang.please_wait') }}
+                        {{ $trans('lang.please_wait') }}
                     </button>
                     
                 </div>
@@ -77,9 +77,10 @@ export default {
         },
         markTask(id)
         {
+            let self = this; 
             this.saving('Saving Details');
             axios.get(APP_URL + '/api/checklist/status/' + id).then(function (response) {
-                Fire.$emit('Aftermark');
+                self.emitter.emit('Aftermark');
             });
         },
         newchecklist() {
@@ -91,6 +92,7 @@ export default {
             $('#element-checklist-text').addClass('hidden');
         },
         deleteChecklist(id) {
+            let self = this; 
             this.saving('Deleting . . .');
             this.form.delete(APP_URL + '/api/checklist/'+id).then(() => {
                 swal.fire(
@@ -98,7 +100,7 @@ export default {
                 'Your Checklist has been deleted.',
                 'success'
                 )
-                Fire.$emit('Aftermark');
+                self.emitter.emit('Aftermark');
             }).catch(() => {
                 swal("Failed", "There is something wrong.", "warning");
             })
@@ -112,17 +114,21 @@ export default {
         },
         
         CreateItem() {
+            let self = this; 
             this.saving('Saving Details');
             this.wcreate = false;
             this.form.task_id = this.taskid;
             //console.log(this.form);
             this.form.post('/api/checklist/')
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Checklist Item Created successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Checklist Item Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('Aftermark');
+                
+                self.emitter.emit('Aftermark');
                 $('#card-checklist-add-new').removeClass('hidden');
                 $('#element-checklist-text').addClass('hidden');
                 this.form.reset();
@@ -144,7 +150,7 @@ export default {
   },
     mounted: function() {
       this.loadchecklist();
-      Fire.$on('Aftermark', () => {
+      this.emitter.on('Aftermark', () => {
                 this.loadchecklist();
             });
   }

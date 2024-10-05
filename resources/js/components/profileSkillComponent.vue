@@ -2,7 +2,7 @@
     <div>
         <div class="wt-formtheme wt-skillsform">
             <transition name="fade">
-                <div v-if="isShow" class="sj-jump-messeges">{{ trans('lang.no_record') }}</div>
+                <div v-if="isShow" class="sj-jump-messeges">{{ $trans('lang.no_record') }}</div>
             </transition>
             <fieldset>
                 <div class="wt-formgroupwrap">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="form-group wt-btnarea">
-                        <a href="javascript:void(0);" class="wt-btn" @click="addSkill">{{trans('lang.add_skills')}}</a>
+                        <a href="javascript:void(0);" class="wt-btn" @click="addSkill">{{$trans('lang.add_skills')}}</a>
                     </div>
                 </div>
             </fieldset>

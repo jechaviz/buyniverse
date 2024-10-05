@@ -90,7 +90,7 @@ export default {
     mounted: function() {
         this.loadJob();
         //console.log(this.job);
-        Fire.$on('AfterCreate', () => {
+        this.emitter.on('AfterCreate', () => {
             this.loadJob();
         });
         

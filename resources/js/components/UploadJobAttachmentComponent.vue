@@ -4,18 +4,21 @@
         <div class="form-group form-group-label">
             <div class="wt-labelgroup">
                 <label for="file">
-                    <span class="wt-btn">{{ trans('lang.select_files') }}</span>
+                    <span class="wt-btn">{{ $trans('lang.select_files') }}</span>
                 </label>
-                <span>{{ trans('lang.drop_files') }}</span>
+                <span>{{ $trans('lang.drop_files') }}</span>
             </div>
         </div>
     </vue-dropzone>
   </div>
 </template>
+
 <style scoped>
-@import '~vue2-dropzone/dist/vue2Dropzone.min.css';
+<!--@import '~vue2-dropzone/dist/vue2Dropzone.min.css';-->
+
 </style>
 <script>
+import { useDropzone } from "vue3-dropzone";
 const getTemplate = () => `
   <li class="wt-uploadlist">
       <span><span data-dz-name></span></span> 

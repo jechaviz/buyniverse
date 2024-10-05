@@ -2,16 +2,16 @@
     <div>
         <span class="wt-pakagespinner" v-if="this.expire == false">
             <i class="fa fa-spinner wt-uploading"></i>
-            D{{ days | two_digits }} : H{{ hours | two_digits }} : M{{ minutes | two_digits }} : S{{ seconds | two_digits }}
+            D{{ $filters.two_digits(days) }} : H{{ $filters.two_digits(hours) }} : M{{ $filters.two_digits(minutes) }} : S{{ $filters.two_digits(seconds) }}
         </span>
         <figure class="wt-userlistingimg">
-            <img :src="this.image_url" alt="trans('lang.img')" class="mCS_img_loaded" v-if=this.image_url>
+            <img :src="this.image_url" alt="$trans('lang.img')" class="mCS_img_loaded" v-if=this.image_url>
             <span class="lnr lnr-hourglass" v-else></span>
         </figure>
         <div class="wt-insightdetails">
             <div class="wt-title">
                 <h3>{{this.title}}</h3>
-                <a :href="this.package_url">{{ trans('lang.upgrade_now') }}</a>|<span class="current_package">{{this.current_package}} </span>
+                <a :href="this.package_url">{{ $trans('lang.upgrade_now') }}</a>|<span class="current_package">{{this.current_package}} </span>
             </div>
         </div>
     </div>

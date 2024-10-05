@@ -2,21 +2,21 @@
     <div>
         <div class="wt-formtheme wt-skillsform wt-pageorder">
             <transition name="fade">
-                <div v-if="isShow" class="sj-jump-messeges">{{ trans('lang.no_record') }}</div>
+                <div v-if="isShow" class="sj-jump-messeges">{{ $trans('lang.no_record') }}</div>
             </transition>
             <fieldset>
                 <div class="wt-multiple-input">
                     <div class="form-group">
-                        <input v-model="menu.custom_title" type="text" class="form-control" min="0" :placeholder="trans('lang.title')">
+                        <input v-model="menu.custom_title" type="text" class="form-control" min="0" :placeholder="$trans('lang.title')">
                     </div>
                     <div class="form-group">
-                        <input v-model="menu.custom_link" type="text" class="form-control" min="0" :placeholder="trans('lang.custom_link')">
+                        <input v-model="menu.custom_link" type="text" class="form-control" min="0" :placeholder="$trans('lang.custom_link')">
                     </div>
                      <div class="form-group" v-if="parent_menus.length > 0">
                         <span class="wt-select">
                             <select id="pages_select" v-model="menu.parent_menu">
                                 <option  value="">
-                                    {{ trans('lang.select_parent_menu') }}
+                                    {{ $trans('lang.select_parent_menu') }}
                                 </option>
                                 <option v-for="(menu, index) in parent_menus" :key="index" :value="menu.custom_slug">
                                     {{menu.custom_title}}
@@ -25,7 +25,7 @@
                         </span>
                     </div>
                     <div class="form-group wt-btnarea">
-                        <a href="javascript:void(0);" class="wt-btn" @click="addCustomLink">{{trans('lang.add_custom_link')}}</a>
+                        <a href="javascript:void(0);" class="wt-btn" @click="addCustomLink">{{$trans('lang.add_custom_link')}}</a>
                     </div>
                 </div>
             </fieldset>

@@ -11,8 +11,8 @@
                     <div class="col-12">
                         <div class="wt-bannerthree-content">
                             <search-form-v2
-                                :placeholder="trans('lang.looking_for')"
-                                :no_record_message="trans('lang.no_record')"
+                                :placeholder="$trans('lang.looking_for')"
+                                :no_record_message="$trans('lang.no_record')"
                                 :slider="slider"
                                 :symbol="symbol"
                                 v-if="slider.enable_search_form"

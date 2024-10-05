@@ -27,14 +27,14 @@
                         <div class="col-12">
                             <div class="wt-switcharea">
                                 <div class="wt-switchtitle">
-                                    <h6>{{ trans('lang.i_m_provider') }}</h6>
+                                    <h6>{{ $trans('lang.i_m_provider') }}</h6>
                                 </div>
                                 <div class="wt-switch">
                                     <input type="checkbox" id="wt-switch" name="switch" @change="getPackages" v-model="roleType">
                                     <label for="wt-switch"><i></i></label>
                                 </div>
                                 <div class="wt-switchtitle">
-                                    <h6>{{ trans('lang.i_m_employer') }}</h6>
+                                    <h6>{{ $trans('lang.i_m_employer') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -45,10 +45,10 @@
                                     <img :src="baseUrl+'/uploads/packages/' + pkgItem.image" alt="img description" v-if="pkgItem.image">
                                     <img :src="baseUrl + '/images/packages.png'" alt="img description" v-else>
                                     <strong><sup>{{ pkgItem.symbol }}</sup>{{ pkgItem.cost }} <sub>/ {{ getPackageDurationList(pkgItem.options['duration']) }}</sub></strong>
-                                    <em>{{ trans('lang.include_all_taxes') }} <i class="ti-info-alt toltip-content tipso_style" data-tipso="Plus Member"></i></em>
+                                    <em>{{ $trans('lang.include_all_taxes') }} <i class="ti-info-alt toltip-content tipso_style" data-tipso="Plus Member"></i></em>
                                 </div>
                                 <div class="jb-package-feature">
-                                    <h6>{{ trans('lang.pkg_features') }}:</h6>
+                                    <h6>{{ $trans('lang.pkg_features') }}:</h6>
                                     <ul>
                                         <li v-for="(option, key) in package_options" :key="key">
                                             <p>{{option}}:</p>
@@ -60,9 +60,9 @@
                                         </li>
                                     </ul>
                                     <!--<div class="wt-btnarea">
-                                        <a href="javascript:void(0);" class="wt-btntwo">{{ trans('lang.buy_now') }}</a>-->
+                                        <a href="javascript:void(0);" class="wt-btntwo">{{ $trans('lang.buy_now') }}</a>-->
                                     <div class="wt-btnarea">
-                                    <a href="javascript:void(0);" class="wt-btntwo" @click="checkout(baseUrl+'/user/package/checkout/' + pkgItem.id)">{{ trans('lang.buy_now') }}</a>
+                                    <a href="javascript:void(0);" class="wt-btntwo" @click="checkout(baseUrl+'/user/package/checkout/' + pkgItem.id)">{{ $trans('lang.buy_now') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@ export default {
             if ((this.role == 'employer' && this.roleType) || (this.role == 'provider' && !this.roleType)) {
                 window.location.replace(url)
             } else {
-                this.showError(Vue.prototype.trans('lang.you_are_not_allowed_to_perform'))
+                this.showError(Vue.prototype.$trans('lang.you_are_not_allowed_to_perform'))
             }
         },
         editElement: function() {

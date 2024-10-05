@@ -17,9 +17,9 @@
           <span v-if="img_label">{{img_label}}:</span>
             <div class="dc-labelgroup">
                 <label for="file">
-                    <span class="wt-btn">{{ trans('lang.select_files') }}</span>
+                    <span class="wt-btn">{{ $trans('lang.select_files') }}</span>
                 </label>
-                <span>{{ trans('lang.drop_files') }}</span>
+                <span>{{ $trans('lang.drop_files') }}</span>
             </div>
         </div>
     </vue-dropzone>

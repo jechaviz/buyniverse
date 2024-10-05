@@ -1,5 +1,5 @@
 <template>
-    <a @click="hire(proposal, mod)" class="wt-btn">{{ trans('lang.hire_now') }}</a>
+    <a @click="hire(proposal, mod)" class="wt-btn">{{ $trans('lang.hire_now') }}</a>
     
 </template>
 
@@ -20,7 +20,7 @@ export default {
     methods: {
         hire(proposal, mode) {
             this.$swal({
-                title: Vue.prototype.trans('lang.want_to_hire'),
+                title: $trans('lang.want_to_hire'),
                 type: "warning",
                 customContainerClass: 'hire_popup',
                 showCancelButton: true,

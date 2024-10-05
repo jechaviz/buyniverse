@@ -25,7 +25,7 @@
                                 <div class="wt-description" v-html="category.description">
                                 </div>
                                 <div class="wt-btnarea">
-                                    <a :href="category.showAllBtnUrl" class="wt-btntwo">{{ trans('lang.show_all') }}</a>
+                                    <a :href="category.showAllBtnUrl" class="wt-btntwo">{{ $trans('lang.show_all') }}</a>
                                 </div>
                             </div>
                         </div>

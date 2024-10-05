@@ -1,18 +1,18 @@
 <template>
     
     <div style="width: 70%;">
-        <a @click="pfshowrow(form.user_id)" class="wt-btn proposal-attachment" v-if="proposal_files.length > 0 || add_file == 'yes'"><i class="fa fa-paperclip" ></i> {{ trans('lang.attachments') }}</a>
+        <a @click="pfshowrow(form.user_id)" class="wt-btn proposal-attachment" v-if="proposal_files.length > 0 || add_file == 'yes'"><i class="fa fa-paperclip" ></i> {{ $trans('lang.attachments') }}</a>
 
-        <div :class="'prow-' + form.user_id" class="btn hidden" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;" v-if="add_file == 'yes'"><button type="button" @click="newfile" class="wt-btn"> {{ trans('lang.add_files') }}</button></div>
+        <div :class="'prow-' + form.user_id" class="btn hidden" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;" v-if="add_file == 'yes'"><button type="button" @click="newfile" class="wt-btn"> {{ $trans('lang.add_files') }}</button></div>
         
         <table :class="'prow-' + form.user_id" class="hidden wt-tablecategories" v-if="proposal_files.length > 0">
             
             <thead>
                 <tr>
-                    <th>{{ trans('lang.name') }}</th>
-                    <th>{{ trans('lang.size') }}</th>
-                    <th>{{ trans('lang.description') }}</th>
-                    <th>{{ trans('lang.action') }}</th>
+                    <th>{{ $trans('lang.name') }}</th>
+                    <th>{{ $trans('lang.size') }}</th>
+                    <th>{{ $trans('lang.description') }}</th>
+                    <th>{{ $trans('lang.action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,14 +24,14 @@
                     <td data-th="Action">
                         <span class="bt-content"> 
                             <div class="">
-                            <a @click="getDownload(file)"><button type="button" class="btn">{{ trans('lang.download') }}</button></a>
+                            <a @click="getDownload(file)"><button type="button" class="btn">{{ $trans('lang.download') }}</button></a>
 
                             <div class="dropdown" v-if="add_file == 'yes'">
                                 <button class="btn" style="border-left:1px solid #b4b1b1">
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
-                                    <a @click="deletefile(file.id)">{{ trans('lang.delete') }}</a>											
+                                    <a @click="deletefile(file.id)">{{ $trans('lang.delete') }}</a>											
                                 </div>
                             </div>
                                 <!--<a class="wt-addinfo wt-skillsaddinfo" @click="getDownload(file)"><i class="fas fa-eye"></i></a>
@@ -46,7 +46,7 @@
             <div :class="'prow-' + form.user_id" class="wt-emptydata-holder hidden" style="background-color: white;">
                 <div class="wt-emptydata">
                     <div class="wt-emptydetails wt-empty-person">
-                        <em>{{ trans('lang.no_record') }}</em>
+                        <em>{{ $trans('lang.no_record') }}</em>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('lang.add_new_file') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $trans('lang.add_new_file') }}</h5>
                     
                     <button type="button" class="close" @click="Close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -69,7 +69,7 @@
                     <div class="form-group form-group-label">
                         <div class="wt-labelgroup">
                             <label for="files">
-                                <span class="wt-btn">{{ trans('lang.select_file') }}</span> {{filename}}
+                                <span class="wt-btn">{{ $trans('lang.select_file') }}</span> {{filename}}
                             </label>
                             <input v-on:change="onFileChange" id="files" type="file" style="display:none;">
                         </div>
@@ -86,10 +86,10 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ trans('lang.close') }}</button>
+                    <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ $trans('lang.close') }}</button>
                     
-                    <button  v-show="wcreate" type="submit" class="btn btn-primary">{{ trans('lang.create') }}</button>
-                    <button  v-show="!wcreate" class="btn btn-primary">{{ trans('lang.please_wait') }}</button>
+                    <button  v-show="wcreate" type="submit" class="btn btn-primary">{{ $trans('lang.create') }}</button>
+                    <button  v-show="!wcreate" class="btn btn-primary">{{ $trans('lang.please_wait') }}</button>
 
                 </div>
                 
@@ -102,8 +102,7 @@
 
 <script>
 
-import vueDropzone from "vue2-dropzone";
-//import vueDropzone from "vue2-dropzone";
+
 export default {   
  data () {
     return {
@@ -194,6 +193,7 @@ export default {
         },
         deletefile(id)
         {
+            let self = this; 
             swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -214,7 +214,7 @@ export default {
                     'Your File has been deleted.',
                     'success'
                     )
-                    Fire.$emit('AfterCreate');
+                    self.emitter.emit('AfterCreate');
                 }).catch(() => {
                     swal("Failed", "There is something wrong.", "warning");
                 })
@@ -222,9 +222,9 @@ export default {
             })
         },
         CreateFile() {
-            console.log(this.form);
+            //console.log(this.form);
             this.wcreate = false;
-            
+            let self = this; 
             let formData = new FormData();
 
             formData.append("files", this.form.files);
@@ -234,11 +234,14 @@ export default {
 
             axios.post(APP_URL + '/api/proposal_file', formData)
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'File Created successfully'
+                
+                Swal.fire({
+                    icon: 'success',
+                    text: 'File Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#newfile').modal('hide');
                 $('.modal-backdrop').addClass('modal');
                 $('.modal-backdrop').remove();
@@ -255,7 +258,7 @@ export default {
     mounted: function() {
         //this.loadRole();
         this.loadFiles();
-        Fire.$on('AfterCreate', () => {
+        this.emitter.on('AfterCreate', () => {
             this.loadFiles();
             this.Close();
         });

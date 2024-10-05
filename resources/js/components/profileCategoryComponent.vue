@@ -1,7 +1,7 @@
 <template>
           
     <div id="tr5">
-        <!--<td class="job-details"><b>{{ trans('lang.categories') }}</b></td>-->
+        <!--<td class="job-details"><b>{{ $trans('lang.categories') }}</b></td>-->
         <div>
             <span>
                 <span v-if="categories">
@@ -9,7 +9,7 @@
                 </span>
                 <!--<span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>-->
                 <select class="form-control form-control-sm" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">  
-                    <option selected>{{ trans('lang.select') }}</option>                                  
+                    <option selected>{{ $trans('lang.select') }}</option>                                  
                     
                     <component v-for="(item, key) in xcategory" :key="key" :value="item.id" :is="(item.stat == 'hide') ? 'optgroup' : 'option'" :label="item.title" style="color: black;">
                         <option v-if="item.stat == 'hide' && item.cat.length > 0" v-for="(item1, key1) in item.cat" :key="key1" :value="item1.id">{{ item1.title }}</option>
@@ -54,16 +54,17 @@ export default {
         updateaddcategory(e) {
             console.log(e.target.value);
             let statp = e.target.value;
+            let self = this; 
             axios.get(APP_URL + '/api/job_overview/updateusercategory/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
             });
-            Fire.$emit('AfterCreate');
+            self.emitter.emit('AfterCreate');
         },
         deletecategory(id)
         {
-            
+            let self = this;    
             axios.get(APP_URL + '/api/job_overview/deleteusercategory/' + id).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
             });
         },
   },
@@ -77,7 +78,7 @@ export default {
         
         
         
-        Fire.$on('AfterCreate', () => {
+        this.emitter.on('AfterCreate', () => {
             this.loadcategory();
         });
   }

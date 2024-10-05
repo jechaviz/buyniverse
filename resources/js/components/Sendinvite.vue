@@ -1,6 +1,6 @@
 <template>
-    <span> <a :href="'/contests/invite/'+contestid+'-'+userid" :id="'invite_to_contest-'+user_id" v-show="!flag" class="wt-btn" style="cursor: pointer;"><span>{{ trans('lang.invite_to_contest') }}</span></a>
-    <span :id="'invitation_sent-'+user_id" v-show="flag" style="margin-right: 20px;font-weight: bold;">{{ trans('lang.invitation_sent') }}</span></span>
+    <span> <a :href="'/contests/invite/'+contestid+'-'+userid" :id="'invite_to_contest-'+user_id" v-show="!flag" class="wt-btn" style="cursor: pointer;"><span>{{ $trans('lang.invite_to_contest') }}</span></a>
+    <span :id="'invitation_sent-'+user_id" v-show="flag" style="margin-right: 20px;font-weight: bold;">{{ $trans('lang.invitation_sent') }}</span></span>
 </template>
 
 <script>
@@ -31,10 +31,13 @@ export default {
             let self = this;
             
             axios.get(APP_URL + '/contests/invite/' + this.contestid +'-' + id).then(function (response) {
-                toast.fire({
-                type: 'success',
-                title: 'Provider in successfully invited for the contest'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Provider in successfully invited for the contest',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
+                
                 self.flag = true;
 
             });

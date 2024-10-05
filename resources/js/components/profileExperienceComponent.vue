@@ -1,12 +1,12 @@
 <template>
   <div :server_error_message="server_errors">
     <div class="wt-tabscontenttitle wt-addnew">
-      <h2>{{ trans('lang.add_your_exp') }}</h2>
+      <h2>{{ $trans('lang.add_your_exp') }}</h2>
       <a
         href="javascript:void(0);"
         @click="addExperience"
         class="add-experience-btn"
-      >{{ trans('lang.add_experience') }}</a>
+      >{{ $trans('lang.add_experience') }}</a>
     </div>
     <ul class="wt-experienceaccordion accordion" id="experience-list">
       <span v-if="stored_experiences" class="experience-inner-list">
@@ -62,9 +62,9 @@
                   v-model="stored_experience.start_date"
                   :weekdays="weekdayList" 
                   :months="monthsList" 
-                  :nextMonthCaption="trans('lang.next_month')"
-                  :prevMonthCaption="trans('lang.pre_month')"
-                  :setTimeCaption="trans('lang.set_time')">
+                  :nextMonthCaption="$trans('lang.next_month')"
+                  :prevMonthCaption="$trans('lang.pre_month')"
+                  :setTimeCaption="$trans('lang.set_time')">
                 </date-pick>
                 <input
                   type="hidden"
@@ -77,9 +77,9 @@
                   v-model="stored_experience.end_date"
                   :weekdays="weekdayList" 
                   :months="monthsList" 
-                  :nextMonthCaption="trans('lang.next_month')"
-                  :prevMonthCaption="trans('lang.pre_month')"
-                  :setTimeCaption="trans('lang.set_time')">
+                  :nextMonthCaption="$trans('lang.next_month')"
+                  :prevMonthCaption="$trans('lang.pre_month')"
+                  :setTimeCaption="$trans('lang.set_time')">
                 </date-pick>
                 <input
                   type="hidden"
@@ -105,7 +105,7 @@
                 ></textarea>
               </div>
               <div class="form-group">
-                <span>{{ trans('lang.date_note') }}</span>
+                <span>{{ $trans('lang.date_note') }}</span>
               </div>
             </fieldset>
           </div>
@@ -161,9 +161,9 @@
                   v-model="experience.start_date"
                   :weekdays="weekdayList" 
                   :months="monthsList" 
-                  :nextMonthCaption="trans('lang.next_month')"
-                  :prevMonthCaption="trans('lang.pre_month')"
-                  :setTimeCaption="trans('lang.set_time')">
+                  :nextMonthCaption="$trans('lang.next_month')"
+                  :prevMonthCaption="$trans('lang.pre_month')"
+                  :setTimeCaption="$trans('lang.set_time')">
                 </date-pick>
                 <input
                   type="hidden"
@@ -177,9 +177,9 @@
                   v-model="experience.end_date"
                   :weekdays="weekdayList" 
                   :months="monthsList" 
-                  :nextMonthCaption="trans('lang.next_month')"
-                  :prevMonthCaption="trans('lang.pre_month')"
-                  :setTimeCaption="trans('lang.set_time')">
+                  :nextMonthCaption="$trans('lang.next_month')"
+                  :prevMonthCaption="$trans('lang.pre_month')"
+                  :setTimeCaption="$trans('lang.set_time')">
                 </date-pick>
                 <input
                   type="hidden"
@@ -204,7 +204,7 @@
                 ></textarea>
               </div>
               <div class="form-group">
-                <span>{{ trans('lang.date_note') }}</span>
+                <span>{{ $trans('lang.date_note') }}</span>
               </div>
             </fieldset>
           </div>

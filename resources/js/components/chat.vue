@@ -21,16 +21,16 @@
                     <textarea class="form-control" name="reply" :placeholder="ph_new_msg" v-model="newmessage"></textarea>
                 </div>
                 <div class="wt-iconbox">
-                    <a href="javascript:void(0);" @click="sendMessage" class="wt-btnsendmsg">{{ trans('lang.btn_send') }}</a>
+                    <a href="javascript:void(0);" @click="sendMessage" class="wt-btnsendmsg">{{ $trans('lang.btn_send') }}</a>
                 </div>
             </div>
         </div>
-        <a id="wt-getsupport" class="wt-themeimgborder"><img :src="this.receiver_profile_image" :alt="trans_image_alt"></a>
+        <a id="wt-getsupport" class="wt-themeimgborder"><img :src="this.receiver_profile_image" :alt="$trans_image_alt"></a>
 </div>
 </template>
 <script>
 export default {
-    props: ['receiver_id', 'receiver_profile_image', 'trans_image_alt', 'ph_new_msg'],
+    props: ['receiver_id', 'receiver_profile_image', '$trans_image_alt', 'ph_new_msg'],
     data() {
         return {
             user: Laravel.user.name,

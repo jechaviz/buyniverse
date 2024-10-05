@@ -5,14 +5,18 @@
             <div id="title" v-show="showform">            
                 <input type="text" class="form-control form-control-sm " name="title" autocomplete="off"  v-model="form.title">
             </div>
-            <button type="button" class="btn btn-danget" @click="cancelled">{{ trans('lang.cancel') }}</button>
-            <button type="submit" class="btn btn-success">{{ trans('lang.btn_submit') }}</button>
+            <button type="button" class="btn btn-danget" @click="cancelled">{{ $trans('lang.cancel') }}</button>
+            <button type="submit" class="btn btn-success">{{ $trans('lang.btn_submit') }}</button>
         </form>
     </div>
 </template>
 
 <script>
+
+
+
 export default {   
+
  data () {
     return {
         //job_files : {},
@@ -51,14 +55,24 @@ export default {
         },
         UpdateTitle() {
             let self = this;
+            //console.log('before title');
             this.form.post('/api/postjobtitle/')
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'Job Title updated successfully'
+                /*
+
+                toast: true,
+                    position: 'top-end',
+                ;*/
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Job Title updated successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
                 self.showform = false;
-                Fire.$emit('AfterTitle');
+                //Fire.$emit('AfterTitle');
+                //console.log('after title');
+                self.emitter.emit("AfterTitle");
             })
             .catch(() => {
 
@@ -70,9 +84,12 @@ export default {
   },
     mounted: function() {
         this.loadtitle();
-        Fire.$on('AfterTitle', () => {
+        this.emitter.on("AfterTitle", () => {
             this.loadtitle();
         });
+        /*Fire.$on('AfterTitle', () => {
+            this.loadtitle();
+        });*/
   }
 };
 </script>

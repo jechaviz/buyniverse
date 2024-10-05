@@ -8,7 +8,7 @@
         <div class="board">
         <div class="board-body border-default">
             <div class="board-heading clearfix">
-                <div class="pull-left">{{ trans('lang.new') }}</div>
+                <div class="pull-left">{{ $trans('lang.new') }}</div>
                 <div class="pull-right x-action-icons">
                     <!--action add-->
                     <span class="edit-add-modal-button js-ajax-ux-request reset-target-modal-form cursor-pointer" data-toggle="modal" data-target="#newtask"><i class="fa fa-plus"></i></span>
@@ -28,17 +28,17 @@
                             <!--stop my timer-->
                             <!--stop all timers-->
                             <!--no actions-->
-                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ trans('lang.no_actions_availabe') }}</a>
+                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ $trans('lang.no_actions_availabe') }}</a>
                         </div>
         </div>
         <div class="x-meta">
             <!--priority-->
-                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ task0.priority | formatPriority }}</label>
+                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ $filters.formatPriority(task0.priority) }}</label>
                     <!--date created-->
-                    <span><strong>{{ trans('lang.created') }}:</strong> {{ task0.created_at | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.created') }}:</strong> {{ $filters.formatDate(task0.created_at) }}</span>
                     <!--start date-->
                     <!--due date-->
-                    <span><strong>{{ trans('lang.due') }}:</strong>: {{ task0.due_date | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.due') }}:</strong>: {{ $filters.formatDate(task0.due_date) }}</span>
                 </div>
         <div class="x-footer row">
             <div class="col-6 x-icons">
@@ -68,7 +68,7 @@
         <div class="board">
         <div class="board-body border-info">
             <div class="board-heading clearfix">
-                <div class="pull-left">{{ trans('lang.in_progress') }}</div>
+                <div class="pull-left">{{ $trans('lang.in_progress') }}</div>
                 <div class="pull-right x-action-icons">
                     <!--action add-->
                     <span class="edit-add-modal-button js-ajax-ux-request reset-target-modal-form cursor-pointer" data-toggle="modal" data-target="#commonModal" data-url="http://projects.terapixel.com.mx/tasks/create?status=in_progress&amp;ref=list" data-loading-target="commonModalBody" data-modal-title="Add A New Task" data-action-url="http://projects.terapixel.com.mx/tasks?type=kanban&amp;ref=list" data-action-method="POST" data-action-ajax-loading-target="commonModalBody" data-save-button-class=""><i class="mdi mdi-plus-circle"></i></span>
@@ -88,17 +88,17 @@
                             <!--stop my timer-->
                             <!--stop all timers-->
                             <!--no actions-->
-                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ trans('lang.no_actions_availabe') }}</a>
+                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ $trans('lang.no_actions_availabe') }}</a>
                         </div>
         </div>
         <div class="x-meta">
             <!--priority-->
-                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ task1.priority | formatPriority }}</label>
+                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ $filters.formatPriority(form1.start_date) }}</label>
                     <!--date created-->
-                    <span><strong>{{ trans('lang.created') }}:</strong> {{ task1.created_at | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.created') }}:</strong> {{ $filters.formatDate(task1.created_at) }}</span>
                     <!--start date-->
                     <!--due date-->
-                    <span><strong>{{ trans('lang.due') }}:</strong>: {{ task1.due_date | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.due') }}:</strong>: {{ $filters.formatDate(task1.due_date) }}</span>
                 </div>
         <div class="x-footer row">
             <div class="col-6 x-icons">
@@ -127,7 +127,7 @@
         <div class="board">
         <div class="board-body border-purple">
             <div class="board-heading clearfix">
-                <div class="pull-left">{{ trans('lang.testing') }}</div>
+                <div class="pull-left">{{ $trans('lang.testing') }}</div>
                 <div class="pull-right x-action-icons">
                     <!--action add-->
                     <span class="edit-add-modal-button js-ajax-ux-request reset-target-modal-form cursor-pointer"><i class="mdi mdi-plus-circle"></i></span>
@@ -147,17 +147,17 @@
                             <!--stop my timer-->
                             <!--stop all timers-->
                             <!--no actions-->
-                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ trans('lang.no_actions_availabe') }}</a>
+                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ $trans('lang.no_actions_availabe') }}</a>
                         </div>
         </div>
         <div class="x-meta">
             <!--priority-->
-                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ task2.priority | formatPriority }}</label>
+                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ $filters.formatPriority(task2.priority) }}</label>
                     <!--date created-->
-                    <span><strong>{{ trans('lang.created') }}:</strong> {{ task2.created_at | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.created') }}:</strong> {{ $filters.formatDate(task2.created_at) }}</span>
                     <!--start date-->
                     <!--due date-->
-                    <span><strong>{{ trans('lang.due') }}:</strong>: {{ task2.due_date | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.due') }}:</strong>: {{ $filters.formatDate(task2.due_date) }}</span>
                 </div>
         <div class="x-footer row">
             <div class="col-6 x-icons">
@@ -187,7 +187,7 @@
         <div class="board">
         <div class="board-body border-warning">
             <div class="board-heading clearfix">
-                <div class="pull-left">{{ trans('lang.awaiting_feedback') }}</div>
+                <div class="pull-left">{{ $trans('lang.awaiting_feedback') }}</div>
                 <div class="pull-right x-action-icons">
                     <!--action add-->
                     <span class="edit-add-modal-button js-ajax-ux-request reset-target-modal-form cursor-pointer" ><i class="mdi mdi-plus-circle"></i></span>
@@ -207,17 +207,17 @@
                             <!--stop my timer-->
                             <!--stop all timers-->
                             <!--no actions-->
-                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ trans('lang.no_actions_availabe') }}</a>
+                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ $trans('lang.no_actions_availabe') }}</a>
                         </div>
         </div>
         <div class="x-meta">
             <!--priority-->
-                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ task3.priority | formatPriority }}</label>
+                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ $filters.formatPriority(task3.priority)  }}</label>
                     <!--date created-->
-                    <span><strong>{{ trans('lang.created') }}:</strong> {{ task3.created_at | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.created') }}:</strong> {{ $filters.formatDate(task3.created_at) }}</span>
                     <!--start date-->
                     <!--due date-->
-                    <span><strong>{{ trans('lang.due') }}:</strong>: {{ task3.due_date | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.due') }}:</strong>: {{ $filters.formatDate(task3.due_date) }}</span>
                 </div>
         <div class="x-footer row">
             <div class="col-6 x-icons">
@@ -247,7 +247,7 @@
         <div class="board">
         <div class="board-body border-success">
             <div class="board-heading clearfix">
-                <div class="pull-left">{{ trans('lang.completed') }}</div>
+                <div class="pull-left">{{ $trans('lang.completed') }}</div>
                 <div class="pull-right x-action-icons">
                     <!--action add-->
                     <span class="edit-add-modal-button js-ajax-ux-request reset-target-modal-form cursor-pointer" data-toggle="modal" data-target="#commonModal"><i class="mdi mdi-plus-circle"></i></span>
@@ -265,17 +265,17 @@
                             <!--stop my timer-->
                             <!--stop all timers-->
                             <!--no actions-->
-                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ trans('lang.no_actions_available') }}</a>
+                            <a class="dropdown-item js-stop-propagation" href="javascript:void(0);">{{ $trans('lang.no_actions_available') }}</a>
                         </div>
         </div>
         <div class="x-meta">
             <!--priority-->
-                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ task4.priority | formatPriority }}</label>
+                    <label class="label label-outline-info p-t-3 p-b-3 p-l-8 p-r-8" data-toggle="tooltip" title="Priority">{{ $filters.formatPriority(task4.priority) }}</label>
                     <!--date created-->
-                    <span><strong>{{ trans('lang.created') }}:</strong> {{ task4.created_at | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.created') }}:</strong> {{ $filters.formatDate(task4.created_at) }}</span>
                     <!--start date-->
                     <!--due date-->
-                    <span><strong>{{ trans('lang.due') }}:</strong>: {{ task4.due_date | formatDate }}</span>
+                    <span><strong>{{ $trans('lang.due') }}:</strong>: {{ $filters.formatDate(task4.due_date) }}</span>
                 </div>
         <div class="x-footer row">
             <div class="col-6 x-icons">
@@ -324,23 +324,23 @@
             <input type="text" class="form-control form-control-sm card-title-input" id="task_title" name="task_title">
             <!--button: subit & cancel-->
             <div id="card-title-submit" class="p-t-10 text-right">
-                <button type="button" class="btn waves-effect waves-light btn-xs btn-default" id="card-title-button-cancel">{{ trans('lang.cancel') }}</button>
-                <button type="button" class="btn waves-effect waves-light btn-xs btn-danger" data-url="http://projects.terapixel.com.mx/tasks/2/update-title" data-progress-bar="hidden" data-type="form" data-form-id="card-title-edit" data-ajax-type="post" id="card-title-button-save">{{ trans('lang.save') }}</button>
+                <button type="button" class="btn waves-effect waves-light btn-xs btn-default" id="card-title-button-cancel">{{ $trans('lang.cancel') }}</button>
+                <button type="button" class="btn waves-effect waves-light btn-xs btn-danger" data-url="http://projects.terapixel.com.mx/tasks/2/update-title" data-progress-bar="hidden" data-type="form" data-form-id="card-title-edit" data-ajax-type="post" id="card-title-button-save">{{ $trans('lang.save') }}</button>
             </div>
         </div>
-        <div class="m-b-15"><small><strong>{{ trans('lang.milestone') }}: </strong></small><small id="card-task-milestone-title">{{ task.milestone | formatMilestone }}</small></div>
+        <div class="m-b-15"><small><strong>{{ $trans('lang.milestone') }}: </strong></small><small id="card-task-milestone-title">{{ $filters.formatMilestone(task.milestone) }}</small></div>
 
 
 
         <!--description-->
         <div class="card-description" id="card-description">
-            <div class="x-heading"><i class="mdi mdi-file-document-box"></i>{{ trans('lang.description') }}</div>
+            <div class="x-heading"><i class="mdi mdi-file-document-box"></i>{{ $trans('lang.description') }}</div>
             <div class="x-content rich-text-formatting" id="card-description-container">
                 {{ task.description }}
             </div>
                 <!--buttons: edit-->
             <div id="card-description-edit">
-                <div class="x-action" id="card-description-button-edit"><a href="javaScript:void(0);">{{ trans('lang.edit_description') }}</a>
+                <div class="x-action" id="card-description-button-edit"><a href="javaScript:void(0);">{{ $trans('lang.edit_description') }}</a>
                 </div>
                 <input type="hidden" name="task_description" id="card-description-input" value="">
             </div>
@@ -381,7 +381,7 @@
                         <div class="col-lg-4 card-right-panel" id="card-right-panel"><!----------Assigned----------->
                 <div class="x-section">
                 <div class="x-title">
-                    <h6>{{ trans('lang.assigned_users') }}</h6>
+                    <h6>{{ $trans('lang.assigned_users') }}</h6>
                 </div>
                 <span id="task-assigned-container" class="">
                     <!--user-->
@@ -420,11 +420,11 @@
             <!----------settings----------->
             <div class="x-section">
                 <div class="x-title">
-                    <h6>{{ trans('lang.settings') }}</h6>
+                    <h6>{{ $trans('lang.settings') }}</h6>
                 </div>
                 <!--start date-->
                 <div class="x-element" id="task-start-date" @click="editstartdate"><i class="mdi mdi-calendar-plus"></i>
-                    <span>{{ trans('lang.start_date') }}: {{ task.start_date | formatDate }}</span>
+                    <span>{{ $trans('lang.start_date') }}: {{ $filters.formatDate(task.start_date) }}</span>
                                 <span class="x-highlight x-editable card-pickadate" id="task-start-date-container"></span>
                     
                             </div>
@@ -433,7 +433,7 @@
                 </div>
                 <!--due date-->
                 <div class="x-element" id="task-due-date" @click="editduedate"><i class="mdi mdi-calendar-clock"></i>
-                    <span>{{ trans('lang.due_date') }}: {{ task.due_date | formatDate }}</span>
+                    <span>{{ $trans('lang.due_date') }}: {{ $filters.formatDate(task.due_date) }}</span>
                                 <span class="x-highlight x-editable card-pickadate" id="task-due-date-container"></span>
                     
                             </div>
@@ -442,50 +442,50 @@
                 </div>
                 <!--status-->
                 <!--<div class="x-element" id="card-task-status"><i class="mdi mdi-flag"></i> <span>Status: </span>
-                                <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-status-text" tabindex="0" data-popover-content="card-task-statuses" data-offset="0 25%" data-title="Status" data-original-title="" title="">{{ task.status | formatStatus }}</span>
+                                <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-status-text" tabindex="0" data-popover-content="card-task-statuses" data-offset="0 25%" data-title="Status" data-original-title="" title="">{{ $filters.formatStatus(task.status) }}</span>
                             </div> -->
                             
-                <div class="x-element" id="card-task-status" @click="editstatus()"><i class="mdi mdi-flag"></i> <span>{{ trans('lang.status') }}: </span>
-                                <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-status-text" >{{ task.status | formatStatus }}</span>
+                <div class="x-element" id="card-task-status" @click="editstatus()"><i class="mdi mdi-flag"></i> <span>{{ $trans('lang.status') }}: </span>
+                                <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-status-text" >{{ $filters.formatStatus(task.status) }}</span>
                             </div>
                 <div id="card-task-stat" class="hidden" style="margin-bottom: 13px;">
-                        <label>{{ trans('lang.status') }}</label>
+                        <label>{{ $trans('lang.status') }}</label>
                         <select class="form-control form-control-sm" id="task-stat" name="task-stat" v-on:change="statuschange">
-                            <option value="0">{{ trans('lang.new') }}</option>
-                            <option value="1">{{ trans('lang.in_progress') }}</option>
-                            <option value="2">{{ trans('lang.testing') }}</option>
-                            <option value="3">{{ trans('lang.awaiting_feedback') }}</option>
-                            <option v-show="isapprover == '1'" value="4">{{ trans('lang.completed') }}</option>
+                            <option value="0">{{ $trans('lang.new') }}</option>
+                            <option value="1">{{ $trans('lang.in_progress') }}</option>
+                            <option value="2">{{ $trans('lang.testing') }}</option>
+                            <option value="3">{{ $trans('lang.awaiting_feedback') }}</option>
+                            <option v-show="isapprover == '1'" value="4">{{ $trans('lang.completed') }}</option>
                         </select>                        
                     </div>
 
                 <!--priority-->
-                <div class="x-element" id="card-task-priority" @click="editpriority()"><i class="mdi mdi-verified"></i> <span>{{ trans('lang.priority') }}:
+                <div class="x-element" id="card-task-priority" @click="editpriority()"><i class="mdi mdi-verified"></i> <span>{{ $trans('lang.priority') }}:
                     </span>
-                                <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-priority-text" tabindex="0" data-popover-content="card-task-priorities" data-title="Priority" data-original-title="" title="">{{ task.priority | formatPriority }}</span>
+                                <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-priority-text" tabindex="0" data-popover-content="card-task-priorities" data-title="Priority" data-original-title="" title="">{{ $filters.formatPriority(task.priority) }}</span>
                             </div>
 
                 <div id="card-task-prior" class="hidden" style="margin-bottom: 13px;">
-                        <label>{{ trans('lang.priority') }}</label>
+                        <label>{{ $trans('lang.priority') }}</label>
                         <select class="form-control form-control-sm" id="task-prior" name="task-prior" v-on:change="priorchange">
-                            <option value="0">{{ trans('lang.normal') }}</option>
-                            <option value="1">{{ trans('lang.high') }}</option>
-                            <option value="2">{{ trans('lang.urgent') }}</option>
-                            <option value="3">{{ trans('lang.low') }}</option>
+                            <option value="0">{{ $trans('lang.normal') }}</option>
+                            <option value="1">{{ $trans('lang.high') }}</option>
+                            <option value="2">{{ $trans('lang.urgent') }}</option>
+                            <option value="3">{{ $trans('lang.low') }}</option>
                         </select>                        
                     </div>
 
                 <!--client visibility-->
                         <div class="x-element" id="card-task-client-visibility" @click="editvisibility()"><i class="mdi mdi-eye"></i>
-                    <span>{{ trans('lang.client') }}:</span>
-                    <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-client-visibility-text" tabindex="0" data-popover-content="card-task-visibility" data-title="Client Visibility" data-original-title="" title="">{{ task.client_visibility | formatClient }}</span>
+                    <span>{{ $trans('lang.client') }}:</span>
+                    <span class="x-highlight x-editable js-card-settings-button-static" id="card-task-client-visibility-text" tabindex="0" data-popover-content="card-task-visibility" data-title="Client Visibility" data-original-title="" title="">{{ $filters.formatClient(task.client_visibility) }}</span>
                     
                 </div>
                 <div id="card-task-visi" class="hidden" style="margin-bottom: 13px;">
-                        <label>{{ trans('lang.client') }}</label>
+                        <label>{{ $trans('lang.client') }}</label>
                         <select class="form-control form-control-sm" id="task-stat" name="task-stat" v-on:change="visibilitychange">
-                            <option value="1">{{ trans('lang.visible') }}</option>
-                            <option value="0">{{ trans('lang.not_visible') }}</option>
+                            <option value="1">{{ $trans('lang.visible') }}</option>
+                            <option value="0">{{ $trans('lang.not_visible') }}</option>
                             
                         </select>                        
                     </div>
@@ -502,15 +502,15 @@
                 
                 <!--change milestone-->
                 <div class="x-element x-action js-card-settings-button-static" id="card-task-milestone" @click="editmilestone()"><i class="mdi mdi-redo-variant"></i>
-                    <span class="x-highlight">{{ trans('lang.change_milestone') }}</span>
+                    <span class="x-highlight">{{ $trans('lang.change_milestone') }}</span>
                 </div> 
                 <div id="card-task-mile" class="hidden" style="margin-bottom: 13px;">
                         <label>Milestone</label>
                         <select class="form-control form-control-sm" id="task-mile" name="task-mile" v-on:change="milechange">
-                            <option value="0">{{ trans('lang.planning') }}</option>
-                            <option value="1">{{ trans('lang.design') }}</option>
-                            <option value="2">{{ trans('lang.development') }}</option>
-                            <option value="3">{{ trans('lang.testing') }}</option>
+                            <option value="0">{{ $trans('lang.planning') }}</option>
+                            <option value="1">{{ $trans('lang.design') }}</option>
+                            <option value="2">{{ $trans('lang.development') }}</option>
+                            <option value="3">{{ $trans('lang.testing') }}</option>
                         </select>                        
                     </div>
                         
@@ -526,22 +526,22 @@
             <!----------meta infor----------->
             <div class="x-section">
                 <div class="x-title">
-                    <h6>{{ trans('lang.information') }}</h6>
+                    <h6>{{ $trans('lang.information') }}</h6>
                 </div>
                 <div class="x-element x-action">
                     <table class="table table-bordered table-sm">
                         <tbody>
                             <tr>
-                                <td>{{ trans('lang.task_id') }}</td>
+                                <td>{{ $trans('lang.task_id') }}</td>
                                 <td><strong>#{{ task.id }}</strong></td>
                             </tr>
                             <tr>
-                                <td>{{ trans('lang.created_by') }}</td>
+                                <td>{{ $trans('lang.created_by') }}</td>
                                 <td><strong>{{ task.username }}</strong></td>
                             </tr>
                             <tr>
-                                <td>{{ trans('lang.date_created') }}</td>
-                                <td><strong>{{ task.created_at | formatDate }}</strong></td>
+                                <td>{{ $trans('lang.date_created') }}</td>
+                                <td><strong>{{ $filters.formatDate(task.created_at) }}</strong></td>
                             </tr>
                             <!--<tr>
                                 <td>Total Time</td>
@@ -554,7 +554,7 @@
                                 </td>
                             </tr>-->
                             <tr>
-                                <td>{{ trans('lang.project') }}t</td>
+                                <td>{{ $trans('lang.project') }}t</td>
                                 <td><strong><a href="#" target="_blank">#{{ task.job }}</a></strong>
                                 </td>
                             </tr>
@@ -682,70 +682,70 @@
                 <form @submit.prevent="CreateTask()">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ trans('lang.add_new_task') }}</h5>
+                    <h5 class="modal-title">{{ $trans('lang.add_new_task') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ trans('lang.title') }}</label>
+                        <label>{{ $trans('lang.title') }}</label>
                         <input v-model="form.title" type="text" name="title"
                             class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">                        
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('lang.description') }}</label>
+                        <label>{{ $trans('lang.description') }}</label>
                         <textarea v-model="form.description"  class="form-control" name="description" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('lang.target_date') }}</label>
+                        <label>{{ $trans('lang.target_date') }}</label>
                         <input v-model="form.task_date_due" type="date" class="form-control form-control-sm pickadate" name="task_date_due" autocomplete="off" placeholder="" :class="{ 'is-invalid': form.errors.has('task_date_due') }">
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('lang.tags') }}</label>
+                        <label>{{ $trans('lang.tags') }}</label>
                         <input v-model="form.tags" type="text" name="tags"
                             class="form-control" :class="{ 'is-invalid': form.errors.has('tags') }">                        
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('lang.milestone') }}</label>
+                        <label>{{ $trans('lang.milestone') }}</label>
                         <select v-model="form.milestone" class="form-control form-control-sm" id="milestone" name="milestone" :class="{ 'is-invalid': form.errors.has('milestone') }">
-                            <option value="0">{{ trans('lang.planning') }}</option>
-                            <option value="1">{{ trans('lang.design') }}</option>
-                            <option value="2">{{ trans('lang.development') }}</option>
-                            <option value="3">{{ trans('lang.testing') }}</option>
+                            <option value="0">{{ $trans('lang.planning') }}</option>
+                            <option value="1">{{ $trans('lang.design') }}</option>
+                            <option value="2">{{ $trans('lang.development') }}</option>
+                            <option value="3">{{ $trans('lang.testing') }}</option>
                         </select>                        
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('lang.priority') }}</label>
+                        <label>{{ $trans('lang.priority') }}</label>
                         <select v-model="form.priority" class="form-control form-control-sm" id="priority" name="priority" :class="{ 'is-invalid': form.errors.has('priority') }">
-                            <option value="0">{{ trans('lang.normal') }}</option>
-                            <option value="1">{{ trans('lang.high') }}</option>
-                            <option value="2">{{ trans('lang.urgent') }}</option>
-                            <option value="3">{{ trans('lang.low') }}</option>
+                            <option value="0">{{ $trans('lang.normal') }}</option>
+                            <option value="1">{{ $trans('lang.high') }}</option>
+                            <option value="2">{{ $trans('lang.urgent') }}</option>
+                            <option value="3">{{ $trans('lang.low') }}</option>
                         </select>                        
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('lang.assign') }}</label>
+                        <label>{{ $trans('lang.assign') }}</label>
                         <select v-model="form.assign" class="form-control form-control-sm" id="assign" name="assign" :class="{ 'is-invalid': form.errors.has('priority') }">
-                            <option value="">{{ trans('lang.unassigned') }}</option>
+                            <option value="">{{ $trans('lang.unassigned') }}</option>
                             <option v-for="(team, key) in teams" :key="key" :value="team.id">{{ team.name }}</option>
                         </select>                        
                     </div>
                     <div class="form-group form-group-half" style="display: flex;margin-top: 20px;">
-                        <label>{{ trans('lang.visible_to_client') }}</label>
+                        <label>{{ $trans('lang.visible_to_client') }}</label>
                         <input v-model="form.client_visibility" type="checkbox" name="client_visibility"
                             class="form-control checkboxes" :class="{ 'is-invalid': form.errors.has('client_visibility') }" style="box-shadow: none;width: 50%;">                        
                     </div>
                     <div class="form-group form-group-half" style="display: flex;margin-top: 20px;">
-                        <label>{{ trans('lang.billable') }}</label>
+                        <label>{{ $trans('lang.billable') }}</label>
                         <input v-model="form.billable" type="checkbox" name="billable"
                             class="form-control checkboxes" :class="{ 'is-invalid': form.errors.has('billable') }" style="box-shadow: none;width: 50%;">                        
                     </div>
                     <input type="hidden" name="job_id" v-model="form.job_id">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="wt-btn" style="background-color: gray;" data-dismiss="modal">{{ trans('lang.close') }}</button>
-                    <button type="submit" class="wt-btn">{{ trans('lang.save_changes') }}</button>
+                    <button type="button" class="wt-btn" style="background-color: gray;" data-dismiss="modal">{{ $trans('lang.close') }}</button>
+                    <button type="submit" class="wt-btn">{{ $trans('lang.save_changes') }}</button>
                 </div>
                 </div>
                 </form>
@@ -827,36 +827,40 @@ export default {
             });
         },
         priorchange(e) {
+            let self = this; 
             let statp =  this.task.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/tasks/priority/' + statp).then(function (response) {
-                Fire.$emit('TaskUpdated');
+                self.emitter.emit('TaskUpdated');
                 $('#card-task-priority').removeClass('hidden');
                 $('#card-task-prior').addClass('hidden');
                 $('#cardModal').modal('hide');
             });
         },
         milechange(e) {
+            let self = this; 
             let stat =  this.task.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/tasks/milestone/' + stat).then(function (response) {
-                Fire.$emit('TaskUpdated');
+                self.emitter.emit('TaskUpdated');
                 $('#card-task-milestone').removeClass('hidden');
                 $('#card-task-mile').addClass('hidden');
                 $('#cardModal').modal('hide');
             });
         },
-        statuschange(e) {            
+        statuschange(e) {    
+            let self = this;         
             let stat =  this.task.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/tasks/status/' + stat).then(function (response) {
-                Fire.$emit('TaskUpdated');
+                self.emitter.emit('TaskUpdated');
                 $('#card-task-status').removeClass('hidden');
                 $('#card-task-stat').addClass('hidden');
                 $('#cardModal').modal('hide');
             });
         },
-        visibilitychange(e) {            
+        visibilitychange(e) {  
+            let self = this;           
             let stat =  this.task.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/tasks/visibility/' + stat).then(function (response) {
-                Fire.$emit('TaskUpdated');
+                self.emitter.emit('TaskUpdated');
                 $('#card-task-client-visibility').removeClass('hidden');
                 $('#card-task-visi').addClass('hidden');
                 $('#cardModal').modal('hide');
@@ -864,10 +868,11 @@ export default {
         },
         startdatechange(e)
         {
+            let self = this; 
             
             let stat =  this.task.id + '_' + e.target.value;
             axios.get(APP_URL + '/api/tasks/startdate/' + stat).then(function (response) {
-                Fire.$emit('TaskUpdated');
+                self.emitter.emit('TaskUpdated');
                 $('#task-start-date').removeClass('hidden');
                 $('#task-start-date-edit').addClass('hidden');
                 $('#cardModal').modal('hide');
@@ -875,10 +880,10 @@ export default {
         },
         duedatechange(e)
         {
-            
+            let self = this; 
             let stat =  this.task.id + '_' + e.target.value;
             axios.get(APP_URL + '/api/tasks/duedate/' + stat).then(function (response) {
-                Fire.$emit('TaskUpdated');
+                self.emitter.emit('TaskUpdated');
                 $('#task-start-date').removeClass('hidden');
                 $('#task-start-date-edit').addClass('hidden');
                 $('#cardModal').modal('hide');
@@ -951,14 +956,18 @@ export default {
                 return found;
         },
         CreateTask() {
+            let self = this; 
             this.form.post('/api/tasks/')
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Task Created successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Task Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
+                
                 this.form.reset();
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#newtask').hide();  
                 $('#newtask').removeClass('show');   
                 $('#newtask').removeClass('in');               
@@ -976,10 +985,10 @@ export default {
     mounted: function() {
         this.loadRole();
       this.loadTasks();
-      Fire.$on('AfterCreate', () => {
+      this.emitter.on('AfterCreate', () => {
                 this.loadTasks();
             });
-      Fire.$on('TaskUpdated', () => {
+      this.emitter.on('TaskUpdated', () => {
                 this.loadTasks();
                 
                 this.editTask(this.task);

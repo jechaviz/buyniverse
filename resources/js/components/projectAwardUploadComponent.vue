@@ -3,9 +3,9 @@
         <div class="form-group form-group-label">
             <div class="wt-labelgroup">
                 <label for="file">
-                    <span class="wt-btn">{{ trans('lang.select_files') }}</span>
+                    <span class="wt-btn">{{ $trans('lang.select_files') }}</span>
                 </label>
-                <span>{{ trans('lang.drop_files') }}</span>
+                <span>{{ $trans('lang.drop_files') }}</span>
             </div>
         </div>
     </vue-dropzone> 

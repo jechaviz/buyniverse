@@ -5,13 +5,13 @@
                         
             <table class="wt-tablecategories no-border" style="width: 49%;border: 2px #e0e0e0 solid;">
                 <tbody v-if="job_contest.status == 'open'">
-                    <tr><td style="text-align: center;font-size: 18px;font-weight: bold;color: white;background-color: #005178;">{{ trans('lang.bid_status') }}</td></tr>
-                    <tr><td>{{ trans('lang.status') }} : <span v-if="your_rank == 1">{{ trans('lang.your_bid_wining') }}</span><span v-else>{{ trans('lang.your_bid_loosing') }}</span> </td></tr>
+                    <tr><td style="text-align: center;font-size: 18px;font-weight: bold;color: white;background-color: #005178;">{{ $trans('lang.bid_status') }}</td></tr>
+                    <tr><td>{{ $trans('lang.status') }} : <span v-if="your_rank == 1">{{ $trans('lang.your_bid_wining') }}</span><span v-else>{{ $trans('lang.your_bid_loosing') }}</span> </td></tr>
                     
                     <tr><td>
                         
                         <input type="number" id="bid" name="bid" class="form-control" :class="{ 'is-invalid': form.errors.has('bid') }" style="width: 75%;">
-                        <a @click="updatebid"><button class="btn" style="float: right;">{{ trans('lang.update') }}</button></a>
+                        <a @click="updatebid"><button class="btn" style="float: right;">{{ $trans('lang.update') }}</button></a>
                         
                         <input type="hidden" name="contest_id" v-model="form.contest_id">
                     </td></tr>
@@ -19,16 +19,16 @@
                     
                 </tbody>
                 <tbody v-else>
-                    <tr><td style="text-align: center;font-size: 18px;font-weight: bold;color: white;background-color: #005178;">{{ trans('lang.bid_status') }}</td></tr>
-                    <tr><td>{{ trans('lang.contest_is_over') }}</td></tr>
+                    <tr><td style="text-align: center;font-size: 18px;font-weight: bold;color: white;background-color: #005178;">{{ $trans('lang.bid_status') }}</td></tr>
+                    <tr><td>{{ $trans('lang.contest_is_over') }}</td></tr>
                 </tbody>
             </table>
             <table class="wt-tablecategories no-border" style="width: 49%;border: 2px #e0e0e0 solid;margin-left: 30px;">
                 <tbody>
                     <tr><td>{{ message }}</td></tr>
-                    <tr><td>{{ trans('lang.your_position') }} :  {{ your_rank }}</td></tr>
-                    <tr><td>{{ trans('lang.best_bid') }} :  {{ best_bid }}</td></tr>
-                    <tr><td>{{ trans('lang.your_bid') }} :  {{ your_bid }}</td></tr>
+                    <tr><td>{{ $trans('lang.your_position') }} :  {{ your_rank }}</td></tr>
+                    <tr><td>{{ $trans('lang.best_bid') }} :  {{ best_bid }}</td></tr>
+                    <tr><td>{{ $trans('lang.your_bid') }} :  {{ your_bid }}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -38,9 +38,9 @@
                 
                 
                 <thead class="row">
-                    <th class="col-md-4">{{ trans('lang.name')}}</th>
-                    <th  class="col-md-4">{{ trans('lang.nickname')}}</th>
-                    <th v-if="job_contest.show_participant_to_provider == 'yes'"  class="col-md-4">{{ trans('lang.project_bid')}}</th>
+                    <th class="col-md-4">{{ $trans('lang.name')}}</th>
+                    <th  class="col-md-4">{{ $trans('lang.nickname')}}</th>
+                    <th v-if="job_contest.show_participant_to_provider == 'yes'"  class="col-md-4">{{ $trans('lang.project_bid')}}</th>
                 </thead>
                 <tbody>
                     <tr class="row" v-for="contest_user in contest_users" :key="contest_user.id">
@@ -54,7 +54,7 @@
                     <div class="wt-emptydata-holder" style="background-color: white;">
                         <div class="wt-emptydata">
                             <div class="wt-emptydetails wt-empty-person">
-                                <em>{{ trans('lang.no_record') }}</em>
+                                <em>{{ $trans('lang.no_record') }}</em>
                             </div>
                         </div>
                     </div>
@@ -142,23 +142,17 @@ export default {
             
             /*this.form.post('/job_overview/newbid/')
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Note Created successfully'
-                });
+                
                 
             })
             .catch(() => {
 
             })*/
             axios.get(APP_URL + '/api/job_overview/newbid/' + bid + '-' + this.form.contest_id).then(function (response) {
-                Fire.$emit('Afterupdate');
+                self.emitter.emit('Afterupdate');
                 //console.log(response.data);
                 self.notice = response.data;
-                /*toast.fire({
-                icon: 'success',
-                title: 'Note updated successfully'
-                });*/
+                
             });
         },
         countDownTimer() {
@@ -274,7 +268,7 @@ export default {
 
             distance: {
                 handler(value) {
-
+                    let self = this; 
                     if (value > 0) {
                         setTimeout(() => {
                             this.distance--;
@@ -282,11 +276,14 @@ export default {
                                 //console.log(response.data, response.data == true);
                                 if(response.data == true)
                                 {
-                                    toast.fire({
+                                    
+                                    Swal.fire({
                                         icon: 'success',
-                                        title: 'New Bid is added'
+                                        text: 'New Bid is added',
+                                        showConfirmButton: false,
+                                        timer: 3500
                                     });
-                                    Fire.$emit('Afterupdate');
+                                    self.emitter.emit('Afterupdate');
                                     $(".no-border").addClass("highlighted");
                                     setTimeout(
                                         function() { 
@@ -307,7 +304,7 @@ export default {
     mounted: function() {
         this.loadusers();
         //this.countDownTimer();
-        Fire.$on('Afterupdate', () => {
+        this.emitter.on('Afterupdate', () => {
             this.loadusers();
             
         });

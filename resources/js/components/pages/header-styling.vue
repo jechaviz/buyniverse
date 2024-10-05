@@ -1,15 +1,15 @@
 <template>
     <div>
         <div class="amt-element-title amt-element-titlecontent" v-if="displayColorSettings">
-            <h6>{{ trans('lang.menu_color') }}</h6>
+            <h6>{{ $trans('lang.menu_color') }}</h6>
             <verte menuPosition="right" model="hex" v-model="form.headerStyling.menuColor"></verte>
         </div>
         <div class="amt-element-title amt-element-titlecontent" v-if="displayColorSettings">
-            <h6>{{ trans('lang.hover_color') }}</h6>
+            <h6>{{ $trans('lang.hover_color') }}</h6>
             <verte menuPosition="right" model="hex" v-model="form.headerStyling.menuHoverColor"></verte>
         </div>
         <div class="amt-element-title amt-element-titlecontent" v-if="displayColorSettings">
-            <h6>{{ trans('lang.color') }}</h6>
+            <h6>{{ $trans('lang.color') }}</h6>
             <verte menuPosition="right" model="hex" v-model="form.headerStyling.color"></verte>
         </div>
         <div class="amt-section-select">
@@ -25,7 +25,7 @@
                     :list_id="'list_id_page_logo'"
                     :upload_title="'upload image'"
                     :btn_text="'select logo'"
-                    :img_label="trans('lang.page_logo')"
+                    :img_label="$trans('lang.page_logo')"
                     @addedFile="imageAdded()"
                     @fileRemoved="imageRemoved()"
                 >

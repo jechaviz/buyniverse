@@ -3,13 +3,13 @@
         <div class="amt-formcontactus">
             <fieldset>
                 <div class="form-group">
-                    <input type="text" v-model="job.title" :placeholder="trans('lang.sec_title')" class="form-control">
+                    <input type="text" v-model="job.title" :placeholder="$trans('lang.sec_title')" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="text" v-model="job.titleTwo" :placeholder="trans('lang.title_two')" class="form-control">
+                    <input type="text" v-model="job.titleTwo" :placeholder="$trans('lang.title_two')" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="text" v-model="job.description" :placeholder="trans('lang.sec_desc')" class="form-control">
+                    <input type="text" v-model="job.description" :placeholder="$trans('lang.sec_desc')" class="form-control">
                 </div>
                 <div 
                     class="at-profile-setting__upload bg_img dc-settingscontent" 
@@ -26,7 +26,7 @@
                         :list_id="'list_id_bg_img'+currentElementID"
                         :upload_title="'upload image'"
                         :btn_text="'select file'"
-                        :img_label="trans('lang.bg_img')"
+                        :img_label="$trans('lang.bg_img')"
                         @addedFile="imageAdded('bg_img_wrapper'+currentElementID, 'bgImg', 'bg_hiddenImage'+currentElementID)"
                         @fileRemoved="imageRemoved('bgImg')"
                     >
@@ -59,28 +59,28 @@
             </fieldset>
         </div>
         <div class="amt-dhb-main_content">
-            <div class="amt-dhb-heading"><h3>{{ trans('lang.style') }}</h3></div>
+            <div class="amt-dhb-heading"><h3>{{ $trans('lang.style') }}</h3></div>
         </div>
         <div class="amt-element-title amt-element-titlecontent">
-            <h6>{{ trans('lang.title_clr') }}</h6>
+            <h6>{{ $trans('lang.title_clr') }}</h6>
             <verte menuPosition="right" model="hex" v-model="job.titleColor"></verte>
         </div>
         <div class="amt-element-title amt-element-titlecontent">
-            <h6>{{ trans('lang.title_two_clr') }}</h6>
+            <h6>{{ $trans('lang.title_two_clr') }}</h6>
             <verte menuPosition="right" model="hex" v-model="job.titleTwoColor"></verte>
         </div>
         <div class="amt-dhb-main_content">
-            <div class="amt-dhb-heading"> <h3>{{ trans('lang.sec_style') }}</h3></div>
+            <div class="amt-dhb-heading"> <h3>{{ $trans('lang.sec_style') }}</h3></div>
         </div>
           <div class="amt-element-title amt-element-titlecontent">
-            <h6>{{ trans('lang.section_clr') }}</h6>
+            <h6>{{ $trans('lang.section_clr') }}</h6>
             <verte menuPosition="right" model="hex" v-model="job.sectionColor"></verte>
         </div>
         <div class="amt-formcontactus">
             <fieldset>
                 <div class="form-group">
                     <div class="amt-element-title">
-                         <h6>{{ trans('lang.padding') }}</h6>
+                         <h6>{{ $trans('lang.padding') }}</h6>
                         <div class="amt-guests-radioholder">
                             <span class="amt-radio"><input id="at-padding-pixal" type="radio" v-model="job.padding.unit" value="px"> <label for="at-padding-pixal">px</label></span>   
                             <span class="amt-radio"><input id="at-padding-percent" type="radio" v-model="job.padding.unit" value="%"> <label for="at-padding-percent">%</label></span>   
@@ -90,10 +90,10 @@
                         <ul class="amt-guestsinfo">
                             <li> 
                                 <div class="amt-guests-radioholder">
-                                    <span class="amt-radio"><input type="number" v-model="job.padding.top"> <label for="at-top">{{ trans('lang.top') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="job.padding.right"> <label for="at-right">{{ trans('lang.right') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="job.padding.bottom"> <label for="at-bottom">{{ trans('lang.bottom') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="job.padding.left"> <label for="at-left">{{ trans('lang.left') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.padding.top"> <label for="at-top">{{ $trans('lang.top') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.padding.right"> <label for="at-right">{{ $trans('lang.right') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.padding.bottom"> <label for="at-bottom">{{ $trans('lang.bottom') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.padding.left"> <label for="at-left">{{ $trans('lang.left') }}</label></span>   
                                 </div>
                             </li>  
                         </ul>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="form-group">
                     <div class="amt-element-title">
-                        <h6>{{ trans('lang.margin') }}</h6>
+                        <h6>{{ $trans('lang.margin') }}</h6>
                         <div class="amt-guests-radioholder">
                             <span class="amt-radio"><input id="at-margin-pixal" type="radio" v-model="job.margin.unit" value="px"> <label for="at-margin-pixal">px</label></span>   
                             <span class="amt-radio"><input id="at-margin-percent" type="radio" v-model="job.margin.unit" value="%"> <label for="at-margin-percent">%</label></span>   
@@ -111,17 +111,17 @@
                         <ul class="amt-guestsinfo">
                             <li> 
                                 <div class="amt-guests-radioholder">
-                                    <span class="amt-radio"><input type="number" v-model="job.margin.top"> <label for="at-top">{{ trans('lang.top') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="job.margin.right"> <label for="at-right">{{ trans('lang.right') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="job.margin.bottom"> <label for="at-bottom">{{ trans('lang.bottom') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="job.margin.left"> <label for="at-left">{{ trans('lang.left') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.margin.top"> <label for="at-top">{{ $trans('lang.top') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.margin.right"> <label for="at-right">{{ $trans('lang.right') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.margin.bottom"> <label for="at-bottom">{{ $trans('lang.bottom') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="job.margin.left"> <label for="at-left">{{ $trans('lang.left') }}</label></span>   
                                 </div>
                             </li>  
                         </ul>
                     </div>
                 </div>
-                <div class="form-group"><input type="text" v-model="job.sectionClass" :placeholder="trans('lang.sec_class')" class="form-control"></div>
-                <div class="form-group"><input type="text" v-model="job.sectionId" :placeholder="trans('lang.sec_id')" class="form-control"></div>
+                <div class="form-group"><input type="text" v-model="job.sectionClass" :placeholder="$trans('lang.sec_class')" class="form-control"></div>
+                <div class="form-group"><input type="text" v-model="job.sectionId" :placeholder="$trans('lang.sec_id')" class="form-control"></div>
             </fieldset>
         </div>
     </div>

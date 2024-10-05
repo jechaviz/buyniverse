@@ -42,7 +42,7 @@
                                                 <span>{{ job.location }}</span>
                                             </div>
                                             <div class="wt-latestjob-right">
-                                                <span>{{trans("lang.remuneration")}}</span>
+                                                <span>{{$trans("lang.remuneration")}}</span>
                                                 <h4><sup>{{ job.symbol }}</sup>{{ job.price }}</h4>
                                                 <span>{{ job.duration }}</span>
                                             </div>
@@ -53,14 +53,14 @@
                                             </div>
                                             <div class="wt-btnarea">
                                                 <a href="javascript:void(0);" class="wt-btnlike"><i class="ti-heart"></i></a>
-                                                <a :href="baseUrl+'/job/'+job.slug" class="wt-btntwo">{{trans("lang.view_job")}}</a>
+                                                <a :href="baseUrl+'/job/'+job.slug" class="wt-btntwo">{{$trans("lang.view_job")}}</a>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                             <div class="wt-btnarea">
-                                <a href="javascript:void(0);" class="wt-btntwo" v-if="current_page < last_page" @click="loadJobs">{{trans("lang.load_more")}}</a>
+                                <a href="javascript:void(0);" class="wt-btntwo" v-if="current_page < last_page" @click="loadJobs">{{$trans("lang.load_more")}}</a>
                             </div>
                         </div>
                     </div>

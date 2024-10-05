@@ -11,7 +11,7 @@
                     <span>{{user.selected_user_tagline}}</span>
                 </div>
             </div>
-            <a :href="url+'/profile/'+user.selected_user_slug" class="wt-viewprofile">{{ trans('lang.view_profile') }}</a>
+            <a :href="url+'/profile/'+user.selected_user_slug" class="wt-viewprofile">{{ $trans('lang.view_profile') }}</a>
         </div>
         <div class="wt-dashboardboxcontent wt-dashboardholder wt-offersmessages" style="background: white;">
             <ul v-if="users">
@@ -21,13 +21,13 @@
                     </div>
                 </li>
                 <li>
-                    <chat-area :empty_error="trans('lang.empty_field')" :chat_host="this.host" :chat_port="this.port"></chat-area>
+                    <chat-area :empty_error="$trans('lang.empty_field')" :chat_host="this.host" :chat_port="this.port"></chat-area>
                 </li>
             </ul>
             <div class="wt-chatarea wt-chatarea-empty" v-else>
                 <figure class="wt-chatemptyimg">
                     <img :src="no_record_img" alt="img description">
-                    <figcaption><h3>{{ trans('lang.no_chat_message') }}</h3></figcaption>
+                    <figcaption><h3>{{ $trans('lang.no_chat_message') }}</h3></figcaption>
                 </figure>
             </div>
         </div>

@@ -17,7 +17,7 @@
                 />
                 <div class="counter wt-pointscounter">{{index}}</div>
             </div>
-            <span class="wt-ratingdescription">{{ trans('lang.pro_behaviour')</span> }}
+            <span class="wt-ratingdescription">{{ $trans('lang.pro_behaviour') }}</span>
         </div>
       </div>  
     </div>

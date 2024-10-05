@@ -82,6 +82,8 @@ class FilesController extends Controller
         $destinationPath = public_path('/job_files/'); 
 
         $file->move($destinationPath, $input['file']);
+
+        return true;
     }
 
     public function store(Request $request)
@@ -109,6 +111,7 @@ class FilesController extends Controller
         $destinationPath = public_path('/job_files/'); 
 
         $file->move($destinationPath, $input['file']);
+        return true;
     }
 
     /**
@@ -171,6 +174,7 @@ class FilesController extends Controller
     {
         $job_file = ProposalFile::find($id);
         $job_file->delete();
+        return true;
     }
 
     /**
@@ -195,5 +199,6 @@ class FilesController extends Controller
     {
         $job_file = Job_file::find($id);
         $job_file->delete();
+        return true;
     }
 }

@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="wt-categoryslidup">
                                     <p v-if="cat.abstract">{{ cat.abstract }}</p>
-                                    <a :href="baseUrl+'/search-results?type='+type+'&category%5B%5D='+cat.slug">{{ trans('lang.explore') }} <i class="fa fa-arrow-right"></i></a>
+                                    <a :href="baseUrl+'/search-results?type='+type+'&category%5B%5D='+cat.slug">{{ $trans('lang.explore') }} <i class="fa fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

@@ -21,9 +21,9 @@
     </div>
 </template>
 <script>
-import style1 from './style1'
-import style2 from './style2'
-import style3 from './style3'
+import style1 from './style1.vue'
+import style2 from './style2.vue'
+import style3 from './style3.vue'
 export default {
     components:{style1, style2, style3},
     props:['parent_index', 'element_id', 'apps', 'pageID'],

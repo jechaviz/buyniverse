@@ -144,14 +144,14 @@
         <form method="POST" id="pages" class="wt-formtheme wt-formprojectinfo wt-formcategory" @submit.prevent="submitPage()">
           <div class="amt-sidebar-section-wrap" id="amt-sidebar-section-wrap">
             <div class="amt-titlehead">
-              <h3>{{ trans('lang.custom_page_builder') }}<em class="amt-tag">{{ trans('hot') }}</em></h3>
-              <p>{{ trans('lang.custom_page_builder_note') }}</p>
+              <h3>{{ $trans('lang.custom_page_builder') }}<em class="amt-tag">{{ $trans('hot') }}</em></h3>
+              <p>{{ $trans('lang.custom_page_builder_note') }}</p>
             </div>
             <div class="amt-section-select">
-              <input type="text" name="title" class="form-control" :placeholder="trans('lang.title')" v-model="form.title">
+              <input type="text" name="title" class="form-control" :placeholder="$trans('lang.title')" v-model="form.title">
             </div>
             <div class="amt-allsection">
-              <span class="amt-allsection__title"><strong> {{ list.length }} {{ trans('lang.sections_avail') }} </strong></span>
+              <span class="amt-allsection__title"><strong> {{ list.length }} {{ $trans('lang.sections_avail') }} </strong></span>
               <div class="amt-sections">
                 <draggable
                   tag="ul"
@@ -178,7 +178,7 @@
                  data-target="#at-collapse-switches1"
                  aria-expanded="false"
               >
-                {{ trans('lang.headers') }}
+                {{ $trans('lang.headers') }}
                 <i class="ti-angle-right"></i>
               </a>
               <div id="at-collapse-switches1" class="amt-switches-options collapse">
@@ -191,7 +191,7 @@
                  data-target="#at-collapse-switches2"
                  aria-expanded="false"
               >
-                {{ trans('lang.footers') }}
+                {{ $trans('lang.footers') }}
                 <i class="ti-angle-right"></i>
               </a>
               <div id="at-collapse-switches2" class="amt-switches-options collapse">
@@ -205,7 +205,7 @@
                  aria-expanded="false"
                  v-on:click="displayHeaderStyling"
               >
-                {{ trans('lang.header_styling') }}
+                {{ $trans('lang.header_styling') }}
                 <i class="ti-angle-right"></i>
               </a>
               <div id="at-collapse-switches-header" class="amt-switches-options collapse">
@@ -218,7 +218,7 @@
                  data-target="#at-collapse-switches"
                  aria-expanded="true"
               >
-                {{ trans('lang.page_options') }}
+                {{ $trans('lang.page_options') }}
                 <i class="ti-angle-right"></i>
               </a>
               <div id="at-collapse-switches" class="amt-switches-options collapse show">
@@ -230,10 +230,10 @@
             <div class="amt-titlehead">
               <h3>
                 <a href="javascript.void(0);" class="amt-section-back" v-on:click.prevent="displaySection"><i class="ti-angle-left"></i></a>
-                {{ trans('lang.custom_page_builder') }}
-                <em class="amt-tag">{{ trans('lang.hot') }}</em>
+                {{ $trans('lang.custom_page_builder') }}
+                <em class="amt-tag">{{ $trans('lang.hot') }}</em>
               </h3>
-              <p>{{ trans('lang.custom_page_builder_note') }}</p>
+              <p>{{ $trans('lang.custom_page_builder_note') }}</p>
             </div>
             <heading-form
               :headings="form.meta.headings[this.currentElementIndex]"
@@ -331,7 +331,7 @@
           </div>
           <div class="at-account-save__button">
             <button type="submit" class="wt-btn btn-success">
-              {{ trans('lang.publish') }}
+              {{ $trans('lang.publish') }}
             </button>
           </div>
         </form>
@@ -554,7 +554,7 @@ export default {
       axios.post(APP_URL +'/admin/store-page', self.form)
         .then(function (response) {
           if (response.data.type == 'success') {
-            self.showMessage(self.trans('lang.page_added'))
+            self.showMessage(self.$trans('lang.page_added'))
             window.location.replace(APP_URL + '/admin/pages');
           } else if (response.data.type == 'error') {
               self.showError(response.data.message);
@@ -562,7 +562,7 @@ export default {
         })
         .catch(function (error) {
           if (error.response.data.errors.title) {
-            self.showError(self.trans('lang.title_required'))
+            self.showError(self.$trans('lang.title_required'))
           }
         })
     },

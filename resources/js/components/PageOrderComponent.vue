@@ -2,7 +2,7 @@
     <div class="wt-menuform">
         <div class="wt-formtheme wt-skillsform wt-pageorder">
             <transition name="fade">
-                <div v-if="isShow" class="sj-jump-messeges">{{ trans('lang.no_record') }}</div>
+                <div v-if="isShow" class="sj-jump-messeges">{{ $trans('lang.no_record') }}</div>
             </transition>
             <fieldset>
                 <div class="form-group">
@@ -13,15 +13,15 @@
                                     {{page.title}}
                                 </option>
                                 <option v-if="pagesLength==0" selected>
-                                    {{trans('lang.no_pages_avail')}}
+                                    {{$trans('lang.no_pages_avail')}}
                                 </option>
                             </select>
                         </span>
-                        <input type="number" class="form-control" min="0" :placeholder="trans('lang.page_order')" id="page_order_value">
+                        <input type="number" class="form-control" min="0" :placeholder="$trans('lang.page_order')" id="page_order_value">
                     </div>
                 </div>
                 <div class="form-group wt-btnarea">
-                    <a href="javascript:void(0);" v-if="pagesLength > 0" class="wt-btn" @click="addPageOrder">{{trans('lang.add_order')}}</a>
+                    <a href="javascript:void(0);" v-if="pagesLength > 0" class="wt-btn" @click="addPageOrder">{{$trans('lang.add_order')}}</a>
                 </div>
             </fieldset>
         </div>

@@ -37,16 +37,16 @@
                                                 <li><span><i class="far fa-money-bill-alt"></i>{{provider.symbol}}{{provider.hourly_rate}} / hr</span></li>
                                                 <li><span><em><img :src="baseUrl+provider.flag" alt="img description"></em>{{provider.location}}</span></li>
                                                 <!--<li v-if="provider.save_providers.includes(provider.id)" class="wt-btndisbaled">
-                                                    <a href="javascript:void(0);" class="wt-clicksave"><i class="fa fa-heart"></i>{{ trans('lang.saved') }}</a>
+                                                    <a href="javascript:void(0);" class="wt-clicksave"><i class="fa fa-heart"></i>{{ $trans('lang.saved') }}</a>
                                                 </li>
                                                 <li v-else>
                                                     <a href="javascrip:void(0);" class="wt-clicklike" :id="'provider-'+provider.id" @click.prevent="add_wishlist('provider-'+provider.id, provider.id, 'saved_provider')">
-                                                        <i class="fa fa-heart"></i><span class="save_text">{{trans("lang.click_to_save")}}</span>
+                                                        <i class="fa fa-heart"></i><span class="save_text">{{$trans("lang.click_to_save")}}</span>
                                                     </a>
                                                 </li>-->
 
                                                 <li>
-                                                    <a href="javascript:void(0);" class="wt-freestars"><i class="fas fa-star"> </i>{{provider.average_rating_count}}{{ trans('lang.5') }} <em> ({{provider.total_reviews}} {{ trans('lang.feedbacks') }})</em></a>
+                                                    <a href="javascript:void(0);" class="wt-freestars"><i class="fas fa-star"> </i>{{provider.average_rating_count}}{{ $trans('lang.5') }} <em> ({{provider.total_reviews}} {{ $trans('lang.feedbacks') }})</em></a>
                                                 </li>
                                             </ul>
                                         </div>

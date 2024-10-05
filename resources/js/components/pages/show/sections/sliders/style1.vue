@@ -29,12 +29,12 @@
                     </div>
                     <search-form
                     :widget_type="'home'"
-                    :placeholder="trans('lang.looking_for')"
-                    :provider_placeholder="trans('lang.search_filter_list.provider')"
-                    :employer_placeholder="trans('lang.search_filter_list.employers')"
-                    :job_placeholder="trans('lang.search_filter_list.jobs')"
-                    :service_placeholder="trans('lang.search_filter_list.services')"
-                    :no_record_message="trans('lang.no_record')"
+                    :placeholder="$trans('lang.looking_for')"
+                    :provider_placeholder="$trans('lang.search_filter_list.provider')"
+                    :employer_placeholder="$trans('lang.search_filter_list.employers')"
+                    :job_placeholder="$trans('lang.search_filter_list.jobs')"
+                    :service_placeholder="$trans('lang.search_filter_list.services')"
+                    :no_record_message="$trans('lang.no_record')"
                     >
                     </search-form>
                     <div class="wt-videoholder" v-if="slider.video_link">

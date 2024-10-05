@@ -1,6 +1,6 @@
 <template>
     <div class="wt-dashboardboxcontent wt-categoriescontentholder">
-        <div class="btn" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;margin-top: -71px;"><button @click="newquiz" class="wt-btn"> {{ trans('lang.add_quiz') }}</button></div>
+        <div class="btn" style="margin: 24px;float: right;border: none!important;background-color: #ffffff00;margin-top: -71px;"><button @click="newquiz" class="wt-btn"> {{ $trans('lang.add_quiz') }}</button></div>
         <table class="wt-tablecategories" id="checked-val">
             <thead>
                 <tr>
@@ -11,10 +11,10 @@
                         </span>
                     </th>
                     
-                    <th>{{ trans('lang.name') }}</th>
-                    <th>{{ trans('lang.created') }}</th>
-                    <th>{{ trans('lang.product_price') }}</th>
-                    <th class=" float-right">{{ trans('lang.action') }}</th>
+                    <th>{{ $trans('lang.name') }}</th>
+                    <th>{{ $trans('lang.created') }}</th>
+                    <th>{{ $trans('lang.product_price') }}</th>
+                    <th class=" float-right">{{ $trans('lang.action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,16 +51,16 @@
                         <td data-th="Action">
                             <span class="bt-content">
                                 <div class="float-right" style="margin-right: 20px;">
-                                    <a><button @click="editQuiz(quiz)" class="btn">{{ trans('lang.edit') }} {{ trans('lang.name') }}</button></a>
+                                    <a><button @click="editQuiz(quiz)" class="btn">{{ $trans('lang.edit') }} {{ $trans('lang.name') }}</button></a>
                                     <div class="dropdown">
                                         <button class="btn" style="border-left:1px solid #b4b1b1">
                                             <i class="fa fa-caret-down"></i>
                                         </button>
                                         <div class="dropdown-content">
-                                            <a @click="viewResult(quiz)" >{{ trans('lang.results') }}</a>
-                                            <a  @click="viewQuiz(quiz)" >{{ trans('lang.edit') }}</a>
-                                            <a  @click="buyQuiz(quiz)" v-if="quiz.admin ==1" >{{ trans('lang.buy') }}</a>
-                                            <a href="javascript:void()"  @click="deleteQuiz(quiz.id)">{{ trans('lang.delete') }}</a>											
+                                            <a @click="viewResult(quiz)" >{{ $trans('lang.results') }}</a>
+                                            <a  @click="viewQuiz(quiz)" >{{ $trans('lang.edit') }}</a>
+                                            <a  @click="buyQuiz(quiz)" v-if="quiz.admin ==1" >{{ $trans('lang.buy') }}</a>
+                                            <a href="javascript:void()"  @click="deleteQuiz(quiz.id)">{{ $trans('lang.delete') }}</a>											
                                         </div>
                                     </div>
 
@@ -79,8 +79,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" v-show="!editmode" id="exampleModalLabel">{{ trans('lang.add_new_quiz') }}</h5>
-                <h5 class="modal-title" v-show="editmode" id="exampleModalLabel">{{ trans('lang.update_quiz') }}</h5>
+                <h5 class="modal-title" v-show="!editmode" id="exampleModalLabel">{{ $trans('lang.add_new_quiz') }}</h5>
+                <h5 class="modal-title" v-show="editmode" id="exampleModalLabel">{{ $trans('lang.update_quiz') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" @click="Close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -88,13 +88,13 @@
             
             <div class="modal-body">
                 <div class="form-group">
-                    <label>{{ trans('lang.title') }}</label>
+                    <label>{{ $trans('lang.title') }}</label>
                     <input v-model="form.title" type="text" name="title"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
                     
                 </div>
                 <div class="form-group">
-                    <label>{{ trans('lang.product_price') }}</label>
+                    <label>{{ $trans('lang.product_price') }}</label>
                     <input v-model="form.price" type="text" name="price"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('price') }">
                     
@@ -102,9 +102,9 @@
                 <input type="hidden" name="user_id" v-model="form.user_id">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ trans('lang.close') }}</button>
-                <button type="submit" v-show="editmode" class="btn btn-success">{{ trans('lang.update') }}</button>
-                <button type="submit" v-show="!editmode" class="btn btn-primary">{{ trans('lang.create') }}</button>
+                <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ $trans('lang.close') }}</button>
+                <button type="submit" v-show="editmode" class="btn btn-success">{{ $trans('lang.update') }}</button>
+                <button type="submit" v-show="!editmode" class="btn btn-primary">{{ $trans('lang.create') }}</button>
             </div>
             
             </div>
@@ -115,7 +115,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('lang.quiz_results') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $trans('lang.quiz_results') }}</h5>
                     
                     <button type="button" class="close" data-dismiss="modal" @click="Close1" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -127,8 +127,8 @@
                         <table class="wt-tablecategories">
                             <thead>
                                 <tr>
-                                    <th>{{ trans('lang.user_name') }}</th> 
-                                    <th class="float-fight">{{ trans('lang.results') }}</th> 
+                                    <th>{{ $trans('lang.user_name') }}</th> 
+                                    <th class="float-fight">{{ $trans('lang.results') }}</th> 
                                 </tr>
                             </thead> 
                             <tbody>
@@ -158,7 +158,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('lang.edit') }} {{ trans('lang.quiz') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $trans('lang.edit') }} {{ $trans('lang.quiz') }}</h5>
                     
                     <button type="button" class="close" data-dismiss="modal" @click="Close2" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -231,13 +231,17 @@
                 $('#addnew').addClass('show');
             },        
             CreateQuiz() {
+                let self = this; 
                 this.form.post('/api/aquiz/')
                 .then(() => {
-                    toast.fire({
-                    icon: 'success',
-                    title: 'Quiz Created successfully'
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Quiz Created successfully',
+                        showConfirmButton: false,
+                        timer: 3500
                     });
-                    Fire.$emit('AfterChange');
+                    
+                    self.emitter.emit('AfterChange');
                     $('#addnew').modal('hide');
                     $('#addnew').removeClass('show');
                     $('.modal-backdrop').addClass('modal');
@@ -250,13 +254,17 @@
             },
             UpdateQuiz()
             {
+                let self = this; 
                 this.form.put('/api/aquiz/'+ this.form.id)
                 .then(() => {
-                    toast.fire({
-                    icon: 'success',
-                    title: 'Quiz Updated successfully'
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Quiz Updated successfully',
+                        showConfirmButton: false,
+                        timer: 3500
                     });
-                    Fire.$emit('AfterChange');
+                    
+                    self.emitter.emit('AfterChange');
                     $('#addnew').modal('hide');
                     $('#addnew').removeClass('show');
                     $('.modal-backdrop').addClass('modal');
@@ -268,12 +276,13 @@
             },
             viewQuiz(quiz)
             {
+                let self = this; 
                 //window.location.href="/questions/"+quiz.id;
                 this.quizid = quiz.id;
                 
                 $('#viewquiz').modal('show');  
                 $('#viewquiz').addClass('show in');
-                Fire.$emit('AfterCreateQuestion');
+                self.emitter.emit('AfterCreateQuestion');
             },
             buyQuiz(quiz)
             {
@@ -314,15 +323,19 @@
                 }
                 else
                 {
-                    toast.fire({
-                    icon: 'error',
-                    title: 'Quiz cannot be editted.'
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Quiz cannot be editted.',
+                        showConfirmButton: false,
+                        timer: 3500
                     });
+                    
                 }
                 
             },
             deleteQuiz(id)
             {
+                let self = this; 
                 console.log('delete initiated');
                 swal.fire({
                 title: 'Are you sure?',
@@ -343,7 +356,7 @@
                         'Your Quiz has been deleted.',
                         'success'
                         )
-                        Fire.$emit('AfterChange');
+                        self.emitter.emit('AfterChange');
                     }).catch(() => {
                         swal("Failed", "There is something wrong.", "warning");
                     })
@@ -351,29 +364,36 @@
                 })
             },
             selectAll () {
+                let self = this; 
                 var cats = document.getElementById('wt-cats').checked;
 
                 axios.get(APP_URL + '/api/aquiz/selectall/' + this.jobid + '-' + cats).then(function (response) { 
                     
-                    Fire.$emit('AfterChange');
-                    toast.fire({
-                    icon: 'success',
-                    title: 'Quiz updated successfully'
-                    });    
+                    self.emitter.emit('AfterChange');
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Quiz updated successfully',
+                        showConfirmButton: false,
+                        timer: 3500
+                    });
+                    
                 });
 
                 
             },
             selectRecord (id) {
-
+                let self = this; 
                 var cats = document.getElementById('wt-check-'+ id).checked;
                 axios.get(APP_URL + '/api/aquiz/selectrecord/' + this.jobid + '-' + cats + '-' + id).then(function (response) { 
                     
-                    Fire.$emit('AfterChange');
-                    toast.fire({
-                    icon: 'success',
-                    title: 'Quiz updated successfully'
-                    });    
+                    self.emitter.emit('AfterChange');
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Quiz updated successfully',
+                        showConfirmButton: false,
+                        timer: 3500
+                    });
+                    
                 });
             },
             userName() {
@@ -388,7 +408,7 @@
         mounted: function () {
             this.loadQuiz();
             this.userName();
-            Fire.$on('AfterChange', () => {
+            this.emitter.on('AfterChange', () => {
                 this.loadQuiz();
             });
            

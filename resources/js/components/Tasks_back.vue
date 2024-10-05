@@ -95,19 +95,24 @@ export default {
   methods: {
         markTask(id)
         {
+            let self = this; 
             axios.get(APP_URL + '/api/tasks/status/' + id).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
             });
         },
         UpdateTask()
         {
+            let self = this; 
             this.form.put('/api/tasks/'+ this.form.id)
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Task Updated successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Task Updated successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('AfterCreate');
+                
+                self.emitter.emit('AfterCreate');
                 $('#addnew').modal('hide');
                 $('.modal-backdrop').addClass('modal');
                 $('.modal-backdrop').remove();
@@ -133,6 +138,7 @@ export default {
         },
         deleteTask(id)
         {
+            let self = this; 
             swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -151,7 +157,7 @@ export default {
                     'Your Task has been deleted.',
                     'success'
                     )
-                    Fire.$emit('AfterCreate');
+                    self.emitter.emit('AfterCreate');
                 }).catch(() => {
                     swal("Failed", "There is something wrong.", "warning");
                 })
@@ -165,13 +171,17 @@ export default {
             });
         },
         CreateTask() {
+            let self = this; 
             this.form.post('/api/tasks/')
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Task Created successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Task Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('AfterCreate');
+                
+                self.emitter.emit('AfterCreate');
                 $('#addnew').modal('hide');
                 $('.modal-backdrop').addClass('modal');
                 $('.modal-backdrop').remove();
@@ -185,7 +195,7 @@ export default {
   },
     mounted: function() {
       this.loadTasks();
-      Fire.$on('AfterCreate', () => {
+      this.emitter.on('AfterCreate', () => {
                 this.loadTasks();
             });
   }

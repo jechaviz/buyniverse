@@ -45,7 +45,7 @@
                                         <p>{{ category.lastTabDesc }}</p>
                                     </div>
                                     <div class="wt-btnarea">
-                                        <a :href="category.showAllBtnUrl" class="wt-btntwo">{{ trans('lang.show_all') }}</a>
+                                        <a :href="category.showAllBtnUrl" class="wt-btntwo">{{ $trans('lang.show_all') }}</a>
                                     </div>
                                 </div>
                             </li>

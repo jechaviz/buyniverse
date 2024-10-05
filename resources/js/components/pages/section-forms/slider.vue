@@ -5,31 +5,31 @@
                 <div class="form-group">
                     <div class="amt-select">
                         <select class="form-control" v-model="slider.style">
-                        <option value= null>{{ trans('lang.select_style') }}</option> 
+                        <option value= null>{{ $trans('lang.select_style') }}</option> 
                         <option v-for="(style, index) in styles" :key="index" :value="style.value">{{style.title}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" v-model="slider.title" :placeholder="trans('lang.title')" class="form-control">
+                    <input type="text" v-model="slider.title" :placeholder="$trans('lang.title')" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="text" v-model="slider.subtitle" :placeholder="trans('lang.subtitle')" class="form-control">
+                    <input type="text" v-model="slider.subtitle" :placeholder="$trans('lang.subtitle')" class="form-control">
                 </div>
                 <div class="form-group" v-if="slider.style == 'style4'">
-                    <input type="text" v-model="slider.tagline" :placeholder="trans('lang.tagline')" class="form-control">
+                    <input type="text" v-model="slider.tagline" :placeholder="$trans('lang.tagline')" class="form-control">
                 </div>
                 <div class="form-group">
                     <tinymce-editor v-model="slider.description" :init="{height: 250, plugins: 'paste link code advlist autolink lists link charmap print', toolbar1: 'undo redo code | bold italic underline strikethrough | fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist', menubar:false, statusbar: false, extended_valid_elements:'span[style],i[class]'}"></tinymce-editor>
                 </div>
                 <div class="form-group">
-                    <input type="text" v-model="slider.video_title" :placeholder="trans('lang.video_title')" class="form-control">
+                    <input type="text" v-model="slider.video_title" :placeholder="$trans('lang.video_title')" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="text" v-model="slider.video_description" :placeholder="trans('lang.video_desc')" class="form-control">
+                    <input type="text" v-model="slider.video_description" :placeholder="$trans('lang.video_desc')" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="text" v-model="slider.video_link" :placeholder="trans('lang.video_url')" class="form-control">
+                    <input type="text" v-model="slider.video_link" :placeholder="$trans('lang.video_url')" class="form-control">
                 </div>
                 <!-- Slider Multiple Image -->
                 <div class="wt-settingscontent wt-multipleimgs" v-if="slider.style == 'style1' || slider.style == 'style2' || slider.style == 'style3' || slider.style == 'style4'">
@@ -79,7 +79,7 @@
                         :list_id="'list_id_inner_banner_image'+currentElementID"
                         :upload_title="'upload image'"
                         :btn_text="'select file'"
-                        :img_label="trans('lang.inner_banner_img')"
+                        :img_label="$trans('lang.inner_banner_img')"
                         @addedFile="imageAdded('inner_banner_image_wrapper'+currentElementID, 'innerBannerImage', 'inner_banner_hiddenImage'+currentElementID)"
                         @fileRemoved="imageRemoved('innerBannerImage')"
                     >
@@ -126,7 +126,7 @@
                         :list_id="'list_id_floating_image01'+currentElementID"
                         :upload_title="'upload image'"
                         :btn_text="'select file'"
-                        :img_label="trans('lang.floating_img1')"
+                        :img_label="$trans('lang.floating_img1')"
                         @addedFile="imageAdded('floating_image01_wrapper'+currentElementID, 'floatingImage01', 'floating01_hiddenImage'+currentElementID)"
                         @fileRemoved="imageRemoved('floatingImage01')"
                     >
@@ -173,7 +173,7 @@
                         :list_id="'list_id_floating_image02'+currentElementID"
                         :upload_title="'upload image'"
                         :btn_text="'select file'"
-                        :img_label="trans('lang.floating_img2')"
+                        :img_label="$trans('lang.floating_img2')"
                         @addedFile="imageAdded('floating_image02_wrapper'+currentElementID, 'floatingImage02', 'floating02_hiddenImage'+currentElementID)"
                         @fileRemoved="imageRemoved('floatingImage02')"
                     >
@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <div class="amt-element-title amt-element-titlecontent" v-if="slider.style == 'style4'">
-                    <h6>{{trans('lang.search_form')}}:</h6>
+                    <h6>{{$trans('lang.search_form')}}:</h6>
                 </div>
                 <div class="amt-switches-option" v-if="slider.style == 'style4'">
                     <div class="at-account-checkbox">
@@ -212,50 +212,50 @@
                             <input type="checkbox" id="show_banner_search_form" v-model="slider.enable_search_form">
                             <label for="show_banner_search_form"><i></i></label>
                         </div>
-                        <p>{{ trans('lang.show_search_form') }}</p>
+                        <p>{{ $trans('lang.show_search_form') }}</p>
                     </div>
                 </div>
                 <div class="form-group" v-if="slider.style == 'style4'">
-                    <input type="text" v-model="slider.search_form_title" :placeholder="trans('lang.search_title')" class="form-control">
+                    <input type="text" v-model="slider.search_form_title" :placeholder="$trans('lang.search_title')" class="form-control">
                 </div>
                 <div class="form-group" v-if="slider.style == 'style4'">
-                    <input type="text" v-model="slider.search_form_subtitle" :placeholder="trans('lang.search_subtitle')" class="form-control">
+                    <input type="text" v-model="slider.search_form_subtitle" :placeholder="$trans('lang.search_subtitle')" class="form-control">
                 </div>
                 <div class="form-group" v-if="slider.style == 'style4'">
-                    <input type="text" v-model="slider.price_range_title" :placeholder="trans('lang.pricing_title')" class="form-control">
+                    <input type="text" v-model="slider.price_range_title" :placeholder="$trans('lang.pricing_title')" class="form-control">
                 </div>
                 <div class="form-group" v-if="slider.style == 'style4'">
-                    <input type="text" v-model="slider.listing_tagline" :placeholder="trans('lang.listing_tagline')" class="form-control">
+                    <input type="text" v-model="slider.listing_tagline" :placeholder="$trans('lang.listing_tagline')" class="form-control">
                 </div>
             </fieldset>
         </div>
         <div class="amt-dhb-main_content">
-            <div class="amt-dhb-heading"><h3>{{ trans('lang.style') }}</h3></div>
+            <div class="amt-dhb-heading"><h3>{{ $trans('lang.style') }}</h3></div>
         </div>
         <div class="amt-element-title amt-element-titlecontent">
-            <h6>{{ trans('lang.title_clr') }}</h6>
+            <h6>{{ $trans('lang.title_clr') }}</h6>
             <verte menuPosition="right" model="hex" v-model="slider.titleColor"></verte>
         </div>
         <div class="amt-element-title amt-element-titlecontent">
-            <h6>{{ trans('lang.sutitle_clr') }}</h6>
+            <h6>{{ $trans('lang.sutitle_clr') }}</h6>
             <verte menuPosition="right" model="hex" v-model="slider.subtitleColor"></verte>
         </div>
         <div class="amt-element-title amt-element-titlecontent">
-            <h6>{{ trans('lang.tagline_clr') }}</h6>
+            <h6>{{ $trans('lang.tagline_clr') }}</h6>
             <verte menuPosition="right" model="hex" v-model="slider.taglineColor"></verte>
         </div>
         <div class="amt-dhb-main_content">
-            <div class="amt-dhb-heading"> <h3>{{ trans('lang.sec_style') }}</h3></div>
+            <div class="amt-dhb-heading"> <h3>{{ $trans('lang.sec_style') }}</h3></div>
         </div>
           <div class="amt-element-title amt-element-titlecontent">
-            <h6>{{ trans('lang.section_clr') }}</h6>
+            <h6>{{ $trans('lang.section_clr') }}</h6>
             <verte menuPosition="right" model="hex" v-model="slider.sectionColor"></verte>
         </div>
         <div class="amt-formcontactus">
             <fieldset>
                 <div class="form-group" v-if="slider.padding">
                     <div class="amt-element-title">
-                         <h6>{{ trans('lang.padding') }}</h6>
+                         <h6>{{ $trans('lang.padding') }}</h6>
                         <div class="amt-guests-radioholder">
                             <span class="amt-radio"><input id="at-padding-pixal" type="radio" v-model="slider.padding.unit" value="px"> <label for="at-padding-pixal">px</label></span>   
                             <span class="amt-radio"><input id="at-padding-percent" type="radio" v-model="slider.padding.unit" value="%"> <label for="at-padding-percent">%</label></span>   
@@ -265,10 +265,10 @@
                         <ul class="amt-guestsinfo">
                             <li> 
                                 <div class="amt-guests-radioholder">
-                                    <span class="amt-radio"><input type="number" v-model="slider.padding.top"> <label for="at-top">{{ trans('lang.top') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="slider.padding.right"> <label for="at-right">{{ trans('lang.right') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="slider.padding.bottom"> <label for="at-bottom">{{ trans('lang.bottom') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="slider.padding.left"> <label for="at-left">{{ trans('lang.left') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.padding.top"> <label for="at-top">{{ $trans('lang.top') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.padding.right"> <label for="at-right">{{ $trans('lang.right') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.padding.bottom"> <label for="at-bottom">{{ $trans('lang.bottom') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.padding.left"> <label for="at-left">{{ $trans('lang.left') }}</label></span>   
                                 </div>
                             </li>  
                         </ul>
@@ -276,7 +276,7 @@
                 </div>
                 <div class="form-group" v-if="slider.margin">
                     <div class="amt-element-title">
-                        <h6>{{ trans('lang.margin') }}</h6>
+                        <h6>{{ $trans('lang.margin') }}</h6>
                         <div class="amt-guests-radioholder">
                             <span class="amt-radio"><input id="at-margin-pixal" type="radio" v-model="slider.margin.unit" value="px"> <label for="at-margin-pixal">px</label></span>   
                             <span class="amt-radio"><input id="at-margin-percent" type="radio" v-model="slider.margin.unit" value="%"> <label for="at-margin-percent">%</label></span>   
@@ -286,17 +286,17 @@
                         <ul class="amt-guestsinfo">
                             <li> 
                                 <div class="amt-guests-radioholder">
-                                    <span class="amt-radio"><input type="number" v-model="slider.margin.top"> <label for="at-top">{{ trans('lang.top') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="slider.margin.right"> <label for="at-right">{{ trans('lang.right') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="slider.margin.bottom"> <label for="at-bottom">{{ trans('lang.bottom') }}</label></span>   
-                                    <span class="amt-radio"><input type="number" v-model="slider.margin.left"> <label for="at-left">{{ trans('lang.left') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.margin.top"> <label for="at-top">{{ $trans('lang.top') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.margin.right"> <label for="at-right">{{ $trans('lang.right') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.margin.bottom"> <label for="at-bottom">{{ $trans('lang.bottom') }}</label></span>   
+                                    <span class="amt-radio"><input type="number" v-model="slider.margin.left"> <label for="at-left">{{ $trans('lang.left') }}</label></span>   
                                 </div>
                             </li>  
                         </ul>
                     </div>
                 </div>
-                <div class="form-group"><input type="text" v-model="slider.sectionClass" :placeholder="trans('lang.sec_class')" class="form-control"></div>
-                <div class="form-group"><input type="text" v-model="slider.sectionId" :placeholder="trans('lang.sec_id')" class="form-control"></div>
+                <div class="form-group"><input type="text" v-model="slider.sectionClass" :placeholder="$trans('lang.sec_class')" class="form-control"></div>
+                <div class="form-group"><input type="text" v-model="slider.sectionId" :placeholder="$trans('lang.sec_id')" class="form-control"></div>
             </fieldset>
         </div>
     </div>

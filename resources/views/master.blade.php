@@ -20,7 +20,7 @@
 	<link rel="icon" href="{{{ asset(Helper::getSiteFavicon()) }}}" type="image/x-icon">
 	@stack('PackageStyle')
 	<!--<link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!--<link href="https://cloud-ex42.usaupload.com/file/5cow/app.css" rel="stylesheet"> -->
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/normalize-min.css') }}" rel="stylesheet">
@@ -107,13 +107,14 @@
 			</div>
 	@endif
 	<div id="wt-wrapper" class="wt-wrapper wt-haslayout wt-openmenu">
-		<div class="wt-contentwrapper">
+		<div id="buyniverse_app" class="wt-contentwrapper">
 			@yield('header')
 			@yield('slider')
 			@yield('main')
 			@yield('footer')
 		</div>
 	</div>
+	@vite('resources/js/app.js')
 	<script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 	<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 	@yield('bootstrap_script')
@@ -132,6 +133,17 @@
             jQuery(".loader1").delay(500).fadeOut();
             jQuery(".pins").delay(500).fadeOut("slow");
         });
+		const Toast = Swal.mixin({
+			toast: true,
+			position: "top-end",
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.onmouseenter = Swal.stopTimer;
+				toast.onmouseleave = Swal.resumeTimer;
+			}
+		});
     </script>
 </body>
 </html>

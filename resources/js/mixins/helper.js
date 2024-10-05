@@ -3,7 +3,7 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-Vue.mixin({
+app.mixin({
   data () {
     return {
       notificationSystem: {

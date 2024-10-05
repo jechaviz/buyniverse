@@ -2,11 +2,11 @@
     <div class="wt-dashboardboxcontent wt-jobdetailsholder">
         <table class="wt-tablecategories no-border">
             <thead>
-                <tr>{{ trans('lang.timer') }} : <span v-if="contest.status == 'close'">Contest is Over</span><span v-else-if="!contest.result">Contest will begin shortly</span><span v-else>{{ distance*10 }} seconds</span></tr>
+                <tr>{{ $trans('lang.timer') }} : <span v-if="contest.status == 'close'">Contest is Over</span><span v-else-if="!contest.result">Contest will begin shortly</span><span v-else>{{ distance*10 }} seconds</span></tr>
                 <tr>
-                    <th>{{ trans('lang.name') }}</th> 
-                    <th>{{ trans('lang.bid_amount') }}</th>
-                    <th>{{ trans('lang.original_bid') }}</th>
+                    <th>{{ $trans('lang.name') }}</th> 
+                    <th>{{ $trans('lang.bid_amount') }}</th>
+                    <th>{{ $trans('lang.original_bid') }}</th>
                     
                 </tr>
             </thead> 
@@ -18,10 +18,10 @@
                         </span>
                     </td> 
                     <td>
-                        <span class="bt-content">$ {{ value.proposal.amount | numFormat }}</span> 
+                        <span class="bt-content">$ {{ $filters.numFormat(value.proposal.amount) }}</span> 
                     </td>
                     <td>
-                        <span class="bt-content">$ {{ value.proposal.original | numFormat }}</span> 
+                        <span class="bt-content">$ {{ $filters.numFormat(value.proposal.original) }}</span> 
                     </td>
                     
                 </tr>
@@ -104,7 +104,7 @@ export default {
 
             distance: {
                 handler(value) {
-
+                    let self = this; 
                     if (value > 0) {
                         setTimeout(() => {
                             this.distance--;
@@ -112,22 +112,28 @@ export default {
                             {
                                 axios.get(APP_URL + '/api/contest/over/' + this.contestid).then(function (response) {
                                 });
-                                toast.fire({
+                                Swal.fire({
                                     icon: 'success',
-                                    title: 'Contest is over'
+                                    text: 'Contest is over',
+                                    showConfirmButton: false,
+                                    timer: 3500
                                 });
-                                Fire.$emit('Aftercontestchange');
+                                
+                                self.emitter.emit('Aftercontestchange');
                             }
                             axios.get(APP_URL + '/api/contest/bid/' + this.contestid).then(function (response) {
                                 //console.log(response.data, response.data == true);
                                 if(response.data == true)
                                 {
-                                    toast.fire({
+                                    Swal.fire({
                                         icon: 'success',
-                                        title: 'New Bid is added'
+                                        text: 'New Bid is added',
+                                        showConfirmButton: false,
+                                        timer: 3500
                                     });
-                                    Fire.$emit('Aftercontestchange');
-                                    Fire.$emit('Aftercontestupdate');
+                                    
+                                    self.emitter.emit('Aftercontestchange');
+                                    self.emitter.emit('Aftercontestupdate');
                                     $(".no-border").addClass("highlighted");
                                     setTimeout(
                                         function() { 
@@ -159,10 +165,10 @@ export default {
       
       this.loadcontest();
       
-      Fire.$on('Aftercontestchange', () => {
+      this.emitter.on('Aftercontestchange', () => {
                 this.loadcontest();
             });
-        Fire.$on('Aftercontestcreate', (contest) => {
+        this.emitter.on('Aftercontestcreate', (contest) => {
             console.log('Aftercontestcreate - ' + contest);
             this.loadcontest1(contest);
         });

@@ -44,7 +44,7 @@
                                     <div class="wt-provider-about">
                                         <div class="wt-provider-price"><span><i class="fas fa-money-bill-alt"></i> {{provider.symbol}}{{provider.hourly_rate}} / hr </span></div>
                                         <div class="wt-rating">
-                                            <span class="wt-stars wt-starstwo"><span></span></span> <em>{{provider.average_rating_count}}{{ trans('lang.5') }}</em>
+                                            <span class="wt-stars wt-starstwo"><span></span></span> <em>{{provider.average_rating_count}}{{ $trans('lang.5') }}</em>
                                         </div>
                                     </div>
                                     <div class="wt-provider-social">
@@ -64,10 +64,10 @@
                                     </li>
                                     <li v-if="provider.save_providers.includes(provider.id)">
                                         <a href="javascript:void(0);"  :id="'provider-'+provider.id" @click.prevent="add_wishlist('provider-'+provider.id, provider.id, 'saved_provider')">
-                                        <i class="ti-heart"></i> {{trans("lang.saved")}}</a>
+                                        <i class="ti-heart"></i> {{$trans("lang.saved")}}</a>
                                     </li>
                                     <li><a href="javascript:void(0);"  :id="'provider-'+provider.id" @click.prevent="add_wishlist('provider-'+provider.id, provider.id, 'saved_provider')">
-                                        <i class="ti-heart"></i> {{trans("lang.save")}}</a>
+                                        <i class="ti-heart"></i> {{$trans("lang.save")}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -149,9 +149,9 @@ export default {
                         if (column == 'saved_provider') {
                             jQuery('#' + element_id).parents('li').addClass('wt-btndisbaled');
                             jQuery('#' + element_id).addClass('wt-clicksave');
-                            jQuery('#' + element_id).find('.save_text').text(Vue.prototype.trans('lang.saved'));
+                            jQuery('#' + element_id).find('.save_text').text(Vue.prototype.$trans('lang.saved'));
                             self.disable_btn = 'wt-btndisbaled';
-                            self.text = Vue.prototype.trans('lang.btn_save');
+                            self.text = Vue.prototype.$trans('lang.btn_save');
                             self.saved_class = 'fa fa-heart';
                             self.click_to_save = 'wt-clicksave'
                         }

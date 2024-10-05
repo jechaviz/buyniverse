@@ -8,9 +8,9 @@
     <ul id="accordion" class="wt-historycontentcol">
       <li class="wt-historycolhead">
         <h3>
-          <span>{{ trans('lang.date') }}</span>
-          <span>{{ trans('lang.msg') }}</span>
-          <span>{{ trans('lang.attachment') }}</span>
+          <span>{{ $trans('lang.date') }}</span>
+          <span>{{ $trans('lang.msg') }}</span>
+          <span>{{ $trans('lang.attachment') }}</span>
         </h3>
       </li>
       <span v-for="(message, index) in messages" :key="index">
@@ -25,7 +25,7 @@
           <div class="wt-rightarea wt-msgbtns">
             <a href="javascript:void(0);" class="wt-btn wt-msgbtn">
               <i class="lnr lnr-chevron-up"></i>
-              {{ trans('lang.msg') }}
+              {{ $trans('lang.msg') }}
             </a>
             <a
               :href="attahcments_url+message.id"
@@ -33,7 +33,7 @@
               v-if="message.attachments == 1"
             >
               <i class="lnr lnr-download"></i>
-              {{ trans('lang.attachment') }}
+              {{ $trans('lang.attachment') }}
             </a>
           </div>
         </li>
@@ -62,7 +62,7 @@
         <input type="hidden" :value="this.recipent_id" name="recipent_id" />
         <input type="hidden" :value="this.id" name="proposal_id" />
         <div class="form-group wt-btnarea">
-          <button type="submit" class="wt-btn">{{trans('lang.btn_sendnow')}}</button>
+          <button type="submit" class="wt-btn">{{$trans('lang.btn_sendnow')}}</button>
         </div>
       </fieldset>
     </form>

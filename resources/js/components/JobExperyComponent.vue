@@ -4,9 +4,9 @@
             v-model="expiry_date"
             :weekdays="weekdayList" 
             :months="monthsList" 
-            :nextMonthCaption="trans('lang.next_month')"
-            :prevMonthCaption="trans('lang.pre_month')"
-            :setTimeCaption="trans('lang.set_time')">
+            :nextMonthCaption="$trans('lang.next_month')"
+            :prevMonthCaption="$trans('lang.pre_month')"
+            :setTimeCaption="$trans('lang.set_time')">
         </date-pick>
         <input
             type="hidden"

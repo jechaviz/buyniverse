@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="wt-tabscontenttitle wt-addnew">
-            <h2>{{trans('lang.add_your_project')}}</h2>
-            <a href="javascript:void(0);" @click="addProject" class="add-project-btn">{{trans('lang.add_project')}}</a>
+            <h2>{{$trans('lang.add_your_project')}}</h2>
+            <a href="javascript:void(0);" @click="addProject" class="add-project-btn">{{$trans('lang.add_project')}}</a>
         </div>
         <ul class="wt-experienceaccordion accordion" id="project-list">
             <span v-if="stored_projects" class="project-inner-list">

@@ -4,7 +4,7 @@
     id="main-search-form" v-if="this.widget_type == 'home'">
         <fieldset>
             <div class="wt-dropdown"  @click="toggleDropdown">
-                <span>{{trans('lang.in')}} <em class="selected-search-type">{{selected_type}} </em><i class="lnr lnr-chevron-down"></i></span>
+                <span>{{$trans('lang.in')}} <em class="selected-search-type">{{selected_type}} </em><i class="lnr lnr-chevron-down"></i></span>
             </div>
             <div class="wt-radioholder" v-bind:style='{"display" : (isActive? "block" : "none" )}'>
                 <span class="wt-radio" v-for="(filter, index) in filters" :key="index">
@@ -65,7 +65,7 @@
             <span v-if="is_show" class="no-record-span">{{no_record}}</span>
                 <div class="wt-formoptions">
                     <div class="wt-dropdown"  @click="toggleDropdown">
-                        <span>{{trans('lang.in')}}: <em class="selected-search-type">{{selected_type}} </em><i class="lnr lnr-chevron-down"></i></span>
+                        <span>{{$trans('lang.in')}}: <em class="selected-search-type">{{selected_type}} </em><i class="lnr lnr-chevron-down"></i></span>
                     </div>
                     <div class="wt-radioholder" v-bind:style='{"display" : (isActive? "block" : "none" )}'>
                         <span class="wt-radio" v-for="(filter, index) in filters" :key="index">
@@ -73,11 +73,11 @@
                             <label :for="filter.value">{{filter.title}}</label>
                         </span>
                     </div>
-                    <a href="#" class="wt-searchbtn" v-on:click.prevent="submitSearchForm(types)"><i class="lnr lnr-magnifier"></i><span>{{trans('lang.search_now')}}</span></a>
+                    <a href="#" class="wt-searchbtn" v-on:click.prevent="submitSearchForm(types)"><i class="lnr lnr-magnifier"></i><span>{{$trans('lang.search_now')}}</span></a>
                 </div>
             </div>
             <div class="wt-btn-remove-holder">
-                <a href="javascript:;" class="wt-search-remove">{{trans('lang.cancel')}}</a>
+                <a href="javascript:;" class="wt-search-remove">{{$trans('lang.cancel')}}</a>
                 <a href="javascript:;" class="wt-search-remove"><i class="fa fa-close"></i></a>
             </div>
         </fieldset>

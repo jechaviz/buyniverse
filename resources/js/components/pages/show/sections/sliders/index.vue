@@ -22,10 +22,10 @@
     </div>
 </template>
 <script>
-import style1 from './style1'
-import style2 from './style2'
-import style3 from './style3'
-import style4 from './style4'
+import style1 from './style1.vue'
+import style2 from './style2.vue'
+import style3 from './style3.vue'
+import style4 from './style4.vue'
 export default {
     components: {style1, style2, style3, style4},
     props:['parent_index', 'element_id', 'sliders', 'page_id', 'symbol'],

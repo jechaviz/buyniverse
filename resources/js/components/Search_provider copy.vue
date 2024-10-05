@@ -12,13 +12,13 @@
                                     <input type="hidden" value="provider" name="type">
                                     <div class="wt-widget wt-effectiveholder wt-startsearch">
                                         <div class="wt-widgettitle">
-                                            <h2>{{ trans('lang.start_search') }}</h2>
+                                            <h2>{{ $trans('lang.start_search') }}</h2>
                                         </div>
                                         <div class="wt-widgetcontent">
                                             <div class="wt-formtheme wt-formsearch">
                                                 <fieldset>
                                                     <div class="form-group">
-                                                        <input type="text" name="s" class="form-control" :placeholder="trans('lang.ph_search_provider')" :value="form.s" @keyup="search_text">
+                                                        <input type="text" name="s" class="form-control" :placeholder="$trans('lang.ph_search_provider')" :value="form.s" @keyup="search_text">
                                                     </div>
                                                 </fieldset>
                                             </div>
@@ -28,7 +28,7 @@
 
                                     <div class="wt-widget wt-effectiveholder">
                                         <div class="wt-widgettitle">
-                                            <h2>{{ trans('lang.categories') }} {{ categories }}</h2>
+                                            <h2>{{ $trans('lang.categories') }} {{ categories }}</h2>
                                         </div>
                                         <div class="wt-widgetcontent">
                                             <fieldset>                                                
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="wt-widget wt-effectiveholder">
                                         <div class="wt-widgettitle">
-                                            <h2>{{ trans('lang.skills') }}</h2>
+                                            <h2>{{ $trans('lang.skills') }}</h2>
                                         </div>
                                         <div class="wt-widgetcontent">
                                             <fieldset>                                                
@@ -80,7 +80,7 @@
                                         <div :class="'wt-userlistinghold ' + provider.feature_class" v-if="provider.invitation == false">
                                             
                                             <figure class="wt-userlistingimg">
-                                                <img :src="appurl+provider.image" :alt="trans('lang.img')">
+                                                <img :src="appurl+provider.image" :alt="$trans('lang.img')">
                                             </figure>
                                             <div class="wt-userlistingcontent">
                                                 <div class="wt-contenthead">
@@ -98,7 +98,7 @@
                                                     <ul class="wt-userlisting-breadcrumb">
                                                         
                                                             <li v-if="provider.hourly_rate"><span><i class="far fa-money-bill-alt"></i>
-                                                                <span>{{provider.symbol.code}}</span>{{ provider.hourly_rate }} {{ trans('lang.per_hour') }}</span>
+                                                                <span>{{provider.symbol.code}}</span>{{ provider.hourly_rate }} {{ $trans('lang.per_hour') }}</span>
                                                             </li>
                                                         
                                                         
@@ -112,7 +112,7 @@
                                                 <div class="wt-rightarea">
                                                     <span class="wt-stars"><span :style="'width: ' + provider.stars + '%;'"></span></span>
                                                     <span class="wt-starcontent">
-                                                        {{ provider.average_rating_count }}<sub>{{ trans('lang.5') }}</sub> <em>({{ provider.feedbacks }} {{ trans('lang.feedbacks') }})</em>
+                                                        {{ provider.average_rating_count }}<sub>{{ $trans('lang.5') }}</sub> <em>({{ provider.feedbacks }} {{ $trans('lang.feedbacks') }})</em>
                                                     </span>
                                                 </div>
                                             </div>
@@ -132,7 +132,7 @@
                                     <div class="wt-emptydata">
                                         <div class="wt-emptydetails wt-empty-person">
                                         <img :src="'/images/empty-images/no-record.png'">
-                                            <em>{{ trans('lang.no_record') }}</em>
+                                            <em>{{ $trans('lang.no_record') }}</em>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@ export default {
                 self.users = response.data.users.data;
                 self.keyword = response.data.keyword;
                 console.log(self.users);
-                //Fire.$emit('UpdatefUsers');
+                //self.emitter.emit('UpdatefUsers');
             });
         },
         search_filter()
@@ -222,7 +222,7 @@ export default {
                 self.form.skill = response.data.skill;
                 self.form.category = response.data.category;
 
-                Fire.$emit('UpdatefUsers');
+                self.emitter.emit('UpdatefUsers');
             })
             .catch(() => {
 
@@ -235,7 +235,7 @@ export default {
     },
     mounted: function() { 
         this.loadSearch();
-        Fire.$on('UpdatefUsers', () => {
+        this.emitter.on('UpdatefUsers', () => {
             this.updatefuser();
         });
   }

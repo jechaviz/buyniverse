@@ -1,6 +1,6 @@
 <template>
-    <span> <a @click="invite" :id="'invite_to_project-'+user_id" v-show="!flag" class="wt-btn" style="cursor: pointer;"><span>{{ trans('lang.invite') }}</span></a>
-    <span :id="'invitation_sent-'+user_id" v-show="flag" style="margin-right: 20px;font-weight: bold;">{{ trans('lang.invitation_sent') }}</span></span>
+    <span> <a @click="invite" :id="'invite_to_project-'+user_id" v-show="!flag" class="wt-btn" style="cursor: pointer;"><span>{{ $trans('lang.invite') }}</span></a>
+    <span :id="'invitation_sent-'+user_id" v-show="flag" style="margin-right: 20px;font-weight: bold;">{{ $trans('lang.invitation_sent') }}</span></span>
 </template>
 
 <script>
@@ -33,10 +33,13 @@ export default {
             let self = this;
             console.log('invite');
             axios.get(APP_URL + '/api/sendinvitation/' + this.jobid +'-' + this.userid).then(function (response) {
-                toast.fire({
-                type: 'success',
-                title: 'Provider is successfully invited for the job'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Provider is successfully invited for the job',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
+                
                 self.flag = true;
             });
         },

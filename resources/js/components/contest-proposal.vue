@@ -4,71 +4,71 @@
         <form @submit.prevent="CreateContest()" v-if="!hasContest" >
             <div class="wt-jobdescription wt-tabsinfo">
                 <div class="wt-tabscontenttitle">
-                    <h2>{{ trans('lang.contest_details') }}</h2>
+                    <h2>{{ $trans('lang.contest_details') }}</h2>
                 </div>
                 <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                     <fieldset>
                         <div class="form-group form-group-half">
-                            <h4><label for="start_date">{{ trans('lang.start_date') }}</label></h4>
+                            <h4><label for="start_date">{{ $trans('lang.start_date') }}</label></h4>
                             <input type="datetime-local" name="start_date" v-model="form.start_date" class="form-control" placeholder="Start Date" @change="startdate_change">
                         </div>
                         <div class="form-group form-group-half">
-                            <h4><label for="end_date">{{ trans('lang.end_date') }}</label></h4>
+                            <h4><label for="end_date">{{ $trans('lang.end_date') }}</label></h4>
                             <input type="datetime-local" name="end_date" v-model="form.end_date" class="form-control" placeholder="End Date">
                         </div>
                     </fieldset>
                     <br>
                     <div class="form-group form-group-half" style="display:flex;">                                            
                         <input type="checkbox" id="show_participant" name="show_participant" v-model="form.show_participant" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                        <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
+                        <label for="show_participant">{{ $trans('lang.show_name_participants') }}</label>
                     </div>
                     <div class="form-group form-group-half" style="display:flex;">
                         <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                        <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
+                        <label for="show_participant_to_provider">{{ $trans('lang.show_list_participants') }}</label>
                     </div>
                     <div class="form-group form-group-half" style="display:flex;">
                         <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                        <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
+                        <label for="show_participant_offer_to_provider">{{ $trans('lang.show_participant_offer') }}</label>
                     </div>
                     
                     <div class="form-group" style="margin-top: 30px;">
-                        <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
+                        <h4><label for="time_limit">{{ $trans('lang.time_limit_provider') }}</label></h4>
                         <input type="text" name="time_limit" v-model="form.time_limit" class="form-control" placeholder="In minutes">
                     </div>
                 </div>
             </div>
             <div class="wt-jobdescription wt-tabsinfo">
                 <div class="wt-tabscontenttitle">
-                    <h2>{{ trans('lang.automatic_offer') }}</h2>
+                    <h2>{{ $trans('lang.automatic_offer') }}</h2>
                 </div>
                 <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                     <div class="form-group" style="display:flex;">
                         <input type="checkbox" id="automatic_offer" name="automatic_offer" v-model="form.automatic_offer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                        <label for="automatic_offer">{{ trans('lang.make_automatic_offer') }}</label>
+                        <label for="automatic_offer">{{ $trans('lang.make_automatic_offer') }}</label>
                     </div>
                 </div>
             </div>
             <div class="wt-jobdescription wt-tabsinfo">
                 <div class="wt-tabscontenttitle">
-                    <h2>{{ trans('lang.how_offer_given') }}</h2>
+                    <h2>{{ $trans('lang.how_offer_given') }}</h2>
                 </div>
                 <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                     <div class="form-group form-group-half" style="display:flex;margin-bottom: 50px;">
                         <input type="radio" id="automatic_offer_choice" name="automatic_offer_choice" v-model="form.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="percentage">
-                        <label for="automatic_offer_choice">{{ trans('lang.automatic_offer_choice1') }}</label>
+                        <label for="automatic_offer_choice">{{ $trans('lang.automatic_offer_choice1') }}</label>
                     </div>
                     <div class="form-group form-group-half" style="display:flex;margin-bottom: 50px;">
                         <input type="radio" id="automatic_offer_choice2" name="automatic_offer_choice" v-model="form.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="amount">
-                        <label for="automatic_offer_choice2">{{ trans('lang.automatic_offer_choice2') }}</label>
+                        <label for="automatic_offer_choice2">{{ $trans('lang.automatic_offer_choice2') }}</label>
                     </div>
                     <div class="wt-tabscontenttitle" style="padding-left: 0px;margin-bottom: 0px;">
-                        <h2>{{ trans('lang.amount_for_automatic_bid') }}</h2>
+                        <h2>{{ $trans('lang.amount_for_automatic_bid') }}</h2>
                     </div>
                     <div class="form-group" style="display:flex;">
                         <input type="text" id="automatic_offer_value" name="automatic_offer_value" v-model="form.automatic_offer_value" class="form-control" placeholder="Enter Percentage/Amount for automatic bid">                                        
                     </div>
                     <div class="wt-tabscontenttitle" style="padding-left: 0px;margin-bottom: 0px;">
-                        <h2>{{ trans('lang.no_of_provider_allowed') }}</h2>
+                        <h2>{{ $trans('lang.no_of_provider_allowed') }}</h2>
                     </div>
                     <div class="form-group" style="display:flex;margin-top: 20px;">
                         <input type="text" id="awarded_allowed" name="awarded_allowed" v-model="form.awarded_allowed" class="form-control" placeholder="Number of Provider Award allowed">                         
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="wt-jobdescription wt-tabsinfo">
-                <button type="submit" class="wt-btn float-right">{{ trans('lang.create') }}</button>
+                <button type="submit" class="wt-btn float-right">{{ $trans('lang.create') }}</button>
             </div>
         </form>
         <form @submit.prevent="editContest()" v-if="hasContest" >
@@ -84,7 +84,7 @@
             <div class="modal-dialog modal-lg" id="edit-contest">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('lang.edit_contest') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $trans('lang.edit_contest') }}</h5>
                     
                     <button type="button" class="close" @click="Close1" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -94,61 +94,61 @@
                 <div class="modal-body">
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.contest_details') }}</h2>
+                            <h2>{{ $trans('lang.contest_details') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <fieldset>
                                 <div class="form-group form-group-half">
-                                    <h4><label for="start_date">{{ trans('lang.start_date') }}</label></h4>
+                                    <h4><label for="start_date">{{ $trans('lang.start_date') }}</label></h4>
                                     <input type="datetime-local" name="start_date" v-model="form1.start_date" class="form-control" placeholder="Start Date">
                                 </div>
                                 <div class="form-group form-group-half">
-                                    <h4><label for="end_date">{{ trans('lang.end_date') }}</label></h4>
+                                    <h4><label for="end_date">{{ $trans('lang.end_date') }}</label></h4>
                                     <input type="datetime-local" name="end_date" v-model="form1.end_date" class="form-control" placeholder="End Date">
                                 </div>
                             </fieldset>
                             <br>
                             <div class="form-group form-group-half" style="display:flex;">                                            
                                 <input type="checkbox" id="show_participant" name="show_participant" v-model="form1.show_participant" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
+                                <label for="show_participant">{{ $trans('lang.show_name_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form1.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
+                                <label for="show_participant_to_provider">{{ $trans('lang.show_list_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form1.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
+                                <label for="show_participant_offer_to_provider">{{ $trans('lang.show_participant_offer') }}</label>
                             </div>
                             <div class="form-group">
-                                <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
+                                <h4><label for="time_limit">{{ $trans('lang.time_limit_provider') }}</label></h4>
                                 <input type="text" name="time_limit" v-model="form1.time_limit" class="form-control" placeholder="In minutes">
                             </div>
                         </div>
                     </div>
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.automatic_offer') }}</h2>
+                            <h2>{{ $trans('lang.automatic_offer') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <div class="form-group" style="display:flex;">
                                 <input type="checkbox" id="automatic_offer" name="automatic_offer" v-model="form1.automatic_offer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="automatic_offer">{{ trans('lang.make_automatic_offer') }}</label>
+                                <label for="automatic_offer">{{ $trans('lang.make_automatic_offer') }}</label>
                             </div>
                         </div>
                     </div>
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.how_offer_given') }}</h2>
+                            <h2>{{ $trans('lang.how_offer_given') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="radio" id="automatic_offer_choice" name="automatic_offer_choice" v-model="form1.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="percentage">
-                                <label for="automatic_offer_choice">{{ trans('lang.automatic_offer_choice1') }}</label>
+                                <label for="automatic_offer_choice">{{ $trans('lang.automatic_offer_choice1') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="radio" id="automatic_offer_choice2" name="automatic_offer_choice" v-model="form1.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="amount">
-                                <label for="automatic_offer_choice2">{{ trans('lang.automatic_offer_choice2') }}</label>
+                                <label for="automatic_offer_choice2">{{ $trans('lang.automatic_offer_choice2') }}</label>
                             </div>
                             <div class="form-group" style="display:flex;">
                                 <input type="text" id="automatic_offer_value" name="automatic_offer_value" v-model="form1.automatic_offer_value" class="form-control" placeholder="">                                        
@@ -163,7 +163,7 @@
                 
                 <div class="modal-footer">
                     <button type="button" @click="Close1" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">{{ trans('lang.update') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ $trans('lang.update') }}</button>
                 </div>
                 
                 </div>
@@ -171,8 +171,8 @@
         </div>
         </form>
         <div class="row" v-if="hasContest">
-                <!--<a @click="start(form1.id)" v-if="!form1.result" style="float:left;"><button class="wt-btn">{{ trans('lang.start_contest') }}</button></a>-->
-                <!--<span v-if="form1.result">{{ trans('lang.contest_is_over') }}</span>-->
+                <!--<a @click="start(form1.id)" v-if="!form1.result" style="float:left;"><button class="wt-btn">{{ $trans('lang.start_contest') }}</button></a>-->
+                <!--<span v-if="form1.result">{{ $trans('lang.contest_is_over') }}</span>-->
         </div>
         <div class="row" v-if="hasContest">
             <div class="col-md-6 wt-dashboardbox">
@@ -180,17 +180,17 @@
             </div>
             <div class="col-md-6">
                 <div class="wt-tabscontenttitle" style="text-align: center;font-size: 18px;font-weight: bold;background-color: rgb(0, 81, 120);">
-                    <h2 style="color: white;">{{ trans('lang.details') }}</h2>
+                    <h2 style="color: white;">{{ $trans('lang.details') }}</h2>
                 </div>
                 
                 <table class="wt-tablecategories no-border">
                         <thead>
                             <tr>
-                                <th>{{ trans('lang.name') }}</th> 
-                                <th>{{ trans('lang.bid_amount') }}</th>
-                                <th>{{ trans('lang.original_bid') }}</th>
-                                <th>{{ trans('lang.saved') }}</th>
-                                <th>{{ trans('lang.details') }}</th>
+                                <th>{{ $trans('lang.name') }}</th> 
+                                <th>{{ $trans('lang.bid_amount') }}</th>
+                                <th>{{ $trans('lang.original_bid') }}</th>
+                                <th>{{ $trans('lang.saved') }}</th>
+                                <th>{{ $trans('lang.details') }}</th>
                             </tr>
                         </thead> 
                         <tbody v-for="value in participants" :key="value.id">
@@ -199,10 +199,10 @@
                                     <span class="bt-content">{{ value.name }} <br> <span  style="font-size: 12px;">{{ value.tagline }}</span></span>
                                 </td> 
                                 <td>
-                                    <span class="bt-content">$ {{ value.proposal.amount | numFormat }}</span> 
+                                    <span class="bt-content">$ {{ $filters.numFormat(value.proposal.amount) }}</span> 
                                 </td>
                                 <td>
-                                    <span class="bt-content">$ {{ value.proposal.original | numFormat }}</span> 
+                                    <span class="bt-content">$ {{ $filters.numFormat(value.proposal.original) }}</span> 
                                 </td>
                                 <td>
                                     <span class="bt-content">{{ value.proposal.saved }} %</span> 
@@ -216,16 +216,16 @@
                                     <table class="wt-tablecategories">
                                         <thead>
                                             <tr>
-                                                <th>{{ trans('lang.number') }}</th> 
-                                                <th>{{ trans('lang.bid_amount') }}</th>
-                                                <th>{{ trans('lang.timestamp') }}</th>
+                                                <th>{{ $trans('lang.number') }}</th> 
+                                                <th>{{ $trans('lang.bid_amount') }}</th>
+                                                <th>{{ $trans('lang.timestamp') }}</th>
                                             </tr>
                                         </thead> 
                                         <tbody v-for="bid, key1 in value.bids" :key="bid.id">
                                             <tr>
                                                 <td>{{ ++key1 }}</td>
-                                                <td>$ {{ bid.bid | numFormat }}</td>
-                                                <td>{{ bid.created_at | datetime }}</td>
+                                                <td>$ {{ $filters.numFormat(bid.bid) }}</td>
+                                                <td>{{ $filters.datetime(bid.created_at) }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -245,37 +245,37 @@
                 <table class="wt-tablecategories no-border">
                         <thead>
                             <tr>
-                                <th colspan="2" style="text-align: center;font-size: 15px;color: white;background-color: rgb(0, 81, 120);padding-top: 10px;padding-bottom: 10px;">{{ trans('lang.saving_summary') }}</th> 
+                                <th colspan="2" style="text-align: center;font-size: 15px;color: white;background-color: rgb(0, 81, 120);padding-top: 10px;padding-bottom: 10px;">{{ $trans('lang.saving_summary') }}</th> 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    {{ trans('lang.initial_budget') }} : $ {{ job.price | numFormat }}
+                                    {{ $trans('lang.initial_budget') }} : $ {{ $filters.numFormat(job.price) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    {{ trans('lang.best_bid_before') }} : $ {{ job.best | numFormat }}
+                                    {{ $trans('lang.best_bid_before') }} : $ {{ $filters.numFormat(job.best) }}
                                 </td>
                                 <td>
-                                    {{ trans('lang.financial_saving') }} : $ {{ job.price - job.best | numFormat }} ( {{ job.financial  }} %)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    {{ trans('lang.best_bid_after') }} : $ {{ job.best_after | numFormat }}
-                                </td>
-                                <td>
-                                    {{ trans('lang.additional_saving') }} : $ {{ job.best - job.best_after | numFormat }} ( {{ job.additional }} %)
+                                    {{ $trans('lang.financial_saving') }} : $ {{ $filters.numFormat(job.price - job.best) }} ( {{ job.financial  }} %)
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    {{ trans('lang.final_project_cost') }} : $ {{ job.best_after | numFormat}}
+                                    {{ $trans('lang.best_bid_after') }} : $ {{ $filters.numFormat(job.best_after) }}
+                                </td>
+                                <td>
+                                    {{ $trans('lang.additional_saving') }} : $ {{ $filters.numFormat(job.best - job.best_after) }} ( {{ job.additional }} %)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{ $trans('lang.final_project_cost') }} : $ {{ $filters.numFormat(job.best_after)}}
                                 </td>
                                 <td><b>
-                                    {{ trans('lang.total_saving') }}: $ {{ job.price - job.best_after | numFormat}} ( {{ job.total }} %)
+                                    {{ $trans('lang.total_saving') }}: $ {{ $filters.numFormat(job.price - job.best_after)}} ( {{ job.total }} %)
                                     </b>
                                 </td>
                             </tr>
@@ -290,18 +290,18 @@
             <div class="col-md-6 wt-dashboardbox">
                 <div class="wt-dashboardbox">
                         <div class="wt-dashboardboxtitle" style="text-align: center;font-size: 15px;font-weight: bold;background-color: rgb(0, 81, 120);padding-top: 10px;padding-bottom: 10px;">
-                            <h2 style="color:white;">{{ trans('lang.contest_details') }}                                
+                            <h2 style="color:white;">{{ $trans('lang.contest_details') }}                                
                             </h2>
                             
                         </div>
-                        <a @click="edit_contest" v-if="form1.status == 'close' && !form1.result" style="float:right;"><button class="wt-btn float-right">{{ trans('lang.edit_contest') }}</button></a>
+                        <a @click="edit_contest" v-if="form1.status == 'close' && !form1.result" style="float:right;"><button class="wt-btn float-right">{{ $trans('lang.edit_contest') }}</button></a>
                         <div class="">
                             <table class="wt-tablecategories">
                                 
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.job_title') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.job_title') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.title }}</span> 
@@ -309,23 +309,23 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.start_date') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.start_date') }}</span>
                                         </td> 
                                         <td>
-                                            <span class="bt-content">{{ form1.start_date | datetime}}</span> 
+                                            <span class="bt-content">{{ $filters.datetime(form1.start_date) }}</span> 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.end_date') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.end_date') }}</span>
                                         </td> 
                                         <td>
-                                            <span class="bt-content">{{ form1.end_date | datetime }}</span> 
+                                            <span class="bt-content">{{ $filters.datetime(form1.end_date) }}</span> 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.show_name_participants') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.show_name_participants') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.show_participant }}</span> 
@@ -333,7 +333,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.show_list_participants') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.show_list_participants') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.show_participant_to_provider }}</span> 
@@ -341,7 +341,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.show_participant_offer') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.show_participant_offer') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.show_participant_offer_to_provider }}</span> 
@@ -349,15 +349,15 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.time_limit_offer') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.time_limit_offer') }}</span>
                                         </td> 
                                         <td>
-                                            <span class="bt-content">{{ form1.time_limit }} {{ trans('lang.minutes') }}</span> 
+                                            <span class="bt-content">{{ form1.time_limit }} {{ $trans('lang.minutes') }}</span> 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.make_automatic_offer') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.make_automatic_offer') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.automatic_offer }}</span> 
@@ -365,7 +365,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.how_offer_given') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.how_offer_given') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.automatic_offer_choice }}</span> 
@@ -373,7 +373,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.automatic_offer_value') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.automatic_offer_value') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.automatic_offer_value }}</span> 
@@ -381,7 +381,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="bt-content">{{ trans('lang.awarded_allowed') }}</span>
+                                            <span class="bt-content">{{ $trans('lang.awarded_allowed') }}</span>
                                         </td> 
                                         <td>
                                             <span class="bt-content">{{ form1.awarded_allowed }}</span> 
@@ -398,9 +398,9 @@
 
         <!--<div class="row" style="margin-top:30px;"  v-if="hasContest">
             <ul class="nav nav-tabs" style="width: 100%;">
-                <li class="active"><a data-toggle="tab" href="#menu11">{{ trans('lang.saving') }}</a></li>
-                <li><a data-toggle="tab" href="#menu12">{{ trans('lang.details') }}</a></li>
-                <li><a data-toggle="tab" href="#menu13">{{ trans('lang.settings') }}</a></li>
+                <li class="active"><a data-toggle="tab" href="#menu11">{{ $trans('lang.saving') }}</a></li>
+                <li><a data-toggle="tab" href="#menu12">{{ $trans('lang.details') }}</a></li>
+                <li><a data-toggle="tab" href="#menu13">{{ $trans('lang.settings') }}</a></li>
             </ul>
 
             <div class="tab-content" style="width: 100%;margin: 10px;background-color: white;border: #e2dbd1 1px solid">
@@ -417,15 +417,15 @@
             </div>
         </div>-->
         <!--<div class="wt-rightarea">
-            <a v-if="!hasContest" @click="newcontest" style="float:right;margin-top: -90px;"><button class="wt-btn">{{ trans('lang.open_contest') }}</button></a>
-            <a v-if="hasContest" @click="viewcontest" style="float:right;margin-top: -90px;"><button class="wt-btn">{{ trans('lang.view_contest') }}</button></a>
+            <a v-if="!hasContest" @click="newcontest" style="float:right;margin-top: -90px;"><button class="wt-btn">{{ $trans('lang.open_contest') }}</button></a>
+            <a v-if="hasContest" @click="viewcontest" style="float:right;margin-top: -90px;"><button class="wt-btn">{{ $trans('lang.view_contest') }}</button></a>
         </div>
         <form @submit.prevent="CreateContest()" v-if="!hasContest" >
         <div class="modal fade" id="newcontest" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('lang.add_contest') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $trans('lang.add_contest') }}</h5>
                     
                     <button type="button" class="close" @click="Close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -435,62 +435,62 @@
                 <div class="modal-body">
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.contest_details') }}</h2>
+                            <h2>{{ $trans('lang.contest_details') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <fieldset>
                                 <div class="form-group form-group-half">
-                                    <h4><label for="start_date">{{ trans('lang.start_date') }}</label></h4>
+                                    <h4><label for="start_date">{{ $trans('lang.start_date') }}</label></h4>
                                     <input type="datetime-local" name="start_date" v-model="form.start_date" class="form-control" placeholder="Start Date" @change="startdate_change">
                                 </div>
                                 <div class="form-group form-group-half">
-                                    <h4><label for="end_date">{{ trans('lang.end_date') }}</label></h4>
+                                    <h4><label for="end_date">{{ $trans('lang.end_date') }}</label></h4>
                                     <input type="datetime-local" name="end_date" v-model="form.end_date" class="form-control" placeholder="End Date">
                                 </div>
                             </fieldset>
                             <br>
                             <div class="form-group form-group-half" style="display:flex;">                                            
                                 <input type="checkbox" id="show_participant" name="show_participant" v-model="form.show_participant" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
+                                <label for="show_participant">{{ $trans('lang.show_name_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
+                                <label for="show_participant_to_provider">{{ $trans('lang.show_list_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
+                                <label for="show_participant_offer_to_provider">{{ $trans('lang.show_participant_offer') }}</label>
                             </div>
                             
                             <div class="form-group" style="margin-top: 30px;">
-                                <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
+                                <h4><label for="time_limit">{{ $trans('lang.time_limit_provider') }}</label></h4>
                                 <input type="text" name="time_limit" v-model="form.time_limit" class="form-control" placeholder="In minutes">
                             </div>
                         </div>
                     </div>
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.automatic_offer') }}</h2>
+                            <h2>{{ $trans('lang.automatic_offer') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <div class="form-group" style="display:flex;">
                                 <input type="checkbox" id="automatic_offer" name="automatic_offer" v-model="form.automatic_offer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="automatic_offer">{{ trans('lang.make_automatic_offer') }}</label>
+                                <label for="automatic_offer">{{ $trans('lang.make_automatic_offer') }}</label>
                             </div>
                         </div>
                     </div>
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.how_offer_given') }}</h2>
+                            <h2>{{ $trans('lang.how_offer_given') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="radio" id="automatic_offer_choice" name="automatic_offer_choice" v-model="form.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="percentage">
-                                <label for="automatic_offer_choice">{{ trans('lang.automatic_offer_choice1') }}</label>
+                                <label for="automatic_offer_choice">{{ $trans('lang.automatic_offer_choice1') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="radio" id="automatic_offer_choice2" name="automatic_offer_choice" v-model="form.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="amount">
-                                <label for="automatic_offer_choice2">{{ trans('lang.automatic_offer_choice2') }}</label>
+                                <label for="automatic_offer_choice2">{{ $trans('lang.automatic_offer_choice2') }}</label>
                             </div>
                             <div class="form-group" style="display:flex;">
                                 <input type="text" id="automatic_offer_value" name="automatic_offer_value" v-model="form.automatic_offer_value" class="form-control" placeholder="Enter Percentage/Amount for automatic bid">                                        
@@ -504,8 +504,8 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" @click="Close" class="btn btn-danger" data-dismiss="modal">{{ trans('lang.close') }}</button>
-                    <button type="submit" class="btn btn-primary">{{ trans('lang.create') }}</button>
+                    <button type="button" @click="Close" class="btn btn-danger" data-dismiss="modal">{{ $trans('lang.close') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ $trans('lang.create') }}</button>
                 </div>
                 
                 </div>
@@ -517,7 +517,7 @@
             <div class="modal-dialog modal-lg" id="edit-contest">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('lang.edit_contest') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $trans('lang.edit_contest') }}</h5>
                     
                     <button type="button" class="close" @click="Close1" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -527,61 +527,61 @@
                 <div class="modal-body">
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.contest_details') }}</h2>
+                            <h2>{{ $trans('lang.contest_details') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <fieldset>
                                 <div class="form-group form-group-half">
-                                    <h4><label for="start_date">{{ trans('lang.start_date') }}</label></h4>
+                                    <h4><label for="start_date">{{ $trans('lang.start_date') }}</label></h4>
                                     <input type="datetime-local" name="start_date" v-model="form1.start_date" class="form-control" placeholder="Start Date">
                                 </div>
                                 <div class="form-group form-group-half">
-                                    <h4><label for="end_date">{{ trans('lang.end_date') }}</label></h4>
+                                    <h4><label for="end_date">{{ $trans('lang.end_date') }}</label></h4>
                                     <input type="datetime-local" name="end_date" v-model="form1.end_date" class="form-control" placeholder="End Date">
                                 </div>
                             </fieldset>
                             <br>
                             <div class="form-group form-group-half" style="display:flex;">                                            
                                 <input type="checkbox" id="show_participant" name="show_participant" v-model="form1.show_participant" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant">{{ trans('lang.show_name_participants') }}</label>
+                                <label for="show_participant">{{ $trans('lang.show_name_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="checkbox" id="show_participant_to_provider" name="show_participant_to_provider" v-model="form1.show_participant_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_to_provider">{{ trans('lang.show_list_participants') }}</label>
+                                <label for="show_participant_to_provider">{{ $trans('lang.show_list_participants') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="checkbox" id="show_participant_offer_to_provider" name="show_participant_offer_to_provider" v-model="form1.show_participant_offer_to_provider" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="show_participant_offer_to_provider">{{ trans('lang.show_participant_offer') }}</label>
+                                <label for="show_participant_offer_to_provider">{{ $trans('lang.show_participant_offer') }}</label>
                             </div>
                             <div class="form-group">
-                                <h4><label for="time_limit">{{ trans('lang.time_limit_provider') }}</label></h4>
+                                <h4><label for="time_limit">{{ $trans('lang.time_limit_provider') }}</label></h4>
                                 <input type="text" name="time_limit" v-model="form1.time_limit" class="form-control" placeholder="In minutes">
                             </div>
                         </div>
                     </div>
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.automatic_offer') }}</h2>
+                            <h2>{{ $trans('lang.automatic_offer') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <div class="form-group" style="display:flex;">
                                 <input type="checkbox" id="automatic_offer" name="automatic_offer" v-model="form1.automatic_offer" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;">
-                                <label for="automatic_offer">{{ trans('lang.make_automatic_offer') }}</label>
+                                <label for="automatic_offer">{{ $trans('lang.make_automatic_offer') }}</label>
                             </div>
                         </div>
                     </div>
                     <div class="wt-jobdescription wt-tabsinfo">
                         <div class="wt-tabscontenttitle">
-                            <h2>{{ trans('lang.how_offer_given') }}</h2>
+                            <h2>{{ $trans('lang.how_offer_given') }}</h2>
                         </div>
                         <div class="wt-formtheme wt-userform wt-userformvtwo la-job-details-form">
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="radio" id="automatic_offer_choice" name="automatic_offer_choice" v-model="form1.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="percentage">
-                                <label for="automatic_offer_choice">{{ trans('lang.automatic_offer_choice1') }}</label>
+                                <label for="automatic_offer_choice">{{ $trans('lang.automatic_offer_choice1') }}</label>
                             </div>
                             <div class="form-group form-group-half" style="display:flex;">
                                 <input type="radio" id="automatic_offer_choice2" name="automatic_offer_choice" v-model="form1.automatic_offer_choice" class="form-control" style="height: 23px;width: 23px;margin-right: 23px;" value="amount">
-                                <label for="automatic_offer_choice2">{{ trans('lang.automatic_offer_choice2') }}</label>
+                                <label for="automatic_offer_choice2">{{ $trans('lang.automatic_offer_choice2') }}</label>
                             </div>
                             <div class="form-group" style="display:flex;">
                                 <input type="text" id="automatic_offer_value" name="automatic_offer_value" v-model="form1.automatic_offer_value" class="form-control" placeholder="">                                        
@@ -596,7 +596,7 @@
                 
                 <div class="modal-footer">
                     <button type="button" @click="Close1" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">{{ trans('lang.update') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ $trans('lang.update') }}</button>
                 </div>
                 
                 </div>
@@ -607,7 +607,7 @@
             <div class="modal-dialog modal-lg" id="view-contest">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ trans('lang.view_contest') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $trans('lang.view_contest') }}</h5>
                     
                     <button type="button" class="close" @click="Close2" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -617,19 +617,19 @@
                 <div class="modal-body">
                     <div class="row" style="margin-bottom: 25px;">
                         <div class="col-md-6">
-                            <a @click="start(form1.id)" v-if="!form1.result" style="float:left;"><button class="wt-btn">{{ trans('lang.start_contest') }}</button></a>
-                            <span v-if="form1.result">{{ trans('lang.contest_is_over') }}</span>
+                            <a @click="start(form1.id)" v-if="!form1.result" style="float:left;"><button class="wt-btn">{{ $trans('lang.start_contest') }}</button></a>
+                            <span v-if="form1.result">{{ $trans('lang.contest_is_over') }}</span>
                         </div>
                         <div class="col-md-6">
-                            <a @click="edit_contest" v-if="form1.status == 'close' && !form1.result" style="float:right;"><button class="wt-btn">{{ trans('lang.edit_contest') }}</button></a>
+                            <a @click="edit_contest" v-if="form1.status == 'close' && !form1.result" style="float:right;"><button class="wt-btn">{{ $trans('lang.edit_contest') }}</button></a>
                         </div>
                         
                     </div>
                     <div class="row" style="margin-top:30px;">
                         <ul class="nav nav-tabs" style="width: 100%;">
-                            <li class="active"><a data-toggle="tab" href="#menu11">{{ trans('lang.saving') }}</a></li>
-                            <li><a data-toggle="tab" href="#menu12">{{ trans('lang.details') }}</a></li>
-                            <li><a data-toggle="tab" href="#menu13">{{ trans('lang.settings') }}</a></li>
+                            <li class="active"><a data-toggle="tab" href="#menu11">{{ $trans('lang.saving') }}</a></li>
+                            <li><a data-toggle="tab" href="#menu12">{{ $trans('lang.details') }}</a></li>
+                            <li><a data-toggle="tab" href="#menu13">{{ $trans('lang.settings') }}</a></li>
                         </ul>
 
                         <div class="tab-content" style="width: 100%;margin: 10px;background-color: white;border: #e2dbd1 1px solid">
@@ -637,37 +637,37 @@
                                 <table class="wt-tablecategories">
                                     <thead>
                                         <tr>
-                                            <th>{{ trans('lang.saving_summary') }}</th> 
+                                            <th>{{ $trans('lang.saving_summary') }}</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                {{ trans('lang.initial_budget') }} : $ {{ job.price }}
+                                                {{ $trans('lang.initial_budget') }} : $ {{ job.price }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                {{ trans('lang.best_bid_before') }} : $ {{ job.best }}
+                                                {{ $trans('lang.best_bid_before') }} : $ {{ job.best }}
                                             </td>
                                             <td>
-                                                {{ trans('lang.financial_saving') }} : $ {{ job.price - job.best }} ( {{ job.financial }} %)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                {{ trans('lang.best_bid_after') }} : $ {{ job.best_after }}
-                                            </td>
-                                            <td>
-                                                {{ trans('lang.additional_saving') }} : $ {{ job.best - job.best_after }} ( {{ job.additional }} %)
+                                                {{ $trans('lang.financial_saving') }} : $ {{ job.price - job.best }} ( {{ job.financial }} %)
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                {{ trans('lang.final_project_cost') }} : $ {{ job.best_after }}
+                                                {{ $trans('lang.best_bid_after') }} : $ {{ job.best_after }}
+                                            </td>
+                                            <td>
+                                                {{ $trans('lang.additional_saving') }} : $ {{ job.best - job.best_after }} ( {{ job.additional }} %)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                {{ $trans('lang.final_project_cost') }} : $ {{ job.best_after }}
                                             </td>
                                             <td><b>
-                                                {{ trans('lang.total_saving') }}: $ {{ job.price - job.best_after }} ( {{ job.total }} %)
+                                                {{ $trans('lang.total_saving') }}: $ {{ job.price - job.best_after }} ( {{ job.total }} %)
                                                 </b>
                                             </td>
                                         </tr>
@@ -682,11 +682,11 @@
                                 <table class="wt-tablecategories">
                                     <thead>
                                         <tr>
-                                            <th>{{ trans('lang.name') }}</th> 
-                                            <th>{{ trans('lang.bid_amount') }}</th>
-                                            <th>{{ trans('lang.original_bid') }}</th>
-                                            <th>{{ trans('lang.saved') }}</th>
-                                            <th>{{ trans('lang.details') }}</th>
+                                            <th>{{ $trans('lang.name') }}</th> 
+                                            <th>{{ $trans('lang.bid_amount') }}</th>
+                                            <th>{{ $trans('lang.original_bid') }}</th>
+                                            <th>{{ $trans('lang.saved') }}</th>
+                                            <th>{{ $trans('lang.details') }}</th>
                                         </tr>
                                     </thead> 
                                     <tbody v-for="value in participants" :key="value.id">
@@ -712,16 +712,16 @@
                                                 <table class="wt-tablecategories">
                                                     <thead>
                                                         <tr>
-                                                            <th>{{ trans('lang.number') }}</th> 
-                                                            <th>{{ trans('lang.bid_amount') }}</th>
-                                                            <th>{{ trans('lang.timestamp') }}</th>
+                                                            <th>{{ $trans('lang.number') }}</th> 
+                                                            <th>{{ $trans('lang.bid_amount') }}</th>
+                                                            <th>{{ $trans('lang.timestamp') }}</th>
                                                         </tr>
                                                     </thead> 
                                                     <tbody v-for="bid, key1 in value.bids" :key="bid.id">
                                                         <tr>
                                                             <td>{{ ++key1 }}</td>
                                                             <td>{{ bid.bid }}</td>
-                                                            <td>{{ bid.created_at | datetime }}</td>
+                                                            <td>{{ $filters.datetime(bid.created_at) }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -739,7 +739,7 @@
                             <div id="menu13" class="tab-pane fade">
                                 <div class="wt-dashboardbox">
                                     <div class="wt-dashboardboxtitle">
-                                        <h2>{{ trans('lang.contest_details') }}</h2>
+                                        <h2>{{ $trans('lang.contest_details') }}</h2>
                                     </div>
                                     <div class="wt-dashboardboxcontent wt-jobdetailsholder">
                                         <table class="wt-tablecategories">
@@ -747,7 +747,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.job_title') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.job_title') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.title }}</span> 
@@ -755,23 +755,23 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.start_date') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.start_date') }}</span>
                                                     </td> 
                                                     <td>
-                                                        <span class="bt-content">{{ form1.start_date | formatDate}}</span> 
+                                                        <span class="bt-content">{{ $filters.formatDate(form1.start_date) }}</span> 
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.end_date') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.end_date') }}</span>
                                                     </td> 
                                                     <td>
-                                                        <span class="bt-content">{{ form1.end_date | formatDate }}</span> 
+                                                        <span class="bt-content">{{ $filters.formatDate(form1.end_date) }}</span> 
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.show_name_participants') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.show_name_participants') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.show_participant }}</span> 
@@ -779,7 +779,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.show_list_participants') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.show_list_participants') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.show_participant_to_provider }}</span> 
@@ -787,7 +787,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.show_participant_offer') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.show_participant_offer') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.show_participant_offer_to_provider }}</span> 
@@ -795,15 +795,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.time_limit_offer') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.time_limit_offer') }}</span>
                                                     </td> 
                                                     <td>
-                                                        <span class="bt-content">{{ form1.time_limit }} {{ trans('lang.minutes') }}</span> 
+                                                        <span class="bt-content">{{ form1.time_limit }} {{ $trans('lang.minutes') }}</span> 
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.make_automatic_offer') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.make_automatic_offer') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.automatic_offer }}</span> 
@@ -811,7 +811,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.how_offer_given') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.how_offer_given') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.automatic_offer_choice }}</span> 
@@ -819,7 +819,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.automatic_offer_value') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.automatic_offer_value') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.automatic_offer_value }}</span> 
@@ -827,7 +827,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="bt-content">{{ trans('lang.awarded_allowed') }}</span>
+                                                        <span class="bt-content">{{ $trans('lang.awarded_allowed') }}</span>
                                                     </td> 
                                                     <td>
                                                         <span class="bt-content">{{ form1.awarded_allowed }}</span> 
@@ -926,20 +926,26 @@ export default {
                 if(this.participants.length == 0)
                 {
                     //console.log('true');
-                    toast.fire({
-                    type: 'error',
-                    title: 'No Participants added to the Contest'
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'No Participants added to the Contest',
+                        showConfirmButton: false,
+                        timer: 3500
                     });
+                    
                 }
                 else                
                     window.location.href="/contests/start/"+id;
             }
             else
             {
-                toast.fire({
-                type: 'error',
-                title: 'No Participants added to the Contest'
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No Participants added to the Contest',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
+                
                 location.reload();
             }
                 
@@ -986,15 +992,18 @@ export default {
             let self = this;
             this.form.post('/api/contest_proposal/')
             .then((response) => {
-                toast.fire({
-                type: 'success',
-                title: 'Contest Created successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Contest Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
+                
                 this.hasContest = true;
                 self.form1.id = response.data.id;
                 //console.log(response.data);
-                Fire.$emit('Aftercontestupdate');
-                Fire.$emit('Aftercontestcreate', response.data.id);
+                self.emitter.emit('Aftercontestupdate');
+                self.emitter.emit('Aftercontestcreate', response.data.id);
                 
                 
                 /*$('#addnew').modal('hide');
@@ -1009,14 +1018,18 @@ export default {
             })
         },
         editContest() {
+            let self = this; 
             this.form1.put('/api/contest_proposal/'+ this.form1.id)
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'Contest Updated successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Contest Updated successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('Aftercontestupdate');
-                Fire.$emit('Aftercontestcreate', this.form1.id);
+                
+                self.emitter.emit('Aftercontestupdate');
+                self.emitter.emit('Aftercontestcreate', this.form1.id);
                 $('#editcontest').modal('hide');
                 $('.modal-backdrop').addClass('modal');
                 $('.modal-backdrop').remove();
@@ -1176,7 +1189,7 @@ export default {
       
       this.loadcontest();
       
-      Fire.$on('Aftercontestupdate', () => {
+      this.emitter.on('Aftercontestupdate', () => {
                 //console.log('after change');
                 this.loadcontest();
             });

@@ -1,19 +1,19 @@
 <template>
     <div class="wt-dashboardbox">
         <div class="wt-dashboardboxtitle wt-titlewithsearch">
-            <h2>{{ trans('lang.manage_answers') }}</h2> 
+            <h2>{{ $trans('lang.manage_answers') }}</h2> 
             <div class="wt-rightarea">
-                <button @click="newanswer" class="wt-btn">{{ trans('lang.add_answer') }}</button>
+                <button @click="newanswer" class="wt-btn">{{ $trans('lang.add_answer') }}</button>
             </div>
         </div>
         <div class="wt-dashboardboxcontent wt-categoriescontentholder">
             <table class="wt-tablecategories">
                 <thead>
                     <tr>
-                        <th>{{ trans('lang.answer') }}</th>
-                        <th>{{ trans('lang.value') }}</th> 
+                        <th>{{ $trans('lang.answer') }}</th>
+                        <th>{{ $trans('lang.value') }}</th> 
                         
-                        <th class=" float-right">{{ trans('lang.action') }}</th>
+                        <th class=" float-right">{{ $trans('lang.action') }}</th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -27,13 +27,13 @@
                         <td data-th="Action">
                             <span class="bt-content">
                                 <div class="float-right" style="margin-right: 20px;">                                    
-                                    <a @click="editAnswer(answer)"><button class="btn">{{ trans('lang.edit') }}</button></a>
+                                    <a @click="editAnswer(answer)"><button class="btn">{{ $trans('lang.edit') }}</button></a>
                                     <div class="dropdown">
                                         <button class="btn" style="border-left:1px solid #b4b1b1">
                                             <i class="fa fa-caret-down"></i>
                                         </button>
                                         <div class="dropdown-content">
-                                            <a @click="deleteAnswer(answer.id)">{{ trans('lang.delete') }}</a>											
+                                            <a @click="deleteAnswer(answer.id)">{{ $trans('lang.delete') }}</a>											
                                         </div>
                                     </div>
                                 </div>
@@ -48,8 +48,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" v-show="!editmode" id="exampleModalLabel">{{ trans('lang.add_new_answer') }}</h5>
-                <h5 class="modal-title" v-show="editmode" id="exampleModalLabel">{{ trans('lang.update_answer') }}</h5>
+                <h5 class="modal-title" v-show="!editmode" id="exampleModalLabel">{{ $trans('lang.add_new_answer') }}</h5>
+                <h5 class="modal-title" v-show="editmode" id="exampleModalLabel">{{ $trans('lang.update_answer') }}</h5>
                 <button type="button" class="close" @click="Close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -57,22 +57,22 @@
             <form @submit.prevent="editmode ? UpdateAnswer() : CreateAnswer()">
             <div class="modal-body">
                 <div class="form-group">
-                    <label>{{ trans('lang.answer') }}</label>
+                    <label>{{ $trans('lang.answer') }}</label>
                     <input v-model="form.answer" type="text" name="answer"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('answer') }">
                     
                 </div>
                 <div class="form-group">
-                    <label>{{ trans('lang.max_value') }}</label>
+                    <label>{{ $trans('lang.max_value') }}</label>
                     <input v-model="form.value" type="text" name="value"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('value') }">
                 </div>
                 <input type="hidden" name="question_id" v-model="form.question_id">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ trans('lang.close') }}</button>
-                <button type="submit" v-show="editmode" class="btn btn-success">{{ trans('lang.update') }}</button>
-                <button type="submit" v-show="!editmode" class="btn btn-primary">{{ trans('lang.create') }}</button>
+                <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ $trans('lang.close') }}</button>
+                <button type="submit" v-show="editmode" class="btn btn-success">{{ $trans('lang.update') }}</button>
+                <button type="submit" v-show="!editmode" class="btn btn-primary">{{ $trans('lang.create') }}</button>
             </div>
             </form>
             </div>
@@ -109,13 +109,17 @@ export default {
             $('#addnewAnswer').addClass('show');
         },        
         CreateAnswer() {
+            let self = this; 
             this.form.post('/api/answer/')
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Answer Created successfully'
+                
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Answer Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('AfterCreateAnswer');
+                self.emitter.emit('AfterCreateAnswer');
                 $('#addnewAnswer').modal('hide');
                 //$('.modal-backdrop').addClass('modal');
                 //$('.modal-backdrop').remove();
@@ -131,13 +135,17 @@ export default {
         },
         UpdateAnswer()
         {
+            let self = this; 
             this.form.put('/api/answer/'+ this.form.id)
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Answer Updated successfully'
+                
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Answer Updated successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('AfterCreateAnswer');
+                self.emitter.emit('AfterCreateAnswer');
                 $('#addnewAnswer').modal('hide');
                 //$('.modal-backdrop').addClass('modal');
                 //$('.modal-backdrop').remove();
@@ -162,6 +170,7 @@ export default {
         },
         deleteAnswer(id)
         {
+            let self = this; 
             swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -180,7 +189,7 @@ export default {
                     'Your Answer has been deleted.',
                     'success'
                     )
-                    Fire.$emit('AfterCreateAnswer');
+                    self.emitter.emit('AfterCreateAnswer');
                 }).catch(() => {
                     swal("Failed", "There is something wrong.", "warning");
                 })
@@ -191,7 +200,7 @@ export default {
   },
     mounted: function() {
         this.loadAnswer();
-        Fire.$on('AfterCreateAnswer', () => {
+        this.emitter.on('AfterCreateAnswer', () => {
             this.loadAnswer();
         });
     

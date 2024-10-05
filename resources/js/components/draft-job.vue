@@ -14,15 +14,15 @@
     <div id="trx" class="wt-dashboardbox">
                                 <div class="wt-dashboardboxtitle">
                                     <div class="col-md-6">
-                                        <h2>{{ trans('lang.post_job') }}</h2>
+                                        <h2>{{ $trans('lang.post_job') }}</h2>
                                     </div>
                                         <div class="col-md-6">
                                             <div class="row float-right">
-                                                <b>{{ trans('lang.code') }}</b> : {{ job1.code}}
+                                                <b>{{ $trans('lang.code') }}</b> : {{ job1.code}}
                                             </div>
                                             <br>
                                             <div class="row float-right">
-                                                <b>{{ trans('lang.created_at') }}</b> : {{ job1.created_at | formatDate}}
+                                                <b>{{ $trans('lang.created_at') }}</b> : {{ $filters.formatDate(job1.created_at) }}
                                             </div>
                                         </div>
                                     
@@ -40,11 +40,11 @@
                                         
                                         <div class="x-button p-t-10 p-b-10 text-right" style="margin-top: 50px;">
                                             <button type="button" @click="close" class="btn btn-default btn-sm" id="card-comment-close-button">
-                                                {{ trans('lang.close') }}
+                                                {{ $trans('lang.close') }}
                                             </button>
                                             <!--submit button-->
                                             <button type="submit" class="btn btn-sm x-submit-button" style="color: white;    background-color: #005178;" id="card-comment-post-button">
-                                                {{ trans('lang.post') }}
+                                                {{ $trans('lang.post') }}
                                             </button>
                                         </div>
                                         </form>
@@ -55,13 +55,13 @@
                                         
                                         <table style="margin-top: 30px;">
           <tr id="tr1" >
-              <td class="job-details"><b>{{ trans('lang.project_levelx') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.project_levelx') }}</b></td>
               <td @click="editprojectlevel" class="job-details" >
                   <span id="projectlevel"> {{ job1.project_level }} <i  class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
                   <div id="editprojectlevel"  class="hidden">
                         
                         <select class="form-control form-control-sm" id="editprojectlevel-select" name="editprojectlevel-select" v-on:change="updateprojectlevel">
-                            <option selected>{{ trans('lang.select') }}</option>
+                            <option selected>{{ $trans('lang.select') }}</option>
                             <option v-for="(item, key) in project_levels" :key="key" :value="key">{{ item }}</option>
                         </select>                        
                     </div>
@@ -70,20 +70,20 @@
           </tr>
           
           <tr id="tr2" >
-              <td class="job-details"><b>{{ trans('lang.duration') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.duration') }}</b></td>
               <td @click="editjobduration" class="job-details">
                   <span id="jobduration"><span v-for="(item, key) in project_duration" :key="key"  :value="key" v-if="key==job1.duration">{{ item}}</span> <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                   <div id="editjobduration" class="hidden" >
                         
                         <select class="form-control form-control-sm" id="editprojectlevel-select" name="editprojectlevel-select" v-on:change="updatejobduration">
-                            <option selected>{{ trans('lang.select') }}</option>
+                            <option selected>{{ $trans('lang.select') }}</option>
                             <option v-for="(item, key) in project_duration" :key="key"  :value="key">{{ item }}</option>
                         </select>                        
                     </div>
                 </td>
           </tr>
           <tr id="tr3">
-                <td class="job-details"><b>{{ trans('lang.tcurrency') }}</b></td>
+                <td class="job-details"><b>{{ $trans('lang.tcurrency') }}</b></td>
                 <td class="job-details">
                     <span>
                         <span v-if="job1.currency">
@@ -91,16 +91,16 @@
                         </span>
                         <span @click="addcurrency" id="addcurrency"><i class="fa fa-plus"></i></span>
                         <select class="form-control form-control-sm hidden" id="addcurrency-select" name="addcurrency-select" v-on:change="updateaddcurrency">     
-                            <option selected>{{ trans('lang.select') }}</option>                               
+                            <option selected>{{ $trans('lang.select') }}</option>                               
                             <option v-for="(item, key) in xcurrency" :key="key" :value="item">{{ item }}</option>
                         </select>
                     </span>
                 </td>
             </tr>
           <tr id="tr4">
-              <td class="job-details"><b>{{ trans('lang.budget') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.budget') }}</b></td>
               <td @click="editprice" class="job-details">
-                    <span id="price"> <span v-if="job1.currency">{{ job1.curr.symbol }}</span><span v-else>$</span>  {{ job1.price | numFormat}} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                    <span id="price"> <span v-if="job1.currency">{{ job1.curr.symbol }}</span><span v-else>$</span>  {{ $filters.numFormat(job1.price) }} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                     <div id="editprice" class="hidden" >            
                         <input type="number" class="form-control form-control-sm " name="editprice" autocomplete="off" :value="job1.price" v-on:change="updateprice">
                     </div>
@@ -109,7 +109,7 @@
           
           
             <tr id="tr5">
-                <td class="job-details"><b>{{ trans('lang.categories') }}</b></td>
+                <td class="job-details"><b>{{ $trans('lang.categories') }}</b></td>
                 <td class="job-details">
                     <span>
                         <span v-if="job1.categories">
@@ -117,7 +117,7 @@
                         </span>
                         <span @click="addcategory" id="addcategory"><i class="fa fa-plus"></i></span>
                         <select class="form-control form-control-sm hidden" id="addcategory-select" name="addcategory-select" v-on:change="updateaddcategory">  
-                            <option selected style="color: black;">{{ trans('lang.select') }}</option>                                 
+                            <option selected style="color: black;">{{ $trans('lang.select') }}</option>                                 
                             <component v-for="(item, key) in xcategory" :key="key" :value="item.id" :is="(item.stat == 'hide') ? 'optgroup' : 'option'" :label="item.title" style="color: black;">
                                 <option v-if="item.stat == 'hide' && item.cat.length > 0" v-for="(item1, key1) in item.cat" :key="key1" :value="item1.id">{{ item1.title }}</option>
                             </component>
@@ -127,7 +127,7 @@
                 </td>
             </tr>
             <tr id="tr51">
-              <td class="job-details"><b>{{ trans('lang.skills') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.skills') }}</b></td>
               <td class="job-details">
                   <span>
                     <span  v-if="xskills">
@@ -135,7 +135,7 @@
                     </span>
                     <span @click="addskill" id="addskill"><i class="fa fa-plus"></i></span>
                     <select class="form-control form-control-sm hidden"  id="addskill-select" name="addskill-select" v-on:change="updateaddskill">
-                            <option selected>{{ trans('lang.select') }} </option>
+                            <option selected>{{ $trans('lang.select') }} </option>
                             <option v-for="(item, key) in skills" :key="key" :value="item.id">{{ item.title }}</option>
                         </select>
                   </span>
@@ -143,7 +143,7 @@
             </tr>
           <tr id="tr6">
               
-              <td class="job-details"><b>{{ trans('lang.team') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.team') }}</b></td>
               <td class="job-details">
                   <span v-for="team in teams" :key="team.id">
                         <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ team.name }} {{ team.lname }} - {{ team.role }} <br> {{ team.email }}</span><i @click="deleteteam(team.id)"  class="fa fa-times" aria-hidden="true"></i></span><br>
@@ -158,13 +158,13 @@
                             <input type="text" id="team_role" v-model="form1.role"  name="team_role" class="form-control" placeholder="Role">
                             <select id="permission" class="form-control" v-model="form1.permission">
                                 <option value="" disabled selected>Select your option</option>
-                                <option value="1">{{ trans('lang.can_view') }}</option>
-                                <option value="2">{{ trans('lang.can_edit') }}</option>                                    
+                                <option value="1">{{ $trans('lang.can_view') }}</option>
+                                <option value="2">{{ $trans('lang.can_edit') }}</option>                                    
                             </select>
                             <input type="hidden" name="user_id" v-model="form1.job_id">
                         </div> 
                         <div class="form-group wt-btnarea" >
-                            <button type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_team') }}</button>
+                            <button type="submit" id="addteam" class="wt-btn" style="margin: 5px;float: right;">{{ $trans('lang.add_team') }}</button>
                         </div>
                         </form>
                     </div>
@@ -172,7 +172,7 @@
           </tr>
           <tr id="tr7">
               
-              <td class="job-details"><b>{{ trans('lang.approver') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.approver') }}</b></td>
               <td class="job-details">
                   <span v-for="approver in approvers" :key="approver.id">
                         <span style="background-color: #005178;color: white;padding: 10px;border-radius: 20px;margin: 5px;white-space: nowrap;line-height:1;display: inline-block;"><span>{{ approver.name }} {{ approver.lname }} - {{ approver.role }} <br> {{approver.email}} </span><i  @click="deleteapprover(approver.id)" class="fa fa-times" aria-hidden="true"></i></span><br>
@@ -186,7 +186,7 @@
                             <input type="text" id="approver_email" name="approver_email" v-model="form2.email" class="form-control" placeholder="Email">
                             <input type="text" id="approver_role" v-model="form2.role"  name="team_role" class="form-control" placeholder="Role">
                             <select id="permission" class="form-control" v-model="form2.permission">
-                                <option value="" disabled selected>{{ trans('lang.select_level') }}</option>
+                                <option value="" disabled selected>{{ $trans('lang.select_level') }}</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -197,7 +197,7 @@
                             <input type="hidden" name="job_id" v-model="form2.job_id">
                         </div> 
                         <div class="form-group wt-btnarea" >
-                            <button type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.add_approver') }}</button>
+                            <button type="submit" id="addapprover" class="wt-btn" style="margin: 5px;float: right;">{{ $trans('lang.add_approver') }}</button>
                         </div>
                         </form>
                     </div>
@@ -205,13 +205,13 @@
           </tr>
           
           <!--<tr id="tr8">
-              <td class="job-details"><b>{{ trans('lang.quiz') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.quiz') }}</b></td>
               <td class="job-details">
                   <span @click="editquiz" id="quiz">{{ job1.quiz}} <i  class="fa fa-pencil float-right" style="padding: 12px;"></i></span>
                   <select class="form-control form-control-sm hidden"  id="editquiz-select" name="editquiz-select" v-on:change="updatequiz">
-                            <option selected>{{ trans('lang.select') }} </option>
-                            <option value="yes">{{ trans('lang.yes') }}</option>
-                            <option value="no">{{ trans('lang.no') }}</option>
+                            <option selected>{{ $trans('lang.select') }} </option>
+                            <option value="yes">{{ $trans('lang.yes') }}</option>
+                            <option value="no">{{ $trans('lang.no') }}</option>
                         </select>
                   <br>
 
@@ -223,51 +223,51 @@
                     </span>
                     <span @click="addquiz" id="addquiz"><i class="fa fa-plus"></i></span>
                     <select class="form-control form-control-sm hidden" id="addquiz-select" name="addquiz-select" v-on:change="updateaddquiz">
-                            <option selected>{{ trans('lang.select') }} </option>
+                            <option selected>{{ $trans('lang.select') }} </option>
                             <option v-for="item in quizadd" :value="item.id" :key="item.id">{{ item.title }}</option>
                         </select>
                   </span>
                 </td>
           </tr>-->
           <tr>
-              <td class="job-details"><b>{{ trans('lang.visibility') }}</b></td>
+              <td class="job-details"><b>{{ $trans('lang.visibility') }}</b></td>
               <td @click="editjobtype" class="job-details">
                   <span id="jobtype"><span>{{ job1.type}}</span> <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
                   <div id="editjobtype" class="hidden">
                         
                         <select class="form-control form-control-sm" id="editprojecttype-select" name="editprojecttype-select" v-on:change="updatejobtype">
-                            <option >{{ trans('lang.select') }}</option>
-                            <option value="public">{{ trans('lang.public') }}</option>
-                            <option value="private">{{ trans('lang.private') }}</option>
+                            <option >{{ $trans('lang.select') }}</option>
+                            <option value="public">{{ $trans('lang.public') }}</option>
+                            <option value="private">{{ $trans('lang.private') }}</option>
                         </select>                        
                     </div>
                 </td>
           </tr>
           <tr id="tr9">
-              <td class="job-details"><b>{{ trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ trans('lang.time') }}</span></b></td>
+              <td class="job-details"><b>{{ $trans('lang.delivery') }} <span v-if="job1.delivery_type == 'date'">{{ $trans('lang.date') }}</span> <span v-if="job1.delivery_type == 'time'">{{ $trans('lang.time') }}</span></b></td>
               <td class="job-details">
                   <span @click="editexpirydate" v-if="job1.delivery_type == 'date'">
-                      <span id="expirydate">{{ job1.expiry_date | formatDate1}} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                      <span id="expirydate">{{ $filters.formatDate1(job1.expiry_date) }} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                       <div id="editexpirydate" class="hidden">            
                         <input type="date" class="form-control form-control-sm pickadate" name="editexpirydate" autocomplete="off" placeholder="Expiry Date" v-on:change="updateexpirydate">
                     </div>
                     </span>
-                  <span v-if="job1.delivery_type == 'time'"><span id="jobmonth" @click="editjobmonth"> {{ trans('lang.month') }} : {{ job1.month }} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
+                  <span v-if="job1.delivery_type == 'time'"><span id="jobmonth" @click="editjobmonth"> {{ $trans('lang.month') }} : {{ job1.month }} <i class="fa fa-pencil"  style="float:right;margin: 10px;"></i></span>
                   <div id="editjobmonth" class="hidden" >            
                         <input type="number" class="form-control form-control-sm " name="editjobmonth" autocomplete="off" :value="job1.month" v-on:change="updatejobmonth">
                     </div>
                   
-                  <br><span id="jobweek" @click="editjobweek"> {{ trans('lang.week') }} : {{ job1.week }} <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
+                  <br><span id="jobweek" @click="editjobweek"> {{ $trans('lang.week') }} : {{ job1.week }} <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
                   <div id="editjobweek" class="hidden">            
                         <input type="number" class="form-control form-control-sm " name="editjobweek" autocomplete="off" :value="job1.week" v-on:change="updatejobweek">
                     </div>
                   
-                  <br><span id="jobday" @click="editjobday"> {{ trans('lang.day') }} : {{ job1.day }} <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
+                  <br><span id="jobday" @click="editjobday"> {{ $trans('lang.day') }} : {{ job1.day }} <i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
                   <div id="editjobday" class="hidden">            
                         <input type="number" class="form-control form-control-sm " name="editjobday" autocomplete="off" :value="job1.day" v-on:change="updatejobday">
                     </div>
                   
-                  <br><span id="jobhour" @click="editjobhour"> {{ trans('lang.hour') }} : {{ job1.hour }}<i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
+                  <br><span id="jobhour" @click="editjobhour"> {{ $trans('lang.hour') }} : {{ job1.hour }}<i class="fa fa-pencil" style="float:right;margin: 10px;"></i></span>
                   <div id="editjobhour" class="hidden">            
                         <input type="number" class="form-control form-control-sm " name="editjobhour" autocomplete="off" :value="job1.hour" v-on:change="updatejobhour">
                     </div>
@@ -279,7 +279,7 @@
           </tr>
           <tr id="tr10">
 
-                <td colspan="2"><button @click="submitJob" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ trans('lang.post_job') }}</button></td>
+                <td colspan="2"><button @click="submitJob" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ $trans('lang.post_job') }}</button></td>
             </tr>
           
       </table>
@@ -397,7 +397,7 @@ export default {
                     self.form1.job_id = response.data.id;
                     self.form2.job_id = response.data.id;
                     self.form3.job_id = response.data.id;
-                    Fire.$emit('AfterCreate');
+                    self.emitter.emit('AfterCreate');
                 });
                 $('#trx').removeClass('hidden');
         },
@@ -425,7 +425,7 @@ export default {
                 .then(function (response) {
                     if (response.data.type == 'success') {
                         self.loading = false;
-                        self.showInfo(Vue.prototype.trans('lang.job_submitting'));
+                        self.showInfo($$trans('lang.job_submitting'));
                         setTimeout(function () {
                             window.location.replace(APP_URL + '/employer/dashboard/manage-jobs');
                         }, 4000);
@@ -490,6 +490,7 @@ export default {
             });  
         },
         updateaddcurrency(e) {
+            let self = this; 
             this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatecurrency/' + statp).then(function (response) {
@@ -498,31 +499,33 @@ export default {
                 $('#addcurrency').removeClass('hidden');
             });
         
-            Fire.$emit('AfterCreate');
+            self.emitter.emit('AfterCreate');
             $('#addcurrency-select').addClass('hidden');
             $('#tr4').removeClass('hidden');
             
             
         },
         updateaddcategory(e) {
+            let self = this; 
             this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatecategory/' + statp).then(function (response) {
-                Fire.$emit('Aftercat');
+                self.emitter.emit('Aftercat');
                 $('#addskill-select').addClass('hidden');
                 $('#addskill').removeClass('hidden');
             });
-            Fire.$emit('loadskills');
-            Fire.$emit('AfterCreate');
+            self.emitter.emit('loadskills');
+            self.emitter.emit('AfterCreate');
             $('#addcategory-select').addClass('hidden');
         },
         deletecategory(id)
         {
+            let self = this; 
             this.saving('Deleting . . .');
             let statp =  this.job1.id + '-' + id;
             axios.get(APP_URL + '/api/job_overview/deletecategory/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
-                Fire.$emit('loadskills');
+                self.emitter.emit('AfterCreate');
+                self.emitter.emit('loadskills');
             });
         },
         showquiz(id) {
@@ -552,9 +555,10 @@ export default {
         },
         deleteinvited(email) {
             this.saving('Deleting . . .');
+            let self = this; 
             //console.log('delete is hitted');
             axios.get(APP_URL + '/api/job_overview/deleteinvited/'+ self.job_id + '-' + email).then(function (response) {
-                Fire.$emit('Afterinvited');
+                self.emitter.emit('Afterinvited');
             });
         },
         loadprovider() {
@@ -647,14 +651,18 @@ export default {
             $('#addapprover-select').removeClass('hidden');
         },
         Createinvite() {
+            let self = this; 
             this.saving('Saving Details');
             this.form3.post('/api/job_overview/createinvite/')
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'Invited successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Invited successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('Afterinvited');
+                
+                self.emitter.emit('Afterinvited');
                 $('#addinvite-select').addClass('hidden');
                 $('#invite_email').val("");
                 
@@ -668,11 +676,14 @@ export default {
             let self = this;
             this.form1.post('/api/job_overview/team/'+ self.job_id)
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'Team Created successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Team Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('Afterteam');
+                
+                self.emitter.emit('Afterteam');
                 $('#addteam-select').addClass('hidden');
                 $('#team_name').val("");
                 $('#team_email').val("");
@@ -683,10 +694,11 @@ export default {
             })
         },
         deleteapprover(approver) {
+            let self = this; 
             this.saving('Deleting . . .');
             //let statp =  this.job1.id + '-' + team;
             axios.get(APP_URL + '/api/job_overview/deleteapprover/' + approver).then(function (response) {
-                Fire.$emit('Afterapprover');
+                self.emitter.emit('Afterapprover');
             });
         },
         Createapprover() {
@@ -694,11 +706,14 @@ export default {
             let self = this;
             this.form2.post('/api/job_overview/approver/'+ self.job_id)
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'Approver Created successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Approver Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('Afterapprover');
+                
+                self.emitter.emit('Afterapprover');
                 $('#addapprover-select').addClass('hidden');
                 $('#approver_name').val("");
                 $('#approver_email').val("");
@@ -709,16 +724,18 @@ export default {
             })
         },
         deleteteam(team) {
+            let self = this; 
             this.saving('Deleting . . .');
             //let statp =  this.job1.id + '-' + team;
             axios.get(APP_URL + '/api/job_overview/deleteteam/' + team).then(function (response) {
-                Fire.$emit('Afterteam');
+                self.emitter.emit('Afterteam');
             });
         },
         deletesubskill(id) {
+            let self = this; 
             this.saving('Deleting . . .');
             axios.get(APP_URL + '/api/delete_sub_skill/' + id).then(function (response) {
-                Fire.$emit('Aftersubskill');
+                self.emitter.emit('Aftersubskill');
             });
         },
         addskill() {
@@ -747,47 +764,57 @@ export default {
         {
             //console.log(id);
             this.saving('Saving Details');
+            let self = this; 
             axios.get(APP_URL + '/api/job_overview/approvejob/' + id).then(function (response) {
                 //console.log(response.data);
-                Fire.$emit('Afterapprover');
+                self.emitter.emit('Afterapprover');
                 if(response.data == 0)
                 {
-                    toast.fire({
-                    type: 'success',
-                    title: 'Job is approved'
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Job is approved',
+                        showConfirmButton: false,
+                        timer: 3500
                     });
+                    
                 }
                 else{
-                    toast.fire({
-                    type: 'success',
-                    title: 'Job is now posted and is open for Bidding.'
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Job is now posted and is open for Bidding.',
+                        showConfirmButton: false,
+                        timer: 3500
                     });
+                    
                 }
             });
         },
         updateaddsubskill(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/post_sub_skill/' + statp).then(function (response) {
-                Fire.$emit('Aftersubskill');
+                self.emitter.emit('Aftersubskill');
                 $('#addsubskill-select').addClass('hidden');
                 $('#addsubskill').removeClass('hidden');
             });
         },
         updateaddskill(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updateskill/' + statp).then(function (response) {
-                Fire.$emit('Afterskill');
+                self.emitter.emit('Afterskill');
                 $('#addskill-select').addClass('hidden');
                 $('#addskill').removeClass('hidden');
             });
         },
         deleteskill(lang) {
+            let self = this; 
             this.saving('Deleting . . .');
             let statp =  this.job1.id + '-' + lang;
             axios.get(APP_URL + '/api/job_overview/deleteskill/' + statp).then(function (response) {
-                Fire.$emit('Afterskill');
+                self.emitter.emit('Afterskill');
             });
         },
         addlang() {
@@ -795,10 +822,11 @@ export default {
             $('#addlang-select').removeClass('hidden');
         },
         updateaddlang(e) {
+            let self = this; 
             this.saving('Saving Details');
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatelang/' + statp).then(function (response) {
-                Fire.$emit('AfterLang');
+                self.emitter.emit('AfterLang');
                 $('#addlang-select').addClass('hidden');
                 $('#addlang').removeClass('hidden');
             });
@@ -808,9 +836,10 @@ export default {
         },
         deletelang(lang) {
             this.saving('Deleting . . .');
+            let self = this; 
             let statp =  this.job1.id + '-' + lang;
             axios.get(APP_URL + '/api/job_overview/deletelang/' + statp).then(function (response) {
-                Fire.$emit('AfterLang');
+                self.emitter.emit('AfterLang');
             });
         },
         addquiz() {
@@ -825,9 +854,10 @@ export default {
         },
         updateaddquiz(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/updatequiz/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#addquiz-select').addClass('hidden');
                 $('#addquiz').removeClass('hidden');
             });
@@ -835,21 +865,24 @@ export default {
         },
         deletequiz(quiz) {
             this.saving('Deleting . . .');
+            let self = this; 
             let statp =  this.job1.id + '-' + quiz;
             axios.get(APP_URL + '/api/job_overview/deletequiz/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
             });
         },
         deleteenglish(id) {
             this.saving('Deleting . . .');
+            let self = this; 
             axios.get(APP_URL + '/api/job_overview/deleteenglish/' + id).then(function (response) {
-                Fire.$emit('Afterenglish');
+                self.emitter.emit('Afterenglish');
             });
         },
         deleteprovider(id) {
+            let self = this; 
             this.saving('Deleting . . .');
             axios.get(APP_URL + '/api/job_overview/deleteprovider/' + id).then(function (response) {
-                Fire.$emit('Afterprovider');
+                self.emitter.emit('Afterprovider');
             });
         },
         editquiz() {
@@ -860,9 +893,10 @@ export default {
         },
         updatequiz(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/quiz/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editquiz-select').addClass('hidden');
                 $('#quiz').removeClass('hidden');
             });
@@ -879,13 +913,17 @@ export default {
         },
         Updatedescription() {
             this.saving('Saving Details');
+            let self = this; 
             this.form.post('/api/job_overview/description/'+ this.job1.id)
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'Description Updated successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Description Updated successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('AfterCreate');
+                
+                self.emitter.emit('AfterCreate');
                 $('#editdescription').addClass('hidden');
                 $('#description').removeClass('hidden');
                 $('#tr1').removeClass('hidden');
@@ -918,9 +956,10 @@ export default {
         },
         updateprojectlevel(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_level/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editprojectlevel').addClass('hidden');
                 $('#projectlevel').removeClass('hidden');
                 $('#tr2').removeClass('hidden');
@@ -936,9 +975,10 @@ export default {
         },
         updatejobduration(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_duration/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editjobduration').addClass('hidden');
                 $('#jobduration').removeClass('hidden');
                 $('#tr3').removeClass('hidden');
@@ -954,9 +994,10 @@ export default {
         },
         updateprice(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_price/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editprice').addClass('hidden');
                 $('#price').removeClass('hidden');
                 $('#tr4').removeClass('hidden');
@@ -970,9 +1011,10 @@ export default {
         },
         updateprovider(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_provider/' + statp).then(function (response) {
-                Fire.$emit('Afterprovider');
+                self.emitter.emit('Afterprovider');
                 $('#editprovider').addClass('hidden');
                 $('#addprojectprovider').removeClass('hidden');
                 $('#tr5').removeClass('hidden');
@@ -986,9 +1028,10 @@ export default {
         },
         updateenglish(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_english/' + statp).then(function (response) {
-                Fire.$emit('Afterenglish');
+                self.emitter.emit('Afterenglish');
                 $('#editenglish').addClass('hidden');
                 $('#addenglish').removeClass('hidden');
                 $('#tr7').removeClass('hidden');
@@ -1004,9 +1047,10 @@ export default {
         },
         updateexpirydate(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '_' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_expirydate/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editexpirydate').addClass('hidden');
                 $('#expirydate').removeClass('hidden');
             });
@@ -1019,9 +1063,10 @@ export default {
         },
         updatejobmonth(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobmonth/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editjobmonth').addClass('hidden');
                 $('#jobmonth').removeClass('hidden');
             });
@@ -1034,9 +1079,10 @@ export default {
         },
         updatejobday(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobday/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editjobday').addClass('hidden');
                 $('#jobday').removeClass('hidden');
             });
@@ -1049,9 +1095,10 @@ export default {
         },
         updatejobweek(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobweek/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editjobweek').addClass('hidden');
                 $('#jobweek').removeClass('hidden');
             });
@@ -1064,9 +1111,10 @@ export default {
         },
         updatejobhour(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/project_jobhour/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editjobhour').addClass('hidden');
                 $('#jobhour').removeClass('hidden');
             });
@@ -1080,9 +1128,10 @@ export default {
         },
         updatejobtype(e) {
             this.saving('Saving Details');
+            let self = this; 
             let statp =  this.job1.id + '-' + e.target.value;
             axios.get(APP_URL + '/api/job_overview/postprojecttype/' + statp).then(function (response) {
-                Fire.$emit('AfterCreate');
+                self.emitter.emit('AfterCreate');
                 $('#editjobtype').addClass('hidden');
                 $('#jobtype').removeClass('hidden');
             });
@@ -1113,23 +1162,23 @@ export default {
         this.loadcategory();
         this.loadcurrency();
         
-        Fire.$on('Afterskill', () => {
+        this.emitter.on('Afterskill', () => {
             this.loadskill();
         });
-        Fire.$on('loadskills', () => {
+        this.emitter.on('loadskills', () => {
             this.loadskills();
         });
-        Fire.$on('Afterteam', () => {
+        this.emitter.on('Afterteam', () => {
             this.loadteam();
         });
-        Fire.$on('Afterapprover', () => {
+        this.emitter.on('Afterapprover', () => {
             this.loadapprover();
         });
-        Fire.$on('Afterprovider', () => {
+        this.emitter.on('Afterprovider', () => {
             this.loadprovider();
         });
         
-        Fire.$on('AfterCreate', () => {
+        this.emitter.on('AfterCreate', () => {
             this.loadjob();
         });
   }

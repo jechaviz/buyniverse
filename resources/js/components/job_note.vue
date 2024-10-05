@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a @click="newnote" class="wt-btn float-right" style="margin-top: -90px;">{{ trans('lang.add_note') }}</a>
+        <a @click="newnote" class="wt-btn float-right" style="margin-top: -90px;">{{ $trans('lang.add_note') }}</a>
         <div class="tab-content bg-transparent">
             <div id="note-full-container" class="note-has-grid row" v-if="notes.length > 0">
                 <div class="col-md-3 single-note-item all-category note-family"  v-for="note in notes" :key="note.id">
@@ -18,7 +18,7 @@
                                 <span class="mr-1" v-if="role == 'employer'" @click="deletenote(note.id)"><i class="far fa-trash-alt remove-note font-17"></i></span>
                             </div>
                         </div>
-                        <p class="note-date font-12">{{ note.created_at | formatDate }}</p>
+                        <p class="note-date font-12">{{ $filters.formatDate(note.created_at) }}</p>
                         <div class="note-content">
                             <p class="note-inner-content">
                                 {{ note.description }}
@@ -33,7 +33,7 @@
             <div class="wt-emptydata-holder" style="background-color: white;">
                 <div class="wt-emptydata">
                     <div class="wt-emptydetails wt-empty-person">
-                        <em>{{ trans('lang.no_record') }}</em>
+                        <em>{{ $trans('lang.no_record') }}</em>
                     </div>
                 </div>
             </div>
@@ -44,8 +44,8 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" v-show="!editmode" id="exampleModalLabel">{{ trans('lang.add_new_note') }}</h5>
-                    <h5 class="modal-title" v-show="editmode" id="exampleModalLabel">{{ trans('lang.update_note') }}</h5>
+                    <h5 class="modal-title" v-show="!editmode" id="exampleModalLabel">{{ $trans('lang.add_new_note') }}</h5>
+                    <h5 class="modal-title" v-show="editmode" id="exampleModalLabel">{{ $trans('lang.update_note') }}</h5>
                     <button type="button" class="close" @click="Close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -53,12 +53,12 @@
                 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ trans('lang.title') }}</label>
+                        <label>{{ $trans('lang.title') }}</label>
                         <input v-model="form.title" type="text" name="title"
                             class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('lang.description') }}</label>
+                        <label>{{ $trans('lang.description') }}</label>
                         <textarea v-model="form.description"  class="form-control" name="description" :class="{ 'is-invalid': form.errors.has('description') }"></textarea>
                     </div>
                     <input type="hidden" name="user_id" v-model="form.user_id">
@@ -66,9 +66,9 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ trans('lang.close') }}</button>
-                    <button type="submit" v-show="editmode" class="btn btn-success">{{ trans('lang.update') }}</button>
-                    <button type="submit" v-show="!editmode" class="btn btn-primary">{{ trans('lang.create') }}</button>
+                    <button type="button" class="btn btn-danger" @click="Close" data-dismiss="modal">{{ $trans('lang.close') }}</button>
+                    <button type="submit" v-show="editmode" class="btn btn-success">{{ $trans('lang.update') }}</button>
+                    <button type="submit" v-show="!editmode" class="btn btn-primary">{{ $trans('lang.create') }}</button>
                 </div>
                 
                 </div>
@@ -110,13 +110,17 @@ export default {
             $('#newnote').addClass('show');
         },
         CreateNote() {
+            let self = this; 
             this.form.post('/api/job_note/')
             .then(() => {
-                toast.fire({
-                type: 'success',
-                title: 'Note Created successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Note Created successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('AfterCreate');
+                
+                self.emitter.emit('AfterCreate');
                 $('#newnote').modal('hide');
                 $('.modal-backdrop').addClass('modal');
                 $('.modal-backdrop').remove();
@@ -128,15 +132,20 @@ export default {
         UpdateNote() {
         },
         starnote(id) {
+            let self = this; 
             axios.get(APP_URL + '/api/job_note/star/' + id).then(function (response) {
-                Fire.$emit('AfterCreate');
-                toast.fire({
-                type: 'success',
-                title: 'Note updated successfully'
+                self.emitter.emit('AfterCreate');
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Note updated successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
+                
             });
         },
         deletenote(id) {
+            let self = this; 
             swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -157,7 +166,7 @@ export default {
                     'Your Note has been deleted.',
                     'success'
                     )
-                    Fire.$emit('AfterCreate');
+                    self.emitter.emit('AfterCreate');
                 }).catch(() => {
                     swal("Failed", "There is something wrong.", "warning");
                 })
@@ -186,7 +195,7 @@ export default {
     mounted: function() {
         this.loadNote();
         this.loadRole();
-        Fire.$on('AfterCreate', () => {
+        this.emitter.on('AfterCreate', () => {
             this.loadNote();
             this.Close();
         });

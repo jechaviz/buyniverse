@@ -24,14 +24,14 @@
                     <div class="col-12">
                         <div class="wt-switcharea">
                             <div class="wt-switchtitle">
-                                <h6>{{ trans('lang.i_m_provider') }}</h6>
+                                <h6>{{ $trans('lang.i_m_provider') }}</h6>
                             </div>
                             <div class="wt-switch">
                                 <input type="checkbox" id="wt-switch" name="switch" @change="getPackages" v-model="roleType">
                                 <label for="wt-switch"><i></i></label>
                             </div>
                             <div class="wt-switchtitle">
-                                <h6>{{ trans('lang.i_m_employer') }}</h6>
+                                <h6>{{ $trans('lang.i_m_employer') }}</h6>
                             </div>
                         </div>
                     </div>
@@ -44,10 +44,10 @@
                                 <h5>{{pkgItem.title}}</h5>
                                 <img :src="baseUrl+'/uploads/packages/' + pkgItem.image" alt="img description" @error="pkgImgError($event)" v-if="pkgItem.image">
                                 <strong><sup>{{ pkgItem.symbol }}</sup>{{ pkgItem.cost }} <sub>/ {{ getPackageDurationList(pkgItem.options['duration']) }}</sub></strong>
-                                <em>{{ trans('lang.include_all_taxes') }} <i class="ti-info-alt toltip-content tipso_style" data-tipso="Plus Member"></i></em>
+                                <em>{{ $trans('lang.include_all_taxes') }} <i class="ti-info-alt toltip-content tipso_style" data-tipso="Plus Member"></i></em>
                             </div>
                             <div class="jb-package-feature">
-                                <h6>{{ trans('lang.pkg_features') }}:</h6>
+                                <h6>{{ $trans('lang.pkg_features') }}:</h6>
                                 <ul>
                                     <li v-for="(option, key) in package_options" :key="key">
                                         <p>{{option}}:</p>
@@ -59,7 +59,7 @@
                                     </li>
                                 </ul>
                                 <div class="wt-btnarea" v-if="role !== 'admin'">
-                                    <a :href="baseUrl+'/user/package/checkout/' + pkgItem.id" class="wt-btntwo">{{ trans('lang.buy_now') }}</a>
+                                    <a :href="baseUrl+'/user/package/checkout/' + pkgItem.id" class="wt-btntwo">{{ $trans('lang.buy_now') }}</a>
                                 </div>
                             </div>
                         </div>

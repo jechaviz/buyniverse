@@ -73,6 +73,7 @@ class HomeController extends Controller
                 $page_header = '';
                 $currency   = SiteManagement::getMetaValue('commision');
                 $symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
+                //dd($page);
                 if (file_exists(resource_path('views/extend/front-end/pages/show.blade.php'))) {
                     return View::make(
                         'extend.front-end.pages.show',

@@ -54,7 +54,7 @@
                             <div class="wt-provider-about">
                                 <div class="wt-provider-price"><span><i class="fas fa-money-bill-alt"></i> {{provider.symbol}}{{provider.hourly_rate}} / hr </span></div>
                                 <div class="wt-rating">
-                                    <span class="wt-stars wt-starstwo"><span></span></span> <em>{{provider.average_rating_count}}{{ trans('lang.5') }}</em>
+                                    <span class="wt-stars wt-starstwo"><span></span></span> <em>{{provider.average_rating_count}}{{ $trans('lang.5') }}</em>
                                 </div>
                             </div>
                             <div class="wt-provider-social">
@@ -71,11 +71,11 @@
                             </li>
                             <li v-if="provider.save_providers.includes(provider.id)">
                                 <a href="javascript:void(0);"  class="wt-liked">
-                                <i class="ti-heart"></i> {{trans("lang.saved")}}</a>
+                                <i class="ti-heart"></i> {{$trans("lang.saved")}}</a>
                             </li>
                             <li v-else>
                                 <a href="javascript:void(0);" class="wt-saveprovider" :id="'provider-'+provider.id" @click.prevent="add_wishlist('provider-'+provider.id, provider.id, 'saved_provider')">
-                                <i class="ti-heart"></i><span  class="save_text">{{trans("lang.save")}} </span></a>
+                                <i class="ti-heart"></i><span  class="save_text">{{$trans("lang.save")}} </span></a>
                             </li>
                         </ul>
                     </div>
@@ -147,7 +147,7 @@ export default {
                         if (column == 'saved_provider') {
                             jQuery('#' + element_id).parents('li').addClass('wt-btndisbaled');
                             jQuery('#' + element_id).addClass('wt-liked');
-                            jQuery('#' + element_id).find('.save_text').text(Vue.prototype.trans('lang.saved'));
+                            jQuery('#' + element_id).find('.save_text').text(Vue.prototype.$trans('lang.saved'));
                         }
                         self.showMessage(response.data.message);
                     } else {

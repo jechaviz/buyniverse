@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="amt-section-select">
-            <input type="text" name="meta_title" class="form-control" :placeholder="trans('lang.meta_title')" v-model="form.meta_title">
+            <input type="text" name="meta_title" class="form-control" :placeholder="$trans('lang.meta_title')" v-model="form.meta_title">
         </div>
         <div class="amt-section-select">
-            <textarea class="form-control" :placeholder="trans('lang.meta_desc')" v-model="form.seo_desc"></textarea>
+            <textarea class="form-control" :placeholder="$trans('lang.meta_desc')" v-model="form.seo_desc"></textarea>
         </div>
         <div class="amt-section-select">
             <div class="at-profile-setting__upload page_banner dc-settingscontent" id="page_banner_wrapper">
@@ -19,7 +19,7 @@
                     :list_id="'list_id_banner'"
                     :upload_title="'upload image'"
                     :btn_text="'select banner'"
-                    :img_label="trans('lang.page_banner')"
+                    :img_label="$trans('lang.page_banner')"
                     @addedFile="imageAdded()"
                     @fileRemoved="imageRemoved()"
                 >
@@ -52,15 +52,15 @@
         </div>
         <div class="form-group" >
             <div class="amt-element-title amt-element-titlecontent amt-subsection">
-                <h6>{{ trans('lang.select_parent') }}:</h6>
+                <h6>{{ $trans('lang.select_parent') }}:</h6>
                 <div class="amt-subsection__content">
                     <div class="wt-radio">
                         <input type="radio" id="select-parent" v-model="form.parent_type" name="parent_type" value="custom_link">
-                        <label for="select-parent">{{ trans('lang.custom_menu') }}:</label>
+                        <label for="select-parent">{{ $trans('lang.custom_menu') }}:</label>
                     </div>
                     <div class="wt-radio">
                         <input type="radio" id="select-paret" v-model="form.parent_type" name="parent_type" value="page">
-                        <label for="select-paret">{{ trans('lang.pages') }}:</label>
+                        <label for="select-paret">{{ $trans('lang.pages') }}:</label>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
         <div class="amt-section-select" v-if="customMenus && customMenus.length > 0 && form.parent_type == 'custom_link'">
             <span class="wt-select">
                 <select class="form-control" v-model="form.parent_id">
-                    <option value='' selected>{{ trans('lang.select_custom_menu') }}</option>
+                    <option value='' selected>{{ $trans('lang.select_custom_menu') }}</option>
                     <option v-for="(menu, index) in customMenus" :key="index" :value="menu.custom_slug"> 
                         {{menu.custom_title}} 
                     </option>
@@ -80,7 +80,7 @@
         <div class="amt-section-select" v-if="parentPages.length > 0 && form.parent_type == 'page'">
             <span class="wt-select">
                 <select class="form-control" v-model="form.parent_id">
-                    <option value='' selected>{{ trans('lang.select_parent') }}</option>
+                    <option value='' selected>{{ $trans('lang.select_parent') }}</option>
                     <option v-for="(page, index) in parentPages" :key="index" :value="page.id"> 
                         {{page.title}} 
                     </option>
@@ -93,7 +93,7 @@
                     <input type="checkbox" id="show_page_title" v-model="form.meta.title.show">
                     <label for="show_page_title"><i></i></label>
                 </div>
-                <p>{{ trans('lang.show_page_title') }}</p>
+                <p>{{ $trans('lang.show_page_title') }}</p>
             </div>
         </div>
         <div class="amt-switches-option">
@@ -102,7 +102,7 @@
                     <input type="checkbox" id="show_page_banner" v-model="form.show_page_banner">
                     <label for="show_page_banner"><i></i></label>
                 </div>
-                <p>{{ trans('lang.show_page_banner') }}</p>
+                <p>{{ $trans('lang.show_page_banner') }}</p>
             </div>
         </div>
         <div class="amt-switches-option">
@@ -111,7 +111,7 @@
                     <input type="checkbox" id="show_page" v-model="form.show_page">
                     <label for="show_page"><i></i></label>
                 </div>
-                <p>{{ trans('lang.add_menu_to_navbar') }}</p>
+                <p>{{ $trans('lang.add_menu_to_navbar') }}</p>
             </div>
         </div>
     </div>

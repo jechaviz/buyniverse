@@ -40,7 +40,7 @@
         <div class="divheight"></div>
         <div class="wt-btnarea">
             <!-- <a href="javascript:void(0);" class="wt-btn"  @click="commentsToShow += 3" v-if="commentsToShow < reviews.length">
-                {{ trans('lang.btn_load_more') }}
+                {{ $trans('lang.btn_load_more') }}
             </a> -->
         </div>
     </div>

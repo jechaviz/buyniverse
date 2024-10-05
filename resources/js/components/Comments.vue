@@ -1,13 +1,13 @@
 <template>
     <!--Comments-->
         <div class="card-comments" id="card-comments">
-            <div class="x-heading"><i class="mdi mdi-message-text"></i>{{ trans('lang.comments') }}</div>
+            <div class="x-heading"><i class="mdi mdi-message-text"></i>{{ $trans('lang.comments') }}</div>
             <div class="x-content">
                 <!--complete commenting form-->
         <div class="post-comment" id="post-card-comment-form">
             <!--placeholder textbox-->
             <div class="x-message-field x-message-field-placeholder m-b-10" id="card-coment-placeholder-input-container">
-                <textarea class="form-control form-control-sm w-100" rows="1" @click="newcomment"  id="card-coment-placeholder-input" style="height: 60px;">{{ trans('lang.post_a_comment') }}</textarea>
+                <textarea class="form-control form-control-sm w-100" rows="1" @click="newcomment"  id="card-coment-placeholder-input" style="height: 60px;">{{ $trans('lang.post_a_comment') }}</textarea>
             </div>
             <!--rich text editor-->
             <form @submit.prevent="Createcomment()">
@@ -17,14 +17,14 @@
                 <!--close button-->
                 <div class="x-button p-t-10 p-b-10 text-right">
                     <button type="button" @click="close" class="btn btn-default btn-sm" id="card-comment-close-button">
-                        {{ trans('lang.close') }}
+                        {{ $trans('lang.close') }}
                     </button>
                     <!--submit button-->
                     <button v-show="wcreate" type="submit" class="btn btn-danger btn-sm x-submit-button" id="card-comment-post-button">
-                        {{ trans('lang.post') }}
+                        {{ $trans('lang.post') }}
                     </button>
                     <button v-show="!wcreate" class="btn btn-danger btn-sm x-submit-button" id="card-comment-post-button">
-                        {{ trans('lang.please_wait') }}
+                        {{ $trans('lang.please_wait') }}
                     </button>
                 </div>
             </div>
@@ -43,11 +43,11 @@
                     <div class="col-sm-6 x-name">{{ comment.username }}</div>
                     <div class="col-sm-6 x-meta text-right">
                         <!--meta-->
-                        <span class="x-date"><small>{{ comment.created_at | formatAgo }}</small></span>
+                        <span class="x-date"><small>{{ $filters.formatAgo(comment.created_at) }}</small></span>
                         <!--actions: delete-->
                                         <span class="comment-actions"> |
                             <a class="js-delete-ux-confirm confirm-action-danger text-danger" style="cursor: pointer;" @click="deleteComment(comment.id)" >
-                                <small>{{ trans('lang.delete') }}</small>
+                                <small>{{ $trans('lang.delete') }}</small>
                             </a>
                         </span>
                                     </div>
@@ -105,6 +105,7 @@ export default {
             $('#card-comment-tinmyce-container').addClass('hidden');
         },
         deleteComment(id) {
+            let self = this; 
             this.saving('Deleting . . .');
             this.form.delete(APP_URL + '/api/comments/'+id).then(() => {
                 swal.fire(
@@ -112,7 +113,7 @@ export default {
                 'Your Comment has been deleted.',
                 'success'
                 )
-                Fire.$emit('Aftercomment');
+                self.emitter.emit('Aftercomment');
             }).catch(() => {
                 swal("Failed", "There is something wrong.", "warning");
             })
@@ -127,17 +128,21 @@ export default {
         
         Createcomment() {
             this.saving('Saving Details');
+            let self = this; 
             this.wcreate = false;
             this.form.task_id = this.taskid;
             this.form.user_id = this.userid;
             //console.log(this.form);
             this.form.post('/api/comments/')
             .then(() => {
-                toast.fire({
-                icon: 'success',
-                title: 'Comment Added successfully'
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Comment Added successfully',
+                    showConfirmButton: false,
+                    timer: 3500
                 });
-                Fire.$emit('Aftercomment');
+                
+                self.emitter.emit('Aftercomment');
                 $('#card-coment-placeholder-input-container').removeClass('hidden');
                 $('#card-comment-tinmyce-container').addClass('hidden');
                 this.form.reset();
@@ -159,7 +164,7 @@ export default {
   },
     mounted: function() {
       this.loadcomments();
-      Fire.$on('Aftercomment', () => {
+      this.emitter.on('Aftercomment', () => {
                 this.loadcomments();
             });
   }

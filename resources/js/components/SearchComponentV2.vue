@@ -63,7 +63,7 @@
             </fieldset>
         </form>
         <div class="wt-bannerthreeform-footer">
-            <a href="javascript:void(0);" class="wt-btntwo" v-on:click.prevent="submitSearchForm(types)">{{trans('lang.search_now')}}</a>
+            <a href="javascript:void(0);" class="wt-btntwo" v-on:click.prevent="submitSearchForm(types)">{{$trans('lang.search_now')}}</a>
         </div>
     </div>
 </template>
