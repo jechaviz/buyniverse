@@ -323,7 +323,7 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.work.background_image = image
-                            Event.$emit('new-bg-image'+self.currentElementID)
+                            self.emitter.emit('new-bg-image'+self.currentElementID)
                             self.newBgImg = true
                         } else {
                             self.work.background_image = null
@@ -331,7 +331,7 @@ export default {
                     } else if (imageType == 'first_tab_icon') {
                         if (image) {
                             self.work.first_tab_icon = image
-                            Event.$emit('new-first-tab-image'+self.currentElementID)
+                            self.emitter.emit('new-first-tab-image'+self.currentElementID)
                             self.newFirstTabImg = true
                         } else {
                             self.work.first_tab_icon = null
@@ -339,7 +339,7 @@ export default {
                     } else if (imageType == 'second_tab_icon') {
                         if (image) {
                             self.work.second_tab_icon = image
-                            Event.$emit('new-second-tab-image'+self.currentElementID)
+                            self.emitter.emit('new-second-tab-image'+self.currentElementID)
                             self.newSecondTabImg = true
                         } else {
                             self.work.second_tab_icon = null
@@ -347,7 +347,7 @@ export default {
                     } else if (imageType == 'third_tab_icon') {
                         if (image) {
                             self.work.third_tab_icon = image
-                            Event.$emit('new-third-tab-image'+self.currentElementID)
+                            self.emitter.emit('new-third-tab-image'+self.currentElementID)
                             self.newThirdTabImg = true
                         } else {
                             self.work.third_tab_icon = null

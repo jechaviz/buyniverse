@@ -321,7 +321,7 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.app.background_image = image
-                            Event.$emit('new-bg-image'+self.currentElementID)
+                            self.emitter.emit('new-bg-image'+self.currentElementID)
                             self.newBgImg = false
                         } else {
                             self.app.image.url = null
@@ -329,7 +329,7 @@ export default {
                     } else if (imageType == 'appImg') {
                         if (image) {
                             self.app.app_image = image
-                            Event.$emit('new-app-image'+self.currentElementID)
+                            self.emitter.emit('new-app-image'+self.currentElementID)
                             self.newAppImg = false
                         } else {
                             self.app.app_image = null
@@ -337,7 +337,7 @@ export default {
                     } else if (imageType == 'iosImg') {
                         if (image) {
                             self.app.ios_image = image
-                            Event.$emit('new-ios-image'+self.currentElementID)
+                            self.emitter.emit('new-ios-image'+self.currentElementID)
                             self.newIosImg = false
                         } else {
                             self.app.ios_image = null
@@ -345,7 +345,7 @@ export default {
                     } else if (imageType == 'androidImg') {
                         if (image) {
                             self.app.android_image = image
-                            Event.$emit('new-android-image'+self.currentElementID)
+                            self.emitter.emit('new-android-image'+self.currentElementID)
                             self.newAndroidImg = false
                         } else {
                             self.app.android_image = null

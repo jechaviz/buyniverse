@@ -162,7 +162,7 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.category.backgroundImg = image
-                            Event.$emit('new-category-bg-image'+self.currentElementID)
+                            self.emitter.emit('new-category-bg-image'+self.currentElementID)
                             self.newBgImg = true
                         } else {
                             self.category.backgroundImg = null

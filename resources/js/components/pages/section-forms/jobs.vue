@@ -161,7 +161,7 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.job.backgroundImg = image
-                            Event.$emit('new-job-bg-image'+self.currentElementID)
+                            self.emitter.emit('new-job-bg-image'+self.currentElementID)
                             self.newBgImg=true
                         } else {
                             self.job.backgroundImg = null

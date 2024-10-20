@@ -79,7 +79,8 @@ import Event from '../event.js';
         },
         mounted() {
             let self = this;
-            Event.$on('chat-start', (data) => {
+            
+            this.emitter.on('chat-start', (data) => {
                 this.chat_start = data.chat;
                 this.receiver = data.user_id;
                 this.messages = data.messages;

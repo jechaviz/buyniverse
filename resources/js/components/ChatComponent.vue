@@ -57,16 +57,17 @@ import Event from '../event.js';
                 .then(function (response) {
                     if (response.data.type == 'error') {
                         self.users = false;
-                        Event.$emit('chat-users', { users:self.chat_users });
+                        self.emitter.emit('chat-users', { users:self.chat_users });
                     } else {
-                        Event.$emit('chat-users', { users:response.data });
+                        self.emitter.emit('chat-users', { users:response.data });
                     }
                 });
 
             },
         },
         mounted() {
-            Event.$on('active-user', (data) => {
+            
+            this.emitter.on('chat-start', (data) => {
                 //console.log(this.id);
                 this.id = data.id;
                 this.user = data.user;

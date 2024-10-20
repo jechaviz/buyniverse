@@ -119,6 +119,19 @@ export default {
         this.job.id = this.element_id
     },
     methods:{
+        getArrayIndex(array, attr, value) {
+            this.json = '';
+            if (array.length) {
+                for (let x = 0; x < array.length; x++) {
+                if (array[x] && array[x][attr]) {
+                    if (array[x][attr] === value) {
+                    this.json = array[x]['order'] ? array[x]['order'] : '';
+                    }
+                }
+                }
+            }
+            return this.json;
+        },
         mouseOver () {
              $(".wt-latestjobs ul li").hover(function() {
                 $(this).addClass('active')

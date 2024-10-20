@@ -11,7 +11,7 @@ import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
 import mitt from 'mitt';
 import moment from 'moment';
 import numeral from 'numeral';
-import {TinkerComponent} from 'botman-tinker';
+//import {TinkerComponent} from 'botman-tinker';
 
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Editor from '@tinymce/tinymce-vue'
@@ -31,11 +31,11 @@ import Joboverview from './components/joboverview.vue';
 import Tasks from './components/tasks.vue';
 import Checklists from './components/checklists.vue';
 import Comments from './components/comments.vue';
-import Quiz from './components/quiz.vue';
+//import Quiz from './components/quiz.vue';
 import Question from './components/question.vue';
 import Answer from './components/answer.vue';
 import Countdown from './components/countdown.vue';
-import JobQuiz from './components/JobQuiz.vue';
+//import JobQuiz from './components/JobQuiz.vue';
 import Contest from './components/contest.vue';
 import ContestProposal from './components/contest-proposal.vue';
 import Proposal_file from './components/proposal_file.vue';
@@ -98,9 +98,11 @@ import Style3 from './components/pages/show/sections/sliders/style3.vue';
 import CustomLinkComponent from './components/CustomLinkComponent.vue';
 //import Pcreate from './components/pages/create.vue';
 //import Pedit from './components/pages/edit.vue';
-import Pshow from './components/pages/show/show.vue';
+import Show from './components/pages/show/show.vue';
 //import SearchComponentV2 from './components/SearchComponentV2.vue';
-import Pslider from './components/pages/show/skeleton/slider.vue';
+import Slider from './components/pages/show/skeleton/slider.vue';
+
+import { ContentLoader } from "vue-content-loader"
 
 
 /*if (document.getElementById("jobs")) {
@@ -286,11 +288,11 @@ app.component('joboverview', Joboverview);
 app.component('tasks', Tasks);
 app.component('checklists', Checklists);
 app.component('comments', Comments);
-app.component('quiz', Quiz);
+//app.component('quiz', Quiz);
 app.component('question', Question);
 app.component('answer', Answer);
 //app.component('countdown', Countdown);
-app.component('job_quiz', JobQuiz);
+//app.component('job_quiz', JobQuiz);
 app.component('contest', Contest);
 app.component('contest-proposal', ContestProposal);
 app.component('proposal_file', Proposal_file);
@@ -307,7 +309,7 @@ app.component('job_provider', Job_provider);
 app.component('provider_search', Search_provider);
 app.component('ijob_provider', IJob_provider);
 app.component('tinymce', Editor);
-app.component('botman-tinker', TinkerComponent);
+//app.component('botman-tinker', TinkerComponent);
 app.component('job_contest', Job_contest);
 app.component('chatroom', Chatroom);
 app.component('post-job', Post_job);
@@ -363,9 +365,11 @@ app.component('third-slider', Style3);
 app.component('custom-link', CustomLinkComponent);
 //app.component('create-new-page', Pcreate);
 //app.component('edit-new-page', Pedit);
-app.component('show-new-page', Pshow);
+app.component('show-new-page', Show);
 //app.component('search-form-v2', SearchComponentV2);
-app.component('slider-skeleton', Pslider);
+app.component('slider-skeleton', Slider);
+app.component('content-loader', ContentLoader);
+
 
 
 app.config.globalProperties.emitter = emitter;
@@ -380,6 +384,6 @@ if (document.getElementById("pages-list")) {
 
   
 }*/
-app.mount('#buyniverse_app  ');
-
+//app.mount('#buyniverse_app  '); id="buyniverse_app"
+app.mount('#wt-main');
 

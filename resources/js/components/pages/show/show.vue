@@ -1,7 +1,9 @@
 <template>
   <div>
+    
     <div v-for="(skeleton, index) in skeletons" :key="skeleton+index">
       <slider-skeleton v-if="sliderSkeleton && slider_style !== 'style2' && slider_style !== 'style3' && (skeleton == 'slider' || skeleton == 'bannerV1')"/>
+      
       <div class="container wt-main-section" v-if="categorySkeleton && skeleton == 'category'">
         <category-skeleton />
      </div>
@@ -11,6 +13,7 @@
       <div class="container wt-main-section" v-if="appSkeleton && skeleton == 'app_section'">
         <app-skeleton />
      </div>
+     
       <div class="container wt-main-section" v-if="serviceSkeleton && skeleton == 'service_section'">
         <service-skeleton />
      </div>
@@ -45,11 +48,12 @@
         <heading-skeleton />
       </div>
     </div>
+    
     <div
       v-for="(element, index) in sections"
       :key="'section'+element.id+index"
       :class="'section-main-wrapper'+element.id+index"
-    >
+    > 
       <slider  
         :element_id="element.id"
         :sliders="form.meta.sliders" 
@@ -321,7 +325,29 @@ export default {
       searchableRoles:[],
       pageData:[],
       IconPath:APP_URL+'/images/page-builder/',
-      cloneElement:false
+      cloneElement:false,
+      //data from app.js in the root
+      show_page_banner: true,
+      show_page: false,
+      page_banner: false,
+      pageID: "",
+      is_show: false,
+      notificationSystem: {
+          options: {
+              success: {
+                  position: "topRight",
+                  timeout: 4000,
+                  class: 'success_notification'
+              },
+              error: {
+                  position: "topRight",
+                  timeout: 4000,
+                  class: 'error_notification'
+              },
+          }
+      },
+
+      
     }
   },
   created () {
@@ -336,8 +362,10 @@ export default {
         .then(function (response) {
           if (response.data.type == 'success') {
             self.pageData = response.data.page
+            //console.log(self.pageData);
             if (self.pageData.section_list) {
                 self.pageData.section_list.forEach(element => {
+                  //console.log(element.section); 
                   self.skeletons.push(element.section)
                   if (element.section == 'slider' || element.section == 'bannerV1') {
                     self.sliderSkeleton = true 
@@ -385,6 +413,7 @@ export default {
                     self.headingSkeleton = true 
                   }
                 });
+                
             }
             self.form.id = self.pageData.id
             self.form.title = self.pageData.title
@@ -396,6 +425,7 @@ export default {
             self.form.show_page_banner = self.pageData.show_page_banner
             self.form.page_banner_value = self.pageData.banner
             self.form.show_page = self.pageData.show_page_navbar
+            
             self.getSectionData()
           }
         })
@@ -404,10 +434,11 @@ export default {
     getSectionData: function () {
       let id = this.page_id
       var self = this
+      //console.log("element.section");
       axios
         .get(APP_URL + '/page/get-sections/' + id)
         .then(function (response) {
-          console.log(response.data);
+          //console.log(response.data);
           if (response.data.type == 'success') {
             self.pageData.sections = response.data.section_data
             if (self.pageData.section_list) {

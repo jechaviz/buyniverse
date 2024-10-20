@@ -251,7 +251,8 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.banner.backgroundImg = image
-                            Event.$emit('new-banner-bg-image'+self.currentElementID)
+                            //Event.$emit('new-banner-bg-image'+self.currentElementID)
+                            self.emitter.emit('new-banner-bg-image'+self.currentElementID);
                             self.newBgImg = true
                         } else {
                             self.banner.backgroundImg = null
@@ -259,7 +260,8 @@ export default {
                     } else if (imageType == 'frontImg') {
                         if (image) {
                             self.banner.frontImg = image
-                            Event.$emit('new-banner-front-image'+self.currentElementID)
+                            //Event.$emit('new-banner-front-image'+self.currentElementID)
+                            self.emitter.emit('new-banner-front-image'+self.currentElementID);
                             self.newFrontImg = true
                         } else {
                             self.banner.frontImg = null

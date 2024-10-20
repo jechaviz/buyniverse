@@ -211,7 +211,7 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.welcome.welcome_background = image
-                            Event.$emit('new-welcome-background-image'+self.currentElementID)
+                            self.emitter.emit('new-welcome-background-image'+self.currentElementID)
                             this.newBgImg = true
                         } else {
                             self.welcome.welcome_background = null

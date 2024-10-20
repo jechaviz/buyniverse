@@ -61,6 +61,7 @@
                                     <div class="col-md-5">
                                         
                                         <table style="margin-top: 30px;">
+                                            <tbody>
           <tr id="tr1" class="hidden">
               <td class="job-details"><b>{{ $trans('lang.project_levelx') }}</b></td>
               <td @click="editprojectlevel" class="job-details" >
@@ -295,7 +296,7 @@
                     <button  v-show="!wpost" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ $trans('lang.please_wait') }}</button>
                 </td>
             </tr>
-          
+        </tbody>
       </table>
                                         
 

@@ -73,10 +73,12 @@ export default {
         }
     },
     mounted: function() {
-        Event.$on('new-app-image', (data) => {
+        this.emitter.on('new-app-image', (data) => {
+        //Event.$on('new-app-image', (data) => {
             this.newAppImage = true
         })
-        Event.$on('new-bg-image', (data) => {
+        this.emitter.on('new-bg-image', (data) => {
+        //Event.$on('new-bg-image', (data) => {
             this.newBgImage = true
         })
     }  

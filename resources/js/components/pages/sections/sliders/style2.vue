@@ -99,7 +99,8 @@ export default {
         },
     },
     mounted () {
-        Event.$on('new-slider-slides-image'+this.element_id, (data) => {
+        this.emitter.on('new-slider-slides-image'+this.element_id, (data) => {
+        //Event.$on('new-slider-slides-image'+this.element_id, (data) => {
             if (this.page_id) {
                 this.page_id = false
             }

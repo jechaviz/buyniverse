@@ -38,9 +38,11 @@
                 
                 
                 <thead class="row">
-                    <th class="col-md-4">{{ $trans('lang.name')}}</th>
-                    <th  class="col-md-4">{{ $trans('lang.nickname')}}</th>
-                    <th v-if="job_contest.show_participant_to_provider == 'yes'"  class="col-md-4">{{ $trans('lang.project_bid')}}</th>
+                    <tr>
+                        <th class="col-md-4">{{ $trans('lang.name')}}</th>
+                        <th  class="col-md-4">{{ $trans('lang.nickname')}}</th>
+                        <th v-if="job_contest.show_participant_to_provider == 'yes'"  class="col-md-4">{{ $trans('lang.project_bid')}}</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr class="row" v-for="contest_user in contest_users" :key="contest_user.id">

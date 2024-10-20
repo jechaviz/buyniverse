@@ -161,7 +161,7 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.provider.backgroundImg = image
-                            Event.$emit('new-provider-bg-image'+self.currentElementID)
+                            self.emitter.emit('new-provider-bg-image'+self.currentElementID)
                             self.newBgImg = true
                         } else {
                             self.provider.backgroundImg = null

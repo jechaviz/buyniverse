@@ -85,6 +85,19 @@ export default {
         this.category.id = this.element_id
     },
     methods:{
+        getArrayIndex(array, attr, value) {
+            this.json = '';
+            if (array.length) {
+                for (let x = 0; x < array.length; x++) {
+                if (array[x] && array[x][attr]) {
+                    if (array[x][attr] === value) {
+                    this.json = array[x]['order'] ? array[x]['order'] : '';
+                    }
+                }
+                }
+            }
+            return this.json;
+        },
         mouseOver () {
             // $("ul.wt-categoryvtwo li").trigger('mouseout');
             $("ul.wt-categoryvtwo li").hover(function() {

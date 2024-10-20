@@ -161,7 +161,7 @@ export default {
                     if (imageType == 'bgImg') {
                         if (image) {
                             self.pkg.backgroundImg = image
-                            Event.$emit('new-pkg-bg-image'+self.currentElementID)
+                            self.emitter.emit('new-pkg-bg-image'+self.currentElementID)
                             this.newBgImg = true
                         } else {
                             self.pkg.backgroundImg = null

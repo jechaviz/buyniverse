@@ -34,6 +34,7 @@
                     $selected_color =  !empty($page_header_styling) && !empty($page_header_styling['color']) ? $page_header_styling['color'] : '';  
                 } elseif (Request::segment(1) == 'search-results') {
                     $inner_page  = App\SiteManagement::getMetaValue('inner_page_data');
+                    
                     if (!empty($_GET['type'])) {
                         if ($_GET['type'] == 'provider') {
                             $header_styling = !empty($inner_page) && !empty($inner_page[0]['provider_header_styling']) ? $inner_page[0]['provider_header_styling'] : 'false';
@@ -75,6 +76,7 @@
                     }
                 } elseif (Request::segment(1) == 'articles') {
                     $inner_page  = App\SiteManagement::getMetaValue('inner_page_data');
+                    
                     $header_styling = !empty($inner_page) && !empty($inner_page[0]['article_header_styling']) ? $inner_page[0]['article_header_styling'] : 'false';
                     if ($header_styling == 'true') {
                         $selected_menu_color = !empty($inner_page) && !empty($inner_page[0]['article_menu_color']) ? $inner_page[0]['article_menu_color'] : '';
@@ -88,6 +90,7 @@
                 $page_id = !empty(APP\SiteManagement::getMetaValue('homepage')) ? APP\SiteManagement::getMetaValue('homepage')['home'] : '';
                 $slider = Helper::getPageSlider($page_id);
                 $page_header = Helper::getPageHeader($page_id);
+                
             }
             if (($page_header == 'style4' || $page_header == 'style5') && empty($menu_color)) {
                 $menu_color = '#ffffff';
@@ -96,6 +99,7 @@
             if ($page_header == 'style5') {
                 $categories = App\Category::all()->toArray();
             }
+            //print_r($selected_menu_color);die;
         @endphp
     @endif
     @php

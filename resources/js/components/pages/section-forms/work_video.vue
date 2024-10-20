@@ -168,7 +168,8 @@ export default {
                     if (imageType == 'video_poster') {
                         if (image) {
                             self.work_video.video_poster = image
-                            Event.$emit('new-video-poster-image'+self.currentElementID)
+                            //Event.$emit('new-video-poster-image'+self.currentElementID)
+                            self.emitter.emit('new-video-poster-image'+self.currentElementID);
                             self.newVideoImg = true
                         } else {
                             self.work_video.video_poster = null

@@ -93,13 +93,27 @@ export default {
     mounted: function() {
         this.isActive = false
         var self= this
-        Event.$on('category-sectionV2-update', (data) => {
+        
+        this.emitter.on('category-sectionV2-update', (data) => {
             setTimeout(function(){ 
                 self.isActive = !self.isActive;
             }, 10);
         })
     },
     methods:{
+        getArrayIndex(array, attr, value) {
+            this.json = '';
+            if (array.length) {
+                for (let x = 0; x < array.length; x++) {
+                if (array[x] && array[x][attr]) {
+                    if (array[x][attr] === value) {
+                    this.json = array[x]['order'] ? array[x]['order'] : '';
+                    }
+                }
+                }
+            }
+            return this.json;
+        },
         getCategories: function() {
             var self = this;
             axios

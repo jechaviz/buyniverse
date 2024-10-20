@@ -85,7 +85,8 @@ export default {
             file.acceptDimensions = done;
             var width = 'height';
             var height = 'width';
-            Event.$on('invalid-dimentation', (data) => {
+            //Event.$on('invalid-dimentation', (data) => {
+            this.emitter.on('invalid-dimentation', (data) => {
                 if (data.width) {
                     width = data.width;
                 }
@@ -183,10 +184,11 @@ export default {
       listParent.appendChild(input);
     },
     validateDimentation: function(file) {
+      let self = this;
       if (file.accepted !== false) {
         if (this.image_validation == 'min') {
           if (file.width < this.image_width || file.height < this.image_height) {
-            Event.$emit("invalid-dimentation", {
+            self.emitter.emit("invalid-dimentation", {
               width: this.image_width,
               height: this.image_height
             });
@@ -196,7 +198,7 @@ export default {
           }
         } else {
           if (file.width > this.image_width || file.height > this.image_height) {
-            Event.$emit("invalid-dimentation", {
+            self.emitter.emit("invalid-dimentation", {
               width: this.image_width,
               height: this.image_height
             });

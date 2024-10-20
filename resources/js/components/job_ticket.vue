@@ -49,97 +49,7 @@
                             </div>
                         </span>
                     </td>
-                    <div class="modal fade" :id="'message-' + ticket.id" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{ticket.subject}}</h5>
-                                <div class="x-element" id="card-ticket-status"  v-if="role == 'employer'" @click="editstatus()" style="width: 100%;">
-                                    <span style="float: right;border: 1px solid black;padding: 10px 25px;border-radius: 10px;">{{ ticket.status }}</span>
-                                </div>
-                                <div id="card-ticket-stat" class="hidden" style="margin-bottom: 13px;width:100%">
-                                    <div class="float-right">
-                                    <select class="form-control form-control-sm" style="height: 32px;" id="task-stat" name="ticket-stat" v-on:change="statuschange">
-                                        <option :value="ticket.id + '-open'">{{ $trans('lang.open') }}</option>
-                                        <option :value="ticket.id + '-waiting'">{{ $trans('lang.waiting') }}</option>
-                                        <option :value="ticket.id + '-hold'">{{ $trans('lang.hold') }}</option>
-                                        <option :value="ticket.id + '-close'">{{ $trans('lang.close') }}</option>
-                                    </select>  
-                                    </div>                      
-                                </div>
-                                <button type="button" class="close" @click="Close2(ticket.id)" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        {{ticket.from}} <br>
-                                        {{ $filters.formatAgo(ticket.created_at) }}
-                                    </div>
-                                    <div class="col-md-8">
-                                        {{ ticket.message }}
-                                        <div v-if="ticket.file_id">
-                                        <br>
-                                        <a style="cursor: pointer;" @click="getDownload(ticket)"> <i class="fa fa-download" aria-hidden="true"></i> {{ $trans('lang.attachments') }}</a>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div v-for="reply in ticket.reply" :key="reply.id">
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        {{reply.user}} <br>
-                                        {{ $filters.formatAgo(reply.created_at) }}
-                                    </div>
-                                    <div class="col-md-8">
-                                        {{ reply.message }}
-                                    </div>
-                                </div>
-                                </div>
-                                
-                                
-                                
-                            </div>
-                            
-                            </div>
-                        </div>                        
-                    </div>
                     
-                    <div class="modal fade" :id="'reply-' + ticket.id" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <form @submit.prevent="replyTicket(ticket.id)">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{ticket.subject}} - {{ $trans('lang.reply') }}</h5>
-                                
-                                <button type="button" class="close" @click="Close1(ticket.id)" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            
-                            <div class="modal-body">
-                                
-                                <div class="form-group">
-                                    <label>{{ $trans('lang.msg') }}</label>
-                                    <textarea v-model="form1.message"  class="form-control" name="message" :class="{ 'is-invalid': form.errors.has('message') }"></textarea>
-                                </div>
-                                
-                                <input type="hidden" name="user_id" v-model="form1.user_id">
-                                <input type="hidden" name="ticket_id" v-model="form1.ticket_id">
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger"  @click="Close1(ticket.id)" data-dismiss="modal">{{ $trans('lang.close') }}</button>
-                                <button type="submit" class="btn btn-success">{{ $trans('lang.reply') }}</button>
-                                
-                            </div>
-                            
-                            </div>
-                            </form>
-                        </div>                        
-                    </div>
                     
                 </tr>
             </tbody>
@@ -151,6 +61,100 @@
                         <em>{{ $trans('lang.no_record') }}</em>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div v-for="ticket in tickets" :key="ticket.id">
+            <div class="modal fade" :id="'message-' + ticket.id" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ticket.subject}}</h5>
+                        <div class="x-element" id="card-ticket-status"  v-if="role == 'employer'" @click="editstatus()" style="width: 100%;">
+                            <span style="float: right;border: 1px solid black;padding: 10px 25px;border-radius: 10px;">{{ ticket.status }}</span>
+                        </div>
+                        <div id="card-ticket-stat" class="hidden" style="margin-bottom: 13px;width:100%">
+                            <div class="float-right">
+                            <select class="form-control form-control-sm" style="height: 32px;" id="task-stat" name="ticket-stat" v-on:change="statuschange">
+                                <option :value="ticket.id + '-open'">{{ $trans('lang.open') }}</option>
+                                <option :value="ticket.id + '-waiting'">{{ $trans('lang.waiting') }}</option>
+                                <option :value="ticket.id + '-hold'">{{ $trans('lang.hold') }}</option>
+                                <option :value="ticket.id + '-close'">{{ $trans('lang.close') }}</option>
+                            </select>  
+                            </div>                      
+                        </div>
+                        <button type="button" class="close" @click="Close2(ticket.id)" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ticket.from}} <br>
+                                {{ $filters.formatAgo(ticket.created_at) }}
+                            </div>
+                            <div class="col-md-8">
+                                {{ ticket.message }}
+                                <div v-if="ticket.file_id">
+                                <br>
+                                <a style="cursor: pointer;" @click="getDownload(ticket)"> <i class="fa fa-download" aria-hidden="true"></i> {{ $trans('lang.attachments') }}</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div v-for="reply in ticket.reply" :key="reply.id">
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{reply.user}} <br>
+                                {{ $filters.formatAgo(reply.created_at) }}
+                            </div>
+                            <div class="col-md-8">
+                                {{ reply.message }}
+                            </div>
+                        </div>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                    
+                    </div>
+                </div>                        
+            </div>
+            
+            <div class="modal fade" :id="'reply-' + ticket.id" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <form @submit.prevent="replyTicket(ticket.id)">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ticket.subject}} - {{ $trans('lang.reply') }}</h5>
+                        
+                        <button type="button" class="close" @click="Close1(ticket.id)" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        
+                        <div class="form-group">
+                            <label>{{ $trans('lang.msg') }}</label>
+                            <textarea v-model="form1.message"  class="form-control" name="message" :class="{ 'is-invalid': form.errors.has('message') }"></textarea>
+                        </div>
+                        
+                        <input type="hidden" name="user_id" v-model="form1.user_id">
+                        <input type="hidden" name="ticket_id" v-model="form1.ticket_id">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger"  @click="Close1(ticket.id)" data-dismiss="modal">{{ $trans('lang.close') }}</button>
+                        <button type="submit" class="btn btn-success">{{ $trans('lang.reply') }}</button>
+                        
+                    </div>
+                    
+                    </div>
+                    </form>
+                </div>                        
             </div>
         </div>
         

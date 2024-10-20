@@ -85,17 +85,32 @@ export default {
     mounted: function() {
         this.isActive = false
         var self= this
-        Event.$on('work-video-section-update', (data) => {
+        
+        this.emitter.on('work-video-section-update', (data) => {
             setTimeout(function(){ 
                 self.isActive = !self.isActive;
             }, 10);
         })
 
-        Event.$on('new-video-poster-image'+self.element_id, (data) => {
+        
+        this.emitter.on('new-video-poster-image'+self.element_id, (data) => {
             this.newVideoPosterImage = true
         })
     },
     methods:{
+        getArrayIndex(array, attr, value) {
+            this.json = '';
+            if (array.length) {
+                for (let x = 0; x < array.length; x++) {
+                if (array[x] && array[x][attr]) {
+                    if (array[x][attr] === value) {
+                    this.json = array[x]['order'] ? array[x]['order'] : '';
+                    }
+                }
+                }
+            }
+            return this.json;
+        },
         editElement: function() {
             var self = this
             this.$emit("editData");

@@ -110,16 +110,20 @@ export default {
         },
     },
     mounted: function () {
-        Event.$on('new-slider-inner-image'+this.element_id, (data) => {
+        this.emitter.on('new-slider-inner-image'+this.element_id, (data) => {
+        //Event.$on('new-slider-inner-image'+this.element_id, (data) => {
             this.newInnerBannerImage = true
         })
-        Event.$on('new-slider-floating-image1'+this.element_id, (data) => {
+        this.emitter.on('new-slider-floating-image1'+this.element_id, (data) => {
+        //Event.$on('new-slider-floating-image1'+this.element_id, (data) => {
             this.newFloatingImg1 = true
         })
-        Event.$on('new-slider-floating-image2'+this.element_id, (data) => {
+        this.emitter.on('new-slider-floating-image2'+this.element_id, (data) => {
+        //Event.$on('new-slider-floating-image2'+this.element_id, (data) => {
             this.newFloatingImg2 = true
         })
-        Event.$on('new-slider-slides-image'+this.element_id, (data) => {
+        this.emitter.on('new-slider-slides-image'+this.element_id, (data) => {
+        //Event.$on('new-slider-slides-image'+this.element_id, (data) => {
             this.newSliderImage = true
         })
     } 

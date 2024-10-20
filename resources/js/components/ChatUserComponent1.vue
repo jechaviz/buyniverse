@@ -57,15 +57,16 @@ import Event from '../event.js';
                 })
                 .then(function (response) {
                    self.messages = response.data.messages;
-                   Event.$emit('chat-start', { user_id: id, chat:true, messages:self.messages });
-                   Event.$emit('active-user', { user: response.data.selected, id:id});
+                   self.emitter.emit('chat-start', { user_id: id, chat:true, messages:self.messages });
+                   self.emitter.emit('active-user', { user: response.data.selected, id:id});
                 });
                 self.messages = [];
             },
             
         },
         mounted: function () {
-            Event.$on('chat-users', (data) => {
+            
+            this.emitter.on('chat-users', (data) => {
                 this.users = data.users;
             })
             this.getstarted();

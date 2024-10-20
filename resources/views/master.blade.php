@@ -107,7 +107,7 @@
 			</div>
 	@endif
 	<div id="wt-wrapper" class="wt-wrapper wt-haslayout wt-openmenu">
-		<div id="buyniverse_app" class="wt-contentwrapper">
+		<div class="wt-contentwrapper">
 			@yield('header')
 			@yield('slider')
 			@yield('main')

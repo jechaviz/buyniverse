@@ -57,7 +57,8 @@ export default {
       },
   },
   mounted(){
-    Event.$on('showCompletedMessage', function(data) {
+    this.emitter.on('showCompletedMessage', (data) => {
+    //Event.$on('showCompletedMessage', function(data) {
         return this.$toast.success(' ', data.message, this.notificationSystem.options.completed);
     });    
   },

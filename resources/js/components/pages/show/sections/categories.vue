@@ -73,13 +73,27 @@ export default {
     mounted: function() {
         this.isActive = false
         var self= this
-        Event.$on('category-section-update', (data) => {
+        this.emitter.on('category-section-update', (data) => {
             setTimeout(function(){ 
                 self.isActive = !self.isActive;
             }, 10);
         })
+        
     },
     methods:{
+        getArrayIndex(array, attr, value) {
+            this.json = '';
+            if (array.length) {
+                for (let x = 0; x < array.length; x++) {
+                if (array[x] && array[x][attr]) {
+                    if (array[x][attr] === value) {
+                    this.json = array[x]['order'] ? array[x]['order'] : '';
+                    }
+                }
+                }
+            }
+            return this.json;
+        },
         getCategories: function() {
             var self = this;
             axios
@@ -96,6 +110,7 @@ export default {
         var self = this
         setTimeout(function(){ 
             var index = self.getArrayIndex(self.categories, 'id', self.element_id)
+            //var index = "<?php echo" . getArrayIndex(self.categories, 'id', self.element_id) ."?>";
             if (self.categories[index]) {
                 self.category = self.categories[index]
             }

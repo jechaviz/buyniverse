@@ -54,6 +54,7 @@
                                     <div class="col-md-5">
                                         
                                         <table style="margin-top: 30px;">
+                                            <tbody>
           <tr id="tr1" >
               <td class="job-details"><b>{{ $trans('lang.project_levelx') }}</b></td>
               <td @click="editprojectlevel" class="job-details" >
@@ -278,10 +279,9 @@
                 </td>
           </tr>
           <tr id="tr10">
-
                 <td colspan="2"><button @click="submitJob" id="post-job-show" class="wt-btn" style="margin: 5px;float: right;">{{ $trans('lang.post_job') }}</button></td>
             </tr>
-          
+        </tbody>
       </table>
                                         
 

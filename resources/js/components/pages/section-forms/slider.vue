@@ -322,7 +322,7 @@ export default {
     },
     methods:{
         addedSuccess: function () {
-            Event.$emit('new-slider-slides-image'+this.currentElementID)
+            self.emitter.emit('new-slider-slides-image'+this.currentElementID)
         },
         imageAdded: function(hiddenID, imageType, hiddenGenerateImage) {
             var self = this
@@ -333,7 +333,7 @@ export default {
                     if (imageType == 'floatingImage01') {
                         if (image) {
                             self.slider.floating_image01 = image
-                            Event.$emit('new-slider-floating-image1'+self.currentElementID)
+                            self.emitter.emit('new-slider-floating-image1'+self.currentElementID)
                             self.newFloatingImg1 = true
                         } else {
                             self.slider.floating_image01 = null
@@ -341,7 +341,7 @@ export default {
                     } else if (imageType == 'floatingImage02') {
                         if (image) {
                             self.slider.floating_image02 = image
-                            Event.$emit('new-slider-floating-image2'+self.currentElementID)
+                            self.emitter.emit('new-slider-floating-image2'+self.currentElementID)
                             self.newFloatingImg2 = true
                         } else {
                             self.slider.floating_image02 = null
@@ -349,7 +349,7 @@ export default {
                     } else if (imageType == 'innerBannerImage') {
                         if (image) {
                             self.slider.inner_banner_image = image
-                            Event.$emit('new-slider-inner-image'+self.currentElementID)
+                            self.emitter.emit('new-slider-inner-image'+self.currentElementID)
                             self.newInnerBannerImage = true
                         } else {
                             self.slider.inner_banner_image = null

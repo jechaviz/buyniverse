@@ -525,6 +525,19 @@ export default {
     document.querySelector('body').classList.add('page-builder-body')
   },
   methods: {
+    getArrayIndex(array, attr, value) {
+            this.json = '';
+            if (array.length) {
+                for (let x = 0; x < array.length; x++) {
+                if (array[x] && array[x][attr]) {
+                    if (array[x][attr] === value) {
+                    this.json = array[x]['order'] ? array[x]['order'] : '';
+                    }
+                }
+                }
+            }
+            return this.json;
+        },
     displayHeaderStyling: function() {
       var self = this
       self.displayColorSettings = false
@@ -1219,39 +1232,56 @@ export default {
        var self = this
         setTimeout(function () {
           if (evt.moved.section == 'heading') {
-            Event.$emit('heading-section-update')
+            //Event.$emit('heading-section-update')
+            self.emitter.emit('heading-section-update');
           } else if (evt.moved.section == 'category') {
-            Event.$emit('category-section-update')
+            //Event.$emit('category-section-update')
+            self.emitter.emit('category-section-update');
           } else if (evt.moved.section == 'welcome_section') {
-            Event.$emit('welcome-section-update')
+            //Event.$emit('welcome-section-update')
+            self.emitter.emit('welcome-section-update');
           } else if (evt.moved.section == 'app_section') {
-            Event.$emit('app-section-update')
+            //Event.$emit('app-section-update')
+            self.emitter.emit('app-section-update');
           } else if (evt.moved.section == 'service_section') {
-            Event.$emit('service-section-update')
+            //Event.$emit('service-section-update')
+            self.emitter.emit('service-section-update');
           } else if (evt.moved.section == 'work_video_section') {
-            Event.$emit('work-video-section-update')
+            //Event.$emit('work-video-section-update')
+            self.emitter.emit('work-video-section-update');
           } else if (evt.moved.section == 'work_tab_section') {
-            Event.$emit('work-section-update')
+            //Event.$emit('work-section-update')
+            self.emitter.emit('work-section-update');
           } else if (evt.moved.section == 'provider_section') {
-            Event.$emit('provider-section-update')
+            //Event.$emit('provider-section-update')
+            self.emitter.emit('provider-section-update');
           } else if (evt.moved.section == 'content_section') {
-            Event.$emit('editor-section-update')
+            //Event.$emit('editor-section-update')
+            self.emitter.emit('editor-section-update');
           } else if (evt.moved.section == 'article_section') {
-            Event.$emit('article-section-update')
+            //Event.$emit('article-section-update')
+            self.emitter.emit('article-section-update');
           } else if (evt.moved.section == 'categoryV2') {
-            Event.$emit('category-sectionV2-update')
+            //Event.$emit('category-sectionV2-update')
+            self.emitter.emit('category-sectionV2-update');
           } else if (evt.moved.section == 'categoryV3') {
-            Event.$emit('category-sectionV3-update')
+            //Event.$emit('category-sectionV3-update')
+            self.emitter.emit('category-sectionV3-update');
           } else if (evt.moved.section == 'provider_section_v2') {
-            Event.$emit('provider-sectionV2-update')
+            //Event.$emit('provider-sectionV2-update')
+            self.emitter.emit('provider-sectionV2-update');
           } else if (evt.moved.section == 'jobs_section') {
-            Event.$emit('job-section-update')
+            //Event.$emit('job-section-update')
+            self.emitter.emit('job-section-update');
           } else if (evt.moved.section == 'package_section') {
-            Event.$emit('pkg-section-update')
+            //Event.$emit('pkg-section-update')
+            self.emitter.emit('pkg-section-update');
           } else if (evt.moved.section == 'bannerV1') {
-            Event.$emit('banner-section-update')
+            //Event.$emit('banner-section-update')
+            self.emitter.emit('banner-section-update');
           } else if (evt.moved.section == 'slider') {
-            Event.$emit('slider-section-update')
+            //Event.$emit('slider-section-update')
+            self.emitter.emit('slider-section-update');
           }
           self.editSection(evt.moved.element)
         }, 100)

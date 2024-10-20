@@ -42,6 +42,7 @@
                                     <div class="col-md-5">
                                         
                                         <table style="margin-top: 30px;">
+                                            <tbody>
           <tr>
               <td class="job-details"><b>{{ $trans('lang.project_levelx') }}</b></td>
               <td @click="editprojectlevel" class="job-details" >
@@ -418,7 +419,7 @@
                   
                 </td>
           </tr>
-          
+        </tbody>
       </table>
                                         
 

@@ -86,16 +86,20 @@ export default {
         }
     },
     mounted: function() {
-        Event.$on('new-app-image'+this.element_id, (data) => {
+        this.emitter.on('new-app-image'+this.element_id, (data) => {
+        //Event.$on('new-app-image'+this.element_id, (data) => {
             this.newAppImage = true
         })
-        Event.$on('new-bg-image'+this.element_id, (data) => {
+        this.emitter.on('new-bg-image'+this.element_id, (data) => {
+        //Event.$on('new-bg-image'+this.element_id, (data) => {
             this.newBgImage = true
         })
-        Event.$on('new-ios-image'+this.element_id, (data) => {
+        this.emitter.on('new-ios-image'+this.element_id, (data) => {
+        //Event.$on('new-ios-image'+this.element_id, (data) => {
             this.newIosImg = true
         })
-        Event.$on('new-android-image'+this.element_id, (data) => {
+        this.emitter.on('new-android-image'+this.element_id, (data) => {
+        //Event.$on('new-android-image'+this.element_id, (data) => {
             this.newAndroidImg = true
         })
     }  
