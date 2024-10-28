@@ -78,6 +78,7 @@
 		echo json_encode($trans);
 		?>;
 	</script>
+	@yield('styles_content')
 </head>
 
 <body class="wt-login {{Helper::getBodyLangClass()}} {{Helper::getTextDirection()}} {{empty(Request::segment(1)) ? 'home-wrapper' : '' }}">
@@ -115,11 +116,12 @@
 		</div>
 	</div>
 	@vite('resources/js/app.js')
+	@yield('script_content')
 	<script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 	<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
 	@yield('bootstrap_script')
 	<!--<script src="{{ asset('js/app.js') }}"></script>-->
-	<script src="{{ asset('js/vendor/jquery-library.js') }}"></script>
+	<!--<script src="{{ asset('js/vendor/jquery-library.js') }}"></script>-->
 	<script src="{{ asset('js/scrollbar.min.js') }}"></script>
 	<script src="{{ asset('js/particles.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui-min.js') }}"></script>

@@ -8,6 +8,7 @@
 </div>
 
 <form action="" class="wt-formtheme wt-userform" id="import-demo" @submit.prevent=''>
+@csrf
     <div class="wt-selectdesign la-wt-demo">
         <ul>
             <li>

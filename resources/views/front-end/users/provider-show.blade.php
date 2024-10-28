@@ -496,6 +496,7 @@
             <div class="d-block text-center">
                 
                 <form action="" class="wt-formtheme wt-userform" method="post" id="send-offer-form" @submit.prevent="submitProjectOffer({{ $profile->user_id }})">
+                @csrf
                     <div class="wt-projectdropdown-hold">
                         <div class="wt-projectdropdown">
                             <span class="wt-select">

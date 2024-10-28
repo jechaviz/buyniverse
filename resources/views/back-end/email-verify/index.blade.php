@@ -36,6 +36,7 @@ $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'tru
                     <div class="wt-registerformmain">
                         <div class="wt-joinformc">
                                 <form method="POST" action="{{ url('user/verify/emailcode') }}" class="wt-formtheme wt-formregister" id="verification_form">
+                                @csrf
                                     <div class="wt-registerhead">
                                         <div class="wt-title">
                                             <h3>{{{ $reg_three_title }}}</h3>

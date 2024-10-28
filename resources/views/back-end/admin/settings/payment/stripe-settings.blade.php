@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-userform wt-stripe-form" id="stripe-form" @submit.prevent="submitStripeSettings"> 
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.stripe_settings') }}}</h2>

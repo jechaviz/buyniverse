@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
                 return $user->hasRole('admin') ? true : null;
             }
         );
+        if($this->app->environment('production')) { 
+            // it will force redirect to https in Production mode 
+            URL::forceScheme('https');
+        }
     }
 
     /**

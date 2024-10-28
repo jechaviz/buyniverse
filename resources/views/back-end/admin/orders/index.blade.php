@@ -129,6 +129,7 @@
 												<td data-th="Service Status">
 													<span class="bt-content">
 														<form class="wt-formtheme wt-formsearch">
+														@csrf
 															<fieldset>
 																<div class="form-group">
 																	@if ($order->status == 'pending')

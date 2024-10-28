@@ -24,6 +24,7 @@
                     <td style="border-top: 1px solid #eff2f5;color: #767676;font-size: 13px;line-height: 20px;padding: 10px 20px;text-align: left;">
                         <span class="bt-content">
                             <form class="wt-formtheme wt-formsearch change-payout-status" id="change_job_status">
+                                @csrf
                                 <fieldset>
                                     <div class="form-group">
                                         <span class="wt-select">

@@ -385,5 +385,295 @@ if (document.getElementById("pages-list")) {
   
 }*/
 //app.mount('#buyniverse_app  '); id="buyniverse_app"
-app.mount('#wt-main');
+if (document.getElementById('registration')) 
+{
+    const registration = createApp({
+        mounted() {
+            // Your code here
+        },
+        data() {
+               return {
+                notificationSystem: {
+                    options: {
+                        error: {
+                            position: "topRight",
+                            timeout: 4000
+                        }
+                    }
+                },
+                step: 1,
+                user_email: '',
+                first_name: '',
+                last_name: '',
+                nickname: '',
+                form_step1: {
+                    email_error: '',
+                    is_email_error: false,
+                    first_name_error: '',
+                    is_first_name_error: false,
+                    last_name_error: '',
+                    is_last_name_error: false,
+                    nickname_error: '',
+                    is_nickname_error: false,
+                },
+                form_step2: {
+                    locations_error: '',
+                    is_locations_error: false,
+                    password_error: '',
+                    is_password_error: false,
+                    password_confirm_error: '',
+                    is_password_confirm_error: false,
+                    termsconditions_error: '',
+                    is_termsconditions_error: false,
+                    role_error: '',
+                    is_role_error: false,
+                },
+                loading: false,
+                user_role: 'employer',
+                is_show: true,
+                error_message: ''
+            };
+        },
+        methods: {
+            showError(error) {
+                return this.$toast.error(' ', error, this.notificationSystem.options.error);
+            },
+            prev: function () {
+                this.step--;
+            },
+            next: function () {
+                this.step++;
+            },
+            selectedRole: function (role) {
+                if (role == 'employer') {
+                    this.is_show = true;
+                } else {
+                    this.is_show = false;
+                }
+            },
+            checkSingleForm: function (error_message) {
+                this.error_message = error_message
+                this.loading = true
+                this.form_step1.first_name_error = '';
+                this.form_step1.is_first_name_error = false;
+                this.form_step1.last_name_error = '';
+                this.form_step1.is_last_name_error = false;
+                this.form_step1.nickname_error = '';
+                this.form_step1.is_nickname_error = false;
+                this.form_step1.email_error = '';
+                this.form_step1.is_email_error = false;
+                this.form_step2.password_error = '';
+                this.form_step2.is_password_error = false;
+                this.form_step2.password_confirm_error = '';
+                this.form_step2.is_password_confirm_error = false;
+                this.form_step2.termsconditions_error = '';
+                this.form_step2.is_termsconditions_error = false;
+                this.form_step2.role = '';
+                this.form_step2.is_role = false;
+                var self = this
+                let registerForm = document.getElementById('register_form')
+                let formData = new FormData(registerForm)
+                axios.post(APP_URL + '/register/single-form-custom-errors', formData)
+                    .then(function (response) {
+                        self.loading = false
+                        self.submitUser('single')
+                    })
+                    .catch(function (error) {
+                        self.loading = false
+                        if (error.response.data.errors.first_name) {
+                            self.form_step1.first_name_error = error.response.data.errors.first_name[0];
+                            self.form_step1.is_first_name_error = true;
+                        }
+                        if (error.response.data.errors.last_name) {
+                            self.form_step1.last_name_error = error.response.data.errors.last_name[0];
+                            self.form_step1.is_last_name_error = true;
+                        }
+                        if (error.response.data.errors.nickname) {
+                            self.form_step1.nickname_error = error.response.data.errors.nickname[0];
+                            self.form_step1.is_nickname_error = true;
+                        }
+                        if (error.response.data.errors.email) {
+                            self.form_step1.email_error = error.response.data.errors.email[0];
+                            self.form_step1.is_email_error = true;
+                        }
+                        if (error.response.data.errors.password) {
+                            self.form_step2.password_error = error.response.data.errors.password[0];
+                            self.form_step2.is_password_error = true;
+                        }
+                        if (error.response.data.errors.password_confirmation) {
+                            self.form_step2.password_confirm_error = error.response.data.errors.password_confirmation[0];
+                            self.form_step2.is_password_confirm_error = true;
+                        }
+                        if (error.response.data.errors.termsconditions) {
+                            self.form_step2.termsconditions_error = error.response.data.errors.termsconditions[0];
+                            self.form_step2.is_termsconditions_error = true;
+                        }
+                        if (error.response.data.errors.role) {
+                            self.form_step2.role_error = error.response.data.errors.role[0];
+                            self.form_step2.is_role_error = true;
+                        }
+                    })
+            },
+            checkStep1: function (e) {
+                this.form_step1.first_name_error = '';
+                this.form_step1.is_first_name_error = false;
+                this.form_step1.last_name_error = '';
+                this.form_step1.is_last_name_error = false;
+                this.form_step1.nickname_error = '';
+                this.form_step1.is_nickname_error = false;
+                this.form_step1.email_error = '';
+                this.form_step1.is_email_error = false;
+                var self = this;
+                let register_Form = document.getElementById('register_form');
+                let form_data = new FormData(register_Form);
+                axios.post(APP_URL + '/register/form-step1-custom-errors', form_data)
+                    .then(function (response) {
+                        self.next();
+                        //this.emitter.emit('Loadmap');
+                    })
+                    .catch(function (error) {
+                        if (error.response.data.errors.first_name) {
+                            self.form_step1.first_name_error = error.response.data.errors.first_name[0];
+                            self.form_step1.is_first_name_error = true;
+                        }
+                        if (error.response.data.errors.last_name) {
+                            self.form_step1.last_name_error = error.response.data.errors.last_name[0];
+                            self.form_step1.is_last_name_error = true;
+                        }
+                        if (error.response.data.errors.nickname) {
+                            self.form_step1.nickname_error = error.response.data.errors.nickname[0];
+                            self.form_step1.is_nickname_error = true;
+                        }
+                        if (error.response.data.errors.email) {
+                            self.form_step1.email_error = error.response.data.errors.email[0];
+                            self.form_step1.is_email_error = true;
+                        }
+                    });
+            },
+            checkStep2: function (error_message) {
+                this.error_message = error_message;
+                let register_Form = document.getElementById('register_form');
+                let form_data = new FormData(register_Form);
+                this.form_step2.password_error = '';
+                this.form_step2.is_password_error = false;
+                this.form_step2.password_confirm_error = '';
+                this.form_step2.is_password_confirm_error = false;
+                this.form_step2.termsconditions_error = '';
+                this.form_step2.is_termsconditions_error = false;
+                this.form_step2.role = '';
+                this.form_step2.is_role = false;
+                var self = this;
+                axios.post(APP_URL + '/register/form-step2-custom-errors', form_data).
+                    then(function (response) {
+                        self.submitUser('multiple')
+                    })
+                    .catch(function (error) {
+                        if (error.response.data.errors.password) {
+                            self.form_step2.password_error = error.response.data.errors.password[0];
+                            self.form_step2.is_password_error = true;
+                        }
+                        if (error.response.data.errors.password_confirmation) {
+                            self.form_step2.password_confirm_error = error.response.data.errors.password_confirmation[0];
+                            self.form_step2.is_password_confirm_error = true;
+                        }
+                        if (error.response.data.errors.termsconditions) {
+                            self.form_step2.termsconditions_error = error.response.data.errors.termsconditions[0];
+                            self.form_step2.is_termsconditions_error = true;
+                        }
+                        if (error.response.data.errors.role) {
+                            self.form_step2.role_error = error.response.data.errors.role[0];
+                            self.form_step2.is_role_error = true;
+                        }
+                    });
+            },
+            submitUser: function (formType) {
+                this.loading = true;
+                let register_Form = document.getElementById('register_form');
+                let form_data = new FormData(register_Form);
+                if (formType == 'multiple') {
+                    form_data.append('email', this.user_email);
+                    form_data.append('first_name', this.first_name);
+                    form_data.append('last_name', this.last_name);
+                    form_data.append('nickname', this.nickname);
+                }
+                var self = this;
+                axios.post(APP_URL + '/register', form_data)
+                    .then(function (response) {
+                        self.loading = false;
+                        if (response.data.type == 'success') {
+                            if (response.data.email == 'not_configured') {
+                                window.location.replace(response.data.url);
+                            } else {
+                                if (formType == 'single') {
+                                    self.loginRegisterUser()
+                                } else if (formType == 'multiple') {
+                                    self.next();
+                                }
+                            }
+                        } else if (response.data.type == 'error') {
+                            self.loading = false;
+                            self.custom_error = true;
+                            if (response.data.email_error) self.form_errors.push(response.data.email_error);
+                            if (response.data.password_error) self.form_errors.push(response.data.password_error);
+                        }
+                        else if (response.data.type == 'server_error') {
+                            self.loading = false;
+                            self.custom_error = true;
+                            self.showError(response.data.message);
+                        }
+                    })
+                    .catch(function (error) {
+                        if (error.response.status == 500) {
+                            self.showError(self.error_message);
+                        }
+                    });
+            },
+            verifyCode: function () {
+                this.loading = true;
+                let register_Form = document.getElementById('verification_form');
+                let form_data = new FormData(register_Form);
+                var self = this;
+                axios.post(APP_URL + '/register/verify-user-code', form_data)
+                    .then(function (response) {
+                        self.loading = false;
+                        if (response.data.type == 'success') {
+                            self.next();
+                        } else if (response.data.type == 'error') {
+                            self.showError(response.data.message);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            loginRegisterUser: function () {
+                var self = this;
+                axios.post(APP_URL + '/register/login-register-user')
+                    .then(function (response) {
+                        if (response.data.type == 'success') {
+                            window.location.href = APP_URL + '/' + response.data.role + '/dashboard';
+                        } else if (response.data.type == 'error') {
+                            self.error_message = response.data.message;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            scrollTop: function () {
+                var _scrollUp = jQuery('html, body');
+                _scrollUp.animate({ scrollTop: 0 }, 'slow');
+                jQuery('.wt-loginarea .wt-loginformhold').slideToggle();
+            },
+        }
+    });
+
+    registration.mount('#registration');
+
+}
+else
+{
+    app.mount('#wt-main');
+}
+
 

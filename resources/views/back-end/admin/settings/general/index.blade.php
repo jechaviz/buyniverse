@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-userform" id="general-setting-form" @submit.prevent="submitGeneralSettings">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.site_title') }}}</h2>

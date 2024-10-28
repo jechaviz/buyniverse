@@ -35,6 +35,7 @@
                         <div class="wt-personalskillshold tab-pane active show">
                             
                             <form action="" class="wt-userform" id="admin_data" @submit.prevent="submitAdminProfile">
+                            @csrf
                                 <div class="wt-yourdetails wt-tabsinfo">
                                     <div class="wt-tabscontenttitle">
                                         <h2>{{{ trans('lang.your_details') }}}</h2>

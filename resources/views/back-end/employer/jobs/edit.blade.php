@@ -27,6 +27,7 @@
                 <div class="wt-haslayout wt-post-job-wrap">
                     
                     <form action="" class="post-job-form wt-haslayout" id="job_edit_form" @submit.prevent="updateJob({{ $job->id }}">
+                    @csrf
                         <div class="wt-dashboardbox">
                             <div class="wt-dashboardboxtitle">
                                 <h2>{{ trans('lang.edit_job') }}</h2>

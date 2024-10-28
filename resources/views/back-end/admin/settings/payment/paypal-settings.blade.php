@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-userform" id="payment-form" @submit.prevent="submitPaypalSettings">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle la-switch-option">
             <h2>{{{ trans('lang.paypal_settings') }}}</h2>

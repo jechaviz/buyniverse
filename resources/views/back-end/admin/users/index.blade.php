@@ -15,6 +15,7 @@
                     <div class="wt-dashboardboxtitle wt-titlewithsearch">
                         <h2>{{{ trans('lang.manage_users') }}}</h2>
                         <form class="wt-formtheme wt-formsearch">
+                        @csrf
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"

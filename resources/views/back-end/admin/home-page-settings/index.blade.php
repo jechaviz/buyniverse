@@ -20,7 +20,7 @@
                     <div class="wt-tabscontent tab-content">
                         <div class="wt-securityhold tab-pane active la-banner-settings" id="wt-banner">
                             <form action="" class="wt-formtheme wt-userform" id="home-settings-form" @submit.prevent="submitHomeSettings">
-                            
+                            @csrf
                                 @if (file_exists(resource_path('views/extend/back-end/admin/home-page-settings/banner-settings/index.blade.php')))
                                     @include('extend.back-end.admin.home-page-settings.banner-settings.index')
                                 @else
@@ -36,7 +36,7 @@
                         </div>
                         <div class="wt-securityhold tab-pane la-section-settings" id="wt-sections">
                             <form action="" class="wt-formtheme wt-userform" id="section-settings-form" @submit.prevent="submitSectionSettings">
-                            
+                            @csrf
                                 @if (file_exists(resource_path('views/extend/back-end/admin/home-page-settings/sections/index.blade.php')))
                                     @include('extend.back-end.admin.home-page-settings.sections.index')
                                 @else

@@ -29,6 +29,7 @@
                         <div class="wt-proposalamount-holder">
                             
                             <form action="" class="wt-formtheme wt-formproposal" id="dispute-form" @submit.prevent="submitDispute({{ $job->id }})">
+                            @csrf
                                 <div class="wt-tabscontenttitle"><span>{{ trans('lang.reason_for_dispute') }}</span></div>
                                 <div class="form-group">
                                     <span class="wt-select">

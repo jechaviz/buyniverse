@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-skillsform" id="search-menu" @submit.prevent="submitSearchMenu">
+@csrf
     <div class="wt-tabscontenttitle">
         <h2>{{{ trans('lang.search_menu') }}}</h2>
     </div>

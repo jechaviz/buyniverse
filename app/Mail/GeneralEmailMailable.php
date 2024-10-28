@@ -59,7 +59,12 @@ class GeneralEmailMailable extends Mailable
     {
         $from_email = EmailHelper::getEmailFrom();
         $from_email_id = EmailHelper::getEmailID();
-        $subject = $this->template->subject;
+        //dd($this->template);
+        //$subject = $this->template->subject;
+        if($this->template)
+            $subject = $this->template->subject;
+        else
+            $subject = 'Mail form Buyniverse';
         if ($this->type == 'verification_code') {
             $email_message = $this->prepareEmailVerificationCode($this->email_params);
         } elseif ($this->type == 'new_user') {

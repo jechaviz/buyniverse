@@ -1,6 +1,7 @@
 <div class="la-inner-pages wt-haslayout">
 
 <form action="" class="wt-formtheme wt-userform" id="order_settings_form" @submit.prevent="submitOrderSettings">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.new_order_admin_email') }}}</h2>

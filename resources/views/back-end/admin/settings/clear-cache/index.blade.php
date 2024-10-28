@@ -9,6 +9,7 @@
     </div>
     
     <form action="" class="wt-formtheme wt-userform" id="form-cache-clear" @submit.prevent="clearCache">
+    @csrf
         <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
             <div class="wt-settingscontent">
                 <div class="wt-description">
@@ -40,6 +41,7 @@
     </div>
     
     <form action="" class="wt-formtheme wt-userform" id="cache-clear" @submit.prevent="clearAllCache">
+    @csrf
         <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
             <div class="wt-settingscontent">
                 <div class="wt-description">

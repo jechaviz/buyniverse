@@ -5,6 +5,7 @@
 </div>
 
 <form action="" class="wt-formtheme wt-userform la-dashboard-icons" id="upload_dashboard_icon" @submit.prevent="uploadDashboardIcons">
+@csrf
 @foreach ($icons as $key => $icon)
     <div class="wt-selectdesignholder wt-tabsinfo">
         <div class="wt-selectdesign la-selectthemecolor">

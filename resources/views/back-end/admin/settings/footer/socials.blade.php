@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-skillsform" id="social-management" @submit.prevent="submitSocialSettings">
+@csrf
     <fieldset class="social-icons-content">
         @if (!empty($social_unserialize_array))
             @php $counter = 0 @endphp

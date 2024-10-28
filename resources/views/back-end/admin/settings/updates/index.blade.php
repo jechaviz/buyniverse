@@ -8,7 +8,8 @@
         <h2>{{{ trans('lang.import_updates') }}}</h2>
     </div>
     
-    <form action="" class="wt-formtheme wt-userform" id="import-updates" @submit.prevent="importUpdate({{ trans('lang.imprted') }}, {{ trans('lang.imprt_success') }}>
+    <form action="" class="wt-formtheme wt-userform" id="import-updates" @submit.prevent="importUpdate({{ trans('lang.imprted') }}, {{ trans('lang.imprt_success') }}">
+    @csrf
         <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
             <div class="wt-settingscontent">
                 <div class="wt-description">

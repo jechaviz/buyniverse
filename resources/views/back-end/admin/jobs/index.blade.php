@@ -192,6 +192,7 @@
                             <b-modal ref="myModalRef-{{ $job->id }}" hide-footer title="Refund" v-cloak>
                                 <div class="d-block text-center">
 									<form action="" class="wt-formtheme" id="submit_refund_{{ $job->id }}" @submit.prevent="submitRefund({{$job->id}})">
+									@csrf
                                         <fieldset>
                                             <div class="form-group">
                                                 <span class="wt-select">

@@ -5,6 +5,7 @@
     <div class="wt-widgetcontent">
         
         <form action="" class="wt-formtheme wt-formreport" id="submit-report" @submit.prevent="submitReport({{ $service->id }},'service-report')">
+        @csrf
             <fieldset>
                 <div class="form-group">
                     <span class="wt-select">

@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme  wt-userform" id="menu-setting-form" @submit.prevent="submitMenuSettings">
+@csrf
     <div class="wt-securitysettings wt-tabsinfo wt-haslayout">
         <div class="wt-tabscontenttitle">
                 <h2>{{{ trans('lang.color_settings') }}}</h2>

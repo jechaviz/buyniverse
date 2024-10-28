@@ -1,6 +1,7 @@
 <div class="la-inner-pages wt-haslayout">
     
     <form action="" class="wt-formtheme wt-userform" id="breadcrumb-option" @submit.prevent="submitBreadcrumbs">
+    @csrf
         <div class="wt-location wt-tabsinfo">
             <div class="wt-tabscontenttitle">
                     <h2>{{{ trans('lang.breadcrumbs_option') }}}</h2>
@@ -22,6 +23,7 @@
     </form>
     
     <form action="" class="wt-formtheme wt-userform" id="inner-page-form" @submit.prevent="submitInnerPage">
+    @csrf
         <div class="wt-location wt-tabsinfo">
             <div class="wt-tabscontenttitle">
                 <h2>{{{ trans('lang.provider_listing') }}}</h2>

@@ -1,6 +1,7 @@
 <div class="la-inner-pages wt-haslayout">
 
 <form action="" class="wt-formtheme wt-userform" id="project_settings_form" @submit.prevent="submitProjectSettings">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.completed_projects') }}}</h2>

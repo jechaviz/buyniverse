@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-userform" id="submit-chat-form" @submit.prevent="submitChatSettings">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{ trans('lang.host') }}</h2>

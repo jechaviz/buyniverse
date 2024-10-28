@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-userform" id="comission-form" @submit.prevent="submitCommisionSettings">
+@csrf
     @if (file_exists(resource_path('views/extend/back-end/admin/settings/payment/site-payment-options.blade.php')))
         @include('extend.back-end.admin.settings.payment.site-payment-options')
     @else

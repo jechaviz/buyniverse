@@ -137,8 +137,7 @@ class RegisterController extends Controller
         if (!empty(config('mail.username')) && !empty(config('mail.password'))) {
             $email_params = array();
             if ($registration_type !== 'single' && $verification_type !== 'auto_verify') {
-                $template = DB::table('email_types')->select('id')
-                    ->where('email_type', 'verification_code')->get()->first();
+                $template = DB::table('email_types')->select('id')->where('email_type', 'verification_code')->get()->first();
                 if (!empty($template->id)) {
                     $template_data = EmailTemplate::getEmailTemplateByID($template->id);
                     $email_params['verification_code'] = $user->verification_code;

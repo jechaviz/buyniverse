@@ -94,6 +94,7 @@
                             <div class="wt-transection-holder">
                                 
                                 <form action="" class="wt-formtheme wt-userform sj-checkouttable" id="categoriestrans_form" @submit.prevent="submitTransection({{ $product_id }})">
+                                @csrf
                                     <fieldset>
                                         <div class="form-group">
                                             <textarea name="trans_detail" id="transection_detail" class="form-control" placeholder="{{{ trans('lang.trans_detail') }}}"></textarea>

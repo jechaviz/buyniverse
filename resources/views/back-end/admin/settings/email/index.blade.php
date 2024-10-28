@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-userform" id="email-setting-form" @submit.prevent="submitEmailSettings">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.from_email_id') }}}</h2>

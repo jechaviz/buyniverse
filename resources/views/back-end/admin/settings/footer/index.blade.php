@@ -8,6 +8,7 @@
     @endif
     
     <form action="" class="wt-formtheme wt-userform" id="footer-setting-form" @submit.prevent="submitFooterSettings">
+    @csrf
         @if (file_exists(resource_path('views/extend/back-end/admin/settings/footer/logo.blade.php')))
             @include('extend.back-end.admin.settings.footer.logo')
         @else

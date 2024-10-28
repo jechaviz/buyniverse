@@ -808,6 +808,7 @@ class Helper extends Model
         if (!empty($key) && array_key_exists($key, $list)) {
             return $list[$key];
         } else {
+            //return $key;
             return $list;
         }
     }

@@ -51,6 +51,7 @@
 											<td data-th="Service Status">
 												<span class="bt-content">
 													<form class="wt-formtheme wt-formsearch" id="change_job_status">
+													@csrf
 														<fieldset>
 															<div class="form-group">
 																<span class="wt-select">

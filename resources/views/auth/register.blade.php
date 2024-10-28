@@ -1,41 +1,5 @@
 @extends(file_exists(resource_path('views/extend/front-end/master.blade.php')) ? 'extend.front-end.master' : 'front-end.master')
-@section('content')
-@php
-    $employees      = Helper::getEmployeesList();
-    $departments    = App\Department::all();
-    $locations      = App\Location::select('title', 'id')->get()->pluck('title', 'id')->toArray();
-    $roles          = Spatie\Permission\Models\Role::all()->toArray();
-    $register_form = App\SiteManagement::getMetaValue('reg_form_settings');
-    $reg_one_title = !empty($register_form) && !empty($register_form[0]['step1-title']) ? $register_form[0]['step1-title'] : trans('lang.join_for_good');
-    $reg_one_subtitle = !empty($register_form) && !empty($register_form[0]['step1-subtitle']) ? $register_form[0]['step1-subtitle'] : trans('lang.join_for_good_reason');
-    $reg_two_title = !empty($register_form) && !empty($register_form[0]['step2-title']) ? $register_form[0]['step2-title'] : trans('lang.pro_info');
-    $reg_two_subtitle = !empty($register_form) && !empty($register_form[0]['step2-subtitle']) ? $register_form[0]['step2-subtitle'] : '';
-    $term_note = !empty($register_form) && !empty($register_form[0]['step2-term-note']) ? $register_form[0]['step2-term-note'] : trans('lang.agree_terms');
-    $reg_three_title = !empty($register_form) && !empty($register_form[0]['step3-title']) ? $register_form[0]['step3-title'] : trans('lang.almost_there');
-    $reg_three_subtitle = !empty($register_form) && !empty($register_form[0]['step3-subtitle']) ? $register_form[0]['step3-subtitle'] : trans('lang.acc_almost_created_note');
-    $register_image = !empty($register_form) && !empty($register_form[0]['register_image']) ? '/uploads/settings/home/'.$register_form[0]['register_image'] : 'images/work.jpg';
-    $reg_page = !empty($register_form) && !empty($register_form[0]['step3-page']) ? $register_form[0]['step3-page'] : '';
-    $reg_four_title = !empty($register_form) && !empty($register_form[0]['step4-title']) ? $register_form[0]['step4-title'] : trans('lang.congrats');
-    $reg_four_subtitle = !empty($register_form) && !empty($register_form[0]['step4-subtitle']) ? $register_form[0]['step4-subtitle'] : trans('lang.acc_creation_note');
-    $show_emplyr_inn_sec = !empty($register_form) && !empty($register_form[0]['show_emplyr_inn_sec']) ? $register_form[0]['show_emplyr_inn_sec'] : 'true';
-    $show_reg_form_banner = !empty($register_form) && !empty($register_form[0]['show_reg_form_banner']) ? $register_form[0]['show_reg_form_banner'] : 'true';
-    $reg_form_banner = !empty($register_form) && !empty($register_form[0]['reg_form_banner']) ? $register_form[0]['reg_form_banner'] : null;
-    $selected_registration_type = !empty($register_form) && !empty($register_form[0]['registration_type']) ? $register_form[0]['registration_type'] : 'multiple';
-    $breadcrumbs_settings = \App\SiteManagement::getMetaValue('show_breadcrumb');
-    $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
-@endphp
-@php $breadcrumbs = Breadcrumbs::generate('registerPage'); @endphp
-@if (file_exists(resource_path('views/extend/front-end/includes/inner-banner.blade.php'))) 
-    @include('extend.front-end.includes.inner-banner', 
-        ['title' => trans('lang.join_for_free'), 'inner_banner' => $reg_form_banner, 'path' => 'uploads/settings/home/', 'show_banner' => $show_reg_form_banner ]
-    )
-@else 
-    @include('front-end.includes.inner-banner', 
-        ['title' =>  trans('lang.join_for_free'), 'inner_banner' => $reg_form_banner, 'path' => 'uploads/settings/home/', 'show_banner' => $show_reg_form_banner ]
-    )
-@endif
-
-
+@section('styles_content')
 <style>
     .hidden {
         display: none!important;
@@ -80,6 +44,45 @@
             
         }
 </script>
+@stop
+@section('content')
+@php
+    $employees      = Helper::getEmployeesList();
+    $departments    = App\Department::all();
+    $locations      = App\Location::select('title', 'id')->get()->pluck('title', 'id')->toArray();
+    $roles          = Spatie\Permission\Models\Role::all()->toArray();
+    $register_form = App\SiteManagement::getMetaValue('reg_form_settings');
+    $reg_one_title = !empty($register_form) && !empty($register_form[0]['step1-title']) ? $register_form[0]['step1-title'] : trans('lang.join_for_good');
+    $reg_one_subtitle = !empty($register_form) && !empty($register_form[0]['step1-subtitle']) ? $register_form[0]['step1-subtitle'] : trans('lang.join_for_good_reason');
+    $reg_two_title = !empty($register_form) && !empty($register_form[0]['step2-title']) ? $register_form[0]['step2-title'] : trans('lang.pro_info');
+    $reg_two_subtitle = !empty($register_form) && !empty($register_form[0]['step2-subtitle']) ? $register_form[0]['step2-subtitle'] : '';
+    $term_note = !empty($register_form) && !empty($register_form[0]['step2-term-note']) ? $register_form[0]['step2-term-note'] : trans('lang.agree_terms');
+    $reg_three_title = !empty($register_form) && !empty($register_form[0]['step3-title']) ? $register_form[0]['step3-title'] : trans('lang.almost_there');
+    $reg_three_subtitle = !empty($register_form) && !empty($register_form[0]['step3-subtitle']) ? $register_form[0]['step3-subtitle'] : trans('lang.acc_almost_created_note');
+    $register_image = !empty($register_form) && !empty($register_form[0]['register_image']) ? '/uploads/settings/home/'.$register_form[0]['register_image'] : 'images/work.jpg';
+    $reg_page = !empty($register_form) && !empty($register_form[0]['step3-page']) ? $register_form[0]['step3-page'] : '';
+    $reg_four_title = !empty($register_form) && !empty($register_form[0]['step4-title']) ? $register_form[0]['step4-title'] : trans('lang.congrats');
+    $reg_four_subtitle = !empty($register_form) && !empty($register_form[0]['step4-subtitle']) ? $register_form[0]['step4-subtitle'] : trans('lang.acc_creation_note');
+    $show_emplyr_inn_sec = !empty($register_form) && !empty($register_form[0]['show_emplyr_inn_sec']) ? $register_form[0]['show_emplyr_inn_sec'] : 'true';
+    $show_reg_form_banner = !empty($register_form) && !empty($register_form[0]['show_reg_form_banner']) ? $register_form[0]['show_reg_form_banner'] : 'true';
+    $reg_form_banner = !empty($register_form) && !empty($register_form[0]['reg_form_banner']) ? $register_form[0]['reg_form_banner'] : null;
+    $selected_registration_type = !empty($register_form) && !empty($register_form[0]['registration_type']) ? $register_form[0]['registration_type'] : 'multiple';
+    $breadcrumbs_settings = \App\SiteManagement::getMetaValue('show_breadcrumb');
+    $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
+@endphp
+@php $breadcrumbs = Breadcrumbs::generate('registerPage'); @endphp
+@if (file_exists(resource_path('views/extend/front-end/includes/inner-banner.blade.php'))) 
+    @include('extend.front-end.includes.inner-banner', 
+        ['title' => trans('lang.join_for_free'), 'inner_banner' => $reg_form_banner, 'path' => 'uploads/settings/home/', 'show_banner' => $show_reg_form_banner ]
+    )
+@else 
+    @include('front-end.includes.inner-banner', 
+        ['title' =>  trans('lang.join_for_free'), 'inner_banner' => $reg_form_banner, 'path' => 'uploads/settings/home/', 'show_banner' => $show_reg_form_banner ]
+    )
+@endif
+
+
+
 <div class="wt-haslayout wt-main-section">
     <div class="container">
         <div class="row justify-content-md-center">
@@ -408,6 +411,7 @@
                                 </form>
                                 <div class="wt-joinformc" v-if="step === 3" v-cloak>
                                     <form method="POST" action="" class="wt-formtheme wt-formregister" id="verification_form">
+                                        @csrf
                                         <div class="wt-registerhead">
                                             <div class="wt-title">
                                                 <h3>{{{ $reg_three_title }}}</h3>
@@ -474,7 +478,8 @@
             </div>
         </div>
     </div>
-    
+@endsection
+@section('script_content')   
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <!--<script src="http://localhost:8000/js/tinymce/tinymce.min.js"></script>-->
     <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>

@@ -1,5 +1,6 @@
 
 <form action="" class="wt-formtheme wt-userform" id="general-home-setting-form" @submit.prevent="submitGeneralHomeSettings">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle">
             <h2>{{{ trans('lang.homepage') }}}</h2>

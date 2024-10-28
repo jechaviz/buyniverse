@@ -1,4 +1,5 @@
 <form action="" class="wt-formtheme wt-userform" id="services-sec-settings" @submit.prevent="submitServicesSectionSettings">
+@csrf
 <div class="wt-tabscontenttitle la-switch-option">
     <h2>{{ trans('lang.show_services_sec') }}</h2>
     <switch_button v-model="show_services_section">{{{ trans('lang.show_hide_sec') }}}</switch_button>

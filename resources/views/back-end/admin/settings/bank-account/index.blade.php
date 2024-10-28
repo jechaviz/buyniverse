@@ -1,6 +1,7 @@
 <div class="la-inner-pages wt-haslayout">
 
 <form action="" class="wt-formtheme wt-userform la-bank-detail" id="back-detail-form" @submit.prevent="submitBankDetail">
+@csrf
     <div class="wt-location wt-tabsinfo">
         <div class="wt-tabscontenttitle la-switch-option">
             <h2>{{{ trans('lang.account_detail') }}}</h2>

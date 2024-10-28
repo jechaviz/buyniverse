@@ -72,6 +72,7 @@
                                         <td class="job-details"><b>{{ trans('lang.hired_provider') }}</b></td>
                                         <td class="job-details"> 
                                             <form class="wt-formtheme wt-formsearch" id="change_job_status">
+                                            @csrf
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <span class="wt-select" style="margin-top: 10px;margin-right: 10px;">
@@ -165,6 +166,7 @@
         <b-modal ref="myModalRef" hide-footer title="Project Status">
             <div class="d-block text-center">
                 <form class="wt-formtheme wt-formfeedback" id="submit-review-form">
+                @csrf
                     <fieldset>
                         <div class="form-group">
                             <textarea class="form-control" placeholder="{{ trans('lang.add_your_feedback') }}" name="feedback"></textarea>

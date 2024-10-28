@@ -10,6 +10,7 @@
     @if (Schema::hasTable('services') && Schema::hasTable('service_user'))
         
         <form action="" class="wt-formtheme wt-userform" id="acces_types_form" @submit.prevent="submitAccessType">
+        @csrf
             <div class="wt-securitysettings wt-tabsinfo  wt-haslayout">
                 <div class="wt-settingscontent">
                     <div class="wt-description">

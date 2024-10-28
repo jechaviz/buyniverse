@@ -35,6 +35,7 @@
                                     <p>{{ trans('lang.emp_payout_settings_note') }}</p>
                                 </div>
                                 <form class="wt-formtheme wt-payout-settings la-payout-settings" @submit.prevent="submitPayoutsDetail({{Auth::user()->id}})" id="profile_payout_detail">
+                                @csrf
                                     @if( !empty($payrols) )
                                         @foreach ($payrols as $pay_key	=> $payrol)
                                             @php
