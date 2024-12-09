@@ -481,7 +481,7 @@ if (document.getElementById("wt-innerbannerholdertwo")) {
     const vmHeader = createApp({
         el: '#wt-innerbannerholdertwo',
         mounted: function () {
-        },
+        }, 
     });
 }
 

@@ -18,14 +18,16 @@
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {{{Form::input('password', 'paypal_password', e($payment_password), ['class' => 'form-control', 'placeholder' => trans('lang.ph_paypal_pass')])}}}
-                </div>
+                    
+                    <input id="password" type="password" class="form-control" name="paypal_password" value="{{ $payment_password }}" placeholder="{{ trans('lang.ph_paypal_pass') }}">
+                </div> 
             </div>
         </div>
         <div class="wt-settingscontent">
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
-                    {{{Form::input('password', 'paypal_secret', e($existing_payment_secret), ['class' => 'form-control', 'placeholder' => trans('lang.ph_paypal_secret')])}}}
+                    
+                    <input id="password" type="password" class="form-control" name="paypal_secret" value="{{ $existing_payment_secret }}" placeholder="{{ trans('lang.ph_paypal_secret') }}">
                 </div>
             </div>
         </div>

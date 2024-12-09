@@ -19,7 +19,12 @@
             <div class="wt-formtheme wt-userform">
                 <div class="form-group">
                     <span class="wt-select">
-                    {{{ Form::select('payment[0][currency]', $currency,e($existing_currency), ['class'=>'form-control','placeholder'=>trans('lang.ph_select_currency')]) }}}
+                    <select name="payment[0][currency]" class="form-control" data-placeholder = "{{trans('lang.ph_select_currency')}}">
+                        @foreach ($currency as $key => $payment)
+                            @php $selected = in_array($payment['value'], $existing_currency) ? 'selected': ''; @endphp
+                            <option value="{{$payment['value']}}" {{$selected}}>{{$payment['title']}}</option>
+                        @endforeach
+                    </select>
                 </span>
                 </div>
             </div>

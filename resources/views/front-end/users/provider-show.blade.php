@@ -500,14 +500,23 @@
                     <div class="wt-projectdropdown-hold">
                         <div class="wt-projectdropdown">
                             <span class="wt-select">
-                                {{{ Form::select('projects', $employer_projects, null, array('class' => 'form-control', 'placeholder' => trans('lang.ph_select_projects'))) }}}
+                                
+                                <select class="form-control" name="projects">
+                                    <option value="0">{{ trans('lang.ph_select_projects') }}</option>
+                                    @if (count($employer_projects) > 0) 
+                                    @foreach ($employer_projects as $cat)
+                                    <option value="{{$cat->id}}">{{ $cat->title }}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
                             </span>
                         </div>
                     </div>
                     <div class="wt-formtheme wt-formpopup">
                         <fieldset>
                             <div class="form-group">
-                                {{{ Form::textarea('desc', null, array('placeholder' => trans('lang.ph_add_desc'))) }}}
+                                <textarea name="desc" class="form-control" placeholder="{{ trans('lang.ph_add_desc') }}"></textarea>
+                                
                             </div>
                             <div class="form-group wt-btnarea">
                                 

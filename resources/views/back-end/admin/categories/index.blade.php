@@ -50,7 +50,7 @@
                                                 @endforeach
                                                 @endif
                                             </select>
-                                        </span>
+                                        </span> 
                                         <span class="form-group-description">{{{ trans('lang.parent_desc') }}}</span>
                                     </div>
                                     <div class="wt-settingscontent">
