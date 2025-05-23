@@ -118,7 +118,7 @@ class ArticleController extends Controller
             $cats = ArticleCategory::all()->pluck('title', 'id')->toArray();
             if (!empty($cats)) {
                 if (file_exists(resource_path('views/extend/back-end/admin/manage-articles/articles/edit.blade.php'))) {
-                    return View::make('extend.back-end.admin.manage-articles.articles.edit', compact('cats, articles', 'selected_cats'));
+                    return View::make('extend.back-end.admin.manage-articles.articles.edit', compact('cats', 'articles', 'selected_cats'));
                 } else {
                     return View::make(
                         'back-end.admin.manage-articles.articles.edit', compact('id', 'cats', 'articles', 'selected_cats')
