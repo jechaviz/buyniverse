@@ -131,13 +131,14 @@ class MessageController extends Controller
                 FROM (
                     SELECT id, user_id AS chat_sender
                     FROM messages
-                    WHERE receiver_id = $user_id OR user_id = $user_id
+                    WHERE receiver_id = :uid1 OR user_id = :uid2
                 UNION ALL
                     SELECT id, receiver_id AS chat_sender
                     FROM messages
-                    WHERE user_id = $user_id OR receiver_id = $user_id )
+                    WHERE user_id = :uid3 OR receiver_id = :uid4 )
                     t GROUP BY chat_sender ) ORDER BY id DESC"
-            )
+            ),
+            ['uid1' => $user_id, 'uid2' => $user_id, 'uid3' => $user_id, 'uid4' => $user_id]
         );
         
         $json = array();
@@ -235,13 +236,14 @@ class MessageController extends Controller
                 FROM (
                     SELECT id, user_id AS chat_sender
                     FROM messages
-                    WHERE receiver_id = $user_id OR user_id = $user_id
+                    WHERE receiver_id = :uid1 OR user_id = :uid2
                 UNION ALL
                     SELECT id, receiver_id AS chat_sender
                     FROM messages
-                    WHERE user_id = $user_id OR receiver_id = $user_id )
+                    WHERE user_id = :uid3 OR receiver_id = :uid4 )
                     t GROUP BY chat_sender ) ORDER BY id DESC"
-            )
+            ),
+            ['uid1' => $user_id, 'uid2' => $user_id, 'uid3' => $user_id, 'uid4' => $user_id]
         );
         //$user = User::find(22);
         //dd($users);
