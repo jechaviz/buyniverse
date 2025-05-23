@@ -19,7 +19,7 @@ class Notifycontest extends Command
      *
      * @var string
      */
-    protected $description = 'It is to notify the users that the conetst is about to get started';
+    protected $description = 'It is to notify the users that the contest is about to get started';
 
     /**
      * Create a new command instance.
