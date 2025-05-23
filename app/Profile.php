@@ -12,8 +12,6 @@ use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\Facades\Image;
 use File;
 use Storage;
-use function Opis\Closure\serialize;
-use function Opis\Closure\unserialize;
 use DB;
 use App\User;
 use Auth;
@@ -168,7 +166,7 @@ class Profile extends Model
             foreach ($videos as $key => $video) {
                 $videos[$key]['url'] = $video['url'];
             }
-            $profile->videos = serialize($videos);
+            $profile->videos = json_encode($videos);
         } else {
             $profile->videos = null;
         }
@@ -301,8 +299,8 @@ class Profile extends Model
                 $award_counter++;
             }
         }
-        $project = !empty($request['project']) ? serialize($request_project) : '';
-        $award = !empty($request['award']) ? serialize($request_award) : '';
+        $project = !empty($request['project']) ? json_encode($request_project) : '';
+        $award = !empty($request['award']) ? json_encode($request_award) : '';
         $user_profile = $this::select('id')->where('user_id', $user_id)
             ->get()->first();
         if (!empty($user_profile->id)) {
@@ -337,11 +335,11 @@ class Profile extends Model
             $profile = $this;
             $profile->user()->associate($user_id);
         }
-        $wishlist = unserialize($profile[$column]);
+        $wishlist = json_decode($profile[$column], true);
         $wishlist = !empty($wishlist) && is_array($wishlist) ? $wishlist : array();
         $wishlist[] = $id;
         $wishlist = array_unique($wishlist);
-        $profile->$column = serialize($wishlist);
+        $profile->$column = json_encode($wishlist);
         $profile->save();
         if (!empty($column) && ($column === 'saved_employers' || $column === 'saved_provider')) {
             DB::table('followers')->insert(
@@ -397,8 +395,8 @@ class Profile extends Model
                 $count2++;
             }
         }
-        $experience = !empty($request['experience']) ? serialize($request_experiance) : '';
-        $education = !empty($request['education']) ? serialize($request_education) : '';
+        $experience = !empty($request['experience']) ? json_encode($request_experiance) : '';
+        $education = !empty($request['education']) ? json_encode($request_education) : '';
         $user_profile = $this::select('id')->where('user_id', $user_id)
             ->get()->first();
         if (!empty($user_profile->id)) {
@@ -449,7 +447,7 @@ class Profile extends Model
                 $payouts['bank_bic_swift'] = $payout_setting['bank_bic_swift'];
             }
         }
-        $profile->payout_settings  = serialize($payouts);
+        $profile->payout_settings  = json_encode($payouts);
         $profile->save();
     }
 }
