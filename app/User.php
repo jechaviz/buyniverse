@@ -257,7 +257,9 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the item record associated with the user.
+     * Get the item records associated with the user.
+     *
+     * This relation returns multiple items.
      *
      * @return relation
      */
