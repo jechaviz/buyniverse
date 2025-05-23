@@ -24,7 +24,7 @@ use App\Package;
 use App\Helper;
 use App\Job;
 use Carbon\Carbon;
-use canResetPassword;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use App\Notifications;
 use Event;
 use App\Notifications\MailResetPasswordNotification;
@@ -37,6 +37,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use CanResetPassword;
     protected $guard_name = 'web';
 
     /**
