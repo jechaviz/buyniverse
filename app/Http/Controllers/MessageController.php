@@ -109,7 +109,7 @@ class MessageController extends Controller
     /*public function jobchat($id)
     {
         $ids = explode('_', $id);
-        //o -> reciever id, 1 -> job id
+        //o -> receiver id, 1 -> job id
         $messages = Message::where('receiver_id', $ids[0])->select('id')->get();
         foreach($messages as $value)
         {
