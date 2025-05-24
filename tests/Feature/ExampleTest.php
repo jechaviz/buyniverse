@@ -19,5 +19,6 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Buyniverse');
+        $response->assertHeader('Content-Security-Policy', "default-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self'");
     }
 }
