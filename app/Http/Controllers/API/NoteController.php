@@ -28,8 +28,8 @@ class NoteController extends Controller
     {
         //dd($request->all());
         return Job_note::create([
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' => filter_var($request->title, FILTER_SANITIZE_STRING),
+            'description' => filter_var($request->description, FILTER_SANITIZE_STRING),
             'star' => 0,
             'color' => 'note-bg-green',
             'user_id' => $request->user_id,

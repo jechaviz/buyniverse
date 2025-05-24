@@ -1673,7 +1673,7 @@ class JobController extends Controller
     {
         //dd($request->all());
         $job = Job::find($request->job_id);
-        $job->description = $request->description;
+        $job->description = filter_var($request->description, FILTER_SANITIZE_STRING);
         //dd($job);
         $job->save();
         return true;
