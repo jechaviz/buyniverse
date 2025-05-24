@@ -91,7 +91,7 @@
                                 <div class="row" style="width: 100%;">
                                     <div class="col-md-7">
                                         <div style="margin: 30px;">
-                                            {!! $job->description !!}
+                                            {{ $job->description }}
                                         </div>
                                     </div>
                                     <div class="col-md-5">
