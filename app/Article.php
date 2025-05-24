@@ -88,7 +88,7 @@ class Article extends Model
         if (!empty($request)) {
             $this->title = filter_var($request['title'], FILTER_SANITIZE_STRING);
             $this->slug = filter_var($request['title'], FILTER_SANITIZE_STRING);
-            $this->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
+            $this->description = \App\Helpers\Security::sanitizeHTML($request['description']);
             $this->user()->associate(Auth::user());
             $old_path = Helper::assetPath() . '/uploads/articles/temp';
             if (!empty($request['uploaded_image'])) {
@@ -137,7 +137,7 @@ class Article extends Model
                 $article->slug  =  filter_var($request['title'], FILTER_SANITIZE_STRING);
             }
             $article->title = filter_var($request['title'], FILTER_SANITIZE_STRING);
-            $article->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
+            $article->description = \App\Helpers\Security::sanitizeHTML($request['description']);
             $old_path = Helper::assetPath() . '/uploads/articles/temp';
             if (!empty($request['uploaded_image'])) {
                 $filename = $request['uploaded_image'];
