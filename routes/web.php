@@ -40,9 +40,7 @@ if (empty(Request::segment(1))) {
             return trans('lang.configure_database');
         }
     }
-}
-else
-{
+}else {
     Route::get(
         '/home',
         function () {

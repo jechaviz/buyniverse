@@ -11,8 +11,7 @@ use Session;
 use View;
 use App\Helper;
 
-class ArticleController extends Controller
-{
+class ArticleController extends Controller {
     /**
      * Defining scope of variable
      *
@@ -28,8 +27,7 @@ class ArticleController extends Controller
      *
      * @return void
      */
-    public function __construct(Article $article)
-    {
+    public function __construct(Article $article) {
         $this->article = $article;
     }
     /**
@@ -37,8 +35,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         if ($request->filled('keyword')) {
             $keyword = $request->query('keyword');
             $articles = $this->article::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
@@ -63,8 +60,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -74,8 +70,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $server_verification = Helper::worketicIsDemoSite();
         if (!empty($server_verification)) {
             Session::flash('error', $server_verification);
@@ -97,8 +92,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -108,8 +102,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         if (!empty($id)) {
             $articles = $this->article::find($id);
             $selected_cats = $articles->categories->pluck('title', 'id')->toArray();
@@ -134,8 +127,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $server_verification = Helper::worketicIsDemoSite();
         if (!empty($server_verification)) {
             Session::flash('error', $server_verification);
@@ -157,8 +149,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {
+    public function destroy(Request $request) {
         $server = Helper::worketicIsDemoSiteAjax();
         if (!empty($server)) {
             $json['type'] = 'error';
@@ -185,8 +176,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function uploadTempImage(Request $request)
-    {
+    public function uploadTempImage(Request $request) {
         $path = Helper::assetPath() . '/uploads/articles/temp/';
         if (!empty($request['uploaded_image'])) {
             $image_size = array(
@@ -218,8 +208,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function articlesList($category='')
-    {
+    public function articlesList($category='') {
         // $breadcrumbs_settings = \App\SiteManagement::getMetaValue('show_breadcrumb');
         // $show_breadcrumbs = !empty($breadcrumbs_settings) ? $breadcrumbs_settings : 'true';
         $cats = ArticleCategory::all()->toArray();
@@ -259,8 +248,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showArticle($slug)
-    {
+    public function showArticle($slug) {
         $inner_page  = SiteManagement::getMetaValue('inner_page_data');
         $article_inner_banner = !empty($inner_page) && !empty($inner_page[0]['article_inner_banner']) ? $inner_page[0]['article_inner_banner'] : null;
         $show_article_banner = !empty($inner_page) && !empty($inner_page[0]['show_article_banner']) ? $inner_page[0]['show_article_banner'] : 'true';
@@ -289,8 +277,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function deleteSelected(Request $request)
-    {
+    public function deleteSelected(Request $request) {
         $server = Helper::worketicIsDemoSiteAjax();
         if (!empty($server)) {
             $json['type'] = 'error';
@@ -322,8 +309,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getArticles()
-    {
+    public function getArticles() {
         $json = array();
 
         $articles = $this->article::get()->toArray();
