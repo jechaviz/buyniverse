@@ -39,14 +39,12 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $articles = $this->article::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
-            $pagination = $articles->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $articles->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $articles = $this->article->paginate(10);
         }

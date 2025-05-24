@@ -48,15 +48,13 @@ class EmailTemplateController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $templates = $this->email::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
             $roles = array_pluck(Role::all(), 'name', 'id');
-            $pagination = $templates->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $templates->appends([
+                'keyword' => $keyword,
+            ]);
         } else if (!empty($request['role'])) {
             $templates = EmailTemplate::getFilterTemplate($request['role']);
             $roles = array_pluck(Role::all(), 'name', 'id');

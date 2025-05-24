@@ -715,23 +715,23 @@ class ProviderController extends Controller
             $provider_skills = Helper::getProviderLevelList();
             $project_length = Helper::getJobDurationList();
             $current_date = Carbon::now()->toDateTimeString();
-            $address = !empty($_GET['addr']) ? $_GET['addr'] : '';
-            $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
-            
-            $search_categories = !empty($_GET['category']) ? $_GET['category'] : array();
-            $search_locations = !empty($_GET['locations']) ? $_GET['locations'] : array();
-            $search_skills = !empty($_GET['skills']) ? $_GET['skills'] : array();
-            $search_project_lengths = !empty($_GET['project_lengths']) ? $_GET['project_lengths'] : array();
-            $search_languages = !empty($_GET['languages']) ? $_GET['languages'] : array();
-            $search_employees = !empty($_GET['employees']) ? $_GET['employees'] : array();
-            $search_hourly_rates = !empty($_GET['hourly_rate']) ? $_GET['hourly_rate'] : array();
-            $search_freelaner_types = !empty($_GET['freelaner_type']) ? $_GET['freelaner_type'] : array();
-            $search_english_levels = !empty($_GET['english_level']) ? $_GET['english_level'] : array();
-            $search_delivery_time = !empty($_GET['delivery_time']) ? $_GET['delivery_time'] : array();
-            $search_response_time = !empty($_GET['response_time']) ? $_GET['response_time'] : array();
+            $address = $request->query('addr', '');
+            $keyword = $request->query('s', '');
 
-            $min_price = !empty($_GET['minprice']) ? $_GET['minprice'] : 0;
-            $max_price = !empty($_GET['maxprice']) ? $_GET['maxprice'] : 0;
+            $search_categories = $request->query('category', []);
+            $search_locations = $request->query('locations', []);
+            $search_skills = $request->query('skills', []);
+            $search_project_lengths = $request->query('project_lengths', []);
+            $search_languages = $request->query('languages', []);
+            $search_employees = $request->query('employees', []);
+            $search_hourly_rates = $request->query('hourly_rate', []);
+            $search_freelaner_types = $request->query('freelaner_type', []);
+            $search_english_levels = $request->query('english_level', []);
+            $search_delivery_time = $request->query('delivery_time', []);
+            $search_response_time = $request->query('response_time', []);
+
+            $min_price = $request->query('minprice', 0);
+            $max_price = $request->query('maxprice', 0);
             $Jobs_total_records = Job::count();
             $job_list_meta_title = !empty($inner_page) && !empty($inner_page[0]['job_list_meta_title']) ? $inner_page[0]['job_list_meta_title'] : trans('lang.job_listing');
             $job_list_meta_desc = !empty($inner_page) && !empty($inner_page[0]['job_list_meta_desc']) ? $inner_page[0]['job_list_meta_desc'] : trans('lang.job_meta_desc');

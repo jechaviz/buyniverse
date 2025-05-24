@@ -47,14 +47,12 @@ class LanguageController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $langs = $this->language::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
-            $pagination = $langs->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $langs->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $langs = $this->language->paginate(10);
         }

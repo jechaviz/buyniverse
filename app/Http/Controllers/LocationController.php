@@ -49,14 +49,12 @@ class LocationController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $locations = $this->location::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
-            $pagination = $locations->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $locations->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $locations = $this->location->paginate(7);
         }

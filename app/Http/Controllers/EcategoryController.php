@@ -39,17 +39,15 @@ class EcategoryController extends Controller
     public function index(Request $request)
     {
         //dd('employer categories');
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             if (Auth::user()->getRoleNames()[0] == 'admin')
                 $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
             else
                 $cats = $this->category::where('title', 'like', '%' . $keyword . '%')->where('status', 'appear_globally')->paginate(7)->setPath('');
-            $pagination = $cats->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $cats->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             //$cats = $this->category->paginate(10);
             if (Auth::user()->getRoleNames()[0] == 'admin')

@@ -50,14 +50,12 @@ class DepartmentController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $departments = $this->department::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
-            $pagination = $departments->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $departments->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $departments = $this->department->paginate(7);
         }

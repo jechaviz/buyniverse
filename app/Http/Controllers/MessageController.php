@@ -459,8 +459,8 @@ class MessageController extends Controller
      */
     public function getConversations (Request $request) 
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $searched_users_ids = User::where('first_name', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->pluck('id')->toarray();
             $re_create_searched_users_ids = array_values($searched_users_ids);
             $conversations = DB::table('messages')
@@ -469,11 +469,9 @@ class MessageController extends Controller
                             ->select('user_id','receiver_id')
                             ->groupBy(DB::raw('LEAST(receiver_id, user_id), GREATEST(receiver_id, user_id)'))
                             ->paginate(7);
-            $pagination = $conversations->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $conversations->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $conversations = DB::table('messages')
                             ->select('user_id','receiver_id')

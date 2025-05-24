@@ -867,7 +867,7 @@ class ProposalController extends Controller
         $search_languages = null;
 
         //Providers listing
-        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
+        $keyword = $request->query('s', '');
         $search =  User::getSearchResult(
             'provider',
             $keyword,

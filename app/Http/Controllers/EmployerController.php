@@ -1287,14 +1287,14 @@ class EmployerController extends Controller
 
         //provider 
         $type= 'provider';
-        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
-        $search_locations = !empty($_GET['locations']) ? $_GET['locations'] : array();
-        $search_employees = !empty($_GET['employees']) ? $_GET['employees'] : array();
-        $search_skills = !empty($_GET['skills']) ? $_GET['skills'] : array();
-        $search_hourly_rates = !empty($_GET['hourly_rate']) ? $_GET['hourly_rate'] : array();
-        $search_freelaner_types = !empty($_GET['freelaner_type']) ? $_GET['freelaner_type'] : array();
-        $search_english_levels = !empty($_GET['english_level']) ? $_GET['english_level'] : array();
-        $search_languages = !empty($_GET['languages']) ? $_GET['languages'] : array();
+        $keyword = $request->query('s', '');
+        $search_locations = $request->query('locations', []);
+        $search_employees = $request->query('employees', []);
+        $search_skills = $request->query('skills', []);
+        $search_hourly_rates = $request->query('hourly_rate', []);
+        $search_freelaner_types = $request->query('freelaner_type', []);
+        $search_english_levels = $request->query('english_level', []);
+        $search_languages = $request->query('languages', []);
         $search =  User::getSearchResult(
             $type,
             $keyword,
@@ -1312,15 +1312,15 @@ class EmployerController extends Controller
         //dd($users);
 
         //jobs
-        $address = !empty($_GET['addr']) ? $_GET['addr'] : '';
-        $search_project_lengths = !empty($_GET['project_lengths']) ? $_GET['project_lengths'] : array();
+        $address = $request->query('addr', '');
+        $search_project_lengths = $request->query('project_lengths', []);
         $completed_project_setting = !empty($project_settings) && !empty($project_settings['enable_completed_projects']) ? $project_settings['enable_completed_projects'] : 'true';
-        $min_price = !empty($_GET['minprice']) ? $_GET['minprice'] : 0;
-        $max_price = !empty($_GET['maxprice']) ? $_GET['maxprice'] : 0;
+        $min_price = $request->query('minprice', 0);
+        $max_price = $request->query('maxprice', 0);
         foreach($categories as $category)
         {
             //$search_categories = $category->slug;
-            $search_categories = !empty($_GET['category']) ? $_GET['category'] : array();
+            $search_categories = $request->query('category', []);
             $search_categories[0] = $category->slug;
             $results = Job::getSearchResult(
                 $address,
@@ -1353,8 +1353,8 @@ class EmployerController extends Controller
 
 
         //services 
-        $search_delivery_time = !empty($_GET['delivery_time']) ? $_GET['delivery_time'] : array();
-        $search_response_time = !empty($_GET['response_time']) ? $_GET['response_time'] : array();
+        $search_delivery_time = $request->query('delivery_time', []);
+        $search_response_time = $request->query('response_time', []);
         $type = 'service';
         $search_categories = array();
         $results = Service::getSearchResult(
@@ -1424,14 +1424,14 @@ class EmployerController extends Controller
         
         //provider 
         $type= 'provider';
-        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
-        $search_locations = !empty($_GET['locations']) ? $_GET['locations'] : array();
-        $search_employees = !empty($_GET['employees']) ? $_GET['employees'] : array();
-        $search_skills = !empty($_GET['skills']) ? $_GET['skills'] : array();
-        $search_hourly_rates = !empty($_GET['hourly_rate']) ? $_GET['hourly_rate'] : array();
-        $search_freelaner_types = !empty($_GET['freelaner_type']) ? $_GET['freelaner_type'] : array();
-        $search_english_levels = !empty($_GET['english_level']) ? $_GET['english_level'] : array();
-        $search_languages = !empty($_GET['languages']) ? $_GET['languages'] : array();
+        $keyword = $request->query('s', '');
+        $search_locations = $request->query('locations', []);
+        $search_employees = $request->query('employees', []);
+        $search_skills = $request->query('skills', []);
+        $search_hourly_rates = $request->query('hourly_rate', []);
+        $search_freelaner_types = $request->query('freelaner_type', []);
+        $search_english_levels = $request->query('english_level', []);
+        $search_languages = $request->query('languages', []);
         $search =  User::getSearchResult(
             $type,
             $keyword,
@@ -1450,15 +1450,15 @@ class EmployerController extends Controller
         //dd($users);
 
         //jobs
-        $address = !empty($_GET['addr']) ? $_GET['addr'] : '';
-        $search_project_lengths = !empty($_GET['project_lengths']) ? $_GET['project_lengths'] : array();
+        $address = $request->query('addr', '');
+        $search_project_lengths = $request->query('project_lengths', []);
         $completed_project_setting = !empty($project_settings) && !empty($project_settings['enable_completed_projects']) ? $project_settings['enable_completed_projects'] : 'true';
-        $min_price = !empty($_GET['minprice']) ? $_GET['minprice'] : 0;
-        $max_price = !empty($_GET['maxprice']) ? $_GET['maxprice'] : 0;
+        $min_price = $request->query('minprice', 0);
+        $max_price = $request->query('maxprice', 0);
         foreach($categories as $category)
         {
             //$search_categories = $category->slug;
-            $search_categories = !empty($_GET['category']) ? $_GET['category'] : array();
+            $search_categories = $request->query('category', []);
             $search_categories[0] = $category->slug;
             $results = Job::getSearchResult(
                 $address,
@@ -1491,8 +1491,8 @@ class EmployerController extends Controller
 
 
         //services 
-        $search_delivery_time = !empty($_GET['delivery_time']) ? $_GET['delivery_time'] : array();
-        $search_response_time = !empty($_GET['response_time']) ? $_GET['response_time'] : array();
+        $search_delivery_time = $request->query('delivery_time', []);
+        $search_response_time = $request->query('response_time', []);
         $type = 'service';
         $search_categories = array();
         $results = Service::getSearchResult(

@@ -37,14 +37,12 @@ class ArticleCategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $cats = $this->article_category::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
-            $pagination = $cats->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $cats->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $cats = $this->article_category->paginate(10);
         }
