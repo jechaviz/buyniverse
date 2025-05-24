@@ -60,7 +60,7 @@
                     @if (!empty($categories))
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach ($categories as $category)
-                                @php $checked = ( !empty($_GET['category']) && in_array($category->slug, $_GET['category'] )) ? 'checked' : ''; @endphp
+                                @php $checked = in_array($category->slug, (array) request()->query('category', [])) ? 'checked' : ''; @endphp
                                 <span class="wt-checkbox">
                                     <input id="cat-{{{ $category->slug }}}" type="checkbox" name="category[]" value="{{{ $category->slug }}}" {{$checked}} >
                                     <label for="cat-{{{ $category->slug }}}"> {{{ $category->title }}}</label>
@@ -88,13 +88,14 @@
                             @foreach ($locations as $location)
                                 @php 
                                     $checked = '';
-                                    if (!empty($_GET['locations'])) {
-                                        if (is_array($_GET['locations']) && in_array($location->slug, $_GET['locations'])) {
+                                    $selectedLocations = request()->query('locations');
+                                    if (!empty($selectedLocations)) {
+                                        if (is_array($selectedLocations) && in_array($location->slug, $selectedLocations)) {
                                             $checked = 'checked';
-                                        } elseif ( $location->slug == $_GET['locations']) {
-                                            $checked = 'checked';     
+                                        } elseif ($location->slug == $selectedLocations) {
+                                            $checked = 'checked';
                                         }
-                                    } 
+                                    }
                                 @endphp
                                 <span class="wt-checkbox">
                                     <input id="location-{{{ $location->slug }}}" type="checkbox" name="locations[]" value="{{{$location->slug}}}" {{$checked}} >
@@ -121,7 +122,7 @@
                     @if (!empty($languages))
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach ($languages as $language)
-                                @php $checked = ( !empty($_GET['languages']) && in_array($language->slug, $_GET['languages'])) ? 'checked' : '' @endphp
+                                @php $checked = in_array($language->slug, (array) request()->query('languages', [])) ? 'checked' : '' @endphp
                                 <span class="wt-checkbox">
                                     <input id="language-{{{ $language->slug }}}" type="checkbox" name="languages[]" value="{{{$language->slug}}}" {{$checked}} >
                                     <label for="language-{{{ $language->slug }}}">{{{ $language->title }}}</label>
@@ -147,7 +148,7 @@
                     @if (!empty($delivery_time))
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach ($delivery_time as $time)
-                                @php $checked = ( !empty($_GET['delivery_time']) && in_array($time->slug, $_GET['delivery_time'])) ? 'checked' : '' @endphp
+                                @php $checked = in_array($time->slug, (array) request()->query('delivery_time', [])) ? 'checked' : '' @endphp
                                 <span class="wt-checkbox">
                                     <input id="time-{{{ $time->slug }}}" type="checkbox" name="delivery_time[]" value="{{{$time->slug}}}" {{$checked}} >
                                     <label for="time-{{{ $time->slug }}}">{{{ $time->title }}}</label>
@@ -173,7 +174,7 @@
                     @if (!empty($response_time))
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach ($response_time as $time)
-                                @php $checked = ( !empty($_GET['response_time']) && in_array($time->slug, $_GET['response_time'])) ? 'checked' : '' @endphp
+                                @php $checked = in_array($time->slug, (array) request()->query('response_time', [])) ? 'checked' : '' @endphp
                                 <span class="wt-checkbox">
                                     <input id="time-{{{ $time->slug }}}" type="checkbox" name="response_time[]" value="{{{$time->slug}}}" {{$checked}} >
                                     <label for="time-{{{ $time->slug }}}">{{{ $time->title }}}</label>

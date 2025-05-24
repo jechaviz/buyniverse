@@ -1,8 +1,8 @@
 @extends(file_exists(resource_path('views/extend/back-end/master.blade.php')) ? 'extend.back-end.master' : 'back-end.master')
 @section('content')
 @php
-    $selected_role = !empty($_GET['role']) ? $_GET['role'] : '';
-    $selected_type = !empty($_GET['type']) ? $_GET['type'] : '';
+    $selected_role = request()->query('role', '');
+    $selected_type = request()->query('type', '');
 @endphp
     <section class="wt-haslayout wt-dbsectionspace" id="settings">
     <div class="row"  style="margin-left: 10px;padding-bottom: 15px;">
@@ -29,7 +29,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
                                 <div class="form-group">
-                                    <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
+                                    <input type="text" name="keyword" value="{{{ request()->query('keyword', '') }}}"
                                         class="form-control" placeholder="{{{ trans('lang.ph_search_templates') }}}">
                                     <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                 </div>

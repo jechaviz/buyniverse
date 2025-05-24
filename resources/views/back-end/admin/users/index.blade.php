@@ -18,7 +18,7 @@
                         @csrf
                             <fieldset>
                                 <div class="form-group">
-                                    <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}"
+                                    <input type="text" name="keyword" value="{{{ request()->query('keyword', '') }}}"
                                         class="form-control" placeholder="{{{ trans('lang.ph_search_users') }}}">
                                     <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                 </div>

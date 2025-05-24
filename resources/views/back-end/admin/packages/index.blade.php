@@ -192,7 +192,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        <input type="text" name="keyword" value="{{{ !empty($_GET['keyword']) ? $_GET['keyword'] : '' }}}" class="form-control" placeholder="{{{ trans('lang.ph_search_packages') }}}">
+                                        <input type="text" name="keyword" value="{{{ request()->query('keyword', '') }}}" class="form-control" placeholder="{{{ trans('lang.ph_search_packages') }}}">
                                         <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                     </div>
                                 </fieldset>

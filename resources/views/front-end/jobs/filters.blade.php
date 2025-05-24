@@ -74,7 +74,7 @@
                     @if (!empty($categories))
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach ($categories as $category)
-                                @php $checked = ( !empty($_GET['category']) && in_array($category->slug, $_GET['category'] )) ? 'checked' : ''; @endphp
+                                @php $checked = in_array($category->slug, (array) request()->query('category', [])) ? 'checked' : ''; @endphp
                                 <span class="wt-checkbox">
                                     <input id="cat-{{{ $category->slug }}}" type="checkbox" name="category[]" value="{{{ $category->slug }}}" {{$checked}} >
                                     <label for="cat-{{{ $category->slug }}}"> {{{ $category->title }}}</label>
@@ -102,13 +102,14 @@
                             @foreach ($locations as $location)
                                 @php 
                                     $checked = '';
-                                    if (!empty($_GET['locations'])) {
-                                        if (is_array($_GET['locations']) && in_array($location->slug, $_GET['locations'])) {
+                                    $selectedLocations = request()->query('locations');
+                                    if (!empty($selectedLocations)) {
+                                        if (is_array($selectedLocations) && in_array($location->slug, $selectedLocations)) {
                                             $checked = 'checked';
-                                        } elseif ( $location->slug == $_GET['locations']) {
-                                            $checked = 'checked';     
+                                        } elseif ($location->slug == $selectedLocations) {
+                                            $checked = 'checked';
                                         }
-                                    } 
+                                    }
                                 @endphp
                                 <span class="wt-checkbox">
                                     <input id="location-{{{ $location->slug }}}" type="checkbox" name="locations[]" value="{{{$location->slug}}}" {{$checked}} >
@@ -129,7 +130,7 @@
                     @if (!empty($skills))
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach ($skills as $key => $skill)
-                                @php $checked = (!empty($_GET['skills']) && in_array($skill->slug, $_GET['skills'])) ? 'checked' : '' @endphp
+                                @php $checked = in_array($skill->slug, (array) request()->query('skills', [])) ? 'checked' : '' @endphp
                                 <span class="wt-checkbox">
                                     <input id="skill-{{{ $key }}}" type="checkbox" name="skills[]" value="{{{$skill->slug}}}" {{$checked}} >
                                     <label for="skill-{{{ $key }}}">{{{ $skill->title }}}</label>
@@ -149,7 +150,7 @@
                     @if (!empty($project_length))
                         <div class="wt-checkboxholder">
                             @foreach ($project_length as $key => $length)
-                                @php $checked = ( !empty($_GET['project_lengths']) && in_array($length, $_GET['project_lengths'])) ? 'checked' : '' @endphp
+                                @php $checked = in_array($length, (array) request()->query('project_lengths', [])) ? 'checked' : '' @endphp
                                 <span class="wt-checkbox">
                                     <input id="{{{ $key }}}" type="checkbox" name="project_lengths[]" value="{{{$key}}}" {{$checked}}>
                                     <label for="{{{ $key }}}">{{{ $length }}}</label>
@@ -175,7 +176,7 @@
                     @if (!empty($languages))
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach ($languages as $language)
-                                @php $checked = ( !empty($_GET['languages']) && in_array($language->slug, $_GET['languages'])) ? 'checked' : '' @endphp
+                                @php $checked = in_array($language->slug, (array) request()->query('languages', [])) ? 'checked' : '' @endphp
                                 <span class="wt-checkbox">
                                     <input id="language-{{{ $language->slug }}}" type="checkbox" name="languages[]" value="{{{$language->slug}}}" {{$checked}} >
                                     <label for="language-{{{ $language->slug }}}">{{{ $language->title }}}</label>
