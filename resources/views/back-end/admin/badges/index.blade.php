@@ -74,7 +74,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <fieldset>
                                     <div class="form-group">
-                                        <input type="search" name="s" value="{{{ !empty($_GET['s']) ? $_GET['s'] : '' }}}" class="form-control" placeholder="{{{ trans('lang.ph_search_badges') }}}">
+                                        <input type="search" name="s" value="{{{ request()->query('s', '') }}}" class="form-control" placeholder="{{{ trans('lang.ph_search_badges') }}}">
                                         <button type="submit" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></button>
                                     </div>
                                 </fieldset>

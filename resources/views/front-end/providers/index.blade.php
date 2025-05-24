@@ -136,8 +136,9 @@
                 @foreach ($categories as $cat)
                     @php
                         $category = \App\Category::find($cat->id);
-                        $active = (!empty($_GET['category']) && in_array($cat->id, $_GET['category'])) ? 'active-category' : '';
-                        $active_wrapper = ( !empty($_GET['category']) && in_array($cat->id, $_GET['category'])) ? 'active-category-wrapper' : '';
+                        $selectedCategories = (array) request()->query('category', []);
+                        $active = in_array($cat->id, $selectedCategories) ? 'active-category' : '';
+                        $active_wrapper = in_array($cat->id, $selectedCategories) ? 'active-category-wrapper' : '';
                     @endphp
                     <div class="wt-categoryslidercontent item {{$active_wrapper}}">
                         <figure><img src="{{{ asset(Helper::getCategoryImage($cat->image)) }}}" alt="{{{ $cat->title }}}"></figure>

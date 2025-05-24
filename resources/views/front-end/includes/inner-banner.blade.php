@@ -10,14 +10,14 @@
             $selected_header = Helper::getPageHeader($page_id);
         } elseif (Request::segment(1) == 'search-results') {
             $inner_page  = App\SiteManagement::getMetaValue('inner_page_data');
-            if (!empty($_GET['type'])) {
-                if ($_GET['type'] == 'provider') {
+            if (request()->filled('type')) {
+                if (request()->query('type') == 'provider') {
                     $selected_header = !empty($inner_page) && !empty($inner_page[0]['f_header_style']) ? $inner_page[0]['f_header_style'] : '';
-                } elseif ($_GET['type'] == 'employer') {
+                } elseif (request()->query('type') == 'employer') {
                     $selected_header = !empty($inner_page) && !empty($inner_page[0]['emp_header_style']) ? $inner_page[0]['emp_header_style'] : '';
-                } elseif ($_GET['type'] == 'job') {
+                } elseif (request()->query('type') == 'job') {
                     $selected_header = !empty($inner_page) && !empty($inner_page[0]['job_header_style']) ? $inner_page[0]['job_header_style'] : '';
-                } elseif ($_GET['type'] == 'service') {
+                } elseif (request()->query('type') == 'service') {
                     $selected_header = !empty($inner_page) && !empty($inner_page[0]['service_header_style']) ? $inner_page[0]['service_header_style'] : '';
                 }
             }

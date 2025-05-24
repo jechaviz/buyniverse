@@ -35,8 +35,8 @@
                 } elseif (Request::segment(1) == 'search-results') {
                     $inner_page  = App\SiteManagement::getMetaValue('inner_page_data');
                     
-                    if (!empty($_GET['type'])) {
-                        if ($_GET['type'] == 'provider') {
+                    if (request()->filled('type')) {
+                        if (request()->query('type') == 'provider') {
                             $header_styling = !empty($inner_page) && !empty($inner_page[0]['provider_header_styling']) ? $inner_page[0]['provider_header_styling'] : 'false';
                             if ($header_styling == 'true') {
                                 $selected_menu_color = !empty($inner_page) && !empty($inner_page[0]['f_menu_color']) ? $inner_page[0]['f_menu_color'] : '';
@@ -45,7 +45,7 @@
                                 $selected_logo = !empty($inner_page) && !empty($inner_page[0]['f_logo']) ? 'uploads/settings/general/'.$inner_page[0]['f_logo'] : '';  
                             }
                             $page_header = !empty($inner_page) && !empty($inner_page[0]['f_header_style']) ? $inner_page[0]['f_header_style'] : '';
-                        } elseif ($_GET['type'] == 'employer') {
+                        } elseif (request()->query('type') == 'employer') {
                             $header_styling = !empty($inner_page) && !empty($inner_page[0]['employer_header_styling']) ? $inner_page[0]['employer_header_styling'] : 'false';
                             if ($header_styling == 'true') {
                                 $selected_menu_color = !empty($inner_page) && !empty($inner_page[0]['e_menu_color']) ? $inner_page[0]['e_menu_color'] : '';
@@ -54,7 +54,7 @@
                                 $selected_logo = !empty($inner_page) && !empty($inner_page[0]['e_logo']) ? 'uploads/settings/general/'.$inner_page[0]['e_logo'] : '';  
                             }
                             $page_header = !empty($inner_page) && !empty($inner_page[0]['emp_header_style']) ? $inner_page[0]['emp_header_style'] : '';
-                        } elseif ($_GET['type'] == 'job') {
+                        } elseif (request()->query('type') == 'job') {
                             $header_styling = !empty($inner_page) && !empty($inner_page[0]['job_header_styling']) ? $inner_page[0]['job_header_styling'] : 'false';
                             if ($header_styling == 'true') {
                                 $selected_menu_color = !empty($inner_page) && !empty($inner_page[0]['job_menu_color']) ? $inner_page[0]['job_menu_color'] : '';
@@ -63,7 +63,7 @@
                                 $selected_logo = !empty($inner_page) && !empty($inner_page[0]['job_logo']) ? 'uploads/settings/general/'.$inner_page[0]['job_logo'] : '';  
                             }
                             $page_header = !empty($inner_page) && !empty($inner_page[0]['job_header_style']) ? $inner_page[0]['job_header_style'] : '';
-                        } elseif ($_GET['type'] == 'service') {
+                        } elseif (request()->query('type') == 'service') {
                             $header_styling = !empty($inner_page) && !empty($inner_page[0]['service_header_styling']) ? $inner_page[0]['service_header_styling'] : 'false';
                             if ($header_styling == 'true') {
                                 $selected_menu_color = !empty($inner_page) && !empty($inner_page[0]['service_menu_color']) ? $inner_page[0]['service_menu_color'] : '';

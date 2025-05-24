@@ -35,13 +35,14 @@
                                 @foreach ($locations as $location)
                                     @php 
                                         $checked = '';
-                                        if (!empty($_GET['locations'])) {
-                                            if (is_array($_GET['locations']) && in_array($location->slug, $_GET['locations'])) {
+                                        $selectedLocations = request()->query('locations');
+                                        if (!empty($selectedLocations)) {
+                                            if (is_array($selectedLocations) && in_array($location->slug, $selectedLocations)) {
                                                 $checked = 'checked';
-                                            } elseif ( $location->slug == $_GET['locations']) {
-                                                $checked = 'checked';     
+                                            } elseif ($location->slug == $selectedLocations) {
+                                                $checked = 'checked';
                                             }
-                                        } 
+                                        }
                                     @endphp
                                     <span class="wt-checkbox">
                                         <input id="location-{{{ $location->slug }}}" type="checkbox" name="locations[]" value="{{{$location->slug}}}" {{$checked}}>
@@ -65,7 +66,7 @@
                     <fieldset>
                         <div class="wt-checkboxholder wt-verticalscrollbar">
                             @foreach (Helper::getEmployeesList() as $employee)
-                                @php $checked = ( !empty($_GET['employees']) && in_array($employee['value'], $_GET['employees'])) ? 'checked' : '' @endphp
+                                @php $checked = in_array($employee['value'], (array) request()->query('employees', [])) ? 'checked' : '' @endphp
                                 <span class="wt-checkbox">
                                     <input id="employee-{{{ $employee['value'] }}}" type="checkbox" name="employees[]" value="{{{ $employee['value'] }}}" {{{ $checked }}}>
                                     <label for="employee-{{{ $employee['value'] }}}">{{{ $employee['title'] }}}</label>
