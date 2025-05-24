@@ -158,7 +158,7 @@ class JobController extends Controller
         //dd($job);
 
         //Providers listing
-        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
+        $keyword = $request->query('s', '');
         $search =  User::getSearchResult1(
             'provider',
             $keyword,
@@ -252,7 +252,7 @@ class JobController extends Controller
         //dd($job);
 
         //Providers listing
-        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
+        $keyword = $request->query('s', '');
         $search =  User::getSearchResult1(
             'provider',
             $keyword,
@@ -343,7 +343,7 @@ class JobController extends Controller
         $search_languages = null;
 
         //Providers listing
-        $keyword = !empty($_GET['s']) ? $_GET['s'] : '';
+        $keyword = $request->query('s', '');
         $search =  User::getSearchResult(
             'provider',
             $keyword,

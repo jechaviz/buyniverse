@@ -763,14 +763,12 @@ class ServiceController extends Controller
      */
     public function adminServices(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $services = $this->service::where('title', 'like', '%' . $keyword . '%')->paginate(6)->setPath('');
-            $pagination = $services->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $services->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $services = $this->service->latest()->paginate(8);
         }
@@ -797,14 +795,12 @@ class ServiceController extends Controller
      */
     public function adminServiceOrders(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $orders = DB::table('service_user')->where('type', 'employer')->paginate(8);
-            $pagination = $orders->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $orders->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $orders = DB::table('service_user')->where('type', 'employer')->paginate(8);
         }

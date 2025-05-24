@@ -1474,14 +1474,12 @@ class JobController extends Controller
      */
     public function jobsAdmin(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $jobs = $this->job::where('title', 'like', '%' . $keyword . '%')->paginate(6)->setPath('');
-            $pagination = $jobs->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $jobs->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $jobs = $this->job->latest()->paginate(6);
         }

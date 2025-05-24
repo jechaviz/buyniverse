@@ -65,11 +65,11 @@ class RestAPIController extends Controller
         $currency   = SiteManagement::getMetaValue('commision');
         $curr_symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         $symbol = !empty($curr_symbol) ? $curr_symbol['symbol'] : '$';
-        $profile_id = !empty($_GET['profile_id']) ? $_GET['profile_id'] : '';
+        $profile_id = $request->query('profile_id', '');
         $login_user = !empty($profile_id) ? User::find($profile_id) : new User();
-        $type = !empty($_GET['listing_type']) ? $_GET['listing_type'] : '';
-        $post_per_page = !empty($_GET['show_users']) ? $_GET['show_users'] : 10;
-        $page_number = !empty($_GET['page_number']) ? $_GET['page_number'] : 1;
+        $type = $request->query('listing_type', '');
+        $post_per_page = $request->query('show_users', 10);
+        $page_number = $request->query('page_number', 1);
         Paginator::currentPageResolver(
             function () use ($page_number) {
                 return $page_number;
@@ -120,13 +120,13 @@ class RestAPIController extends Controller
                 }
             } elseif ($type === 'search') {
                 $user_id = array();
-                $keyword = !empty($_GET['keyword']) ? $_GET['keyword'] : '';
-                $search_locations = !empty($_GET['location']) ? $_GET['location'] : array();
-                $search_skills = !empty($_GET['skills']) ? $_GET['skills'] : array();
-                $search_hourly_rates = !empty($_GET['hourly_rate']) ? $_GET['hourly_rate'] : array();
-                $search_freelaner_types = !empty($_GET['freelaner_type']) ? $_GET['freelaner_type'] : array();
-                $search_english_levels = !empty($_GET['english_level']) ? $_GET['english_level'] : array();
-                $search_languages = !empty($_GET['language']) ? $_GET['language'] : array();
+                $keyword = $request->query('keyword', '');
+                $search_locations = $request->query('location', []);
+                $search_skills = $request->query('skills', []);
+                $search_hourly_rates = $request->query('hourly_rate', []);
+                $search_freelaner_types = $request->query('freelaner_type', []);
+                $search_english_levels = $request->query('english_level', []);
+                $search_languages = $request->query('language', []);
                 $filters = array();
                 $filters['type'] = $type;
                 if (!empty($keyword)) {
@@ -639,11 +639,11 @@ class RestAPIController extends Controller
     public function getEmployer()
     {
         $json = array();
-        $profile_id = !empty($_GET['profile_id']) ? $_GET['profile_id'] : '';
+        $profile_id = $request->query('profile_id', '');
         $login_user = !empty($profile_id) ? User::find($profile_id) : new User();
-        $type = !empty($_GET['listing_type']) ? $_GET['listing_type'] : '';
-        $post_per_page = !empty($_GET['show_users']) ? $_GET['show_users'] : 10;
-        $page_number = !empty($_GET['page_number']) ? $_GET['page_number'] : 1;
+        $type = $request->query('listing_type', '');
+        $post_per_page = $request->query('show_users', 10);
+        $page_number = $request->query('page_number', 1);
         $user_by_role =  User::role('employer')->select('id')
             ->get()->pluck('id')->toArray();
         $users = User::whereIn('id', $user_by_role);
@@ -676,10 +676,10 @@ class RestAPIController extends Controller
             }
         } elseif ($type === 'search') {
             $user_id = array();
-            $keyword = !empty($_GET['keyword']) ? $_GET['keyword'] : '';
-            $search_locations = !empty($_GET['location']) ? $_GET['location'] : array();
-            $search_employees = !empty($_GET['employees']) ? $_GET['employees'] : array();
-            $search_project_types = !empty($_GET['project_type']) ? $_GET['project_type'] : array();
+            $keyword = $request->query('keyword', '');
+            $search_locations = $request->query('location', []);
+            $search_employees = $request->query('employees', []);
+            $search_project_types = $request->query('project_type', []);
             $filters = array();
             $filters['type'] = $type;
             if (!empty($keyword)) {
@@ -777,15 +777,15 @@ class RestAPIController extends Controller
     {
         $json = array();
         $jobs = new Job();
-        $post_per_page = !empty($_GET['show_users']) ? $_GET['show_users'] : 10;
-        $page_number = !empty($_GET['page_number']) ? $_GET['page_number'] : 1;
-        if (!empty($_GET['profile_id'])) {
-            $profile_id = !empty($_GET['profile_id']) ? $_GET['profile_id'] : '';
-        } elseif (!empty($_GET['company_id'])) {
-            $profile_id = !empty($_GET['company_id']) ? $_GET['company_id'] : '';
+        $post_per_page = $request->query('show_users', 10);
+        $page_number = $request->query('page_number', 1);
+        if ($request->filled('profile_id')) {
+            $profile_id = $request->query('profile_id', '');
+        } elseif ($request->filled('company_id')) {
+            $profile_id = $request->query('company_id', '');
         }
         $user = !empty($profile_id) ? User::find($profile_id) : new User();
-        $type = !empty($_GET['listing_type']) ? $_GET['listing_type'] : '';
+        $type = $request->query('listing_type', '');
         $currency   = SiteManagement::getMetaValue('commision');
         $curr_symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         $symbol = !empty($curr_symbol) ? $curr_symbol['symbol'] : '$';
@@ -821,7 +821,7 @@ class RestAPIController extends Controller
             $search_categories = !empty($request['categories']) ? $request['categories'] : array();
             $search_category = !empty($request['category']) ? $request['category'] : array();
             $search_skills = !empty($request['skills']) ? $request['skills'] : array();
-            $search_project_lengths = !empty($_GET['duration']) ? $_GET['duration'] : array();
+            $search_project_lengths = $request->query('duration', []);
             $jobs = Job::select('*');
             $json[0]['count'] = $jobs->count();
             $job_id = array();
@@ -1047,7 +1047,7 @@ class RestAPIController extends Controller
         $duration_list = array();
         $project_type = array();
         $reason_types = array();
-        $type = !empty($_GET['list']) ? $_GET['list'] : '';
+        $type = $request->query('list', '');
         if (!empty($type)) {
             //Hourly Rates
             if ($type === 'rates') {
@@ -1288,7 +1288,7 @@ class RestAPIController extends Controller
         $locations = array();
         $categories = array();
         $no_of_employes = array();
-        $type = !empty($_GET['taxonomy']) ? $_GET['taxonomy'] : '';
+        $type = $request->query('taxonomy', '');
         if (!empty($type)) {
             // delivery time
             if ($type == 'delivery_time') {
@@ -1429,7 +1429,7 @@ class RestAPIController extends Controller
         $currency   = SiteManagement::getMetaValue('commision');
         $curr_symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         $symbol = !empty($curr_symbol) ? $curr_symbol['symbol'] : '$';
-        $id = !empty($_GET['id']) ? $_GET['id'] : '';
+        $id = $request->query('id', '');
         if (!empty($id)) {
             $user = User::find($id);
             $json['first_name'] = !empty($user->first_name) ? $user->first_name : '';
@@ -1596,7 +1596,7 @@ class RestAPIController extends Controller
     public function getEmployerJobs()
     {
         $json = array();
-        $employer_id = !empty($_GET['employer_id']) ? $_GET['employer_id'] : '';
+        $employer_id = $request->query('employer_id', '');
         $employers = User::find($employer_id);
         if (!empty($employer_id)) {
             $employer_jobs  = array();
@@ -1626,7 +1626,7 @@ class RestAPIController extends Controller
     public function getSettings()
     {
         $json = array();
-        $type = !empty($_GET['type']) ? $_GET['type'] : '';
+        $type = $request->query('type', '');
         if (!empty($type)) {
             if ($type == 'access-type') {
                 $access_type = DB::table('site_managements')->select('meta_value')->where('meta_key', 'access_type')->get()->first();
@@ -1824,11 +1824,11 @@ class RestAPIController extends Controller
     {
         $json = array();
         $services = Service::query();
-        $post_per_page = !empty($_GET['show_users']) ? $_GET['show_users'] : 10;
-        $page_number = !empty($_GET['page_number']) ? $_GET['page_number'] : 1;
-        $profile_id = !empty($_GET['profile_id']) ? $_GET['profile_id'] : '';
+        $post_per_page = $request->query('show_users', 10);
+        $page_number = $request->query('page_number', 1);
+        $profile_id = $request->query('profile_id', '');
         $user = !empty($profile_id) ? User::find($profile_id) : new User();
-        $type = !empty($_GET['listing_type']) ? $_GET['listing_type'] : '';
+        $type = $request->query('listing_type', '');
         $currency   = SiteManagement::getMetaValue('commision');
         $curr_symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
         $symbol = !empty($curr_symbol) ? $curr_symbol['symbol'] : '$';
@@ -1854,12 +1854,12 @@ class RestAPIController extends Controller
             }
         } elseif ($type === 'search') {
             $json[0]['count'] = Service::count();
-            $keyword = !empty($_GET['keyword']) ? $_GET['keyword'] : '';
-            $search_categories = !empty($_GET['categories']) ? $_GET['categories'] : array();
-            $search_languages = !empty($_GET['language']) ? $_GET['language'] : '';
-            $search_locations = !empty($_GET['location']) ? $_GET['location'] : array();
-            $search_delivery_time = !empty($_GET['delivery_time']) ? $_GET['delivery_time'] : array();
-            $search_response_time = !empty($_GET['response_time']) ? $_GET['response_time'] : array();
+            $keyword = $request->query('keyword', '');
+            $search_categories = $request->query('categories', []);
+            $search_languages = $request->query('language', '');
+            $search_locations = $request->query('location', []);
+            $search_delivery_time = $request->query('delivery_time', []);
+            $search_response_time = $request->query('response_time', []);
             $service_id = array();
             $filters = array();
             $filters['type'] = 'service';
@@ -1963,8 +1963,8 @@ class RestAPIController extends Controller
     public function getService()
     {
         $json = array();
-        $id = !empty($_GET['id']) ? $_GET['id'] : '';
-        $profile_id = !empty($_GET['profile_id']) ? $_GET['profile_id'] : '';
+        $id = $request->query('id', '');
+        $profile_id = $request->query('profile_id', '');
         $user = !empty($profile_id) ? User::find($profile_id) : new User();
         $currency   = SiteManagement::getMetaValue('commision');
         $curr_symbol = !empty($currency) && !empty($currency[0]['currency']) ? Helper::currencyList($currency[0]['currency']) : array();
@@ -2292,7 +2292,7 @@ class RestAPIController extends Controller
     public function getChatUsers()
     {
         $unreadNotifyClass  = '';
-        $user_id = !empty($_GET['user_id']) ? $_GET['user_id'] : '';
+        $user_id = $request->query('user_id', '');
         $users = DB::select(
             DB::raw(
                 "SELECT * FROM messages
@@ -2346,9 +2346,9 @@ class RestAPIController extends Controller
     public function getUserMessages()
     {
         $json = array();
-        if (!empty($_GET['sender_id'])) {
-            $user_id = !empty($_GET['user_id']) ? $_GET['user_id'] : '';
-            $receiver_id = $_GET['sender_id'];
+        if ($request->filled('sender_id')) {
+            $user_id = $request->query('user_id', '');
+            $receiver_id = $request->query('sender_id');
             $selected_user = User::find($receiver_id);
             DB::table('messages')
                 ->where('user_id', $receiver_id)

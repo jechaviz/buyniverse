@@ -88,14 +88,12 @@ class PackageController extends Controller
      */
     public function create(Request $request)
     {
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             $packages = $this->package::where('title', 'like', '%' . $keyword . '%')->orderBy('role_id', 'desc')->paginate(10)->setPath('');
-            $pagination = $packages->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $packages->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             $packages = $this->package::orderBy('role_id', 'desc')->paginate(10);
         }

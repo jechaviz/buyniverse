@@ -49,15 +49,13 @@ class BadgeController extends Controller
      */
     public function index(Request $request)
     {
-        if (!empty($_GET['s'])) {
-            $keyword = $_GET['s'];
+        if ($request->filled('s')) {
+            $keyword = $request->query('s');
             $badges = $this->badge->where('title', 'like', '%' . $keyword . '%')
                 ->orderBy('updated_at', 'desc')->paginate(7)->setPath('');
-            $pagination = $badges->appends(
-                array(
-                    's' => $request->get('s')
-                )
-            );
+            $pagination = $badges->appends([
+                's' => $keyword,
+            ]);
         } else {
             $badges = $this->badge->paginate(10);
         }

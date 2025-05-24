@@ -2331,14 +2331,12 @@ class UserController extends Controller
     public function userListing(Request $request)
     {
         if (Auth::user() && Auth::user()->getRoleNames()->first() === 'admin') {
-            if (!empty($_GET['keyword'])) {
-                $keyword = $_GET['keyword'];
+            if ($request->filled('keyword')) {
+                $keyword = $request->query('keyword');
                 $users = $this->user::where('first_name', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
-                $pagination = $users->appends(
-                    array(
-                        'keyword' => $request->get('keyword')
-                    )
-                );
+                $pagination = $users->appends([
+                    'keyword' => $keyword,
+                ]);
             } else {
                 $users = User::select('*')->latest()->paginate(10);
             }
@@ -2359,9 +2357,9 @@ class UserController extends Controller
      */
     public function getPayouts(Request $request)
     {
-        if (!empty($_GET['year']) && !empty($_GET['month'])) {
-            $year = $_GET['year'];
-            $month = $_GET['month'];
+        if ($request->filled('year') && $request->filled('month')) {
+            $year = $request->query('year');
+            $month = $request->query('month');
             $payouts =  DB::table('payouts')
                 ->select('*')
                 ->whereYear('created_at', '=', $year)
@@ -2376,8 +2374,8 @@ class UserController extends Controller
         } else {
             $payouts =  Payout::paginate(7);
         }
-        $selected_year = !empty($_GET['year']) ? $_GET['year'] : '';
-        $selected_month = !empty($_GET['month']) ? $_GET['month'] : '';
+        $selected_year = $request->query('year', '');
+        $selected_month = $request->query('month', '');
         $months = Helper::getMonthList();
         $years = array_combine(range(date("Y"), 1970), range(date("Y"), 1970));
         if (file_exists(resource_path('views/extend/back-end/admin/payouts.blade.php'))) {

@@ -44,18 +44,16 @@ class EskillController extends Controller
     public function index(Request $request)
     {
         $cats = Category::all();
-        if (!empty($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
+        if ($request->filled('keyword')) {
+            $keyword = $request->query('keyword');
             //$skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
             if (Auth::user()->getRoleNames()[0] == 'admin')
                 $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->paginate(7)->setPath('');
             else
                 $skills = $this->skill::where('title', 'like', '%' . $keyword . '%')->where('status', 'appear_globally')->paginate(7)->setPath('');
-            $pagination = $skills->appends(
-                array(
-                    'keyword' => $request->get('keyword')
-                )
-            );
+            $pagination = $skills->appends([
+                'keyword' => $keyword,
+            ]);
         } else {
             //$skills = $this->skill->paginate(7);
             if (Auth::user()->getRoleNames()[0] == 'admin')
