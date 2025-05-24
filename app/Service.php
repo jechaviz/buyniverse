@@ -136,7 +136,7 @@ class Service extends Model
             $this->slug = filter_var($request['title'], FILTER_SANITIZE_STRING);
             $this->price = filter_var($request['service_price'], FILTER_SANITIZE_STRING);
             $this->delivery_time_id = intval($request['delivery_time']);
-            $this->description = $request['description'];
+            $this->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
             $this->english_level = filter_var($request['english_level'], FILTER_SANITIZE_STRING);
             $this->response_time_id = intval($request['response_time']);
             $this->is_featured = filter_var($request['is_featured'], FILTER_SANITIZE_STRING);
@@ -205,7 +205,7 @@ class Service extends Model
             $this->slug = filter_var($request['title'], FILTER_SANITIZE_STRING);
             $this->price = filter_var($request['service_price'], FILTER_SANITIZE_STRING);
             $this->delivery_time_id = intval($request['delivery_time']);
-            $this->description = $request['description'];
+            $this->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
             $this->english_level = filter_var($request['english_level'], FILTER_SANITIZE_STRING);
             $this->response_time_id = intval($request['response_time']);
             $this->is_featured = filter_var($request['is_featured'], FILTER_SANITIZE_STRING);
@@ -278,7 +278,7 @@ class Service extends Model
             $service->title = filter_var($request['title'], FILTER_SANITIZE_STRING);
             $service->price = filter_var($request['service_price'], FILTER_SANITIZE_STRING);
             $service->delivery_time_id = intval($request['delivery_time']);
-            $service->description = $request['description'];
+            $service->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
             $service->english_level = filter_var($request['english_level'], FILTER_SANITIZE_STRING);
             $service->response_time_id = intval($request['response_time']);
             $service->is_featured = filter_var($request['is_featured'], FILTER_SANITIZE_STRING);
@@ -357,7 +357,7 @@ class Service extends Model
             $msg_attachments = !empty($message_attachments) ? serialize($message_attachments) : null;
             DB::table('private_messages')->insert(
                 [
-                    'author_id' => $user_id, 'proposal_id' => $request['proposal_id'], 'content' => $request['description'],
+                    'author_id' => $user_id, 'proposal_id' => $request['proposal_id'], 'content' => filter_var($request['description'], FILTER_SANITIZE_STRING),
                     'attachments' => $msg_attachments, 'project_type' => 'service',
                     'notify' => 0, "created_at" => \Carbon\Carbon::now(),
                     'updated_at' => \Carbon\Carbon::now(),

@@ -41,7 +41,7 @@ class TaskController extends Controller
         //dd(Auth::user());
         return Tasks::create([
             'title' => $request->title,
-            'description' => $request->description,
+            'description' => filter_var($request->description, FILTER_SANITIZE_STRING),
             'due_date' => $request->task_date_due,
             //'tags' => $request->tags,
             'priority' => $request->priority,

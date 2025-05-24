@@ -1724,7 +1724,7 @@ class RestAPIController extends Controller
                 $job->slug = filter_var($request['title'], FILTER_SANITIZE_STRING);
                 $job->price = filter_var($request['project_cost'], FILTER_SANITIZE_STRING);
                 $job->project_level = filter_var($request['project_level'], FILTER_SANITIZE_STRING);
-                $job->description = $request['description'];
+                $job->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
                 $job->english_level = filter_var($request['english_level'], FILTER_SANITIZE_STRING);
                 $job->duration = filter_var($request['project_duration'], FILTER_SANITIZE_STRING);
                 $job->provider_type = filter_var($provider_type, FILTER_SANITIZE_STRING);

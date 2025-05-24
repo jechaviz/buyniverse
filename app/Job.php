@@ -187,7 +187,7 @@ class Job extends Model
             $this->slug = filter_var($request['title'], FILTER_SANITIZE_STRING);
             $this->price = filter_var($request['price'], FILTER_SANITIZE_STRING);
             $this->project_level = filter_var($request['project_level'], FILTER_SANITIZE_STRING);
-            $this->description = $request['description'];
+            $this->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
             $this->english_level = filter_var($request['english'], FILTER_SANITIZE_STRING);
             $this->duration = filter_var($request['project_duration'], FILTER_SANITIZE_STRING);
             $this->provider_type = filter_var($request['provider_type'], FILTER_SANITIZE_STRING);
@@ -360,7 +360,7 @@ class Job extends Model
             $job->title = filter_var($request['title'], FILTER_SANITIZE_STRING);
             $job->price = filter_var($request['project_cost'], FILTER_SANITIZE_STRING);
             $job->project_level = filter_var($request['project_levels'], FILTER_SANITIZE_STRING);
-            $job->description = $request['description'];
+            $job->description = filter_var($request['description'], FILTER_SANITIZE_STRING);
             $job->english_level = filter_var($request['english_level'], FILTER_SANITIZE_STRING);
             $job->duration = filter_var($request['job_duration'], FILTER_SANITIZE_STRING);
             $job->provider_type = filter_var($request['provider_type'], FILTER_SANITIZE_STRING);

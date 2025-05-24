@@ -72,7 +72,7 @@ class FilesController extends Controller
         $job_file = new ProposalFile;
         $job_file->name = $name;
         $job_file->size = $size_unit;
-        $job_file->description = $request->description;
+        $job_file->description = filter_var($request->description, FILTER_SANITIZE_STRING);
         $job_file->proposal_id = $proposal->id;
         $job_file->file = $origin[0].'_'.$request->job_id.'_'.time().'.'.$file->getClientOriginalExtension(); 
         $job_file->save();
