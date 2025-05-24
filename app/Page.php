@@ -96,7 +96,7 @@ class Page extends Model
             $old_path = Helper::assetPath() . '/uploads/pages/temp';
             $this->title = filter_var($request->title, FILTER_SANITIZE_STRING);
             $this->slug = filter_var($request->title, FILTER_SANITIZE_STRING);
-            $this->body = !empty($request->body) ? $request->body : 'null';
+            $this->body = !empty($request->body) ? \App\Helpers\Security::sanitizeHTML($request->body) : 'null';
             if ($request->parent_type == 'page') {
                 if ($request->parent_id) {
                     $this->relation_type = 1;
@@ -568,7 +568,7 @@ class Page extends Model
                 $pages->slug = filter_var($request->title, FILTER_SANITIZE_STRING);
             }
             $pages->title = filter_var($request->title, FILTER_SANITIZE_STRING);
-            $pages->body = !empty($request->body) ? $request->body : 'null';
+            $pages->body = !empty($request->body) ? \App\Helpers\Security::sanitizeHTML($request->body) : 'null';
             if ($request->parent_type == 'page') {
                 if ($request->parent_id == null) {
                     $pages->relation_type = 0;
