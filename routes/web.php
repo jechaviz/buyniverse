@@ -24,7 +24,7 @@ Route::get(
         \Artisan::call('config:clear');
         return redirect()->back();
     }
-);
+)->middleware(['auth', 'role:admin']);
 // Home 
 if (empty(Request::segment(1))) {
     if (Schema::hasTable('users') && Schema::hasTable('site_managements')) {

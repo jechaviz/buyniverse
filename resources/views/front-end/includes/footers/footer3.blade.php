@@ -48,7 +48,7 @@
                                 @endif
                                 <ul class="wt-fwidgetcontent">
                                     @foreach($search_menu as $key => $page)
-                                        <li><a href="{!! url($page['url']) !!}">{{$page['title']}}</a></li>
+                                        <li><a href="{{ url($page['url']) }}">{{$page['title']}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
