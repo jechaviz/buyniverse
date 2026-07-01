@@ -11,20 +11,20 @@ import {
 
 // --- USERS ---
 export const MOCK_USERS_RAW: Omit<User, 'permissions'>[] = [
-    { id: 'user-client-brenda', name: 'Brenda Smith', email: 'brenda@example.com', type: UserType.Client, memberSince: new Date('2023-01-15'), companyName: 'Innovate Inc.', location: 'New York, USA', isIdentityVerified: true, accountOwnerId: 'user-client-brenda', tags: ['Enterprise', 'Tech'], category: 'Software', clientStatus: 'Active', rfc: 'SABR890101ABC', taxRegime: '601', postalCode: '06500', branches: [
+    { id: 'user-client-brenda', name: 'Brenda Smith', email: 'brenda@example.com', type: UserType.Client, memberSince: new Date('2023-01-15'), companyName: 'Innovate Inc.', location: 'New York, USA', isIdentityVerified: true, accountOwnerId: 'user-client-brenda', tags: ['Enterprise', 'Tech'], category: 'Software', clientStatus: 'Active', rfc: 'XAXX010101000', taxRegime: '601', postalCode: '06500', branches: [
         { id: 'brenda-branch-1', name: 'Main Office', postalCode: '06500'},
         { id: 'brenda-branch-2', name: 'Warehouse', postalCode: '11529'}
     ], defaultInvoiceEmailSettings: {
-        to: ['accounting@innovate.com'],
+        to: ['accounting@example.com'],
         cc: ['brenda@example.com'],
         bcc: [],
         subject: 'New Invoice from {{issuerName}} - {{invoiceNumber}}',
         body: 'Hello,\n\nPlease find attached your invoice {{invoiceNumber}} for a total of {{totalAmount}}.\n\nThank you for your business!',
     }},
-    { id: 'user-freelancer-john', name: 'John Doe', email: 'john@example.com', type: UserType.Freelancer, memberSince: new Date('2023-02-20'), headline: 'Senior React Developer', bio: 'I build fast and reliable web applications.', skills: ['React', 'TypeScript', 'Node.js', 'GraphQL'], jobSuccessScore: 98, totalEarned: 125000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-john', location: 'London, UK', onlineStatus: 'online', isStarred: true, lastSeen: new Date(), rfc: 'DOE880101CDE', taxRegime: '612', postalCode: '50226' },
+    { id: 'user-freelancer-john', name: 'John Doe', email: 'john@example.com', type: UserType.Freelancer, memberSince: new Date('2023-02-20'), headline: 'Senior React Developer', bio: 'I build fast and reliable web applications.', skills: ['React', 'TypeScript', 'Node.js', 'GraphQL'], jobSuccessScore: 98, totalEarned: 125000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-john', location: 'London, UK', onlineStatus: 'online', isStarred: true, lastSeen: new Date(), rfc: 'XAXX010101000', taxRegime: '612', postalCode: '50226' },
     { id: 'user-admin-admin', name: 'Admin User', email: 'admin@example.com', type: UserType.Admin, memberSince: new Date('2023-01-01'), avatarUrl: 'https://i.pravatar.cc/150?u=user-admin-admin', location: 'System' },
-    { id: 'user-freelancer-jane', name: 'Jane Smith', email: 'jane@example.com', type: UserType.Freelancer, memberSince: new Date('2023-03-10'), headline: 'UI/UX Designer', bio: 'Creating intuitive and beautiful user experiences.', skills: ['Figma', 'UI/UX', 'Prototyping'], jobSuccessScore: 95, totalEarned: 85000, availabilityStatus: AvailabilityStatus.NotAvailable, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-jane', location: 'Paris, France', onlineStatus: 'away', rfc: 'SMIJ850101FGH', taxRegime: '612', postalCode: '75001' },
-    { id: 'user-freelancer-charlie', name: 'Charlie Brown', email: 'charlie@example.com', type: UserType.Freelancer, memberSince: new Date('2023-08-15'), headline: 'Vue.js & Firebase Expert', bio: 'Building scalable applications with Vue and Firebase.', skills: ['Vue.js', 'Firebase', 'TailwindCSS', 'JavaScript'], jobSuccessScore: 92, totalEarned: 45000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-charlie', location: 'Austin, USA', onlineStatus: 'online', rfc: 'BROC870101XYZ', taxRegime: '612', postalCode: '78701' },
+    { id: 'user-freelancer-jane', name: 'Jane Smith', email: 'jane@example.com', type: UserType.Freelancer, memberSince: new Date('2023-03-10'), headline: 'UI/UX Designer', bio: 'Creating intuitive and beautiful user experiences.', skills: ['Figma', 'UI/UX', 'Prototyping'], jobSuccessScore: 95, totalEarned: 85000, availabilityStatus: AvailabilityStatus.NotAvailable, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-jane', location: 'Paris, France', onlineStatus: 'away', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '75001' },
+    { id: 'user-freelancer-charlie', name: 'Charlie Brown', email: 'charlie@example.com', type: UserType.Freelancer, memberSince: new Date('2023-08-15'), headline: 'Vue.js & Firebase Expert', bio: 'Building scalable applications with Vue and Firebase.', skills: ['Vue.js', 'Firebase', 'TailwindCSS', 'JavaScript'], jobSuccessScore: 92, totalEarned: 45000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-charlie', location: 'Austin, USA', onlineStatus: 'online', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '78701' },
 ];
 
 export const MOCK_AGENCIES: Agency[] = [];
@@ -39,8 +39,8 @@ export const MOCK_LEADS: Lead[] = [
 
 // --- SUPPLIERS ---
 export const MOCK_SUPPLIERS: Supplier[] = [
-    { id: 'sup-1', name: 'Tech Solutions LLC', category: 'Hardware', contactPerson: 'Mike', email: 'mike@tech.com', phone: '123-456-7890', totalSpend: 25000, rating: 4.5, status: 'Active' },
-    { id: 'sup-2', name: 'Creative Supplies', category: 'Office Supplies', contactPerson: 'Sara', email: 'sara@creative.com', phone: '098-765-4321', totalSpend: 5000, rating: 4, status: 'Active' },
+    { id: 'sup-1', name: 'Tech Solutions LLC', category: 'Hardware', contactPerson: 'Mike', email: 'mike@example.com', phone: '555-0100', totalSpend: 25000, rating: 4.5, status: 'Active' },
+    { id: 'sup-2', name: 'Creative Supplies', category: 'Office Supplies', contactPerson: 'Sara', email: 'sara@example.com', phone: '555-0101', totalSpend: 5000, rating: 4, status: 'Active' },
 ];
 
 export const MOCK_JOBS: Job[] = [
@@ -347,14 +347,14 @@ export const MOCK_INVOICES_BASE: Invoice[] = [
         receiverBranchId: 'brenda-branch-1',
         issuer: {
             name: 'John Doe',
-            rfc: 'DOE880101CDE',
+            rfc: 'XAXX010101000',
             taxRegime: '612',
             postalCode: '50226',
         },
         receiver: {
             userId: 'user-client-brenda',
             name: 'Innovate Inc.',
-            rfc: 'SABR890101ABC',
+            rfc: 'XAXX010101000',
             taxRegime: '601',
             postalCode: '06500',
             cfdiUse: 'G03',

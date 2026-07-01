@@ -30,7 +30,7 @@ const PaymentDetailsSection: React.FC<PaymentDetailsSectionProps> = ({ payment, 
                         {Object.keys(catalogs.Moneda).map(k => <option key={k} value={k}>{k}</option>)}
                     </select>
                 </div>
-                <Input label={t('pages.payment.form.exchangeRate')} type="number" value={payment.exchangeRate || 1} onChange={e => updatePayment({ exchangeRate: Number(e.target.value) })} disabled={payment.currency === 'MXN'} tooltip={t('pages.payment.form.exchangeRateTooltip')} />
+                <Input label={t('pages.payment.form.exchangeRate')} type="number" min="0" value={payment.exchangeRate || 1} onChange={e => { const n = Number(e.target.value); updatePayment({ exchangeRate: Number.isFinite(n) && n > 0 ? n : 1 }); }} disabled={payment.currency === 'MXN'} tooltip={t('pages.payment.form.exchangeRateTooltip')} />
             </div>
         </CollapsibleCard>
     );

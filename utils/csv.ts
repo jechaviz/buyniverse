@@ -9,7 +9,17 @@ export const exportToCsv = <TData extends { [key: string]: any }>(
 
     const getHeader = (headerProp: any) => typeof headerProp === 'function' ? headerProp() : String(headerProp);
 
-    const headers = relevantColumns.map(c => getHeader(c.header)).join(',');
+    // Neutralize CSV/formula injection: cells starting with = + - @ or a TAB/CR
+    // are prefixed with an apostrophe so Excel/Sheets won't execute them.
+    const escapeCell = (raw: string): string => {
+        let safe = raw;
+        if (/^[=+\-@\t\r]/.test(safe)) {
+            safe = `'${safe}`;
+        }
+        return `"${safe.replace(/"/g, '""')}"`;
+    };
+
+    const headers = relevantColumns.map(c => escapeCell(String(getHeader(c.header) ?? ''))).join(',');
     
     const rows = data.map(row => {
         return relevantColumns.map(col => {
@@ -29,8 +39,7 @@ export const exportToCsv = <TData extends { [key: string]: any }>(
                 displayValue = String(value ?? '');
             }
             
-            const stringValue = displayValue.replace(/"/g, '""');
-            return `"${stringValue}"`;
+            return escapeCell(displayValue);
         }).join(',');
     }).join('\n');
 

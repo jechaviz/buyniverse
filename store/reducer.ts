@@ -90,6 +90,11 @@ export const appReducer = (state: AppState, action: Action): AppState => {
         case 'FUND_MILESTONE':
         case 'REQUEST_MILESTONE_PAYMENT':
         case 'RELEASE_MILESTONE_PAYMENT': {
+            if (action.type === 'RELEASE_MILESTONE_PAYMENT') {
+                const contract = state.contracts.find(c => c.id === action.payload.contractId);
+                if (!contract || contract.clientId !== state.currentUser.id) return state;
+            }
+
             const statusMap = {
                 'FUND_MILESTONE': MilestoneStatus.Funded,
                 'REQUEST_MILESTONE_PAYMENT': MilestoneStatus.Requested,
@@ -308,6 +313,7 @@ export const appReducer = (state: AppState, action: Action): AppState => {
         }
         
         case 'UPDATE_ISSUER': {
+            if (state.currentUser.type !== UserType.Admin) return state;
             const existing = state.issuers.find(i => i.id === action.payload.issuer.id);
             if (existing) {
                 return { ...state, issuers: state.issuers.map(i => i.id === action.payload.issuer.id ? action.payload.issuer : i) };
@@ -316,6 +322,7 @@ export const appReducer = (state: AppState, action: Action): AppState => {
         }
         
         case 'PURCHASE_FOLIOS': {
+             if (state.currentUser.type !== UserType.Admin) return state;
              const updatedUser = { ...state.currentUser, folioBalance: (state.currentUser.folioBalance || 0) + action.payload.amount };
              return {
                 ...state,
@@ -324,6 +331,19 @@ export const appReducer = (state: AppState, action: Action): AppState => {
             };
         }
         
+        case 'CONSUME_FOLIO': {
+            const { userId } = action.payload;
+            const decrement = (balance?: number) => Math.max(0, (balance || 0) - 1);
+            const updatedCurrentUser = state.currentUser.id === userId
+                ? { ...state.currentUser, folioBalance: decrement(state.currentUser.folioBalance) }
+                : state.currentUser;
+            return {
+                ...state,
+                currentUser: updatedCurrentUser,
+                users: state.users.map(u => u.id === userId ? { ...u, folioBalance: decrement(u.folioBalance) } : u),
+            };
+        }
+
         case 'UPDATE_USER_SETTINGS': {
             const updatedUserSettings = {
                 ...state.currentUser.settings,

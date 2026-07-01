@@ -80,9 +80,9 @@ const LineItem: React.FC<LineItemProps> = (props) => {
                         </label>
                         <Input value={item.unitCode} onChange={e => onItemChange(index, { unitCode: e.target.value })} />
                     </div>
-                    <div className="col-span-1 lg:col-span-2"><Input label={t('pages.invoice.form.quantity')} type="number" value={item.quantity} onChange={e => onItemChange(index, { quantity: Number(e.target.value) })} /></div>
-                    <div className="col-span-1 lg:col-span-2"><Input label={t('pages.invoice.form.unitPrice')} type="number" value={item.unitPrice} onChange={e => onItemChange(index, { unitPrice: Number(e.target.value) })} /></div>
-                    <div className="col-span-1 lg:col-span-2"><Input label={t('pages.invoice.form.discount')} type="number" value={item.discount} onChange={e => onItemChange(index, { discount: Number(e.target.value) })} /></div>
+                    <div className="col-span-1 lg:col-span-2"><Input label={t('pages.invoice.form.quantity')} type="number" value={item.quantity} onChange={e => { const n = parseFloat(e.target.value); onItemChange(index, { quantity: Number.isFinite(n) ? n : 0 }); }} /></div>
+                    <div className="col-span-1 lg:col-span-2"><Input label={t('pages.invoice.form.unitPrice')} type="number" value={item.unitPrice} onChange={e => { const n = parseFloat(e.target.value); onItemChange(index, { unitPrice: Number.isFinite(n) ? n : 0 }); }} /></div>
+                    <div className="col-span-1 lg:col-span-2"><Input label={t('pages.invoice.form.discount')} type="number" value={item.discount} onChange={e => { const n = parseFloat(e.target.value); onItemChange(index, { discount: Number.isFinite(n) ? n : 0 }); }} /></div>
                     <div className="col-span-1 lg:col-span-2 text-right">
                         <p className="text-xs text-slate-500">{t('pages.invoice.form.amount')}</p>
                         <p className="font-bold text-lg">{formatCurrency(item.amount, currency)}</p>

@@ -58,6 +58,12 @@ interface RelatedDocItemProps {
 const RelatedDocItem: React.FC<RelatedDocItemProps> = ({ doc, index, payment, validationErrors, onUpdate, onRemove }) => {
     const { t } = useTranslation();
 
+    // Ensure parsed amounts are finite and never negative (montos > 0).
+    const sanitizeAmount = (value: string): number => {
+        const n = parseFloat(value);
+        return Number.isFinite(n) && n > 0 ? n : 0;
+    };
+
     return (
         <Card className="p-4 bg-slate-50 dark:bg-slate-900/50">
             <div className="flex justify-between items-start mb-2">
@@ -69,7 +75,7 @@ const RelatedDocItem: React.FC<RelatedDocItemProps> = ({ doc, index, payment, va
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input label={t('pages.payment.form.paymentNumber')} type="number" value={doc.paymentNumber} onChange={e => onUpdate(doc.id, { paymentNumber: parseInt(e.target.value) || 1 })}/>
-                {payment.currency !== doc.currency && <Input label={t('pages.payment.form.equivalenciaDR')} type="number" step="any" value={doc.equivalenciaDR} onChange={e => onUpdate(doc.id, { equivalenciaDR: parseFloat(e.target.value) || 0 })} error={validationErrors[`doc-${index}-eq`]} tooltip={t('pages.payment.form.equivalenciaDRTooltip')} />}
+                {payment.currency !== doc.currency && <Input label={t('pages.payment.form.equivalenciaDR')} type="number" step="any" min="0" value={doc.equivalenciaDR} onChange={e => onUpdate(doc.id, { equivalenciaDR: sanitizeAmount(e.target.value) })} error={validationErrors[`doc-${index}-eq`]} tooltip={t('pages.payment.form.equivalenciaDRTooltip')} />}
             </div>
             
             <div className="mt-4 p-4 bg-white dark:bg-slate-800/50 rounded-lg border dark:border-slate-700">
@@ -81,7 +87,7 @@ const RelatedDocItem: React.FC<RelatedDocItemProps> = ({ doc, index, payment, va
                     </div>
                     <div className="text-2xl text-slate-400 font-light">-</div>
                     <div className="flex-1">
-                        <Input label={t('pages.payment.form.amountToApply', { currency: payment.currency })} type="number" value={doc.amountToApply} onChange={e => onUpdate(doc.id, { amountToApply: parseFloat(e.target.value) || 0 })} error={validationErrors[`doc-${index}-amount`]} className="text-center font-bold !text-lg !py-1"/>
+                        <Input label={t('pages.payment.form.amountToApply', { currency: payment.currency })} type="number" min="0" value={doc.amountToApply} onChange={e => onUpdate(doc.id, { amountToApply: sanitizeAmount(e.target.value) })} error={validationErrors[`doc-${index}-amount`]} className="text-center font-bold !text-lg !py-1"/>
                         <p className="text-xs text-slate-500 mt-1">{t('pages.payment.form.amountPaidInDocCurrency', { amount: (doc.amountPaid).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }), currency: doc.currency })}</p>
                     </div>
                     <div className="text-2xl text-slate-400 font-light">=</div>

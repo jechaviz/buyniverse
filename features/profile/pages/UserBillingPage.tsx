@@ -27,6 +27,12 @@ const UserBillingPage: React.FC = () => {
     const { t } = useTranslation();
 
     const handlePurchase = (amount: number) => {
+        // Validate the requested amount before crediting any balance.
+        if (!Number.isFinite(amount) || amount <= 0) {
+            return;
+        }
+        // TODO(security): Crediting folio balance client-side grants free credits without payment.
+        // The balance must be credited SERVER-SIDE only after a payment gateway confirms the charge.
         dispatch({ type: 'PURCHASE_FOLIOS', payload: { amount } });
         alert(t('pages.userBilling.purchaseSuccess', { count: amount }));
     };

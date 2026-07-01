@@ -20,11 +20,13 @@ export const validateCfdi40 = (invoice: Partial<Invoice>, t: (key: string) => st
         errors[field].push(message);
     };
 
+    const isInvalidNumber = (value: number) => typeof value !== 'number' || !Number.isFinite(value);
+
     // --- Issuer Validation ---
     if (!invoice.issuer?.name?.trim()) addError('issuer.name', t('pages.invoice.validation.fieldRequired'));
     if (!invoice.issuer?.rfc?.trim()) {
         addError('issuer.rfc', t('pages.invoice.validation.fieldRequired'));
-    } else if (!rfcRegex.test(invoice.issuer.rfc)) {
+    } else if (!rfcRegex.test(invoice.issuer.rfc.trim().toUpperCase())) {
         addError('issuer.rfc', t('pages.invoice.validation.rfcInvalid'));
     }
     if (!invoice.issuer?.taxRegime?.trim()) addError('issuer.taxRegime', t('pages.invoice.validation.fieldRequired'));
@@ -38,7 +40,7 @@ export const validateCfdi40 = (invoice: Partial<Invoice>, t: (key: string) => st
     if (!invoice.receiver?.name?.trim()) addError('receiver.name', t('pages.invoice.validation.fieldRequired'));
     if (!invoice.receiver?.rfc?.trim()) {
         addError('receiver.rfc', t('pages.invoice.validation.fieldRequired'));
-    } else if (invoice.receiver.rfc !== 'XAXX010101000' && !rfcRegex.test(invoice.receiver.rfc)) { // Publico en general exception
+    } else if (invoice.receiver.rfc.trim().toUpperCase() !== 'XAXX010101000' && !rfcRegex.test(invoice.receiver.rfc.trim().toUpperCase())) { // Publico en general exception
         addError('receiver.rfc', t('pages.invoice.validation.rfcInvalid'));
     }
     if (!invoice.receiver?.taxRegime?.trim()) addError('receiver.taxRegime', t('pages.invoice.validation.fieldRequired'));
@@ -71,8 +73,28 @@ export const validateCfdi40 = (invoice: Partial<Invoice>, t: (key: string) => st
     } else {
         invoice.lineItems.forEach((item, index) => {
             if (!item.description.trim()) addError(`lineItems[${index}].description`, t('pages.invoice.validation.fieldRequired'));
-            if (item.quantity <= 0) addError(`lineItems[${index}].quantity`, t('pages.invoice.validation.greaterThanZero'));
-            if (item.unitPrice <= 0) addError(`lineItems[${index}].unitPrice`, t('pages.invoice.validation.greaterThanZero'));
+
+            if (isInvalidNumber(item.quantity)) {
+                addError(`lineItems[${index}].quantity`, t('pages.invoice.validation.greaterThanZero'));
+            } else if (item.quantity <= 0) {
+                addError(`lineItems[${index}].quantity`, t('pages.invoice.validation.greaterThanZero'));
+            }
+
+            if (isInvalidNumber(item.unitPrice)) {
+                addError(`lineItems[${index}].unitPrice`, t('pages.invoice.validation.greaterThanZero'));
+            } else if (item.unitPrice <= 0) {
+                addError(`lineItems[${index}].unitPrice`, t('pages.invoice.validation.greaterThanZero'));
+            }
+
+            if (isInvalidNumber(item.discount)) {
+                addError(`lineItems[${index}].discount`, t('pages.invoice.validation.greaterThanZero'));
+            } else if (!isInvalidNumber(item.quantity) && !isInvalidNumber(item.unitPrice) && (item.discount < 0 || item.discount > item.quantity * item.unitPrice)) {
+                addError(`lineItems[${index}].discount`, t('pages.invoice.validation.greaterThanZero'));
+            }
+
+            if (isInvalidNumber(item.amount)) {
+                addError(`lineItems[${index}].amount`, t('pages.invoice.validation.greaterThanZero'));
+            }
         });
     }
 

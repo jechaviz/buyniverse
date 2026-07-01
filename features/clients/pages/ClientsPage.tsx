@@ -43,12 +43,12 @@ const ClientsPage: React.FC = () => {
             dispatch({ type: 'UPDATE_ENTITY', payload: { entity: 'users', id: record.id, data: userData } });
         } else {
             // dispatch({ type: 'ADD_CLIENT', payload: userData });
-            console.log("Creating new client:", userData);
+            if (import.meta.env.DEV) console.log("Creating new client:", userData);
         }
     }, [dispatch, users]);
 
     const handleDeleteRecord = useCallback((recordId: string) => {
-        console.log("Deleting client:", recordId);
+        if (import.meta.env.DEV) console.log("Deleting client:", recordId);
     }, []);
 
     const columns = useMemo<ColumnDef<ClientRowData>[]>(() => [

@@ -157,8 +157,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceToEdit }) => {
                 return;
             }
             finalInvoice.uuid = `UUID-STAMPED-${Date.now()}`;
-            // This logic should be on the reducer. A temporary direct dispatch for simplicity of the change.
-            dispatch({ type: 'UPDATE_ENTITY', payload: { entity: 'users', id: currentUser.id, data: { folioBalance: (currentUser.folioBalance || 1) - 1 } } });
+            dispatch({ type: 'CONSUME_FOLIO', payload: { userId: currentUser.id } });
         }
         
         dispatch({ type: isEditing ? 'UPDATE_INVOICE' : 'ADD_INVOICE', payload: { invoice: finalInvoice } });

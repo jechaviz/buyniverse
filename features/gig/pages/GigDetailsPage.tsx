@@ -27,6 +27,14 @@ const GigDetailsPage: React.FC = () => {
         alert("Only clients can purchase services.");
         return;
     }
+    // Client-side guard against invalid amounts. This is only a UX safeguard:
+    // the real charge and CFDI issuance (seals, folio, totals) MUST be validated
+    // and generated server-side. The mock seals/QR below are demo-only placeholders
+    // and must never be trusted as authoritative.
+    if (!Number.isFinite(gig.price) || gig.price <= 0) {
+        alert("This service has an invalid price and cannot be purchased.");
+        return;
+    }
     if (!window.confirm(`Confirm purchase of "${gig.title}" for $${gig.price}?`)) return;
 
     const contractId = `contract-gig-${Date.now()}`;

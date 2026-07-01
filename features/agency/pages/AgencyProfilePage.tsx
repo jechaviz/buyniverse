@@ -8,6 +8,7 @@ import Tag from '@/components/ui/Tag';
 import { FreelancerCard } from '@/features/freelancer';
 import { GigCard } from '@/features/gig';
 import ProgressCircle from '@/components/ui/ProgressCircle';
+import { safeHref } from '@/utils/url';
 
 const { useParams, Link } = ReactRouterDOM;
 
@@ -75,7 +76,7 @@ const AgencyProfilePage: React.FC = () => {
                     <div className="space-y-6">
                         {agency.portfolio.map((item, index) => (
                             <div key={index} className="border-b border-gray-100 pb-4 last:border-b-0">
-                                <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-lg font-semibold text-primary-600 hover:underline">{item.title}</a>
+                                <a href={safeHref(item.url)} target="_blank" rel="noopener noreferrer" className="text-lg font-semibold text-primary-600 hover:underline">{item.title}</a>
                                 <p className="text-gray-600 mt-1">{item.description}</p>
                             </div>
                         ))}

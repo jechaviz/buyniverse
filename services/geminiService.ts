@@ -9,6 +9,17 @@ import { ColumnDef } from "@/components/ui/DataTable";
 import es from '@/i18n/es';
 import en from '@/i18n/en';
 
+// Vite injects import.meta.env at build time; declare it for the type checker.
+declare global {
+    interface ImportMetaEnv {
+        readonly DEV: boolean;
+        readonly [key: string]: unknown;
+    }
+    interface ImportMeta {
+        readonly env: ImportMetaEnv;
+    }
+}
+
 const getErrorMessage = (key: string): string => {
     const lang = localStorage.getItem('app-lang') || 'es';
     const strings = lang === 'en' ? en : es;
@@ -18,7 +29,9 @@ const getErrorMessage = (key: string): string => {
 
 
 if (!process.env.API_KEY) {
-    console.warn("API_KEY environment variable not set. AI features will not work.");
+    if (import.meta.env.DEV) {
+        console.warn("API_KEY environment variable not set. AI features will not work.");
+    }
 }
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
@@ -47,6 +60,28 @@ export interface AICardLayoutConfig {
     footer: string[];
 }
 
+
+// Model output for SAT codes is untrusted: sanitize each field and drop any that fails validation.
+const sanitizeInvoiceLineItemSuggestion = (
+    raw: unknown
+): Partial<Pick<InvoiceLineItem, 'productCode' | 'unitCode' | 'objetoImp'>> => {
+    const result: Partial<Pick<InvoiceLineItem, 'productCode' | 'unitCode' | 'objetoImp'>> = {};
+    if (!raw || typeof raw !== 'object') {
+        return result;
+    }
+    const obj = raw as Record<string, unknown>;
+
+    if (typeof obj.productCode === 'string' && /^\d{8}$/.test(obj.productCode)) {
+        result.productCode = obj.productCode;
+    }
+    if (typeof obj.unitCode === 'string' && /^[A-Za-z0-9]{1,3}$/.test(obj.unitCode)) {
+        result.unitCode = obj.unitCode;
+    }
+    if (obj.objetoImp === '01' || obj.objetoImp === '02' || obj.objetoImp === '03') {
+        result.objetoImp = obj.objetoImp;
+    }
+    return result;
+};
 
 export const getInvoiceLineItemSuggestions = async (description: string): Promise<Partial<Pick<InvoiceLineItem, 'productCode' | 'unitCode' | 'objetoImp'>>> => {
     if (!process.env.API_KEY) {
@@ -89,9 +124,12 @@ export const getInvoiceLineItemSuggestions = async (description: string): Promis
         
         // FIX: Access response text directly via the .text property.
         const jsonStr = (response.text ?? '').trim();
-        return JSON.parse(jsonStr) as Partial<Pick<InvoiceLineItem, 'productCode' | 'unitCode' | 'objetoImp'>>;
+        // Treat the model output as untrusted: only apply fields that pass SAT validation.
+        return sanitizeInvoiceLineItemSuggestion(JSON.parse(jsonStr));
     } catch (error) {
-        console.error("Error generating invoice item suggestions with AI:", error);
+        if (import.meta.env.DEV) {
+            console.error("Error generating invoice item suggestions with AI:", error instanceof Error ? error.message : String(error));
+        }
         throw new Error(getErrorMessage('aiFail'));
     }
 };
@@ -185,7 +223,9 @@ export const generateCardLayoutConfig = async ({
         const jsonStr = (response.text ?? '').trim();
         return JSON.parse(jsonStr) as AICardLayoutConfig;
     } catch (error) {
-        console.error("Error generating card layout with AI:", error);
+        if (import.meta.env.DEV) {
+            console.error("Error generating card layout with AI:", error instanceof Error ? error.message : String(error));
+        }
         throw new Error(getErrorMessage('aiFail'));
     }
 };
@@ -265,7 +305,9 @@ export const generateWidgetPlan = async (
         return JSON.parse(jsonStr) as AIWidgetPlan;
 
     } catch (error) {
-        console.error("Error generating widget plan with AI:", error);
+        if (import.meta.env.DEV) {
+            console.error("Error generating widget plan with AI:", error instanceof Error ? error.message : String(error));
+        }
         throw new Error(getErrorMessage('aiFail'));
     }
 }
@@ -331,7 +373,9 @@ export const generateJobDetailsWithAI = async (prompt: string): Promise<Partial<
         return parsedData;
 
     } catch (error) {
-        console.error("Error generating job details with AI:", error);
+        if (import.meta.env.DEV) {
+            console.error("Error generating job details with AI:", error instanceof Error ? error.message : String(error));
+        }
         throw new Error(getErrorMessage('aiFail'));
     }
 };
@@ -395,7 +439,9 @@ Instructions:
         // FIX: Access response text directly via the .text property.
         return (response.text ?? '').trim();
     } catch (error) {
-        console.error("Error refining job description with AI:", error);
+        if (import.meta.env.DEV) {
+            console.error("Error refining job description with AI:", error instanceof Error ? error.message : String(error));
+        }
         throw new Error(getErrorMessage('aiFail'));
     }
 };
@@ -416,7 +462,9 @@ export const generateAgencyBioWithAI = async (prompt: string): Promise<string> =
         // FIX: Access response text directly via the .text property.
         return response.text ?? '';
     } catch (error) {
-        console.error("Error generating agency bio with AI:", error);
+        if (import.meta.env.DEV) {
+            console.error("Error generating agency bio with AI:", error instanceof Error ? error.message : String(error));
+        }
         throw new Error(getErrorMessage('aiBioFail'));
     }
 }

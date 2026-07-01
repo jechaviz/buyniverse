@@ -5,6 +5,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import Card from '@/components/ui/Card';
 import Tag from '@/components/ui/Tag';
 import LazyOnVisible from '@/components/ui/LazyOnVisible';
+import { safeHref } from '@/utils/url';
 
 interface FreelancerProfileProps {
     freelancer: User;
@@ -35,7 +36,7 @@ const FreelancerProfile: React.FC<FreelancerProfileProps> = ({ freelancer, revie
                     <div className="space-y-6">
                         {freelancer.portfolio.map((item, index) => (
                             <div key={index} className="border-b border-slate-100 dark:border-slate-700 pb-4 last:border-b-0">
-                                <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-lg font-semibold text-primary-600 hover:underline">{item.title}</a>
+                                <a href={safeHref(item.url)} target="_blank" rel="noopener noreferrer" className="text-lg font-semibold text-primary-600 hover:underline">{item.title}</a>
                                 <p className="text-slate-600 dark:text-slate-300 mt-1">{item.description}</p>
                             </div>
                         ))}

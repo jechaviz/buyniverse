@@ -16,7 +16,7 @@ import { InviteFreelancersModal } from '@/features/freelancer';
 
 const ProjectDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const { jobs } = useAppState();
+    const { jobs, currentUser } = useAppState();
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
@@ -45,7 +45,25 @@ const ProjectDetailsPage: React.FC = () => {
     if (!project) {
         return <NotFoundPage />;
     }
-    
+
+    // Ownership guard: only the project's client owner, team members, approvers,
+    // the project manager, or an invited/shortlisted provider may view it.
+    const isOwnProject =
+        project.clientId === currentUser.id ||
+        project.projectManagerId === currentUser.id ||
+        (project.team || []).some(m => m.userId === currentUser.id) ||
+        (project.approvers || []).some(a => a.userId === currentUser.id) ||
+        (project.invitedFreelancerIds || []).includes(currentUser.id) ||
+        (project.shortlistedProviderIds || []).includes(currentUser.id) ||
+        (!!currentUser.agencyId && (
+            (project.invitedFreelancerIds || []).includes(currentUser.agencyId) ||
+            (project.shortlistedProviderIds || []).includes(currentUser.agencyId)
+        ));
+
+    if (!isOwnProject) {
+        return <NotFoundPage />;
+    }
+
     const handleUpdateProject = (updates: Partial<Job>) => {
         dispatch({ type: 'UPDATE_JOB', payload: { jobId: project.id, data: updates } });
     };

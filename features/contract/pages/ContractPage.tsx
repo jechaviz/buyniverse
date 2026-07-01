@@ -85,6 +85,11 @@ const ContractPage: React.FC = () => {
     if (!source) return <NotFoundPage />;
     
     const isClient = currentUser.id === contract.clientId;
+    const isProvider = contract.providerId === currentUser.id || (!!currentUser.agencyId && contract.providerId === currentUser.agencyId);
+
+    // Ownership guard: only the client or the contracted provider may view a contract.
+    if (!isClient && !isProvider) return <NotFoundPage />;
+
     const provider = agencies.find(a => a.id === contract.providerId) || users.find(u => u.id === contract.providerId);
     const otherParty = isClient ? provider : users.find(u => u.id === contract.clientId);
 

@@ -19,22 +19,26 @@ export const getUserPermissions = (user: Omit<User, 'permissions'>, teamMembersh
                 canManageFinances: true,
                 isWorkspaceAdmin: true,
             };
-        case UserType.Client:
+        case UserType.Client: {
             // This could be the workspace owner or a team member.
             const isOwner = !user.clientId || user.clientId === user.id;
-            const canEdit = teamMembership?.permission === 'edit';
+            // Fail-closed: a non-owner is only elevated when their membership
+            // explicitly grants 'edit'. Any missing/unknown permission stays locked.
+            const canEdit = isOwner || teamMembership?.permission === 'edit';
 
             return {
                 ...basePermissions,
-                canCreateProjects: isOwner || canEdit,
-                canViewAllProjects: true,
-                canEditWorkspaceSettings: isOwner || canEdit,
-                canManageFinances: isOwner || canEdit,
-                isWorkspaceAdmin: isOwner || canEdit,
+                canCreateProjects: canEdit,
+                // Owners and explicit team members can view all; otherwise locked.
+                canViewAllProjects: isOwner || teamMembership?.permission === 'edit' || teamMembership?.permission === 'view',
+                canEditWorkspaceSettings: canEdit,
+                canManageFinances: canEdit,
+                isWorkspaceAdmin: canEdit,
             };
+        }
         case UserType.Freelancer:
-            return basePermissions; // Freelancers have the most restricted permissions by default
+            return { ...basePermissions }; // Freelancers have the most restricted permissions by default
         default:
-            return basePermissions;
+            return { ...basePermissions }; // Fail-closed for any unknown/undefined user type
     }
 }

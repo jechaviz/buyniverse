@@ -148,7 +148,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                                 <button onClick={() => dispatch({type: 'MARK_NOTIFICATIONS_READ'})} className="text-xs text-primary-600 hover:underline">Mark all as read</button>
                             </div>
                              <ul className="max-h-80 overflow-y-auto">
-                                {notifications.slice(0,5).map(n => (
+                                {notifications.filter(n => n.userId === currentUser.id).slice(0,5).map(n => (
                                      <li key={n.id} className={`border-b border-slate-100 dark:border-slate-700 last:border-b-0 ${!n.isRead ? 'bg-primary-50 dark:bg-primary-500/10' : ''}`}>
                                          <Link to={n.link} className="block p-3 text-sm text-slate-600 dark:text-slate-300 hover:text-primary-600">
                                              {n.text}

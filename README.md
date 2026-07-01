@@ -51,3 +51,7 @@ No hay backend: los datos arrancan desde [`data/mockData.ts`](data/mockData.ts) 
 ## Nota de seguridad
 
 Esta es una app **100% de cliente**. La `GEMINI_API_KEY` se inyecta en el bundle en tiempo de build, por lo que **queda expuesta a cualquiera que use el sitio publicado**. Para un despliegue real, las llamadas a la IA deben ir detrás de un backend/proxy que custodie la clave; no publiques una clave de producción en el bundle.
+
+## Seguridad
+
+App de demostración **100% de cliente y sin autenticación real**. La `GEMINI_API_KEY` se incrusta en el bundle y queda expuesta: usa una clave de pruebas y custódiala tras un proxy server-side para producción. Detalles del modelo de seguridad, los riesgos OWASP inherentes (A01/A07) y los controles aplicados en [`SECURITY.md`](SECURITY.md).

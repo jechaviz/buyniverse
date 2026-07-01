@@ -4,6 +4,7 @@ import { useUsers } from '@/hooks/useUsers';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useAppState } from '@/context/AppStateContext';
 import { catalogs } from '../lib/catalogs';
+import { safeHref } from '@/utils/url';
 
 interface InvoicePreviewProps {
     invoice: Invoice;
@@ -169,7 +170,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoice }) => {
                             <h4 className="font-semibold mb-1">{t('pages.invoice.form.attachments')}</h4>
                             <ul className="text-sm list-disc list-inside">
                                 {invoice.attachments?.map(file => (
-                                    <li key={file.id}><a href={file.url} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">{file.name}</a></li>
+                                    <li key={file.id}><a href={safeHref(file.url)} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">{file.name}</a></li>
                                 ))}
                             </ul>
                         </div>

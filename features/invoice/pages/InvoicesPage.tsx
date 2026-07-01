@@ -2,15 +2,24 @@ import React, { useState, useMemo } from 'react';
 import { useAppState, useAppDispatch } from '@/context/AppStateContext';
 import { useTranslation } from '@/hooks/useTranslation';
 import { DataTable, ColumnDef } from '@/components/ui/DataTable';
-import { Invoice } from '@/types';
+import { Invoice, UserType } from '@/types';
 import StatCard from '@/components/ui/StatCard';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@/components/ui/Button';
 import Dropdown from '@/components/ui/Dropdown';
 
 const InvoicesPage: React.FC = () => {
-    const { invoices } = useAppState();
+    const { invoices, currentUser } = useAppState();
     const dispatch = useAppDispatch();
+
+    // A01 defense-in-depth: a Client must only see invoices addressed to them.
+    // Issuers (businesses/freelancers) and Admin issue/oversee invoices, so they see all.
+    // Real authorization must be enforced server-side (there is no backend here).
+    const visibleInvoices = useMemo(() => (
+        currentUser.type === UserType.Client
+            ? invoices.filter(inv => inv.receiver?.userId === currentUser.id)
+            : invoices
+    ), [invoices, currentUser.id, currentUser.type]);
     const navigate = useNavigate();
     const { t } = useTranslation();
     const [searchTerm, setSearchTerm] = useState('');
@@ -22,7 +31,7 @@ const InvoicesPage: React.FC = () => {
             overdue: { amount: 0, count: 0 },
         };
 
-        const data = invoices.map(invoice => {
+        const data = visibleInvoices.map(invoice => {
             let mutableInvoice = { ...invoice };
             if (mutableInvoice.status === 'Vigente' && mutableInvoice.paymentStatus === 'Unpaid' && mutableInvoice.dueDate && typeof mutableInvoice.total === 'number') {
                 const dueDate = new Date(mutableInvoice.dueDate);
@@ -39,7 +48,7 @@ const InvoicesPage: React.FC = () => {
         });
         
         return { invoiceData: data, stats: invoiceStats };
-    }, [invoices]);
+    }, [visibleInvoices]);
     
     const handleUpdateCell = (rowId: string, columnId: string, value: any) => {
         dispatch({ type: 'UPDATE_ENTITY', payload: { entity: 'invoices', id: rowId, data: { [columnId]: value } } });

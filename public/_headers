@@ -1,0 +1,12 @@
+# Security headers for static hosting (Netlify / Cloudflare Pages style).
+# NOTE: Adjust the Content-Security-Policy to match the REAL host before deploy.
+#   - connect-src must list every API origin the app actually calls
+#     (the Gemini/generativelanguage endpoint is included; add others as needed).
+#   - style-src/font-src allow cdnjs.cloudflare.com because Tailwind/icons may be
+#     served from there; drop these if you self-host all assets.
+/*
+  Content-Security-Policy: default-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com 'self'; script-src 'self'; frame-ancestors 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

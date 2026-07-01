@@ -7,6 +7,8 @@ import Header from '@/components/layout/Header';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import { NotFoundPage } from '@/features/notfound';
 import AppContextMenu from '@/components/layout/AppContextMenu';
+import RequireRole from '@/components/auth/RequireRole';
+import { UserType } from '@/types';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('@/features/job/pages/HomePage'));
@@ -108,7 +110,7 @@ const App: React.FC = () => {
                   <Route path="saved-jobs" element={<SavedJobsPage />} />
                   <Route path="browse-services" element={<GigListPage />} />
                   <Route path="gig/:gigId" element={<GigDetailsPage />} />
-                  <Route path="admin/issuers" element={<IssuersPage />} />
+                  <Route path="admin/issuers" element={<RequireRole allow={[UserType.Admin]}><IssuersPage /></RequireRole>} />
                   <Route path="*" element={<NotFoundPage />} />
               </Route>
           </Routes>

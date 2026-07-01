@@ -108,6 +108,8 @@ const MilestoneItem: React.FC<{ milestone: Milestone; contract: Contract }> = ({
     const [isAddingTask, setIsAddingTask] = useState(false);
 
     const isClient = currentUser.type === UserType.Client;
+    // Only the client who owns this contract may fund/release milestone payments.
+    const isContractClient = isClient && currentUser.id === contract.clientId;
     
     const providerUser = useMemo(() => {
         const agency = agencies.find(a => a.id === contract.providerId);
@@ -224,8 +226,8 @@ const MilestoneItem: React.FC<{ milestone: Milestone; contract: Contract }> = ({
                     {getStatusBadge()}
                     <span className="font-bold text-lg text-gray-700 dark:text-slate-200">${milestone.amount.toLocaleString()}</span>
                     
-                    {isClient && milestone.status === MilestoneStatus.Pending && <Button size="sm" onClick={handleFund}>{t('pages.contract.fund')}</Button>}
-                    {isClient && milestone.status === MilestoneStatus.Requested && <Button size="sm" onClick={handleReleasePayment}>{t('pages.contract.releasePayment')}</Button>}
+                    {isContractClient && milestone.status === MilestoneStatus.Pending && <Button size="sm" onClick={handleFund}>{t('pages.contract.fund')}</Button>}
+                    {isContractClient && milestone.status === MilestoneStatus.Requested && <Button size="sm" onClick={handleReleasePayment}>{t('pages.contract.releasePayment')}</Button>}
                     {!isClient && milestone.status === MilestoneStatus.Funded && <Button size="sm" onClick={handleRequestPayment}>{t('pages.contract.requestPayment')}</Button>}
                 </div>
             </div>

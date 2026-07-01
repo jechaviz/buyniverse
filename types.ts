@@ -941,6 +941,7 @@ export type Action =
     | { type: 'ADD_JOB', payload: Job }
     | { type: 'UPDATE_ISSUER', payload: { issuer: Issuer } }
     | { type: 'PURCHASE_FOLIOS', payload: { amount: number } }
+    | { type: 'CONSUME_FOLIO', payload: { userId: string } }
     | { type: 'UPDATE_USER_SETTINGS', payload: UserSettings }
     | { type: 'INVITE_FREELANCER', payload: { jobId: string, freelancerId: string, notification: Notification } }
     | { type: 'SET_PROVIDER_GROUP', payload: { jobId: string, providerId: string, targetGroup: 'shortlisted' | 'ignored' | 'suggested' | 'invited' } }

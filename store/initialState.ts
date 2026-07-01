@@ -15,7 +15,7 @@ const MOCK_ISSUERS: Issuer[] = [
     {
         id: 'issuer-1',
         name: 'Servicios Profesionales John Doe',
-        rfc: 'DOE880101CDE',
+        rfc: 'XAXX010101000',
         taxRegime: '612',
         branches: [
             { id: 'branch-1-1', name: 'Matriz', postalCode: '50226' },
@@ -26,7 +26,7 @@ const MOCK_ISSUERS: Issuer[] = [
     {
         id: 'issuer-2',
         name: 'Diseños Creativos Jane Smith',
-        rfc: 'SMIJ850101FGH',
+        rfc: 'XAXX010101000',
         taxRegime: '626',
         branches: [
             { id: 'branch-2-1', name: 'Oficina Principal', postalCode: '75001' },
@@ -60,7 +60,7 @@ const MOCK_INVOICES: Invoice[] = [
                     { base: 1500, taxType: 'IVA', rate: 0.16, amount: 240, isRetention: false, included: true },
                 ],
                 aCuentaTerceros: {
-                    rfc: 'TERC990101XYZ',
+                    rfc: 'XAXX010101000',
                     nombre: 'Proveedor de Hosting Externo S.A. de C.V.',
                     regimenFiscal: '601',
                     domicilioFiscal: '64000',
@@ -113,8 +113,8 @@ const MOCK_INVOICES: Invoice[] = [
         version: '4.0', serie: 'B', folio: '201', date: new Date('2024-06-20T10:00:00Z'), status: 'Vigente', paymentStatus: 'Unpaid',
         tipoDeComprobante: 'I', exportacion: '01',
         issuerId: 'issuer-1', branchId: 'branch-1-1',
-        issuer: { name: 'John Doe', rfc: 'DOE880101CDE', taxRegime: '612', postalCode: '50226' },
-        receiver: { userId: 'user-client-brenda', name: 'Innovate Inc.', rfc: 'SABR890101ABC', taxRegime: '601', postalCode: '06500', cfdiUse: 'G03' },
+        issuer: { name: 'John Doe', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '50226' },
+        receiver: { userId: 'user-client-brenda', name: 'Innovate Inc.', rfc: 'XAXX010101000', taxRegime: '601', postalCode: '06500', cfdiUse: 'G03' },
         lineItems: [
             { id: 'item-ppd-1', productCode: '84111500', unitCode: 'E48', quantity: 50, unit: 'hr', description: 'Consultoría SEO', unitPrice: 100, discount: 0, amount: 5000, objetoImp: '02', taxes: [
                 { base: 5000, taxType: 'IVA', rate: 0.16, amount: 800, isRetention: false },
@@ -132,8 +132,8 @@ const MOCK_INVOICES: Invoice[] = [
         version: '4.0', serie: 'B', folio: '202', date: new Date('2024-06-25T10:00:00Z'), status: 'Vigente', paymentStatus: 'Unpaid',
         tipoDeComprobante: 'I', exportacion: '01',
         issuerId: 'issuer-1', branchId: 'branch-1-1',
-        issuer: { name: 'John Doe', rfc: 'DOE880101CDE', taxRegime: '612', postalCode: '50226' },
-        receiver: { userId: 'user-client-brenda', name: 'Innovate Inc.', rfc: 'SABR890101ABC', taxRegime: '601', postalCode: '06500', cfdiUse: 'G03' },
+        issuer: { name: 'John Doe', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '50226' },
+        receiver: { userId: 'user-client-brenda', name: 'Innovate Inc.', rfc: 'XAXX010101000', taxRegime: '601', postalCode: '06500', cfdiUse: 'G03' },
         lineItems: [
             { id: 'item-ppd-2', productCode: '84111500', unitCode: 'E48', quantity: 1, unit: 'project', description: 'Diseño de Landing Page', unitPrice: 350, discount: 0, amount: 350, objetoImp: '02', taxes: [
                 { base: 350, taxType: 'IVA', rate: 0.16, amount: 56, isRetention: false },

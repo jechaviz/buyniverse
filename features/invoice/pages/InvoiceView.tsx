@@ -10,7 +10,7 @@ import { Invoice } from '@/types';
 
 const InvoiceView: React.FC = () => {
     const { invoiceId } = useParams<{ invoiceId: string }>();
-    const { invoices } = useAppState();
+    const { invoices, currentUser, issuers } = useAppState();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -19,6 +19,20 @@ const InvoiceView: React.FC = () => {
     const invoice = invoices.find(inv => inv.id === invoiceId);
 
     if (!invoice) {
+        return <NotFoundPage />;
+    }
+
+    // Ownership guard: only the invoice's client (receiver), provider, or the
+    // issuer matched to the current user (by RFC) may view it.
+    const issuer = issuers.find(i => i.id === invoice.issuerId);
+    const isOwnInvoice =
+        invoice.clientId === currentUser.id ||
+        invoice.receiver?.userId === currentUser.id ||
+        invoice.providerId === currentUser.id ||
+        (!!currentUser.agencyId && invoice.providerId === currentUser.agencyId) ||
+        (!!currentUser.rfc && !!issuer && issuer.rfc === currentUser.rfc);
+
+    if (!isOwnInvoice) {
         return <NotFoundPage />;
     }
 
