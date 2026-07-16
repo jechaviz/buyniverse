@@ -21,15 +21,42 @@ export const MOCK_USERS_RAW: Omit<User, 'permissions'>[] = [
         subject: 'New Invoice from {{issuerName}} - {{invoiceNumber}}',
         body: 'Hello,\n\nPlease find attached your invoice {{invoiceNumber}} for a total of {{totalAmount}}.\n\nThank you for your business!',
     }},
-    { id: 'user-freelancer-john', name: 'John Doe', email: 'john@example.com', type: UserType.Freelancer, memberSince: new Date('2023-02-20'), headline: 'Senior React Developer', bio: 'I build fast and reliable web applications.', skills: ['React', 'TypeScript', 'Node.js', 'GraphQL'], jobSuccessScore: 98, totalEarned: 125000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-john', location: 'London, UK', onlineStatus: 'online', isStarred: true, lastSeen: new Date(), rfc: 'XAXX010101000', taxRegime: '612', postalCode: '50226' },
+    { id: 'user-freelancer-john', name: 'John Doe', email: 'john@example.com', type: UserType.Freelancer, memberSince: new Date('2023-02-20'), headline: 'Senior React Developer', bio: 'I build fast and reliable web applications.', skills: ['React', 'TypeScript', 'Node.js', 'GraphQL'], jobSuccessScore: 98, totalEarned: 125000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-john', location: 'London, UK', onlineStatus: 'online', isStarred: true, lastSeen: new Date(), rfc: 'XAXX010101000', taxRegime: '612', postalCode: '50226', category: 'Development' },
     { id: 'user-admin-admin', name: 'Admin User', email: 'admin@example.com', type: UserType.Admin, memberSince: new Date('2023-01-01'), avatarUrl: 'https://i.pravatar.cc/150?u=user-admin-admin', location: 'System' },
-    { id: 'user-freelancer-jane', name: 'Jane Smith', email: 'jane@example.com', type: UserType.Freelancer, memberSince: new Date('2023-03-10'), headline: 'UI/UX Designer', bio: 'Creating intuitive and beautiful user experiences.', skills: ['Figma', 'UI/UX', 'Prototyping'], jobSuccessScore: 95, totalEarned: 85000, availabilityStatus: AvailabilityStatus.NotAvailable, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-jane', location: 'Paris, France', onlineStatus: 'away', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '75001' },
-    { id: 'user-freelancer-charlie', name: 'Charlie Brown', email: 'charlie@example.com', type: UserType.Freelancer, memberSince: new Date('2023-08-15'), headline: 'Vue.js & Firebase Expert', bio: 'Building scalable applications with Vue and Firebase.', skills: ['Vue.js', 'Firebase', 'TailwindCSS', 'JavaScript'], jobSuccessScore: 92, totalEarned: 45000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-charlie', location: 'Austin, USA', onlineStatus: 'online', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '78701' },
+    { id: 'user-freelancer-jane', name: 'Jane Smith', email: 'jane@example.com', type: UserType.Freelancer, memberSince: new Date('2023-03-10'), headline: 'UI/UX Designer', bio: 'Creating intuitive and beautiful user experiences.', skills: ['Figma', 'UI/UX', 'Prototyping'], jobSuccessScore: 95, totalEarned: 85000, availabilityStatus: AvailabilityStatus.NotAvailable, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-jane', location: 'Paris, France', onlineStatus: 'away', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '75001', category: 'Design', agencyId: 'agency-pixel', agencyRole: AgencyRole.Owner },
+    { id: 'user-freelancer-charlie', name: 'Charlie Brown', email: 'charlie@example.com', type: UserType.Freelancer, memberSince: new Date('2023-08-15'), headline: 'Vue.js & Firebase Expert', bio: 'Building scalable applications with Vue and Firebase.', skills: ['Vue.js', 'Firebase', 'TailwindCSS', 'JavaScript'], jobSuccessScore: 92, totalEarned: 45000, availabilityStatus: AvailabilityStatus.Available, avatarUrl: 'https://i.pravatar.cc/150?u=user-freelancer-charlie', location: 'Austin, USA', onlineStatus: 'online', rfc: 'XAXX010101000', taxRegime: '612', postalCode: '78701', category: 'Development', agencyId: 'agency-pixel', agencyRole: AgencyRole.Member },
 ];
 
-export const MOCK_AGENCIES: Agency[] = [];
-export const MOCK_REVIEWS: Review[] = [];
-export const MOCK_GIGS: Gig[] = [];
+export const MOCK_AGENCIES: Agency[] = [
+    {
+        id: 'agency-pixel',
+        name: 'Pixel North Studio',
+        tagline: 'Product design systems for growing teams.',
+        logoUrl: 'https://i.pravatar.cc/150?u=agency-pixel',
+        bio: 'A compact product-design studio that pairs research, UX and polished interface systems.',
+        ownerId: 'user-freelancer-jane',
+        members: [
+            { userId: 'user-freelancer-jane', role: AgencyRole.Owner },
+            { userId: 'user-freelancer-charlie', role: AgencyRole.Member },
+        ],
+        certifications: ['Figma Professional', 'Accessibility Fundamentals'],
+        portfolio: [{ title: 'Fintech dashboard', description: 'Analytics workspace for a SaaS platform.', url: 'https://example.com/portfolio/fintech-dashboard' }],
+        location: 'Remote',
+        jobSuccessScore: 96,
+        totalTeamEarnings: 130000,
+        specialties: ['Product design', 'Design systems', 'Prototyping'],
+    },
+];
+
+export const MOCK_REVIEWS: Review[] = [
+    { id: 'review-1', jobId: 'job-1', fromUserId: 'user-client-brenda', toUserId: 'user-freelancer-john', rating: 5, comment: 'Clear communication and reliable delivery.', submittedAt: new Date('2024-06-18') },
+    { id: 'review-2', jobId: 'job-7', fromUserId: 'user-client-brenda', toUserId: 'user-freelancer-jane', rating: 5, comment: 'Strong visual direction and a smooth handoff.', submittedAt: new Date('2024-06-03') },
+];
+
+export const MOCK_GIGS: Gig[] = [
+    { id: 'gig-react-audit', creatorId: 'user-freelancer-john', creatorType: 'user', title: 'React performance audit', description: 'A focused audit with prioritized fixes and a handoff checklist.', price: 450, category: 'Development', imageUrl: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=900&q=80', deliveryTimeDays: 3, revisions: 1, scope: ['Performance report', 'Prioritized backlog', '30-minute walkthrough'] },
+    { id: 'gig-design-sprint', creatorId: 'agency-pixel', creatorType: 'agency', title: 'Landing page design sprint', description: 'A conversion-focused landing page concept, ready for implementation.', price: 1200, category: 'Design', imageUrl: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=80', deliveryTimeDays: 7, revisions: 2, scope: ['Wireframe', 'High-fidelity Figma file', 'Responsive handoff'] },
+];
 
 // --- LEADS ---
 export const MOCK_LEADS: Lead[] = [
@@ -71,6 +98,7 @@ export const MOCK_JOBS: Job[] = [
         files: [],
         rfiResponses: [],
         currency: 'USD',
+        category: 'Development',
         visibility: 'public',
         projectLevel: ProjectLevel.Advanced,
         duration: Duration.Month3To6,
@@ -100,6 +128,7 @@ export const MOCK_JOBS: Job[] = [
         files: [],
         rfiResponses: [],
         currency: 'USD',
+        category: 'Design',
         visibility: 'public',
         projectLevel: ProjectLevel.Intermediate,
         duration: Duration.Month1To3,
@@ -130,6 +159,7 @@ export const MOCK_JOBS: Job[] = [
         files: [],
         rfiResponses: [],
         currency: 'USD',
+        category: 'Development',
         visibility: 'private',
         projectLevel: ProjectLevel.Basic,
         duration: Duration.LessThan1Month,
@@ -161,6 +191,7 @@ export const MOCK_JOBS: Job[] = [
         files: [],
         rfiResponses: [],
         currency: 'USD',
+        category: 'Design',
         visibility: 'public',
         projectLevel: ProjectLevel.Intermediate,
         duration: Duration.LessThan1Month,
@@ -194,6 +225,7 @@ export const MOCK_JOBS: Job[] = [
         files: [],
         rfiResponses: [],
         currency: 'USD',
+        category: 'Design',
         visibility: 'public',
         projectLevel: ProjectLevel.Advanced,
         duration: Duration.Month1To3,
@@ -209,10 +241,11 @@ export const MOCK_JOBS: Job[] = [
         postedAt: new Date('2024-06-01'),
         status: JobStatus.InProgress,
         contestId: 'contest-6',
+        contractId: 'contract-6',
         proposals: [
-            { id: 'prop-job6-1', jobId: 'job-6', freelancerId: 'user-freelancer-jane', freelancerName: 'Jane Smith', bid: 2300, coverLetter: 'I am a motion graphics expert.', submittedAt: new Date('2024-06-02'), status: ProposalStatus.Pending, attachments: [], qualificationStatus: ProposalQualificationStatus.Qualified, ndaSigned: false, completionTime: '2 weeks' },
-            { id: 'prop-job6-2', jobId: 'job-6', freelancerId: 'user-freelancer-john', freelancerName: 'John Doe', bid: 2250, coverLetter: 'I can create a compelling animation for your product.', submittedAt: new Date('2024-06-03'), status: ProposalStatus.Pending, attachments: [], qualificationStatus: ProposalQualificationStatus.Qualified, ndaSigned: false, completionTime: '3 weeks' },
-            { id: 'prop-job6-3', jobId: 'job-6', freelancerId: 'user-freelancer-charlie', freelancerName: 'Charlie Brown', bid: 2400, coverLetter: 'My animation style will fit your brand perfectly.', submittedAt: new Date('2024-06-02'), status: ProposalStatus.Pending, attachments: [], qualificationStatus: ProposalQualificationStatus.Qualified, ndaSigned: false, completionTime: '2 weeks' }
+            { id: 'prop-job6-1', jobId: 'job-6', freelancerId: 'user-freelancer-jane', freelancerName: 'Jane Smith', bid: 2300, coverLetter: 'I am a motion graphics expert.', submittedAt: new Date('2024-06-02'), status: ProposalStatus.Rejected, attachments: [], qualificationStatus: ProposalQualificationStatus.Qualified, ndaSigned: false, completionTime: '2 weeks' },
+            { id: 'prop-job6-2', jobId: 'job-6', freelancerId: 'user-freelancer-john', freelancerName: 'John Doe', bid: 2250, coverLetter: 'I can create a compelling animation for your product.', submittedAt: new Date('2024-06-03'), status: ProposalStatus.Accepted, attachments: [], qualificationStatus: ProposalQualificationStatus.Qualified, ndaSigned: false, completionTime: '3 weeks' },
+            { id: 'prop-job6-3', jobId: 'job-6', freelancerId: 'user-freelancer-charlie', freelancerName: 'Charlie Brown', bid: 2400, coverLetter: 'My animation style will fit your brand perfectly.', submittedAt: new Date('2024-06-02'), status: ProposalStatus.Rejected, attachments: [], qualificationStatus: ProposalQualificationStatus.Qualified, ndaSigned: false, completionTime: '2 weeks' }
         ],
         experienceLevel: ExperienceLevel.Intermediate,
         requiresNDA: false,
@@ -227,6 +260,7 @@ export const MOCK_JOBS: Job[] = [
         files: [],
         rfiResponses: [],
         currency: 'USD',
+        category: 'Design',
         visibility: 'public',
         projectLevel: ProjectLevel.Intermediate,
         duration: Duration.LessThan1Month,
@@ -260,6 +294,7 @@ export const MOCK_JOBS: Job[] = [
         files: [],
         rfiResponses: [],
         currency: 'USD',
+        category: 'Design',
         visibility: 'public',
         projectLevel: ProjectLevel.Basic,
         duration: Duration.LessThan1Month,
@@ -283,6 +318,20 @@ export const MOCK_CONTRACTS: Contract[] = [
         ]
     },
     {
+        id: 'contract-6',
+        type: ContractType.Job,
+        jobType: JobType.FixedPrice,
+        sourceId: 'job-6',
+        clientId: 'user-client-brenda',
+        providerId: 'user-freelancer-john',
+        rateOrBid: 2250,
+        startedAt: new Date('2024-06-06'),
+        milestones: [
+            { id: 'm6-1', description: 'Storyboard and animation draft', amount: 1125, dueDate: new Date('2024-06-18'), status: MilestoneStatus.Released, tasks: [] },
+            { id: 'm6-2', description: 'Final render and delivery', amount: 1125, dueDate: new Date('2024-06-24'), status: MilestoneStatus.Funded, tasks: [] },
+        ],
+    },
+    {
         id: 'contract-7',
         type: ContractType.Job,
         jobType: JobType.FixedPrice,
@@ -291,7 +340,9 @@ export const MOCK_CONTRACTS: Contract[] = [
         providerId: 'user-freelancer-jane',
         rateOrBid: 850,
         startedAt: new Date('2024-05-26'),
-        milestones: []
+        milestones: [
+            { id: 'm7-1', description: 'Logo concepts and final source files', amount: 850, dueDate: new Date('2024-06-02'), status: MilestoneStatus.Released, tasks: [] },
+        ]
     }
 ];
 export const MOCK_CONVERSATIONS: Conversation[] = [
@@ -411,19 +462,31 @@ export const MOCK_INVOICES_BASE: Invoice[] = [
         amount: 2217,
         issuedDate: new Date('2024-07-15T10:00:00Z'),
         dueDate: new Date('2024-08-14T10:00:00Z'),
+        contractId: 'contract-1',
         clientId: 'user-client-brenda',
         providerId: 'user-freelancer-john',
     },
 ];
-export const MOCK_PAYMENTS: Payment[] = [];
+export const MOCK_PAYMENTS: Payment[] = [
+    { id: 'payment-1', paymentDate: new Date('2024-07-15T10:00:00Z'), invoiceId: 'inv-1672531200000', amount: 2217, clientId: 'user-client-brenda', projectId: 'job-1', method: 'Bank' },
+    { id: 'payment-2', paymentDate: new Date('2024-07-10T14:00:00Z'), invoiceId: 'inv-ppd-1', amount: 2500, clientId: 'user-client-brenda', projectId: 'job-1', method: 'Bank' },
+];
 export const MOCK_ESTIMATES: Estimate[] = [
     { id: 'est-1', date: new Date('2024-06-10'), companyId: 'user-client-brenda', createdById: 'user-freelancer-john', amount: 1200, status: EstimateStatus.Accepted },
     { id: 'est-2', date: new Date('2024-06-15'), companyId: 'user-client-brenda', createdById: 'user-freelancer-jane', amount: 3500, status: EstimateStatus.Pending },
     { id: 'est-3', date: new Date('2024-05-20'), companyId: 'user-client-brenda', createdById: 'user-freelancer-john', amount: 800, status: EstimateStatus.Declined },
     { id: 'est-4', date: new Date('2024-06-25'), companyId: 'user-client-brenda', createdById: 'user-freelancer-john', amount: 5000, status: EstimateStatus.Draft },
 ];
-export const MOCK_TRANSACTIONS: Transaction[] = [];
-export const MOCK_TIME_ENTRIES: TimeEntry[] = [];
+export const MOCK_TRANSACTIONS: Transaction[] = [
+    { id: 'txn-1', userId: 'user-client-brenda', type: TransactionType.PAYMENT, amount: -2217, description: 'Paid invoice A-101', date: new Date('2024-07-15T10:00:00Z'), relatedId: 'contract-1', invoiceId: 'inv-1672531200000' },
+    { id: 'txn-2', userId: 'user-freelancer-john', type: TransactionType.MILESTONE_RELEASE, amount: 6000, description: 'Milestone released: Project setup and initial UI', date: new Date('2024-06-16T12:00:00Z'), relatedId: 'contract-1', invoiceId: 'inv-1672531200000' },
+    { id: 'txn-3', userId: 'user-client-brenda', type: TransactionType.PAYMENT, amount: -2500, description: 'Partial payment for invoice B-201', date: new Date('2024-07-10T14:00:00Z'), relatedId: 'contract-1', invoiceId: 'inv-ppd-1' },
+];
+export const MOCK_TIME_ENTRIES: TimeEntry[] = [
+    { id: 'time-1', contractId: 'contract-1', userId: 'user-freelancer-john', date: new Date('2024-06-11'), hours: 6.5, memo: 'Implemented checkout API integration.' },
+    { id: 'time-2', contractId: 'contract-1', userId: 'user-freelancer-john', date: new Date('2024-06-12'), hours: 7, memo: 'Completed responsive product listing components.' },
+    { id: 'time-3', contractId: 'contract-6', userId: 'user-freelancer-john', date: new Date('2024-06-14'), hours: 4, memo: 'Prepared final animation render.' },
+];
 export const MOCK_CONTESTS: Contest[] = [
     {
         id: 'contest-5',
@@ -447,6 +510,7 @@ export const MOCK_CONTESTS: Contest[] = [
         id: 'contest-6',
         jobId: 'job-6',
         status: ContestStatus.Finished,
+        winnerId: 'user-freelancer-john',
         startTime: new Date('2024-06-05T10:00:00Z'),
         endTime: new Date('2024-06-05T10:15:00Z'),
         showParticipantNames: false,
@@ -476,7 +540,11 @@ export const MOCK_CONTESTS: Contest[] = [
         ]
     }
 ];
-export const MOCK_PRODUCTS: Product[] = [];
+export const MOCK_PRODUCTS: Product[] = [
+    { id: 'prod-1', description: 'Web consulting service', rate: 150, unit: 'Hour', category: 'Services', productCode: '84111500', unitCode: 'E48', objetoImp: '02', defaultTaxes: [{ taxType: 'IVA', rate: 0.16, isRetention: false }, { taxType: 'ISR', rate: 0.1, isRetention: true }] },
+    { id: 'prod-2', description: 'Annual software license', rate: 1200, unit: 'Each', category: 'Software', productCode: '43232400', unitCode: 'H87', objetoImp: '02', defaultTaxes: [{ taxType: 'IVA', rate: 0.16, isRetention: false }], noIdentificacion: 'LIC-SOFT-1Y' },
+    { id: 'prod-3', description: 'Imported electronic component', rate: 500, unit: 'Each', category: 'Hardware', productCode: '43211700', unitCode: 'H87', objetoImp: '02', defaultTaxes: [{ taxType: 'IVA', rate: 0.16, isRetention: false }], informacionAduanera: [{ numeroPedimento: '21 47 3807 8003479' }] },
+];
 export const MOCK_EXPENSES: Expense[] = [
     { id: 'exp-1', date: new Date('2024-06-05'), description: 'Software License (Figma)', userId: 'user-freelancer-jane', projectId: 'job-1', amount: 144, billable: true, status: ExpenseStatus.Invoiced },
     { id: 'exp-2', date: new Date('2024-06-12'), description: 'Stock Photos for Project', userId: 'user-freelancer-john', projectId: 'job-1', amount: 50, billable: true, status: ExpenseStatus.Approved },

@@ -1,6 +1,18 @@
-import { AppState, Action, JobStatus, ProposalStatus, MilestoneStatus, UserType, ApprovalStatus, TaskStatus, LeadStatus, FileCategory } from '@/types';
+import { AppState, Action, JobStatus, ProposalStatus, MilestoneStatus, UserType, ApprovalStatus, TaskStatus, LeadStatus, FileCategory, AgencyRole, ContestStatus } from '@/types';
 import { getUserPermissions } from '@/utils/permissions';
 import { initialState } from './initialState';
+
+const uniqueIds = (ids: string[] = [], id: string) => ids.includes(id) ? ids : [...ids, id];
+const withoutId = (ids: string[] = [], id: string) => ids.filter(value => value !== id);
+
+const updateCurrentUser = (state: AppState, data: Partial<AppState['currentUser']>): AppState => {
+    const currentUser = { ...state.currentUser, ...data };
+    return {
+        ...state,
+        currentUser,
+        users: state.users.map(user => user.id === currentUser.id ? currentUser : user),
+    };
+};
 
 export const appReducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
@@ -44,6 +56,52 @@ export const appReducer = (state: AppState, action: Action): AppState => {
                 conversations: [...state.conversations, action.payload.conversation],
                 notifications: [...state.notifications, action.payload.notification],
             };
+
+        case 'ADD_REVIEW':
+            return { ...state, reviews: [...state.reviews, action.payload] };
+
+        case 'POST_QUESTION':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.jobId
+                    ? { ...job, questions: [...job.questions, action.payload.question] }
+                    : job),
+            };
+
+        case 'ANSWER_QUESTION':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.jobId
+                    ? {
+                        ...job,
+                        questions: job.questions.map(question => question.id === action.payload.questionId
+                            ? { ...question, answer: { text: action.payload.answerText, answeredAt: new Date() } }
+                            : question),
+                    }
+                    : job),
+            };
+
+        case 'SEND_MESSAGE': {
+            const conversationExists = state.conversations.some(conversation => conversation.id === action.payload.conversationId);
+            if (!conversationExists) return state;
+            return {
+                ...state,
+                conversations: state.conversations.map(conversation => conversation.id === action.payload.conversationId
+                    ? { ...conversation, messages: [...conversation.messages, action.payload.message] }
+                    : conversation),
+                notifications: action.payload.notification
+                    ? [...state.notifications, action.payload.notification]
+                    : state.notifications,
+            };
+        }
+
+        case 'MARK_NOTIFICATIONS_READ':
+            return {
+                ...state,
+                notifications: state.notifications.map(notification => notification.userId === state.currentUser.id
+                    ? { ...notification, isRead: true }
+                    : notification),
+            };
             
         case 'HIRE_FREELANCER':
             return {
@@ -75,6 +133,112 @@ export const appReducer = (state: AppState, action: Action): AppState => {
                 invoices: [...state.invoices, action.payload.invoice],
             };
         }
+
+        case 'CREATE_AGENCY': {
+            if (state.currentUser.agencyId) return state;
+            const agency = {
+                ...action.payload.agency,
+                ownerId: state.currentUser.id,
+                members: [{ userId: state.currentUser.id, role: AgencyRole.Owner }],
+            };
+            return updateCurrentUser(
+                { ...state, agencies: [...state.agencies, agency] },
+                { agencyId: agency.id, agencyRole: AgencyRole.Owner },
+            );
+        }
+
+        case 'UPDATE_AGENCY_PROFILE': {
+            const agency = state.agencies.find(item => item.id === action.payload.agencyId);
+            const canManage = agency?.members.some(member => member.userId === state.currentUser.id
+                && (member.role === AgencyRole.Owner || member.role === AgencyRole.Admin));
+            if (!agency || !canManage) return state;
+            return {
+                ...state,
+                agencies: state.agencies.map(item => item.id === agency.id
+                    ? { ...item, ...action.payload.data, id: item.id, ownerId: item.ownerId, members: item.members }
+                    : item),
+            };
+        }
+
+        case 'SET_AVAILABILITY':
+            return state.currentUser.type === UserType.Freelancer
+                ? updateCurrentUser(state, { availabilityStatus: action.payload.status })
+                : state;
+
+        case 'LOG_TIME': {
+            const contract = state.contracts.find(item => item.id === action.payload.timeEntry.contractId);
+            if (!contract || contract.providerId !== state.currentUser.id) return state;
+            return {
+                ...state,
+                timeEntries: [...state.timeEntries, action.payload.timeEntry],
+                notifications: [...state.notifications, action.payload.notification],
+            };
+        }
+
+        case 'PURCHASE_GIG':
+            return {
+                ...state,
+                contracts: [...state.contracts, action.payload.contract],
+                invoices: [...state.invoices, action.payload.invoice],
+                transactions: [...state.transactions, action.payload.transaction],
+                notifications: [...state.notifications, action.payload.notification],
+            };
+
+        case 'CREATE_CONTEST':
+            return {
+                ...state,
+                contests: [...state.contests, action.payload.contest],
+                conversations: [...state.conversations, action.payload.conversation],
+                notifications: [...state.notifications, ...action.payload.notifications],
+                jobs: state.jobs.map(job => job.id === action.payload.contest.jobId
+                    ? { ...job, contestId: action.payload.contest.id }
+                    : job),
+            };
+
+        case 'UPDATE_PROPOSAL_BID': {
+            const conversation = state.conversations.find(item => item.jobId === action.payload.jobId
+                && item.participants.includes(action.payload.message.senderId));
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.jobId
+                    ? {
+                        ...job,
+                        proposals: job.proposals.map(proposal => proposal.id === action.payload.proposalId
+                            ? { ...proposal, bid: action.payload.newBid }
+                            : proposal),
+                    }
+                    : job),
+                conversations: conversation
+                    ? state.conversations.map(item => item.id === conversation.id
+                        ? { ...item, messages: [...item.messages, action.payload.message] }
+                        : item)
+                    : state.conversations,
+                notifications: [...state.notifications, action.payload.notification],
+            };
+        }
+
+        case 'SELECT_CONTEST_WINNER':
+            return {
+                ...state,
+                contests: state.contests.map(contest => contest.id === action.payload.contestId
+                    ? { ...contest, status: ContestStatus.Finished, winnerId: action.payload.winnerId }
+                    : contest),
+                jobs: state.jobs.map(job => job.id === action.payload.jobId
+                    ? {
+                        ...job,
+                        status: JobStatus.InProgress,
+                        contractId: action.payload.contract.id,
+                        proposals: job.proposals.map(proposal => ({
+                            ...proposal,
+                            status: proposal.freelancerId === action.payload.winnerId
+                                ? ProposalStatus.Accepted
+                                : ProposalStatus.Rejected,
+                        })),
+                    }
+                    : job),
+                contracts: [...state.contracts, action.payload.contract],
+                notifications: [...state.notifications, ...action.payload.notifications],
+            };
 
         case 'CREATE_MILESTONE': {
             return {
@@ -251,6 +415,69 @@ export const appReducer = (state: AppState, action: Action): AppState => {
             newLayouts[tableId] = tableLayout;
             return { ...state, dashboardLayouts: newLayouts };
         }
+
+        case 'UPDATE_CATEGORY_TITLE':
+            return {
+                ...state,
+                dashboardLayouts: {
+                    ...state.dashboardLayouts,
+                    [action.payload.tableId]: (state.dashboardLayouts[action.payload.tableId] || []).map(category => category.id === action.payload.categoryId
+                        ? { ...category, title: action.payload.title }
+                        : category),
+                },
+            };
+
+        case 'SET_DASHBOARD_LAYOUT':
+            return {
+                ...state,
+                dashboardLayouts: { ...state.dashboardLayouts, [action.payload.tableId]: action.payload.layout },
+            };
+
+        case 'DUPLICATE_WIDGET': {
+            const categories = state.dashboardLayouts[action.payload.tableId] || [];
+            return {
+                ...state,
+                dashboardLayouts: {
+                    ...state.dashboardLayouts,
+                    [action.payload.tableId]: categories.map(category => {
+                        if (category.id !== action.payload.categoryId) return category;
+                        const widget = category.widgets.find(item => item.id === action.payload.widgetId);
+                        return widget
+                            ? { ...category, widgets: [...category.widgets, { ...widget, id: `widget-${Date.now()}`, title: `${widget.title} copy` }] }
+                            : category;
+                    }),
+                },
+            };
+        }
+
+        case 'SAVE_TABLE_VIEW':
+            return {
+                ...state,
+                tableViews: {
+                    ...state.tableViews,
+                    [action.payload.tableId]: [...(state.tableViews[action.payload.tableId] || []), action.payload.view],
+                },
+            };
+
+        case 'UPDATE_TABLE_VIEW':
+            return {
+                ...state,
+                tableViews: {
+                    ...state.tableViews,
+                    [action.payload.tableId]: (state.tableViews[action.payload.tableId] || []).map(view => view.id === action.payload.view.id
+                        ? action.payload.view
+                        : view),
+                },
+            };
+
+        case 'DELETE_TABLE_VIEW':
+            return {
+                ...state,
+                tableViews: {
+                    ...state.tableViews,
+                    [action.payload.tableId]: (state.tableViews[action.payload.tableId] || []).filter(view => view.id !== action.payload.viewId),
+                },
+            };
         
         case 'UPDATE_ENTITY': {
             const { entity, id, data } = action.payload;
@@ -271,6 +498,36 @@ export const appReducer = (state: AppState, action: Action): AppState => {
                 )
             };
         }
+
+        case 'BULK_ADD_LEADS':
+            return {
+                ...state,
+                leads: [
+                    ...state.leads,
+                    ...action.payload.leads.map((lead, index) => ({
+                        ...lead,
+                        id: `lead-${Date.now()}-${index}`,
+                        createdAt: new Date(),
+                        assignedTo: [state.currentUser.id],
+                    })),
+                ],
+            };
+
+        case 'UPDATE_PRODUCT':
+            return {
+                ...state,
+                products: state.products.map(product => product.id === action.payload.id
+                    ? { ...product, ...action.payload.data }
+                    : product),
+            };
+
+        case 'UPDATE_EXPENSE':
+            return {
+                ...state,
+                expenses: state.expenses.map(expense => expense.id === action.payload.id
+                    ? { ...expense, ...action.payload.data }
+                    : expense),
+            };
         
         case 'REORDER_MILESTONE_CATEGORIES': {
             return {
@@ -285,6 +542,171 @@ export const appReducer = (state: AppState, action: Action): AppState => {
                 })
             }
         }
+
+        case 'INVITE_FREELANCER':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.jobId
+                    ? { ...job, invitedFreelancerIds: uniqueIds(job.invitedFreelancerIds, action.payload.freelancerId) }
+                    : job),
+                notifications: [...state.notifications, action.payload.notification],
+            };
+
+        case 'SET_PROVIDER_GROUP':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => {
+                    if (job.id !== action.payload.jobId) return job;
+                    const providerId = action.payload.providerId;
+                    const base = {
+                        ...job,
+                        shortlistedProviderIds: withoutId(job.shortlistedProviderIds, providerId),
+                        ignoredProviderIds: withoutId(job.ignoredProviderIds, providerId),
+                        invitedFreelancerIds: withoutId(job.invitedFreelancerIds, providerId),
+                    };
+                    if (action.payload.targetGroup === 'shortlisted') {
+                        return { ...base, shortlistedProviderIds: uniqueIds(base.shortlistedProviderIds, providerId) };
+                    }
+                    if (action.payload.targetGroup === 'ignored') {
+                        return { ...base, ignoredProviderIds: uniqueIds(base.ignoredProviderIds, providerId) };
+                    }
+                    if (action.payload.targetGroup === 'invited') {
+                        return { ...base, invitedFreelancerIds: uniqueIds(base.invitedFreelancerIds, providerId) };
+                    }
+                    return base;
+                }),
+            };
+
+        case 'UPDATE_PROPOSAL_QUALIFICATION':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.jobId
+                    ? {
+                        ...job,
+                        proposals: job.proposals.map(proposal => proposal.freelancerId === action.payload.providerId
+                            ? { ...proposal, qualificationStatus: action.payload.status }
+                            : proposal),
+                    }
+                    : job),
+            };
+
+        case 'SHORTLIST_FOR_PROPOSAL':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.jobId
+                    ? {
+                        ...job,
+                        shortlistedProviderIds: action.payload.providerIds,
+                        ignoredProviderIds: (job.ignoredProviderIds || []).filter(id => !action.payload.providerIds.includes(id)),
+                    }
+                    : job),
+            };
+
+        case 'ADD_COMMENT':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.projectId
+                    ? { ...job, comments: [...job.comments, action.payload.comment] }
+                    : job),
+            };
+
+        case 'CREATE_NEW_FILE': {
+            const file = {
+                ...action.payload.file,
+                id: `file-${Date.now()}`,
+                uploadedAt: new Date(),
+                uploadedById: state.currentUser.id,
+                size: action.payload.file.content?.length || 0,
+                status: 'Uploaded' as const,
+                category: action.payload.file.category || FileCategory.Other,
+            };
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.projectId
+                    ? { ...job, files: [...job.files, file] }
+                    : job),
+            };
+        }
+
+        case 'CREATE_NEW_FOLDER': {
+            const normalizedPath = action.payload.folderPath.replace(/^\/+|\/+$/g, '');
+            if (!normalizedPath) return state;
+            const placeholder = {
+                id: `folder-${Date.now()}`,
+                name: '.placeholder',
+                path: `${normalizedPath}/.placeholder`,
+                size: 0,
+                type: 'system/folder',
+                uploadedAt: new Date(),
+                uploadedById: state.currentUser.id,
+                status: 'Uploaded' as const,
+                category: FileCategory.Other,
+            };
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.projectId
+                    && !job.files.some(file => file.path === placeholder.path)
+                    ? { ...job, files: [...job.files, placeholder] }
+                    : job),
+            };
+        }
+
+        case 'UPDATE_FILE_CONTENT':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.projectId
+                    ? {
+                        ...job,
+                        files: job.files.map(file => file.id === action.payload.fileId
+                            ? { ...file, content: action.payload.newContent, size: action.payload.newContent.length, status: 'Modified' }
+                            : file),
+                    }
+                    : job),
+            };
+
+        case 'RENAME_NODE':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => {
+                    if (job.id !== action.payload.projectId) return job;
+                    if (action.payload.nodeType === 'file') {
+                        return {
+                            ...job,
+                            files: job.files.map(file => file.id === action.payload.nodeId
+                                ? { ...file, name: action.payload.newName, path: `${file.path.slice(0, file.path.lastIndexOf('/') + 1)}${action.payload.newName}` }
+                                : file),
+                        };
+                    }
+                    const folderPath = action.payload.nodeId.replace(/\/+$/, '');
+                    return {
+                        ...job,
+                        files: job.files.map(file => file.path.startsWith(`${folderPath}/`)
+                            ? { ...file, path: `${action.payload.newName}${file.path.slice(folderPath.length)}` }
+                            : file),
+                    };
+                }),
+            };
+
+        case 'DELETE_NODE':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.projectId
+                    ? {
+                        ...job,
+                        files: job.files.filter(file => action.payload.nodeType === 'file'
+                            ? file.id !== action.payload.nodeId
+                            : !file.path.startsWith(`${action.payload.nodeId.replace(/\/+$/, '')}/`)),
+                    }
+                    : job),
+            };
+
+        case 'UPLOAD_FILE':
+            return {
+                ...state,
+                jobs: state.jobs.map(job => job.id === action.payload.projectId
+                    ? { ...job, files: [...job.files, action.payload.file] }
+                    : job),
+            };
         
         case 'ADD_INVOICE':
             return { ...state, invoices: [...state.invoices, action.payload.invoice] };

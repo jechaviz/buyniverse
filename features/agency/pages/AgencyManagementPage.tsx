@@ -9,6 +9,7 @@ import Textarea from '@/components/ui/Textarea';
 import { generateAgencyBioWithAI } from '@/services/geminiService';
 import Spinner from '@/components/ui/Spinner';
 import { ICONS } from '@/constants';
+import { Link } from 'react-router-dom';
 
 const CreateAgencyForm: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -48,7 +49,7 @@ const CreateAgencyForm: React.FC = () => {
 };
 
 const AgencyManagementPage: React.FC = () => {
-    const { currentUser, agencies } = useAppState();
+    const { currentUser, agencies, users } = useAppState();
     const dispatch = useAppDispatch();
     const agency = agencies.find(a => a.id === currentUser.agencyId);
     
@@ -141,8 +142,22 @@ const AgencyManagementPage: React.FC = () => {
             </Card>
             
             <Card className="p-8">
-                 <h2 className="text-2xl font-bold mb-6">Team Members</h2>
-                 <p className="text-center text-gray-500">Team member management coming soon.</p>
+                 <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-bold">Team Members</h2>
+                    <span className="text-sm text-slate-500">{agency.members.length} active</span>
+                 </div>
+                 <div className="divide-y divide-slate-200 dark:divide-slate-700">
+                    {agency.members.map(member => {
+                        const user = users.find(item => item.id === member.userId);
+                        if (!user) return null;
+                        return (
+                            <Link key={member.userId} to={`/profile/${user.id}`} className="flex items-center justify-between py-3 hover:text-primary-600">
+                                <span className="font-medium">{user.name}</span>
+                                <span className="text-sm text-slate-500">{member.role}</span>
+                            </Link>
+                        );
+                    })}
+                 </div>
             </Card>
         </div>
     );

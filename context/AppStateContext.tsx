@@ -8,7 +8,7 @@ const AppStateContext = createContext<{ state: AppState; dispatch: Dispatch<Acti
 // Bump this whenever the shape of AppState/seed data changes in a way that makes
 // previously persisted state incompatible. A mismatch discards the stored state
 // and falls back to the seed data.
-const STORAGE_VERSION = 1;
+const STORAGE_VERSION = 2;
 const STORAGE_KEY = `buyniverse-state:v${STORAGE_VERSION}`;
 
 // Field names that hold Issuer / PAC credentials or any other secret. These must

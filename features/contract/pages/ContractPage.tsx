@@ -240,11 +240,11 @@ const ContractPage: React.FC = () => {
                         {activeTab === 'milestones' && <MilestonesComponent />}
                         {activeTab === 'timesheet' && <TimesheetView contract={contract} />}
                         {activeTab === 'messages' && (
-                             <div className="text-center py-16 text-gray-500">
-                                <p className="font-semibold">Messaging is coming soon!</p>
-                                <p className="text-sm">For now, please use the main <Link to="/messages" className="text-primary-600 underline">Messages page</Link>.</p>
-                             </div>
-                         )}
+                            <div className="text-center py-16 text-gray-500 space-y-3">
+                                <p className="font-semibold">Continue this contract conversation in Messages.</p>
+                                <Link to="/messages"><Button variant="outline">Open Messages</Button></Link>
+                            </div>
+                        )}
                     </div>
                 </Card>
             </div>

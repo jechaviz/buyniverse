@@ -1,6 +1,7 @@
 
 import React from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppState } from '@/context/AppStateContext';
 import { UserType } from '@/types';
 import ClientDashboard from '../components/ClientDashboard';
@@ -33,7 +34,10 @@ const AdminDashboard: React.FC = () => {
                     <p className="text-sm text-slate-600">Total Contracts</p>
                 </div>
             </div>
-             <p className="mt-6 text-center text-slate-500">More admin features coming soon.</p>
+             <div className="mt-6 flex justify-center gap-3 text-sm">
+                <Link to="/admin/issuers" className="text-primary-600 hover:underline">Manage issuers</Link>
+                <Link to="/leads" className="text-primary-600 hover:underline">Review leads</Link>
+             </div>
         </Card>
     </div>
   )

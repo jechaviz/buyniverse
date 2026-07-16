@@ -1,7 +1,8 @@
 import { AppState, DashboardCategory, TableView, TableAdminConfig, Issuer, PaymentReceipt, Invoice, Product } from '@/types';
-import { MOCK_USERS_RAW, MOCK_JOBS, MOCK_LEADS, MOCK_SUPPLIERS, MOCK_REVIEWS, MOCK_CONTRACTS, MOCK_CONVERSATIONS, MOCK_NOTIFICATIONS, MOCK_AGENCIES, MOCK_GIGS, MOCK_INVOICES_BASE, MOCK_ESTIMATES, MOCK_TRANSACTIONS, MOCK_TIME_ENTRIES, MOCK_CONTESTS, MOCK_PAYMENTS, MOCK_EXPENSES } from '@/data/mockData';
+import { MOCK_USERS_RAW, MOCK_JOBS, MOCK_LEADS, MOCK_SUPPLIERS, MOCK_REVIEWS, MOCK_CONTRACTS, MOCK_CONVERSATIONS, MOCK_NOTIFICATIONS, MOCK_AGENCIES, MOCK_GIGS, MOCK_INVOICES_BASE, MOCK_ESTIMATES, MOCK_TRANSACTIONS, MOCK_TIME_ENTRIES, MOCK_CONTESTS, MOCK_PAYMENTS, MOCK_PRODUCTS as DEMO_PRODUCTS, MOCK_EXPENSES } from '@/data/mockData';
 import { getUserPermissions } from '@/utils/permissions';
 import { User, LeadStatus } from '@/types';
+import { assertDemoStateIntegrity } from '@/data/demoIntegrity';
 
 
 const MOCK_USERS: User[] = MOCK_USERS_RAW.map(u => ({ 
@@ -347,7 +348,7 @@ const MOCK_PRODUCTS: Product[] = [
 ];
 
 
-export const initialState: AppState = {
+const demoState: AppState = {
     currentUser: MOCK_USERS[0],
     users: MOCK_USERS,
     issuers: MOCK_ISSUERS,
@@ -367,9 +368,13 @@ export const initialState: AppState = {
     contests: MOCK_CONTESTS,
     payments: MOCK_PAYMENTS,
     paymentReceipts: MOCK_PAYMENT_RECEIPTS,
-    products: MOCK_PRODUCTS,
+    products: DEMO_PRODUCTS,
     expenses: MOCK_EXPENSES,
     dashboardLayouts: MOCK_DASHBOARD_LAYOUTS,
     tableViews: MOCK_TABLE_VIEWS,
     tableAdminConfig: MOCK_TABLE_ADMIN_CONFIG,
 };
+
+assertDemoStateIntegrity(demoState);
+
+export const initialState = demoState;

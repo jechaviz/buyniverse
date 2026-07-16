@@ -19,7 +19,11 @@ const MessagesPage: React.FC = () => {
     const myConversations = useMemo(() => {
         return conversations
             .filter(c => c.participants.includes(currentUser.id))
-            .sort((a,b) => b.messages[b.messages.length - 1].timestamp.getTime() - a.messages[a.messages.length - 1].timestamp.getTime());
+            .sort((a, b) => {
+                const aTime = a.messages.at(-1)?.timestamp.getTime() ?? 0;
+                const bTime = b.messages.at(-1)?.timestamp.getTime() ?? 0;
+                return bTime - aTime;
+            });
     }, [conversations, currentUser.id]);
 
     const selectedConversation = useMemo(() => {
@@ -44,7 +48,7 @@ const MessagesPage: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        if (listRef.current && selectedConversation) {
+        if (listRef.current && selectedConversation && selectedConversation.messages.length > 0) {
             listRef.current.scrollToItem(selectedConversation.messages.length - 1, 'end');
         }
     }, [selectedConversation, listHeight]);
@@ -114,7 +118,7 @@ const MessagesPage: React.FC = () => {
                     <ul className="overflow-y-auto flex-grow">
                         {myConversations.map(convo => {
                             const otherUser = getOtherParticipant(convo);
-                            const lastMessage = convo.messages[convo.messages.length - 1];
+                            const lastMessage = convo.messages.at(-1);
                             const job = jobs.find(j => j.id === convo.jobId);
                             if (!otherUser || !job) return null;
                             
@@ -124,7 +128,7 @@ const MessagesPage: React.FC = () => {
                                 >
                                     <p className="font-semibold">{otherUser.name}</p>
                                     <p className="text-sm text-gray-600 dark:text-slate-400 truncate">{job.title}</p>
-                                    <p className="text-xs text-gray-400 dark:text-slate-500 truncate mt-1">{lastMessage.text}</p>
+                                    <p className="text-xs text-gray-400 dark:text-slate-500 truncate mt-1">{lastMessage?.text || 'No messages yet — start the conversation.'}</p>
                                 </li>
                             )
                         })}
