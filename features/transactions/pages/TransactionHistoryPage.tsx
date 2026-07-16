@@ -51,7 +51,7 @@ const TransactionHistoryPage: React.FC = () => {
                                    {t.amount < 0 ? '-' : ''}${Math.abs(t.amount).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                                 </div>
                                 <div className="text-right">
-                                    <Link to={`/invoice/${t.invoiceId}`} className="text-primary-600 hover:underline text-sm font-semibold">
+                                    <Link to={`/invoices/${t.invoiceId}`} className="text-primary-600 hover:underline text-sm font-semibold">
                                         View
                                     </Link>
                                 </div>

@@ -46,7 +46,7 @@ const ProviderSourcingView: React.FC<ProviderSourcingViewProps> = ({ project }) 
             } else {
                 statusNode = <Tag className="bg-blue-500 text-white">{t('pages.project.details.contest.contestActive')}</Tag>;
             }
-            actionNode = <Link to={`/contest/${project.id}`}><Button>{t('pages.project.details.contest.viewContest')}</Button></Link>;
+            actionNode = <Link to={`/project/${project.id}/contest`}><Button>{t('pages.project.details.contest.viewContest')}</Button></Link>;
         } else if (canStartContest) {
             actionNode = <Button onClick={() => setContestModalOpen(true)}>{t('pages.project.details.contest.startContest')}</Button>;
         } else {
